@@ -1,0 +1,272 @@
+/*
+;;  Author Eric Majzoub, Department of Physics and Astronomy
+;;  University of Missouri, St. Louis
+;;  Copyright (C) 2024 Eric Majzoub
+
+;;  This program is free software; you can redistribute it and/or modify 
+;;  it under the terms of the GNU General Public License as published by         
+;;  the Free Software Foundation; either version 2 of the License, or            
+;;  (at your option) any later version.                                  
+                                                                                 
+;;  This program is distributed in the hope that it will be useful,              
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of               
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                
+;;  GNU General Public License for more details.         
+
+;; Quantum mechanics package for Maxima.
+*/
+
+/* load("groups_ehm.mac") $ */
+load("qm.lisp") $ /* for complex_number_p(),
+I took this from Barton's to_poly code */
+
+/* Sadly, this won't work using 'load'. */
+/* :lisp (defun $complex_number_p (e) (complex-number-p e #'$numberp)) */
+
+
+disp("###########  qm_ehm.mac   version 0.5, 08 August 2024  ##########") $ 
+disp("create vectors:: cvec, rvec, ket, bra")$
+disp("vector tools:: dagger, braket, norm, ketp, brap")$
+disp("Other tools:: magsqr(c), commutator(X,Y)")$
+disp("spin-1/2 state kets:: zp, zm, xp, xm, yp, ym") $
+disp("Pauli and spin-1/2 matrices:: sigmax, sigmay, sigmaz, Sz, Sx, Sy") $
+disp("spin-1 matrices and z-kets:: Sz1, Sx1, Sy1, zu, zz, zd") $
+disp("expectation value and variance:: expect(Op,psi), qm_variance(Op,psi)") $
+
+/******************************/
+/* Simplification definitions */
+/******************************/
+matchdeclare([aa,bb],freeof(%i));
+tellsimpafter(%i*aa+%i*bb,%i*(aa+bb));
+
+matchdeclare([x,y],freeof(%i));
+matchdeclare([cc],numberp);
+tellsimpafter(%e^x*(%e^y+cc),%e^(x+y)+cc*%e^x);
+tellsimpafter(%e^x*(cc-%e^y),cc*%e^x-%e^(x+y));
+
+matchdeclare(x,freeof(%i));
+tellsimpafter(%e^x+%e^(-x),2*cosh(x));
+tellsimpafter(%e^x-%e^(-x),2*sinh(x));
+tellsimpafter(sinh(x)/cosh(x),tanh(x));
+tellsimpafter(cos(x)+%i*sin(x),%e^(%i*x));
+tellsimpafter(cos(x)-%i*sin(x),%e^(-%i*x));
+
+/*******************************/
+/* Constants and assumptions   */
+/*******************************/
+declare(hbar,real) $
+assume(hbar>0) $
+
+/************************/
+/* make simple vectors  */
+/************************/
+/* Real column and row vectors, Note: kets and bras are below */
+cvec([u]) := transpose(matrix(u)) $
+rvec([u]) := matrix(u) $
+
+/************************/
+/*   QM operations      */
+/************************/
+dagger(u) := transpose(conjugate(u)) $
+braket(v,w) := block(if ketp(v) and ketp(w) then dagger(v) . w else
+  if brap(v) and ketp(w) then v . w ) $
+norm(v) := sqrt( braket(v,v) ) $
+magsqr(c) := c*conjugate(c);
+commutator(X,Y) := X.Y - Y.X;
+expect(Op,psi) := dagger(psi) . Op . psi $
+qm_variance(Op,psi) := sqrt(expect(Op . Op,psi) - expect(Op,psi)^2) $
+
+/* Born rule */
+probability(psi,n) := magsqr(psi[n]);
+
+
+/*********************/
+/* make kets or bras */
+/*********************/
+/* most basic definition, but won't declare constants as complex */
+/* ket([u]) := transpose(u) $
+   bra([u]) := matrix(u) $ */
+
+/* These don't check for constants, i.e. ket(1,0) */
+/* This works if the user inputs simple things like ket(a,b,c) */
+/* ket([u]) := ( apply('declare,[u,complex]), transpose(u) ) $
+   bra([u]) := ( apply('declare,[u,complex]), matrix(u) ) $ */
+   
+/* 
+This code tries to make a general ket and determine which variables
+to declare(var,complex). It automatically handles expressions like
+a*cos(t)+b*sin(t) and exp(i*phi)*cos(th/2), etc. but may fail otherwise.
+*/
+
+common_functions: [sin,cos,asin,acos,tan,atan,exp] $
+ket([u]) := block([i], for elm in u do
+	     if apply('numberp,[float(elm)])=true then 1    /* is it a number? */
+	     	elseif apply('complex_number_p,[elm])=true then 1  /* is it a complex number? */ 
+		elseif apply('symbolp,[elm])=true and apply('atom,[elm])=true /* if symbol and atom */
+		       then apply('declare,[elm,complex])
+		elseif apply('atom,[elm])=false and apply('symbolp,[part(elm,1)])=true /* if only one part and atom */
+		       then apply('declare,[part(elm,1),complex])
+		elseif apply('length,[args(elm)]) > 1 /* if multiple args a*cos + b*sin, etc. */
+		       then for i: 1 thru apply('length,[args(elm)]) do
+		       	    if apply('atom,[part(elm,i)])=true and
+			       apply('symbolp,[part(elm,i)])=true then
+		       	       apply('declare,[part(elm,i),complex])
+			       else /* dig deeper */
+			        if apply('lfreeof,[common_functions,part(elm,i)])=false and
+				   apply('length,[args(part(elm,i))])=1 then 0
+				   elseif apply('atom,[part(elm,i,1)])=true and
+				     	  apply('constantp,[part(elm,i,1)])=false and
+				     	  apply('symbolp,[part(elm,i,1)])=true then
+	 	       	             	  apply('declare,[part(elm,i,1),complex])
+	        else 1,
+		transpose(u) ) $
+
+bra([u]) := block([i], for elm in u do
+	     if apply('numberp,[float(elm)])=true then 1    /* is it a number? */
+	     	elseif apply('complex_number_p,[elm])=true then 1  /* is it a complex number? */ 
+		elseif apply('symbolp,[elm])=true and apply('atom,[elm])=true /* if symbol and atom */
+		       then apply('declare,[elm,complex])
+		elseif apply('atom,[elm])=false and apply('symbolp,[part(elm,1)])=true /* if only one part and atom */
+		       then apply('declare,[part(elm,1),complex])
+		elseif apply('length,[args(elm)]) > 1 /* if multiple args a*cos + b*sin, etc. */
+		       then for i: 1 thru apply('length,[args(elm)]) do
+		       	    if apply('atom,[part(elm,i)])=true and
+			       apply('symbolp,[part(elm,i)])=true then
+		       	       apply('declare,[part(elm,i),complex])
+			       else /* dig deeper */
+			        if apply('lfreeof,[common_functions,part(elm,i)])=false and
+				   apply('length,[args(part(elm,i))])=1 then 0
+				   elseif apply('atom,[part(elm,i,1)])=true and
+				     	  apply('constantp,[part(elm,i,1)])=false and
+				     	  apply('symbolp,[part(elm,i,1)])=true then
+	 	       	             	  apply('declare,[part(elm,i,1),complex])
+	        else 1,
+		matrix(u) ) $
+
+
+/***************************************/
+/* Define predicates for kets and bras */
+/***************************************/
+ketp(psi) := block([n,m,S], S:matrix_size(ev(psi)),
+    S[1] > S[2] and S[2] = 1 ) $
+brap(psi) := block([n,m,S], S:matrix_size(ev(psi)),
+    S[1] < S[2] and S[1] = 1 ) $
+
+/******************************************************/
+/******************************************************/
+/* Angular momentum ladder operators for general spin */
+/******************************************************/
+/******************************************************/
+disp("Angular momentum ladder ops:: SP(s), SM(s)") $
+disp("General spin:: SX(s), SY(s), SZ(s); rot:: RZ(s,phi), RX(s,phi), RY(s,phi)") $
+disp("Time-evolution operator:: UU(H,t)") $
+SP(s) := block([i,j,N,MM],
+	N:2*s+1, MM: zeromatrix(N,N),
+	mval: makelist(-s+i,i,0,N-1),
+	for i: 1 thru N do
+	    for j: i thru N do
+	    	if is(i=(j+1))=true or is(i=(j-1))=true then 
+		MM[i,j]: hbar*sqrt( s * (s+1) - mval[i] * (mval[i]+1) )
+		else MM[i,j]:0,
+	MM
+	)$
+	
+SM(s) := dagger(SP(s))$
+SX(s) := (1/2)*(SP(s)+SM(s))$
+SY(s) := (%i/2)*(SM(s)-SP(s))$
+SZ(s) := 1/(%i*hbar)*commutator(SX(s),SY(s))$
+
+
+/******************/
+/* Spin-1/2 stuff */
+/******************/
+
+/* spin-1/2 state vectors */
+zp : cvec(1,0) $
+zm : cvec(0,1) $
+xp : (1/sqrt(2))*(zp+zm) $
+xm : (1/sqrt(2))*(zp-zm) $
+yp : (1/sqrt(2))*(zp+%i*zm) $
+ym : (1/sqrt(2))*(zp-%i*zm) $
+
+/* Pauli sigma matrices */
+sigmax : matrix([0,1],[1,0]) $
+sigmay : matrix([0,-%i],[%i,0]) $
+sigmaz : matrix([1,0],[0,-1]) $
+
+/* spin-1/2 matrices */
+Sz : SZ(1/2) $
+Sx : SX(1/2) $
+Sy : SY(1/2) $
+
+/******************/
+/* Spin-1 stuff */
+/******************/
+
+/* basis states for a spin-1 particle */
+zu : cvec(1,0,0) $
+zz : cvec(0,1,0) $
+zd : cvec(0,0,1) $
+
+/* spin-1 matrices
+Sz1 : hbar*matrix([1,0,0],[0,0,0],[0,0,-1]) $
+Sx1 : (hbar/sqrt(2))*matrix([0,1,0],[1,0,1],[0,1,0]) $
+Sy1 : (hbar/sqrt(2))*matrix([0,-%i,0],[%i,0,-%i],[0,%i,0]) $ */
+Sz1 : SZ(1) $
+Sx1 : SX(1) $
+Sy1 : SY(1) $
+
+
+/****************************************/
+/*         Rotation Operators           */
+/****************************************/
+Rot(Op,phi) := block([M1,M2,M3],
+	  M1: matrixexp(-%i*Op*phi/hbar),
+	  M2: matrixmap(expand,M1),
+	  M3: matrixmap(combine,M2),
+	  ev(M3,trigreduce)
+	  )$
+
+/* the following is so RZ appears with exponentials
+   and RX and RY with trig functions */
+RZ(s,t) := Rot(SZ(s),t)$
+RX(s,t) := block([M], demoivre:true, M:Rot(SX(s),t), demoivre:false, M)$
+RY(s,t) := block([M], demoivre:true, M:Rot(SY(s),t), demoivre:false, M)$
+
+/* time-evolution operator */
+UU(H,t) := Rot(H,t)$
+
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+/*                tensor products                                */
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+
+ketprod([u]) := block([N,fail:0],
+	     N: length(u),
+	     for i: 1 thru N do
+	     	 if ketp(''u[i])=false then fail:1,
+	     if fail=0 then [tpket,u]
+	     else disp("all elements must be kets")
+)$
+
+braprod([u]) := block([N,fail:0],
+	     N: length(u),
+	     for i: 1 thru N do
+	     	 if brap(''u[i])=false then fail:1,
+	     if fail=0 then [tpbra,u]
+	     else disp("all elements must be bras")
+)$
+
+braketprod(B,K) := block([N,M,fail:0,prod:1],
+		if is(B[1]#tpbra) then return(false),
+		if is(K[1]#tpket) then return(false),
+		N: length(B[2]),
+		M: length(K[2]),
+		if M#N then return(false)
+		else for i: 1 thru N do
+		     prod: prod*braket(B[2][i],K[2][i]),
+		prod
+)$

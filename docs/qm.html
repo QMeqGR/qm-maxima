@@ -1,0 +1,770 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on August 8, 2024 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Package qm</title>
+
+<meta name="description" content="Package qm">
+<meta name="keywords" content="Package qm">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<h1 class="settitle" align="center">Package qm</h1>
+<hr>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; Introduction to qm package</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Functions-and-Variables-for-qm">2 Functions and Variables for qm</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       
+</td></tr>
+</table>
+
+<a name="Introduction-to-qm"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[ &lt;&lt; ]</td>
+<td valign="middle" align="left">[ &lt; ]</td>
+<td valign="middle" align="left">[ Up ]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-to-qm-1"></a>
+<h2 class="section">1 Introduction to qm</h2>
+
+<p>The <code>qm</code> package provides functions and standard definitions
+to solve quantum mechanics problems in a finite dimensional Hilbert
+space. One can calculate the outcome of Stern-Gerlach experiments using
+the built-in definition of the Sx, Sy, and Sz for arbitrary spin,
+e.g. <code>s={1/2, 1, 3/2, &hellip;}</code>. One can create ket vectors
+with arbitrary but finite dimension and perform standard computations.
+</p>
+<p>With this package it is also possible to create tensor product states
+for multiparticle systems and to perform calculations on those systems.
+</p>
+<hr>
+<a name="Functions-and-Variables-for-qm"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ Up ]</td>
+<td valign="middle" align="left">[<a href="#Spin_002d1_002f2-state-kets-and-associated-operators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Functions-and-Variables-for-qm-1"></a>
+<h2 class="section">2 Functions and Variables for qm</h2>
+
+<p><a name="cvec"></a>
+</p><dl>
+<dt><a name="index-cvec"></a>Function: <strong>cvec</strong><em> (<code>a@sub{1}</code>,<code>a@sub{2}</code>,&hellip;)</em></dt>
+<dd><p><code>cvec</code> creates a <em>column</em> vector of arbitrary dimension. The
+entries <code>a@sub{i}</code> can be any Maxima expression.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i7) cvec(1,2,3);
+                                     [ 1 ]
+                                     [   ]
+(%o7)                                [ 2 ]
+                                     [   ]
+                                     [ 3 ]
+</pre></div>
+
+<p><a name="rvec"></a>
+</p><dl>
+<dt><a name="index-rvec"></a>Function: <strong>rvec</strong><em> (<code>a@sub{1}</code>,<code>a@sub{2}</code>,&hellip;)</em></dt>
+<dd><p><code>rvec</code> creates a <em>row</em> vector of arbitrary dimension. The
+entries <code>a@sub{i}</code> can be any Maxima expression.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i8) rvec(1,2,3);
+(%o8)                             [ 1  2  3 ]
+</pre></div>
+
+<p><a name="ket"></a>
+</p><dl>
+<dt><a name="index-ket"></a>Function: <strong>ket</strong><em> (<code>c@sub{1}</code>,<code>c@sub{2}</code>,&hellip;)</em></dt>
+<dd><p><code>ket</code> creates a <em>column</em> vector of arbitrary dimension. The
+entries <code>c@sub{i}</code> can be any Maxima expression. If the entries
+are simple symbols or coefficients of simple functions then they will
+be <code>declare</code>-ed complex. If one is having difficulty with getting
+the correct constants declared complex then one is suggested to use
+the <code>cvec</code> and <code>rvec</code> functions.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i10) ket(c1,c2);
+                                    [ c1 ]
+(%o10)                              [    ]
+                                    [ c2 ]
+(%i11) facts();
+(%o11) [kind(c1, complex), kind(c2, complex)]                                   
+</pre></div>
+
+<p><a name="bra"></a>
+</p><dl>
+<dt><a name="index-bra"></a>Function: <strong>bra</strong><em> (<code>c@sub{1}</code>,<code>c@sub{2}</code>,&hellip;)</em></dt>
+<dd><p><code>bra</code> creates a <em>row</em> vector of arbitrary dimension. The
+entries <code>c@sub{i}</code> can be any Maxima expression. If the entries
+are simple symbols or coefficients of simple functions then they will
+be <code>declare</code>-ed complex. If one is having difficulty with getting
+the correct constants declared complex then one is suggested to use
+the <code>cvec</code> and <code>rvec</code> functions.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i11) bra(c1,c2);
+(%o11)                            [ c1  c2 ]
+</pre></div>
+
+<p><a name="ketp"></a>
+</p><dl>
+<dt><a name="index-ketp"></a>Function: <strong>ketp</strong><em> (<em>vector</em>)</em></dt>
+<dd><p><code>ketp</code> is a predicate function that checks if its input is a ket,
+in which case it returns <code>true</code>, else it returns <code>false</code>.
+</p></dd></dl>
+
+<p><a name="brap"></a>
+</p><dl>
+<dt><a name="index-brap"></a>Function: <strong>brap</strong><em> (<em>vector</em>)</em></dt>
+<dd><p><code>brap</code> is a predicate function that checks if its input is a bra,
+in which case it returns <code>true</code>, else it returns <code>false</code>.
+</p></dd></dl>
+
+<p><a name="dagger"></a>
+</p><dl>
+<dt><a name="index-dagger"></a>Function: <strong>dagger</strong><em> (<em>vector</em>)</em></dt>
+<dd><p><code>dagger</code> returns the <code>conjugate</code> <code>transpose</code> of its input.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i13) dagger( bra(%i,2) );
+                                   [ - %i ]
+(%o13)                             [      ]
+                                   [  2   ]
+</pre></div>
+
+<p><a name="braket"></a>
+</p><dl>
+<dt><a name="index-braket"></a>Function: <strong>braket</strong><em> (<code>psi,phi</code>)</em></dt>
+<dd><p>Given two kets <code>psi</code> and <code>phi</code>, <code>braket</code> returns the
+quantum mechanical bracket <code>&lt;psi|phi&gt;</code>. The vector <code>psi</code> may be
+input as either a <code>ket</code> or <code>bra</code>. If it is a <code>ket</code> it will be
+turned into a <code>bra</code> with the <code>dagger</code> function before the inner
+product is taken. The vector <code>phi</code> must always be a <code>ket</code>.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i7) braket(ket(a,b,c),ket(a,b,c));
+(%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+</pre></div>
+
+<p><a name="norm"></a>
+</p><dl>
+<dt><a name="index-norm"></a>Function: <strong>norm</strong><em> (<code>psi</code>)</em></dt>
+<dd><p>Given a <code>ket</code> or <code>bra</code> <code>psi</code>, <code>norm</code> returns the
+square root of the quantum mechanical bracket <code>&lt;psi|psi&gt;</code>.
+The vector <code>psi</code> must always be a <code>ket</code>, otherwise the
+function will return <code>false</code>.
+</p></dd></dl>
+
+<p>The following additional examples show how to input vectors of various kinds
+and to do simple manipulations with them.
+</p>
+<div class="example">
+<pre class="example">(%i1) load(qm)$
+(%i2) rvec(a,b,c);
+(%o2)                             [ a  b  c ]
+(%i3) facts();
+(%o3)        [kind(hbar, real), hbar &gt; 0]
+(%i4) bra(a,b,c);
+(%o4)                             [ a  b  c ]
+(%i5) facts();
+(%o5) [kind(hbar, real), hbar &gt; 0, kind(a, complex), 
+                   kind(b, complex), kind(c, complex)]
+(%i6) braket(bra(a,b,c),ket(a,b,c));
+                                  2    2    2
+(%o6)                            c  + b  + a
+(%i7) braket(ket(a,b,c),ket(a,b,c));
+(%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+(%i8) norm(ket(a,b,c));
+(%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+</pre></div>
+
+<hr>
+<a name="Spin_002d1_002f2-state-kets-and-associated-operators"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.1 Spin-1/2 state kets and associated operators</h3>
+
+<p>Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
+space of states. It is spanned by two vectors. In the <var>z</var>-basis
+these vectors are <code>{zp,zm}</code>, and the basis kets in the
+<var>z</var>-basis are <code>{xp,xm}</code> and <code>{yp,ym}</code> respectively.
+</p>
+<p><a name="zp"></a>
+</p><dl>
+<dt><a name="index-zp"></a>Function: <strong>zp</strong><em>,zm,xp,xm,yp,ym</em></dt>
+<dd><p>Return the ket of the corresponding vector in the <var>z</var>-basis.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i6) zp;
+                                     [ 1 ]
+(%o6)                                [   ]
+                                     [ 0 ]
+(%i7) zm;
+                                     [ 0 ]
+(%o7)                                [   ]
+                                     [ 1 ]
+</pre><pre class="example">(%i8) xp;
+                                  [    1    ]
+                                  [ ------- ]
+                                  [ sqrt(2) ]
+(%o8)                             [         ]
+                                  [    1    ]
+                                  [ ------- ]
+                                  [ sqrt(2) ]
+(%i9) xm;
+                                 [     1     ]
+                                 [  -------  ]
+                                 [  sqrt(2)  ]
+(%o9)                            [           ]
+                                 [      1    ]
+                                 [ - ------- ]
+                                 [   sqrt(2) ]
+</pre><pre class="example">(%i10) yp;
+                                  [    1    ]
+                                  [ ------- ]
+                                  [ sqrt(2) ]
+(%o10)                            [         ]
+                                  [   %i    ]
+                                  [ ------- ]
+                                  [ sqrt(2) ]
+(%i11) ym;
+                                 [     1     ]
+                                 [  -------  ]
+                                 [  sqrt(2)  ]
+(%o11)                           [           ]
+                                 [     %i    ]
+                                 [ - ------- ]
+                                 [   sqrt(2) ]
+</pre><pre class="example">(%i6) braket(xp,zp);
+                                       1
+(%o6)                               -------
+                                    sqrt(2)
+</pre></div>
+
+<hr>
+<a name="Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Spin_002d1_002f2-state-kets-and-associated-operators" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.2 Pauli matrices and Sz, Sx, Sy operators</h3>
+
+<dl>
+<dt><a name="index-sigmax"></a>Function: <strong>sigmax</strong><em>, sigmay, sigmaz</em></dt>
+<dd><p>Returns the Pauli <var>x,y,z</var> matrix.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-Sx"></a>Function: <strong>Sx</strong><em>, Sy, Sz</em></dt>
+<dd><p>Returns the spin-1/2 <var>Sx,Sy,Sz</var> matrix.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i3) sigmay;
+                                 [ 0   - %i ]
+(%o3)                            [          ]
+                                 [ %i   0   ]
+(%i4) Sy;
+                            [            %i hbar ]
+                            [    0     - ------- ]
+                            [               2    ]
+(%o4)                       [                    ]
+                            [ %i hbar            ]
+                            [ -------      0     ]
+                            [    2               ]
+</pre></div>
+
+<hr>
+<a name="SX_002c-SY_002c-SZ-operators-for-any-spin"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Expectation-value-and-variance" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.3 SX, SY, SZ operators for any spin</h3>
+
+<dl>
+<dt><a name="index-SX"></a>Function: <strong>SX</strong><em>, SY, SZ (<code>s</code>)</em></dt>
+<dd><p><code>SX(s)</code> for spin <code>s</code> returns the matrix representation
+of the spin operator <code>Sx</code>, and similarly for <code>SY(s)</code>
+and <code>SZ(s)</code>. Shortcuts for spin-1/2 are <code>Sx,Sy,Sz</code>,
+and for spin-1 are <code>Sx1,Sy1,Sz1</code>.
+</p></dd></dl>
+
+<p>Example:
+</p><div class="example">
+<pre class="example">(%i6) SY(1/2);
+                            [            %i hbar ]
+                            [    0     - ------- ]
+                            [               2    ]
+(%o6)                       [                    ]
+                            [ %i hbar            ]
+                            [ -------      0     ]
+                            [    2               ]
+(%i7) SX(1);
+                         [           hbar            ]
+                         [    0     -------     0    ]
+                         [          sqrt(2)          ]
+                         [                           ]
+                         [  hbar              hbar   ]
+(%o7)                    [ -------     0     ------- ]
+                         [ sqrt(2)           sqrt(2) ]
+                         [                           ]
+                         [           hbar            ]
+                         [    0     -------     0    ]
+                         [          sqrt(2)          ]
+</pre></div>
+
+<hr>
+<a name="Expectation-value-and-variance"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Angular-momentum-and-ladder-operators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.4 Expectation value and variance</h3>
+
+<dl>
+<dt><a name="index-expect"></a>Function: <strong>expect</strong><em> (<code>O,psi</code>)</em></dt>
+<dd><p>Computes the quantum mechanical expectation value of the operator <code>O</code>
+in state <code>psi</code>, <code>&lt;psi|O|psi&gt;</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-qm_005fvariance"></a>Function: <strong>qm_variance</strong><em> (<code>O,psi</code>)</em></dt>
+<dd><p>Computes the quantum mechanical variance of the operator <code>O</code>
+in state <code>psi</code>, <code>sqrt(&lt;psi|O@sup{2}|psi&gt; - &lt;psi|O|psi&gt;@sup{2})</code>.
+</p></dd></dl>
+
+<hr>
+<a name="Angular-momentum-and-ladder-operators"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Expectation-value-and-variance" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.5 Angular momentum and ladder operators</h3>
+
+<dl>
+<dt><a name="index-SP"></a>function: <strong>SP</strong><em> (<code>s</code>)</em></dt>
+<dd><p><code>SP</code> is the raising ladder operator <var>S@sub{+}</var> for spin <code>s</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-SM"></a>function: <strong>SM</strong><em> (<code>s</code>)</em></dt>
+<dd><p><code>SM</code> is the raising ladder operator <var>S@sub{-}</var> for spin <code>s</code>.
+</p></dd></dl>
+
+<p>Examples of the ladder operators:
+</p><div class="example">
+<pre class="example">(%i4) SP(1);
+                       [ 0  sqrt(2) hbar       0       ]
+                       [                               ]
+(%o4)                  [ 0       0        sqrt(2) hbar ]
+                       [                               ]
+                       [ 0       0             0       ]
+(%i5) SM(1);
+                       [      0             0        0 ]
+                       [                               ]
+(%o5)                  [ sqrt(2) hbar       0        0 ]
+                       [                               ]
+                       [      0        sqrt(2) hbar  0 ]
+</pre></div>
+
+<hr>
+<a name="Rotation-operators"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Angular-momentum-and-ladder-operators" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ Up ]</td>
+<td valign="middle" align="left">[<a href="#Time_002devolution-operator" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Time_002devolution-operator" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3 Rotation operators</h2>
+
+<dl>
+<dt><a name="index-RX"></a>Function: <strong>RX</strong><em>, RY, RZ (<code>s,t</code>)</em></dt>
+<dd><p><code>RX(s)</code> for spin <code>s</code> returns the matrix representation
+of the rotation operator <code>Rx</code> for rotation through angle
+<code>t</code>, and similarly for <code>RY(s,t)</code>
+and <code>RZ(s,t)</code>.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i10) RZ(1/2,t);
+                             [     %i t         ]
+                             [   - ----         ]
+                             [      2           ]
+                             [ %e          0    ]
+(%o10)                       [                  ]
+                             [             %i t ]
+                             [             ---- ]
+                             [              2   ]
+                             [    0      %e     ]
+</pre></div>
+
+<hr>
+<a name="Time_002devolution-operator"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Rotation-operators" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ Up ]</td>
+<td valign="middle" align="left">[<a href="#Tensor-products" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tensor-products" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">4 Time-evolution operator</h2>
+
+<dl>
+<dt><a name="index-UU"></a>Function: <strong>UU</strong><em> (<code>H,t</code>)</em></dt>
+<dd><p><code>UU(H,t)</code> is the time evolution operator for Hamiltonian <code>H</code>. It
+is defined as the matrix exponential <code>matrixexp(-%i*H*t/hbar)</code>.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i12) UU(w*Sy,t),demoivre,trigreduce;
+                           [     t w         t w  ]
+                           [ cos(---)  - sin(---) ]
+                           [      2           2   ]
+(%o12)                     [                      ]
+                           [     t w        t w   ]
+                           [ sin(---)   cos(---)  ]
+                           [      2          2    ]
+</pre></div>
+
+<hr>
+<a name="Tensor-products"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Time_002devolution-operator" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Time_002devolution-operator" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ Up ]</td>
+<td valign="middle" align="left">[ &gt; ]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">5 Tensor products</h2>
+
+<p>Tensor products are represented as lists in Maxima. The ket tensor
+product <code>|z+,z+&gt;</code> is represented as <code>[tpket,zp,zp]</code>, and the bra
+tensor product <code>&lt;a,b|</code> is represented as <code>[tpbra,a,b]</code> for kets
+<code>a</code> and <code>b</code>. The list labels <code>tpket</code> and <code>tpbra</code>
+ensure calculations are performed with the correct kind of objects.
+</p>
+<dl>
+<dt><a name="index-ketprod"></a>Function: <strong>ketprod</strong><em> (<code>k@sub{1}</code>, <code>k@sub{2}</code>, &hellip;)</em></dt>
+<dd><p><code>ketprod</code> produces a tensor product of kets <code>k@sub{i}</code>. All
+of the elements must pass the <code>ketp</code> predicate test to be
+accepted.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-braprod"></a>Function: <strong>braprod</strong><em> (<code>b@sub{1}</code>, <code>b@sub{2}</code>, &hellip;)</em></dt>
+<dd><p><code>braprod</code> produces a tensor product of bras <code>b@sub{i}</code>. All
+of the elements must pass the <code>brap</code> predicate test to be
+accepted.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-braketprod"></a>Function: <strong>braketprod</strong><em> (<code>B,K</code>)</em></dt>
+<dd><p><code>braketprod</code> takes the inner product of the tensor products
+<code>B</code> and <code>K</code>. The tensor products must be of the same length
+(number of kets must equal the number of bras).
+</p></dd></dl>
+
+<p>Examples below show how to create tensor products and take
+the bracket of tensor products.
+</p>
+<div class="example">
+<pre class="example">(%i3) ketprod(zp,zm);
+                                     [ 1 ]  [ 0 ]
+(%o3)                       [tpket, [[   ], [   ]]]
+                                     [ 0 ]  [ 1 ]
+(%i4) ketprod('zp,'zm);
+(%o4)                          [tpket, [zp, zm]]
+</pre><pre class="example">(%i5) braprod(bra(a,b),bra(c,d));
+(%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%i6) braprod(dagger(zp),bra(c,d));
+(%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+</pre><pre class="example">
+</pre><pre class="example">(%i7) zpb: dagger(zp);
+(%o7)                              [ 1  0 ]
+(%i8) zmb: dagger(zm);
+(%o8)                              [ 0  1 ]
+(%i9) K: ketprod('zp,'zm);
+(%o9)                          [tpket, [zp, zm]]
+(%i10) B: braprod(zpb,zmb);
+(%o10)                   [tpbra, [[ 1  0 ], [ 0  1 ]]]
+(%i11) B: braprod('zpb,'zmb);
+(%o11)                        [tpbra, [zpb, zmb]]
+(%i12) braketprod(K,B);
+(%o12)                               false
+(%i13) braketprod(B,K);
+(%o13)                       (zmb . zm) (zpb . zp)
+
+</pre><pre class="example">
+</pre></div>
+
+<hr size="6">
+<a name="SEC_About"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>About This Document</h1>
+
+<p>
+  This document was generated on <i>August 8, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+<p>
+ <font size="-1">
+  This document was generated on <i>August 8, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
