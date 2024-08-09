@@ -23,7 +23,7 @@ I took this from Barton's to_poly code */
 /* Sadly, this won't work using 'load'. */
 /* :lisp (defun $complex_number_p (e) (complex-number-p e #'$numberp)) */
 
-
+/*
 disp("###########  qm_ehm.mac   version 0.5, 08 August 2024  ##########") $ 
 disp("create vectors:: cvec, rvec, ket, bra")$
 disp("vector tools:: dagger, braket, norm, ketp, brap")$
@@ -32,6 +32,7 @@ disp("spin-1/2 state kets:: zp, zm, xp, xm, yp, ym") $
 disp("Pauli and spin-1/2 matrices:: sigmax, sigmay, sigmaz, Sz, Sx, Sy") $
 disp("spin-1 matrices and z-kets:: Sz1, Sx1, Sy1, zu, zz, zd") $
 disp("expectation value and variance:: expect(Op,psi), qm_variance(Op,psi)") $
+*/
 
 /******************************/
 /* Simplification definitions */
@@ -67,14 +68,13 @@ rvec([u]) := matrix(u) $
 /************************/
 /*   QM operations      */
 /************************/
-dagger(u) := transpose(conjugate(u)) $
-dag(u) := transpose(conjugate(u)) $ /* shorter name */
-braket(v,w) := block(if ketp(v) and ketp(w) then dagger(v) . w else
+dag(u) := transpose(conjugate(u)) $ /* dagger */
+braket(v,w) := block(if ketp(v) and ketp(w) then dag(v) . w else
   if brap(v) and ketp(w) then v . w ) $
 norm(v) := sqrt( braket(v,v) ) $
 magsqr(c) := c*conjugate(c);
 commutator(X,Y) := X.Y - Y.X;
-expect(Op,psi) := dagger(psi) . Op . psi $
+expect(Op,psi) := dag(psi) . Op . psi $
 qm_variance(Op,psi) := sqrt(expect(Op . Op,psi) - expect(Op,psi)^2) $
 
 /* Born rule */
@@ -158,9 +158,11 @@ brap(psi) := block([n,m,S], S:matrix_size(ev(psi)),
 /* Angular momentum ladder operators for general spin */
 /******************************************************/
 /******************************************************/
+/*
 disp("Angular momentum ladder ops:: SP(s), SM(s)") $
 disp("General spin:: SX(s), SY(s), SZ(s); rot:: RZ(s,phi), RX(s,phi), RY(s,phi)") $
 disp("Time-evolution operator:: UU(H,t)") $
+*/
 SP(s) := block([i,j,N,MM],
 	N:2*s+1, MM: zeromatrix(N,N),
 	mval: makelist(-s+i,i,0,N-1),
@@ -172,7 +174,7 @@ SP(s) := block([i,j,N,MM],
 	MM
 	)$
 	
-SM(s) := dagger(SP(s))$
+SM(s) := dag(SP(s))$
 SX(s) := (1/2)*(SP(s)+SM(s))$
 SY(s) := (%i/2)*(SM(s)-SP(s))$
 SZ(s) := 1/(%i*hbar)*commutator(SX(s),SY(s))$

@@ -122,14 +122,14 @@ in which case it returns @code{true}, else it returns @code{false}.
 in which case it returns @code{true}, else it returns @code{false}.
 @end deffn
 
-@anchor{dagger}
-@deffn {Function} dagger (@emph{vector})
-@code{dagger} returns the @code{conjugate} @code{transpose} of its input.
+@anchor{dag}
+@deffn {Function} dag (@emph{vector})
+@code{dag} returns the @code{conjugate} @code{transpose} of its input.
 @end deffn
 
 @example
 @group
-(%i13) dagger( bra(%i,2) );
+(%i13) dag( bra(%i,2) );
                                    [ - %i ]
 (%o13)                             [      ]
                                    [  2   ]
@@ -141,7 +141,7 @@ in which case it returns @code{true}, else it returns @code{false}.
 Given two kets @code{psi} and @code{phi}, @code{braket} returns the
 quantum mechanical bracket @code{<psi|phi>}. The vector @code{psi} may be
 input as either a @code{ket} or @code{bra}. If it is a @code{ket} it will be
-turned into a @code{bra} with the @code{dagger} function before the inner
+turned into a @code{bra} with the @code{dag} function before the inner
 product is taken. The vector @code{phi} must always be a @code{ket}.
 @end deffn
 
@@ -439,14 +439,14 @@ the bracket of tensor products.
 @group
 (%i5) braprod(bra(a,b),bra(c,d));
 (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
-(%i6) braprod(dagger(zp),bra(c,d));
+(%i6) braprod(dag(zp),bra(c,d));
 (%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
 @end group
 
 @group
-(%i7) zpb: dagger(zp);
+(%i7) zpb: dag(zp);
 (%o7)                              [ 1  0 ]
-(%i8) zmb: dagger(zm);
+(%i8) zmb: dag(zm);
 (%o8)                              [ 0  1 ]
 (%i9) K: ketprod('zp,'zm);
 (%o9)                          [tpket, [zp, zm]]

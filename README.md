@@ -72,10 +72,10 @@ Email: majzoube-at-umsystem.edu
      ‘brap’ is a predicate function that checks if its input is a bra,
      in which case it returns ‘true’, else it returns ‘false’.
 
- -- Function: dagger (_vector_)
-     ‘dagger’ returns the ‘conjugate’ ‘transpose’ of its input.
+ -- Function: dag (_vector_)
+     ‘dag’ returns the ‘conjugate’ ‘transpose’ of its input.
 
-     (%i13) dagger( bra(%i,2) );
+     (%i13) dag( bra(%i,2) );
                                         [ - %i ]
      (%o13)                             [      ]
                                         [  2   ]
@@ -84,7 +84,7 @@ Email: majzoube-at-umsystem.edu
      Given two kets ‘psi’ and ‘phi’, ‘braket’ returns the quantum
      mechanical bracket ‘<psi|phi>’.  The vector ‘psi’ may be input as
      either a ‘ket’ or ‘bra’.  If it is a ‘ket’ it will be turned into a
-     ‘bra’ with the ‘dagger’ function before the inner product is taken.
+     ‘bra’ with the ‘dag’ function before the inner product is taken.
      The vector ‘phi’ must always be a ‘ket’.
 
      (%i7) braket(ket(a,b,c),ket(a,b,c));
@@ -324,12 +324,12 @@ bracket of tensor products.
      (%o4)                          [tpket, [zp, zm]]
      (%i5) braprod(bra(a,b),bra(c,d));
      (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
-     (%i6) braprod(dagger(zp),bra(c,d));
+     (%i6) braprod(dag(zp),bra(c,d));
      (%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
 
-     (%i7) zpb: dagger(zp);
+     (%i7) zpb: dag(zp);
      (%o7)                              [ 1  0 ]
-     (%i8) zmb: dagger(zm);
+     (%i8) zmb: dag(zm);
      (%o8)                              [ 0  1 ]
      (%i9) K: ketprod('zp,'zm);
      (%o9)                          [tpket, [zp, zm]]

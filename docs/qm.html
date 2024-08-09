@@ -191,14 +191,14 @@ in which case it returns <code>true</code>, else it returns <code>false</code>.
 in which case it returns <code>true</code>, else it returns <code>false</code>.
 </p></dd></dl>
 
-<p><a name="dagger"></a>
+<p><a name="dag"></a>
 </p><dl>
-<dt><a name="index-dagger"></a>Function: <strong>dagger</strong><em> (<em>vector</em>)</em></dt>
-<dd><p><code>dagger</code> returns the <code>conjugate</code> <code>transpose</code> of its input.
+<dt><a name="index-dag"></a>Function: <strong>dag</strong><em> (<em>vector</em>)</em></dt>
+<dd><p><code>dag</code> returns the <code>conjugate</code> <code>transpose</code> of its input.
 </p></dd></dl>
 
 <div class="example">
-<pre class="example">(%i13) dagger( bra(%i,2) );
+<pre class="example">(%i13) dag( bra(%i,2) );
                                    [ - %i ]
 (%o13)                             [      ]
                                    [  2   ]
@@ -210,7 +210,7 @@ in which case it returns <code>true</code>, else it returns <code>false</code>.
 <dd><p>Given two kets <code>psi</code> and <code>phi</code>, <code>braket</code> returns the
 quantum mechanical bracket <code>&lt;psi|phi&gt;</code>. The vector <code>psi</code> may be
 input as either a <code>ket</code> or <code>bra</code>. If it is a <code>ket</code> it will be
-turned into a <code>bra</code> with the <code>dagger</code> function before the inner
+turned into a <code>bra</code> with the <code>dag</code> function before the inner
 product is taken. The vector <code>phi</code> must always be a <code>ket</code>.
 </p></dd></dl>
 
@@ -633,12 +633,12 @@ the bracket of tensor products.
 (%o4)                          [tpket, [zp, zm]]
 </pre><pre class="example">(%i5) braprod(bra(a,b),bra(c,d));
 (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
-(%i6) braprod(dagger(zp),bra(c,d));
+(%i6) braprod(dag(zp),bra(c,d));
 (%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
 </pre><pre class="example">
-</pre><pre class="example">(%i7) zpb: dagger(zp);
+</pre><pre class="example">(%i7) zpb: dag(zp);
 (%o7)                              [ 1  0 ]
-(%i8) zmb: dagger(zm);
+(%i8) zmb: dag(zm);
 (%o8)                              [ 0  1 ]
 (%i9) K: ketprod('zp,'zm);
 (%o9)                          [tpket, [zp, zm]]

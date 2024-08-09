@@ -1,0 +1,30 @@
+(kill(all),'done);
+'done$
+
+(load("qm"), 'done);
+'done$
+
+display2d:false;
+'false$
+
+dag(bra(a,b)) . ket(a,b);
+b conjugate(b) + a conjugate(a)$
+
+dag(zp);
+[ 1  0 ]$
+
+expect(Sz.Sz,xm);
+hbar^2/4$
+
+SY(1/2);
+matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]);
+
+UU(Sy,t);
+matrix([cos(t/2),-sin(t/2)],[sin(t/2),cos(t/2)])$
+
+ketprod(zp,xm);
+[tpket,[matrix([1],[0]),matrix([1/sqrt(2)],[-(1/sqrt(2))])]]$
+
+braprod(dag(zp),dag(xm));
+[tpbra,[matrix([1,0]),matrix([1/sqrt(2),-(1/sqrt(2))])]]$
+
