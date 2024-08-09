@@ -252,11 +252,11 @@ ket is constructed and the @var{x}-basis ket is computed.
 
 @subsection Pauli matrices and Sz, Sx, Sy operators
 
-@deffn {Function} sigmax, sigmay, sigmaz
+@deffn {Function} @code{sigmax, sigmay, sigmaz}
 Returns the Pauli @var{x,y,z} matrix.
 @end deffn
 
-@deffn {Function} Sx, Sy, Sz
+@deffn {Function} @code{Sx, Sy, Sz}
 Returns the spin-1/2 @var{Sx,Sy,Sz} matrix.
 @end deffn
 
@@ -279,7 +279,7 @@ Returns the spin-1/2 @var{Sx,Sy,Sz} matrix.
 
 @subsection SX, SY, SZ operators for any spin
 
-@deffn {Function} SX, SY, SZ (@code{s})
+@deffn {Function} @code{SX, SY, SZ} (@code{s})
 @code{SX(s)} for spin @code{s} returns the matrix representation
 of the spin operator @code{Sx}, and similarly for @code{SY(s)}
 and @code{SZ(s)}. Shortcuts for spin-1/2 are @code{Sx,Sy,Sz},
@@ -356,7 +356,7 @@ Examples of the ladder operators:
 
 @section Rotation operators
 
-@deffn {Function} RX, RY, RZ (@code{s,t})
+@deffn {Function} @code{RX, RY, RZ} (@code{s,t})
 @code{RX(s)} for spin @code{s} returns the matrix representation
 of the rotation operator @code{Rx} for rotation through angle
 @code{t}, and similarly for @code{RY(s,t)}
