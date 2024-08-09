@@ -222,7 +222,7 @@ Sy1 : SY(1) $
 /****************************************/
 Rot(Op,phi) := block([M1,M2,M3],
 	  M1: matrixexp(-%i*Op*phi/hbar),
-	  M2: matrixmap(expand,M1),
+	  M2: matrixmap(distrib,M1),
 	  M3: matrixmap(combine,M2),
 	  ev(M3,trigreduce)
 	  )$
@@ -234,7 +234,7 @@ RX(s,t) := block([M], demoivre:true, M:Rot(SX(s),t), demoivre:false, M)$
 RY(s,t) := block([M], demoivre:true, M:Rot(SY(s),t), demoivre:false, M)$
 
 /* time-evolution operator */
-UU(H,t) := Rot(H,t)$
+UU(H,t) := block([M], demoivre:true, M:Rot(H,t), demoivre:false, M)$
 
 /*****************************************************************/
 /*****************************************************************/
@@ -249,16 +249,14 @@ ketprod([u]) := block([N,fail:0],
 	     for i: 1 thru N do
 	     	 if ketp(''u[i])=false then fail:1,
 	     if fail=0 then [tpket,u]
-	     else disp("all elements must be kets")
-)$
+	     else disp("all elements must be kets") )$
 
 braprod([u]) := block([N,fail:0],
 	     N: length(u),
 	     for i: 1 thru N do
 	     	 if brap(''u[i])=false then fail:1,
 	     if fail=0 then [tpbra,u]
-	     else disp("all elements must be bras")
-)$
+	     else disp("all elements must be bras") )$
 
 braketprod(B,K) := block([N,M,fail:0,prod:1],
 		if is(B[1]#tpbra) then return(false),
@@ -268,5 +266,4 @@ braketprod(B,K) := block([N,M,fail:0,prod:1],
 		if M#N then return(false)
 		else for i: 1 thru N do
 		     prod: prod*braket(B[2][i],K[2][i]),
-		prod
-)$
+		prod )$
