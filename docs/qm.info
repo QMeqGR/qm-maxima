@@ -217,6 +217,7 @@ ket is constructed and the <x>-basis ket is computed.
      for spin-1/2 are ‘Sx,Sy,Sz’, and for spin-1 are ‘Sx1,Sy1,Sz1’.
 
    Example:
+
      (%i6) SY(1/2);
                                  [            %i hbar ]
                                  [    0     - ------- ]
@@ -259,6 +260,7 @@ ket is constructed and the <x>-basis ket is computed.
      ‘SM’ is the raising ladder operator <S_{-}> for spin ‘s’.
 
    Examples of the ladder operators:
+
      (%i4) SP(1);
                             [ 0  sqrt(2) hbar       0       ]
                             [                               ]

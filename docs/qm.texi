@@ -287,6 +287,7 @@ and for spin-1 are @code{Sx1,Sy1,Sz1}.
 @end deffn
 
 Example:
+
 @example
 @group
 (%i6) SY(1/2);
@@ -335,6 +336,7 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 @end deffn
 
 Examples of the ladder operators:
+
 @example
 @group
 (%i4) SP(1);
