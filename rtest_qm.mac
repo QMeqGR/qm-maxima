@@ -28,3 +28,6 @@ ketprod(zp,xm);
 braprod(dag(zp),dag(xm));
 [tpbra,[matrix([1,0]),matrix([1/sqrt(2),-(1/sqrt(2))])]]$
 
+jm_ket(3/2,1/2);
+[jmket,matrix([3/2],[1/2])]$
+

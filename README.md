@@ -232,13 +232,44 @@ ket is constructed and the <x>-basis ket is computed.
      Computes the quantum mechanical variance of the operator ‘O’ in
      state ‘psi’, ‘sqrt(<psi|O^{2}|psi> - <psi|O|psi>^{2})’.
 
-2.5 Angular momentum and ladder operators
+2.5 Angular momentum representation of kets and bras
+----------------------------------------------------
+
+To create kets and bras in the <|j,m>> you can use the following
+functions.
+
+ -- Function: jm_ket (j,m)
+     ‘jm_ket’ creates the ket <|j,m>> for total spin <j> and
+     <z>-component <m>.
+
+ -- Function: jm_bra (j,m)
+     ‘jm_bra’ creates the bra <<j,m|> for total spin <j> and
+     <z>-component <m>.
+
+     (%i8) jm_bra(3/2,1/2);
+                                            [ 3  1 ]
+     (%o8)                          [jmbra, [ -  - ]]
+                                            [ 2  2 ]
+
+ -- Function: jm_ketp (jmket)
+     ‘jm_ketp’ checks to see that the ket has the 'jmket' marker.
+
+ -- Function: jm_brap (jmbra)
+     ‘jm_brap’ checks to see that the bra has the 'jmbra' marker.
+
+ -- Function: jm_check (j,m)
+     ‘jm_check’ checks to see that <m> is one of {-j, ..., +j}.
+
+ -- Function: jm_braket (jmbra,jmket)
+     ‘jm_braket’ takes the inner product of the jm-kets.
+
+2.6 Angular momentum and ladder operators
 -----------------------------------------
 
- -- function: SP (s)
+ -- Function: SP (s)
      ‘SP’ is the raising ladder operator <S_{+}> for spin ‘s’.
 
- -- function: SM (s)
+ -- Function: SM (s)
      ‘SM’ is the raising ladder operator <S_{-}> for spin ‘s’.
 
    Examples of the ladder operators:

@@ -325,13 +325,55 @@ Computes the quantum mechanical variance of the operator @code{O}
 in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 @end deffn
 
+@subsection Angular momentum representation of kets and bras
+
+To create kets and bras in the @var{|j,m>} you can use the following functions.
+
+@deffn {Function} jm_ket (@code{j,m})
+@code{jm_ket} creates the ket @var{|j,m>} for total spin @var{j}
+and @var{z}-component @var{m}.
+@end deffn
+
+@deffn {Function} jm_bra (@code{j,m})
+@code{jm_bra} creates the bra @var{<j,m|} for total spin @var{j}
+and @var{z}-component @var{m}.
+@end deffn
+
+@example
+@group
+(%i8) jm_bra(3/2,1/2);
+                                       [ 3  1 ]
+(%o8)                          [jmbra, [ -  - ]]
+                                       [ 2  2 ]
+@end group
+@end example
+
+@deffn {Function} jm_ketp (jmket)
+@code{jm_ketp} checks to see that the ket has the 'jmket' marker.
+@end deffn
+
+@deffn {Function} jm_brap (jmbra)
+@code{jm_brap} checks to see that the bra has the 'jmbra' marker.
+@end deffn
+
+@deffn {Function} jm_check (@code{j,m})
+@code{jm_check} checks to see that @var{m} is one of @{-j, @dots{}, +j@}.
+@end deffn
+
+@deffn {Function} jm_braket (@code{jmbra,jmket})
+@code{jm_braket} takes the inner product of the jm-kets.
+@end deffn
+
+
+
+
 @subsection Angular momentum and ladder operators
 
-@deffn {function} SP (@code{s})
+@deffn {Function} SP (@code{s})
 @code{SP} is the raising ladder operator @var{S@sub{+}} for spin @code{s}.
 @end deffn
 
-@deffn {function} SM (@code{s})
+@deffn {Function} SM (@code{s})
 @code{SM} is the raising ladder operator @var{S@sub{-}} for spin @code{s}.
 @end deffn
 

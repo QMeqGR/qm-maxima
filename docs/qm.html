@@ -428,7 +428,7 @@ and for spin-1 are <code>Sx1,Sy1,Sz1</code>.
 <tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Angular-momentum-and-ladder-operators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Angular-momentum-representation-of-kets-and-bras" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -454,10 +454,73 @@ in state <code>psi</code>, <code>sqrt(&lt;psi|O@sup{2}|psi&gt; - &lt;psi|O|psi&g
 </p></dd></dl>
 
 <hr>
-<a name="Angular-momentum-and-ladder-operators"></a>
+<a name="Angular-momentum-representation-of-kets-and-bras"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expectation-value-and-variance" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Angular-momentum-and-ladder-operators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction-to-qm" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.5 Angular momentum representation of kets and bras</h3>
+
+<p>To create kets and bras in the <var>|j,m&gt;</var> you can use the following functions.
+</p>
+<dl>
+<dt><a name="index-jm_005fket"></a>Function: <strong>jm_ket</strong><em> (<code>j,m</code>)</em></dt>
+<dd><p><code>jm_ket</code> creates the ket <var>|j,m&gt;</var> for total spin <var>j</var>
+and <var>z</var>-component <var>m</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-jm_005fbra"></a>Function: <strong>jm_bra</strong><em> (<code>j,m</code>)</em></dt>
+<dd><p><code>jm_bra</code> creates the bra <var>&lt;j,m|</var> for total spin <var>j</var>
+and <var>z</var>-component <var>m</var>.
+</p></dd></dl>
+
+<div class="example">
+<pre class="example">(%i8) jm_bra(3/2,1/2);
+                                       [ 3  1 ]
+(%o8)                          [jmbra, [ -  - ]]
+                                       [ 2  2 ]
+</pre></div>
+
+<dl>
+<dt><a name="index-jm_005fketp"></a>Function: <strong>jm_ketp</strong><em> (jmket)</em></dt>
+<dd><p><code>jm_ketp</code> checks to see that the ket has the &rsquo;jmket&rsquo; marker.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-jm_005fbrap"></a>Function: <strong>jm_brap</strong><em> (jmbra)</em></dt>
+<dd><p><code>jm_brap</code> checks to see that the bra has the &rsquo;jmbra&rsquo; marker.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-jm_005fcheck"></a>Function: <strong>jm_check</strong><em> (<code>j,m</code>)</em></dt>
+<dd><p><code>jm_check</code> checks to see that <var>m</var> is one of {-j, &hellip;, +j}.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-jm_005fbraket"></a>Function: <strong>jm_braket</strong><em> (<code>jmbra,jmket</code>)</em></dt>
+<dd><p><code>jm_braket</code> takes the inner product of the jm-kets.
+</p></dd></dl>
+
+
+
+
+<hr>
+<a name="Angular-momentum-and-ladder-operators"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Angular-momentum-representation-of-kets-and-bras" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Functions-and-Variables-for-qm" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Rotation-operators" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Rotation-operators" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -470,15 +533,15 @@ in state <code>psi</code>, <code>sqrt(&lt;psi|O@sup{2}|psi&gt; - &lt;psi|O|psi&g
 <td valign="middle" align="left">[Index]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">2.5 Angular momentum and ladder operators</h3>
+<h3 class="subsection">2.6 Angular momentum and ladder operators</h3>
 
 <dl>
-<dt><a name="index-SP"></a>function: <strong>SP</strong><em> (<code>s</code>)</em></dt>
+<dt><a name="index-SP"></a>Function: <strong>SP</strong><em> (<code>s</code>)</em></dt>
 <dd><p><code>SP</code> is the raising ladder operator <var>S@sub{+}</var> for spin <code>s</code>.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-SM"></a>function: <strong>SM</strong><em> (<code>s</code>)</em></dt>
+<dt><a name="index-SM"></a>Function: <strong>SM</strong><em> (<code>s</code>)</em></dt>
 <dd><p><code>SM</code> is the raising ladder operator <var>S@sub{-}</var> for spin <code>s</code>.
 </p></dd></dl>
 
