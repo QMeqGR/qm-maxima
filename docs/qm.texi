@@ -44,6 +44,7 @@ entries @code{a@sub{i}} can be any Maxima expression.
 
 @example
 @group
+(%i6) load(qm)$
 (%i7) cvec(1,2,3);
                                      [ 1 ]
                                      [   ]
@@ -203,24 +204,6 @@ Return the ket of the corresponding vector in the @var{z}-basis.
                                      [ 1 ]
 @end group
 @group
-(%i8) xp;
-                                  [    1    ]
-                                  [ ------- ]
-                                  [ sqrt(2) ]
-(%o8)                             [         ]
-                                  [    1    ]
-                                  [ ------- ]
-                                  [ sqrt(2) ]
-(%i9) xm;
-                                 [     1     ]
-                                 [  -------  ]
-                                 [  sqrt(2)  ]
-(%o9)                            [           ]
-                                 [      1    ]
-                                 [ - ------- ]
-                                 [   sqrt(2) ]
-@end group
-@group
 (%i10) yp;
                                   [    1    ]
                                   [ ------- ]
@@ -243,6 +226,22 @@ Return the ket of the corresponding vector in the @var{z}-basis.
                                        1
 (%o6)                               -------
                                     sqrt(2)
+@end group
+@end example
+
+Switching bases is done in the following example where a @var{z}-basis
+ket is constructed and the @var{x}-basis ket is computed.
+
+@example
+@group
+(%i3) psi: ket(a,b);
+                                     [ a ]
+(%o3)                                [   ]
+                                     [ b ]
+(%i4) psi_x: 'xp*braket(xp,psi) + 'xm*braket(xm,psi);
+                    b         a              a         b
+(%o4)           (------- + -------) xp + (------- - -------) xm
+                 sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 @end group
 @end example
 
