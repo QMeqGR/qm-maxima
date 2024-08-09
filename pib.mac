@@ -22,6 +22,6 @@ assume(L>0)$
 assume(m>0)$ /* particle mass */
 
 pib(L,n,x) := sqrt(2/L)*sin(n*%pi*x/L) $
-pib_coef(L,m,f) := integrate( f*pib(L,m,x) ,x,0,L)$
-pibE(n,L) := n^2 * %pi^2 * hbar^2 /(2*m*L^2)$
+pib_coef(L,m,f) := integrate( f * pib(L,m,x) , x,0,L) $
+pibE(n,L) := n^2 * %pi^2 * hbar^2 /(2*m*L^2) $
 
