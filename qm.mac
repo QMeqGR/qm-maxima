@@ -68,6 +68,7 @@ rvec([u]) := matrix(u) $
 /*   QM operations      */
 /************************/
 dagger(u) := transpose(conjugate(u)) $
+dag(u) := transpose(conjugate(u)) $ /* shorter name */
 braket(v,w) := block(if ketp(v) and ketp(w) then dagger(v) . w else
   if brap(v) and ketp(w) then v . w ) $
 norm(v) := sqrt( braket(v,v) ) $
