@@ -282,7 +282,7 @@ ket is constructed and the <x>-basis ket is computed.
      ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
      is defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
 
-     (%i12) UU(w*Sy,t),demoivre,trigreduce;
+     (%i12) UU(w*Sy,t);
                                 [     t w         t w  ]
                                 [ cos(---)  - sin(---) ]
                                 [      2           2   ]

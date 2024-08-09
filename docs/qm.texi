@@ -387,7 +387,7 @@ is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
 
 @example
 @group
-(%i12) UU(w*Sy,t),demoivre,trigreduce;
+(%i12) UU(w*Sy,t);
                            [     t w         t w  ]
                            [ cos(---)  - sin(---) ]
                            [      2           2   ]
