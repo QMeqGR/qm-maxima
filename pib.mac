@@ -1,0 +1,27 @@
+/*
+;;  Author Eric Majzoub, Department of Physics and Astronomy
+;;  University of Missouri, St. Louis
+;;  Copyright (C) 2024 Eric Majzoub
+
+;;  This program is free software; you can redistribute it and/or modify 
+;;  it under the terms of the GNU General Public License as published by         
+;;  the Free Software Foundation; either version 2 of the License, or            
+;;  (at your option) any later version.                                  
+                                                                                 
+;;  This program is distributed in the hope that it will be useful,              
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of               
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                
+;;  GNU General Public License for more details.         
+
+;; Quantum mechanics package for Maxima.
+*/
+
+/* Particle in a box wave functions for x in (0,L) */
+assume(L>0)$
+(declare([n,k],integer), assume(n>0), assume(k>0))$
+assume(m>0)$ /* particle mass */
+
+pib(L,n,x) := sqrt(2/L)*sin(n*%pi*x/L) $
+pib_coef(L,m,f(x)) := integrate( f(x)*pib(L,m,x) ,x,0,L);
+pibE(n,L) := n^2 * %pi^2 * hbar^2 /(2*m*L^2);
+
