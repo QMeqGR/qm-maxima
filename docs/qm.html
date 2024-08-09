@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on August 8, 2024 by texi2html 5.0
+<!-- Created on August 9, 2024 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -77,6 +77,8 @@ ul.no-bullet {list-style: none}
 <a name="Introduction-to-qm-1"></a>
 <h2 class="section">1 Introduction to qm</h2>
 
+<p>Package version: 0.5
+</p>
 <p>The <code>qm</code> package provides functions and standard definitions
 to solve quantum mechanics problems in a finite dimensional Hilbert
 space. One can calculate the outcome of Stern-Gerlach experiments using
@@ -86,6 +88,9 @@ with arbitrary but finite dimension and perform standard computations.
 </p>
 <p>With this package it is also possible to create tensor product states
 for multiparticle systems and to perform calculations on those systems.
+</p>
+<p>The <code>qm</code> package was written by E. Majzoub, Univ. of Missouri.
+Email: majzoube-at-umsystem.edu
 </p>
 <hr>
 <a name="Functions-and-Variables-for-qm"></a>
@@ -115,7 +120,8 @@ entries <code>a@sub{i}</code> can be any Maxima expression.
 </p></dd></dl>
 
 <div class="example">
-<pre class="example">(%i7) cvec(1,2,3);
+<pre class="example">(%i6) load(qm)$
+(%i7) cvec(1,2,3);
                                      [ 1 ]
                                      [   ]
 (%o7)                                [ 2 ]
@@ -284,22 +290,6 @@ these vectors are <code>{zp,zm}</code>, and the basis kets in the
                                      [ 0 ]
 (%o7)                                [   ]
                                      [ 1 ]
-</pre><pre class="example">(%i8) xp;
-                                  [    1    ]
-                                  [ ------- ]
-                                  [ sqrt(2) ]
-(%o8)                             [         ]
-                                  [    1    ]
-                                  [ ------- ]
-                                  [ sqrt(2) ]
-(%i9) xm;
-                                 [     1     ]
-                                 [  -------  ]
-                                 [  sqrt(2)  ]
-(%o9)                            [           ]
-                                 [      1    ]
-                                 [ - ------- ]
-                                 [   sqrt(2) ]
 </pre><pre class="example">(%i10) yp;
                                   [    1    ]
                                   [ ------- ]
@@ -320,6 +310,20 @@ these vectors are <code>{zp,zm}</code>, and the basis kets in the
                                        1
 (%o6)                               -------
                                     sqrt(2)
+</pre></div>
+
+<p>Switching bases is done in the following example where a <var>z</var>-basis
+ket is constructed and the <var>x</var>-basis ket is computed.
+</p>
+<div class="example">
+<pre class="example">(%i3) psi: ket(a,b);
+                                     [ a ]
+(%o3)                                [   ]
+                                     [ b ]
+(%i4) psi_x: 'xp*braket(xp,psi) + 'xm*braket(xm,psi);
+                    b         a              a         b
+(%o4)           (------- + -------) xp + (------- - -------) xm
+                 sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 </pre></div>
 
 <hr>
@@ -659,7 +663,7 @@ the bracket of tensor products.
 <h1>About This Document</h1>
 
 <p>
-  This document was generated on <i>August 8, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>August 9, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
 </p>
 <p>
   The buttons in the navigation panels have the following meaning:
@@ -761,7 +765,7 @@ the bracket of tensor products.
 <hr>
 <p>
  <font size="-1">
-  This document was generated on <i>August 8, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>August 9, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
 

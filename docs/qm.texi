@@ -23,6 +23,8 @@
 @node Introduction to qm, Functions and Variables for qm
 @section Introduction to qm
 
+Package version: 0.5
+
 The @code{qm} package provides functions and standard definitions
 to solve quantum mechanics problems in a finite dimensional Hilbert
 space. One can calculate the outcome of Stern-Gerlach experiments using
@@ -32,6 +34,9 @@ with arbitrary but finite dimension and perform standard computations.
 
 With this package it is also possible to create tensor product states
 for multiparticle systems and to perform calculations on those systems.
+
+The @code{qm} package was written by E. Majzoub, Univ. of Missouri.
+Email: majzoube-at-umsystem.edu
 
 @node Functions and Variables for qm, ,Introduction to qm
 @section Functions and Variables for qm

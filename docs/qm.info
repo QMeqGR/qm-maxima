@@ -16,7 +16,9 @@ File: qm.info,  Node: Introduction to qm,  Next: Functions and Variables for qm
 1 Introduction to qm
 ====================
 
-The ‘qm’ package provides functions and standard definitions to solve
+Package version: 0.5
+
+   The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  One
 can calculate the outcome of Stern-Gerlach experiments using the
 built-in definition of the Sx, Sy, and Sz for arbitrary spin, e.g.
@@ -25,6 +27,9 @@ finite dimension and perform standard computations.
 
    With this package it is also possible to create tensor product states
 for multiparticle systems and to perform calculations on those systems.
+
+   The ‘qm’ package was written by E. Majzoub, Univ.  of Missouri.
+Email: majzoube-at-umsystem.edu
 
 
 File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to qm
@@ -36,6 +41,7 @@ File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to qm
      ‘cvec’ creates a _column_ vector of arbitrary dimension.  The
      entries ‘a_{i}’ can be any Maxima expression.
 
+     (%i6) load(qm)$
      (%i7) cvec(1,2,3);
                                           [ 1 ]
                                           [   ]
@@ -147,22 +153,6 @@ and ‘{yp,ym}’ respectively.
                                           [ 0 ]
      (%o7)                                [   ]
                                           [ 1 ]
-     (%i8) xp;
-                                       [    1    ]
-                                       [ ------- ]
-                                       [ sqrt(2) ]
-     (%o8)                             [         ]
-                                       [    1    ]
-                                       [ ------- ]
-                                       [ sqrt(2) ]
-     (%i9) xm;
-                                      [     1     ]
-                                      [  -------  ]
-                                      [  sqrt(2)  ]
-     (%o9)                            [           ]
-                                      [      1    ]
-                                      [ - ------- ]
-                                      [   sqrt(2) ]
      (%i10) yp;
                                        [    1    ]
                                        [ ------- ]
@@ -183,6 +173,18 @@ and ‘{yp,ym}’ respectively.
                                             1
      (%o6)                               -------
                                          sqrt(2)
+
+   Switching bases is done in the following example where a <z>-basis
+ket is constructed and the <x>-basis ket is computed.
+
+     (%i3) psi: ket(a,b);
+                                          [ a ]
+     (%o3)                                [   ]
+                                          [ b ]
+     (%i4) psi_x: 'xp*braket(xp,psi) + 'xm*braket(xm,psi);
+                         b         a              a         b
+     (%o4)           (------- + -------) xp + (------- - -------) xm
+                      sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 
 2.2 Pauli matrices and Sz, Sx, Sy operators
 -------------------------------------------
@@ -362,17 +364,17 @@ bracket of tensor products.
 
 Tag Table:
 Node: Introduction to qm292
-Node: Functions and Variables for qm969
-Ref: cvec1119
-Ref: rvec1548
-Ref: ket1785
-Ref: bra2474
-Ref: ketp2994
-Ref: brap3171
-Ref: dagger3348
-Ref: braket3638
-Ref: norm4159
-Ref: zp5636
+Node: Functions and Variables for qm1098
+Ref: cvec1248
+Ref: rvec1698
+Ref: ket1935
+Ref: bra2624
+Ref: ketp3144
+Ref: brap3321
+Ref: dagger3498
+Ref: braket3788
+Ref: norm4309
+Ref: zp5786
 
 End Tag Table
 
