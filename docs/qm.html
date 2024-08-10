@@ -299,8 +299,7 @@ function will return <code>false</code>.
 and to do simple manipulations with them.
 </p>
 <div class="example">
-<pre class="example">(%i1) load(qm)$
-(%i2) rvec(a,b,c);
+<pre class="example">(%i2) rvec(a,b,c);
 (%o2)                             [ a  b  c ]
 (%i3) facts();
 (%o3)        [kind(hbar, real), hbar &gt; 0]
@@ -786,7 +785,8 @@ the bracket of tensor products.
                                      [ 0 ]  [ 1 ]
 (%i4) ketprod('zp,'zm);
 (%o4)                          [tpket, [zp, zm]]
-</pre><pre class="example">(%i5) braprod(bra(a,b),bra(c,d));
+</pre><pre class="example">(%i4) kill(a,b,c,d)$
+(%i5) braprod(bra(a,b),bra(c,d));
 (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
 (%i6) braprod(dag(zp),bra(c,d));
 (%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]

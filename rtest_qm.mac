@@ -1,33 +1,140 @@
-(kill(all),'done);
-'done$
+load(qm);
 
-(load("qm"), 'done);
-'done$
+cvec(1,2,3);
+matrix([1],[2],[3]) $
 
-display2d:false;
-'false$
+rvec(1,2,3);
+matrix([1,2,3]) $
 
-dag(bra(a,b)) . ket(a,b);
-b conjugate(b) + a conjugate(a)$
+ket(c1,c2);
+matrix([c1],[c2]) $
 
-dag(zp);
-[ 1  0 ]$
+bra(c1,c2);
+matrix([c1,c2]) $
 
-expect(Sz.Sz,xm);
-hbar^2/4$
+b:bra(a,b);
+matrix([a,b]) $
+
+ketp(b);
+false $
+
+b:bra(a,b);
+matrix([a,matrix([a,b])]) $
+
+brap(b);
+false $
+
+dag(bra(%i,2));
+matrix([-%i],[2]) $
+
+braket(ket(a,b,c),ket(a,b,c));
+false $
+
+norm(ket(a,b,c));
+sqrt(false) $
+
+rvec(a,b,c);
+matrix([a,matrix([a,matrix([a,b])]),c]) $
+
+bra(a,b,c);
+matrix([a,matrix([a,matrix([a,b])]),c]) $
+
+braket(bra(a,b,c),ket(a,b,c));
+false $
+
+braket(ket(a,b,c),ket(a,b,c));
+false $
+
+zp;
+matrix([1],[0]) $
+
+zm;
+matrix([0],[1]) $
+
+yp;
+matrix([1/sqrt(2)],[%i/sqrt(2)]) $
+
+ym;
+matrix([1/sqrt(2)],[-(%i/sqrt(2))]) $
+
+braket(xp,zp);
+1/sqrt(2) $
+
+psi:ket(a,b);
+matrix([a],[matrix([a,matrix([a,b])])]) $
+
+psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+xp*false+xm*false $
+
+sigmay;
+matrix([0,-%i],[%i,0]) $
+
+Sy;
+matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
 
 SY(1/2);
-matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]);
+matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
 
-UU(Sy,t);
-matrix([cos(t/2),-sin(t/2)],[sin(t/2),cos(t/2)])$
+ev(expect(Sy,xp+ym),ratsimp);
+-hbar $
 
-ketprod(zp,xm);
-[tpket,[matrix([1],[0]),matrix([1/sqrt(2)],[-(1/sqrt(2))])]]$
+ev(qm_variance(Sy,xp+ym),ratsimp);
+(%i*hbar)/2 $
 
-braprod(dag(zp),dag(xm));
-[tpbra,[matrix([1,0]),matrix([1/sqrt(2),-(1/sqrt(2))])]]$
+jm_bra(3/2,1/2);
+[jmbra,matrix([3/2,1/2])] $
 
-jm_ket(3/2,1/2);
-[jmket,matrix([3/2],[1/2])]$
+K:jm_ket(zp,zm);
+[jmket,matrix([matrix([1],[0])],[matrix([0],[1])])] $
 
+B:jm_bra(zp,zm);
+[jmbra,matrix([matrix([1],[0]),matrix([0],[1])])] $
+
+jm_braket(B,K);
+1 $
+
+SP(1);
+matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
+
+SM(1);
+matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
+
+RZ(1/2,t);
+matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)]) $
+
+UU(w*Sy,t);
+matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
+
+ketprod(zp,zm);
+[tpket,[matrix([1],[0]),matrix([0],[1])]] $
+
+ketprod('zp,'zm);
+[tpket,[zp,zm]] $
+
+kill(a,b,c,d);
+braprod(bra(a,b),bra(c,d));
+[tpbra,[matrix([a,b]),matrix([c,d])]] $
+
+braprod(dag(zp),bra(c,d));
+[tpbra,[matrix([1,0]),matrix([c,d])]] $
+
+zpb:dag(zp);
+matrix([1,0]) $
+
+zmb:dag(zm);
+matrix([0,1]) $
+
+K:ketprod('zp,'zm);
+[tpket,[zp,zm]] $
+
+B:braprod(zpb,zmb);
+[tpbra,[matrix([1,0]),matrix([0,1])]] $
+
+B:braprod('zpb,'zmb);
+[tpbra,[zpb,zmb]] $
+
+braketprod(K,B);
+false $
+
+braketprod(B,K);
+zmb . zm*zpb . zp $

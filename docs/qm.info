@@ -142,7 +142,6 @@ File: qm.info,  Node: Functions and variables for qm,  Prev: Introduction to pac
 The following additional examples show how to input vectors of various
 kinds and to do simple manipulations with them.
 
-     (%i1) load(qm)$
      (%i2) rvec(a,b,c);
      (%o2)                             [ a  b  c ]
      (%i3) facts();
@@ -418,6 +417,7 @@ bracket of tensor products.
                                           [ 0 ]  [ 1 ]
      (%i4) ketprod('zp,'zm);
      (%o4)                          [tpket, [zp, zm]]
+     (%i4) kill(a,b,c,d)$
      (%i5) braprod(bra(a,b),bra(c,d));
      (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
      (%i6) braprod(dag(zp),bra(c,d));
@@ -453,57 +453,57 @@ Appendix A Function and variable index
 * braket:                                Functions and variables for qm.
                                                               (line  77)
 * braketprod:                            Functions and variables for qm.
-                                                              (line 363)
+                                                              (line 362)
 * brap:                                  Functions and variables for qm.
                                                               (line  60)
 * braprod:                               Functions and variables for qm.
-                                                              (line 359)
+                                                              (line 358)
 * cvec:                                  Functions and variables for qm.
                                                               (line   6)
 * dag:                                   Functions and variables for qm.
                                                               (line  69)
 * expect:                                Functions and variables for qm.
-                                                              (line 225)
+                                                              (line 224)
 * jm_bra:                                Functions and variables for qm.
-                                                              (line 251)
+                                                              (line 250)
 * jm_braket:                             Functions and variables for qm.
-                                                              (line 269)
+                                                              (line 268)
 * jm_brap:                               Functions and variables for qm.
-                                                              (line 263)
+                                                              (line 262)
 * jm_check:                              Functions and variables for qm.
-                                                              (line 266)
+                                                              (line 265)
 * jm_ket:                                Functions and variables for qm.
-                                                              (line 247)
+                                                              (line 246)
 * jm_ketp:                               Functions and variables for qm.
-                                                              (line 260)
+                                                              (line 259)
 * ket:                                   Functions and variables for qm.
                                                               (line  25)
 * ketp:                                  Functions and variables for qm.
                                                               (line  51)
 * ketprod:                               Functions and variables for qm.
-                                                              (line 355)
+                                                              (line 354)
 * norm:                                  Functions and variables for qm.
                                                               (line  87)
 * qm_variance:                           Functions and variables for qm.
-                                                              (line 232)
+                                                              (line 231)
 * rvec:                                  Functions and variables for qm.
                                                               (line  18)
 * RX, RY, RZ:                            Functions and variables for qm.
-                                                              (line 314)
+                                                              (line 313)
 * sigmax, sigmay, sigmaz:                Functions and variables for qm.
-                                                              (line 172)
+                                                              (line 171)
 * SM:                                    Functions and variables for qm.
-                                                              (line 293)
+                                                              (line 292)
 * SP:                                    Functions and variables for qm.
-                                                              (line 290)
+                                                              (line 289)
 * Sx, Sy, Sz:                            Functions and variables for qm.
-                                                              (line 175)
+                                                              (line 174)
 * SX, SY, SZ:                            Functions and variables for qm.
-                                                              (line 194)
+                                                              (line 193)
 * UU:                                    Functions and variables for qm.
-                                                              (line 333)
+                                                              (line 332)
 * zp,zm,xp,xm,yp,ym:                     Functions and variables for qm.
-                                                              (line 125)
+                                                              (line 124)
 
 
 
@@ -519,8 +519,8 @@ Ref: brap3733
 Ref: dag4051
 Ref: braket4332
 Ref: norm4850
-Ref: zp6374
-Node: Function and variable index17482
+Ref: zp6353
+Node: Function and variable index17487
 
 End Tag Table
 

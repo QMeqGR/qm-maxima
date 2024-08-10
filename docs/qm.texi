@@ -194,7 +194,6 @@ and to do simple manipulations with them.
 
 @example
 @group
-(%i1) load(qm)$
 (%i2) rvec(a,b,c);
 (%o2)                             [ a  b  c ]
 (%i3) facts();
@@ -539,6 +538,7 @@ the bracket of tensor products.
 (%o4)                          [tpket, [zp, zm]]
 @end group
 @group
+(%i4) kill(a,b,c,d)$
 (%i5) braprod(bra(a,b),bra(c,d));
 (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
 (%i6) braprod(dag(zp),bra(c,d));
