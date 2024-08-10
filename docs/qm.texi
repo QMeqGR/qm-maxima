@@ -119,12 +119,10 @@ in which case it returns @code{true}, else it returns @code{false}.
 
 @example
 @group
-(%i4) b: bra(a,b);
-                                   ┌      ┐
-(%o4)                              │ a  b │
-                                   └      ┘
-(%i5) ketp(b);
-(%o5)                                false
+(%i3) b: bra(a,b);
+(%o3)                              [ a  b ]
+(%i4) ketp(b);
+(%o4)                                false
 @end group
 @end example
 
@@ -137,14 +135,11 @@ in which case it returns @code{true}, else it returns @code{false}.
 @example
 @group
 (%i4) b: bra(a,b);
-                                   ┌      ┐
-(%o4)                              │ a  b │
-                                   └      ┘
+(%o4)                              [ a  b ]
 (%i5) brap(b);
 (%o5)                                true
 @end group
 @end example
-
 
 @anchor{dag}
 @deffn {Function} dag (@emph{vector})

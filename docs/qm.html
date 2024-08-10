@@ -213,12 +213,10 @@ in which case it returns <code>true</code>, else it returns <code>false</code>.
 </p></dd></dl>
 
 <div class="example">
-<pre class="example">(%i4) b: bra(a,b);
-                                   ┌      ┐
-(%o4)                              │ a  b │
-                                   └      ┘
-(%i5) ketp(b);
-(%o5)                                false
+<pre class="example">(%i3) b: bra(a,b);
+(%o3)                              [ a  b ]
+(%i4) ketp(b);
+(%o4)                                false
 </pre></div>
 
 <p><a name="brap"></a>
@@ -230,13 +228,10 @@ in which case it returns <code>true</code>, else it returns <code>false</code>.
 
 <div class="example">
 <pre class="example">(%i4) b: bra(a,b);
-                                   ┌      ┐
-(%o4)                              │ a  b │
-                                   └      ┘
+(%o4)                              [ a  b ]
 (%i5) brap(b);
 (%o5)                                true
 </pre></div>
-
 
 <p><a name="dag"></a>
 </p><dl>
