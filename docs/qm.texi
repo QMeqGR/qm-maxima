@@ -9,19 +9,21 @@
 @end macro
 @end ifinfo
 
-@dircategory QuantumMechanics/Maxima
+@dircategory Mathematics/Maxima
 @direntry
 * Package qm: (maxima) Maxima share package qm for quantum mechanics
 @end direntry
 
-
+@node Top, Introduction to package qm, (dir), (dir)
+@top
 @menu
-* Introduction to qm package::
-* Functions and Variables for qm::       
+* Introduction to package qm::
+* Functions and variables for qm::
 @end menu
+@chapter Package qm
 
-@node Introduction to qm, Functions and Variables for qm
-@section Introduction to qm
+@node Introduction to package qm, Functions and variables for qm, Top, Top
+@section Introduction to package qm
 
 Package version: 0.5
 
@@ -38,10 +40,9 @@ for multiparticle systems and to perform calculations on those systems.
 The @code{qm} package was written by E. Majzoub, Univ. of Missouri.
 Email: majzoube-at-umsystem.edu
 
-@node Functions and Variables for qm, ,Introduction to qm
+@node Functions and variables for qm, ,Introduction to package qm, Top
 @section Functions and Variables for qm
 
-@anchor{cvec}
 @deffn {Function} cvec (@code{a@sub{1}},@code{a@sub{2}},@dots{})
 @code{cvec} creates a @emph{column} vector of arbitrary dimension. The
 entries @code{a@sub{i}} can be any Maxima expression.
@@ -116,11 +117,34 @@ the @code{cvec} and @code{rvec} functions.
 in which case it returns @code{true}, else it returns @code{false}.
 @end deffn
 
+@example
+@group
+(%i4) b: bra(a,b);
+                                   ┌      ┐
+(%o4)                              │ a  b │
+                                   └      ┘
+(%i5) ketp(b);
+(%o5)                                false
+@end group
+@end example
+
 @anchor{brap}
 @deffn {Function} brap (@emph{vector})
 @code{brap} is a predicate function that checks if its input is a bra,
 in which case it returns @code{true}, else it returns @code{false}.
 @end deffn
+
+@example
+@group
+(%i4) b: bra(a,b);
+                                   ┌      ┐
+(%o4)                              │ a  b │
+                                   └      ┘
+(%i5) brap(b);
+(%o5)                                true
+@end group
+@end example
+
 
 @anchor{dag}
 @deffn {Function} dag (@emph{vector})
@@ -160,6 +184,15 @@ The vector @code{psi} must always be a @code{ket}, otherwise the
 function will return @code{false}.
 @end deffn
 
+@example
+@group
+(%i8) norm(ket(a,b,c));
+(%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+@end group
+@end example
+
+@subsection Simple examples
+
 The following additional examples show how to input vectors of various kinds
 and to do simple manipulations with them.
 
@@ -180,8 +213,6 @@ and to do simple manipulations with them.
 (%o6)                            c  + b  + a
 (%i7) braket(ket(a,b,c),ket(a,b,c));
 (%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
-(%i8) norm(ket(a,b,c));
-(%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 @end group
 @end example
 
@@ -320,10 +351,26 @@ Computes the quantum mechanical expectation value of the operator @code{O}
 in state @code{psi}, @code{<psi|O|psi>}.
 @end deffn
 
+@example
+@group
+(%i5) expect(Sy,xp+ym),ratsimp;
+(%o5)                               - hbar
+@end group
+@end example
+
 @deffn {Function} qm_variance (@code{O,psi})
 Computes the quantum mechanical variance of the operator @code{O}
 in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 @end deffn
+
+@example
+@group
+(%i10) qm_variance(Sy,xp+ym),ratsimp;
+                                    %i hbar
+(%o10)                              -------
+                                       2
+@end group
+@end example
 
 @subsection Angular momentum representation of kets and bras
 
@@ -364,7 +411,24 @@ and @var{z}-component @var{m}.
 @code{jm_braket} takes the inner product of the jm-kets.
 @end deffn
 
-
+@example
+@group
+(%i12) K: jm_ket(zp,zm);
+                                      [ [ 1 ] ]
+                                      [ [   ] ]
+                                      [ [ 0 ] ]
+(%o12)                        [jmket, [       ]]
+                                      [ [ 0 ] ]
+                                      [ [   ] ]
+                                      [ [ 1 ] ]
+(%i13) B: jm_bra(zp,zm);
+                                   [ [ 1 ]  [ 0 ] ]
+(%o13)                     [jmbra, [ [   ]  [   ] ]]
+                                   [ [ 0 ]  [ 1 ] ]
+(%i14) jm_braket(B,K);
+(%o14)                                 1
+@end group
+@end example
 
 
 @subsection Angular momentum and ladder operators
@@ -502,7 +566,11 @@ the bracket of tensor products.
 (%o13)                       (zmb . zm) (zpb . zp)
 
 @end group
-
 @end example
+
+@node Function and variable index, , Functions and variables for qm, Top
+@appendix Function and variable index
+@printindex fn
+@printindex vr
 
 @bye

@@ -20,6 +20,9 @@
 load("qm.lisp") $ /* for complex_number_p(),
 I took this from Barton's to_poly code */
 
+/* load the documentation */
+load("qm-index.lisp")$
+
 /* Sadly, this won't work using 'load'. */
 /* :lisp (defun $complex_number_p (e) (complex-number-p e #'$numberp)) */
 
@@ -69,8 +72,9 @@ rvec([u]) := matrix(u) $
 /*   QM operations      */
 /************************/
 dag(u) := transpose(conjugate(u)) $ /* dagger */
-braket(v,w) := block(if ketp(v) and ketp(w) then dag(v) . w else
-  if brap(v) and ketp(w) then v . w ) $
+braket(v,w) := block(
+	    if ketp(v) and ketp(w) then dag(v) . w else
+  	    if brap(v) and ketp(w) then v . w ) $
 norm(v) := sqrt( braket(v,v) ) $
 magsqr(c) := c*conjugate(c);
 commutator(X,Y) := X.Y - Y.X;

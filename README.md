@@ -1,5 +1,11 @@
-1 Introduction to qm
-====================
+Package qm
+**********
+
+1 Package qm
+************
+
+1.1 Introduction to package qm
+==============================
 
 Package version: 0.5
 
@@ -16,8 +22,8 @@ for multiparticle systems and to perform calculations on those systems.
    The ‘qm’ package was written by E. Majzoub, Univ.  of Missouri.
 Email: majzoube-at-umsystem.edu
 
-2 Functions and Variables for qm
-================================
+1.2 Functions and Variables for qm
+==================================
 
  -- Function: cvec (a_{1},a_{2},...)
      ‘cvec’ creates a _column_ vector of arbitrary dimension.  The
@@ -68,9 +74,23 @@ Email: majzoube-at-umsystem.edu
      ‘ketp’ is a predicate function that checks if its input is a ket,
      in which case it returns ‘true’, else it returns ‘false’.
 
+     (%i4) b: bra(a,b);
+                                        ┌      ┐
+     (%o4)                              │ a  b │
+                                        └      ┘
+     (%i5) ketp(b);
+     (%o5)                                false
+
  -- Function: brap (_vector_)
      ‘brap’ is a predicate function that checks if its input is a bra,
      in which case it returns ‘true’, else it returns ‘false’.
+
+     (%i4) b: bra(a,b);
+                                        ┌      ┐
+     (%o4)                              │ a  b │
+                                        └      ┘
+     (%i5) brap(b);
+     (%o5)                                true
 
  -- Function: dag (_vector_)
      ‘dag’ returns the ‘conjugate’ ‘transpose’ of its input.
@@ -95,8 +115,14 @@ Email: majzoube-at-umsystem.edu
      quantum mechanical bracket ‘<psi|psi>’.  The vector ‘psi’ must
      always be a ‘ket’, otherwise the function will return ‘false’.
 
-   The following additional examples show how to input vectors of
-various kinds and to do simple manipulations with them.
+     (%i8) norm(ket(a,b,c));
+     (%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+
+1.2.1 Simple examples
+---------------------
+
+The following additional examples show how to input vectors of various
+kinds and to do simple manipulations with them.
 
      (%i1) load(qm)$
      (%i2) rvec(a,b,c);
@@ -113,11 +139,9 @@ various kinds and to do simple manipulations with them.
      (%o6)                            c  + b  + a
      (%i7) braket(ket(a,b,c),ket(a,b,c));
      (%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
-     (%i8) norm(ket(a,b,c));
-     (%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 
-2.1 Spin-1/2 state kets and associated operators
-------------------------------------------------
+1.2.2 Spin-1/2 state kets and associated operators
+--------------------------------------------------
 
 Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
 space of states.  It is spanned by two vectors.  In the <z>-basis these
@@ -168,8 +192,8 @@ ket is constructed and the <x>-basis ket is computed.
      (%o4)           (------- + -------) xp + (------- - -------) xm
                       sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 
-2.2 Pauli matrices and Sz, Sx, Sy operators
--------------------------------------------
+1.2.3 Pauli matrices and Sz, Sx, Sy operators
+---------------------------------------------
 
  -- Function: sigmax, sigmay, sigmaz
      Returns the Pauli <x,y,z> matrix.
@@ -190,8 +214,8 @@ ket is constructed and the <x>-basis ket is computed.
                                  [ -------      0     ]
                                  [    2               ]
 
-2.3 SX, SY, SZ operators for any spin
--------------------------------------
+1.2.4 SX, SY, SZ operators for any spin
+---------------------------------------
 
  -- Function: SX, SY, SZ (s)
      ‘SX(s)’ for spin ‘s’ returns the matrix representation of the spin
@@ -221,19 +245,27 @@ ket is constructed and the <x>-basis ket is computed.
                               [    0     -------     0    ]
                               [          sqrt(2)          ]
 
-2.4 Expectation value and variance
-----------------------------------
+1.2.5 Expectation value and variance
+------------------------------------
 
  -- Function: expect (O,psi)
      Computes the quantum mechanical expectation value of the operator
      ‘O’ in state ‘psi’, ‘<psi|O|psi>’.
 
+     (%i5) expect(Sy,xp+ym),ratsimp;
+     (%o5)                               - hbar
+
  -- Function: qm_variance (O,psi)
      Computes the quantum mechanical variance of the operator ‘O’ in
      state ‘psi’, ‘sqrt(<psi|O^{2}|psi> - <psi|O|psi>^{2})’.
 
-2.5 Angular momentum representation of kets and bras
-----------------------------------------------------
+     (%i10) qm_variance(Sy,xp+ym),ratsimp;
+                                         %i hbar
+     (%o10)                              -------
+                                            2
+
+1.2.6 Angular momentum representation of kets and bras
+------------------------------------------------------
 
 To create kets and bras in the <|j,m>> you can use the following
 functions.
@@ -263,8 +295,23 @@ functions.
  -- Function: jm_braket (jmbra,jmket)
      ‘jm_braket’ takes the inner product of the jm-kets.
 
-2.6 Angular momentum and ladder operators
------------------------------------------
+     (%i12) K: jm_ket(zp,zm);
+                                           [ [ 1 ] ]
+                                           [ [   ] ]
+                                           [ [ 0 ] ]
+     (%o12)                        [jmket, [       ]]
+                                           [ [ 0 ] ]
+                                           [ [   ] ]
+                                           [ [ 1 ] ]
+     (%i13) B: jm_bra(zp,zm);
+                                        [ [ 1 ]  [ 0 ] ]
+     (%o13)                     [jmbra, [ [   ]  [   ] ]]
+                                        [ [ 0 ]  [ 1 ] ]
+     (%i14) jm_braket(B,K);
+     (%o14)                                 1
+
+1.2.7 Angular momentum and ladder operators
+-------------------------------------------
 
  -- Function: SP (s)
      ‘SP’ is the raising ladder operator <S_{+}> for spin ‘s’.
@@ -287,8 +334,8 @@ functions.
                             [                               ]
                             [      0        sqrt(2) hbar  0 ]
 
-3 Rotation operators
-====================
+1.3 Rotation operators
+======================
 
  -- Function: RX, RY, RZ (s,t)
      ‘RX(s)’ for spin ‘s’ returns the matrix representation of the
@@ -306,8 +353,8 @@ functions.
                                   [              2   ]
                                   [    0      %e     ]
 
-4 Time-evolution operator
-=========================
+1.4 Time-evolution operator
+===========================
 
  -- Function: UU (H,t)
      ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
@@ -322,8 +369,8 @@ functions.
                                 [ sin(---)   cos(---)  ]
                                 [      2          2    ]
 
-5 Tensor products
-=================
+1.5 Tensor products
+===================
 
 Tensor products are represented as lists in Maxima.  The ket tensor
 product ‘|z+,z+>’ is represented as ‘[tpket,zp,zp]’, and the bra tensor
@@ -374,4 +421,65 @@ bracket of tensor products.
      (%o13)                       (zmb . zm) (zpb . zp)
 
 
+Appendix A Function and variable index
+**************************************
+
+* Menu:
+
+* bra:                                   Functions and variables for qm.
+                                                              (line  61)
+* braket:                                Functions and variables for qm.
+                                                              (line 102)
+* braketprod:                            Functions and variables for qm.
+                                                              (line 388)
+* brap:                                  Functions and variables for qm.
+                                                              (line  83)
+* braprod:                               Functions and variables for qm.
+                                                              (line 384)
+* cvec:                                  Functions and variables for qm.
+                                                              (line  27)
+* dag:                                   Functions and variables for qm.
+                                                              (line  94)
+* expect:                                Functions and variables for qm.
+                                                              (line 250)
+* jm_bra:                                Functions and variables for qm.
+                                                              (line 276)
+* jm_braket:                             Functions and variables for qm.
+                                                              (line 294)
+* jm_brap:                               Functions and variables for qm.
+                                                              (line 288)
+* jm_check:                              Functions and variables for qm.
+                                                              (line 291)
+* jm_ket:                                Functions and variables for qm.
+                                                              (line 272)
+* jm_ketp:                               Functions and variables for qm.
+                                                              (line 285)
+* ket:                                   Functions and variables for qm.
+                                                              (line  46)
+* ketp:                                  Functions and variables for qm.
+                                                              (line  72)
+* ketprod:                               Functions and variables for qm.
+                                                              (line 380)
+* norm:                                  Functions and variables for qm.
+                                                              (line 112)
+* qm_variance:                           Functions and variables for qm.
+                                                              (line 257)
+* rvec:                                  Functions and variables for qm.
+                                                              (line  39)
+* RX, RY, RZ:                            Functions and variables for qm.
+                                                              (line 339)
+* sigmax, sigmay, sigmaz:                Functions and variables for qm.
+                                                              (line 197)
+* SM:                                    Functions and variables for qm.
+                                                              (line 318)
+* SP:                                    Functions and variables for qm.
+                                                              (line 315)
+* Sx, Sy, Sz:                            Functions and variables for qm.
+                                                              (line 200)
+* SX, SY, SZ:                            Functions and variables for qm.
+                                                              (line 219)
+* UU:                                    Functions and variables for qm.
+                                                              (line 358)
+* zp,zm,xp,xm,yp,ym:                     Functions and variables for qm.
+                                                              (line 150)
 
