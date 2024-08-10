@@ -152,10 +152,13 @@ bra([u]) := block([i], for elm in u do
 /***************************************/
 /* Define predicates for kets and bras */
 /***************************************/
-ketp(psi) := block([n,m,S], S:matrix_size(ev(psi)),
-    S[1] > S[2] and S[2] = 1 ) $
-brap(psi) := block([n,m,S], S:matrix_size(ev(psi)),
-    S[1] < S[2] and S[1] = 1 ) $
+ketp(psi) := block([i,n,m,S,tf:true], S:matrix_size(ev(psi)),
+	  /* check for submatrices */
+	  for i: 1 thru S[1] do if matrixp(psi[i][1])=true then tf:false,
+	  S[1] > S[2] and S[2] = 1  and  tf)$
+brap(psi) := block([i,n,m,S,tf:true], S:matrix_size(ev(psi)),
+	  for i: 1 thru S[2] do if matrixp(psi[1][i])=true then tf:false,
+	  S[1] < S[2] and S[1] = 1  and tf)$
 
 
 /******************************************************/
