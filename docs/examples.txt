@@ -1,5 +1,4 @@
 display2d:false$
-load(qm)$
 cvec(1,2,3);
 rvec(1,2,3);
 ket(c1,c2);
@@ -29,8 +28,8 @@ sigmay;
 Sy;
 SY(1/2);
 SX(1);
-expect(Sy,xp+ym),ratsimp;
-qm_variance(Sy,xp+ym),ratsimp;
+ev(expect(Sy,xp+ym),ratsimp);
+ev(qm_variance(Sy,xp+ym),ratsimp);
 jm_bra(3/2,1/2);
 K:jm_ket(zp,zm);
 B:jm_bra(zp,zm);
@@ -41,7 +40,7 @@ RZ(1/2,t);
 UU(w*Sy,t);
 ketprod(zp,zm);
 ketprod('zp,'zm);
-kill(a,b,c,d)$
+kill(a,b,c,d);
 braprod(bra(a,b),bra(c,d));
 braprod(dag(zp),bra(c,d));
 zpb:dag(zp);

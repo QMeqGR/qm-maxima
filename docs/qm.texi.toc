@@ -1,0 +1,13 @@
+@numsecentry{Introduction to package qm}{1.1}{Introduction to package qm}{1}
+@numsecentry{Functions and Variables for qm}{1.2}{Functions and variables for qm}{1}
+@numsubsecentry{Simple examples}{1.2.1}{}{2}
+@numsubsecentry{Spin-1/2 state kets and associated operators}{1.2.2}{}{3}
+@numsubsecentry{Pauli matrices and Sz, Sx, Sy operators}{1.2.3}{}{4}
+@numsubsecentry{SX, SY, SZ operators for any spin}{1.2.4}{}{4}
+@numsubsecentry{Expectation value and variance}{1.2.5}{}{5}
+@numsubsecentry{Angular momentum representation of kets and bras}{1.2.6}{}{5}
+@numsubsecentry{Angular momentum and ladder operators}{1.2.7}{}{6}
+@numsecentry{Rotation operators}{1.3}{}{7}
+@numsecentry{Time-evolution operator}{1.4}{}{7}
+@numsecentry{Tensor products}{1.5}{}{8}
+@appentry{Function and variable index}{A}{Function and variable index}{9}

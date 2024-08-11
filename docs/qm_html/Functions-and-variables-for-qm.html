@@ -44,11 +44,10 @@ entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima ex
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i6) load(qm)$
-(%i7) cvec(1,2,3);
+<div class="group"><pre class="example-preformatted">(%i4) cvec(1,2,3);
                                      [ 1 ]
                                      [   ]
-(%o7)                                [ 2 ]
+(%o4)                                [ 2 ]
                                      [   ]
                                      [ 3 ]
 </pre></div></div>
@@ -60,8 +59,8 @@ entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima ex
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i8) rvec(1,2,3);
-(%o8)                             [ 1  2  3 ]
+<div class="group"><pre class="example-preformatted">(%i4) rvec(1,2,3);
+(%o4)                             [ 1  2  3 ]
 </pre></div></div>
 
 <a class="anchor" id="ket"></a><dl class="first-deffn">
@@ -75,12 +74,12 @@ the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i10) ket(c1,c2);
+<div class="group"><pre class="example-preformatted">(%i4) ket(c1,c2);
                                     [ c1 ]
-(%o10)                              [    ]
+(%o4)                               [    ]
                                     [ c2 ]
-(%i11) facts();
-(%o11) [kind(c1, complex), kind(c2, complex)]                                   
+(%i5) facts();
+(%o5) [kind(hbar, real), hbar &gt; 0, kind(c1, complex), kind(c2, complex)]
 </pre></div></div>
 
 <a class="anchor" id="bra"></a><dl class="first-deffn">
@@ -94,8 +93,8 @@ the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i11) bra(c1,c2);
-(%o11)                            [ c1  c2 ]
+<div class="group"><pre class="example-preformatted">(%i4) bra(c1,c2);
+(%o4)                             [ c1  c2 ]
 </pre></div></div>
 
 <a class="anchor" id="ketp"></a><dl class="first-deffn">
@@ -105,10 +104,10 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i3) b: bra(a,b);
-(%o3)                              [ a  b ]
-(%i4) ketp(b);
-(%o4)                                false
+<div class="group"><pre class="example-preformatted">(%i4) b:bra(a,b);
+(%o4)                              [ a  b ]
+(%i5) ketp(b);
+(%o5)                                false
 </pre></div></div>
 
 <a class="anchor" id="brap"></a><dl class="first-deffn">
@@ -118,7 +117,7 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) b: bra(a,b);
+<div class="group"><pre class="example-preformatted">(%i4) b:bra(a,b);
 (%o4)                              [ a  b ]
 (%i5) brap(b);
 (%o5)                                true
@@ -130,9 +129,9 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i13) dag( bra(%i,2) );
+<div class="group"><pre class="example-preformatted">(%i4) dag(bra(%i,2));
                                    [ - %i ]
-(%o13)                             [      ]
+(%o4)                              [      ]
                                    [  2   ]
 </pre></div></div>
 
@@ -146,8 +145,8 @@ product is taken. The vector <code class="code">phi</code> must always be a <cod
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i7) braket(ket(a,b,c),ket(a,b,c));
-(%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+<div class="group"><pre class="example-preformatted">(%i4) braket(ket(a,b,c),ket(a,b,c));
+(%o4)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 </pre></div></div>
 
 <a class="anchor" id="norm"></a><dl class="first-deffn">
@@ -159,8 +158,8 @@ function will return <code class="code">false</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i8) norm(ket(a,b,c));
-(%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+<div class="group"><pre class="example-preformatted">(%i4) norm(ket(a,b,c));
+(%o4)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 </pre></div></div>
 
 <ul class="mini-toc">
@@ -179,20 +178,20 @@ function will return <code class="code">false</code>.
 and to do simple manipulations with them.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i2) rvec(a,b,c);
-(%o2)                             [ a  b  c ]
-(%i3) facts();
-(%o3)        [kind(hbar, real), hbar &gt; 0]
-(%i4) bra(a,b,c);
+<div class="group"><pre class="example-preformatted">(%i4) rvec(a,b,c);
 (%o4)                             [ a  b  c ]
 (%i5) facts();
-(%o5) [kind(hbar, real), hbar &gt; 0, kind(a, complex), 
-                   kind(b, complex), kind(c, complex)]
-(%i6) braket(bra(a,b,c),ket(a,b,c));
+(%o5)                    [kind(hbar, real), hbar &gt; 0]
+(%i6) bra(a,b,c);
+(%o6)                             [ a  b  c ]
+(%i7) facts();
+(%o7) [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex), 
+                                                              kind(c, complex)]
+(%i8) braket(bra(a,b,c),ket(a,b,c));
                                   2    2    2
-(%o6)                            c  + b  + a
-(%i7) braket(ket(a,b,c),ket(a,b,c));
-(%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+(%o8)                            c  + b  + a
+(%i9) braket(ket(a,b,c),ket(a,b,c));
+(%o9)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 </pre></div></div>
 
 </div>
@@ -210,33 +209,33 @@ these vectors are <code class="code">{zp,zm}</code>, and the basis kets in the
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i6) zp;
+<div class="group"><pre class="example-preformatted">(%i4) zp;
                                      [ 1 ]
-(%o6)                                [   ]
+(%o4)                                [   ]
                                      [ 0 ]
-(%i7) zm;
+(%i5) zm;
                                      [ 0 ]
-(%o7)                                [   ]
+(%o5)                                [   ]
                                      [ 1 ]
-</pre></div><div class="group"><pre class="example-preformatted">(%i10) yp;
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) yp;
                                   [    1    ]
                                   [ ------- ]
                                   [ sqrt(2) ]
-(%o10)                            [         ]
+(%o4)                             [         ]
                                   [   %i    ]
                                   [ ------- ]
                                   [ sqrt(2) ]
-(%i11) ym;
+(%i5) ym;
                                  [     1     ]
                                  [  -------  ]
                                  [  sqrt(2)  ]
-(%o11)                           [           ]
+(%o5)                            [           ]
                                  [     %i    ]
                                  [ - ------- ]
                                  [   sqrt(2) ]
-</pre></div><div class="group"><pre class="example-preformatted">(%i6) braket(xp,zp);
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) braket(xp,zp);
                                        1
-(%o6)                               -------
+(%o4)                               -------
                                     sqrt(2)
 </pre></div></div>
 
@@ -244,13 +243,13 @@ these vectors are <code class="code">{zp,zm}</code>, and the basis kets in the
 ket is constructed and the <var class="var">x</var>-basis ket is computed.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i3) psi: ket(a,b);
+<div class="group"><pre class="example-preformatted">(%i4) psi:ket(a,b);
                                      [ a ]
-(%o3)                                [   ]
+(%o4)                                [   ]
                                      [ b ]
-(%i4) psi_x: 'xp*braket(xp,psi) + 'xm*braket(xm,psi);
+(%i5) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
                     b         a              a         b
-(%o4)           (------- + -------) xp + (------- - -------) xm
+(%o5)           (------- + -------) xp + (------- - -------) xm
                  sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 </pre></div></div>
 
@@ -269,15 +268,15 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i3) sigmay;
+<div class="group"><pre class="example-preformatted">(%i4) sigmay;
                                  [ 0   - %i ]
-(%o3)                            [          ]
+(%o4)                            [          ]
                                  [ %i   0   ]
-(%i4) Sy;
+(%i5) Sy;
                             [            %i hbar ]
                             [    0     - ------- ]
                             [               2    ]
-(%o4)                       [                    ]
+(%o5)                       [                    ]
                             [ %i hbar            ]
                             [ -------      0     ]
                             [    2               ]
@@ -298,21 +297,21 @@ and for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 <p>Example:
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i6) SY(1/2);
+<div class="group"><pre class="example-preformatted">(%i4) SY(1/2);
                             [            %i hbar ]
                             [    0     - ------- ]
                             [               2    ]
-(%o6)                       [                    ]
+(%o4)                       [                    ]
                             [ %i hbar            ]
                             [ -------      0     ]
                             [    2               ]
-(%i7) SX(1);
+(%i5) SX(1);
                          [           hbar            ]
                          [    0     -------     0    ]
                          [          sqrt(2)          ]
                          [                           ]
                          [  hbar              hbar   ]
-(%o7)                    [ -------     0     ------- ]
+(%o5)                    [ -------     0     ------- ]
                          [ sqrt(2)           sqrt(2) ]
                          [                           ]
                          [           hbar            ]
@@ -331,8 +330,8 @@ in state <code class="code">psi</code>, <code class="code">&lt;psi|O|psi&gt;</co
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i5) expect(Sy,xp+ym),ratsimp;
-(%o5)                               - hbar
+<div class="group"><pre class="example-preformatted">(%i4) ev(expect(Sy,xp+ym),ratsimp);
+(%o4)                               - hbar
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -342,9 +341,9 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i10) qm_variance(Sy,xp+ym),ratsimp;
+<div class="group"><pre class="example-preformatted">(%i4) ev(qm_variance(Sy,xp+ym),ratsimp);
                                     %i hbar
-(%o10)                              -------
+(%o4)                               -------
                                        2
 </pre></div></div>
 
@@ -367,9 +366,9 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i8) jm_bra(3/2,1/2);
+<div class="group"><pre class="example-preformatted">(%i4) jm_bra(3/2,1/2);
                                        [ 3  1 ]
-(%o8)                          [jmbra, [ -  - ]]
+(%o4)                          [jmbra, [ -  - ]]
                                        [ 2  2 ]
 </pre></div></div>
 
@@ -394,20 +393,20 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i12) K: jm_ket(zp,zm);
+<div class="group"><pre class="example-preformatted">(%i4) K:jm_ket(zp,zm);
                                       [ [ 1 ] ]
                                       [ [   ] ]
                                       [ [ 0 ] ]
-(%o12)                        [jmket, [       ]]
+(%o4)                         [jmket, [       ]]
                                       [ [ 0 ] ]
                                       [ [   ] ]
                                       [ [ 1 ] ]
-(%i13) B: jm_bra(zp,zm);
+(%i5) B:jm_bra(zp,zm);
                                    [ [ 1 ]  [ 0 ] ]
-(%o13)                     [jmbra, [ [   ]  [   ] ]]
+(%o5)                      [jmbra, [ [   ]  [   ] ]]
                                    [ [ 0 ]  [ 1 ] ]
-(%i14) jm_braket(B,K);
-(%o14)                                 1
+(%i6) jm_braket(B,K);
+(%o6)                                  1
 </pre></div></div>
 
 
@@ -456,12 +455,13 @@ and <code class="code">RZ(s,t)</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i10) RZ(1/2,t);
+<div class="group"><pre class="example-preformatted">(%i4) RZ(1/2,t);
+Proviso: assuming 64*t # 0 
                              [     %i t         ]
                              [   - ----         ]
                              [      2           ]
                              [ %e          0    ]
-(%o10)                       [                  ]
+(%o4)                        [                  ]
                              [             %i t ]
                              [             ---- ]
                              [              2   ]
@@ -479,11 +479,12 @@ is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)<
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i12) UU(w*Sy,t);
+<div class="group"><pre class="example-preformatted">(%i4) UU(w*Sy,t);
+Proviso: assuming 64*t*w # 0 
                            [     t w         t w  ]
                            [ cos(---)  - sin(---) ]
                            [      2           2   ]
-(%o12)                     [                      ]
+(%o4)                      [                      ]
                            [     t w        t w   ]
                            [ sin(---)   cos(---)  ]
                            [      2          2    ]
@@ -524,34 +525,31 @@ accepted.
 the bracket of tensor products.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i3) ketprod(zp,zm);
+<div class="group"><pre class="example-preformatted">(%i4) ketprod(zp,zm);
                                      [ 1 ]  [ 0 ]
-(%o3)                       [tpket, [[   ], [   ]]]
+(%o4)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
-(%i4) ketprod('zp,'zm);
-(%o4)                          [tpket, [zp, zm]]
-</pre></div><div class="group"><pre class="example-preformatted">(%i4) kill(a,b,c,d)$
+(%i5) ketprod('zp,'zm);
+(%o5)                          [tpket, [zp, zm]]
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) kill(a,b,c,d);
 (%i5) braprod(bra(a,b),bra(c,d));
 (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
 (%i6) braprod(dag(zp),bra(c,d));
 (%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
-</pre></div><pre class="example-preformatted">
-
-</pre><div class="group"><pre class="example-preformatted">(%i7) zpb: dag(zp);
-(%o7)                              [ 1  0 ]
-(%i8) zmb: dag(zm);
-(%o8)                              [ 0  1 ]
-(%i9) K: ketprod('zp,'zm);
-(%o9)                          [tpket, [zp, zm]]
-(%i10) B: braprod(zpb,zmb);
-(%o10)                   [tpbra, [[ 1  0 ], [ 0  1 ]]]
-(%i11) B: braprod('zpb,'zmb);
-(%o11)                        [tpbra, [zpb, zmb]]
-(%i12) braketprod(K,B);
-(%o12)                               false
-(%i13) braketprod(B,K);
-(%o13)                       (zmb . zm) (zpb . zp)
-
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) zpb:dag(zp);
+(%o4)                              [ 1  0 ]
+(%i5) zmb:dag(zm);
+(%o5)                              [ 0  1 ]
+(%i6) K:ketprod('zp,'zm);
+(%o6)                          [tpket, [zp, zm]]
+(%i7) B:braprod(zpb,zmb);
+(%o7)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
+(%i8) B:braprod('zpb,'zmb);
+(%o8)                         [tpbra, [zpb, zmb]]
+(%i9) braketprod(K,B);
+(%o9)                                false
+(%i10) braketprod(B,K);
+(%o10)                       (zmb . zm) (zpb . zp)
 </pre></div></div>
 
 </div>

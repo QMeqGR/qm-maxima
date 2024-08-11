@@ -1,156 +1,157 @@
 batch("examples.txt");
 display2d:false;
-load(qm);
 cvec(1,2,3);
-matrix([1],[2],[3]) $
+cvec(1,2,3) $
 
 rvec(1,2,3);
-matrix([1,2,3]) $
+rvec(1,2,3) $
 
 ket(c1,c2);
-matrix([c1],[c2]) $
+ket(c1,c2) $
 
 facts();
-[kind(log10,increasing),kind(hbar,real),hbar > 0,kind(c1,complex), $
+[] $
 
 bra(c1,c2);
-matrix([c1,c2]) $
+bra(c1,c2) $
 
 b:bra(a,b);
-matrix([a,b]) $
+bra(a,b) $
 
 ketp(b);
-false $
+ketp(bra(a,b)) $
 
 b:bra(a,b);
-matrix([a,matrix([a,b])]) $
+bra(a,bra(a,b)) $
 
 brap(b);
-false $
+brap(bra(a,bra(a,b))) $
 
 dag(bra(%i,2));
-matrix([-%i],[2]) $
+dag(bra(%i,2)) $
 
 braket(ket(a,b,c),ket(a,b,c));
-false $
+braket(ket(a,bra(a,bra(a,b)),c),ket(a,bra(a,bra(a,b)),c)) $
 
 norm(ket(a,b,c));
-sqrt(false) $
+norm(ket(a,bra(a,bra(a,b)),c)) $
 
 rvec(a,b,c);
-matrix([a,matrix([a,matrix([a,b])]),c]) $
+rvec(a,bra(a,bra(a,b)),c) $
 
 facts();
-[kind(log10,increasing),kind(hbar,real),hbar > 0,kind(c1,complex), $
+[] $
 
 bra(a,b,c);
-matrix([a,matrix([a,matrix([a,b])]),c]) $
+bra(a,bra(a,bra(a,b)),c) $
 
 facts();
-[kind(log10,increasing),kind(hbar,real),hbar > 0,kind(c1,complex), $
+[] $
 
 braket(bra(a,b,c),ket(a,b,c));
-false $
+braket(bra(a,bra(a,bra(a,b)),c),ket(a,bra(a,bra(a,b)),c)) $
 
 braket(ket(a,b,c),ket(a,b,c));
-false $
+braket(ket(a,bra(a,bra(a,b)),c),ket(a,bra(a,bra(a,b)),c)) $
 
 zp;
-matrix([1],[0]) $
+zp $
 
 zm;
-matrix([0],[1]) $
+zm $
 
 yp;
-matrix([1/sqrt(2)],[%i/sqrt(2)]) $
+yp $
 
 ym;
-matrix([1/sqrt(2)],[-(%i/sqrt(2))]) $
+ym $
 
 braket(xp,zp);
-1/sqrt(2) $
+braket(xp,zp) $
 
 psi:ket(a,b);
-matrix([a],[matrix([a,matrix([a,b])])]) $
+ket(a,bra(a,bra(a,b))) $
 
 psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
-xp*false+xm*false $
+xp*braket(xp,ket(a,bra(a,bra(a,b))))+xm $
 
 sigmay;
-matrix([0,-%i],[%i,0]) $
+sigmay $
 
 Sy;
-matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
+Sy $
 
 SY(1/2);
-matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
+SY(1/2) $
 
 SX(1);
-matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0, $
+SX(1) $
 
 ev(expect(Sy,xp+ym),ratsimp);
--hbar $
+expect(Sy,ym+xp) $
 
 ev(qm_variance(Sy,xp+ym),ratsimp);
-(%i*hbar)/2 $
+qm_variance(Sy,ym+xp) $
 
 jm_bra(3/2,1/2);
-[jmbra,matrix([3/2,1/2])] $
+jm_bra(3/2,1/2) $
 
 K:jm_ket(zp,zm);
-[jmket,matrix([matrix([1],[0])],[matrix([0],[1])])] $
+jm_ket(zp,zm) $
 
 B:jm_bra(zp,zm);
-[jmbra,matrix([matrix([1],[0]),matrix([0],[1])])] $
+jm_bra(zp,zm) $
 
 jm_braket(B,K);
-1 $
+jm_braket(jm_bra(zp,zm),jm_ket(zp,zm)) $
 
 SP(1);
-matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
+SP(1) $
 
 SM(1);
-matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
+SM(1) $
 
 RZ(1/2,t);
-matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)]) $
+RZ(1/2,t) $
 
 UU(w*Sy,t);
-matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
+UU(Sy*w,t) $
 
 ketprod(zp,zm);
-[tpket,[matrix([1],[0]),matrix([0],[1])]] $
+ketprod(zp,zm) $
 
 ketprod('zp,'zm);
-[tpket,[zp,zm]] $
+ketprod(zp,zm) $
 
 kill(a,b,c,d);
+done $
+
 braprod(bra(a,b),bra(c,d));
-[tpbra,[matrix([a,b]),matrix([c,d])]] $
+braprod(bra(a,b),bra(c,d)) $
 
 braprod(dag(zp),bra(c,d));
-[tpbra,[matrix([1,0]),matrix([c,d])]] $
+braprod(dag(zp),bra(c,d)) $
 
 zpb:dag(zp);
-matrix([1,0]) $
+dag(zp) $
 
 zmb:dag(zm);
-matrix([0,1]) $
+dag(zm) $
 
 K:ketprod('zp,'zm);
-[tpket,[zp,zm]] $
+ketprod(zp,zm) $
 
 B:braprod(zpb,zmb);
-[tpbra,[matrix([1,0]),matrix([0,1])]] $
+braprod(dag(zp),dag(zm)) $
 
 B:braprod('zpb,'zmb);
-[tpbra,[zpb,zmb]] $
+braprod(zpb,zmb) $
 
 braketprod(K,B);
-false $
+braketprod(ketprod(zp,zm),braprod(zpb,zmb)) $
 
 braketprod(B,K);
-zmb . zm*zpb . zp $
+braketprod(braprod(zpb,zmb),ketprod(zp,zm)) $
 
 "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
 
