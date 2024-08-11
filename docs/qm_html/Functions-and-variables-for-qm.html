@@ -39,8 +39,8 @@ Previous: <a href="Introduction-to-package-qm.html" accesskey="p" rel="prev">Int
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-cvec"><span class="category-def">Function: </span><span><strong class="def-name">cvec</strong> <var class="def-var-arguments">(<code class="code">a<sub class="sub">1</sub></code>,<code class="code">a<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-cvec"> &para;</a></span></dt>
-<dd><p><code class="code">cvec</code> creates a <em class="emph">column</em> vector of arbitrary dimension. The
-entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima expression.
+<dd><p><code class="code">cvec</code> creates a <em class="emph">column</em> vector of arbitrary finite
+dimension. The entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima expression.
 </p></dd></dl>
 
 <div class="example">
@@ -54,8 +54,8 @@ entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima ex
 
 <a class="anchor" id="rvec"></a><dl class="first-deffn">
 <dt class="deffn" id="index-rvec"><span class="category-def">Function: </span><span><strong class="def-name">rvec</strong> <var class="def-var-arguments">(<code class="code">a<sub class="sub">1</sub></code>,<code class="code">a<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-rvec"> &para;</a></span></dt>
-<dd><p><code class="code">rvec</code> creates a <em class="emph">row</em> vector of arbitrary dimension. The
-entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima expression.
+<dd><p><code class="code">rvec</code> creates a <em class="emph">row</em> vector of arbitrary finite
+dimension. The entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima expression.
 </p></dd></dl>
 
 <div class="example">
@@ -65,12 +65,12 @@ entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima ex
 
 <a class="anchor" id="ket"></a><dl class="first-deffn">
 <dt class="deffn" id="index-ket"><span class="category-def">Function: </span><span><strong class="def-name">ket</strong> <var class="def-var-arguments">(<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-ket"> &para;</a></span></dt>
-<dd><p><code class="code">ket</code> creates a <em class="emph">column</em> vector of arbitrary dimension. The
-entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression. If the entries
-are simple symbols or coefficients of simple functions then they will
-be <code class="code">declare</code>-ed complex. If one is having difficulty with getting
-the correct constants declared complex then one is suggested to use
-the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
+<dd><p><code class="code">ket</code> creates a <em class="emph">column</em> vector of arbitrary finite
+dimension. The entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression. If
+the entries are simple symbols or coefficients of simple functions then
+they will be <code class="code">declare</code>-ed complex. If one is having difficulty with
+getting the correct constants declared complex then one is suggested to
+use the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
 </p></dd></dl>
 
 <div class="example">
@@ -84,12 +84,12 @@ the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
 
 <a class="anchor" id="bra"></a><dl class="first-deffn">
 <dt class="deffn" id="index-bra"><span class="category-def">Function: </span><span><strong class="def-name">bra</strong> <var class="def-var-arguments">(<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-bra"> &para;</a></span></dt>
-<dd><p><code class="code">bra</code> creates a <em class="emph">row</em> vector of arbitrary dimension. The
-entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression. If the entries
-are simple symbols or coefficients of simple functions then they will
-be <code class="code">declare</code>-ed complex. If one is having difficulty with getting
-the correct constants declared complex then one is suggested to use
-the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
+<dd><p><code class="code">bra</code> creates a <em class="emph">row</em> vector of arbitrary finite
+dimension. The entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression. If
+the entries are simple symbols or coefficients of simple functions then
+they will be <code class="code">declare</code>-ed complex. If one is having difficulty with
+getting the correct constants declared complex then one is suggested to
+use the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
 </p></dd></dl>
 
 <div class="example">
@@ -125,7 +125,8 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 
 <a class="anchor" id="dag"></a><dl class="first-deffn">
 <dt class="deffn" id="index-dag"><span class="category-def">Function: </span><span><strong class="def-name">dag</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dag"> &para;</a></span></dt>
-<dd><p><code class="code">dag</code> returns the <code class="code">conjugate</code> <code class="code">transpose</code> of its input.
+<dd><p><code class="code">dag</code> is the quantum mechanical <em class="emph">dagger</em> function and returns
+the <code class="code">conjugate</code> <code class="code">transpose</code> of its input.
 </p></dd></dl>
 
 <div class="example">
@@ -351,7 +352,8 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 <div class="subsection-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
 <h4 class="subsection"><span>1.2.6 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
 
-<p>To create kets and bras in the <var class="var">|j,m&gt;</var> you can use the following functions.
+<p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you can use
+the following functions.
 </p>
 <dl class="first-deffn">
 <dt class="deffn" id="index-jm_005fket"><span class="category-def">Function: </span><span><strong class="def-name">jm_ket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fket"> &para;</a></span></dt>

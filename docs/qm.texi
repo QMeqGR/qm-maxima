@@ -27,28 +27,30 @@
 
 Package version: 0.5
 
-The @code{qm} package provides functions and standard definitions
-to solve quantum mechanics problems in a finite dimensional Hilbert
-space. One can calculate the outcome of Stern-Gerlach experiments using
-the built-in definition of the Sx, Sy, and Sz for arbitrary spin,
-e.g. @code{s=@{1/2, 1, 3/2, @dots{}@}}. One can create ket vectors
-with arbitrary but finite dimension and perform standard computations.
-Angular momentum representation of kets is available as well.
+The @code{qm} package provides functions and standard definitions to
+solve quantum mechanics problems in a finite dimensional Hilbert
+space. For example, one can calculate the outcome of Stern-Gerlach
+experiments using the built-in definition of the Sx, Sy, and Sz
+operators for arbitrary spin, e.g. @code{s=@{1/2, 1, 3/2,
+@dots{}@}}. For spin-1/2 the standard basis states in the @var{x},
+@var{y}, and @var{z}-basis are available as @code{@{xp,xm@}},
+@code{@{yp,ym@}}, and @code{@{zp,zm@}}. One can create general ket
+vectors with arbitrary but finite dimension and perform standard
+computations such as expectation value, variance, etc. The angular
+momentum @var{|j,m>} representation of kets is also available. It is
+also possible to create tensor product states for multiparticle systems
+and to perform calculations on those systems.
 
-With this package it is also possible to create tensor product states
-for multiparticle systems and to perform calculations on those systems.
-
-The package is loaded with: @code{load(qm);}
-
-The @code{qm} package was written by Eric Majzoub, University of Missouri.
-Email: majzoube-at-umsystem.edu
+The @code{qm} package was written by Eric Majzoub, University of
+Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
+@code{load(qm);}
 
 @node Functions and variables for qm, ,Introduction to package qm, Top
 @section Functions and Variables for qm
 
 @deffn {Function} cvec (@code{a@sub{1}},@code{a@sub{2}},@dots{})
-@code{cvec} creates a @emph{column} vector of arbitrary dimension. The
-entries @code{a@sub{i}} can be any Maxima expression.
+@code{cvec} creates a @emph{column} vector of arbitrary finite
+dimension. The entries @code{a@sub{i}} can be any Maxima expression.
 @end deffn
 
 @example
@@ -64,8 +66,8 @@ entries @code{a@sub{i}} can be any Maxima expression.
 
 @anchor{rvec}
 @deffn {Function} rvec (@code{a@sub{1}},@code{a@sub{2}},@dots{})
-@code{rvec} creates a @emph{row} vector of arbitrary dimension. The
-entries @code{a@sub{i}} can be any Maxima expression.
+@code{rvec} creates a @emph{row} vector of arbitrary finite
+dimension. The entries @code{a@sub{i}} can be any Maxima expression.
 @end deffn
 
 @example
@@ -77,12 +79,12 @@ entries @code{a@sub{i}} can be any Maxima expression.
 
 @anchor{ket}
 @deffn {Function} ket (@code{c@sub{1}},@code{c@sub{2}},@dots{})
-@code{ket} creates a @emph{column} vector of arbitrary dimension. The
-entries @code{c@sub{i}} can be any Maxima expression. If the entries
-are simple symbols or coefficients of simple functions then they will
-be @code{declare}-ed complex. If one is having difficulty with getting
-the correct constants declared complex then one is suggested to use
-the @code{cvec} and @code{rvec} functions.
+@code{ket} creates a @emph{column} vector of arbitrary finite
+dimension. The entries @code{c@sub{i}} can be any Maxima expression. If
+the entries are simple symbols or coefficients of simple functions then
+they will be @code{declare}-ed complex. If one is having difficulty with
+getting the correct constants declared complex then one is suggested to
+use the @code{cvec} and @code{rvec} functions.
 @end deffn
 
 @example
@@ -98,12 +100,12 @@ the @code{cvec} and @code{rvec} functions.
 
 @anchor{bra}
 @deffn {Function} bra (@code{c@sub{1}},@code{c@sub{2}},@dots{})
-@code{bra} creates a @emph{row} vector of arbitrary dimension. The
-entries @code{c@sub{i}} can be any Maxima expression. If the entries
-are simple symbols or coefficients of simple functions then they will
-be @code{declare}-ed complex. If one is having difficulty with getting
-the correct constants declared complex then one is suggested to use
-the @code{cvec} and @code{rvec} functions.
+@code{bra} creates a @emph{row} vector of arbitrary finite
+dimension. The entries @code{c@sub{i}} can be any Maxima expression. If
+the entries are simple symbols or coefficients of simple functions then
+they will be @code{declare}-ed complex. If one is having difficulty with
+getting the correct constants declared complex then one is suggested to
+use the @code{cvec} and @code{rvec} functions.
 @end deffn
 
 @example
@@ -145,7 +147,8 @@ in which case it returns @code{true}, else it returns @code{false}.
 
 @anchor{dag}
 @deffn {Function} dag (@emph{vector})
-@code{dag} returns the @code{conjugate} @code{transpose} of its input.
+@code{dag} is the quantum mechanical @emph{dagger} function and returns
+the @code{conjugate} @code{transpose} of its input.
 @end deffn
 
 @example
@@ -370,7 +373,8 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 
 @subsection Angular momentum representation of kets and bras
 
-To create kets and bras in the @var{|j,m>} you can use the following functions.
+To create kets and bras in the @var{|j,m>} representation you can use
+the following functions.
 
 @deffn {Function} jm_ket (@code{j,m})
 @code{jm_ket} creates the ket @var{|j,m>} for total spin @var{j}

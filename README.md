@@ -10,27 +10,28 @@ Package qm
 Package version: 0.5
 
    The ‘qm’ package provides functions and standard definitions to solve
-quantum mechanics problems in a finite dimensional Hilbert space.  One
-can calculate the outcome of Stern-Gerlach experiments using the
-built-in definition of the Sx, Sy, and Sz for arbitrary spin, e.g.
-‘s={1/2, 1, 3/2, ...}’.  One can create ket vectors with arbitrary but
-finite dimension and perform standard computations.  Angular momentum
-representation of kets is available as well.
-
-   With this package it is also possible to create tensor product states
-for multiparticle systems and to perform calculations on those systems.
-
-   The package is loaded with: ‘load(qm);’
+quantum mechanics problems in a finite dimensional Hilbert space.  For
+example, one can calculate the outcome of Stern-Gerlach experiments
+using the built-in definition of the Sx, Sy, and Sz operators for
+arbitrary spin, e.g.  ‘s={1/2, 1, 3/2, ...}’.  For spin-1/2 the standard
+basis states in the <x>, <y>, and <z>-basis are available as ‘{xp,xm}’,
+‘{yp,ym}’, and ‘{zp,zm}’.  One can create general ket vectors with
+arbitrary but finite dimension and perform standard computations such as
+expectation value, variance, etc.  The angular momentum <|j,m>>
+representation of kets is also available.  It is also possible to create
+tensor product states for multiparticle systems and to perform
+calculations on those systems.
 
    The ‘qm’ package was written by Eric Majzoub, University of Missouri.
-Email: majzoube-at-umsystem.edu
+(Email: majzoube-at-umsystem.edu) The package is loaded with:
+‘load(qm);’
 
 1.2 Functions and Variables for qm
 ==================================
 
  -- Function: cvec (a_{1},a_{2},...)
-     ‘cvec’ creates a _column_ vector of arbitrary dimension.  The
-     entries ‘a_{i}’ can be any Maxima expression.
+     ‘cvec’ creates a _column_ vector of arbitrary finite dimension.
+     The entries ‘a_{i}’ can be any Maxima expression.
 
      (%i4) cvec(1,2,3);
                                           [ 1 ]
@@ -40,14 +41,14 @@ Email: majzoube-at-umsystem.edu
                                           [ 3 ]
 
  -- Function: rvec (a_{1},a_{2},...)
-     ‘rvec’ creates a _row_ vector of arbitrary dimension.  The entries
-     ‘a_{i}’ can be any Maxima expression.
+     ‘rvec’ creates a _row_ vector of arbitrary finite dimension.  The
+     entries ‘a_{i}’ can be any Maxima expression.
 
      (%i4) rvec(1,2,3);
      (%o4)                             [ 1  2  3 ]
 
  -- Function: ket (c_{1},c_{2},...)
-     ‘ket’ creates a _column_ vector of arbitrary dimension.  The
+     ‘ket’ creates a _column_ vector of arbitrary finite dimension.  The
      entries ‘c_{i}’ can be any Maxima expression.  If the entries are
      simple symbols or coefficients of simple functions then they will
      be ‘declare’-ed complex.  If one is having difficulty with getting
@@ -62,12 +63,12 @@ Email: majzoube-at-umsystem.edu
      (%o5) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 
  -- Function: bra (c_{1},c_{2},...)
-     ‘bra’ creates a _row_ vector of arbitrary dimension.  The entries
-     ‘c_{i}’ can be any Maxima expression.  If the entries are simple
-     symbols or coefficients of simple functions then they will be
-     ‘declare’-ed complex.  If one is having difficulty with getting the
-     correct constants declared complex then one is suggested to use the
-     ‘cvec’ and ‘rvec’ functions.
+     ‘bra’ creates a _row_ vector of arbitrary finite dimension.  The
+     entries ‘c_{i}’ can be any Maxima expression.  If the entries are
+     simple symbols or coefficients of simple functions then they will
+     be ‘declare’-ed complex.  If one is having difficulty with getting
+     the correct constants declared complex then one is suggested to use
+     the ‘cvec’ and ‘rvec’ functions.
 
      (%i4) bra(c1,c2);
      (%o4)                             [ c1  c2 ]
@@ -91,7 +92,8 @@ Email: majzoube-at-umsystem.edu
      (%o5)                                true
 
  -- Function: dag (_vector_)
-     ‘dag’ returns the ‘conjugate’ ‘transpose’ of its input.
+     ‘dag’ is the quantum mechanical _dagger_ function and returns the
+     ‘conjugate’ ‘transpose’ of its input.
 
      (%i4) dag(bra(%i,2));
                                         [ - %i ]
@@ -264,8 +266,8 @@ ket is constructed and the <x>-basis ket is computed.
 1.2.6 Angular momentum representation of kets and bras
 ------------------------------------------------------
 
-To create kets and bras in the <|j,m>> you can use the following
-functions.
+To create kets and bras in the <|j,m>> representation you can use the
+following functions.
 
  -- Function: jm_ket (j,m)
      ‘jm_ket’ creates the ket <|j,m>> for total spin <j> and
@@ -425,59 +427,59 @@ Appendix A Function and variable index
 * Menu:
 
 * bra:                                   Functions and variables for qm.
-                                                              (line  63)
+                                                              (line  64)
 * braket:                                Functions and variables for qm.
-                                                              (line 100)
+                                                              (line 102)
 * braketprod:                            Functions and variables for qm.
-                                                              (line 387)
+                                                              (line 389)
 * brap:                                  Functions and variables for qm.
-                                                              (line  83)
+                                                              (line  84)
 * braprod:                               Functions and variables for qm.
-                                                              (line 383)
+                                                              (line 385)
 * cvec:                                  Functions and variables for qm.
-                                                              (line  30)
+                                                              (line  31)
 * dag:                                   Functions and variables for qm.
-                                                              (line  92)
+                                                              (line  93)
 * expect:                                Functions and variables for qm.
-                                                              (line 247)
+                                                              (line 249)
 * jm_bra:                                Functions and variables for qm.
-                                                              (line 273)
+                                                              (line 275)
 * jm_braket:                             Functions and variables for qm.
-                                                              (line 291)
+                                                              (line 293)
 * jm_brap:                               Functions and variables for qm.
-                                                              (line 285)
+                                                              (line 287)
 * jm_check:                              Functions and variables for qm.
-                                                              (line 288)
+                                                              (line 290)
 * jm_ket:                                Functions and variables for qm.
-                                                              (line 269)
+                                                              (line 271)
 * jm_ketp:                               Functions and variables for qm.
-                                                              (line 282)
+                                                              (line 284)
 * ket:                                   Functions and variables for qm.
-                                                              (line  48)
+                                                              (line  49)
 * ketp:                                  Functions and variables for qm.
-                                                              (line  74)
+                                                              (line  75)
 * ketprod:                               Functions and variables for qm.
-                                                              (line 379)
+                                                              (line 381)
 * norm:                                  Functions and variables for qm.
-                                                              (line 110)
+                                                              (line 112)
 * qm_variance:                           Functions and variables for qm.
-                                                              (line 254)
+                                                              (line 256)
 * rvec:                                  Functions and variables for qm.
-                                                              (line  41)
+                                                              (line  42)
 * RX, RY, RZ:                            Functions and variables for qm.
-                                                              (line 336)
+                                                              (line 338)
 * sigmax, sigmay, sigmaz:                Functions and variables for qm.
-                                                              (line 194)
+                                                              (line 196)
 * SM:                                    Functions and variables for qm.
-                                                              (line 315)
+                                                              (line 317)
 * SP:                                    Functions and variables for qm.
-                                                              (line 312)
+                                                              (line 314)
 * Sx, Sy, Sz:                            Functions and variables for qm.
-                                                              (line 197)
+                                                              (line 199)
 * SX, SY, SZ:                            Functions and variables for qm.
-                                                              (line 216)
+                                                              (line 218)
 * UU:                                    Functions and variables for qm.
-                                                              (line 356)
+                                                              (line 358)
 * zp,zm,xp,xm,yp,ym:                     Functions and variables for qm.
-                                                              (line 147)
+                                                              (line 149)
 
