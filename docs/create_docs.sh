@@ -5,9 +5,9 @@ buildindex=/home/packages/SOURCE/maxima-code/doc/info/build_index.pl
 packname=qm
 
 makeinfo $packname.texi;
-texi2pdf $packname.texi;
-texi2html $packname.texi;
-texi2any --plaintext $packname.texi > ../README.md;
+makeinfo --pdf $packname.texi;
+makeinfo --html $packname.texi;
+makeinfo --plaintext $packname.texi > ../README.md;
 
 # build the index
 $buildindex $packname.info > $packname-index.lisp;

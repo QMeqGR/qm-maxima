@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Functions and variables for qm (Package qm)</title>
+
+<meta name="description" content="Functions and variables for qm (Package qm)">
+<meta name="keywords" content="Functions and variables for qm (Package qm)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-and-variable-index.html" rel="index" title="Function and variable index">
+<link href="index.html" rel="up" title="Top">
+<link href="Introduction-to-package-qm.html" rel="prev" title="Introduction to package qm">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Functions-and-variables-for-qm">
+<div class="nav-panel">
+<p>
+Previous: <a href="Introduction-to-package-qm.html" accesskey="p" rel="prev">Introduction to package qm</a> &nbsp; [<a href="Function-and-variable-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Functions-and-Variables-for-qm"><span>1.2 Functions and Variables for qm<a class="copiable-link" href="#Functions-and-Variables-for-qm"> &para;</a></span></h3>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-cvec"><span class="category-def">Function: </span><span><strong class="def-name">cvec</strong> <var class="def-var-arguments">(<code class="code">a<sub class="sub">1</sub></code>,<code class="code">a<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-cvec"> &para;</a></span></dt>
+<dd><p><code class="code">cvec</code> creates a <em class="emph">column</em> vector of arbitrary dimension. The
+entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima expression.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i6) load(qm)$
+(%i7) cvec(1,2,3);
+                                     [ 1 ]
+                                     [   ]
+(%o7)                                [ 2 ]
+                                     [   ]
+                                     [ 3 ]
+</pre></div></div>
+
+<a class="anchor" id="rvec"></a><dl class="first-deffn">
+<dt class="deffn" id="index-rvec"><span class="category-def">Function: </span><span><strong class="def-name">rvec</strong> <var class="def-var-arguments">(<code class="code">a<sub class="sub">1</sub></code>,<code class="code">a<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-rvec"> &para;</a></span></dt>
+<dd><p><code class="code">rvec</code> creates a <em class="emph">row</em> vector of arbitrary dimension. The
+entries <code class="code">a<sub class="sub">i</sub></code> can be any Maxima expression.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i8) rvec(1,2,3);
+(%o8)                             [ 1  2  3 ]
+</pre></div></div>
+
+<a class="anchor" id="ket"></a><dl class="first-deffn">
+<dt class="deffn" id="index-ket"><span class="category-def">Function: </span><span><strong class="def-name">ket</strong> <var class="def-var-arguments">(<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-ket"> &para;</a></span></dt>
+<dd><p><code class="code">ket</code> creates a <em class="emph">column</em> vector of arbitrary dimension. The
+entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression. If the entries
+are simple symbols or coefficients of simple functions then they will
+be <code class="code">declare</code>-ed complex. If one is having difficulty with getting
+the correct constants declared complex then one is suggested to use
+the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i10) ket(c1,c2);
+                                    [ c1 ]
+(%o10)                              [    ]
+                                    [ c2 ]
+(%i11) facts();
+(%o11) [kind(c1, complex), kind(c2, complex)]                                   
+</pre></div></div>
+
+<a class="anchor" id="bra"></a><dl class="first-deffn">
+<dt class="deffn" id="index-bra"><span class="category-def">Function: </span><span><strong class="def-name">bra</strong> <var class="def-var-arguments">(<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-bra"> &para;</a></span></dt>
+<dd><p><code class="code">bra</code> creates a <em class="emph">row</em> vector of arbitrary dimension. The
+entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression. If the entries
+are simple symbols or coefficients of simple functions then they will
+be <code class="code">declare</code>-ed complex. If one is having difficulty with getting
+the correct constants declared complex then one is suggested to use
+the <code class="code">cvec</code> and <code class="code">rvec</code> functions.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i11) bra(c1,c2);
+(%o11)                            [ c1  c2 ]
+</pre></div></div>
+
+<a class="anchor" id="ketp"></a><dl class="first-deffn">
+<dt class="deffn" id="index-ketp"><span class="category-def">Function: </span><span><strong class="def-name">ketp</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-ketp"> &para;</a></span></dt>
+<dd><p><code class="code">ketp</code> is a predicate function that checks if its input is a ket,
+in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i3) b: bra(a,b);
+(%o3)                              [ a  b ]
+(%i4) ketp(b);
+(%o4)                                false
+</pre></div></div>
+
+<a class="anchor" id="brap"></a><dl class="first-deffn">
+<dt class="deffn" id="index-brap"><span class="category-def">Function: </span><span><strong class="def-name">brap</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-brap"> &para;</a></span></dt>
+<dd><p><code class="code">brap</code> is a predicate function that checks if its input is a bra,
+in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i4) b: bra(a,b);
+(%o4)                              [ a  b ]
+(%i5) brap(b);
+(%o5)                                true
+</pre></div></div>
+
+<a class="anchor" id="dag"></a><dl class="first-deffn">
+<dt class="deffn" id="index-dag"><span class="category-def">Function: </span><span><strong class="def-name">dag</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dag"> &para;</a></span></dt>
+<dd><p><code class="code">dag</code> returns the <code class="code">conjugate</code> <code class="code">transpose</code> of its input.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i13) dag( bra(%i,2) );
+                                   [ - %i ]
+(%o13)                             [      ]
+                                   [  2   ]
+</pre></div></div>
+
+<a class="anchor" id="braket"></a><dl class="first-deffn">
+<dt class="deffn" id="index-braket"><span class="category-def">Function: </span><span><strong class="def-name">braket</strong> <var class="def-var-arguments">(<code class="code">psi,phi</code>)</var><a class="copiable-link" href="#index-braket"> &para;</a></span></dt>
+<dd><p>Given two kets <code class="code">psi</code> and <code class="code">phi</code>, <code class="code">braket</code> returns the
+quantum mechanical bracket <code class="code">&lt;psi|phi&gt;</code>. The vector <code class="code">psi</code> may be
+input as either a <code class="code">ket</code> or <code class="code">bra</code>. If it is a <code class="code">ket</code> it will be
+turned into a <code class="code">bra</code> with the <code class="code">dag</code> function before the inner
+product is taken. The vector <code class="code">phi</code> must always be a <code class="code">ket</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i7) braket(ket(a,b,c),ket(a,b,c));
+(%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+</pre></div></div>
+
+<a class="anchor" id="norm"></a><dl class="first-deffn">
+<dt class="deffn" id="index-norm"><span class="category-def">Function: </span><span><strong class="def-name">norm</strong> <var class="def-var-arguments">(<code class="code">psi</code>)</var><a class="copiable-link" href="#index-norm"> &para;</a></span></dt>
+<dd><p>Given a <code class="code">ket</code> or <code class="code">bra</code> <code class="code">psi</code>, <code class="code">norm</code> returns the
+square root of the quantum mechanical bracket <code class="code">&lt;psi|psi&gt;</code>.
+The vector <code class="code">psi</code> must always be a <code class="code">ket</code>, otherwise the
+function will return <code class="code">false</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i8) norm(ket(a,b,c));
+(%o8)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+</pre></div></div>
+
+<ul class="mini-toc">
+<li><a href="#Simple-examples" accesskey="1">Simple examples</a></li>
+<li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="2">Spin-1/2 state kets and associated operators</a></li>
+<li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="3">Pauli matrices and Sz, Sx, Sy operators</a></li>
+<li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="4">SX, SY, SZ operators for any spin</a></li>
+<li><a href="#Expectation-value-and-variance" accesskey="5">Expectation value and variance</a></li>
+<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="6">Angular momentum representation of kets and bras</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators" accesskey="7">Angular momentum and ladder operators</a></li>
+</ul>
+<div class="subsection-level-extent" id="Simple-examples">
+<h4 class="subsection"><span>1.2.1 Simple examples<a class="copiable-link" href="#Simple-examples"> &para;</a></span></h4>
+
+<p>The following additional examples show how to input vectors of various kinds
+and to do simple manipulations with them.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i2) rvec(a,b,c);
+(%o2)                             [ a  b  c ]
+(%i3) facts();
+(%o3)        [kind(hbar, real), hbar &gt; 0]
+(%i4) bra(a,b,c);
+(%o4)                             [ a  b  c ]
+(%i5) facts();
+(%o5) [kind(hbar, real), hbar &gt; 0, kind(a, complex), 
+                   kind(b, complex), kind(c, complex)]
+(%i6) braket(bra(a,b,c),ket(a,b,c));
+                                  2    2    2
+(%o6)                            c  + b  + a
+(%i7) braket(ket(a,b,c),ket(a,b,c));
+(%o7)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
+<h4 class="subsection"><span>1.2.2 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
+
+<p>Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
+space of states. It is spanned by two vectors. In the <var class="var">z</var>-basis
+these vectors are <code class="code">{zp,zm}</code>, and the basis kets in the
+<var class="var">z</var>-basis are <code class="code">{xp,xm}</code> and <code class="code">{yp,ym}</code> respectively.
+</p>
+<a class="anchor" id="zp"></a><dl class="first-deffn">
+<dt class="deffn" id="index-zp_002czm_002cxp_002cxm_002cyp_002cym"><span class="category-def">Function: </span><span><strong class="def-name">zp,zm,xp,xm,yp,ym</strong><a class="copiable-link" href="#index-zp_002czm_002cxp_002cxm_002cyp_002cym"> &para;</a></span></dt>
+<dd><p>Return the ket of the corresponding vector in the <var class="var">z</var>-basis.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i6) zp;
+                                     [ 1 ]
+(%o6)                                [   ]
+                                     [ 0 ]
+(%i7) zm;
+                                     [ 0 ]
+(%o7)                                [   ]
+                                     [ 1 ]
+</pre></div><div class="group"><pre class="example-preformatted">(%i10) yp;
+                                  [    1    ]
+                                  [ ------- ]
+                                  [ sqrt(2) ]
+(%o10)                            [         ]
+                                  [   %i    ]
+                                  [ ------- ]
+                                  [ sqrt(2) ]
+(%i11) ym;
+                                 [     1     ]
+                                 [  -------  ]
+                                 [  sqrt(2)  ]
+(%o11)                           [           ]
+                                 [     %i    ]
+                                 [ - ------- ]
+                                 [   sqrt(2) ]
+</pre></div><div class="group"><pre class="example-preformatted">(%i6) braket(xp,zp);
+                                       1
+(%o6)                               -------
+                                    sqrt(2)
+</pre></div></div>
+
+<p>Switching bases is done in the following example where a <var class="var">z</var>-basis
+ket is constructed and the <var class="var">x</var>-basis ket is computed.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i3) psi: ket(a,b);
+                                     [ a ]
+(%o3)                                [   ]
+                                     [ b ]
+(%i4) psi_x: 'xp*braket(xp,psi) + 'xm*braket(xm,psi);
+                    b         a              a         b
+(%o4)           (------- + -------) xp + (------- - -------) xm
+                 sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators">
+<h4 class="subsection"><span>1.2.3 Pauli matrices and Sz, Sx, Sy operators<a class="copiable-link" href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"> &para;</a></span></h4>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-sigmax_002c-sigmay_002c-sigmaz"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmax, sigmay, sigmaz</code></strong><a class="copiable-link" href="#index-sigmax_002c-sigmay_002c-sigmaz"> &para;</a></span></dt>
+<dd><p>Returns the Pauli <var class="var">x,y,z</var> matrix.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Sx_002c-Sy_002c-Sz"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sx, Sy, Sz</code></strong><a class="copiable-link" href="#index-Sx_002c-Sy_002c-Sz"> &para;</a></span></dt>
+<dd><p>Returns the spin-1/2 <var class="var">Sx,Sy,Sz</var> matrix.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i3) sigmay;
+                                 [ 0   - %i ]
+(%o3)                            [          ]
+                                 [ %i   0   ]
+(%i4) Sy;
+                            [            %i hbar ]
+                            [    0     - ------- ]
+                            [               2    ]
+(%o4)                       [                    ]
+                            [ %i hbar            ]
+                            [ -------      0     ]
+                            [    2               ]
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="SX_002c-SY_002c-SZ-operators-for-any-spin">
+<h4 class="subsection"><span>1.2.4 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-SX_002c-SY_002c-SZ"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">SX, SY, SZ</code></strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SX_002c-SY_002c-SZ"> &para;</a></span></dt>
+<dd><p><code class="code">SX(s)</code> for spin <code class="code">s</code> returns the matrix representation
+of the spin operator <code class="code">Sx</code>, and similarly for <code class="code">SY(s)</code>
+and <code class="code">SZ(s)</code>. Shortcuts for spin-1/2 are <code class="code">Sx,Sy,Sz</code>,
+and for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
+</p></dd></dl>
+
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i6) SY(1/2);
+                            [            %i hbar ]
+                            [    0     - ------- ]
+                            [               2    ]
+(%o6)                       [                    ]
+                            [ %i hbar            ]
+                            [ -------      0     ]
+                            [    2               ]
+(%i7) SX(1);
+                         [           hbar            ]
+                         [    0     -------     0    ]
+                         [          sqrt(2)          ]
+                         [                           ]
+                         [  hbar              hbar   ]
+(%o7)                    [ -------     0     ------- ]
+                         [ sqrt(2)           sqrt(2) ]
+                         [                           ]
+                         [           hbar            ]
+                         [    0     -------     0    ]
+                         [          sqrt(2)          ]
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Expectation-value-and-variance">
+<h4 class="subsection"><span>1.2.5 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-expect"><span class="category-def">Function: </span><span><strong class="def-name">expect</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-expect"> &para;</a></span></dt>
+<dd><p>Computes the quantum mechanical expectation value of the operator <code class="code">O</code>
+in state <code class="code">psi</code>, <code class="code">&lt;psi|O|psi&gt;</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i5) expect(Sy,xp+ym),ratsimp;
+(%o5)                               - hbar
+</pre></div></div>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-qm_005fvariance"><span class="category-def">Function: </span><span><strong class="def-name">qm_variance</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-qm_005fvariance"> &para;</a></span></dt>
+<dd><p>Computes the quantum mechanical variance of the operator <code class="code">O</code>
+in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup class="sup">2</sup>|psi&gt; - &lt;psi|O|psi&gt;<sup class="sup">2</sup>)</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i10) qm_variance(Sy,xp+ym),ratsimp;
+                                    %i hbar
+(%o10)                              -------
+                                       2
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
+<h4 class="subsection"><span>1.2.6 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
+
+<p>To create kets and bras in the <var class="var">|j,m&gt;</var> you can use the following functions.
+</p>
+<dl class="first-deffn">
+<dt class="deffn" id="index-jm_005fket"><span class="category-def">Function: </span><span><strong class="def-name">jm_ket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fket"> &para;</a></span></dt>
+<dd><p><code class="code">jm_ket</code> creates the ket <var class="var">|j,m&gt;</var> for total spin <var class="var">j</var>
+and <var class="var">z</var>-component <var class="var">m</var>.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-jm_005fbra"><span class="category-def">Function: </span><span><strong class="def-name">jm_bra</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fbra"> &para;</a></span></dt>
+<dd><p><code class="code">jm_bra</code> creates the bra <var class="var">&lt;j,m|</var> for total spin <var class="var">j</var>
+and <var class="var">z</var>-component <var class="var">m</var>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i8) jm_bra(3/2,1/2);
+                                       [ 3  1 ]
+(%o8)                          [jmbra, [ -  - ]]
+                                       [ 2  2 ]
+</pre></div></div>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-jm_005fketp"><span class="category-def">Function: </span><span><strong class="def-name">jm_ketp</strong> <var class="def-var-arguments">(jmket)</var><a class="copiable-link" href="#index-jm_005fketp"> &para;</a></span></dt>
+<dd><p><code class="code">jm_ketp</code> checks to see that the ket has the &rsquo;jmket&rsquo; marker.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-jm_005fbrap"><span class="category-def">Function: </span><span><strong class="def-name">jm_brap</strong> <var class="def-var-arguments">(jmbra)</var><a class="copiable-link" href="#index-jm_005fbrap"> &para;</a></span></dt>
+<dd><p><code class="code">jm_brap</code> checks to see that the bra has the &rsquo;jmbra&rsquo; marker.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-jm_005fcheck"><span class="category-def">Function: </span><span><strong class="def-name">jm_check</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fcheck"> &para;</a></span></dt>
+<dd><p><code class="code">jm_check</code> checks to see that <var class="var">m</var> is one of {-j, &hellip;, +j}.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-jm_005fbraket"><span class="category-def">Function: </span><span><strong class="def-name">jm_braket</strong> <var class="def-var-arguments">(<code class="code">jmbra,jmket</code>)</var><a class="copiable-link" href="#index-jm_005fbraket"> &para;</a></span></dt>
+<dd><p><code class="code">jm_braket</code> takes the inner product of the jm-kets.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i12) K: jm_ket(zp,zm);
+                                      [ [ 1 ] ]
+                                      [ [   ] ]
+                                      [ [ 0 ] ]
+(%o12)                        [jmket, [       ]]
+                                      [ [ 0 ] ]
+                                      [ [   ] ]
+                                      [ [ 1 ] ]
+(%i13) B: jm_bra(zp,zm);
+                                   [ [ 1 ]  [ 0 ] ]
+(%o13)                     [jmbra, [ [   ]  [   ] ]]
+                                   [ [ 0 ]  [ 1 ] ]
+(%i14) jm_braket(B,K);
+(%o14)                                 1
+</pre></div></div>
+
+
+</div>
+<div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
+<h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>
+<dd><p><code class="code">SP</code> is the raising ladder operator <var class="var">S<sub class="sub">+</sub></var> for spin <code class="code">s</code>.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-SM"><span class="category-def">Function: </span><span><strong class="def-name">SM</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SM"> &para;</a></span></dt>
+<dd><p><code class="code">SM</code> is the raising ladder operator <var class="var">S<sub class="sub">-</sub></var> for spin <code class="code">s</code>.
+</p></dd></dl>
+
+<p>Examples of the ladder operators:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i4) SP(1);
+                       [ 0  sqrt(2) hbar       0       ]
+                       [                               ]
+(%o4)                  [ 0       0        sqrt(2) hbar ]
+                       [                               ]
+                       [ 0       0             0       ]
+(%i5) SM(1);
+                       [      0             0        0 ]
+                       [                               ]
+(%o5)                  [ sqrt(2) hbar       0        0 ]
+                       [                               ]
+                       [      0        sqrt(2) hbar  0 ]
+</pre></div></div>
+
+</div>
+</div>
+<div class="section-level-extent" id="Rotation-operators">
+<h3 class="section"><span>1.3 Rotation operators<a class="copiable-link" href="#Rotation-operators"> &para;</a></span></h3>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-RX_002c-RY_002c-RZ"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">RX, RY, RZ</code></strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RX_002c-RY_002c-RZ"> &para;</a></span></dt>
+<dd><p><code class="code">RX(s)</code> for spin <code class="code">s</code> returns the matrix representation
+of the rotation operator <code class="code">Rx</code> for rotation through angle
+<code class="code">t</code>, and similarly for <code class="code">RY(s,t)</code>
+and <code class="code">RZ(s,t)</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i10) RZ(1/2,t);
+                             [     %i t         ]
+                             [   - ----         ]
+                             [      2           ]
+                             [ %e          0    ]
+(%o10)                       [                  ]
+                             [             %i t ]
+                             [             ---- ]
+                             [              2   ]
+                             [    0      %e     ]
+</pre></div></div>
+
+</div>
+<div class="section-level-extent" id="Time_002devolution-operator">
+<h3 class="section"><span>1.4 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h3>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-UU"><span class="category-def">Function: </span><span><strong class="def-name">UU</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-UU"> &para;</a></span></dt>
+<dd><p><code class="code">UU(H,t)</code> is the time evolution operator for Hamiltonian <code class="code">H</code>. It
+is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i12) UU(w*Sy,t);
+                           [     t w         t w  ]
+                           [ cos(---)  - sin(---) ]
+                           [      2           2   ]
+(%o12)                     [                      ]
+                           [     t w        t w   ]
+                           [ sin(---)   cos(---)  ]
+                           [      2          2    ]
+</pre></div></div>
+
+</div>
+<div class="section-level-extent" id="Tensor-products">
+<h3 class="section"><span>1.5 Tensor products<a class="copiable-link" href="#Tensor-products"> &para;</a></span></h3>
+
+<p>Tensor products are represented as lists in Maxima. The ket tensor
+product <code class="code">|z+,z+&gt;</code> is represented as <code class="code">[tpket,zp,zp]</code>, and the bra
+tensor product <code class="code">&lt;a,b|</code> is represented as <code class="code">[tpbra,a,b]</code> for kets
+<code class="code">a</code> and <code class="code">b</code>. The list labels <code class="code">tpket</code> and <code class="code">tpbra</code>
+ensure calculations are performed with the correct kind of objects.
+</p>
+<dl class="first-deffn">
+<dt class="deffn" id="index-ketprod"><span class="category-def">Function: </span><span><strong class="def-name">ketprod</strong> <var class="def-var-arguments">(<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-ketprod"> &para;</a></span></dt>
+<dd><p><code class="code">ketprod</code> produces a tensor product of kets <code class="code">k<sub class="sub">i</sub></code>. All
+of the elements must pass the <code class="code">ketp</code> predicate test to be
+accepted.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-braprod"><span class="category-def">Function: </span><span><strong class="def-name">braprod</strong> <var class="def-var-arguments">(<code class="code">b<sub class="sub">1</sub></code>, <code class="code">b<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-braprod"> &para;</a></span></dt>
+<dd><p><code class="code">braprod</code> produces a tensor product of bras <code class="code">b<sub class="sub">i</sub></code>. All
+of the elements must pass the <code class="code">brap</code> predicate test to be
+accepted.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-braketprod"><span class="category-def">Function: </span><span><strong class="def-name">braketprod</strong> <var class="def-var-arguments">(<code class="code">B,K</code>)</var><a class="copiable-link" href="#index-braketprod"> &para;</a></span></dt>
+<dd><p><code class="code">braketprod</code> takes the inner product of the tensor products
+<code class="code">B</code> and <code class="code">K</code>. The tensor products must be of the same length
+(number of kets must equal the number of bras).
+</p></dd></dl>
+
+<p>Examples below show how to create tensor products and take
+the bracket of tensor products.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i3) ketprod(zp,zm);
+                                     [ 1 ]  [ 0 ]
+(%o3)                       [tpket, [[   ], [   ]]]
+                                     [ 0 ]  [ 1 ]
+(%i4) ketprod('zp,'zm);
+(%o4)                          [tpket, [zp, zm]]
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) kill(a,b,c,d)$
+(%i5) braprod(bra(a,b),bra(c,d));
+(%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%i6) braprod(dag(zp),bra(c,d));
+(%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">(%i7) zpb: dag(zp);
+(%o7)                              [ 1  0 ]
+(%i8) zmb: dag(zm);
+(%o8)                              [ 0  1 ]
+(%i9) K: ketprod('zp,'zm);
+(%o9)                          [tpket, [zp, zm]]
+(%i10) B: braprod(zpb,zmb);
+(%o10)                   [tpbra, [[ 1  0 ], [ 0  1 ]]]
+(%i11) B: braprod('zpb,'zmb);
+(%o11)                        [tpbra, [zpb, zmb]]
+(%i12) braketprod(K,B);
+(%o12)                               false
+(%i13) braketprod(B,K);
+(%o13)                       (zmb . zm) (zpb . zp)
+
+</pre></div></div>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Previous: <a href="Introduction-to-package-qm.html">Introduction to package qm</a> &nbsp; [<a href="Function-and-variable-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,5 +1,6 @@
+batch("examples.txt");
+display2d:false;
 load(qm);
-
 cvec(1,2,3);
 matrix([1],[2],[3]) $
 
@@ -8,6 +9,9 @@ matrix([1,2,3]) $
 
 ket(c1,c2);
 matrix([c1],[c2]) $
+
+facts();
+[kind(log10,increasing),kind(hbar,real),hbar > 0,kind(c1,complex), $
 
 bra(c1,c2);
 matrix([c1,c2]) $
@@ -36,8 +40,14 @@ sqrt(false) $
 rvec(a,b,c);
 matrix([a,matrix([a,matrix([a,b])]),c]) $
 
+facts();
+[kind(log10,increasing),kind(hbar,real),hbar > 0,kind(c1,complex), $
+
 bra(a,b,c);
 matrix([a,matrix([a,matrix([a,b])]),c]) $
+
+facts();
+[kind(log10,increasing),kind(hbar,real),hbar > 0,kind(c1,complex), $
 
 braket(bra(a,b,c),ket(a,b,c));
 false $
@@ -74,6 +84,9 @@ matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
 
 SY(1/2);
 matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
+
+SX(1);
+matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0, $
 
 ev(expect(Sy,xp+ym),ratsimp);
 -hbar $
@@ -138,3 +151,6 @@ false $
 
 braketprod(B,K);
 zmb . zm*zpb . zp $
+
+"/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
+
