@@ -1,6 +1,7 @@
 #!/bin/bash
 
 debug=0;
+packname=qm;
 
 if [ "$#" -eq 0 ];then
     echo Usage: regen_examples.sh packagename
@@ -70,7 +71,7 @@ ngrps=$(echo $grpcnt_list | gawk '{print $NF}')
 if [ $debug -gt 0 ]; then echo "ngrps= "$ngrps; fi
 for i in $(seq 1 $ngrps); do
     echo "display2d_unicode:false$" > .tmp.grp.$i.mac
-    echo "load(qm)$" >> .tmp.grp.$i.mac
+    echo "load($packname)$" >> .tmp.grp.$i.mac
     echo "extracting examples from group "$i;
     cat tmp.regen.1 | gawk -v G="$i" --source \
       '($1~/grpcnt/ && $2==G){for(i=6;i<NF+1;i++){printf("%s ",$i);}printf("\n");}' >> .tmp.grp.$i.mac
