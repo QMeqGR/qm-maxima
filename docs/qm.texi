@@ -48,6 +48,12 @@ Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
 @node Functions and variables for qm, ,Introduction to package qm, Top
 @section Functions and Variables for qm
 
+@defvr {Variable} hbar
+Planck's constant divided by @code{2*%pi}. @code{hbar} is not given a
+floating point value, but is declared to be a real number greater than
+zero.
+@end defvr
+
 @deffn {Function} cvec (@code{a@sub{1}},@code{a@sub{2}},@dots{})
 @code{cvec} creates a @emph{column} vector of arbitrary finite
 dimension. The entries @code{a@sub{i}} can be any Maxima expression.
@@ -191,6 +197,20 @@ function will return @code{false}.
 @end group
 @end example
 
+@deffn {Function} magsqr (@code{c})
+@code{magsqr} returns @code{conjugate(c)*c}, the magnitude
+squared of a complex number.
+@end deffn
+
+@example
+@group
+(%i2) A: braket(ket(a,b),ket(c,d));
+(%o2)                   conjugate(b) d + conjugate(a) c
+(%i3) P: magsqr(A);
+(%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+@end group
+@end example
+
 @subsection Simple examples
 
 The following additional examples show how to input vectors of various kinds
@@ -304,6 +324,26 @@ Returns the spin-1/2 @var{Sx,Sy,Sz} matrix.
                             [ %i hbar            ]
                             [ -------      0     ]
                             [    2               ]
+@end group
+@end example
+
+@deffn {Function} commutator (@code{X,Y})
+Given two operators @code{X} and @code{Y}, return the
+commutator @code{X . Y - Y . X}.
+@end deffn
+
+@example
+@group
+(%i3) commutator(Sx,Sy);
+                           [        2             ]
+                           [ %i hbar              ]
+                           [ --------      0      ]
+                           [    2                 ]
+(%o3)                      [                      ]
+                           [                    2 ]
+                           [             %i hbar  ]
+                           [    0      - -------- ]
+                           [                2     ]
 @end group
 @end example
 

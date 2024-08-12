@@ -37,6 +37,12 @@ false $
 norm(ket(a,b,c));
 sqrt(false) $
 
+A:braket(ket(a,b),ket(c,d));
+false $
+
+P:magsqr(A);
+false*conjugate(false) $
+
 rvec(a,b,c);
 matrix([a,matrix([a,matrix([a,b])]),c]) $
 
@@ -81,6 +87,9 @@ matrix([0,-%i],[%i,0]) $
 
 Sy;
 matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
+
+commutator(Sx,Sy);
+matrix([(%i*hbar^2)/2,0],[0,-((%i*hbar^2)/2)]) $
 
 SY(1/2);
 matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $

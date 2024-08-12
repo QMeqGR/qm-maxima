@@ -37,6 +37,13 @@ Previous: <a href="Introduction-to-package-qm.html" accesskey="p" rel="prev">Int
 <hr>
 <h3 class="section" id="Functions-and-Variables-for-qm"><span>1.2 Functions and Variables for qm<a class="copiable-link" href="#Functions-and-Variables-for-qm"> &para;</a></span></h3>
 
+<dl class="first-defvr">
+<dt class="defvr" id="index-hbar"><span class="category-def">Variable: </span><span><strong class="def-name">hbar</strong><a class="copiable-link" href="#index-hbar"> &para;</a></span></dt>
+<dd><p>Planck&rsquo;s constant divided by <code class="code">2*%pi</code>. <code class="code">hbar</code> is not given a
+floating point value, but is declared to be a real number greater than
+zero.
+</p></dd></dl>
+
 <dl class="first-deffn">
 <dt class="deffn" id="index-cvec"><span class="category-def">Function: </span><span><strong class="def-name">cvec</strong> <var class="def-var-arguments">(<code class="code">a<sub class="sub">1</sub></code>,<code class="code">a<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-cvec"> &para;</a></span></dt>
 <dd><p><code class="code">cvec</code> creates a <em class="emph">column</em> vector of arbitrary finite
@@ -163,6 +170,19 @@ function will return <code class="code">false</code>.
 (%o4)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 </pre></div></div>
 
+<dl class="first-deffn">
+<dt class="deffn" id="index-magsqr"><span class="category-def">Function: </span><span><strong class="def-name">magsqr</strong> <var class="def-var-arguments">(<code class="code">c</code>)</var><a class="copiable-link" href="#index-magsqr"> &para;</a></span></dt>
+<dd><p><code class="code">magsqr</code> returns <code class="code">conjugate(c)*c</code>, the magnitude
+squared of a complex number.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i2) A: braket(ket(a,b),ket(c,d));
+(%o2)                   conjugate(b) d + conjugate(a) c
+(%i3) P: magsqr(A);
+(%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+</pre></div></div>
+
 <ul class="mini-toc">
 <li><a href="#Simple-examples" accesskey="1">Simple examples</a></li>
 <li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="2">Spin-1/2 state kets and associated operators</a></li>
@@ -281,6 +301,25 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
                             [ %i hbar            ]
                             [ -------      0     ]
                             [    2               ]
+</pre></div></div>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-commutator"><span class="category-def">Function: </span><span><strong class="def-name">commutator</strong> <var class="def-var-arguments">(<code class="code">X,Y</code>)</var><a class="copiable-link" href="#index-commutator"> &para;</a></span></dt>
+<dd><p>Given two operators <code class="code">X</code> and <code class="code">Y</code>, return the
+commutator <code class="code">X . Y - Y . X</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i3) commutator(Sx,Sy);
+                           [        2             ]
+                           [ %i hbar              ]
+                           [ --------      0      ]
+                           [    2                 ]
+(%o3)                      [                      ]
+                           [                    2 ]
+                           [             %i hbar  ]
+                           [    0      - -------- ]
+                           [                2     ]
 </pre></div></div>
 
 </div>
