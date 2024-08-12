@@ -17,6 +17,7 @@ rm $packname.aux $packname.fn $packname.fns $packname.log $packname.toc
 ## Create test suite from examples in $packname.texi
 echo "#### creating examples.txt and the rtest file."
 echo "display2d:false$" > examples.txt
+echo "load($packname)\$" >> examples.txt
 cat qm.texi | grep "(%i" | \
     gawk '(NF>1){for(i=2;i<NF+1;i++){printf("%s",$i)};printf("\n")}' \
 	 >> examples.txt;
