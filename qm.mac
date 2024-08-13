@@ -147,22 +147,8 @@ Jz(k) := block([j,m,sqrterm],
 /* Angular momentum ladder operators for general spin */
 /******************************************************/
 /******************************************************/
-/*
-disp("Angular momentum ladder ops:: SP(s), SM(s)") $
-disp("General spin:: SX(s), SY(s), SZ(s); rot:: RZ(s,phi), RX(s,phi), RY(s,phi)") $
-disp("Time-evolution operator:: UU(H,t)") $
-*/
-SP(s) := block([i,j,N,MM],
-	N:2*s+1, MM: zeromatrix(N,N),
-	mval: makelist(-s+i,i,0,N-1),
-	for i: 1 thru N do
-	    for j: i thru N do
-	    	if is(i=(j+1))=true or is(i=(j-1))=true then 
-		MM[i,j]: hbar*sqrt( s * (s+1) - mval[i] * (mval[i]+1) )
-		else MM[i,j]:0,
-	MM
-	)$
-	
+SP(s) := genmatrix(lambda([i,j],m:-s+j-2,
+        hbar*kron_delta(i,j-1)*sqrt( s*(s+1)-m*(m+1)) ), 2*s+1,2*s+1);
 SM(s) := dag(SP(s))$
 SX(s) := (1/2)*(SP(s)+SM(s))$
 SY(s) := (%i/2)*(SM(s)-SP(s))$
