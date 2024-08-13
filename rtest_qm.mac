@@ -1,11 +1,8 @@
 batch("examples.txt");
 display2d:false;
 load(qm);
-cvec(1,2,3);
-matrix([1],[2],[3]) $
-
-rvec(1,2,3);
-matrix([1,2,3]) $
+declare([c1,c2],complex);
+done $
 
 ket(c1,c2);
 matrix([c1],[c2]) $
@@ -15,6 +12,9 @@ facts();
 
 bra(c1,c2);
 matrix([c1,c2]) $
+
+facts();
+[kind(hbar,real),hbar > 0,kind(c1,complex),kind(c2,complex)] $
 
 b:bra(a,b);
 matrix([a,b]) $
@@ -31,35 +31,26 @@ false $
 dag(bra(%i,2));
 matrix([-%i],[2]) $
 
+declare([a,b,c],complex);
+done $
+
 braket(ket(a,b,c),ket(a,b,c));
 false $
 
+declare([a,b,c],complex);
+done $
+
 norm(ket(a,b,c));
 sqrt(false) $
+
+declare([a,b,c,c],complex);
+done $
 
 A:braket(ket(a,b),ket(c,d));
 false $
 
 P:magsqr(A);
 false*conjugate(false) $
-
-rvec(a,b,c);
-matrix([a,matrix([a,matrix([a,b])]),c]) $
-
-facts();
-[kind(hbar,real),hbar > 0,kind(c1,complex),kind(c2,complex), $
-
-bra(a,b,c);
-matrix([a,matrix([a,matrix([a,b])]),c]) $
-
-facts();
-[kind(hbar,real),hbar > 0,kind(c1,complex),kind(c2,complex), $
-
-braket(bra(a,b,c),ket(a,b,c));
-false $
-
-braket(ket(a,b,c),ket(a,b,c));
-false $
 
 zp;
 matrix([1],[0]) $
@@ -75,6 +66,9 @@ matrix([1/sqrt(2)],[-(%i/sqrt(2))]) $
 
 braket(xp,zp);
 1/sqrt(2) $
+
+declare([a,b],complex);
+done $
 
 psi:ket(a,b);
 matrix([a],[matrix([a,matrix([a,b])])]) $
@@ -131,9 +125,12 @@ ketprod(zp,zm);
 [tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
 ketprod('zp,'zm);
-[tpket,[zp,zm]] $
+done $
 
 kill(a,b,c,d);
+done $
+
+declare([a,b,c,d],complex);
 done $
 
 braprod(bra(a,b),bra(c,d));
@@ -149,19 +146,19 @@ zmb:dag(zm);
 matrix([0,1]) $
 
 K:ketprod('zp,'zm);
-[tpket,[zp,zm]] $
+done $
 
 B:braprod(zpb,zmb);
 [tpbra,[matrix([1,0]),matrix([0,1])]] $
 
 B:braprod('zpb,'zmb);
-[tpbra,[zpb,zmb]] $
+done $
 
 braketprod(K,B);
 false $
 
 braketprod(B,K);
-zmb . zm*zpb . zp $
+false $
 
 "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
 

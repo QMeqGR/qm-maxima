@@ -34,49 +34,29 @@ calculations on those systems.
      floating point value, but is declared to be a real number greater
      than zero.
 
- -- Function: cvec (a_{1},a_{2},...)
-     ‘cvec’ creates a _column_ vector of arbitrary finite dimension.
-     The entries ‘a_{i}’ can be any Maxima expression.
-
-     (%i4) cvec(1,2,3);
-                                          [ 1 ]
-                                          [   ]
-     (%o4)                                [ 2 ]
-                                          [   ]
-                                          [ 3 ]
-
- -- Function: rvec (a_{1},a_{2},...)
-     ‘rvec’ creates a _row_ vector of arbitrary finite dimension.  The
-     entries ‘a_{i}’ can be any Maxima expression.
-
-     (%i4) rvec(1,2,3);
-     (%o4)                             [ 1  2  3 ]
-
  -- Function: ket (c_{1},c_{2},...)
      ‘ket’ creates a _column_ vector of arbitrary finite dimension.  The
-     entries ‘c_{i}’ can be any Maxima expression.  If the entries are
-     simple symbols or coefficients of simple functions then they will
-     be ‘declare’-ed complex.  If one is having difficulty with getting
-     the correct constants declared complex then one is suggested to use
-     the ‘cvec’ and ‘rvec’ functions.
+     entries ‘c_{i}’ can be any Maxima expression.  The user must
+     ‘declare’ any relevant constants to be complex.
 
-     (%i4) ket(c1,c2);
+     (%i4) declare([c1,c2],complex);
+     (%o4)                                done
+     (%i5) ket(c1,c2);
                                          [ c1 ]
-     (%o4)                               [    ]
+     (%o5)                               [    ]
                                          [ c2 ]
-     (%i5) facts();
-     (%o5) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+     (%i6) facts();
+     (%o6) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 
  -- Function: bra (c_{1},c_{2},...)
      ‘bra’ creates a _row_ vector of arbitrary finite dimension.  The
-     entries ‘c_{i}’ can be any Maxima expression.  If the entries are
-     simple symbols or coefficients of simple functions then they will
-     be ‘declare’-ed complex.  If one is having difficulty with getting
-     the correct constants declared complex then one is suggested to use
-     the ‘cvec’ and ‘rvec’ functions.
+     entries ‘c_{i}’ can be any Maxima expression.  The user must
+     ‘declare’ any relevant constants to be complex.
 
      (%i4) bra(c1,c2);
      (%o4)                             [ c1  c2 ]
+     (%i5) facts();
+     (%o5)                    [kind(hbar, real), hbar > 0]
 
  -- Function: ketp (_vector_)
      ‘ketp’ is a predicate function that checks if its input is a ket,
@@ -112,48 +92,33 @@ calculations on those systems.
      ‘bra’ with the ‘dag’ function before the inner product is taken.
      The vector ‘phi’ must always be a ‘ket’.
 
-     (%i4) braket(ket(a,b,c),ket(a,b,c));
-     (%o4)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+     (%i4) declare([a,b,c],complex);
+     (%o4)                                done
+     (%i5) braket(ket(a,b,c),ket(a,b,c));
+     (%o5)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 
  -- Function: norm (psi)
      Given a ‘ket’ or ‘bra’ ‘psi’, ‘norm’ returns the square root of the
      quantum mechanical bracket ‘<psi|psi>’.  The vector ‘psi’ must
      always be a ‘ket’, otherwise the function will return ‘false’.
 
-     (%i4) norm(ket(a,b,c));
-     (%o4)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+     (%i4) declare([a,b,c],complex);
+     (%o4)                                done
+     (%i5) norm(ket(a,b,c));
+     (%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 
  -- Function: magsqr (c)
      ‘magsqr’ returns ‘conjugate(c)*c’, the magnitude squared of a
      complex number.
 
-     (%i2) A: braket(ket(a,b),ket(c,d));
-     (%o2)                   conjugate(b) d + conjugate(a) c
-     (%i3) P: magsqr(A);
-     (%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+     (%i4) declare([a,b,c,c],complex);
+     (%o4)                                done
+     (%i5) A:braket(ket(a,b),ket(c,d));
+     (%o5)                   conjugate(b) d + conjugate(a) c
+     (%i6) P:magsqr(A);
+     (%o6)      (b d + a conjugate(c)) (conjugate(b) d + conjugate(a) c)
 
-1.2.1 Simple examples
----------------------
-
-The following additional examples show how to input vectors of various
-kinds and to do simple manipulations with them.
-
-     (%i4) rvec(a,b,c);
-     (%o4)                             [ a  b  c ]
-     (%i5) facts();
-     (%o5)                    [kind(hbar, real), hbar > 0]
-     (%i6) bra(a,b,c);
-     (%o6)                             [ a  b  c ]
-     (%i7) facts();
-     (%o7) [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex),
-                                                                   kind(c, complex)]
-     (%i8) braket(bra(a,b,c),ket(a,b,c));
-                                       2    2    2
-     (%o8)                            c  + b  + a
-     (%i9) braket(ket(a,b,c),ket(a,b,c));
-     (%o9)          c conjugate(c) + b conjugate(b) + a conjugate(a)
-
-1.2.2 Spin-1/2 state kets and associated operators
+1.2.1 Spin-1/2 state kets and associated operators
 --------------------------------------------------
 
 Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
@@ -211,16 +176,18 @@ and ‘{yp,ym}’ respectively.
    Switching bases is done in the following example where a <z>-basis
 ket is constructed and the <x>-basis ket is computed.
 
-     (%i4) psi:ket(a,b);
+     (%i4) declare([a,b],complex);
+     (%o4)                                done
+     (%i5) psi:ket(a,b);
                                           [ a ]
-     (%o4)                                [   ]
+     (%o5)                                [   ]
                                           [ b ]
-     (%i5) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+     (%i6) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
                          b         a              a         b
-     (%o5)           (------- + -------) xp + (------- - -------) xm
+     (%o6)           (------- + -------) xp + (------- - -------) xm
                       sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 
-1.2.3 Pauli matrices and Sz, Sx, Sy operators
+1.2.2 Pauli matrices and Sz, Sx, Sy operators
 ---------------------------------------------
 
  -- Function: sigmax
@@ -258,18 +225,18 @@ ket is constructed and the <x>-basis ket is computed.
      Given two operators ‘X’ and ‘Y’, return the commutator ‘X . Y - Y .
      X’.
 
-     (%i3) commutator(Sx,Sy);
+     (%i4) commutator(Sx,Sy);
                                 [        2             ]
                                 [ %i hbar              ]
                                 [ --------      0      ]
                                 [    2                 ]
-     (%o3)                      [                      ]
+     (%o4)                      [                      ]
                                 [                    2 ]
                                 [             %i hbar  ]
                                 [    0      - -------- ]
                                 [                2     ]
 
-1.2.4 SX, SY, SZ operators for any spin
+1.2.3 SX, SY, SZ operators for any spin
 ---------------------------------------
 
  -- Function: SX (s)
@@ -310,7 +277,7 @@ ket is constructed and the <x>-basis ket is computed.
                               [    0     -------     0    ]
                               [          sqrt(2)          ]
 
-1.2.5 Expectation value and variance
+1.2.4 Expectation value and variance
 ------------------------------------
 
  -- Function: expect (O,psi)
@@ -329,7 +296,7 @@ ket is constructed and the <x>-basis ket is computed.
      (%o4)                               -------
                                             2
 
-1.2.6 Angular momentum representation of kets and bras
+1.2.5 Angular momentum representation of kets and bras
 ------------------------------------------------------
 
 To create kets and bras in the <|j,m>> representation you can use the
@@ -375,7 +342,7 @@ following functions.
      (%i6) jm_braket(B,K);
      (%o6)                                  1
 
-1.2.7 Angular momentum and ladder operators
+1.2.6 Angular momentum and ladder operators
 -------------------------------------------
 
  -- Function: SP (s)
@@ -473,26 +440,35 @@ bracket of tensor products.
      (%o4)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
      (%i5) ketprod('zp,'zm);
-     (%o5)                          [tpket, [zp, zm]]
+                                all elements must be kets
+
+     (%o5)                                done
      (%i4) kill(a,b,c,d);
-     (%i5) braprod(bra(a,b),bra(c,d));
-     (%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
-     (%i6) braprod(dag(zp),bra(c,d));
-     (%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+     (%o4)                                done
+     (%i5) declare([a,b,c,d],complex);
+     (%o5)                                done
+     (%i6) braprod(bra(a,b),bra(c,d));
+     (%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
+     (%i7) braprod(dag(zp),bra(c,d));
+     (%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
      (%i4) zpb:dag(zp);
      (%o4)                              [ 1  0 ]
      (%i5) zmb:dag(zm);
      (%o5)                              [ 0  1 ]
      (%i6) K:ketprod('zp,'zm);
-     (%o6)                          [tpket, [zp, zm]]
+                                all elements must be kets
+
+     (%o6)                                done
      (%i7) B:braprod(zpb,zmb);
      (%o7)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
      (%i8) B:braprod('zpb,'zmb);
-     (%o8)                         [tpbra, [zpb, zmb]]
+                                all elements must be bras
+
+     (%o8)                                done
      (%i9) braketprod(K,B);
      (%o9)                                false
      (%i10) braketprod(B,K);
-     (%o10)                       (zmb . zm) (zpb . zp)
+     (%o10)                               false
 
 Appendix A Function and variable index
 **************************************
@@ -500,91 +476,87 @@ Appendix A Function and variable index
 * Menu:
 
 * bra:                                   Functions and variables for qm.
-                                                              (line  69)
+                                                              (line  50)
 * braket:                                Functions and variables for qm.
-                                                              (line 107)
+                                                              (line  87)
 * braketprod:                            Functions and variables for qm.
-                                                              (line 462)
+                                                              (line 429)
 * brap:                                  Functions and variables for qm.
-                                                              (line  89)
+                                                              (line  69)
 * braprod:                               Functions and variables for qm.
-                                                              (line 458)
+                                                              (line 425)
 * commutator:                            Functions and variables for qm.
-                                                              (line 256)
-* cvec:                                  Functions and variables for qm.
-                                                              (line  36)
+                                                              (line 223)
 * dag:                                   Functions and variables for qm.
-                                                              (line  98)
+                                                              (line  78)
 * expect:                                Functions and variables for qm.
-                                                              (line 315)
+                                                              (line 282)
 * jm_bra:                                Functions and variables for qm.
-                                                              (line 341)
+                                                              (line 308)
 * jm_braket:                             Functions and variables for qm.
-                                                              (line 359)
+                                                              (line 326)
 * jm_brap:                               Functions and variables for qm.
-                                                              (line 353)
+                                                              (line 320)
 * jm_check:                              Functions and variables for qm.
-                                                              (line 356)
+                                                              (line 323)
 * jm_ket:                                Functions and variables for qm.
-                                                              (line 337)
+                                                              (line 304)
 * jm_ketp:                               Functions and variables for qm.
-                                                              (line 350)
+                                                              (line 317)
 * ket:                                   Functions and variables for qm.
-                                                              (line  54)
+                                                              (line  36)
 * ketp:                                  Functions and variables for qm.
-                                                              (line  80)
+                                                              (line  60)
 * ketprod:                               Functions and variables for qm.
-                                                              (line 454)
+                                                              (line 421)
 * magsqr:                                Functions and variables for qm.
-                                                              (line 125)
+                                                              (line 109)
 * norm:                                  Functions and variables for qm.
-                                                              (line 117)
+                                                              (line  99)
 * qm_variance:                           Functions and variables for qm.
-                                                              (line 322)
-* rvec:                                  Functions and variables for qm.
-                                                              (line  47)
+                                                              (line 289)
 * RX:                                    Functions and variables for qm.
-                                                              (line 404)
+                                                              (line 371)
 * RY:                                    Functions and variables for qm.
-                                                              (line 408)
+                                                              (line 375)
 * RZ:                                    Functions and variables for qm.
-                                                              (line 412)
+                                                              (line 379)
 * sigmax:                                Functions and variables for qm.
-                                                              (line 225)
+                                                              (line 192)
 * sigmay:                                Functions and variables for qm.
-                                                              (line 228)
+                                                              (line 195)
 * sigmaz:                                Functions and variables for qm.
-                                                              (line 231)
+                                                              (line 198)
 * SM:                                    Functions and variables for qm.
-                                                              (line 383)
+                                                              (line 350)
 * SP:                                    Functions and variables for qm.
-                                                              (line 380)
+                                                              (line 347)
 * Sx:                                    Functions and variables for qm.
-                                                              (line 234)
+                                                              (line 201)
 * SX:                                    Functions and variables for qm.
-                                                              (line 274)
+                                                              (line 241)
 * Sy:                                    Functions and variables for qm.
-                                                              (line 237)
+                                                              (line 204)
 * SY:                                    Functions and variables for qm.
-                                                              (line 279)
+                                                              (line 246)
 * Sz:                                    Functions and variables for qm.
-                                                              (line 240)
+                                                              (line 207)
 * SZ:                                    Functions and variables for qm.
-                                                              (line 284)
+                                                              (line 251)
 * UU:                                    Functions and variables for qm.
-                                                              (line 431)
+                                                              (line 398)
 * xm:                                    Functions and variables for qm.
-                                                              (line 172)
+                                                              (line 137)
 * xp:                                    Functions and variables for qm.
-                                                              (line 169)
+                                                              (line 134)
 * ym:                                    Functions and variables for qm.
-                                                              (line 178)
+                                                              (line 143)
 * yp:                                    Functions and variables for qm.
-                                                              (line 175)
+                                                              (line 140)
 * zm:                                    Functions and variables for qm.
-                                                              (line 166)
+                                                              (line 131)
 * zp:                                    Functions and variables for qm.
-                                                              (line 163)
+                                                              (line 128)
 
 * Menu:
 

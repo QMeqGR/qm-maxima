@@ -54,70 +54,39 @@ floating point value, but is declared to be a real number greater than
 zero.
 @end defvr
 
-@deffn {Function} cvec (@code{a@sub{1}},@code{a@sub{2}},@dots{})
-@code{cvec} creates a @emph{column} vector of arbitrary finite
-dimension. The entries @code{a@sub{i}} can be any Maxima expression.
-@end deffn
-
-@example
-@group
-(%i4) cvec(1,2,3);
-                                     [ 1 ]
-                                     [   ]
-(%o4)                                [ 2 ]
-                                     [   ]
-                                     [ 3 ]
-@end group
-@end example
-
-@anchor{rvec}
-@deffn {Function} rvec (@code{a@sub{1}},@code{a@sub{2}},@dots{})
-@code{rvec} creates a @emph{row} vector of arbitrary finite
-dimension. The entries @code{a@sub{i}} can be any Maxima expression.
-@end deffn
-
-@example
-@group
-(%i4) rvec(1,2,3);
-(%o4)                             [ 1  2  3 ]
-@end group
-@end example
-
 @anchor{ket}
 @deffn {Function} ket (@code{c@sub{1}},@code{c@sub{2}},@dots{})
 @code{ket} creates a @emph{column} vector of arbitrary finite
-dimension. The entries @code{c@sub{i}} can be any Maxima expression. If
-the entries are simple symbols or coefficients of simple functions then
-they will be @code{declare}-ed complex. If one is having difficulty with
-getting the correct constants declared complex then one is suggested to
-use the @code{cvec} and @code{rvec} functions.
+dimension. The entries @code{c@sub{i}} can be any Maxima expression.
+The user must @code{declare} any relevant constants to be complex.
 @end deffn
 
 @example
 @group
-(%i4) ket(c1,c2);
+(%i4) declare([c1,c2],complex);
+(%o4)                                done
+(%i5) ket(c1,c2);
                                     [ c1 ]
-(%o4)                               [    ]
+(%o5)                               [    ]
                                     [ c2 ]
-(%i5) facts();
-(%o5) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+(%i6) facts();
+(%o6) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 @end group
 @end example
 
 @anchor{bra}
 @deffn {Function} bra (@code{c@sub{1}},@code{c@sub{2}},@dots{})
 @code{bra} creates a @emph{row} vector of arbitrary finite
-dimension. The entries @code{c@sub{i}} can be any Maxima expression. If
-the entries are simple symbols or coefficients of simple functions then
-they will be @code{declare}-ed complex. If one is having difficulty with
-getting the correct constants declared complex then one is suggested to
-use the @code{cvec} and @code{rvec} functions.
+dimension. The entries @code{c@sub{i}} can be any Maxima expression.
+The user must @code{declare} any relevant constants to be complex.
 @end deffn
 
 @example
 @group
 (%i4) bra(c1,c2);
 (%o4)                             [ c1  c2 ]
+(%i5) facts();
+(%o5)                    [kind(hbar, real), hbar > 0]
 @end group
 @end example
 
@@ -177,8 +146,10 @@ product is taken. The vector @code{phi} must always be a @code{ket}.
 
 @example
 @group
-(%i4) braket(ket(a,b,c),ket(a,b,c));
-(%o4)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+(%i4) declare([a,b,c],complex);
+(%o4)                                done
+(%i5) braket(ket(a,b,c),ket(a,b,c));
+(%o5)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 @end group
 @end example
 
@@ -192,8 +163,10 @@ function will return @code{false}.
 
 @example
 @group
-(%i4) norm(ket(a,b,c));
-(%o4)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+(%i4) declare([a,b,c],complex);
+(%o4)                                done
+(%i5) norm(ket(a,b,c));
+(%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 @end group
 @end example
 
@@ -204,34 +177,12 @@ squared of a complex number.
 
 @example
 @group
-(%i2) A: braket(ket(a,b),ket(c,d));
-(%o2)                   conjugate(b) d + conjugate(a) c
-(%i3) P: magsqr(A);
-(%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
-@end group
-@end example
-
-@subsection Simple examples
-
-The following additional examples show how to input vectors of various kinds
-and to do simple manipulations with them.
-
-@example
-@group
-(%i4) rvec(a,b,c);
-(%o4)                             [ a  b  c ]
-(%i5) facts();
-(%o5)                    [kind(hbar, real), hbar > 0]
-(%i6) bra(a,b,c);
-(%o6)                             [ a  b  c ]
-(%i7) facts();
-(%o7) [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex), 
-                                                              kind(c, complex)]
-(%i8) braket(bra(a,b,c),ket(a,b,c));
-                                  2    2    2
-(%o8)                            c  + b  + a
-(%i9) braket(ket(a,b,c),ket(a,b,c));
-(%o9)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+(%i4) declare([a,b,c,c],complex);
+(%o4)                                done
+(%i5) A:braket(ket(a,b),ket(c,d));
+(%o5)                   conjugate(b) d + conjugate(a) c
+(%i6) P:magsqr(A);
+(%o6)      (b d + a conjugate(c)) (conjugate(b) d + conjugate(a) c)
 @end group
 @end example
 
@@ -308,13 +259,15 @@ ket is constructed and the @var{x}-basis ket is computed.
 
 @example
 @group
-(%i4) psi:ket(a,b);
+(%i4) declare([a,b],complex);
+(%o4)                                done
+(%i5) psi:ket(a,b);
                                      [ a ]
-(%o4)                                [   ]
+(%o5)                                [   ]
                                      [ b ]
-(%i5) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+(%i6) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
                     b         a              a         b
-(%o5)           (------- + -------) xp + (------- - -------) xm
+(%o6)           (------- + -------) xp + (------- - -------) xm
                  sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 @end group
 @end example
@@ -369,12 +322,12 @@ commutator @code{X . Y - Y . X}.
 
 @example
 @group
-(%i3) commutator(Sx,Sy);
+(%i4) commutator(Sx,Sy);
                            [        2             ]
                            [ %i hbar              ]
                            [ --------      0      ]
                            [    2                 ]
-(%o3)                      [                      ]
+(%o4)                      [                      ]
                            [                    2 ]
                            [             %i hbar  ]
                            [    0      - -------- ]
@@ -636,14 +589,19 @@ the bracket of tensor products.
 (%o4)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 (%i5) ketprod('zp,'zm);
-(%o5)                          [tpket, [zp, zm]]
+                           all elements must be kets
+
+(%o5)                                done
 @end group
 @group
 (%i4) kill(a,b,c,d);
-(%i5) braprod(bra(a,b),bra(c,d));
-(%o5)                    [tpbra, [[ a  b ], [ c  d ]]]
-(%i6) braprod(dag(zp),bra(c,d));
-(%o6)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+(%o4)                                done
+(%i5) declare([a,b,c,d],complex);
+(%o5)                                done
+(%i6) braprod(bra(a,b),bra(c,d));
+(%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%i7) braprod(dag(zp),bra(c,d));
+(%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
 @end group
 @group
 (%i4) zpb:dag(zp);
@@ -651,15 +609,19 @@ the bracket of tensor products.
 (%i5) zmb:dag(zm);
 (%o5)                              [ 0  1 ]
 (%i6) K:ketprod('zp,'zm);
-(%o6)                          [tpket, [zp, zm]]
+                           all elements must be kets
+
+(%o6)                                done
 (%i7) B:braprod(zpb,zmb);
 (%o7)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
 (%i8) B:braprod('zpb,'zmb);
-(%o8)                         [tpbra, [zpb, zmb]]
+                           all elements must be bras
+
+(%o8)                                done
 (%i9) braketprod(K,B);
 (%o9)                                false
 (%i10) braketprod(B,K);
-(%o10)                       (zmb . zm) (zpb . zp)
+(%o10)                               false
 @end group
 @end example
 

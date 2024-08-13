@@ -89,77 +89,22 @@ probability(psi,n) := magsqr(psi[n]);
 /* make kets or bras */
 /*********************/
 /* most basic definition, but won't declare constants as complex */
-/* ket([u]) := transpose(u) $
-   bra([u]) := matrix(u) $ */
-
-/* These don't check for constants, i.e. ket(1,0) */
-/* This works if the user inputs simple things like ket(a,b,c) */
-/* ket([u]) := ( apply('declare,[u,complex]), transpose(u) ) $
-   bra([u]) := ( apply('declare,[u,complex]), matrix(u) ) $ */
-   
-/* 
-This code tries to make a general ket and determine which variables
-to declare(var,complex). It automatically handles expressions like
-a*cos(t)+b*sin(t) and exp(i*phi)*cos(th/2), etc. but may fail otherwise.
-*/
-
-common_functions: [sin,cos,asin,acos,tan,atan,exp] $
-ket([u]) := block([i], for elm in u do
-	     if apply('numberp,[float(elm)])=true then 1    /* is it a number? */
-	     	elseif apply('complex_number_p,[elm])=true then 1  /* is it a complex number? */ 
-		elseif apply('symbolp,[elm])=true and apply('atom,[elm])=true /* if symbol and atom */
-		       then apply('declare,[elm,complex])
-		elseif apply('atom,[elm])=false and apply('symbolp,[part(elm,1)])=true /* if only one part and atom */
-		       then apply('declare,[part(elm,1),complex])
-		elseif apply('length,[args(elm)]) > 1 /* if multiple args a*cos + b*sin, etc. */
-		       then for i: 1 thru apply('length,[args(elm)]) do
-		       	    if apply('atom,[part(elm,i)])=true and
-			       apply('symbolp,[part(elm,i)])=true then
-		       	       apply('declare,[part(elm,i),complex])
-			       else /* dig deeper */
-			        if apply('lfreeof,[common_functions,part(elm,i)])=false and
-				   apply('length,[args(part(elm,i))])=1 then 0
-				   elseif apply('atom,[part(elm,i,1)])=true and
-				     	  apply('constantp,[part(elm,i,1)])=false and
-				     	  apply('symbolp,[part(elm,i,1)])=true then
-	 	       	             	  apply('declare,[part(elm,i,1),complex])
-	        else 1,
-		transpose(u) ) $
-
-bra([u]) := block([i], for elm in u do
-	     if apply('numberp,[float(elm)])=true then 1    /* is it a number? */
-	     	elseif apply('complex_number_p,[elm])=true then 1  /* is it a complex number? */ 
-		elseif apply('symbolp,[elm])=true and apply('atom,[elm])=true /* if symbol and atom */
-		       then apply('declare,[elm,complex])
-		elseif apply('atom,[elm])=false and apply('symbolp,[part(elm,1)])=true /* if only one part and atom */
-		       then apply('declare,[part(elm,1),complex])
-		elseif apply('length,[args(elm)]) > 1 /* if multiple args a*cos + b*sin, etc. */
-		       then for i: 1 thru apply('length,[args(elm)]) do
-		       	    if apply('atom,[part(elm,i)])=true and
-			       apply('symbolp,[part(elm,i)])=true then
-		       	       apply('declare,[part(elm,i),complex])
-			       else /* dig deeper */
-			        if apply('lfreeof,[common_functions,part(elm,i)])=false and
-				   apply('length,[args(part(elm,i))])=1 then 0
-				   elseif apply('atom,[part(elm,i,1)])=true and
-				     	  apply('constantp,[part(elm,i,1)])=false and
-				     	  apply('symbolp,[part(elm,i,1)])=true then
-	 	       	             	  apply('declare,[part(elm,i,1),complex])
-	        else 1,
-		matrix(u) ) $
-
+ket([u]) := transpose(u) $
+bra([u]) := matrix(u) $
 
 /***************************************/
 /* Define predicates for kets and bras */
 /***************************************/
-ketp(psi) := block([i,n,m,S,tf:true], S:matrix_size(ev(psi)),
-	  /* check for submatrices */
-	  for i: 1 thru S[1] do if matrixp(psi[i][1])=true then tf:false,
-	  S[1] > S[2] and S[2] = 1  and  tf)$
-brap(psi) := block([i,n,m,S,tf:true], S:matrix_size(ev(psi)),
-	  for i: 1 thru S[2] do if matrixp(psi[1][i])=true then tf:false,
-	  S[1] < S[2] and S[1] = 1  and tf)$
-
+ketp(psi) := block([r,c],
+     if matrixp(psi) then (
+        [r,c] : matrix_size(psi),
+        (c = 1) and (r > 1) and every(lambda([q], not (matrixp(q) or listp(q) or setp(q))), psi))
+    else false);
+brap(psi) := block([r,c],
+     if matrixp(psi) then (
+        [r,c] : matrix_size(psi),
+        (r = 1) and (c > 1) and every(lambda([q], not (matrixp(q) or listp(q) or setp(q))), psi))
+    else false);
 
 /******************************************************/
 /******************************************************/
@@ -179,6 +124,23 @@ jm_check(j,m) := block([pos:0],
 	      	 for jn: j step -1 thru -j do
 		     if jn=m then pos:1,
 		 if pos=1 then true else false )$
+JP(k) := block([j,m,sqrterm],
+      if k[1]#jmket then return(false),
+      j:k[2][1][1], m:k[2][2][1], sqrterm:sqrt(j*(j+1)-m*(m+1))*hbar,
+      return( sqrterm * 'jm_ket(j,m+1) ) )$
+JM(k) := block([j,m,sqrterm],
+      if k[1]#jmket then return(false),
+      j:k[2][1][1], m:k[2][2][1], sqrterm:sqrt(j*(j+1)-m*(m-1))*hbar,
+      return( sqrterm * 'jm_ket(j,m-1) ) )$
+Jsqr(k) := block([j,m,sqrterm],
+      if k[1]#jmket then return(false),
+      j:k[2][1][1], return( (j*(j+1)) * hbar^2 * 'jm_ket(j,m) ) )$
+Jz(k) := block([j,m,sqrterm],
+      if k[1]#jmket then return(false),
+      m:k[2][2][1], return( m * hbar * 'jm_ket(j,m) ) )$
+
+
+
 
 /******************************************************/
 /******************************************************/
@@ -254,7 +216,7 @@ Rot(Op,phi) := block([M1,M2,M3],
 	  M1: matrixexp(-%i*Op*phi/hbar),
 	  M2: matrixmap(distrib,M1),
 	  M3: matrixmap(combine,M2),
-	  ev(M3,trigreduce)
+	  trigreduce(M3)
 	  )$
 
 /* the following is so RZ appears with exponentials
