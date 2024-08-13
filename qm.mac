@@ -222,11 +222,11 @@ Rot(Op,phi) := block([M1,M2,M3],
 /* the following is so RZ appears with exponentials
    and RX and RY with trig functions */
 RZ(s,t) := Rot(SZ(s),t)$
-RX(s,t) := block([M], demoivre:true, M:Rot(SX(s),t), demoivre:false, M)$
-RY(s,t) := block([M], demoivre:true, M:Rot(SY(s),t), demoivre:false, M)$
+RX(s,t) := block([demoivre:true], Rot(SX(s),t))$
+RY(s,t) := block([demoivre:true], Rot(SY(s),t))$
 
 /* time-evolution operator */
-UU(H,t) := block([M], demoivre:true, M:Rot(H,t), demoivre:false, M)$
+UU(H,t) := block([M,demoivre:true], Rot(H,t))$
 
 /*****************************************************************/
 /*****************************************************************/
