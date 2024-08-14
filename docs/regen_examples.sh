@@ -116,7 +116,10 @@ done
 cat tmp.regen.2 | gawk '{if($1!~/grpcnt/){print $0}}' > regen.texi;
 
 echo "Output is in: regen.texi"
-echo "Check this file carefully before you replace your original .texi file"
+echo "#####"
+echo "##### Warning: Check this file carefully with 'diff'"
+echo "#####          before you replace the original .texi file!!!"
+echo "#####"
 
 ############
 # Clean up

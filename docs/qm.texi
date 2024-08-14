@@ -14,15 +14,30 @@
 * Package qm: (maxima) Maxima share package qm for quantum mechanics
 @end direntry
 
-@node Top, Introduction to package qm, (dir), (dir)
-@top
 @menu
 * Introduction to package qm::
-* Functions and variables for qm::
+* Functions and Variables for qm::
 @end menu
+@node Top, Introduction to package qm, (dir), (dir)
+@top
+
+@menu
+* Introduction to package qm::
+* Functions and Variables for qm::
+
+@detailmenu
+ --- The Detailed Node Listing ---
+
+* Introduction to package qm::
+* Functions and Variables for qm::
+
+@end detailmenu
+@end menu
+
+
 @chapter Package qm
 
-@node Introduction to package qm, Functions and variables for qm, Top, Top
+@node Introduction to package qm, Functions and Variables for qm, Top, Top
 @section Introduction to package qm
 
 Package version: 0.5
@@ -45,7 +60,7 @@ The @code{qm} package was written by Eric Majzoub, University of
 Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
 @code{load(qm);}
 
-@node Functions and variables for qm, ,Introduction to package qm, Top
+@node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm
 
 @defvr {Variable} hbar
@@ -625,8 +640,8 @@ the bracket of tensor products.
 @end group
 @end example
 
-@node Function and variable index, , Functions and variables for qm, Top
-@appendix Function and variable index
+@node Function and Variable Index, , Top, Top
+@appendix Function and Variable index
 @printindex fn
 @printindex vr
 

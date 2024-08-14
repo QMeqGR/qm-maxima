@@ -1,19 +1,35 @@
 #!/bin/bash
 
-buildindex=/home/packages/SOURCE/maxima-code/doc/info/build_index.pl
+MAXIMA_ROOT=/home/packages/SOURCE/maxima-code
+buildindex=$MAXIMA_ROOT/doc/info/build_index.pl
 
 packname=qm
 
 makeinfo $packname.texi;
 makeinfo --pdf $packname.texi;
-makeinfo --html $packname.texi;
+makeinfo --split=chapter --no-node-files --html \
+	 -c OUTPUT_ENCODING_NAME=UTF-8 -e 10000 $packname.texi;
 makeinfo --plaintext $packname.texi > ../README.md;
 
-# build the index
+# build the .info index
 $buildindex $packname.info > $packname-index.lisp;
 
+# build the html index
+maxima --no-init --no-verify-html-index  \
+       --preload=$MAXIMA_ROOT/doc/info/build-html-index.lisp \
+       --batch-string='build_and_dump_html_index("./qm_html/*.html");';
+
+if [ -f "maxima-index-html.lisp" ]; then
+    mv -f maxima-index-html.lisp qm-index-html.lisp;
+else
+    echo "### Warning: no maxima-index-html.lisp was created for html docs."
+fi
+
+# clean up temporary files from pdf creation
 rm $packname.aux $packname.fn $packname.fns $packname.log $packname.toc
 
+
+####################################################
 ## Create test suite from examples in $packname.texi
 echo "#### creating examples.txt and the rtest file."
 echo "display2d:false$" > examples.txt

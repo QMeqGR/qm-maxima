@@ -22,6 +22,7 @@ I took this from Barton's to_poly code */
 
 /* load the documentation */
 load("qm-index.lisp")$
+load("qm-index-html.lisp")$
 
 /* Sadly, this won't work using 'load'. */
 /* :lisp (defun $complex_number_p (e) (complex-number-p e #'$numberp)) */
