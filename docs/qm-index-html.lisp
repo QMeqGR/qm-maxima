@@ -27,7 +27,7 @@
          ("jm_braket" "index.html" "index-jm_005fbraket")
          ("jm_bra" "index.html" "index-jm_005fbra")
          ("expect" "index.html" "index-expect")
-         ("dag" "index.html" "index-dag")
+         ("dagger" "index.html" "index-dagger")
          ("commutator" "index.html" "index-commutator")
          ("braprod" "index.html" "index-braprod")
          ("brap" "index.html" "index-brap")

@@ -157,14 +157,14 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 (%o5)                                true
 </pre></div></div>
 
-<a class="anchor" id="dag"></a><dl class="first-deffn">
-<dt class="deffn" id="index-dag"><span class="category-def">Function: </span><span><strong class="def-name">dag</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dag"> &para;</a></span></dt>
-<dd><p><code class="code">dag</code> is the quantum mechanical <em class="emph">dagger</em> function and returns
+<a class="anchor" id="dagger"></a><dl class="first-deffn">
+<dt class="deffn" id="index-dagger"><span class="category-def">Function: </span><span><strong class="def-name">dagger</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dagger"> &para;</a></span></dt>
+<dd><p><code class="code">dagger</code> is the quantum mechanical <em class="emph">dagger</em> function and returns
 the <code class="code">conjugate</code> <code class="code">transpose</code> of its input.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) dag(bra(%i,2));
+<div class="group"><pre class="example-preformatted">(%i4) dagger(bra(%i,2));
                                    [ - %i ]
 (%o4)                              [      ]
                                    [  2   ]
@@ -175,7 +175,7 @@ the <code class="code">conjugate</code> <code class="code">transpose</code> of i
 <dd><p>Given two kets <code class="code">psi</code> and <code class="code">phi</code>, <code class="code">braket</code> returns the
 quantum mechanical bracket <code class="code">&lt;psi|phi&gt;</code>. The vector <code class="code">psi</code> may be
 input as either a <code class="code">ket</code> or <code class="code">bra</code>. If it is a <code class="code">ket</code> it will be
-turned into a <code class="code">bra</code> with the <code class="code">dag</code> function before the inner
+turned into a <code class="code">bra</code> with the <code class="code">dagger</code> function before the inner
 product is taken. The vector <code class="code">phi</code> must always be a <code class="code">ket</code>.
 </p></dd></dl>
 
@@ -208,12 +208,12 @@ squared of a complex number.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) declare([a,b,c,c],complex);
+<div class="group"><pre class="example-preformatted">(%i4) declare([a,b,c,d],complex);
 (%o4)                                done
 (%i5) A:braket(ket(a,b),ket(c,d));
 (%o5)                   conjugate(b) d + conjugate(a) c
 (%i6) P:magsqr(A);
-(%o6)      (b d + a conjugate(c)) (conjugate(b) d + conjugate(a) c)
+(%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
 </pre></div></div>
 
 <ul class="mini-toc">
@@ -658,11 +658,11 @@ the bracket of tensor products.
 (%o5)                                done
 (%i6) braprod(bra(a,b),bra(c,d));
 (%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
-(%i7) braprod(dag(zp),bra(c,d));
+(%i7) braprod(dagger(zp),bra(c,d));
 (%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
-</pre></div><div class="group"><pre class="example-preformatted">(%i4) zpb:dag(zp);
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) zpb:dagger(zp);
 (%o4)                              [ 1  0 ]
-(%i5) zmb:dag(zm);
+(%i5) zmb:dagger(zm);
 (%o5)                              [ 0  1 ]
 (%i6) K:ketprod('zp,'zm);
                            all elements must be kets

@@ -28,7 +28,7 @@ matrix([a,matrix([a,b])]) $
 brap(b);
 false $
 
-dag(bra(%i,2));
+dagger(bra(%i,2));
 matrix([-%i],[2]) $
 
 declare([a,b,c],complex);
@@ -43,7 +43,7 @@ done $
 norm(ket(a,b,c));
 sqrt(false) $
 
-declare([a,b,c,c],complex);
+declare([a,b,c,d],complex);
 done $
 
 A:braket(ket(a,b),ket(c,d));
@@ -136,13 +136,13 @@ done $
 braprod(bra(a,b),bra(c,d));
 [tpbra,[matrix([a,b]),matrix([c,d])]] $
 
-braprod(dag(zp),bra(c,d));
+braprod(dagger(zp),bra(c,d));
 [tpbra,[matrix([1,0]),matrix([c,d])]] $
 
-zpb:dag(zp);
+zpb:dagger(zp);
 matrix([1,0]) $
 
-zmb:dag(zm);
+zmb:dagger(zm);
 matrix([0,1]) $
 
 K:ketprod('zp,'zm);

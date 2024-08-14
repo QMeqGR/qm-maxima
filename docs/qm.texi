@@ -135,15 +135,15 @@ in which case it returns @code{true}, else it returns @code{false}.
 @end group
 @end example
 
-@anchor{dag}
-@deffn {Function} dag (@emph{vector})
-@code{dag} is the quantum mechanical @emph{dagger} function and returns
+@anchor{dagger}
+@deffn {Function} dagger (@emph{vector})
+@code{dagger} is the quantum mechanical @emph{dagger} function and returns
 the @code{conjugate} @code{transpose} of its input.
 @end deffn
 
 @example
 @group
-(%i4) dag(bra(%i,2));
+(%i4) dagger(bra(%i,2));
                                    [ - %i ]
 (%o4)                              [      ]
                                    [  2   ]
@@ -155,7 +155,7 @@ the @code{conjugate} @code{transpose} of its input.
 Given two kets @code{psi} and @code{phi}, @code{braket} returns the
 quantum mechanical bracket @code{<psi|phi>}. The vector @code{psi} may be
 input as either a @code{ket} or @code{bra}. If it is a @code{ket} it will be
-turned into a @code{bra} with the @code{dag} function before the inner
+turned into a @code{bra} with the @code{dagger} function before the inner
 product is taken. The vector @code{phi} must always be a @code{ket}.
 @end deffn
 
@@ -192,12 +192,12 @@ squared of a complex number.
 
 @example
 @group
-(%i4) declare([a,b,c,c],complex);
+(%i4) declare([a,b,c,d],complex);
 (%o4)                                done
 (%i5) A:braket(ket(a,b),ket(c,d));
 (%o5)                   conjugate(b) d + conjugate(a) c
 (%i6) P:magsqr(A);
-(%o6)      (b d + a conjugate(c)) (conjugate(b) d + conjugate(a) c)
+(%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
 @end group
 @end example
 
@@ -615,13 +615,13 @@ the bracket of tensor products.
 (%o5)                                done
 (%i6) braprod(bra(a,b),bra(c,d));
 (%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
-(%i7) braprod(dag(zp),bra(c,d));
+(%i7) braprod(dagger(zp),bra(c,d));
 (%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
 @end group
 @group
-(%i4) zpb:dag(zp);
+(%i4) zpb:dagger(zp);
 (%o4)                              [ 1  0 ]
-(%i5) zmb:dag(zm);
+(%i5) zmb:dagger(zm);
 (%o5)                              [ 0  1 ]
 (%i6) K:ketprod('zp,'zm);
                            all elements must be kets

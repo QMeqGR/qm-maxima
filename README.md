@@ -76,11 +76,11 @@ calculations on those systems.
      (%i5) brap(b);
      (%o5)                                true
 
- -- Function: dag (_vector_)
-     ‘dag’ is the quantum mechanical _dagger_ function and returns the
-     ‘conjugate’ ‘transpose’ of its input.
+ -- Function: dagger (_vector_)
+     ‘dagger’ is the quantum mechanical _dagger_ function and returns
+     the ‘conjugate’ ‘transpose’ of its input.
 
-     (%i4) dag(bra(%i,2));
+     (%i4) dagger(bra(%i,2));
                                         [ - %i ]
      (%o4)                              [      ]
                                         [  2   ]
@@ -89,7 +89,7 @@ calculations on those systems.
      Given two kets ‘psi’ and ‘phi’, ‘braket’ returns the quantum
      mechanical bracket ‘<psi|phi>’.  The vector ‘psi’ may be input as
      either a ‘ket’ or ‘bra’.  If it is a ‘ket’ it will be turned into a
-     ‘bra’ with the ‘dag’ function before the inner product is taken.
+     ‘bra’ with the ‘dagger’ function before the inner product is taken.
      The vector ‘phi’ must always be a ‘ket’.
 
      (%i4) declare([a,b,c],complex);
@@ -111,12 +111,12 @@ calculations on those systems.
      ‘magsqr’ returns ‘conjugate(c)*c’, the magnitude squared of a
      complex number.
 
-     (%i4) declare([a,b,c,c],complex);
+     (%i4) declare([a,b,c,d],complex);
      (%o4)                                done
      (%i5) A:braket(ket(a,b),ket(c,d));
      (%o5)                   conjugate(b) d + conjugate(a) c
      (%i6) P:magsqr(A);
-     (%o6)      (b d + a conjugate(c)) (conjugate(b) d + conjugate(a) c)
+     (%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
 
 1.2.1 Spin-1/2 state kets and associated operators
 --------------------------------------------------
@@ -449,11 +449,11 @@ bracket of tensor products.
      (%o5)                                done
      (%i6) braprod(bra(a,b),bra(c,d));
      (%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
-     (%i7) braprod(dag(zp),bra(c,d));
+     (%i7) braprod(dagger(zp),bra(c,d));
      (%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
-     (%i4) zpb:dag(zp);
+     (%i4) zpb:dagger(zp);
      (%o4)                              [ 1  0 ]
-     (%i5) zmb:dag(zm);
+     (%i5) zmb:dagger(zm);
      (%o5)                              [ 0  1 ]
      (%i6) K:ketprod('zp,'zm);
                                 all elements must be kets
@@ -487,7 +487,7 @@ Appendix A Function and Variable index
                                                               (line 425)
 * commutator:                            Functions and Variables for qm.
                                                               (line 223)
-* dag:                                   Functions and Variables for qm.
+* dagger:                                Functions and Variables for qm.
                                                               (line  78)
 * expect:                                Functions and Variables for qm.
                                                               (line 282)

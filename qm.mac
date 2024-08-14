@@ -16,26 +16,15 @@
 ;; Quantum mechanics package for Maxima.
 */
 
-/* load("groups_ehm.mac") $ */
-/*load("qm.lisp") $ */
+qm_version: 0.7$
 
+/* load("groups_ehm.mac") $ */
+load("qm.lisp") $
 /* load the documentation */
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
-/* from Barton's to_poly code */
 complex_number_p(e) := ?complex\-number\-p(e, \numberp);
-
-/*
-disp("###########  qm_ehm.mac   version 0.5, 08 August 2024  ##########") $ 
-disp("create vectors:: cvec, rvec, ket, bra")$
-disp("vector tools:: dagger, braket, norm, ketp, brap")$
-disp("Other tools:: magsqr(c), commutator(X,Y)")$
-disp("spin-1/2 state kets:: zp, zm, xp, xm, yp, ym") $
-disp("Pauli and spin-1/2 matrices:: sigmax, sigmay, sigmaz, Sz, Sx, Sy") $
-disp("spin-1 matrices and z-kets:: Sz1, Sx1, Sy1, zu, zz, zd") $
-disp("expectation value and variance:: expect(Op,psi), qm_variance(Op,psi)") $
-*/
 
 /******************************/
 /* Simplification definitions */
@@ -68,29 +57,47 @@ assume(hbar>0) $
 cvec([u]) := transpose(matrix(u)) $
 rvec([u]) := matrix(u) $
 
+/***************************************************/
+/* implement bra, ket operators via simplification */
+/***************************************************/
+/* bra and ket consider multiple arguments as a list */
+matchdeclare ([aa, bb, cc], all);
+tellsimpafter (bra (aa, bb), bra ([aa, bb]));
+tellsimpafter (ket (aa, bb), ket ([aa, bb]));
+tellsimpafter (bra (aa, bb, cc), bra ([aa, bb, cc]));
+tellsimpafter (ket (aa, bb, cc), ket ([aa, bb, cc]));
+
+/* bra and ket of a list represented as row and column matrices, respectively */
+matchdeclare (ll, listp);
+tellsimpafter (bra (ll), matrix (ll));
+tellsimpafter (ket (ll), transpose (matrix (ll)));
+
+/* dagger exchanges bra and ket */
+tellsimpafter (dagger (bra (aa)), ket (aa));
+tellsimpafter (dagger (ket (aa)), bra (aa));
+
+/* special case of dagger for matrix argument */
+matchdeclare (mm, matrixp);
+tellsimpafter (dagger (mm), conjugate (transpose (mm)));
+
+/* norm defined in terms of bra and ket */
+tellsimpafter (norm (aa), sqrt (bra (aa) . ket (aa)));
+
+
 /************************/
 /*   QM operations      */
 /************************/
-dag(u) := transpose(conjugate(u)) $ /* dagger */
 braket(v,w) := block(
-	    if ketp(v) and ketp(w) then dag(v) . w else
+	    if ketp(v) and ketp(w) then dagger(v) . w else
   	    if brap(v) and ketp(w) then v . w ) $
 norm(v) := sqrt( braket(v,v) ) $
 magsqr(c) := c*conjugate(c);
 commutator(X,Y) := X.Y - Y.X;
-expect(Op,psi) := dag(psi) . Op . psi $
+expect(Op,psi) := dagger(psi) . Op . psi $
 qm_variance(Op,psi) := sqrt(expect(Op . Op,psi) - expect(Op,psi)^2) $
 
 /* Born rule */
 probability(psi,n) := magsqr(psi[n]);
-
-
-/*********************/
-/* make kets or bras */
-/*********************/
-/* most basic definition, but won't declare constants as complex */
-ket([u]) := transpose(u) $
-bra([u]) := matrix(u) $
 
 /***************************************/
 /* Define predicates for kets and bras */
@@ -149,7 +156,7 @@ Jz(k) := block([j,m,sqrterm],
 /******************************************************/
 SP(s) := genmatrix(lambda([i,j], block([m:-s+j-2],
          hbar*kron_delta(i,j-1)*sqrt( s*(s+1)-m*(m+1)) )), 2*s+1,2*s+1);
-SM(s) := dag(SP(s))$
+SM(s) := dagger(SP(s))$
 SX(s) := (1/2)*(SP(s)+SM(s))$
 SY(s) := (%i/2)*(SM(s)-SP(s))$
 SZ(s) := 1/(%i*hbar)*commutator(SX(s),SY(s))$

@@ -22,7 +22,7 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o11) matrix([a,matrix([a,b])])
 (%i12) brap(b)
 (%o12) false
-(%i13) dag(bra(%i,2))
+(%i13) dagger(bra(%i,2))
 (%o13) matrix([-%i],[2])
 (%i14) declare([a,b,c],complex)
 (%o14) done
@@ -32,7 +32,7 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o16) done
 (%i17) norm(ket(a,b,c))
 (%o17) sqrt(false)
-(%i18) declare([a,b,c,c],complex)
+(%i18) declare([a,b,c,d],complex)
 (%o18) done
 (%i19) A:braket(ket(a,b),ket(c,d))
 (%o19) false
@@ -100,11 +100,11 @@ Proviso: assuming 64*t*w # 0
 (%o47) done
 (%i48) braprod(bra(a,b),bra(c,d))
 (%o48) [tpbra,[matrix([a,b]),matrix([c,d])]]
-(%i49) braprod(dag(zp),bra(c,d))
+(%i49) braprod(dagger(zp),bra(c,d))
 (%o49) [tpbra,[matrix([1,0]),matrix([c,d])]]
-(%i50) zpb:dag(zp)
+(%i50) zpb:dagger(zp)
 (%o50) matrix([1,0])
-(%i51) zmb:dag(zm)
+(%i51) zmb:dagger(zm)
 (%o51) matrix([0,1])
 (%i52) K:ketprod('zp,'zm)
 "all elements must be kets"
