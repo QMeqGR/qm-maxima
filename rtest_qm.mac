@@ -35,22 +35,22 @@ declare([a,b,c],complex);
 done $
 
 braket(ket(a,b,c),ket(a,b,c));
-false $
+braket(matrix([a],[matrix([a,matrix([a,b])])],[c]), $
 
 declare([a,b,c],complex);
 done $
 
 norm(ket(a,b,c));
-sqrt(false) $
+sqrt(braket(matrix([a],[matrix([a,matrix([a,b])])],[c]), $
 
 declare([a,b,c,d],complex);
 done $
 
 A:braket(ket(a,b),ket(c,d));
-false $
+braket(matrix([a],[matrix([a,matrix([a,b])])]),matrix([c],[d])) $
 
 P:magsqr(A);
-false*conjugate(false) $
+braket(matrix([a],[matrix([a,matrix([a,b])])]),matrix([c],[d])) $
 
 zp;
 matrix([1],[0]) $
@@ -74,7 +74,7 @@ psi:ket(a,b);
 matrix([a],[matrix([a,matrix([a,b])])]) $
 
 psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
-xp*false+xm*false $
+braket(matrix([1/sqrt(2)],[1/sqrt(2)]), $
 
 sigmay;
 matrix([0,-%i],[%i,0]) $
@@ -100,14 +100,14 @@ ev(qm_variance(Sy,xp+ym),ratsimp);
 jm_bra(3/2,1/2);
 [jmbra,matrix([3/2,1/2])] $
 
-K:jm_ket(zp,zm);
-[jmket,matrix([matrix([1],[0])],[matrix([0],[1])])] $
+K:jm_ket(j1,m1);
+jm_ket([j1,m1]) $
 
-B:jm_bra(zp,zm);
-[jmbra,matrix([matrix([1],[0]),matrix([0],[1])])] $
+B:jm_bra(j2,m2);
+jm_bra([j2,m2]) $
 
 jm_braket(B,K);
-1 $
+jm_braket(jm_bra([j2,m2]),jm_ket([j1,m1])) $
 
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $

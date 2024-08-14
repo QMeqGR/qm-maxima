@@ -502,20 +502,12 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) K:jm_ket(zp,zm);
-                                      [ [ 1 ] ]
-                                      [ [   ] ]
-                                      [ [ 0 ] ]
-(%o4)                         [jmket, [       ]]
-                                      [ [ 0 ] ]
-                                      [ [   ] ]
-                                      [ [ 1 ] ]
-(%i5) B:jm_bra(zp,zm);
-                                   [ [ 1 ]  [ 0 ] ]
-(%o5)                      [jmbra, [ [   ]  [   ] ]]
-                                   [ [ 0 ]  [ 1 ] ]
+<div class="group"><pre class="example-preformatted">(%i4) K:jm_ket(j1,m1);
+(%o4)                          jm_ket([j1, m1])
+(%i5) B:jm_bra(j2,m2);
+(%o5)                          jm_bra([j2, m2])
 (%i6) jm_braket(B,K);
-(%o6)                                  1
+(%o6)            jm_braket(jm_bra([j2, m2]), jm_ket([j1, m1]))
 </pre></div></div>
 
 
