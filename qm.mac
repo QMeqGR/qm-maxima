@@ -17,15 +17,14 @@
 */
 
 /* load("groups_ehm.mac") $ */
-load("qm.lisp") $ /* for complex_number_p(),
-I took this from Barton's to_poly code */
+/*load("qm.lisp") $ */
 
 /* load the documentation */
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
-/* Sadly, this won't work using 'load'. */
-/* :lisp (defun $complex_number_p (e) (complex-number-p e #'$numberp)) */
+/* from Barton's to_poly code */
+complex_number_p(e) := ?complex\-number\-p(e, \numberp);
 
 /*
 disp("###########  qm_ehm.mac   version 0.5, 08 August 2024  ##########") $ 
@@ -148,8 +147,8 @@ Jz(k) := block([j,m,sqrterm],
 /* Angular momentum ladder operators for general spin */
 /******************************************************/
 /******************************************************/
-SP(s) := genmatrix(lambda([i,j],m:-s+j-2,
-        hbar*kron_delta(i,j-1)*sqrt( s*(s+1)-m*(m+1)) ), 2*s+1,2*s+1);
+SP(s) := genmatrix(lambda([i,j], block([m:-s+j-2],
+         hbar*kron_delta(i,j-1)*sqrt( s*(s+1)-m*(m+1)) )), 2*s+1,2*s+1);
 SM(s) := dag(SP(s))$
 SX(s) := (1/2)*(SP(s)+SM(s))$
 SY(s) := (%i/2)*(SM(s)-SP(s))$
