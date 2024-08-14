@@ -72,26 +72,34 @@ matchdeclare (ll, listp);
 tellsimpafter (bra (ll), matrix (ll));
 tellsimpafter (ket (ll), transpose (matrix (ll)));
 
-/* dagger exchanges bra and ket */
-tellsimpafter (dagger (bra (aa)), ket (aa));
-tellsimpafter (dagger (ket (aa)), bra (aa));
-
-/* special case of dagger for matrix argument */
-matchdeclare (mm, matrixp);
-tellsimpafter (dagger (mm), conjugate (transpose (mm)));
-
-/* norm defined in terms of bra and ket */
-tellsimpafter (norm (aa), sqrt (bra (aa) . ket (aa)));
-
 
 /************************/
 /*   QM operations      */
 /************************/
-braket(v,w) := block(
-	    if ketp(v) and ketp(w) then dagger(v) . w else
-  	    if brap(v) and ketp(w) then v . w ) $
-norm(v) := sqrt( braket(v,v) ) $
+/* dagger */
+/* dagger exchanges bra and ket */
+tellsimpafter (dagger (bra (aa)), ket (aa));
+tellsimpafter (dagger (ket (aa)), bra (aa));
+/* special case of dagger for matrix argument */
+matchdeclare (mm, matrixp);
+tellsimpafter (dagger (mm), conjugate (transpose (mm)));
+
+/* norm */
+/* norm defined in terms of bra and ket */
+tellsimpafter (norm (aa), sqrt (bra (aa) . ket (aa)));
+/* special case of norm for matrix argument */
+matchdeclare([mm1,mm2], matrixp);
+tellsimpafter(norm (aa), sqrt (braket(aa,aa)));
+
+/* braket */
+matchdeclare( [kk,ll], ketp, bb, brap );
+tellsimpafter( braket(bb,kk) , bb . kk );
+tellsimpafter( braket(ll,kk) , dagger(ll) . kk);
+
+/* magsqr */
 magsqr(c) := c*conjugate(c);
+
+/* commutator */
 commutator(X,Y) := X.Y - Y.X;
 expect(Op,psi) := dagger(psi) . Op . psi $
 qm_variance(Op,psi) := sqrt(expect(Op . Op,psi) - expect(Op,psi)^2) $
