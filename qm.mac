@@ -77,17 +77,17 @@ tellsimpafter (dagger (ket (aa)), bra (aa));
 matchdeclare (mm, matrixp);
 tellsimpafter (dagger (mm), conjugate (transpose (mm)));
 
-/* norm */
-/* norm defined in terms of bra and ket */
-tellsimpafter (norm (aa), sqrt (bra (aa) . ket (aa)));
-/* special case of norm for matrix argument */
-matchdeclare([mm1,mm2], matrixp);
-tellsimpafter(norm (aa), sqrt (braket(aa,aa)));
-
 /* braket */
 matchdeclare( [kk,ll], ketp, bb, brap );
 tellsimpafter( braket(bb,kk) , bb . kk );
 tellsimpafter( braket(ll,kk) , dagger(ll) . kk);
+tellsimpafter( braket(kk,bb) , false );
+tellsimpafter( braket(bb,bb) , false );
+
+/* norm */
+matchdeclare( kk, ketp, bb, brap );
+tellsimpafter(norm (kk), sqrt( braket(kk,kk) ));
+tellsimpafter(norm (bb), sqrt( braket(bb,dagger(bb)) ));
 
 /* magsqr */
 magsqr(c) := c*conjugate(c);
