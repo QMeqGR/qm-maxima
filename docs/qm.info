@@ -36,9 +36,7 @@ File: qm.info,  Node: Introduction to package qm,  Next: Functions and Variables
 1.1 Introduction to package qm
 ==============================
 
-Package version: 0.5
-
-   The ‘qm’ package provides functions and standard definitions to solve
+The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
 example, one can calculate the outcome of Stern-Gerlach experiments
 using the built-in definition of the Sx, Sy, and Sz operators for
@@ -623,15 +621,15 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm1774
-Ref: ket2127
-Ref: bra3070
-Ref: ketp3826
-Ref: brap4531
-Ref: dagger4931
-Ref: braket5273
-Ref: norm5882
-Node: Function and Variable Index20206
+Node: Functions and Variables for qm1749
+Ref: ket2102
+Ref: bra3045
+Ref: ketp3801
+Ref: brap4506
+Ref: dagger4906
+Ref: braket5248
+Ref: norm5857
+Node: Function and Variable Index20181
 
 End Tag Table
 
