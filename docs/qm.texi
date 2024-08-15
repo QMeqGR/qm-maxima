@@ -40,8 +40,6 @@
 @node Introduction to package qm, Functions and Variables for qm, Top, Top
 @section Introduction to package qm
 
-Package version: 0.5
-
 The @code{qm} package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
