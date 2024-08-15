@@ -96,7 +96,7 @@ is represented as a general ket, @code{ket(a)} will return @code{|a>}.
 
 @anchor{bra}
 @deffn {Function} bra ([@code{c@sub{1}},@code{c@sub{2}},@dots{}])
-@code{bra} creates a @emph{column} vector of arbitrary finite
+@code{bra} creates a @emph{row} vector of arbitrary finite
 dimension. The entries @code{c@sub{i}} can be any Maxima expression.
 The user must @code{declare} any relevant constants to be complex.
 For a matrix representation the elements must be entered as a list

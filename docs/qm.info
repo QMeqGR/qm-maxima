@@ -86,7 +86,7 @@ File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to pac
      (%o8) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 
  -- Function: bra ([c_{1},c_{2},...])
-     ‘bra’ creates a _column_ vector of arbitrary finite dimension.  The
+     ‘bra’ creates a _row_ vector of arbitrary finite dimension.  The
      entries ‘c_{i}’ can be any Maxima expression.  The user must
      ‘declare’ any relevant constants to be complex.  For a matrix
      representation the elements must be entered as a list in ‘[...]’
@@ -624,12 +624,12 @@ Node: Introduction to package qm605
 Node: Functions and Variables for qm1749
 Ref: ket2102
 Ref: bra3045
-Ref: ketp3801
-Ref: brap4506
-Ref: dagger4906
-Ref: braket5248
-Ref: norm5857
-Node: Function and Variable Index20181
+Ref: ketp3798
+Ref: brap4503
+Ref: dagger4903
+Ref: braket5245
+Ref: norm5854
+Node: Function and Variable Index20178
 
 End Tag Table
 

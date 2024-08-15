@@ -54,7 +54,7 @@ calculations on those systems.
      (%o8) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 
  -- Function: bra ([c_{1},c_{2},...])
-     ‘bra’ creates a _column_ vector of arbitrary finite dimension.  The
+     ‘bra’ creates a _row_ vector of arbitrary finite dimension.  The
      entries ‘c_{i}’ can be any Maxima expression.  The user must
      ‘declare’ any relevant constants to be complex.  For a matrix
      representation the elements must be entered as a list in ‘[...]’
