@@ -529,11 +529,15 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i4) K:jm_ket(j1,m1);
-(%o4)                          jm_ket([j1, m1])
+(%o4)                         [jmket, [ j1  m1 ]]
 (%i5) B:jm_bra(j2,m2);
-(%o5)                          jm_bra([j2, m2])
+(%o5)                         [jmbra, [ j2  m2 ]]
 (%i6) jm_braket(B,K);
-(%o6)            jm_braket(jm_bra([j2, m2]), jm_ket([j1, m1]))
+(%o6)                                  0
+(%i7) B:jm_bra(j1,m1);
+(%o7)                         [jmbra, [ j1  m1 ]]
+(%i8) jm_braket(B,K);
+(%o8)                                  1
 </pre></div></div>
 
 
@@ -674,32 +678,24 @@ the bracket of tensor products.
 (%o4)                                done
 (%i5) declare([a,b,c,d],complex);
 (%o5)                                done
-(%i6) braprod(bra(a,b),bra(c,d));
-                           all elements must be bras
-
-(%o6)                                done
-(%i7) braprod(dagger(zp),bra(c,d));
-                           all elements must be bras
-
-(%o7)                                done
-</pre></div><div class="group"><pre class="example-preformatted">(%i4) zpb:dagger(zp);
-(%o4)                              [ 1  0 ]
-(%i5) zmb:dagger(zm);
-(%o5)                              [ 0  1 ]
-(%i6) K:ketprod('zp,'zm);
-                           all elements must be kets
-
-(%o6)                                done
+(%i6) braprod(bra([a,b]),bra([c,d]));
+(%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%i7) braprod(dagger(zp),bra([c,d]));
+(%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+</pre></div><div class="group"><pre class="example-preformatted">(%i4) K:ketprod(zp,zm);
+                                     [ 1 ]  [ 0 ]
+(%o4)                       [tpket, [[   ], [   ]]]
+                                     [ 0 ]  [ 1 ]
+(%i5) zpb:dagger(zp);
+(%o5)                              [ 1  0 ]
+(%i6) zmb:dagger(zm);
+(%o6)                              [ 0  1 ]
 (%i7) B:braprod(zpb,zmb);
 (%o7)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
-(%i8) B:braprod('zpb,'zmb);
-                           all elements must be bras
-
-(%o8)                                done
-(%i9) braketprod(K,B);
-(%o9)                                false
-(%i10) braketprod(B,K);
-(%o10)                               false
+(%i8) braketprod(K,B);
+(%o8)                                false
+(%i9) braketprod(B,K);
+(%o9)                                  1
 </pre></div></div>
 
 </div>

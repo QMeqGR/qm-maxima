@@ -92,55 +92,49 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i44) jm_bra(3/2,1/2)
 (%o44) [jmbra,matrix([3/2,1/2])]
 (%i45) K:jm_ket(j1,m1)
-(%o45) jm_ket([j1,m1])
+(%o45) [jmket,matrix([j1,m1])]
 (%i46) B:jm_bra(j2,m2)
-(%o46) jm_bra([j2,m2])
+(%o46) [jmbra,matrix([j2,m2])]
 (%i47) jm_braket(B,K)
-(%o47) jm_braket(jm_bra([j2,m2]),jm_ket([j1,m1]))
-(%i48) SP(1)
-(%o48) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
-(%i49) SM(1)
-(%o49) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
-(%i50) RZ(1/2,t)
+(%o47) 0
+(%i48) B:jm_bra(j1,m1)
+(%o48) [jmbra,matrix([j1,m1])]
+(%i49) jm_braket(B,K)
+(%o49) 1
+(%i50) SP(1)
+(%o50) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
+(%i51) SM(1)
+(%o51) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
+(%i52) RZ(1/2,t)
 Proviso: assuming 64*t # 0 
-(%o50) matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)])
-(%i51) UU(w*Sy,t)
+(%o52) matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)])
+(%i53) UU(w*Sy,t)
 Proviso: assuming 64*t*w # 0 
-(%o51) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
-(%i52) ketprod(zp,zm)
-(%o52) [tpket,[matrix([1],[0]),matrix([0],[1])]]
-(%i53) ketprod('zp,'zm)
+(%o53) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
+(%i54) ketprod(zp,zm)
+(%o54) [tpket,[matrix([1],[0]),matrix([0],[1])]]
+(%i55) ketprod('zp,'zm)
 "all elements must be kets"
 
-(%o53) done
-(%i54) kill(a,b,c,d)
-(%o54) done
-(%i55) declare([a,b,c,d],complex)
 (%o55) done
-(%i56) braprod(bra(a,b),bra(c,d))
-"all elements must be bras"
-
+(%i56) kill(a,b,c,d)
 (%o56) done
-(%i57) braprod(dagger(zp),bra(c,d))
-"all elements must be bras"
-
+(%i57) declare([a,b,c,d],complex)
 (%o57) done
-(%i58) zpb:dagger(zp)
-(%o58) matrix([1,0])
-(%i59) zmb:dagger(zm)
-(%o59) matrix([0,1])
-(%i60) K:ketprod('zp,'zm)
-"all elements must be kets"
-
-(%o60) done
-(%i61) B:braprod(zpb,zmb)
-(%o61) [tpbra,[matrix([1,0]),matrix([0,1])]]
-(%i62) B:braprod('zpb,'zmb)
-"all elements must be bras"
-
-(%o62) done
-(%i63) braketprod(K,B)
-(%o63) false
-(%i64) braketprod(B,K)
+(%i58) braprod(bra([a,b]),bra([c,d]))
+(%o58) [tpbra,[matrix([a,b]),matrix([c,d])]]
+(%i59) braprod(dagger(zp),bra([c,d]))
+(%o59) [tpbra,[matrix([1,0]),matrix([c,d])]]
+(%i60) K:ketprod(zp,zm)
+(%o60) [tpket,[matrix([1],[0]),matrix([0],[1])]]
+(%i61) zpb:dagger(zp)
+(%o61) matrix([1,0])
+(%i62) zmb:dagger(zm)
+(%o62) matrix([0,1])
+(%i63) B:braprod(zpb,zmb)
+(%o63) [tpbra,[matrix([1,0]),matrix([0,1])]]
+(%i64) braketprod(K,B)
 (%o64) false
-(%o65) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
+(%i65) braketprod(B,K)
+(%o65) 1
+(%o66) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"

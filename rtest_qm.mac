@@ -125,13 +125,19 @@ jm_bra(3/2,1/2);
 [jmbra,matrix([3/2,1/2])] $
 
 K:jm_ket(j1,m1);
-jm_ket([j1,m1]) $
+[jmket,matrix([j1,m1])] $
 
 B:jm_bra(j2,m2);
-jm_bra([j2,m2]) $
+[jmbra,matrix([j2,m2])] $
 
 jm_braket(B,K);
-jm_braket(jm_bra([j2,m2]),jm_ket([j1,m1])) $
+0 $
+
+B:jm_bra(j1,m1);
+[jmbra,matrix([j1,m1])] $
+
+jm_braket(B,K);
+1 $
 
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
@@ -157,11 +163,14 @@ done $
 declare([a,b,c,d],complex);
 done $
 
-braprod(bra(a,b),bra(c,d));
-done $
+braprod(bra([a,b]),bra([c,d]));
+[tpbra,[matrix([a,b]),matrix([c,d])]] $
 
-braprod(dagger(zp),bra(c,d));
-done $
+braprod(dagger(zp),bra([c,d]));
+[tpbra,[matrix([1,0]),matrix([c,d])]] $
+
+K:ketprod(zp,zm);
+[tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
 zpb:dagger(zp);
 matrix([1,0]) $
@@ -169,20 +178,14 @@ matrix([1,0]) $
 zmb:dagger(zm);
 matrix([0,1]) $
 
-K:ketprod('zp,'zm);
-done $
-
 B:braprod(zpb,zmb);
 [tpbra,[matrix([1,0]),matrix([0,1])]] $
-
-B:braprod('zpb,'zmb);
-done $
 
 braketprod(K,B);
 false $
 
 braketprod(B,K);
-false $
+1 $
 
 "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
 

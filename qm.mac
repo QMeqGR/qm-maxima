@@ -16,7 +16,7 @@
 ;; Quantum mechanics package for Maxima.
 */
 
-qm_version: 0.7$
+qm_version: 0.7.1$
 
 /* load("groups_ehm.mac") $ */
 load("qm.lisp") $
@@ -62,9 +62,9 @@ rvec([u]) := matrix(u) $
 /***************************************************/
 /* bras and kets entered as lists will be given matrix representations */
 /* bra and ket of a list represented as row and column matrices, respectively */
-matchdeclare (ll, listp);
-tellsimpafter (bra (ll), matrix (ll));
-tellsimpafter (ket (ll), transpose (matrix (ll)));
+matchdeclare(ll, listp);
+tellsimpafter(bra(ll), matrix(ll));
+tellsimpafter(ket(ll), transpose(matrix (ll)));
 
 /************************/
 /*   QM operations      */
@@ -119,12 +119,10 @@ brap(psi) := block([r,c],
 /*              (j,m) kets and bras                   */
 /******************************************************/
 /******************************************************/
-matchdeclare([jj,mm,ss], all);
-tellsimpafter( jm_ket(jj,mm), jm_ket([jj,mm]));
-tellsimpafter( jm_bra(jj,mm), jm_bra([jj,mm]));
-
 rationalp(a):= if integerp(num(a)) and integerp(denom(a)) then true else false;
-matchdeclare(j, rationalp, m, rationalp);
+sym_ratp(a):=block(if symbolp(a) or rationalp(a) then
+		      return(true) else return(false) );
+matchdeclare([j,m], sym_ratp );
 tellsimpafter( jm_ket(j,m) , [jmket, matrix([j,m])] );
 tellsimpafter( jm_bra(j,m) , [jmbra, matrix([j,m])] );
 
@@ -139,7 +137,7 @@ simp_jm_braket(b,k) := block([j1,j2,m1,m2],
 	     if j1=j2 and m1=m2 then return(1) else return(0) )$
 /* Check that m is within -j to +j */
 jm_check(j,m) := block([pos:0],
-	      if numberp(j)=false or numberp(m)=false then return(false) else
+	      if rationalp(j)=false or rationalp(m)=false then return(false) else
 	      	 for jn: j step -1 thru -j do
 		     if jn=m then pos:1,
 		 if pos=1 then true else false )$
@@ -240,7 +238,6 @@ UU(H,t) := block([M,demoivre:true], Rot(H,t))$
 /*****************************************************************/
 /*****************************************************************/
 /*****************************************************************/
-
 ketprod([u]) := block([N,fail:0],
 	     N: length(u),
 	     for i: 1 thru N do
