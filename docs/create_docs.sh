@@ -17,10 +17,10 @@ $buildindex $packname.info > $packname-index.lisp;
 # build the html index
 maxima --no-init --no-verify-html-index  \
        --preload=$MAXIMA_ROOT/doc/info/build-html-index.lisp \
-       --batch-string='build_and_dump_html_index("./qm_html/*.html");';
+       --batch-string='build_and_dump_html_index("./qm_html/*.html", output_file="package-index-html.lisp",truenamep=true);';
 
-if [ -f "maxima-index-html.lisp" ]; then
-    mv -f maxima-index-html.lisp qm-index-html.lisp;
+if [ -f "package-index-html.lisp" ]; then
+    mv -f package-index-html.lisp qm-index-html.lisp;
 else
     echo "### Warning: no maxima-index-html.lisp was created for html docs."
 fi

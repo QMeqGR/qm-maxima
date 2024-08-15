@@ -3,35 +3,130 @@
 
 (in-package :cl-info)
 (let ((html-index
-       '(("hbar" "index.html" "index-hbar") ("zp" "index.html" "index-zp")
-         ("zm" "index.html" "index-zm") ("yp" "index.html" "index-yp")
-         ("ym" "index.html" "index-ym") ("xp" "index.html" "index-xp")
-         ("xm" "index.html" "index-xm") ("UU" "index.html" "index-UU")
-         ("SZ" "index.html" "index-SZ") ("Sz" "index.html" "index-Sz")
-         ("SY" "index.html" "index-SY") ("Sy" "index.html" "index-Sy")
-         ("SX" "index.html" "index-SX") ("Sx" "index.html" "index-Sx")
-         ("SP" "index.html" "index-SP") ("SM" "index.html" "index-SM")
-         ("sigmaz" "index.html" "index-sigmaz")
-         ("sigmay" "index.html" "index-sigmay")
-         ("sigmax" "index.html" "index-sigmax") ("RZ" "index.html" "index-RZ")
-         ("RY" "index.html" "index-RY") ("RX" "index.html" "index-RX")
-         ("qm_variance" "index.html" "index-qm_005fvariance")
-         ("norm" "index.html" "index-norm")
-         ("magsqr" "index.html" "index-magsqr")
-         ("ketprod" "index.html" "index-ketprod")
-         ("ketp" "index.html" "index-ketp") ("ket" "index.html" "index-ket")
-         ("jm_ketp" "index.html" "index-jm_005fketp")
-         ("jm_ket" "index.html" "index-jm_005fket")
-         ("jm_check" "index.html" "index-jm_005fcheck")
-         ("jm_brap" "index.html" "index-jm_005fbrap")
-         ("jm_braket" "index.html" "index-jm_005fbraket")
-         ("jm_bra" "index.html" "index-jm_005fbra")
-         ("expect" "index.html" "index-expect")
-         ("dagger" "index.html" "index-dagger")
-         ("commutator" "index.html" "index-commutator")
-         ("braprod" "index.html" "index-braprod")
-         ("brap" "index.html" "index-brap")
-         ("braketprod" "index.html" "index-braketprod")
-         ("braket" "index.html" "index-braket")
-         ("bra" "index.html" "index-bra"))))
+       '(("hbar"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-hbar")
+         ("zp"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-zp")
+         ("zm"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-zm")
+         ("yp"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-yp")
+         ("ym"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-ym")
+         ("xp"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-xp")
+         ("xm"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-xm")
+         ("UU"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-UU")
+         ("SZ"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-SZ")
+         ("Sz"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-Sz")
+         ("SY"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-SY")
+         ("Sy"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-Sy")
+         ("SX"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-SX")
+         ("Sx"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-Sx")
+         ("SP"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-SP")
+         ("SM"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-SM")
+         ("sigmaz"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-sigmaz")
+         ("sigmay"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-sigmay")
+         ("sigmax"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-sigmax")
+         ("RZ"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-RZ")
+         ("RY"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-RY")
+         ("RX"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-RX")
+         ("qm_variance"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-qm_005fvariance")
+         ("norm"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-norm")
+         ("magsqr"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-magsqr")
+         ("ketprod"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-ketprod")
+         ("ketp"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-ketp")
+         ("ket"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-ket")
+         ("jm_ketp"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-jm_005fketp")
+         ("jm_ket"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-jm_005fket")
+         ("jm_check"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-jm_005fcheck")
+         ("jm_brap"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-jm_005fbrap")
+         ("jm_braket"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-jm_005fbraket")
+         ("jm_bra"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-jm_005fbra")
+         ("expect"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-expect")
+         ("dagger"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-dagger")
+         ("commutator"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-commutator")
+         ("braprod"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-braprod")
+         ("brap"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-brap")
+         ("braketprod"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-braketprod")
+         ("braket"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-braket")
+         ("bra"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-bra"))))
   (load-html-index html-index))
