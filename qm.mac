@@ -60,18 +60,11 @@ rvec([u]) := matrix(u) $
 /***************************************************/
 /* implement bra, ket operators via simplification */
 /***************************************************/
-/* bra and ket consider multiple arguments as a list */
-matchdeclare ([aa, bb, cc], all);
-tellsimpafter (bra (aa, bb), bra ([aa, bb]));
-tellsimpafter (ket (aa, bb), ket ([aa, bb]));
-tellsimpafter (bra (aa, bb, cc), bra ([aa, bb, cc]));
-tellsimpafter (ket (aa, bb, cc), ket ([aa, bb, cc]));
-
+/* bras and kets entered as lists will be given matrix representations */
 /* bra and ket of a list represented as row and column matrices, respectively */
 matchdeclare (ll, listp);
 tellsimpafter (bra (ll), matrix (ll));
 tellsimpafter (ket (ll), transpose (matrix (ll)));
-
 
 /************************/
 /*   QM operations      */

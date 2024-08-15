@@ -100,58 +100,82 @@ zero.
 </p></dd></dl>
 
 <a class="anchor" id="ket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-ket"><span class="category-def">Function: </span><span><strong class="def-name">ket</strong> <var class="def-var-arguments">(<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-ket"> &para;</a></span></dt>
+<dt class="deffn" id="index-ket"><span class="category-def">Function: </span><span><strong class="def-name">ket</strong> <var class="def-var-arguments">([<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-ket"> &para;</a></span></dt>
 <dd><p><code class="code">ket</code> creates a <em class="emph">column</em> vector of arbitrary finite
 dimension. The entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression.
 The user must <code class="code">declare</code> any relevant constants to be complex.
+For a matrix representation the elements must be entered as a list
+in <code class="code">[&hellip;]</code> square brackets. If no list is entered the ket
+is represented as a general ket, <code class="code">ket(a)</code> will return <code class="code">|a&gt;</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) declare([c1,c2],complex);
+<div class="group"><pre class="example-preformatted">(%i4) kill(a);
 (%o4)                                done
-(%i5) ket(c1,c2);
+(%i5) ket(a);
+(%o5)                                 |a&gt;
+(%i6) declare([c1,c2],complex);
+(%o6)                                done
+(%i7) ket([c1,c2]);
                                     [ c1 ]
-(%o5)                               [    ]
+(%o7)                               [    ]
                                     [ c2 ]
-(%i6) facts();
-(%o6) [kind(hbar, real), hbar &gt; 0, kind(c1, complex), kind(c2, complex)]
+(%i8) facts();
+(%o8) [kind(hbar, real), hbar &gt; 0, kind(c1, complex), kind(c2, complex)]
 </pre></div></div>
 
 <a class="anchor" id="bra"></a><dl class="first-deffn">
-<dt class="deffn" id="index-bra"><span class="category-def">Function: </span><span><strong class="def-name">bra</strong> <var class="def-var-arguments">(<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;)</var><a class="copiable-link" href="#index-bra"> &para;</a></span></dt>
-<dd><p><code class="code">bra</code> creates a <em class="emph">row</em> vector of arbitrary finite
+<dt class="deffn" id="index-bra"><span class="category-def">Function: </span><span><strong class="def-name">bra</strong> <var class="def-var-arguments">([<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-bra"> &para;</a></span></dt>
+<dd><p><code class="code">bra</code> creates a <em class="emph">column</em> vector of arbitrary finite
 dimension. The entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression.
 The user must <code class="code">declare</code> any relevant constants to be complex.
+For a matrix representation the elements must be entered as a list
+in <code class="code">[&hellip;]</code> square bracbras. If no list is entered the bra
+is represented as a general bra, <code class="code">bra(a)</code> will return <code class="code">&lt;a|</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) bra(c1,c2);
-(%o4)                             [ c1  c2 ]
-(%i5) facts();
-(%o5)                    [kind(hbar, real), hbar &gt; 0]
+<div class="group"><pre class="example-preformatted">(%i4) kill(c1,c2);
+(%o4)                                done
+(%i5) bra(c1,c2);
+(%o5)                              &lt;c1, c2|
+(%i6) bra([c1,c2]);
+(%o6)                             [ c1  c2 ]
+(%i7) facts();
+(%o7)                    [kind(hbar, real), hbar &gt; 0]
 </pre></div></div>
 
 <a class="anchor" id="ketp"></a><dl class="first-deffn">
 <dt class="deffn" id="index-ketp"><span class="category-def">Function: </span><span><strong class="def-name">ketp</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-ketp"> &para;</a></span></dt>
 <dd><p><code class="code">ketp</code> is a predicate function that checks if its input is a ket,
 in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
+<code class="code">ketp</code> only returns <code class="code">true</code> for the matrix representation of a ket.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) b:bra(a,b);
-(%o4)                              [ a  b ]
-(%i5) ketp(b);
-(%o5)                                false
+<div class="group"><pre class="example-preformatted">(%i4) kill(a,b,k);
+(%o4)                                done
+(%i5) k:ket(a,b);
+(%o5)                               |a, b&gt;
+(%i6) ketp(k);
+(%o6)                                false
+(%i7) k:ket([a,b]);
+                                     [ a ]
+(%o7)                                [   ]
+                                     [ b ]
+(%i8) ketp(k);
+(%o8)                                true
 </pre></div></div>
 
 <a class="anchor" id="brap"></a><dl class="first-deffn">
 <dt class="deffn" id="index-brap"><span class="category-def">Function: </span><span><strong class="def-name">brap</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-brap"> &para;</a></span></dt>
 <dd><p><code class="code">brap</code> is a predicate function that checks if its input is a bra,
 in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
+<code class="code">brap</code> only returns <code class="code">true</code> for the matrix representation of a bra.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) b:bra(a,b);
+<div class="group"><pre class="example-preformatted">(%i4) b:bra([a,b]);
 (%o4)                              [ a  b ]
 (%i5) brap(b);
 (%o5)                                true
@@ -164,7 +188,7 @@ the <code class="code">conjugate</code> <code class="code">transpose</code> of i
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) dagger(bra(%i,2));
+<div class="group"><pre class="example-preformatted">(%i4) dagger(bra([%i,2]));
                                    [ - %i ]
 (%o4)                              [      ]
                                    [  2   ]
@@ -182,7 +206,7 @@ product is taken. The vector <code class="code">phi</code> must always be a <cod
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i4) declare([a,b,c],complex);
 (%o4)                                done
-(%i5) braket(ket(a,b,c),ket(a,b,c));
+(%i5) braket(ket([a,b,c]),ket([a,b,c]));
 (%o5)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 </pre></div></div>
 
@@ -197,8 +221,10 @@ function will return <code class="code">false</code>.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i4) declare([a,b,c],complex);
 (%o4)                                done
-(%i5) norm(ket(a,b,c));
+(%i5) norm(ket([a,b,c]));
 (%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+(%i6) norm(ket(a,b,c));
+(%o6)                 sqrt(braket(|a, b, c&gt;, |a, b, c&gt;))
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -210,7 +236,7 @@ squared of a complex number.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i4) declare([a,b,c,d],complex);
 (%o4)                                done
-(%i5) A:braket(ket(a,b),ket(c,d));
+(%i5) A:braket(ket([a,b]),ket([c,d]));
 (%o5)                   conjugate(b) d + conjugate(a) c
 (%i6) P:magsqr(A);
 (%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
@@ -299,7 +325,7 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i4) declare([a,b],complex);
 (%o4)                                done
-(%i5) psi:ket(a,b);
+(%i5) psi:ket([a,b]);
                                      [ a ]
 (%o5)                                [   ]
                                      [ b ]
@@ -649,9 +675,13 @@ the bracket of tensor products.
 (%i5) declare([a,b,c,d],complex);
 (%o5)                                done
 (%i6) braprod(bra(a,b),bra(c,d));
-(%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
+                           all elements must be bras
+
+(%o6)                                done
 (%i7) braprod(dagger(zp),bra(c,d));
-(%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+                           all elements must be bras
+
+(%o7)                                done
 </pre></div><div class="group"><pre class="example-preformatted">(%i4) zpb:dagger(zp);
 (%o4)                              [ 1  0 ]
 (%i5) zmb:dagger(zm);

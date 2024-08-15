@@ -1,56 +1,80 @@
 batch("examples.txt");
 display2d:false;
 load(qm);
+kill(a);
+done $
+
+ket(a);
+ket(a) $
+
 declare([c1,c2],complex);
 done $
 
-ket(c1,c2);
+ket([c1,c2]);
 matrix([c1],[c2]) $
 
 facts();
 [kind(hbar,real),hbar > 0,kind(c1,complex),kind(c2,complex)] $
 
+kill(c1,c2);
+done $
+
 bra(c1,c2);
+bra(c1,c2) $
+
+bra([c1,c2]);
 matrix([c1,c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(c1,complex),kind(c2,complex)] $
+[kind(hbar,real),hbar > 0] $
 
-b:bra(a,b);
+kill(a,b,k);
+done $
+
+k:ket(a,b);
+ket(a,b) $
+
+ketp(k);
+false $
+
+k:ket([a,b]);
+matrix([a],[b]) $
+
+ketp(k);
+true $
+
+b:bra([a,b]);
 matrix([a,b]) $
 
-ketp(b);
-false $
-
-b:bra(a,b);
-matrix([a,matrix([a,b])]) $
-
 brap(b);
-false $
+true $
 
-dagger(bra(%i,2));
+dagger(bra([%i,2]));
 matrix([-%i],[2]) $
 
 declare([a,b,c],complex);
 done $
 
-braket(ket(a,b,c),ket(a,b,c));
-braket(matrix([a],[matrix([a,matrix([a,b])])],[c]), $
+braket(ket([a,b,c]),ket([a,b,c]));
+braket(matrix([a],[matrix([a,b])],[c]),matrix([a],[matrix([a,b])],[c])) $
 
 declare([a,b,c],complex);
 done $
 
+norm(ket([a,b,c]));
+sqrt(braket(matrix([a],[matrix([a,b])],[c]), $
+
 norm(ket(a,b,c));
-sqrt(braket(matrix([a],[matrix([a,matrix([a,b])])],[c]), $
+sqrt(braket(ket(a,matrix([a,b]),c),ket(a,matrix([a,b]),c))) $
 
 declare([a,b,c,d],complex);
 done $
 
-A:braket(ket(a,b),ket(c,d));
-braket(matrix([a],[matrix([a,matrix([a,b])])]),matrix([c],[d])) $
+A:braket(ket([a,b]),ket([c,d]));
+braket(matrix([a],[matrix([a,b])]),matrix([c],[d])) $
 
 P:magsqr(A);
-braket(matrix([a],[matrix([a,matrix([a,b])])]),matrix([c],[d])) $
+braket(matrix([a],[matrix([a,b])]),matrix([c],[d])) $
 
 zp;
 matrix([1],[0]) $
@@ -70,11 +94,11 @@ braket(xp,zp);
 declare([a,b],complex);
 done $
 
-psi:ket(a,b);
-matrix([a],[matrix([a,matrix([a,b])])]) $
+psi:ket([a,b]);
+matrix([a],[matrix([a,b])]) $
 
 psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
-braket(matrix([1/sqrt(2)],[1/sqrt(2)]), $
+braket(matrix([1/sqrt(2)],[1/sqrt(2)]),matrix([a],[matrix([a,b])]))*xp $
 
 sigmay;
 matrix([0,-%i],[%i,0]) $
@@ -134,10 +158,10 @@ declare([a,b,c,d],complex);
 done $
 
 braprod(bra(a,b),bra(c,d));
-[tpbra,[matrix([a,b]),matrix([c,d])]] $
+done $
 
 braprod(dagger(zp),bra(c,d));
-[tpbra,[matrix([1,0]),matrix([c,d])]] $
+done $
 
 zpb:dagger(zp);
 matrix([1,0]) $

@@ -70,38 +70,52 @@ zero.
 @end defvr
 
 @anchor{ket}
-@deffn {Function} ket (@code{c@sub{1}},@code{c@sub{2}},@dots{})
+@deffn {Function} ket ([@code{c@sub{1}},@code{c@sub{2}},@dots{}])
 @code{ket} creates a @emph{column} vector of arbitrary finite
 dimension. The entries @code{c@sub{i}} can be any Maxima expression.
 The user must @code{declare} any relevant constants to be complex.
+For a matrix representation the elements must be entered as a list
+in @code{[@dots{}]} square brackets. If no list is entered the ket
+is represented as a general ket, @code{ket(a)} will return @code{|a>}.
 @end deffn
 
 @example
 @group
-(%i4) declare([c1,c2],complex);
+(%i4) kill(a);
 (%o4)                                done
-(%i5) ket(c1,c2);
+(%i5) ket(a);
+(%o5)                                 |a>
+(%i6) declare([c1,c2],complex);
+(%o6)                                done
+(%i7) ket([c1,c2]);
                                     [ c1 ]
-(%o5)                               [    ]
+(%o7)                               [    ]
                                     [ c2 ]
-(%i6) facts();
-(%o6) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+(%i8) facts();
+(%o8) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 @end group
 @end example
 
 @anchor{bra}
-@deffn {Function} bra (@code{c@sub{1}},@code{c@sub{2}},@dots{})
-@code{bra} creates a @emph{row} vector of arbitrary finite
+@deffn {Function} bra ([@code{c@sub{1}},@code{c@sub{2}},@dots{}])
+@code{bra} creates a @emph{column} vector of arbitrary finite
 dimension. The entries @code{c@sub{i}} can be any Maxima expression.
 The user must @code{declare} any relevant constants to be complex.
+For a matrix representation the elements must be entered as a list
+in @code{[@dots{}]} square bracbras. If no list is entered the bra
+is represented as a general bra, @code{bra(a)} will return @code{<a|}.
 @end deffn
 
 @example
 @group
-(%i4) bra(c1,c2);
-(%o4)                             [ c1  c2 ]
-(%i5) facts();
-(%o5)                    [kind(hbar, real), hbar > 0]
+(%i4) kill(c1,c2);
+(%o4)                                done
+(%i5) bra(c1,c2);
+(%o5)                              <c1, c2|
+(%i6) bra([c1,c2]);
+(%o6)                             [ c1  c2 ]
+(%i7) facts();
+(%o7)                    [kind(hbar, real), hbar > 0]
 @end group
 @end example
 
@@ -109,14 +123,23 @@ The user must @code{declare} any relevant constants to be complex.
 @deffn {Function} ketp (@emph{vector})
 @code{ketp} is a predicate function that checks if its input is a ket,
 in which case it returns @code{true}, else it returns @code{false}.
+@code{ketp} only returns @code{true} for the matrix representation of a ket.
 @end deffn
 
 @example
 @group
-(%i4) b:bra(a,b);
-(%o4)                              [ a  b ]
-(%i5) ketp(b);
-(%o5)                                false
+(%i4) kill(a,b,k);
+(%o4)                                done
+(%i5) k:ket(a,b);
+(%o5)                               |a, b>
+(%i6) ketp(k);
+(%o6)                                false
+(%i7) k:ket([a,b]);
+                                     [ a ]
+(%o7)                                [   ]
+                                     [ b ]
+(%i8) ketp(k);
+(%o8)                                true
 @end group
 @end example
 
@@ -124,11 +147,12 @@ in which case it returns @code{true}, else it returns @code{false}.
 @deffn {Function} brap (@emph{vector})
 @code{brap} is a predicate function that checks if its input is a bra,
 in which case it returns @code{true}, else it returns @code{false}.
+@code{brap} only returns @code{true} for the matrix representation of a bra.
 @end deffn
 
 @example
 @group
-(%i4) b:bra(a,b);
+(%i4) b:bra([a,b]);
 (%o4)                              [ a  b ]
 (%i5) brap(b);
 (%o5)                                true
@@ -143,7 +167,7 @@ the @code{conjugate} @code{transpose} of its input.
 
 @example
 @group
-(%i4) dagger(bra(%i,2));
+(%i4) dagger(bra([%i,2]));
                                    [ - %i ]
 (%o4)                              [      ]
                                    [  2   ]
@@ -163,7 +187,7 @@ product is taken. The vector @code{phi} must always be a @code{ket}.
 @group
 (%i4) declare([a,b,c],complex);
 (%o4)                                done
-(%i5) braket(ket(a,b,c),ket(a,b,c));
+(%i5) braket(ket([a,b,c]),ket([a,b,c]));
 (%o5)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 @end group
 @end example
@@ -180,8 +204,10 @@ function will return @code{false}.
 @group
 (%i4) declare([a,b,c],complex);
 (%o4)                                done
-(%i5) norm(ket(a,b,c));
+(%i5) norm(ket([a,b,c]));
 (%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+(%i6) norm(ket(a,b,c));
+(%o6)                 sqrt(braket(|a, b, c>, |a, b, c>))
 @end group
 @end example
 
@@ -194,7 +220,7 @@ squared of a complex number.
 @group
 (%i4) declare([a,b,c,d],complex);
 (%o4)                                done
-(%i5) A:braket(ket(a,b),ket(c,d));
+(%i5) A:braket(ket([a,b]),ket([c,d]));
 (%o5)                   conjugate(b) d + conjugate(a) c
 (%i6) P:magsqr(A);
 (%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
@@ -276,7 +302,7 @@ ket is constructed and the @var{x}-basis ket is computed.
 @group
 (%i4) declare([a,b],complex);
 (%o4)                                done
-(%i5) psi:ket(a,b);
+(%i5) psi:ket([a,b]);
                                      [ a ]
 (%o5)                                [   ]
                                      [ b ]
@@ -606,9 +632,13 @@ the bracket of tensor products.
 (%i5) declare([a,b,c,d],complex);
 (%o5)                                done
 (%i6) braprod(bra(a,b),bra(c,d));
-(%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
+                           all elements must be bras
+
+(%o6)                                done
 (%i7) braprod(dagger(zp),bra(c,d));
-(%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+                           all elements must be bras
+
+(%o7)                                done
 @end group
 @group
 (%i4) zpb:dagger(zp);
