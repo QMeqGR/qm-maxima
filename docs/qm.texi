@@ -60,7 +60,13 @@ For spin-1/2 particles, for example, the bra vector
 @code{<psi| = a <z+| + b <z-|}
 
 is represented by the row vector @code{[a b]}, where the basis vectors
-@code{<z+| = [1 0]} and @code{<z-| = [0 1]}.
+are
+
+@code{<z+| = [1 0]}
+
+and
+
+@code{<z-| = [0 1]}.
 
 The @code{qm} package was written by Eric Majzoub, University of
 Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
