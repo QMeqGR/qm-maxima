@@ -54,6 +54,14 @@ momentum @var{|j,m>} representation of kets is also available. It is
 also possible to create tensor product states for multiparticle systems
 and to perform calculations on those systems.
 
+Kets and bras are represented by column and row vectors, respectively.
+For spin-1/2 particles, for example, the bra vector
+
+@code{<psi| = a <z+| + b <z-|}
+
+is represented by the row vector @code{[a b]}, where the basis vectors
+@code{<z+| = [1 0]} and @code{<z-| = [0 1]}.
+
 The @code{qm} package was written by Eric Majzoub, University of
 Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
 @code{load(qm);}

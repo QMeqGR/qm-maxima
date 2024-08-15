@@ -49,6 +49,14 @@ representation of kets is also available.  It is also possible to create
 tensor product states for multiparticle systems and to perform
 calculations on those systems.
 
+   Kets and bras are represented by column and row vectors,
+respectively.  For spin-1/2 particles, for example, the bra vector
+
+   ‘<psi| = a <z+| + b <z-|’
+
+   is represented by the row vector ‘[a b]’, where the basis vectors
+‘<z+| = [1 0]’ and ‘<z-| = [0 1]’.
+
    The ‘qm’ package was written by Eric Majzoub, University of Missouri.
 (Email: majzoube-at-umsystem.edu) The package is loaded with:
 ‘load(qm);’
@@ -621,15 +629,15 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm1749
-Ref: ket2102
-Ref: bra3045
-Ref: ketp3798
-Ref: brap4503
-Ref: dagger4903
-Ref: braket5245
-Ref: norm5854
-Node: Function and Variable Index20178
+Node: Functions and Variables for qm2028
+Ref: ket2381
+Ref: bra3324
+Ref: ketp4077
+Ref: brap4782
+Ref: dagger5182
+Ref: braket5524
+Ref: norm6133
+Node: Function and Variable Index20457
 
 End Tag Table
 
