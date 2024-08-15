@@ -20,7 +20,8 @@ maxima --no-init --no-verify-html-index  \
        --batch-string='build_and_dump_html_index("./qm_html/*.html", output_file="package-index-html.lisp",truenamep=true);';
 
 if [ -f "package-index-html.lisp" ]; then
-    mv -f package-index-html.lisp qm-index-html.lisp;
+    echo "### Creation of HTML docs successful."
+    mv -f package-index-html.lisp $packname-index-html.lisp;
 else
     echo "### Warning: no maxima-index-html.lisp was created for html docs."
 fi
