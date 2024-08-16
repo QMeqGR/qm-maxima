@@ -62,10 +62,10 @@ declare([a,b,c],complex);
 done $
 
 norm(ket([a,b,c]));
-sqrt(braket(matrix([a],[matrix([a,b])],[c]), $
+norm(matrix([a],[matrix([a,b])],[c])) $
 
 norm(ket(a,b,c));
-sqrt(braket(ket(a,matrix([a,b]),c),ket(a,matrix([a,b]),c))) $
+norm(ket(a,matrix([a,b]),c)) $
 
 declare([a,b,c,d],complex);
 done $

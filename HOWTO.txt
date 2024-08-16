@@ -1,0 +1,89 @@
+
+Maxima 3rd-party package instructions:
+
+This template holds skeleton documentation files for your package as
+well as skeleton .mac and .lisp files for your source code.
+
+For your package documentation to be visible once you load the package
+you must create the documentation in the doc/ folder using a script
+file provided there. Detailed instructions follow.
+
+For the documentation to work correctly you need to have the Maxima
+source installed on your computer because some of the utilities that
+generate the documentation indexing are only contained within the
+Maxima source.
+
+1. Name your package. For this howto let's assume your package name is
+"PKG". Edit the file "PACK-NAME" to contain your package name. You
+must do this for the scripts to work. You should be able to see:
+
+$ cat PACK-NAME
+$ PKG
+
+2. Edit the LICENSE file to whatever license you like.
+
+3. Put your code in the top level directory which you should
+rename PKG-maxima.
+
+4. Rename the source files PKG.mac and PKG.lisp. Put all of your
+source code in these files. You may have additional files but you
+should 'load' them from the PKG.mac file.
+
+5. In the PKG-maxima/doc/ directory edit the PKG.texi file. Heed the
+warnings in this file about keeping the structure as it is, otherwise
+'makeinfo' may fail.
+
+Note: Examples have the following format that must be followed
+exactly.
+
+@example
+@group
+(%i1) command here;
+(%i2) another command here;
+@end group
+@end example
+
+If your example needs the output of a previous command it MUST be in
+the same '@group'.
+
+You do not have to cut and paste output from a Maxima session into
+your PKG.texi file. It is fine for your .texi file to contain only the
+input commands. The output will be generated automatically using the
+script file PKG-maxima/doc/regen_examples.sh. To run this script do:
+
+$ ./regen_examples.sh
+
+The script will process the different 'groups' in PKG.texi and
+place the output in "regen.texi". Before you overwrite your original
+PKG.texi file YOU SHOULD DO:
+
+$ diff PKG.texi regen.texi
+
+and make sure that the only lines getting replaced are from the examples.
+If your PKG.texi file is missing "@end group" then 'regen_examples' will
+not process your .texi file correctly.
+
+6. In the PKG-maxima/doc/ directory do:
+
+Set the pathname to the source-code for Maxima by editing the file
+MAXIMA-SOURCE in the PKG-maxima/doc directory. For example, if you
+cloned from Sourceforge you might have:
+
+$ cat MAXIMA-SOURCE
+$ /home/packages/SOURCE/maxima-code
+
+Now, issue:
+
+$ ./create_docs.sh
+
+This should create PKG.info, PKG.pdf, a PKG_html/ directory containing
+html-related doc files, a text file ../README.md, as well as some
+other index files.
+
+From the main PKG.texi file it will also generate a file
+../rtest_PKG.mac containing Maxima tests using the examples
+you use in your PKG.texi file. 
+
+
+
+

@@ -45,10 +45,9 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i23) declare([a,b,c],complex)
 (%o23) done
 (%i24) norm(ket([a,b,c]))
-(%o24) sqrt(braket(matrix([a],[matrix([a,b])],[c]),
-                   matrix([a],[matrix([a,b])],[c])))
+(%o24) norm(matrix([a],[matrix([a,b])],[c]))
 (%i25) norm(ket(a,b,c))
-(%o25) sqrt(braket(ket(a,matrix([a,b]),c),ket(a,matrix([a,b]),c)))
+(%o25) norm(ket(a,matrix([a,b]),c))
 (%i26) declare([a,b,c,d],complex)
 (%o26) done
 (%i27) A:braket(ket([a,b]),ket([c,d]))
