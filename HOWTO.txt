@@ -14,24 +14,26 @@ generate the documentation indexing are only contained within the
 Maxima source.
 
 1. Name your package. For this howto let's assume your package name is
-"PKG". Edit the file "PACK-NAME" to contain your package name. You
-must do this for the scripts to work. You should be able to see:
+"PKG". Edit the file named CONFIG in the top level directory to
+contain your package name, and also point to the location of your
+Maxima source code install. You must do this for the scripts to
+work. The CONFIG file should look something like:
 
-$ cat PACK-NAME
-$ PKG
+$ cat CONFIG
+package-name=PKG
+max_src=/home/packages/SOURCE/maxima-code
 
 2. Edit the LICENSE file to whatever license you like.
 
-3. Put your code in the top level directory which you should
-rename PKG-maxima.
+3. You should name your top level directory "PKG-maxima". Now you ca
+begin working on your package's source code. Rename the source files
+PKG.mac and PKG.lisp. Put all of your source code in these files. You
+may have additional files but you should 'load' them from the PKG.mac
+file.
 
-4. Rename the source files PKG.mac and PKG.lisp. Put all of your
-source code in these files. You may have additional files but you
-should 'load' them from the PKG.mac file.
-
-5. In the PKG-maxima/doc/ directory edit the PKG.texi file. Heed the
-warnings in this file about keeping the structure as it is, otherwise
-'makeinfo' may fail.
+4. In your PKG-maxima/doc/ directory rename template.texi to PKG.texi
+and edit the file. Heed the warnings in this file about keeping the
+structure as it is, otherwise 'makeinfo' is likely to fail.
 
 Note: Examples have the following format that must be followed
 exactly.
@@ -63,21 +65,12 @@ and make sure that the only lines getting replaced are from the examples.
 If your PKG.texi file is missing "@end group" then 'regen_examples' will
 not process your .texi file correctly.
 
-6. In the PKG-maxima/doc/ directory do:
-
-Set the pathname to the source-code for Maxima by editing the file
-MAXIMA-SOURCE in the PKG-maxima/doc directory. For example, if you
-cloned from Sourceforge you might have:
-
-$ cat MAXIMA-SOURCE
-$ /home/packages/SOURCE/maxima-code
-
-Now, issue:
+5. You are ready to generate the doc files. In the PKG-maxima/doc/ directory do:
 
 $ ./create_docs.sh
 
 This should create PKG.info, PKG.pdf, a PKG_html/ directory containing
-html-related doc files, a text file ../README.md, as well as some
+html-related doc files, a text file ../README.txt, as well as some
 other index files.
 
 From the main PKG.texi file it will also generate a file

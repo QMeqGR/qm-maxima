@@ -1,15 +1,14 @@
 #!/bin/bash
 
-MAXIMA_ROOT=/home/packages/SOURCE/maxima-code
+packname=$(cat ../CONFIG | gawk -F'=' '($1=="package-name"){print $2}')
+MAXIMA_ROOT=$(cat ../CONFIG | gawk -F'=' '($1=="max_src"){print $2}')
 buildindex=$MAXIMA_ROOT/doc/info/build_index.pl
-
-packname=qm
 
 makeinfo $packname.texi;
 makeinfo --pdf $packname.texi;
 makeinfo --split=chapter --no-node-files --html \
 	 -c OUTPUT_ENCODING_NAME=UTF-8 -e 10000 $packname.texi;
-makeinfo --plaintext $packname.texi > ../README.md;
+makeinfo --plaintext $packname.texi > ../README.txt;
 
 # build the .info index
 $buildindex $packname.info > $packname-index.lisp;

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 debug=0;
-packname=qm;
+packname=$(cat ../CONFIG | gawk -F'=' '($1=="package-name"){print $2}')
 
 if [ "$#" -eq 0 ];then
     echo Usage: regen_examples.sh packagename
