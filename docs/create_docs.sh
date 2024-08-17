@@ -1,19 +1,27 @@
 #!/bin/bash
 
+debug=0;
+
 packname=$(cat ../CONFIG | gawk -F'=' '($1=="package-name"){print $2}')
 MAXIMA_ROOT=$(cat ../CONFIG | gawk -F'=' '($1=="max_src"){print $2}')
 buildindex=$MAXIMA_ROOT/doc/info/build_index.pl
 
+echo "### Running makeinfo..."
 makeinfo $packname.texi;
+echo "### Running makeinfo --pdf ..."
 makeinfo --pdf $packname.texi;
+echo "### Running makeinfo --html ..".
 makeinfo --split=chapter --no-node-files --html \
 	 -c OUTPUT_ENCODING_NAME=UTF-8 -e 10000 $packname.texi;
+echo "### Running makeinfo --plaintext ..."
 makeinfo --plaintext $packname.texi > ../README.txt;
 
+echo "### Building .info index file..."
 # build the .info index
 $buildindex $packname.info > $packname-index.lisp;
 
 # build the html index
+echo "### Building .info html index file..."
 maxima --no-init --no-verify-html-index  \
        --preload=$MAXIMA_ROOT/doc/info/build-html-index.lisp \
        --batch-string='build_and_dump_html_index("./qm_html/*.html", output_file="package-index-html.lisp",truenamep=true);';
@@ -25,9 +33,12 @@ else
     echo "### Warning: no maxima-index-html.lisp was created for html docs."
 fi
 
-# clean up temporary files from pdf creation
-rm $packname.aux $packname.fn $packname.fns $packname.log $packname.toc
 
+# clean up temporary files from pdf creation
+if [ $debug -eq 0 ]; then
+    rm $packname.aux $packname.fn $packname.fns $packname.log $packname.toc \
+       $packname.vr $packname.vrs $packname.texi.toc build-html-index.log 
+fi
 
 ####################################################
 ## Create test suite from examples in $packname.texi
