@@ -535,7 +535,7 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 </p></dd></dl>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fbraket"><span class="category-def">Function: </span><span><strong class="def-name">jm_braket</strong> <var class="def-var-arguments">(<code class="code">jmbra,jmket</code>)</var><a class="copiable-link" href="#index-jm_005fbraket"> &para;</a></span></dt>
+<dt class="deffn" id="index-jm_005fbraket"><span class="category-def">Function: </span><span><strong class="def-name">jm_braket</strong> <var class="def-var-arguments">(<em class="emph">jmbra,jmket</em>)</var><a class="copiable-link" href="#index-jm_005fbraket"> &para;</a></span></dt>
 <dd><p><code class="code">jm_braket</code> takes the inner product of the jm-kets.
 </p></dd></dl>
 
@@ -552,6 +552,44 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 (%o8)                                  1
 </pre></div></div>
 
+<dl class="first-deffn">
+<dt class="deffn" id="index-JP"><span class="category-def">Function: </span><span><strong class="def-name">JP</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-JP"> &para;</a></span></dt>
+<dd><p><code class="code">JP</code> is the <code class="code">J<sub class="sub">+</sub></code> operator. It takes a <code class="code">jmket</code>
+<code class="code">jm_ket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m+1))*hbar*jm_ket(j,m+1)</code>.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-JM"><span class="category-def">Function: </span><span><strong class="def-name">JM</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-JM"> &para;</a></span></dt>
+<dd><p><code class="code">JM</code> is the <code class="code">J<sub class="sub">-</sub></code> operator. It takes a <code class="code">jmket</code>
+<code class="code">jm_ket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m-1))*hbar*jm_ket(j,m-1)</code>.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Jsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jsqr</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jsqr"> &para;</a></span></dt>
+<dd><p><code class="code">Jsqr</code> is the <code class="code">J<sup class="sup">2</sup></code> operator. It takes a <code class="code">jmket</code>
+<code class="code">jm_ket(j,m)</code> and returns <code class="code">(j*(j+1)*hbar<sup class="sup">2</sup>*jm_ket(j,m)</code>.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Jz"><span class="category-def">Function: </span><span><strong class="def-name">Jz</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jz"> &para;</a></span></dt>
+<dd><p><code class="code">Jz</code> is the <code class="code">J<sub class="sub">z</sub></code> operator. It takes a <code class="code">jmket</code>
+<code class="code">jm_ket(j,m)</code> and returns <code class="code">m*hbar*jm_ket(j,m)</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i3) k: jm_ket(j,m);
+(%o3)                          [jmket, [ j  m ]]
+(%i4) JP(k);
+(%o4)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%i5) JM(k);
+(%o5)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%i6) Jsqr(k);
+                             2
+(%o6)                    hbar  j (j + 1) jm_ket(j, m)
+(%i7) Jz(k);
+(%o7)                         hbar jm_ket(j, m) m
+
+</pre></div></div>
 
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">

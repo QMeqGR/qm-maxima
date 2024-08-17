@@ -499,7 +499,7 @@ and @var{z}-component @var{m}.
 @code{jm_check} checks to see that @var{m} is one of @{-j, @dots{}, +j@}.
 @end deffn
 
-@deffn {Function} jm_braket (@code{jmbra,jmket})
+@deffn {Function} jm_braket (@emph{jmbra,jmket})
 @code{jm_braket} takes the inner product of the jm-kets.
 @end deffn
 
@@ -518,6 +518,42 @@ and @var{z}-component @var{m}.
 @end group
 @end example
 
+@deffn {Function} JP (@emph{jmket})
+@code{JP} is the @code{J@sub{+}} operator. It takes a @code{jmket}
+@code{jm_ket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m+1))*hbar*jm_ket(j,m+1)}.
+@end deffn
+
+@deffn {Function} JM (@emph{jmket})
+@code{JM} is the @code{J@sub{-}} operator. It takes a @code{jmket}
+@code{jm_ket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m-1))*hbar*jm_ket(j,m-1)}.
+@end deffn
+
+@deffn {Function} Jsqr (@emph{jmket})
+@code{Jsqr} is the @code{J@sup{2}} operator. It takes a @code{jmket}
+@code{jm_ket(j,m)} and returns @code{(j*(j+1)*hbar@sup{2}*jm_ket(j,m)}.
+@end deffn
+
+@deffn {Function} Jz (@emph{jmket})
+@code{Jz} is the @code{J@sub{z}} operator. It takes a @code{jmket}
+@code{jm_ket(j,m)} and returns @code{m*hbar*jm_ket(j,m)}.
+@end deffn
+
+@example
+@group
+(%i3) k: jm_ket(j,m);
+(%o3)                          [jmket, [ j  m ]]
+(%i4) JP(k);
+(%o4)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%i5) JM(k);
+(%o5)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%i6) Jsqr(k);
+                             2
+(%o6)                    hbar  j (j + 1) jm_ket(j, m)
+(%i7) Jz(k);
+(%o7)                         hbar jm_ket(j, m) m
+
+@end group
+@end example
 
 @subsection Angular momentum and ladder operators
 

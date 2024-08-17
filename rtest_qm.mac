@@ -139,6 +139,21 @@ B:jm_bra(j1,m1);
 jm_braket(B,K);
 1 $
 
+k:jm_ket(j,m);
+[jmket,matrix([j,m])] $
+
+JP(k);
+hbar*'jm_ket(j,m+1)*sqrt(j*(j+1)-m*(m+1)) $
+
+JM(k);
+hbar*'jm_ket(j,m-1)*sqrt(j*(j+1)-(m-1)*m) $
+
+Jsqr(k);
+hbar^2*j*(j+1)*'jm_ket(j,m) $
+
+Jz(k);
+hbar*'jm_ket(j,m)*m $
+
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
 

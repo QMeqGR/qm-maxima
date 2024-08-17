@@ -154,7 +154,7 @@ Jsqr(k) := block([j,m,sqrterm],
       j:k[2][1][1], return( (j*(j+1)) * hbar^2 * 'jm_ket(j,m) ) )$
 Jz(k) := block([j,m,sqrterm],
       if k[1]#jmket then return(false),
-      m:k[2][2][1], return( m * hbar * 'jm_ket(j,m) ) )$
+      m:k[2][1][2], return( m * hbar * 'jm_ket(j,m) ) )$
 
 
 
