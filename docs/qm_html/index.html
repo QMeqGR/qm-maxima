@@ -538,12 +538,24 @@ and <var class="var">z</var>-component <var class="var">m</var>.
                                         3  1
 (%o4)                            jm_bra(-, -)
                                         2  2
+(%i5) jm_bra([3/2,1/2]);
+                                       [ 3  1 ]
+(%o5)                          [jmbra, [ -  - ]]
+                                       [ 2  2 ]
 </pre></div></div>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-jm_005fketp"><span class="category-def">Function: </span><span><strong class="def-name">jm_ketp</strong> <var class="def-var-arguments">(jmket)</var><a class="copiable-link" href="#index-jm_005fketp"> &para;</a></span></dt>
 <dd><p><code class="code">jm_ketp</code> checks to see that the ket has the &rsquo;jmket&rsquo; marker.
 </p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i4) jm_ketp(jm_ket(j,m));
+(%o4)                                false
+(%i5) jm_ketp(jm_ket([j,m]));
+(%o5)                                true
+</pre></div></div>
+
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-jm_005fbrap"><span class="category-def">Function: </span><span><strong class="def-name">jm_brap</strong> <var class="def-var-arguments">(jmbra)</var><a class="copiable-link" href="#index-jm_005fbrap"> &para;</a></span></dt>
@@ -554,6 +566,12 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 <dt class="deffn" id="index-jm_005fcheck"><span class="category-def">Function: </span><span><strong class="def-name">jm_check</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fcheck"> &para;</a></span></dt>
 <dd><p><code class="code">jm_check</code> checks to see that <var class="var">m</var> is one of {-j, &hellip;, +j}.
 </p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i4) jm_check(3/2,1/2);
+(%o4)                                true
+</pre></div></div>
+
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-jm_005fbraket"><span class="category-def">Function: </span><span><strong class="def-name">jm_braket</strong> <var class="def-var-arguments">(<em class="emph">jmbra,jmket</em>)</var><a class="copiable-link" href="#index-jm_005fbraket"> &para;</a></span></dt>
@@ -571,6 +589,12 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 (%o7)                           jm_bra(j1, m1)
 (%i8) jm_braket(B,K);
 (%o8)              jm_braket(jm_bra(j1, m1), jm_ket(j1, m1))
+(%i9) K:jm_ket([j1,m1]);
+(%o9)                         [jmket, [ j1  m1 ]]
+(%i10) B:jm_bra([j2,m2]);
+(%o10)                        [jmbra, [ j2  m2 ]]
+(%i11) jm_braket(B,K);
+(%o11)                                 0
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -597,17 +621,20 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 <code class="code">jm_ket(j,m)</code> and returns <code class="code">m*hbar*jm_ket(j,m)</code>.
 </p></dd></dl>
 
+<p>These functions are illustrated below.
+</p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i4) k:jm_ket(j,m);
-(%o4)                            jm_ket(j, m)
+<div class="group"><pre class="example-preformatted">(%i4) k:jm_ket([j,m]);
+(%o4)                          [jmket, [ j  m ]]
 (%i5) JP(k);
-(%o5)                                false
+(%o5)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
 (%i6) JM(k);
-(%o6)                                false
+(%o6)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
 (%i7) Jsqr(k);
-(%o7)                                false
+                             2
+(%o7)                    hbar  j (j + 1) jm_ket(j, m)
 (%i8) Jz(k);
-(%o8)                                false
+(%o8)                         hbar jm_ket(j, m) m
 </pre></div></div>
 
 </div>

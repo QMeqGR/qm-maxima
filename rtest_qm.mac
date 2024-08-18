@@ -136,6 +136,18 @@ ev(qm_variance(Sy,xp+ym),ratsimp);
 jm_bra(3/2,1/2);
 jm_bra(3/2,1/2) $
 
+jm_bra([3/2,1/2]);
+[jmbra,matrix([3/2,1/2])] $
+
+jm_ketp(jm_ket(j,m));
+false $
+
+jm_ketp(jm_ket([j,m]));
+true $
+
+jm_check(3/2,1/2);
+true $
+
 K:jm_ket(j1,m1);
 jm_ket(j1,m1) $
 
@@ -151,20 +163,29 @@ jm_bra(j1,m1) $
 jm_braket(B,K);
 jm_braket(jm_bra(j1,m1),jm_ket(j1,m1)) $
 
-k:jm_ket(j,m);
-jm_ket(j,m) $
+K:jm_ket([j1,m1]);
+[jmket,matrix([j1,m1])] $
+
+B:jm_bra([j2,m2]);
+[jmbra,matrix([j2,m2])] $
+
+jm_braket(B,K);
+0 $
+
+k:jm_ket([j,m]);
+[jmket,matrix([j,m])] $
 
 JP(k);
-false $
+hbar*'jm_ket(j,m+1)*sqrt(j*(j+1)-m*(m+1)) $
 
 JM(k);
-false $
+hbar*'jm_ket(j,m-1)*sqrt(j*(j+1)-(m-1)*m) $
 
 Jsqr(k);
-false $
+hbar^2*j*(j+1)*'jm_ket(j,m) $
 
 Jz(k);
-false $
+hbar*'jm_ket(j,m)*m $
 
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
