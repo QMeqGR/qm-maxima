@@ -276,15 +276,33 @@ squared of a complex number.
 </pre></div></div>
 
 <ul class="mini-toc">
-<li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="1">Spin-1/2 state kets and associated operators</a></li>
-<li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="2">Pauli matrices and Sz, Sx, Sy operators</a></li>
-<li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
-<li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
-<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="5">Angular momentum representation of kets and bras</a></li>
-<li><a href="#Angular-momentum-and-ladder-operators" accesskey="6">Angular momentum and ladder operators</a></li>
+<li><a href="#Handling-general-kets-and-bras" accesskey="1">Handling general kets and bras</a></li>
+<li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="2">Spin-1/2 state kets and associated operators</a></li>
+<li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="3">Pauli matrices and Sz, Sx, Sy operators</a></li>
+<li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="4">SX, SY, SZ operators for any spin</a></li>
+<li><a href="#Expectation-value-and-variance" accesskey="5">Expectation value and variance</a></li>
+<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="6">Angular momentum representation of kets and bras</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators" accesskey="7">Angular momentum and ladder operators</a></li>
 </ul>
+<div class="subsection-level-extent" id="Handling-general-kets-and-bras">
+<h4 class="subsection"><span>1.2.1 Handling general kets and bras<a class="copiable-link" href="#Handling-general-kets-and-bras"> &para;</a></span></h4>
+
+<p>General kets and bras are, as discussed, created without using a list
+when giving the arguments. The following examples show how general
+kets and bras can be manipulated.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i4) ket(a)+ket(b);
+(%o4)                              |b&gt; + |a&gt;
+(%i5) braket(bra(a),ket(b));
+(%o5)                          kron_delta(a, b)
+(%i6) braket(bra(a)+bra(c),ket(b));
+(%o6)                 kron_delta(b, c) + kron_delta(a, b)
+</pre></div></div>
+
+</div>
 <div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
-<h4 class="subsection"><span>1.2.1 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.2 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
 
 <p>Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
 space of states. It is spanned by two vectors. In the <var class="var">z</var>-basis
@@ -370,7 +388,7 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
 
 </div>
 <div class="subsection-level-extent" id="Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators">
-<h4 class="subsection"><span>1.2.2 Pauli matrices and Sz, Sx, Sy operators<a class="copiable-link" href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.3 Pauli matrices and Sz, Sx, Sy operators<a class="copiable-link" href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-sigmax"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmax</code></strong><a class="copiable-link" href="#index-sigmax"> &para;</a></span></dt>
@@ -438,7 +456,7 @@ commutator <code class="code">X . Y - Y . X</code>.
 
 </div>
 <div class="subsection-level-extent" id="SX_002c-SY_002c-SZ-operators-for-any-spin">
-<h4 class="subsection"><span>1.2.3 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.4 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-SX"><span class="category-def">Function: </span><span><strong class="def-name">SX</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SX"> &para;</a></span></dt>
@@ -488,7 +506,7 @@ for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 
 </div>
 <div class="subsection-level-extent" id="Expectation-value-and-variance">
-<h4 class="subsection"><span>1.2.4 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.5 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-expect"><span class="category-def">Function: </span><span><strong class="def-name">expect</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-expect"> &para;</a></span></dt>
@@ -516,7 +534,7 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
-<h4 class="subsection"><span>1.2.5 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.6 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
 
 <p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you can use
 the following functions.
@@ -584,17 +602,20 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 (%i5) B:jm_bra(j2,m2);
 (%o5)                           jm_bra(j2, m2)
 (%i6) jm_braket(B,K);
-(%o6)              jm_braket(jm_bra(j2, m2), jm_ket(j1, m1))
+(%o6)                kron_delta(j1, j2) kron_delta(m1, m2)
 (%i7) B:jm_bra(j1,m1);
 (%o7)                           jm_bra(j1, m1)
 (%i8) jm_braket(B,K);
-(%o8)              jm_braket(jm_bra(j1, m1), jm_ket(j1, m1))
+(%o8)                                  1
 (%i9) K:jm_ket([j1,m1]);
 (%o9)                         [jmket, [ j1  m1 ]]
 (%i10) B:jm_bra([j2,m2]);
 (%o10)                        [jmbra, [ j2  m2 ]]
 (%i11) jm_braket(B,K);
 (%o11)                                 0
+(%i12) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+(%o12) kron_delta(j2, j3) kron_delta(m2, m3)
+                                        + kron_delta(j1, j2) kron_delta(m1, m2)
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -639,7 +660,7 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
-<h4 class="subsection"><span>1.2.6 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>

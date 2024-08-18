@@ -264,6 +264,23 @@ squared of a complex number.
 @end group
 @end example
 
+@subsection Handling general kets and bras
+
+General kets and bras are, as discussed, created without using a list
+when giving the arguments. The following examples show how general
+kets and bras can be manipulated.
+
+@example
+@group
+(%i4) ket(a)+ket(b);
+(%o4)                              |b> + |a>
+(%i5) braket(bra(a),ket(b));
+(%o5)                          kron_delta(a, b)
+(%i6) braket(bra(a)+bra(c),ket(b));
+(%o6)                 kron_delta(b, c) + kron_delta(a, b)
+@end group
+@end example
+
 @subsection Spin-1/2 state kets and associated operators
 
 Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
@@ -557,17 +574,20 @@ and @var{z}-component @var{m}.
 (%i5) B:jm_bra(j2,m2);
 (%o5)                           jm_bra(j2, m2)
 (%i6) jm_braket(B,K);
-(%o6)              jm_braket(jm_bra(j2, m2), jm_ket(j1, m1))
+(%o6)                kron_delta(j1, j2) kron_delta(m1, m2)
 (%i7) B:jm_bra(j1,m1);
 (%o7)                           jm_bra(j1, m1)
 (%i8) jm_braket(B,K);
-(%o8)              jm_braket(jm_bra(j1, m1), jm_ket(j1, m1))
+(%o8)                                  1
 (%i9) K:jm_ket([j1,m1]);
 (%o9)                         [jmket, [ j1  m1 ]]
 (%i10) B:jm_bra([j2,m2]);
 (%o10)                        [jmbra, [ j2  m2 ]]
 (%i11) jm_braket(B,K);
 (%o11)                                 0
+(%i12) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+(%o12) kron_delta(j2, j3) kron_delta(m2, m3)
+                                        + kron_delta(j1, j2) kron_delta(m1, m2)
 @end group
 @end example
 

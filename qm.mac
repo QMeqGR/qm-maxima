@@ -16,7 +16,7 @@
 ;; Quantum mechanics package for Maxima.
 */
 
-qm_version: "0.7.1"$
+qm_version: "0.8"$
 
 /* load("groups_ehm.mac") $ */
 load("qm.lisp") $
@@ -114,6 +114,13 @@ brap(psi) := block([r,c],
         (r = 1) and (c > 1) and every(lambda([q], not (matrixp(q) or listp(q) or setp(q))), psi))
     else false);
 
+/***************************************/
+/* Rules, simp for general kets/bras   */
+/***************************************/
+matchdeclare([a,b,c],all);
+tellsimpafter(braket(bra(a),ket(b)), kron_delta(a,b)); /* <a|b> --> delta(a,b) */
+tellsimpafter(braket(bra(a)+c,ket(b)), braket(bra(a),ket(b))+braket(c,ket(b))); /* distribution */
+
 /******************************************************/
 /******************************************************/
 /*              (j,m) kets and bras                   */
@@ -129,7 +136,7 @@ tellsimpafter( jm_bra([j,m]) , [jmbra, matrix([j,m])] );
 jm_ketp(k) := if k[1]#jmket then false else true$
 jm_brap(k) := if k[1]#jmbra then false else true$
 
-matchdeclare(jb, jm_brap, jk, jm_ketp);
+matchdeclare(jb, jm_brap, jk, jm_ketp); /* covers the matrix rep */
 tellsimpafter( jm_braket(jb,jk), simp_jm_braket(jb,jk) );
 simp_jm_braket(b,k) := block([j1,j2,m1,m2],
 	     if b[1]#jmbra or k[1]#jmket then return(false),
@@ -156,8 +163,14 @@ Jz(k) := block([j,m,sqrterm],
       if k[1]#jmket then return(false),
       m:k[2][1][2], return( m * hbar * 'jm_ket(j,m) ) )$
 
-
-
+/********************************************/
+/* Rules, simp for general jm_kets/jm_bras  */
+/********************************************/
+matchdeclare([jj1,jj2,mm1,mm2],sym_ratp, c, all);
+tellsimpafter(jm_braket(jm_bra(jj1,mm1),jm_ket(jj2,mm2)),
+	kron_delta(jj1,jj2)*kron_delta(mm1,mm2)); /* <j1m1,j2m2> --> delta(j1j2)*delta(m1m2) */
+tellsimpafter(jm_braket(jm_bra(jj1,mm1)+c, jm_ket(jj2,mm2)),
+	jm_braket(jm_bra(jj1,mm1),jm_ket(jj2,mm2))+jm_braket(c,jm_ket(jj2,mm2))); /* distribution */
 
 /******************************************************/
 /******************************************************/
@@ -265,3 +278,8 @@ braketprod(B,K) := block([N,M,fail:0,prod:1],
 		else for i: 1 thru N do
 		     prod: prod*braket(B[2][i],K[2][i]),
 		prod )$
+
+/*******************************************/
+/* Rules and simp for general tensor prods */
+/*******************************************/
+/* This is much harder */
