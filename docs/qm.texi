@@ -509,12 +509,26 @@ and @var{z}-component @var{m}.
                                         3  1
 (%o4)                            jm_bra(-, -)
                                         2  2
+(%i5) jm_bra([3/2,1/2]);
+                                       [ 3  1 ]
+(%o5)                          [jmbra, [ -  - ]]
+                                       [ 2  2 ]
 @end group
 @end example
 
 @deffn {Function} jm_ketp (jmket)
 @code{jm_ketp} checks to see that the ket has the 'jmket' marker.
 @end deffn
+
+@example
+@group
+(%i4) jm_ketp(jm_ket(j,m));
+(%o4)                                false
+(%i5) jm_ketp(jm_ket([j,m]));
+(%o5)                                true
+@end group
+@end example
+
 
 @deffn {Function} jm_brap (jmbra)
 @code{jm_brap} checks to see that the bra has the 'jmbra' marker.
@@ -523,6 +537,14 @@ and @var{z}-component @var{m}.
 @deffn {Function} jm_check (@code{j,m})
 @code{jm_check} checks to see that @var{m} is one of @{-j, @dots{}, +j@}.
 @end deffn
+
+@example
+@group
+(%i4) jm_check(3/2,1/2);
+(%o4)                                true
+@end group
+@end example
+
 
 @deffn {Function} jm_braket (@emph{jmbra,jmket})
 @code{jm_braket} takes the inner product of the jm-kets.
@@ -540,6 +562,12 @@ and @var{z}-component @var{m}.
 (%o7)                           jm_bra(j1, m1)
 (%i8) jm_braket(B,K);
 (%o8)              jm_braket(jm_bra(j1, m1), jm_ket(j1, m1))
+(%i9) K:jm_ket([j1,m1]);
+(%o9)                         [jmket, [ j1  m1 ]]
+(%i10) B:jm_bra([j2,m2]);
+(%o10)                        [jmbra, [ j2  m2 ]]
+(%i11) jm_braket(B,K);
+(%o11)                                 0
 @end group
 @end example
 
@@ -563,18 +591,21 @@ and @var{z}-component @var{m}.
 @code{jm_ket(j,m)} and returns @code{m*hbar*jm_ket(j,m)}.
 @end deffn
 
+These functions are illustrated below.
+
 @example
 @group
-(%i4) k:jm_ket(j,m);
-(%o4)                            jm_ket(j, m)
+(%i4) k:jm_ket([j,m]);
+(%o4)                          [jmket, [ j  m ]]
 (%i5) JP(k);
-(%o5)                                false
+(%o5)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
 (%i6) JM(k);
-(%o6)                                false
+(%o6)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
 (%i7) Jsqr(k);
-(%o7)                                false
+                             2
+(%o7)                    hbar  j (j + 1) jm_ket(j, m)
 (%i8) Jz(k);
-(%o8)                                false
+(%o8)                         hbar jm_ket(j, m) m
 @end group
 @end example
 
