@@ -118,8 +118,12 @@ brap(psi) := block([r,c],
 /* Rules, simp for general kets/bras   */
 /***************************************/
 matchdeclare([a,b,c],all);
-tellsimpafter(braket(bra(a),ket(b)), kron_delta(a,b)); /* <a|b> --> delta(a,b) */
+/* <a|b> --> delta(a,b), assumes an orthonormal set */
+tellsimpafter(braket(bra(a),ket(b)), kron_delta(a,b));
 tellsimpafter(braket(bra(a)+c,ket(b)), braket(bra(a),ket(b))+braket(c,ket(b))); /* distribution */
+
+
+
 
 /******************************************************/
 /******************************************************/
