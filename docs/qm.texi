@@ -68,6 +68,31 @@ and
 
 @code{<z-| = [0 1]}.
 
+Generally, if one wishes to do purely symbolic calculations, then input
+of basic kets, (j,m)-kets, and so forth should be done without lists. If
+one wishes to do numerical computations using the kets then enter the
+arguments as a list. See the following examples.
+
+@example
+@group
+(%i4) ket(a,b)+ket(c,d);
+(%o4)                           |c, d> + |a, b>
+(%i5) ket([a,b])+ket([c,d]);
+                                   [ c + a ]
+(%o5)                              [       ]
+                                   [ d + b ]
+@end group
+@group
+(%i4) ketprod('zp,'zm)+ketprod('zm,'zp);
+(%o4)                  ketprod(zp, zm) + ketprod(zm, zp)
+(%i5) ketprod([zp,zm]);
+                                     [ 1 ]  [ 0 ]
+(%o5)                       [tpket, [[   ], [   ]]]
+                                     [ 0 ]  [ 1 ]
+@end group
+@end example
+
+
 The @code{qm} package was written by Eric Majzoub, University of
 Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
 @code{load(qm);}
@@ -219,7 +244,7 @@ function will return @code{false}.
 (%i5) norm(ket([a,b,c]));
 (%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 (%i6) norm(ket(a,b,c));
-(%o6)                 sqrt(braket(|a, b, c>, |a, b, c>))
+(%o6)                           norm(|a, b, c>)
 @end group
 @end example
 
@@ -481,9 +506,9 @@ and @var{z}-component @var{m}.
 @example
 @group
 (%i4) jm_bra(3/2,1/2);
-                                       [ 3  1 ]
-(%o4)                          [jmbra, [ -  - ]]
-                                       [ 2  2 ]
+                                        3  1
+(%o4)                            jm_bra(-, -)
+                                        2  2
 @end group
 @end example
 
@@ -506,15 +531,15 @@ and @var{z}-component @var{m}.
 @example
 @group
 (%i4) K:jm_ket(j1,m1);
-(%o4)                         [jmket, [ j1  m1 ]]
+(%o4)                           jm_ket(j1, m1)
 (%i5) B:jm_bra(j2,m2);
-(%o5)                         [jmbra, [ j2  m2 ]]
+(%o5)                           jm_bra(j2, m2)
 (%i6) jm_braket(B,K);
-(%o6)                                  0
+(%o6)              jm_braket(jm_bra(j2, m2), jm_ket(j1, m1))
 (%i7) B:jm_bra(j1,m1);
-(%o7)                         [jmbra, [ j1  m1 ]]
+(%o7)                           jm_bra(j1, m1)
 (%i8) jm_braket(B,K);
-(%o8)                                  1
+(%o8)              jm_braket(jm_bra(j1, m1), jm_ket(j1, m1))
 @end group
 @end example
 
@@ -540,18 +565,16 @@ and @var{z}-component @var{m}.
 
 @example
 @group
-(%i3) k: jm_ket(j,m);
-(%o3)                          [jmket, [ j  m ]]
-(%i4) JP(k);
-(%o4)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
-(%i5) JM(k);
-(%o5)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
-(%i6) Jsqr(k);
-                             2
-(%o6)                    hbar  j (j + 1) jm_ket(j, m)
-(%i7) Jz(k);
-(%o7)                         hbar jm_ket(j, m) m
-
+(%i4) k:jm_ket(j,m);
+(%o4)                            jm_ket(j, m)
+(%i5) JP(k);
+(%o5)                                false
+(%i6) JM(k);
+(%o6)                                false
+(%i7) Jsqr(k);
+(%o7)                                false
+(%i8) Jz(k);
+(%o8)                                false
 @end group
 @end example
 
@@ -671,12 +694,10 @@ the bracket of tensor products.
 @group
 (%i4) ketprod(zp,zm);
                                      [ 1 ]  [ 0 ]
-(%o4)                       [tpket, [[   ], [   ]]]
+(%o4)                        ketprod([   ], [   ])
                                      [ 0 ]  [ 1 ]
 (%i5) ketprod('zp,'zm);
-                           all elements must be kets
-
-(%o5)                                done
+(%o5)                           ketprod(zp, zm)
 @end group
 @group
 (%i4) kill(a,b,c,d);
@@ -684,25 +705,25 @@ the bracket of tensor products.
 (%i5) declare([a,b,c,d],complex);
 (%o5)                                done
 (%i6) braprod(bra([a,b]),bra([c,d]));
-(%o6)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%o6)                     braprod([ a  b ], [ c  d ])
 (%i7) braprod(dagger(zp),bra([c,d]));
-(%o7)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+(%o7)                     braprod([ 1  0 ], [ c  d ])
 @end group
 @group
 (%i4) K:ketprod(zp,zm);
                                      [ 1 ]  [ 0 ]
-(%o4)                       [tpket, [[   ], [   ]]]
+(%o4)                        ketprod([   ], [   ])
                                      [ 0 ]  [ 1 ]
 (%i5) zpb:dagger(zp);
 (%o5)                              [ 1  0 ]
 (%i6) zmb:dagger(zm);
 (%o6)                              [ 0  1 ]
 (%i7) B:braprod(zpb,zmb);
-(%o7)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
+(%o7)                     braprod([ 1  0 ], [ 0  1 ])
 (%i8) braketprod(K,B);
 (%o8)                                false
 (%i9) braketprod(B,K);
-(%o9)                                  1
+(%o9)                                false
 @end group
 @end example
 

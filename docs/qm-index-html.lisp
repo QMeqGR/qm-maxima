@@ -87,6 +87,15 @@
          ("ket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-ket")
+         ("Jz"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-Jz")
+         ("Jsqr"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-Jsqr")
+         ("JP"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-JP")
          ("jm_ketp"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jm_005fketp")
@@ -105,6 +114,9 @@
          ("jm_bra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jm_005fbra")
+         ("JM"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-JM")
          ("expect"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-expect")

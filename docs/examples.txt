@@ -1,5 +1,9 @@
 display2d:false$
 load(qm)$
+ket(a,b)+ket(c,d);
+ket([a,b])+ket([c,d]);
+ketprod('zp,'zm)+ketprod('zm,'zp);
+ketprod([zp,zm]);
 kill(a);
 ket(a);
 declare([c1,c2],complex);

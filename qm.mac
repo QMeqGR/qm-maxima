@@ -123,8 +123,8 @@ rationalp(a):= if integerp(num(a)) and integerp(denom(a)) then true else false;
 sym_ratp(a):=block(if symbolp(a) or rationalp(a) then
 		      return(true) else return(false) );
 matchdeclare([j,m], sym_ratp );
-tellsimpafter( jm_ket(j,m) , [jmket, matrix([j,m])] );
-tellsimpafter( jm_bra(j,m) , [jmbra, matrix([j,m])] );
+tellsimpafter( jm_ket([j,m]) , [jmket, matrix([j,m])] );
+tellsimpafter( jm_bra([j,m]) , [jmbra, matrix([j,m])] );
 
 jm_ketp(k) := if k[1]#jmket then false else true$
 jm_brap(k) := if k[1]#jmbra then false else true$
@@ -238,20 +238,24 @@ UU(H,t) := block([M,demoivre:true], Rot(H,t))$
 /*****************************************************************/
 /*****************************************************************/
 /*****************************************************************/
-ketprod([u]) := block([N,fail:0],
+matchdeclare(ll,listp);
+tellsimpafter(ketprod(ll), simpketprod(ll));
+simpketprod(u) := block([N,fail:0],
 	     N: length(u),
 	     for i: 1 thru N do
 	     	 if ketp(''u[i])=false then fail:1,
 	     if fail=0 then [tpket,u]
 	     else disp("all elements must be kets") )$
 
-braprod([u]) := block([N,fail:0],
+tellsimpafter(braprod(ll), simpbraprod(ll));
+simpbraprod(u) := block([N,fail:0],
 	     N: length(u),
 	     for i: 1 thru N do
 	     	 if brap(''u[i])=false then fail:1,
 	     if fail=0 then [tpbra,u]
 	     else disp("all elements must be bras") )$
-
+matchdeclare([L1,L2], listp);
+tellsimpafter(braketprod(L1,L2), simpbraketprod(L1,L2));
 braketprod(B,K) := block([N,M,fail:0,prod:1],
 		if is(B[1]#tpbra) then return(false),
 		if is(K[1]#tpket) then return(false),
