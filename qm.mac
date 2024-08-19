@@ -24,13 +24,13 @@ load("qm.lisp") $
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
-complex_number_p(e) := ?complex\-number\-p(e, \numberp);
+complexp(z):=block(if imagpart(z)#0 then return(true) else return(false));
 
 /******************************/
 /* Simplification definitions */
 /******************************/
-matchdeclare([aa,bb],freeof(%i));
-tellsimpafter(%i*aa+%i*bb,%i*(aa+bb));
+matchdeclare([x,y],freeof(%i));
+tellsimpafter(%i*x+%i*y,%i*(x+y));
 
 matchdeclare([x,y],freeof(%i));
 matchdeclare([cc],numberp);
@@ -66,23 +66,41 @@ matchdeclare(ll, listp);
 tellsimpafter(bra(ll), matrix(ll));
 tellsimpafter(ket(ll), transpose(matrix (ll)));
 
-/************************/
-/*   QM operations      */
-/************************/
+/***************************************/
+/* Rules, simp for general kets/bras   */
+/***************************************/
+
 /* dagger */
-/* dagger exchanges bra and ket */
-tellsimpafter (dagger (bra (aa)), ket (aa));
-tellsimpafter (dagger (ket (aa)), bra (aa));
+matchdeclare([a,b],all);
+tellsimpafter( dagger( bra(a) ), ket(a) );
+tellsimpafter( dagger( ket(a) ), bra(a) );
+
+/* this is meant to be used for general bras and kets, but
+   it breaks computations using the matrix reps...
+matchdeclare(cx,complexp); 
+tellsimpafter( dagger(cx*ket(a)), 'conjugate(cx)*bra(a) );
+tellsimpafter( dagger(cx*bra(a)), 'conjugate(cx)*ket(a) );
+tellsimpafter( dagger(cx), 'conjugate(cx) );
+*/
+
+/* tellsimpafter( dagger(aa*ket(a)), dagger(aa)*bra(a) ); */
+
+
 /* special case of dagger for matrix argument */
-matchdeclare (mm, matrixp);
-tellsimpafter (dagger (mm), conjugate (transpose (mm)));
+matchdeclare (mx, matrixp);
+tellsimpafter (dagger (mx), conjugate (transpose (mx)));
 
 /* braket */
-matchdeclare( [kk,ll], ketp, bb, brap );
+matchdeclare([kk,ll], ketp, bb, brap );
 tellsimpafter( braket(bb,kk) , bb . kk );
 tellsimpafter( braket(ll,kk) , dagger(ll) . kk);
 tellsimpafter( braket(kk,bb) , false );
 tellsimpafter( braket(bb,bb) , false );
+
+/* <a|b> --> delta(a,b), assumes an orthonormal set */
+tellsimpafter( braket(bra(a),ket(b)), kron_delta(a,b));
+tellsimpafter( bra(a) . ket(b), kron_delta(a,b));
+tellsimpafter( braket(bra(a)+c,ket(b)), braket(bra(a),ket(b))+braket(c,ket(b))); /* distribution */
 
 /* norm */
 matchdeclare( kk, ketp, bb, brap );
@@ -113,15 +131,6 @@ brap(psi) := block([r,c],
         [r,c] : matrix_size(psi),
         (r = 1) and (c > 1) and every(lambda([q], not (matrixp(q) or listp(q) or setp(q))), psi))
     else false);
-
-/***************************************/
-/* Rules, simp for general kets/bras   */
-/***************************************/
-matchdeclare([a,b,c],all);
-/* <a|b> --> delta(a,b), assumes an orthonormal set */
-tellsimpafter(braket(bra(a),ket(b)), kron_delta(a,b));
-tellsimpafter(braket(bra(a)+c,ket(b)), braket(bra(a),ket(b))+braket(c,ket(b))); /* distribution */
-
 
 
 
