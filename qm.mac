@@ -24,7 +24,6 @@ load("qm.lisp") $
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
-complexp(z):=block(if imagpart(z)#0 then return(true) else return(false));
 
 /******************************/
 /* Simplification definitions */
@@ -70,25 +69,21 @@ tellsimpafter(ket(ll), transpose(matrix (ll)));
 /* Rules, simp for general kets/bras   */
 /***************************************/
 
+declare(dagger,additive);
+
 /* dagger */
 matchdeclare([a,b],all);
 tellsimpafter( dagger( bra(a) ), ket(a) );
 tellsimpafter( dagger( ket(a) ), bra(a) );
+tellsimpafter( dagger(a*ket(b)), dagger(a)*bra(b) );
+tellsimpafter( dagger(a*bra(b)), dagger(a)*ket(b) );
 
-/* this is meant to be used for general bras and kets, but
-   it breaks computations using the matrix reps...
-matchdeclare(cx,complexp); 
-tellsimpafter( dagger(cx*ket(a)), 'conjugate(cx)*bra(a) );
-tellsimpafter( dagger(cx*bra(a)), 'conjugate(cx)*ket(a) );
-tellsimpafter( dagger(cx), 'conjugate(cx) );
-*/
-
-/* tellsimpafter( dagger(aa*ket(a)), dagger(aa)*bra(a) ); */
-
+matchdeclare(cx,complex_number_p);
+simp:false; tellsimp( dagger(cx) , conjugate(cx) ); simp:true;
 
 /* special case of dagger for matrix argument */
-matchdeclare (mx, matrixp);
-tellsimpafter (dagger (mx), conjugate (transpose (mx)));
+matchdeclare(mx, matrixp);
+tellsimpafter(dagger (mx), conjugate (transpose (mx)));
 
 /* braket */
 matchdeclare([kk,ll], ketp, bb, brap );
