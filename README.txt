@@ -38,17 +38,17 @@ input of basic kets, (j,m)-kets, and so forth should be done without
 lists.  If one wishes to do numerical computations using the kets then
 enter the arguments as a list.  See the following examples.
 
-     (%i4) ket(a,b)+ket(c,d);
-     (%o4)                           |c, d> + |a, b>
-     (%i5) ket([a,b])+ket([c,d]);
+     (%i1) ket(a,b)+ket(c,d);
+     (%o1)                           |c, d> + |a, b>
+     (%i2) ket([a,b])+ket([c,d]);
                                         [ c + a ]
-     (%o5)                              [       ]
+     (%o2)                              [       ]
                                         [ d + b ]
-     (%i4) ketprod('zp,'zm)+ketprod('zm,'zp);
-     (%o4)                  ketprod(zp, zm) + ketprod(zm, zp)
-     (%i5) ketprod([zp,zm]);
+     (%i1) ketprod('zp,'zm)+ketprod('zm,'zp);
+     (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
+     (%i2) ketprod([zp,zm]);
                                           [ 1 ]  [ 0 ]
-     (%o5)                       [tpket, [[   ], [   ]]]
+     (%o2)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
 
    The ‘qm’ package was written by Eric Majzoub, University of Missouri.
@@ -71,18 +71,18 @@ enter the arguments as a list.  See the following examples.
      square brackets.  If no list is entered the ket is represented as a
      general ket, ‘ket(a)’ will return ‘|a>’.
 
-     (%i4) kill(a);
-     (%o4)                                done
-     (%i5) ket(a);
-     (%o5)                                 |a>
-     (%i6) declare([c1,c2],complex);
-     (%o6)                                done
-     (%i7) ket([c1,c2]);
+     (%i1) kill(a);
+     (%o1)                                done
+     (%i2) ket(a);
+     (%o2)                                 |a>
+     (%i3) declare([c1,c2],complex);
+     (%o3)                                done
+     (%i4) ket([c1,c2]);
                                          [ c1 ]
-     (%o7)                               [    ]
+     (%o4)                               [    ]
                                          [ c2 ]
-     (%i8) facts();
-     (%o8) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+     (%i5) facts();
+     (%o5) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 
  -- Function: bra ([c_{1},c_{2},...])
      ‘bra’ creates a _row_ vector of arbitrary finite dimension.  The
@@ -92,50 +92,50 @@ enter the arguments as a list.  See the following examples.
      square bracbras.  If no list is entered the bra is represented as a
      general bra, ‘bra(a)’ will return ‘<a|’.
 
-     (%i4) kill(c1,c2);
-     (%o4)                                done
-     (%i5) bra(c1,c2);
-     (%o5)                              <c1, c2|
-     (%i6) bra([c1,c2]);
-     (%o6)                             [ c1  c2 ]
-     (%i7) facts();
-     (%o7)                    [kind(hbar, real), hbar > 0]
+     (%i1) kill(c1,c2);
+     (%o1)                                done
+     (%i2) bra(c1,c2);
+     (%o2)                              <c1, c2|
+     (%i3) bra([c1,c2]);
+     (%o3)                             [ c1  c2 ]
+     (%i4) facts();
+     (%o4)                    [kind(hbar, real), hbar > 0]
 
  -- Function: ketp (_vector_)
      ‘ketp’ is a predicate function that checks if its input is a ket,
      in which case it returns ‘true’, else it returns ‘false’.  ‘ketp’
      only returns ‘true’ for the matrix representation of a ket.
 
-     (%i4) kill(a,b,k);
-     (%o4)                                done
-     (%i5) k:ket(a,b);
-     (%o5)                               |a, b>
-     (%i6) ketp(k);
-     (%o6)                                false
-     (%i7) k:ket([a,b]);
+     (%i1) kill(a,b,k);
+     (%o1)                                done
+     (%i2) k:ket(a,b);
+     (%o2)                               |a, b>
+     (%i3) ketp(k);
+     (%o3)                                false
+     (%i4) k:ket([a,b]);
                                           [ a ]
-     (%o7)                                [   ]
+     (%o4)                                [   ]
                                           [ b ]
-     (%i8) ketp(k);
-     (%o8)                                true
+     (%i5) ketp(k);
+     (%o5)                                true
 
  -- Function: brap (_vector_)
      ‘brap’ is a predicate function that checks if its input is a bra,
      in which case it returns ‘true’, else it returns ‘false’.  ‘brap’
      only returns ‘true’ for the matrix representation of a bra.
 
-     (%i4) b:bra([a,b]);
-     (%o4)                              [ a  b ]
-     (%i5) brap(b);
-     (%o5)                                true
+     (%i1) b:bra([a,b]);
+     (%o1)                              [ a  b ]
+     (%i2) brap(b);
+     (%o2)                                true
 
  -- Function: dagger (_vector_)
      ‘dagger’ is the quantum mechanical _dagger_ function and returns
      the ‘conjugate’ ‘transpose’ of its input.
 
-     (%i4) dagger(bra([%i,2]));
+     (%i1) dagger(bra([%i,2]));
                                         [ - %i ]
-     (%o4)                              [      ]
+     (%o1)                              [      ]
                                         [  2   ]
 
  -- Function: braket (psi,phi)
@@ -145,33 +145,33 @@ enter the arguments as a list.  See the following examples.
      ‘bra’ with the ‘dagger’ function before the inner product is taken.
      The vector ‘phi’ must always be a ‘ket’.
 
-     (%i4) declare([a,b,c],complex);
-     (%o4)                                done
-     (%i5) braket(ket([a,b,c]),ket([a,b,c]));
-     (%o5)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+     (%i1) declare([a,b,c],complex);
+     (%o1)                                done
+     (%i2) braket(ket([a,b,c]),ket([a,b,c]));
+     (%o2)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 
  -- Function: norm (psi)
      Given a ‘ket’ or ‘bra’ ‘psi’, ‘norm’ returns the square root of the
      quantum mechanical bracket ‘<psi|psi>’.  The vector ‘psi’ must
      always be a ‘ket’, otherwise the function will return ‘false’.
 
-     (%i4) declare([a,b,c],complex);
-     (%o4)                                done
-     (%i5) norm(ket([a,b,c]));
-     (%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
-     (%i6) norm(ket(a,b,c));
-     (%o6)                           norm(|a, b, c>)
+     (%i1) declare([a,b,c],complex);
+     (%o1)                                done
+     (%i2) norm(ket([a,b,c]));
+     (%o2)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+     (%i3) norm(ket(a,b,c));
+     (%o3)                           norm(|a, b, c>)
 
  -- Function: magsqr (c)
      ‘magsqr’ returns ‘conjugate(c)*c’, the magnitude squared of a
      complex number.
 
-     (%i4) declare([a,b,c,d],complex);
-     (%o4)                                done
-     (%i5) A:braket(ket([a,b]),ket([c,d]));
-     (%o5)                   conjugate(b) d + conjugate(a) c
-     (%i6) P:magsqr(A);
-     (%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+     (%i1) declare([a,b,c,d],complex);
+     (%o1)                                done
+     (%i2) A:braket(ket([a,b]),ket([c,d]));
+     (%o2)                   conjugate(b) d + conjugate(a) c
+     (%i3) P:magsqr(A);
+     (%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
 
 1.2.1 Handling general kets and bras
 ------------------------------------
@@ -180,12 +180,12 @@ General kets and bras are, as discussed, created without using a list
 when giving the arguments.  The following examples show how general kets
 and bras can be manipulated.
 
-     (%i4) ket(a)+ket(b);
-     (%o4)                              |b> + |a>
-     (%i5) braket(bra(a),ket(b));
-     (%o5)                          kron_delta(a, b)
-     (%i6) braket(bra(a)+bra(c),ket(b));
-     (%o6)                 kron_delta(b, c) + kron_delta(a, b)
+     (%i1) ket(a)+ket(b);
+     (%o1)                              |b> + |a>
+     (%i2) braket(bra(a),ket(b));
+     (%o2)                          kron_delta(a, b)
+     (%i3) braket(bra(a)+bra(c),ket(b));
+     (%o3)                       braket(<c| + <a|, |b>)
 
 1.2.2 Spin-1/2 state kets and associated operators
 --------------------------------------------------
@@ -213,47 +213,47 @@ and ‘{yp,ym}’ respectively.
  -- Function: ym
      Return the <|y->> ket in the <z>-basis.
 
-     (%i4) zp;
+     (%i1) zp;
                                           [ 1 ]
-     (%o4)                                [   ]
+     (%o1)                                [   ]
                                           [ 0 ]
-     (%i5) zm;
+     (%i2) zm;
                                           [ 0 ]
-     (%o5)                                [   ]
+     (%o2)                                [   ]
                                           [ 1 ]
-     (%i4) yp;
+     (%i1) yp;
                                        [    1    ]
                                        [ ------- ]
                                        [ sqrt(2) ]
-     (%o4)                             [         ]
+     (%o1)                             [         ]
                                        [   %i    ]
                                        [ ------- ]
                                        [ sqrt(2) ]
-     (%i5) ym;
+     (%i2) ym;
                                       [     1     ]
                                       [  -------  ]
                                       [  sqrt(2)  ]
-     (%o5)                            [           ]
+     (%o2)                            [           ]
                                       [     %i    ]
                                       [ - ------- ]
                                       [   sqrt(2) ]
-     (%i4) braket(xp,zp);
+     (%i1) braket(xp,zp);
                                             1
-     (%o4)                               -------
+     (%o1)                               -------
                                          sqrt(2)
 
    Switching bases is done in the following example where a <z>-basis
 ket is constructed and the <x>-basis ket is computed.
 
-     (%i4) declare([a,b],complex);
-     (%o4)                                done
-     (%i5) psi:ket([a,b]);
+     (%i1) declare([a,b],complex);
+     (%o1)                                done
+     (%i2) psi:ket([a,b]);
                                           [ a ]
-     (%o5)                                [   ]
+     (%o2)                                [   ]
                                           [ b ]
-     (%i6) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+     (%i3) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
                          b         a              a         b
-     (%o6)           (------- + -------) xp + (------- - -------) xm
+     (%o3)           (------- + -------) xp + (------- - -------) xm
                       sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 
 1.2.3 Pauli matrices and Sz, Sx, Sy operators
@@ -277,15 +277,15 @@ ket is constructed and the <x>-basis ket is computed.
  -- Function: Sz
      Returns the spin-1/2 <Sz> matrix.
 
-     (%i4) sigmay;
+     (%i1) sigmay;
                                       [ 0   - %i ]
-     (%o4)                            [          ]
+     (%o1)                            [          ]
                                       [ %i   0   ]
-     (%i5) Sy;
+     (%i2) Sy;
                                  [            %i hbar ]
                                  [    0     - ------- ]
                                  [               2    ]
-     (%o5)                       [                    ]
+     (%o2)                       [                    ]
                                  [ %i hbar            ]
                                  [ -------      0     ]
                                  [    2               ]
@@ -294,12 +294,12 @@ ket is constructed and the <x>-basis ket is computed.
      Given two operators ‘X’ and ‘Y’, return the commutator ‘X . Y - Y .
      X’.
 
-     (%i4) commutator(Sx,Sy);
+     (%i1) commutator(Sx,Sy);
                                 [        2             ]
                                 [ %i hbar              ]
                                 [ --------      0      ]
                                 [    2                 ]
-     (%o4)                      [                      ]
+     (%o1)                      [                      ]
                                 [                    2 ]
                                 [             %i hbar  ]
                                 [    0      - -------- ]
@@ -325,21 +325,21 @@ ket is constructed and the <x>-basis ket is computed.
 
    Example:
 
-     (%i4) SY(1/2);
+     (%i1) SY(1/2);
                                  [            %i hbar ]
                                  [    0     - ------- ]
                                  [               2    ]
-     (%o4)                       [                    ]
+     (%o1)                       [                    ]
                                  [ %i hbar            ]
                                  [ -------      0     ]
                                  [    2               ]
-     (%i5) SX(1);
+     (%i2) SX(1);
                               [           hbar            ]
                               [    0     -------     0    ]
                               [          sqrt(2)          ]
                               [                           ]
                               [  hbar              hbar   ]
-     (%o5)                    [ -------     0     ------- ]
+     (%o2)                    [ -------     0     ------- ]
                               [ sqrt(2)           sqrt(2) ]
                               [                           ]
                               [           hbar            ]
@@ -353,16 +353,16 @@ ket is constructed and the <x>-basis ket is computed.
      Computes the quantum mechanical expectation value of the operator
      ‘O’ in state ‘psi’, ‘<psi|O|psi>’.
 
-     (%i4) ev(expect(Sy,xp+ym),ratsimp);
-     (%o4)                               - hbar
+     (%i1) ev(expect(Sy,xp+ym),ratsimp);
+     (%o1)                               - hbar
 
  -- Function: qm_variance (O,psi)
      Computes the quantum mechanical variance of the operator ‘O’ in
      state ‘psi’, ‘sqrt(<psi|O^{2}|psi> - <psi|O|psi>^{2})’.
 
-     (%i4) ev(qm_variance(Sy,xp+ym),ratsimp);
+     (%i1) ev(qm_variance(Sy,xp+ym),ratsimp);
                                          %i hbar
-     (%o4)                               -------
+     (%o1)                               -------
                                             2
 
 1.2.6 Angular momentum representation of kets and bras
@@ -379,22 +379,22 @@ following functions.
      ‘jm_bra’ creates the bra <<j,m|> for total spin <j> and
      <z>-component <m>.
 
-     (%i4) jm_bra(3/2,1/2);
+     (%i1) jm_bra(3/2,1/2);
                                              3  1
-     (%o4)                            jm_bra(-, -)
+     (%o1)                            jm_bra(-, -)
                                              2  2
-     (%i5) jm_bra([3/2,1/2]);
+     (%i2) jm_bra([3/2,1/2]);
                                             [ 3  1 ]
-     (%o5)                          [jmbra, [ -  - ]]
+     (%o2)                          [jmbra, [ -  - ]]
                                             [ 2  2 ]
 
  -- Function: jm_ketp (jmket)
      ‘jm_ketp’ checks to see that the ket has the 'jmket' marker.
 
-     (%i4) jm_ketp(jm_ket(j,m));
-     (%o4)                                false
-     (%i5) jm_ketp(jm_ket([j,m]));
-     (%o5)                                true
+     (%i1) jm_ketp(jm_ket(j,m));
+     (%o1)                                false
+     (%i2) jm_ketp(jm_ket([j,m]));
+     (%o2)                                true
 
  -- Function: jm_brap (jmbra)
      ‘jm_brap’ checks to see that the bra has the 'jmbra' marker.
@@ -402,30 +402,30 @@ following functions.
  -- Function: jm_check (j,m)
      ‘jm_check’ checks to see that <m> is one of {-j, ..., +j}.
 
-     (%i4) jm_check(3/2,1/2);
-     (%o4)                                true
+     (%i1) jm_check(3/2,1/2);
+     (%o1)                                true
 
  -- Function: jm_braket (_jmbra,jmket_)
      ‘jm_braket’ takes the inner product of the jm-kets.
 
-     (%i4) K:jm_ket(j1,m1);
-     (%o4)                           jm_ket(j1, m1)
-     (%i5) B:jm_bra(j2,m2);
-     (%o5)                           jm_bra(j2, m2)
-     (%i6) jm_braket(B,K);
-     (%o6)                kron_delta(j1, j2) kron_delta(m1, m2)
-     (%i7) B:jm_bra(j1,m1);
-     (%o7)                           jm_bra(j1, m1)
+     (%i1) K:jm_ket(j1,m1);
+     (%o1)                           jm_ket(j1, m1)
+     (%i2) B:jm_bra(j2,m2);
+     (%o2)                           jm_bra(j2, m2)
+     (%i3) jm_braket(B,K);
+     (%o3)                kron_delta(j1, j2) kron_delta(m1, m2)
+     (%i4) B:jm_bra(j1,m1);
+     (%o4)                           jm_bra(j1, m1)
+     (%i5) jm_braket(B,K);
+     (%o5)                                  1
+     (%i6) K:jm_ket([j1,m1]);
+     (%o6)                         [jmket, [ j1  m1 ]]
+     (%i7) B:jm_bra([j2,m2]);
+     (%o7)                         [jmbra, [ j2  m2 ]]
      (%i8) jm_braket(B,K);
-     (%o8)                                  1
-     (%i9) K:jm_ket([j1,m1]);
-     (%o9)                         [jmket, [ j1  m1 ]]
-     (%i10) B:jm_bra([j2,m2]);
-     (%o10)                        [jmbra, [ j2  m2 ]]
-     (%i11) jm_braket(B,K);
-     (%o11)                                 0
-     (%i12) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
-     (%o12) kron_delta(j2, j3) kron_delta(m2, m3)
+     (%o8)                                  0
+     (%i9) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+     (%o9) kron_delta(j2, j3) kron_delta(m2, m3)
                                              + kron_delta(j1, j2) kron_delta(m1, m2)
 
  -- Function: JP (_jmket_)
@@ -446,17 +446,17 @@ following functions.
 
    These functions are illustrated below.
 
-     (%i4) k:jm_ket([j,m]);
-     (%o4)                          [jmket, [ j  m ]]
-     (%i5) JP(k);
-     (%o5)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
-     (%i6) JM(k);
-     (%o6)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
-     (%i7) Jsqr(k);
+     (%i1) k:jm_ket([j,m]);
+     (%o1)                          [jmket, [ j  m ]]
+     (%i2) JP(k);
+     (%o2)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+     (%i3) JM(k);
+     (%o3)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+     (%i4) Jsqr(k);
                                   2
-     (%o7)                    hbar  j (j + 1) jm_ket(j, m)
-     (%i8) Jz(k);
-     (%o8)                         hbar jm_ket(j, m) m
+     (%o4)                    hbar  j (j + 1) jm_ket(j, m)
+     (%i5) Jz(k);
+     (%o5)                         hbar jm_ket(j, m) m
 
 1.2.7 Angular momentum and ladder operators
 -------------------------------------------
@@ -469,16 +469,16 @@ following functions.
 
    Examples of the ladder operators:
 
-     (%i4) SP(1);
+     (%i1) SP(1);
                             [ 0  sqrt(2) hbar       0       ]
                             [                               ]
-     (%o4)                  [ 0       0        sqrt(2) hbar ]
+     (%o1)                  [ 0       0        sqrt(2) hbar ]
                             [                               ]
                             [ 0       0             0       ]
-     (%i5) SM(1);
+     (%i2) SM(1);
                             [      0             0        0 ]
                             [                               ]
-     (%o5)                  [ sqrt(2) hbar       0        0 ]
+     (%o2)                  [ sqrt(2) hbar       0        0 ]
                             [                               ]
                             [      0        sqrt(2) hbar  0 ]
 
@@ -497,13 +497,13 @@ following functions.
      ‘RZ(s)’ for spin ‘s’ returns the matrix representation of the
      rotation operator ‘Rz’ for rotation through angle ‘t’.
 
-     (%i4) RZ(1/2,t);
+     (%i1) RZ(1/2,t);
      Proviso: assuming 64*t # 0
                                   [     %i t         ]
                                   [   - ----         ]
                                   [      2           ]
                                   [ %e          0    ]
-     (%o4)                        [                  ]
+     (%o1)                        [                  ]
                                   [             %i t ]
                                   [             ---- ]
                                   [              2   ]
@@ -516,12 +516,12 @@ following functions.
      ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
      is defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
 
-     (%i4) UU(w*Sy,t);
+     (%i1) UU(w*Sy,t);
      Proviso: assuming 64*t*w # 0
                                 [     t w         t w  ]
                                 [ cos(---)  - sin(---) ]
                                 [      2           2   ]
-     (%o4)                      [                      ]
+     (%o1)                      [                      ]
                                 [     t w        t w   ]
                                 [ sin(---)   cos(---)  ]
                                 [      2          2    ]
@@ -551,34 +551,34 @@ with the correct kind of objects.
    Examples below show how to create tensor products and take the
 bracket of tensor products.
 
-     (%i4) ketprod(zp,zm);
+     (%i1) ketprod(zp,zm);
                                           [ 1 ]  [ 0 ]
-     (%o4)                        ketprod([   ], [   ])
+     (%o1)                        ketprod([   ], [   ])
                                           [ 0 ]  [ 1 ]
-     (%i5) ketprod('zp,'zm);
-     (%o5)                           ketprod(zp, zm)
-     (%i4) kill(a,b,c,d);
-     (%o4)                                done
-     (%i5) declare([a,b,c,d],complex);
-     (%o5)                                done
-     (%i6) braprod(bra([a,b]),bra([c,d]));
-     (%o6)                     braprod([ a  b ], [ c  d ])
-     (%i7) braprod(dagger(zp),bra([c,d]));
-     (%o7)                     braprod([ 1  0 ], [ c  d ])
-     (%i4) K:ketprod(zp,zm);
+     (%i2) ketprod('zp,'zm);
+     (%o2)                           ketprod(zp, zm)
+     (%i1) kill(a,b,c,d);
+     (%o1)                                done
+     (%i2) declare([a,b,c,d],complex);
+     (%o2)                                done
+     (%i3) braprod(bra([a,b]),bra([c,d]));
+     (%o3)                     braprod([ a  b ], [ c  d ])
+     (%i4) braprod(dagger(zp),bra([c,d]));
+     (%o4)                     braprod([ 1  0 ], [ c  d ])
+     (%i1) K:ketprod(zp,zm);
                                           [ 1 ]  [ 0 ]
-     (%o4)                        ketprod([   ], [   ])
+     (%o1)                        ketprod([   ], [   ])
                                           [ 0 ]  [ 1 ]
-     (%i5) zpb:dagger(zp);
-     (%o5)                              [ 1  0 ]
-     (%i6) zmb:dagger(zm);
-     (%o6)                              [ 0  1 ]
-     (%i7) B:braprod(zpb,zmb);
-     (%o7)                     braprod([ 1  0 ], [ 0  1 ])
-     (%i8) braketprod(K,B);
-     (%o8)                                false
-     (%i9) braketprod(B,K);
-     (%o9)                                false
+     (%i2) zpb:dagger(zp);
+     (%o2)                              [ 1  0 ]
+     (%i3) zmb:dagger(zm);
+     (%o3)                              [ 0  1 ]
+     (%i4) B:braprod(zpb,zmb);
+     (%o4)                     braprod([ 1  0 ], [ 0  1 ])
+     (%i5) braketprod(K,B);
+     (%o5)                                false
+     (%i6) braketprod(B,K);
+     (%o6)                                false
 
 Appendix A Function and Variable index
 **************************************

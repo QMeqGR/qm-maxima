@@ -68,7 +68,7 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i34) braket(bra(a),ket(b))
 (%o34) 0
 (%i35) braket(bra(a)+bra(c),ket(b))
-(%o35) 0
+(%o35) braket(bra(c)+bra(a),ket(matrix([a,b])))
 (%i36) zp
 (%o36) matrix([1],[0])
 (%i37) zm

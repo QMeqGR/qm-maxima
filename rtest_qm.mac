@@ -95,7 +95,7 @@ braket(bra(a),ket(b));
 0 $
 
 braket(bra(a)+bra(c),ket(b));
-0 $
+braket(bra(c)+bra(a),ket(matrix([a,b]))) $
 
 zp;
 matrix([1],[0]) $

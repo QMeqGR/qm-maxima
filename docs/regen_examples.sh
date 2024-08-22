@@ -1,10 +1,10 @@
 #!/bin/bash
 
 debug=0;
-packname=$(cat ../CONFIG | gawk -F'=' '($1=="package-name"){print $2}')
 
-if [ "$#" -eq 0 ];then
-    echo Usage: regen_examples.sh packagename
+if [ $# -eq 0 ];then
+    echo Usage: regen_examples.sh packname
+    exit
 else
     packname=$1;
     echo "Found package name: "$packname
@@ -50,11 +50,11 @@ make_awkfile;
 #                      %grpcnt= 2 rgen-icount= 3 -->> rvec(1,2,3);
 
 # clean out examples and insert markers
-cat $packname.texi | gawk -f ./tmp.awk > tmp.regen.1;
+cat $packname.texi | awk -f ./tmp.awk > tmp.regen.1;
 
 # generate markers list
-icount_list=$(cat tmp.regen.1 | gawk '($1~/grpcnt/){printf("%s ",$4);}');
-grpcnt_list=$(cat tmp.regen.1 | gawk '($1~/grpcnt/){printf("%s ",$2);}');
+icount_list=$(cat tmp.regen.1 | awk '($1~/grpcnt/){printf("%s ",$4);}');
+grpcnt_list=$(cat tmp.regen.1 | awk '($1~/grpcnt/){printf("%s ",$2);}');
 
 if [ $debug -gt 0 ]; then
     echo "icount_list= "$icount_list
@@ -67,21 +67,22 @@ fi
 
 ###################################################
 # Loop over the groups and make the batch files
-ngrps=$(echo $grpcnt_list | gawk '{print $NF}')
+ngrps=$(echo $grpcnt_list | awk '{print $NF}')
 if [ $debug -gt 0 ]; then echo "ngrps= "$ngrps; fi
 for i in $(seq 1 $ngrps); do
     echo "display2d_unicode:false$" > .tmp.grp.$i.mac
     echo "load($packname)$" >> .tmp.grp.$i.mac
+    echo "linenum:0$" >> .tmp.grp.$i.mac
     echo "extracting examples from group "$i;
-    cat tmp.regen.1 | gawk -v G="$i" --source \
+    cat tmp.regen.1 | awk -v G="$i" --source \
       '($1~/grpcnt/ && $2==G){for(i=6;i<NF+1;i++){printf("%s ",$i);}printf("\n");}' >> .tmp.grp.$i.mac
     # now batch run the file
     maxima -q --batch .tmp.grp.$i.mac > .tmp.grp.$i.tmp1
     # throw away the header and the last line
-    nlines=$(wc -l .tmp.grp.$i.tmp1 | gawk '{print $1}')
-    cat .tmp.grp.$i.tmp1 | gawk -v N="$nlines" --source '(NR>6 && NR<N){print $0}' > .tmp.grp.$i.tmp2
+    nlines=$(wc -l .tmp.grp.$i.tmp1 | awk '{print $1}')
+    cat .tmp.grp.$i.tmp1 | awk -v N="$nlines" --source '(NR>7 && NR<N){print $0}' > .tmp.grp.$i.tmp2
     # Now post process the output
-    cat .tmp.grp.$i.tmp2 | gawk '{if($1~/\(%i[1-9]/){printf("%s %s;\n",$1,$2)}else{print $0}}' > .tmp.grp.$i.out
+    cat .tmp.grp.$i.tmp2 | awk '{if($1~/\(%i[1-9]/){printf("%s %s;\n",$1,$2)}else{print $0}}' > .tmp.grp.$i.out
 done
 
 ####################################################
@@ -90,13 +91,13 @@ done
 for i in $(seq 1 $ngrps); do
     if [ $i -eq 1 ]; then
 	# spit out the file up to the first group
-	cat tmp.regen.1 | gawk --source \
+	cat tmp.regen.1 | awk --source \
 	   'BEGIN{stop=0;}($1~/grpcnt/ && $2==1){exit;}(stop==0){print $0}' > tmp.regen.2;
 	cat .tmp.grp.1.out >> tmp.regen.2;
     else
 	# append for markers between i-1 and i
 	im=$((i-1));
-	cat tmp.regen.1 | gawk -v I="$i" -v IM="$im" --source 'BEGIN{stop=1;}
+	cat tmp.regen.1 | awk -v I="$i" -v IM="$im" --source 'BEGIN{stop=1;}
 					($1~/grpcnt/ && $2==IM){stop=0;}
 					($1~/grpcnt/ && $2==I){stop=1;}
 					(stop==0){print $0}' >> tmp.regen.2;
@@ -104,7 +105,7 @@ for i in $(seq 1 $ngrps); do
     fi
     # spit out the rest of the file after the last group
     if [ $i -eq $ngrps ]; then
-	cat tmp.regen.1 | gawk -v LAST="$ngrps" --source \
+	cat tmp.regen.1 | awk -v LAST="$ngrps" --source \
 			       'BEGIN{stop=1;}
 			       ($1~/grpcnt/ && $2==LAST){stop=0;}
 			       (stop==0){print $0}' >> tmp.regen.2;
@@ -113,7 +114,7 @@ done
 
 ####################################################
 # Strip the markers from the file for final output
-cat tmp.regen.2 | gawk '{if($1!~/grpcnt/){print $0}}' > regen.texi;
+cat tmp.regen.2 | awk '{if($1!~/grpcnt/){print $0}}' > regen.texi;
 
 echo "Output is in: regen.texi"
 echo "#####"

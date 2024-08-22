@@ -75,19 +75,19 @@ arguments as a list. See the following examples.
 
 @example
 @group
-(%i4) ket(a,b)+ket(c,d);
-(%o4)                           |c, d> + |a, b>
-(%i5) ket([a,b])+ket([c,d]);
+(%i1) ket(a,b)+ket(c,d);
+(%o1)                           |c, d> + |a, b>
+(%i2) ket([a,b])+ket([c,d]);
                                    [ c + a ]
-(%o5)                              [       ]
+(%o2)                              [       ]
                                    [ d + b ]
 @end group
 @group
-(%i4) ketprod('zp,'zm)+ketprod('zm,'zp);
-(%o4)                  ketprod(zp, zm) + ketprod(zm, zp)
-(%i5) ketprod([zp,zm]);
+(%i1) ketprod('zp,'zm)+ketprod('zm,'zp);
+(%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
+(%i2) ketprod([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o5)                       [tpket, [[   ], [   ]]]
+(%o2)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 @end group
 @end example
@@ -118,18 +118,18 @@ is represented as a general ket, @code{ket(a)} will return @code{|a>}.
 
 @example
 @group
-(%i4) kill(a);
-(%o4)                                done
-(%i5) ket(a);
-(%o5)                                 |a>
-(%i6) declare([c1,c2],complex);
-(%o6)                                done
-(%i7) ket([c1,c2]);
+(%i1) kill(a);
+(%o1)                                done
+(%i2) ket(a);
+(%o2)                                 |a>
+(%i3) declare([c1,c2],complex);
+(%o3)                                done
+(%i4) ket([c1,c2]);
                                     [ c1 ]
-(%o7)                               [    ]
+(%o4)                               [    ]
                                     [ c2 ]
-(%i8) facts();
-(%o8) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+(%i5) facts();
+(%o5) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
 @end group
 @end example
 
@@ -145,14 +145,14 @@ is represented as a general bra, @code{bra(a)} will return @code{<a|}.
 
 @example
 @group
-(%i4) kill(c1,c2);
-(%o4)                                done
-(%i5) bra(c1,c2);
-(%o5)                              <c1, c2|
-(%i6) bra([c1,c2]);
-(%o6)                             [ c1  c2 ]
-(%i7) facts();
-(%o7)                    [kind(hbar, real), hbar > 0]
+(%i1) kill(c1,c2);
+(%o1)                                done
+(%i2) bra(c1,c2);
+(%o2)                              <c1, c2|
+(%i3) bra([c1,c2]);
+(%o3)                             [ c1  c2 ]
+(%i4) facts();
+(%o4)                    [kind(hbar, real), hbar > 0]
 @end group
 @end example
 
@@ -165,18 +165,18 @@ in which case it returns @code{true}, else it returns @code{false}.
 
 @example
 @group
-(%i4) kill(a,b,k);
-(%o4)                                done
-(%i5) k:ket(a,b);
-(%o5)                               |a, b>
-(%i6) ketp(k);
-(%o6)                                false
-(%i7) k:ket([a,b]);
+(%i1) kill(a,b,k);
+(%o1)                                done
+(%i2) k:ket(a,b);
+(%o2)                               |a, b>
+(%i3) ketp(k);
+(%o3)                                false
+(%i4) k:ket([a,b]);
                                      [ a ]
-(%o7)                                [   ]
+(%o4)                                [   ]
                                      [ b ]
-(%i8) ketp(k);
-(%o8)                                true
+(%i5) ketp(k);
+(%o5)                                true
 @end group
 @end example
 
@@ -189,10 +189,10 @@ in which case it returns @code{true}, else it returns @code{false}.
 
 @example
 @group
-(%i4) b:bra([a,b]);
-(%o4)                              [ a  b ]
-(%i5) brap(b);
-(%o5)                                true
+(%i1) b:bra([a,b]);
+(%o1)                              [ a  b ]
+(%i2) brap(b);
+(%o2)                                true
 @end group
 @end example
 
@@ -204,9 +204,9 @@ the @code{conjugate} @code{transpose} of its input.
 
 @example
 @group
-(%i4) dagger(bra([%i,2]));
+(%i1) dagger(bra([%i,2]));
                                    [ - %i ]
-(%o4)                              [      ]
+(%o1)                              [      ]
                                    [  2   ]
 @end group
 @end example
@@ -222,10 +222,10 @@ product is taken. The vector @code{phi} must always be a @code{ket}.
 
 @example
 @group
-(%i4) declare([a,b,c],complex);
-(%o4)                                done
-(%i5) braket(ket([a,b,c]),ket([a,b,c]));
-(%o5)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+(%i1) declare([a,b,c],complex);
+(%o1)                                done
+(%i2) braket(ket([a,b,c]),ket([a,b,c]));
+(%o2)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 @end group
 @end example
 
@@ -239,12 +239,12 @@ function will return @code{false}.
 
 @example
 @group
-(%i4) declare([a,b,c],complex);
-(%o4)                                done
-(%i5) norm(ket([a,b,c]));
-(%o5)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
-(%i6) norm(ket(a,b,c));
-(%o6)                           norm(|a, b, c>)
+(%i1) declare([a,b,c],complex);
+(%o1)                                done
+(%i2) norm(ket([a,b,c]));
+(%o2)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
+(%i3) norm(ket(a,b,c));
+(%o3)                           norm(|a, b, c>)
 @end group
 @end example
 
@@ -255,12 +255,12 @@ squared of a complex number.
 
 @example
 @group
-(%i4) declare([a,b,c,d],complex);
-(%o4)                                done
-(%i5) A:braket(ket([a,b]),ket([c,d]));
-(%o5)                   conjugate(b) d + conjugate(a) c
-(%i6) P:magsqr(A);
-(%o6) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+(%i1) declare([a,b,c,d],complex);
+(%o1)                                done
+(%i2) A:braket(ket([a,b]),ket([c,d]));
+(%o2)                   conjugate(b) d + conjugate(a) c
+(%i3) P:magsqr(A);
+(%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
 @end group
 @end example
 
@@ -272,12 +272,12 @@ kets and bras can be manipulated.
 
 @example
 @group
-(%i4) ket(a)+ket(b);
-(%o4)                              |b> + |a>
-(%i5) braket(bra(a),ket(b));
-(%o5)                          kron_delta(a, b)
-(%i6) braket(bra(a)+bra(c),ket(b));
-(%o6)                 kron_delta(b, c) + kron_delta(a, b)
+(%i1) ket(a)+ket(b);
+(%o1)                              |b> + |a>
+(%i2) braket(bra(a),ket(b));
+(%o2)                          kron_delta(a, b)
+(%i3) braket(bra(a)+bra(c),ket(b));
+(%o3)                       braket(<c| + <a|, |b>)
 @end group
 @end example
 
@@ -314,37 +314,37 @@ Return the @var{|y->} ket in the @var{z}-basis.
 
 @example
 @group
-(%i4) zp;
+(%i1) zp;
                                      [ 1 ]
-(%o4)                                [   ]
+(%o1)                                [   ]
                                      [ 0 ]
-(%i5) zm;
+(%i2) zm;
                                      [ 0 ]
-(%o5)                                [   ]
+(%o2)                                [   ]
                                      [ 1 ]
 @end group
 @group
-(%i4) yp;
+(%i1) yp;
                                   [    1    ]
                                   [ ------- ]
                                   [ sqrt(2) ]
-(%o4)                             [         ]
+(%o1)                             [         ]
                                   [   %i    ]
                                   [ ------- ]
                                   [ sqrt(2) ]
-(%i5) ym;
+(%i2) ym;
                                  [     1     ]
                                  [  -------  ]
                                  [  sqrt(2)  ]
-(%o5)                            [           ]
+(%o2)                            [           ]
                                  [     %i    ]
                                  [ - ------- ]
                                  [   sqrt(2) ]
 @end group
 @group
-(%i4) braket(xp,zp);
+(%i1) braket(xp,zp);
                                        1
-(%o4)                               -------
+(%o1)                               -------
                                     sqrt(2)
 @end group
 @end example
@@ -354,15 +354,15 @@ ket is constructed and the @var{x}-basis ket is computed.
 
 @example
 @group
-(%i4) declare([a,b],complex);
-(%o4)                                done
-(%i5) psi:ket([a,b]);
+(%i1) declare([a,b],complex);
+(%o1)                                done
+(%i2) psi:ket([a,b]);
                                      [ a ]
-(%o5)                                [   ]
+(%o2)                                [   ]
                                      [ b ]
-(%i6) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+(%i3) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
                     b         a              a         b
-(%o6)           (------- + -------) xp + (------- - -------) xm
+(%o3)           (------- + -------) xp + (------- - -------) xm
                  sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
 @end group
 @end example
@@ -395,15 +395,15 @@ Returns the spin-1/2 @var{Sz} matrix.
 
 @example
 @group
-(%i4) sigmay;
+(%i1) sigmay;
                                  [ 0   - %i ]
-(%o4)                            [          ]
+(%o1)                            [          ]
                                  [ %i   0   ]
-(%i5) Sy;
+(%i2) Sy;
                             [            %i hbar ]
                             [    0     - ------- ]
                             [               2    ]
-(%o5)                       [                    ]
+(%o2)                       [                    ]
                             [ %i hbar            ]
                             [ -------      0     ]
                             [    2               ]
@@ -417,12 +417,12 @@ commutator @code{X . Y - Y . X}.
 
 @example
 @group
-(%i4) commutator(Sx,Sy);
+(%i1) commutator(Sx,Sy);
                            [        2             ]
                            [ %i hbar              ]
                            [ --------      0      ]
                            [    2                 ]
-(%o4)                      [                      ]
+(%o1)                      [                      ]
                            [                    2 ]
                            [             %i hbar  ]
                            [    0      - -------- ]
@@ -454,21 +454,21 @@ Example:
 
 @example
 @group
-(%i4) SY(1/2);
+(%i1) SY(1/2);
                             [            %i hbar ]
                             [    0     - ------- ]
                             [               2    ]
-(%o4)                       [                    ]
+(%o1)                       [                    ]
                             [ %i hbar            ]
                             [ -------      0     ]
                             [    2               ]
-(%i5) SX(1);
+(%i2) SX(1);
                          [           hbar            ]
                          [    0     -------     0    ]
                          [          sqrt(2)          ]
                          [                           ]
                          [  hbar              hbar   ]
-(%o5)                    [ -------     0     ------- ]
+(%o2)                    [ -------     0     ------- ]
                          [ sqrt(2)           sqrt(2) ]
                          [                           ]
                          [           hbar            ]
@@ -486,8 +486,8 @@ in state @code{psi}, @code{<psi|O|psi>}.
 
 @example
 @group
-(%i4) ev(expect(Sy,xp+ym),ratsimp);
-(%o4)                               - hbar
+(%i1) ev(expect(Sy,xp+ym),ratsimp);
+(%o1)                               - hbar
 @end group
 @end example
 
@@ -498,9 +498,9 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 
 @example
 @group
-(%i4) ev(qm_variance(Sy,xp+ym),ratsimp);
+(%i1) ev(qm_variance(Sy,xp+ym),ratsimp);
                                     %i hbar
-(%o4)                               -------
+(%o1)                               -------
                                        2
 @end group
 @end example
@@ -522,13 +522,13 @@ and @var{z}-component @var{m}.
 
 @example
 @group
-(%i4) jm_bra(3/2,1/2);
+(%i1) jm_bra(3/2,1/2);
                                         3  1
-(%o4)                            jm_bra(-, -)
+(%o1)                            jm_bra(-, -)
                                         2  2
-(%i5) jm_bra([3/2,1/2]);
+(%i2) jm_bra([3/2,1/2]);
                                        [ 3  1 ]
-(%o5)                          [jmbra, [ -  - ]]
+(%o2)                          [jmbra, [ -  - ]]
                                        [ 2  2 ]
 @end group
 @end example
@@ -539,10 +539,10 @@ and @var{z}-component @var{m}.
 
 @example
 @group
-(%i4) jm_ketp(jm_ket(j,m));
-(%o4)                                false
-(%i5) jm_ketp(jm_ket([j,m]));
-(%o5)                                true
+(%i1) jm_ketp(jm_ket(j,m));
+(%o1)                                false
+(%i2) jm_ketp(jm_ket([j,m]));
+(%o2)                                true
 @end group
 @end example
 
@@ -557,8 +557,8 @@ and @var{z}-component @var{m}.
 
 @example
 @group
-(%i4) jm_check(3/2,1/2);
-(%o4)                                true
+(%i1) jm_check(3/2,1/2);
+(%o1)                                true
 @end group
 @end example
 
@@ -569,24 +569,24 @@ and @var{z}-component @var{m}.
 
 @example
 @group
-(%i4) K:jm_ket(j1,m1);
-(%o4)                           jm_ket(j1, m1)
-(%i5) B:jm_bra(j2,m2);
-(%o5)                           jm_bra(j2, m2)
-(%i6) jm_braket(B,K);
-(%o6)                kron_delta(j1, j2) kron_delta(m1, m2)
-(%i7) B:jm_bra(j1,m1);
-(%o7)                           jm_bra(j1, m1)
+(%i1) K:jm_ket(j1,m1);
+(%o1)                           jm_ket(j1, m1)
+(%i2) B:jm_bra(j2,m2);
+(%o2)                           jm_bra(j2, m2)
+(%i3) jm_braket(B,K);
+(%o3)                kron_delta(j1, j2) kron_delta(m1, m2)
+(%i4) B:jm_bra(j1,m1);
+(%o4)                           jm_bra(j1, m1)
+(%i5) jm_braket(B,K);
+(%o5)                                  1
+(%i6) K:jm_ket([j1,m1]);
+(%o6)                         [jmket, [ j1  m1 ]]
+(%i7) B:jm_bra([j2,m2]);
+(%o7)                         [jmbra, [ j2  m2 ]]
 (%i8) jm_braket(B,K);
-(%o8)                                  1
-(%i9) K:jm_ket([j1,m1]);
-(%o9)                         [jmket, [ j1  m1 ]]
-(%i10) B:jm_bra([j2,m2]);
-(%o10)                        [jmbra, [ j2  m2 ]]
-(%i11) jm_braket(B,K);
-(%o11)                                 0
-(%i12) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
-(%o12) kron_delta(j2, j3) kron_delta(m2, m3)
+(%o8)                                  0
+(%i9) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+(%o9) kron_delta(j2, j3) kron_delta(m2, m3)
                                         + kron_delta(j1, j2) kron_delta(m1, m2)
 @end group
 @end example
@@ -615,17 +615,17 @@ These functions are illustrated below.
 
 @example
 @group
-(%i4) k:jm_ket([j,m]);
-(%o4)                          [jmket, [ j  m ]]
-(%i5) JP(k);
-(%o5)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
-(%i6) JM(k);
-(%o6)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
-(%i7) Jsqr(k);
+(%i1) k:jm_ket([j,m]);
+(%o1)                          [jmket, [ j  m ]]
+(%i2) JP(k);
+(%o2)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%i3) JM(k);
+(%o3)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%i4) Jsqr(k);
                              2
-(%o7)                    hbar  j (j + 1) jm_ket(j, m)
-(%i8) Jz(k);
-(%o8)                         hbar jm_ket(j, m) m
+(%o4)                    hbar  j (j + 1) jm_ket(j, m)
+(%i5) Jz(k);
+(%o5)                         hbar jm_ket(j, m) m
 @end group
 @end example
 
@@ -643,16 +643,16 @@ Examples of the ladder operators:
 
 @example
 @group
-(%i4) SP(1);
+(%i1) SP(1);
                        [ 0  sqrt(2) hbar       0       ]
                        [                               ]
-(%o4)                  [ 0       0        sqrt(2) hbar ]
+(%o1)                  [ 0       0        sqrt(2) hbar ]
                        [                               ]
                        [ 0       0             0       ]
-(%i5) SM(1);
+(%i2) SM(1);
                        [      0             0        0 ]
                        [                               ]
-(%o5)                  [ sqrt(2) hbar       0        0 ]
+(%o2)                  [ sqrt(2) hbar       0        0 ]
                        [                               ]
                        [      0        sqrt(2) hbar  0 ]
 @end group
@@ -677,13 +677,13 @@ rotation operator @code{Rz} for rotation through angle @code{t}.
 
 @example
 @group
-(%i4) RZ(1/2,t);
+(%i1) RZ(1/2,t);
 Proviso: assuming 64*t # 0 
                              [     %i t         ]
                              [   - ----         ]
                              [      2           ]
                              [ %e          0    ]
-(%o4)                        [                  ]
+(%o1)                        [                  ]
                              [             %i t ]
                              [             ---- ]
                              [              2   ]
@@ -700,12 +700,12 @@ is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
 
 @example
 @group
-(%i4) UU(w*Sy,t);
+(%i1) UU(w*Sy,t);
 Proviso: assuming 64*t*w # 0 
                            [     t w         t w  ]
                            [ cos(---)  - sin(---) ]
                            [      2           2   ]
-(%o4)                      [                      ]
+(%o1)                      [                      ]
                            [     t w        t w   ]
                            [ sin(---)   cos(---)  ]
                            [      2          2    ]
@@ -743,38 +743,38 @@ the bracket of tensor products.
 
 @example
 @group
-(%i4) ketprod(zp,zm);
+(%i1) ketprod(zp,zm);
                                      [ 1 ]  [ 0 ]
-(%o4)                        ketprod([   ], [   ])
+(%o1)                        ketprod([   ], [   ])
                                      [ 0 ]  [ 1 ]
-(%i5) ketprod('zp,'zm);
-(%o5)                           ketprod(zp, zm)
+(%i2) ketprod('zp,'zm);
+(%o2)                           ketprod(zp, zm)
 @end group
 @group
-(%i4) kill(a,b,c,d);
-(%o4)                                done
-(%i5) declare([a,b,c,d],complex);
-(%o5)                                done
-(%i6) braprod(bra([a,b]),bra([c,d]));
-(%o6)                     braprod([ a  b ], [ c  d ])
-(%i7) braprod(dagger(zp),bra([c,d]));
-(%o7)                     braprod([ 1  0 ], [ c  d ])
+(%i1) kill(a,b,c,d);
+(%o1)                                done
+(%i2) declare([a,b,c,d],complex);
+(%o2)                                done
+(%i3) braprod(bra([a,b]),bra([c,d]));
+(%o3)                     braprod([ a  b ], [ c  d ])
+(%i4) braprod(dagger(zp),bra([c,d]));
+(%o4)                     braprod([ 1  0 ], [ c  d ])
 @end group
 @group
-(%i4) K:ketprod(zp,zm);
+(%i1) K:ketprod(zp,zm);
                                      [ 1 ]  [ 0 ]
-(%o4)                        ketprod([   ], [   ])
+(%o1)                        ketprod([   ], [   ])
                                      [ 0 ]  [ 1 ]
-(%i5) zpb:dagger(zp);
-(%o5)                              [ 1  0 ]
-(%i6) zmb:dagger(zm);
-(%o6)                              [ 0  1 ]
-(%i7) B:braprod(zpb,zmb);
-(%o7)                     braprod([ 1  0 ], [ 0  1 ])
-(%i8) braketprod(K,B);
-(%o8)                                false
-(%i9) braketprod(B,K);
-(%o9)                                false
+(%i2) zpb:dagger(zp);
+(%o2)                              [ 1  0 ]
+(%i3) zmb:dagger(zm);
+(%o3)                              [ 0  1 ]
+(%i4) B:braprod(zpb,zmb);
+(%o4)                     braprod([ 1  0 ], [ 0  1 ])
+(%i5) braketprod(K,B);
+(%o5)                                false
+(%i6) braketprod(B,K);
+(%o6)                                false
 @end group
 @end example
 
