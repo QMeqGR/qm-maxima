@@ -20,23 +20,18 @@ while getopts "Dhm:M:p:" SWITCH; do
     esac
 done
 
-if [ $# -eq 0 ] || [ $help -eq 1 ]; then
-    echo
-    echo "#######################"
-    echo "#   create_docs.sh    #"
-    echo "#######################"
-    echo
-    echo "use: create_docs.sh [-hDm:M:p:]"
-    echo "     (options with a * require an argument)"
-    echo
+if [ $help -eq 1 ]; then
+    echo "Usage:"
+    echo "create_docs.sh [-hD]  [-p package-name] [-m maxima] [-M maxima-src]"
+    echo 
     echo "    -D --- debug (leaves temp files, default is OFF)"
     echo "    -h --- help (show this help)"
-    echo "    -m -*- set maxima executable (default maxima)"
-    echo "    -M -*- path to maxima source directory"
-    echo "    -p -*- set package name (default off, automatically determined)"
+    echo "    -p --- set package name (default off, automatically determined)"
+    echo "    -m --- maxima executable (default maxima)"
+    echo "    -M --- maxima source root directory (automatically determined)"
+    echo "           (something like /home/src/maxima-code if you cloned from"
+    echo "            SourceForge, and if you build out-of-tree)"
     echo
-    echo " The maxima source directory should be something like:"
-    echo " /home/packages/SOURCE/maxima-code/ if you cloned from SourceForge"
     exit
 fi
 
@@ -59,12 +54,22 @@ if [ ! -f "$packname.texi" ]; then
     exit 2
 fi
 
+if [ "$MAXIMA_SRC" == "" ]; then
+    MAXIMA_SRC=$($MAXIMA -d | awk -F'=' '($1~/maxima-srcdir/){print $2}');
+fi
+
+if [ $debug -gt 0 ]; then
+    echo "MAXIMA="$MAXIMA
+    echo "MAXIMA_SRC="$MAXIMA_SRC
+fi
+
 buildindex=$MAXIMA_SRC/doc/info/build_index.pl
 buildindex_lsp=$MAXIMA_SRC/doc/info/build-html-index.lisp
 
 if [ ! -e $buildindex ]; then
     echo "Can't find build_index.pl using"
     echo "MAXIMA_SRC="$MAXIMA_SRC
+    echo "Try using -M switch to set src directory manually."
     exit 2
 fi
 
@@ -99,9 +104,9 @@ fi
 echo "display2d:false$" > examples.txt
 echo "load($packname)\$" >> examples.txt
 cat $packname.texi | grep "(%i" | \
-    gawk '(NF>1){for(i=2;i<NF+1;i++){printf("%s",$i)};printf("\n")}' \
+    awk '(NF>1){for(i=2;i<NF+1;i++){printf("%s",$i)};printf("\n")}' \
 	 >> examples.txt;
 
 $MAXIMA -q -b examples.txt > rtest.tmp.out;
 
-cat rtest.tmp.out | gawk '($1~/%i/){for(i=2;i<NF+1;i++){printf("%s",$i)};printf(";\n");}($1~/%o/){for(i=2;i<NF+1;i++){printf("%s ",$i)};printf("$\n\n");}' > ../rtest_$packname.mac;
+cat rtest.tmp.out | awk '($1~/%i/){for(i=2;i<NF+1;i++){printf("%s",$i)};printf(";\n");}($1~/%o/){for(i=2;i<NF+1;i++){printf("%s ",$i)};printf("$\n\n");}' > ../rtest_$packname.mac;
