@@ -24,6 +24,11 @@ load("qm.lisp") $
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
+/* This definition of complep finds anything declared complex to be true */
+complexp(z):=block([y:imagpart(z)],
+	if featurep(z,complex) then return(true),
+	if y#0 and numberp(y) then return(true),
+	false);
 
 /******************************/
 /* Simplification definitions */
@@ -78,8 +83,9 @@ tellsimpafter( dagger( ket(a) ), bra(a) );
 tellsimpafter( dagger(a*ket(b)), dagger(a)*bra(b) );
 tellsimpafter( dagger(a*bra(b)), dagger(a)*ket(b) );
 
-matchdeclare(cx,complex_number_p);
+matchdeclare(cx,complexp,rx,numberp);
 simp:false; tellsimp( dagger(cx) , conjugate(cx) ); simp:true;
+simp:false; tellsimp( dagger(rx) , rx ); simp:true;
 
 /* special case of dagger for matrix argument */
 matchdeclare(mx, matrixp);
