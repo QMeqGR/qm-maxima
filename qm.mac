@@ -26,7 +26,7 @@ load("qm-index-html.lisp")$
 
 /* This definition of complep finds anything declared complex to be true */
 complexp(z):=block([y:imagpart(z)],
-	if featurep(z,complex) then return(true),
+	if featurep(z,complex) or featurep(conjugate(z),complex) then return(true),
 	if y#0 and numberp(y) then return(true),
 	false);
 
@@ -75,6 +75,7 @@ tellsimpafter(ket(ll), transpose(matrix (ll)));
 /***************************************/
 
 declare(dagger,additive);
+declare(braket,additive);
 
 /* dagger */
 matchdeclare([a,b],all);
@@ -99,9 +100,19 @@ tellsimpafter( braket(kk,bb) , false );
 tellsimpafter( braket(bb,bb) , false );
 
 /* <a|b> --> delta(a,b), assumes an orthonormal set */
+cnump(z):=if complexp(z) or numberp(z) then true;
+matchdeclare([a,b,i,j,A1,A2,A3,A4],all,[cx1,cx2,cx3,cx4],cnump);
+simp:false; tellsimpafter( bra(i)*cx1 . A2 , cx1 * bra(i) . A2 ); simp:true;
+simp:false; tellsimpafter( A1 . cx2*ket(i), A1 . ket(i) * cx2 ); simp:true;
+
+simp:false; tellsimpafter( cx1*bra(i) . cx3*ket(j), cx1*cx3* (bra(i) . ket(j))); simp:true;
+simp:false; tellsimpafter( bra(i)*cx2 . ket(j)*cx4, cx2*cx4* (bra(i) . ket(j))); simp:true;
+simp:false; tellsimpafter( bra(i)*cx2 . cx3*ket(j), cx1*cx3* (bra(i) . ket(j))); simp:true;
+simp:false; tellsimpafter( cx1*bra(i) . ket(j)*cx4, cx1*cx4* (bra(i) . ket(j))); simp:true;
+
+tellsimpafter( bra(i) . ket(j), braket(bra(i),ket(j)));
 tellsimpafter( braket(bra(a),ket(b)), kron_delta(a,b));
-tellsimpafter( bra(a) . ket(b), kron_delta(a,b));
-tellsimpafter( braket(bra(a)+c,ket(b)), braket(bra(a),ket(b))+braket(c,ket(b))); /* distribution */
+tellsimpafter( braket(cx1*bra(i),cx2*ket(j)), cx1*cx2*kron_delta(i,j));
 
 /* norm */
 matchdeclare( kk, ketp, bb, brap );
