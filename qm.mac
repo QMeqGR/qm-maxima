@@ -29,6 +29,7 @@ complexp(z):=block([y:imagpart(z)],
 	if featurep(z,complex) or featurep(conjugate(z),complex) then return(true),
 	if y#0 and numberp(y) then return(true),
 	false);
+realp(r):=block(if featurep(r,real) and complexp(r)=false then return(true), false);	
 
 /******************************/
 /* Simplification definitions */
@@ -84,9 +85,11 @@ tellsimpafter( dagger( ket(a) ), bra(a) );
 tellsimpafter( dagger(a*ket(b)), dagger(a)*bra(b) );
 tellsimpafter( dagger(a*bra(b)), dagger(a)*ket(b) );
 
-matchdeclare(cx,complexp,rx,numberp);
+/* simplify dagger for complex and real numbers */
+matchdeclare(cx,complexp,rx,numberp,rr,realp);
 simp:false; tellsimp( dagger(cx) , conjugate(cx) ); simp:true;
 simp:false; tellsimp( dagger(rx) , rx ); simp:true;
+simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 
 /* special case of dagger for matrix argument */
 matchdeclare(mx, matrixp);
@@ -101,13 +104,11 @@ tellsimpafter( braket(bb,bb) , false );
 
 /* <a|b> --> delta(a,b), assumes an orthonormal set */
 cnump(z):=if complexp(z) or numberp(z) then true;
-matchdeclare([a,b,i,j,A1,A2,A3,A4],all,[cx1,cx2,cx3,cx4],cnump);
-simp:false; tellsimpafter( bra(i)*cx1 . A2 , cx1 * bra(i) . A2 ); simp:true;
-simp:false; tellsimpafter( A1 . cx2*ket(i), A1 . ket(i) * cx2 ); simp:true;
-
+matchdeclare([a,b,i,j,A1,A2],all,[cx1,cx2,cx3,cx4],cnump);
+tellsimpafter( a . (A1+A2), ev( expand(a . (A1 + A2)) ));
 simp:false; tellsimpafter( cx1*bra(i) . cx3*ket(j), cx1*cx3* (bra(i) . ket(j))); simp:true;
 simp:false; tellsimpafter( bra(i)*cx2 . ket(j)*cx4, cx2*cx4* (bra(i) . ket(j))); simp:true;
-simp:false; tellsimpafter( bra(i)*cx2 . cx3*ket(j), cx1*cx3* (bra(i) . ket(j))); simp:true;
+simp:false; tellsimpafter( bra(i)*cx2 . cx3*ket(j), cx2*cx3* (bra(i) . ket(j))); simp:true;
 simp:false; tellsimpafter( cx1*bra(i) . ket(j)*cx4, cx1*cx4* (bra(i) . ket(j))); simp:true;
 
 tellsimpafter( bra(i) . ket(j), braket(bra(i),ket(j)));
