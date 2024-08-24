@@ -24,7 +24,7 @@ load("qm.lisp") $
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
-/* This definition of complep finds anything declared complex to be true */
+/* This definition of complexp finds anything declared complex to be true */
 complexp(z):=block([y:imagpart(z)],
 	if featurep(z,complex) or featurep(conjugate(z),complex) then return(true),
 	if y#0 and numberp(y) then return(true),
