@@ -111,6 +111,9 @@ simp:false; tellsimpafter( bra(i)*cx2 . ket(j)*cx4, cx2*cx4* (bra(i) . ket(j)));
 simp:false; tellsimpafter( bra(i)*cx2 . cx3*ket(j), cx2*cx3* (bra(i) . ket(j))); simp:true;
 simp:false; tellsimpafter( cx1*bra(i) . ket(j)*cx4, cx1*cx4* (bra(i) . ket(j))); simp:true;
 
+/* this works because of the way the simplifier outputs things */
+tellsimpafter( (bra(i)*cx1) . (ket(j)*cx2), cx1*cx2*(bra(i) . ket(j)));
+
 tellsimpafter( bra(i) . ket(j), braket(bra(i),ket(j)));
 tellsimpafter( braket(bra(a),ket(b)), kron_delta(a,b));
 tellsimpafter( braket(cx1*bra(i),cx2*ket(j)), cx1*cx2*kron_delta(i,j));
