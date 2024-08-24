@@ -68,20 +68,30 @@ respectively.  For spin-1/2 particles, for example, the bra vector
    Generally, if one wishes to do purely symbolic calculations, then
 input of basic kets, (j,m)-kets, and so forth should be done without
 lists.  If one wishes to do numerical computations using the kets then
-enter the arguments as a list.  See the following examples.
+enter the arguments as a list.  The following examples illustrate some
+of the basic capabilities of the ‘qm’ package.
 
      (%i1) ket(a,b)+ket(c,d);
      (%o1)                           |c, d> + |a, b>
-     (%i2) ket([a,b])+ket([c,d]);
-                                        [ c + a ]
-     (%o2)                              [       ]
-                                        [ d + b ]
+     (%i2) ket([a,b,c])+ket([d,e,f]);
+                                        [ d + a ]
+                                        [       ]
+     (%o2)                              [ e + b ]
+                                        [       ]
+                                        [ f + c ]
+
+   Tensor products of the spin-1/2 basis states ‘{zp,zm}’ in abstract
+and matrix representations.
+
      (%i1) ketprod('zp,'zm)+ketprod('zm,'zp);
      (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
      (%i2) ketprod([zp,zm]);
                                           [ 1 ]  [ 0 ]
      (%o2)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
+
+   Examples using abstract orthonormal kets.
+
      (%i1) declare([a,b],complex);
      (%o1)                                done
      (%i2) psi:a*ket(1)+b*ket(2);
@@ -745,15 +755,15 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm3793
-Ref: ket4146
-Ref: bra5089
-Ref: ketp5842
-Ref: brap6547
-Ref: dagger6947
-Ref: braket7289
-Ref: norm7898
-Node: Function and Variable Index24722
+Node: Functions and Variables for qm4110
+Ref: ket4463
+Ref: bra5406
+Ref: ketp6159
+Ref: brap6864
+Ref: dagger7264
+Ref: braket7606
+Ref: norm8215
+Node: Function and Variable Index25039
 
 End Tag Table
 

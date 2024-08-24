@@ -4,8 +4,8 @@ load(qm);
 ket(a,b)+ket(c,d);
 ket(c,d)+ket(a,b) $
 
-ket([a,b])+ket([c,d]);
-matrix([c+a],[d+b]) $
+ket([a,b,c])+ket([d,e,f]);
+matrix([d+a],[e+b],[f+c]) $
 
 ketprod('zp,'zm)+ketprod('zm,'zp);
 ketprod(zp,zm)+ketprod(zm,zp) $

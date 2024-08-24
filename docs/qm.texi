@@ -74,17 +74,26 @@ and
 Generally, if one wishes to do purely symbolic calculations, then input
 of basic kets, (j,m)-kets, and so forth should be done without lists. If
 one wishes to do numerical computations using the kets then enter the
-arguments as a list. See the following examples.
+arguments as a list. The following examples illustrate some of the basic
+capabilities of the @code{qm} package.
 
 @example
 @group
 (%i1) ket(a,b)+ket(c,d);
 (%o1)                           |c, d> + |a, b>
-(%i2) ket([a,b])+ket([c,d]);
-                                   [ c + a ]
-(%o2)                              [       ]
-                                   [ d + b ]
+(%i2) ket([a,b,c])+ket([d,e,f]);
+                                   [ d + a ]
+                                   [       ]
+(%o2)                              [ e + b ]
+                                   [       ]
+                                   [ f + c ]
 @end group
+@end example
+
+Tensor products of the spin-1/2 basis states @code{@{zp,zm@}} in abstract
+and matrix representations.
+
+@example
 @group
 (%i1) ketprod('zp,'zm)+ketprod('zm,'zp);
 (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
@@ -93,6 +102,11 @@ arguments as a list. See the following examples.
 (%o2)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 @end group
+@end example
+
+Examples using abstract orthonormal kets.
+
+@example
 @group
 (%i1) declare([a,b],complex);
 (%o1)                                done
