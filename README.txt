@@ -61,6 +61,19 @@ enter the arguments as a list.  See the following examples.
      (%o3)                 <2| conjugate(b) + <1| conjugate(a)
      (%i4) psidag . psi;
      (%o4)                   b conjugate(b) + a conjugate(a)
+     (%i1) declare([c1,c2],complex,r,real);
+     (%o1)                                done
+     (%i2) k:ket([c1,c2,r]);
+                                         [ c1 ]
+                                         [    ]
+     (%o2)                               [ c2 ]
+                                         [    ]
+                                         [ r  ]
+     (%i3) b:dagger(k);
+     (%o3)                 [ conjugate(c1)  conjugate(c2)  r ]
+     (%i4) b . k;
+                         2
+     (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
 
    The package is loaded with: ‘load(qm);’
 
@@ -595,98 +608,98 @@ Appendix A Function and Variable index
 * Menu:
 
 * bra:                                   Functions and Variables for qm.
-                                                              (line  95)
+                                                              (line 108)
 * braket:                                Functions and Variables for qm.
-                                                              (line 149)
+                                                              (line 162)
 * braketprod:                            Functions and Variables for qm.
-                                                              (line 554)
+                                                              (line 567)
 * brap:                                  Functions and Variables for qm.
-                                                              (line 130)
+                                                              (line 143)
 * braprod:                               Functions and Variables for qm.
-                                                              (line 550)
+                                                              (line 563)
 * commutator:                            Functions and Variables for qm.
-                                                              (line 301)
+                                                              (line 314)
 * dagger:                                Functions and Variables for qm.
-                                                              (line 140)
+                                                              (line 153)
 * expect:                                Functions and Variables for qm.
-                                                              (line 360)
+                                                              (line 373)
 * JM:                                    Functions and Variables for qm.
-                                                              (line 443)
+                                                              (line 456)
 * jm_bra:                                Functions and Variables for qm.
-                                                              (line 386)
-* jm_braket:                             Functions and Variables for qm.
-                                                              (line 416)
-* jm_brap:                               Functions and Variables for qm.
-                                                              (line 407)
-* jm_check:                              Functions and Variables for qm.
-                                                              (line 410)
-* jm_ket:                                Functions and Variables for qm.
-                                                              (line 382)
-* jm_ketp:                               Functions and Variables for qm.
                                                               (line 399)
+* jm_braket:                             Functions and Variables for qm.
+                                                              (line 429)
+* jm_brap:                               Functions and Variables for qm.
+                                                              (line 420)
+* jm_check:                              Functions and Variables for qm.
+                                                              (line 423)
+* jm_ket:                                Functions and Variables for qm.
+                                                              (line 395)
+* jm_ketp:                               Functions and Variables for qm.
+                                                              (line 412)
 * JP:                                    Functions and Variables for qm.
-                                                              (line 439)
+                                                              (line 452)
 * Jsqr:                                  Functions and Variables for qm.
-                                                              (line 447)
+                                                              (line 460)
 * Jz:                                    Functions and Variables for qm.
-                                                              (line 451)
+                                                              (line 464)
 * ket:                                   Functions and Variables for qm.
-                                                              (line  74)
+                                                              (line  87)
 * ketp:                                  Functions and Variables for qm.
-                                                              (line 112)
+                                                              (line 125)
 * ketprod:                               Functions and Variables for qm.
-                                                              (line 546)
+                                                              (line 559)
 * magsqr:                                Functions and Variables for qm.
-                                                              (line 173)
+                                                              (line 186)
 * norm:                                  Functions and Variables for qm.
-                                                              (line 161)
+                                                              (line 174)
 * qm_variance:                           Functions and Variables for qm.
-                                                              (line 367)
+                                                              (line 380)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 496)
+                                                              (line 509)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 500)
+                                                              (line 513)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 504)
+                                                              (line 517)
 * sigmax:                                Functions and Variables for qm.
-                                                              (line 270)
+                                                              (line 283)
 * sigmay:                                Functions and Variables for qm.
-                                                              (line 273)
+                                                              (line 286)
 * sigmaz:                                Functions and Variables for qm.
-                                                              (line 276)
+                                                              (line 289)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 475)
+                                                              (line 488)
 * SP:                                    Functions and Variables for qm.
-                                                              (line 472)
+                                                              (line 485)
 * Sx:                                    Functions and Variables for qm.
-                                                              (line 279)
+                                                              (line 292)
 * SX:                                    Functions and Variables for qm.
-                                                              (line 319)
+                                                              (line 332)
 * Sy:                                    Functions and Variables for qm.
-                                                              (line 282)
+                                                              (line 295)
 * SY:                                    Functions and Variables for qm.
-                                                              (line 324)
+                                                              (line 337)
 * Sz:                                    Functions and Variables for qm.
-                                                              (line 285)
+                                                              (line 298)
 * SZ:                                    Functions and Variables for qm.
-                                                              (line 329)
+                                                              (line 342)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 523)
+                                                              (line 536)
 * xm:                                    Functions and Variables for qm.
-                                                              (line 215)
+                                                              (line 228)
 * xp:                                    Functions and Variables for qm.
-                                                              (line 212)
+                                                              (line 225)
 * ym:                                    Functions and Variables for qm.
-                                                              (line 221)
+                                                              (line 234)
 * yp:                                    Functions and Variables for qm.
-                                                              (line 218)
+                                                              (line 231)
 * zm:                                    Functions and Variables for qm.
-                                                              (line 209)
+                                                              (line 222)
 * zp:                                    Functions and Variables for qm.
-                                                              (line 206)
+                                                              (line 219)
 
 * Menu:
 
 * hbar:                                  Functions and Variables for qm.
-                                                               (line 69)
+                                                               (line 82)
 

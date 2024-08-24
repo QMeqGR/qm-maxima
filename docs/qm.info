@@ -90,6 +90,19 @@ enter the arguments as a list.  See the following examples.
      (%o3)                 <2| conjugate(b) + <1| conjugate(a)
      (%i4) psidag . psi;
      (%o4)                   b conjugate(b) + a conjugate(a)
+     (%i1) declare([c1,c2],complex,r,real);
+     (%o1)                                done
+     (%i2) k:ket([c1,c2,r]);
+                                         [ c1 ]
+                                         [    ]
+     (%o2)                               [ c2 ]
+                                         [    ]
+                                         [ r  ]
+     (%i3) b:dagger(k);
+     (%o3)                 [ conjugate(c1)  conjugate(c2)  r ]
+     (%i4) b . k;
+                         2
+     (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
 
    The package is loaded with: ‘load(qm);’
 
@@ -732,15 +745,15 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm3236
-Ref: ket3589
-Ref: bra4532
-Ref: ketp5285
-Ref: brap5990
-Ref: dagger6390
-Ref: braket6732
-Ref: norm7341
-Node: Function and Variable Index24165
+Node: Functions and Variables for qm3793
+Ref: ket4146
+Ref: bra5089
+Ref: ketp5842
+Ref: brap6547
+Ref: dagger6947
+Ref: braket7289
+Ref: norm7898
+Node: Function and Variable Index24722
 
 End Tag Table
 

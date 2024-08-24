@@ -25,6 +25,18 @@ bra(2)*conjugate(b)+bra(1)*conjugate(a) $
 psidag.psi;
 b*conjugate(b)+a*conjugate(a) $
 
+declare([c1,c2],complex,r,real);
+done $
+
+k:ket([c1,c2,r]);
+matrix([c1],[c2],[r]) $
+
+b:dagger(k);
+matrix([conjugate(c1),conjugate(c2),r]) $
+
+b.k;
+r^2+c2*conjugate(c2)+c1*conjugate(c1) $
+
 kill(a);
 done $
 
@@ -38,7 +50,7 @@ ket([c1,c2]);
 matrix([c1],[c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(b,complex),kind(c1,complex),kind(c2, $
+[kind(hbar,real),hbar > 0,kind(b,complex),kind(c1,complex), $
 
 kill(c1,c2);
 done $
@@ -50,7 +62,7 @@ bra([c1,c2]);
 matrix([c1,c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(b,complex)] $
+[kind(hbar,real),hbar > 0,kind(b,complex),kind(r,real)] $
 
 kill(a,b,k);
 done $
