@@ -16,7 +16,7 @@
 ;; Quantum mechanics package for Maxima.
 */
 
-qm_version: "0.8"$
+qm_version: "0.85"$
 
 /* load("groups_ehm.mac") $ */
 load("qm.lisp") $
