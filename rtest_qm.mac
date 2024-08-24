@@ -22,8 +22,8 @@ ket(2)*b+ket(1)*a $
 psidag:dagger(psi);
 bra(2)*conjugate(b)+bra(1)*conjugate(a) $
 
-psidag;
-bra(2)*conjugate(b)+bra(1)*conjugate(a) $
+psidag.psi;
+b*conjugate(b)+a*conjugate(a) $
 
 kill(a);
 done $

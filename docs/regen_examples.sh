@@ -82,7 +82,7 @@ for i in $(seq 1 $ngrps); do
     nlines=$(wc -l .tmp.grp.$i.tmp1 | awk '{print $1}')
     cat .tmp.grp.$i.tmp1 | awk -v N="$nlines" --source '(NR>7 && NR<N){print $0}' > .tmp.grp.$i.tmp2
     # Now post process the output
-    cat .tmp.grp.$i.tmp2 | awk '{if($1~/\(%i[1-9]/){printf("%s %s;\n",$1,$2)}else{print $0}}' > .tmp.grp.$i.out
+    cat .tmp.grp.$i.tmp2 | awk '{if($1~/\(%i[1-9]/){printf("%s;\n",$0)}else{print $0}}' > .tmp.grp.$i.out
 done
 
 ####################################################

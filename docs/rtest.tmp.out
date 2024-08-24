@@ -18,8 +18,8 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o9) ket(2)*b+ket(1)*a
 (%i10) psidag:dagger(psi)
 (%o10) bra(2)*conjugate(b)+bra(1)*conjugate(a)
-(%i11) psidag
-(%o11) bra(2)*conjugate(b)+bra(1)*conjugate(a)
+(%i11) psidag . psi
+(%o11) b*conjugate(b)+a*conjugate(a)
 (%i12) kill(a)
 (%o12) done
 (%i13) ket(a)

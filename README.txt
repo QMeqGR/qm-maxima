@@ -59,7 +59,7 @@ enter the arguments as a list.  See the following examples.
      (%o2)                            |2> b + |1> a
      (%i3) psidag:dagger(psi);
      (%o3)                 <2| conjugate(b) + <1| conjugate(a)
-     (%i4) psidag;
+     (%i4) psidag . psi;
      (%o4)                   b conjugate(b) + a conjugate(a)
 
    The package is loaded with: ‘load(qm);’

@@ -7,7 +7,7 @@ ketprod([zp,zm]);
 declare([a,b],complex);
 psi:a*ket(1)+b*ket(2);
 psidag:dagger(psi);
-psidag;
+psidag.psi;
 kill(a);
 ket(a);
 declare([c1,c2],complex);

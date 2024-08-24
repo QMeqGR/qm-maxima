@@ -88,7 +88,7 @@ enter the arguments as a list.  See the following examples.
      (%o2)                            |2> b + |1> a
      (%i3) psidag:dagger(psi);
      (%o3)                 <2| conjugate(b) + <1| conjugate(a)
-     (%i4) psidag;
+     (%i4) psidag . psi;
      (%o4)                   b conjugate(b) + a conjugate(a)
 
    The package is loaded with: ‘load(qm);’
@@ -732,15 +732,15 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm3230
-Ref: ket3583
-Ref: bra4526
-Ref: ketp5279
-Ref: brap5984
-Ref: dagger6384
-Ref: braket6726
-Ref: norm7335
-Node: Function and Variable Index24159
+Node: Functions and Variables for qm3236
+Ref: ket3589
+Ref: bra4532
+Ref: ketp5285
+Ref: brap5990
+Ref: dagger6390
+Ref: braket6732
+Ref: norm7341
+Node: Function and Variable Index24165
 
 End Tag Table
 
