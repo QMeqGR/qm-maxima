@@ -79,11 +79,11 @@ declare(dagger,additive);
 declare(braket,additive);
 
 /* dagger */
-matchdeclare([a,b],all);
-tellsimpafter( dagger( bra(a) ), ket(a) );
-tellsimpafter( dagger( ket(a) ), bra(a) );
-tellsimpafter( dagger(a*ket(b)), dagger(a)*bra(b) );
-tellsimpafter( dagger(a*bra(b)), dagger(a)*ket(b) );
+matchdeclare([i,j],all);
+tellsimpafter( dagger( bra(i) ), ket(i) );
+tellsimpafter( dagger( ket(i) ), bra(i) );
+tellsimpafter( dagger(i*ket(j)), dagger(i)*bra(j) );
+tellsimpafter( dagger(i*bra(j)), dagger(i)*ket(j) );
 
 /* simplify dagger for complex and real numbers */
 matchdeclare(cx,complexp,rx,numberp,rr,realp);
