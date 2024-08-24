@@ -40,6 +40,9 @@
 @node Introduction to package qm, Functions and Variables for qm, Top, Top
 @section Introduction to package qm
 
+The @code{qm} package was written by Eric Majzoub, University of
+Missouri. Email: majzoube-at-umsystem.edu
+
 The @code{qm} package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
@@ -90,12 +93,19 @@ arguments as a list. See the following examples.
 (%o2)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 @end group
+@group
+(%i1) declare([a,b],complex);
+(%o1)                                done
+(%i2) psi:a*ket(1)+b*ket(2);
+(%o2)                            |2> b + |1> a
+(%i3) psidag:dagger(psi);
+(%o3)                 <2| conjugate(b) + <1| conjugate(a)
+(%i4) psidag;
+(%o4)                   b conjugate(b) + a conjugate(a)
+@end group
 @end example
 
-
-The @code{qm} package was written by Eric Majzoub, University of
-Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
-@code{load(qm);}
+The package is loaded with: @code{load(qm);}
 
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm
@@ -277,7 +287,7 @@ kets and bras can be manipulated.
 (%i2) braket(bra(a),ket(b));
 (%o2)                          kron_delta(a, b)
 (%i3) braket(bra(a)+bra(c),ket(b));
-(%o3)                       braket(<c| + <a|, |b>)
+(%o3)                 kron_delta(b, c) + kron_delta(a, b)
 @end group
 @end example
 

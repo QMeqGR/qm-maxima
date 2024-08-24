@@ -36,7 +36,10 @@ File: qm.info,  Node: Introduction to package qm,  Next: Functions and Variables
 1.1 Introduction to package qm
 ==============================
 
-The ‘qm’ package provides functions and standard definitions to solve
+The ‘qm’ package was written by Eric Majzoub, University of Missouri.
+Email: majzoube-at-umsystem.edu
+
+   The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
 example, one can calculate the outcome of Stern-Gerlach experiments
 using the built-in definition of the Sx, Sy, and Sz operators for
@@ -79,10 +82,16 @@ enter the arguments as a list.  See the following examples.
                                           [ 1 ]  [ 0 ]
      (%o2)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
+     (%i1) declare([a,b],complex);
+     (%o1)                                done
+     (%i2) psi:a*ket(1)+b*ket(2);
+     (%o2)                            |2> b + |1> a
+     (%i3) psidag:dagger(psi);
+     (%o3)                 <2| conjugate(b) + <1| conjugate(a)
+     (%i4) psidag;
+     (%o4)                   b conjugate(b) + a conjugate(a)
 
-   The ‘qm’ package was written by Eric Majzoub, University of Missouri.
-(Email: majzoube-at-umsystem.edu) The package is loaded with:
-‘load(qm);’
+   The package is loaded with: ‘load(qm);’
 
 
 File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to package qm,  Up: Top
@@ -217,7 +226,7 @@ and bras can be manipulated.
      (%i2) braket(bra(a),ket(b));
      (%o2)                          kron_delta(a, b)
      (%i3) braket(bra(a)+bra(c),ket(b));
-     (%o3)                       braket(<c| + <a|, |b>)
+     (%o3)                 kron_delta(b, c) + kron_delta(a, b)
 
 1.2.2 Spin-1/2 state kets and associated operators
 --------------------------------------------------
@@ -723,15 +732,15 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm2886
-Ref: ket3239
-Ref: bra4182
-Ref: ketp4935
-Ref: brap5640
-Ref: dagger6040
-Ref: braket6382
-Ref: norm6991
-Node: Function and Variable Index23808
+Node: Functions and Variables for qm3230
+Ref: ket3583
+Ref: bra4526
+Ref: ketp5279
+Ref: brap5984
+Ref: dagger6384
+Ref: braket6726
+Ref: norm7335
+Node: Function and Variable Index24159
 
 End Tag Table
 

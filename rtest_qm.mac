@@ -13,6 +13,18 @@ ketprod(zp,zm)+ketprod(zm,zp) $
 ketprod([zp,zm]);
 [tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
+declare([a,b],complex);
+done $
+
+psi:a*ket(1)+b*ket(2);
+ket(2)*b+ket(1)*a $
+
+psidag:dagger(psi);
+bra(2)*conjugate(b)+bra(1)*conjugate(a) $
+
+psidag;
+bra(2)*conjugate(b)+bra(1)*conjugate(a) $
+
 kill(a);
 done $
 
@@ -26,7 +38,7 @@ ket([c1,c2]);
 matrix([c1],[c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(c1,complex),kind(c2,complex)] $
+[kind(hbar,real),hbar > 0,kind(b,complex),kind(c1,complex),kind(c2, $
 
 kill(c1,c2);
 done $
@@ -38,7 +50,7 @@ bra([c1,c2]);
 matrix([c1,c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0] $
+[kind(hbar,real),hbar > 0,kind(b,complex)] $
 
 kill(a,b,k);
 done $
@@ -95,7 +107,7 @@ braket(bra(a),ket(b));
 0 $
 
 braket(bra(a)+bra(c),ket(b));
-braket(bra(c)+bra(a),ket(matrix([a,b]))) $
+0 $
 
 zp;
 matrix([1],[0]) $

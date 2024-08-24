@@ -63,6 +63,9 @@ Next: <a href="#Functions-and-Variables-for-qm" accesskey="n" rel="next">Functio
 </div>
 <h3 class="section" id="Introduction-to-package-qm-1"><span>1.1 Introduction to package qm<a class="copiable-link" href="#Introduction-to-package-qm-1"> &para;</a></span></h3>
 
+<p>The <code class="code">qm</code> package was written by Eric Majzoub, University of
+Missouri. Email: majzoube-at-umsystem.edu
+</p>
 <p>The <code class="code">qm</code> package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
@@ -109,12 +112,17 @@ arguments as a list. See the following examples.
                                      [ 1 ]  [ 0 ]
 (%o2)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
+</pre></div><div class="group"><pre class="example-preformatted">(%i1) declare([a,b],complex);
+(%o1)                                done
+(%i2) psi:a*ket(1)+b*ket(2);
+(%o2)                            |2&gt; b + |1&gt; a
+(%i3) psidag:dagger(psi);
+(%o3)                 &lt;2| conjugate(b) + &lt;1| conjugate(a)
+(%i4) psidag;
+(%o4)                   b conjugate(b) + a conjugate(a)
 </pre></div></div>
 
-
-<p>The <code class="code">qm</code> package was written by Eric Majzoub, University of
-Missouri.  (Email: majzoube-at-umsystem.edu) The package is loaded with:
-<code class="code">load(qm);</code>
+<p>The package is loaded with: <code class="code">load(qm);</code>
 </p>
 <hr>
 </div>
@@ -297,7 +305,7 @@ kets and bras can be manipulated.
 (%i2) braket(bra(a),ket(b));
 (%o2)                          kron_delta(a, b)
 (%i3) braket(bra(a)+bra(c),ket(b));
-(%o3)                       braket(&lt;c| + &lt;a|, |b&gt;)
+(%o3)                 kron_delta(b, c) + kron_delta(a, b)
 </pre></div></div>
 
 </div>
