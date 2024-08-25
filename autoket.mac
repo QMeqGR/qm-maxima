@@ -1,0 +1,25 @@
+autobra(u) := block(for elm in u do autodecl(elm),
+	      		matrix(u) ) $
+autoket(u) := block(for elm in u do autodecl(elm),
+	      		transpose(matrix(u)));
+
+autodecl(elm):= block([i],
+     if apply('numberp,[float(elm)])=true then 1    /* is it a number? */
+     	elseif apply('complex_number_p,[elm])=true then 1  /* is it a complex number? */ 
+	elseif apply('symbolp,[elm])=true and apply('atom,[elm])=true /* if symbol and atom */
+	       then apply('declare,[elm,complex])
+	elseif apply('atom,[elm])=false and apply('symbolp,[part(elm,1)])=true /* if only one part and atom */
+	       then apply('declare,[part(elm,1),complex])
+	elseif apply('length,[args(elm)]) > 1 /* if multiple args a*cos + b*sin, etc. */
+	       then for i: 1 thru apply('length,[args(elm)]) do
+	       	    if apply('atom,[part(elm,i)])=true and
+		       apply('symbolp,[part(elm,i)])=true then
+	       	       apply('declare,[part(elm,i),complex])
+		       else /* dig deeper */
+		        if apply('lfreeof,[common_functions,part(elm,i)])=false and
+			   apply('length,[args(part(elm,i))])=1 then 0
+			   elseif apply('atom,[part(elm,i,1)])=true and
+			     	  apply('constantp,[part(elm,i,1)])=false and
+			     	  apply('symbolp,[part(elm,i,1)])=true then
+ 	       	             	  apply('declare,[part(elm,i,1),complex])
+        else 1);

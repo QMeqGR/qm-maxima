@@ -16,14 +16,24 @@
 ;; Quantum mechanics package for Maxima.
 */
 
-qm_version: "0.85"$
+qm_version: "0.9pre"$
 
-/* load("groups_ehm.mac") $ */
+/* load additional codes */
 load("qm.lisp") $
+load("autoket.mac") $
+
 /* load the documentation */
 load("qm-index.lisp")$
 load("qm-index-html.lisp")$
 
+/******************/
+/*    flags       */
+/******************/
+ortho_basis:1; /* assume orthonormal basis for abstract kets/bras */
+
+/*****************************************/
+/*    complexp and realp predicates      */
+/*****************************************/
 /* This definition of complexp finds anything declared complex to be true */
 complexp(z):=block([y:imagpart(z)],
 	if featurep(z,complex) or featurep(conjugate(z),complex) then return(true),
@@ -96,14 +106,13 @@ simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 matchdeclare(mx, matrixp);
 tellsimpafter(dagger (mx), conjugate (transpose (mx)));
 
-/* braket */
+/* braket, these rules only work on matrix reps */
 matchdeclare([kk,ll], ketp, bb, brap );
 tellsimpafter( braket(bb,kk) , bb . kk );
 tellsimpafter( braket(ll,kk) , dagger(ll) . kk);
 tellsimpafter( braket(kk,bb) , false );
 tellsimpafter( braket(bb,bb) , false );
 
-/* <a|b> --> delta(a,b), assumes an orthonormal set */
 cnump(z):=if complexp(z) or numberp(z) then true;
 matchdeclare([a,b,i,j,A1,A2],all,[cx1,cx2,cx3,cx4],cnump);
 tellsimpafter( a . (A1+A2), expand(a . (A1 + A2)) );
@@ -116,6 +125,7 @@ simp:false; tellsimpafter( cx1*bra(i) . ket(j)*cx4, cx1*cx4* (bra(i) . ket(j)));
 /* This works because of the way the simplifier outputs things in () */
 tellsimpafter( (bra(i)*a) . (ket(j)*b), a*b*(bra(i) . ket(j)));
 
+/* <a|b> --> delta(a,b), assumes an orthonormal set */
 tellsimpafter( bra(i) . ket(j), braket(bra(i),ket(j)));
 tellsimpafter( braket(bra(a),ket(b)), kron_delta(a,b));
 tellsimpafter( braket(cx1*bra(i),cx2*ket(j)), cx1*cx2*kron_delta(i,j));
