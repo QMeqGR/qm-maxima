@@ -10,6 +10,8 @@ Package qm
 The ‘qm’ package was written by Eric Majzoub, University of Missouri.
 Email: majzoube-at-umsystem.edu
 
+   The package is loaded with: ‘load(qm);’
+
    The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
 example, one can calculate the outcome of Stern-Gerlach experiments
@@ -95,8 +97,6 @@ following examples.
      (%i4) b . k;
                          2
      (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
-
-   The package is loaded with: ‘load(qm);’
 
 1.2 Functions and Variables for qm
 ==================================

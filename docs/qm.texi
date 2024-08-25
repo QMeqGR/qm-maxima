@@ -43,6 +43,8 @@
 The @code{qm} package was written by Eric Majzoub, University of
 Missouri. Email: majzoube-at-umsystem.edu
 
+The package is loaded with: @code{load(qm);}
+
 The @code{qm} package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
@@ -144,8 +146,6 @@ the following examples.
 (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
 @end group
 @end example
-
-The package is loaded with: @code{load(qm);}
 
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm
