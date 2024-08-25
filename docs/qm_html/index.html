@@ -283,6 +283,8 @@ and will <code class="code">declare</code> only the coefficients as complex.
                                  [ a sin(x) ]
 (%o1)                            [          ]
                                  [ b sin(x) ]
+(%i2) facts();
+(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
 </pre></div></div>
 
 <a class="anchor" id="autobra"></a><dl class="first-deffn">
@@ -294,13 +296,14 @@ and will <code class="code">declare</code> only the coefficients as complex.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) autobra([a,b,c]);
-(%o1)                             [ a  b  c ]
+<div class="group"><pre class="example-preformatted">(%i1) autobra([a,b]);
+(%o1)                              [ a  b ]
 (%i2) facts();
-(%o2) [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex), 
-                                                              kind(c, complex)]
-</pre></div><div class="group"><pre class="example-preformatted">(%i1) autobra([a*sin(x)+b*sin(x),c]);
-(%o1)                     [ b sin(x) + a sin(x)  c ]
+(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
+</pre></div><div class="group"><pre class="example-preformatted">(%i1) autobra([a*sin(x),b]);
+(%o1)                           [ a sin(x)  b ]
+(%i2) facts();
+(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
 </pre></div></div>
 
 <a class="anchor" id="dagger"></a><dl class="first-deffn">

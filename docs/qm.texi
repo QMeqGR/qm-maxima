@@ -272,6 +272,8 @@ and will @code{declare} only the coefficients as complex.
                                  [ a sin(x) ]
 (%o1)                            [          ]
                                  [ b sin(x) ]
+(%i2) facts();
+(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
 @end group
 @end example
 
@@ -285,15 +287,16 @@ and will @code{declare} only the coefficients as complex.
 
 @example
 @group
-(%i1) autobra([a,b,c]);
-(%o1)                             [ a  b  c ]
+(%i1) autobra([a,b]);
+(%o1)                              [ a  b ]
 (%i2) facts();
-(%o2) [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex), 
-                                                              kind(c, complex)]
+(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
 @end group
 @group
-(%i1) autobra([a*sin(x)+b*sin(x),c]);
-(%o1)                     [ b sin(x) + a sin(x)  c ]
+(%i1) autobra([a*sin(x),b]);
+(%o1)                           [ a sin(x)  b ]
+(%i2) facts();
+(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
 @end group
 @end example
 
