@@ -85,6 +85,24 @@ matrix([a,b]) $
 brap(b);
 true $
 
+autoket([a,b]);
+matrix([a],[matrix([a,b])]) $
+
+facts();
+[kind(hbar,real),hbar > 0,kind(r,real),kind(a,complex)] $
+
+autoket([a*sin(x),b*sin(x)]);
+matrix([a*sin(x)],[matrix([a*sin(x),b*sin(x)])]) $
+
+autobra([a,b,c]);
+matrix([a,matrix([a,b]),c]) $
+
+facts();
+[kind(hbar,real),hbar > 0,kind(r,real),kind(a,complex),kind(c,complex)] $
+
+autobra([a*sin(x)+b*sin(x),c]);
+matrix([matrix([2*a*sin(x),b*sin(x)+a*sin(x)]),c]) $
+
 dagger(bra([%i,2]));
 matrix([-%i],[2]) $
 

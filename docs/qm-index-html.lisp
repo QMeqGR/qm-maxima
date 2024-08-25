@@ -140,5 +140,11 @@
           "index-braket")
          ("bra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-bra"))))
+          "index-bra")
+         ("autoket"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-autoket")
+         ("autobra"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-autobra"))))
   (load-html-index html-index))

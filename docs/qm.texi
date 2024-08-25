@@ -71,11 +71,20 @@ and
 
 @code{<z-| = [0 1]}.
 
-Generally, if one wishes to do purely symbolic calculations, then input
-of basic kets, (j,m)-kets, and so forth should be done without lists. If
-one wishes to do numerical computations using the kets then enter the
-arguments as a list. The following examples illustrate some of the basic
-capabilities of the @code{qm} package.
+There are two types of kets and bras available in this package, the
+first type is given by a @emph{matrix representation}. @code{ket}s are
+column vectors and @code{bra}s are row vectors, and their components are
+entered as Maxima lists in the @code{bra} and @code{ket} functions. The
+second type of bra or ket is @emph{abstract}; there is no matrix
+representation. Abstract bras and kets are entered without using lists
+for the elements. Thus, if one wishes to do purely symbolic
+calculations, then input of abstract kets, (j,m)-kets, and so forth
+should be done without lists. If one wishes to do numerical or component
+computations using the kets then enter the arguments as a list. Note
+that abstract kets and bras are @emph{assumed to be orthonormal}.
+
+The following examples illustrate some of the basic capabilities of the
+@code{qm} package.
 
 @example
 @group
@@ -232,6 +241,59 @@ in which case it returns @code{true}, else it returns @code{false}.
 (%o1)                              [ a  b ]
 (%i2) brap(b);
 (%o2)                                true
+@end group
+@end example
+
+Two additional functions are provided to create kets and bras in the
+matrix representation. Additionally these functions attempt to
+automatically @code{declare} constants as complex. For example, if a
+list entry is @code{a*sin(x)+b*cos(x)} then only @code{a} and @code{b}
+will be @code{declare}-d complex and not @code{x}.
+
+@anchor{autoket}
+@deffn {Function} autoket ([@code{a@sub{1},a@sub{2},@dots{}}])
+@code{autoket} takes a list [@code{a@sub{1},a@sub{2},@dots{}}] and
+returns a ket with the coefficients @code{a@sub{i}} @code{declare}-d
+complex. Simple expressions such as @code{a*sin(x)+b*cos(x)} are allowed
+and will @code{declare} only the coefficients as complex.
+@end deffn
+
+@example
+@group
+(%i1) autoket([a,b]);
+                                     [ a ]
+(%o1)                                [   ]
+                                     [ b ]
+(%i2) facts();
+(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+@end group
+@group
+(%i1) autoket([a*sin(x),b*sin(x)]);
+                                 [ a sin(x) ]
+(%o1)                            [          ]
+                                 [ b sin(x) ]
+@end group
+@end example
+
+@anchor{autobra}
+@deffn {Function} autobra ([@code{a@sub{1},a@sub{2},@dots{}}])
+@code{autobra} takes a list [@code{a@sub{1},a@sub{2},@dots{}}] and
+returns a bra with the coefficients @code{a@sub{i}} @code{declare}-d
+complex. Simple expressions such as @code{a*sin(x)+b*cos(x)} are allowed
+and will @code{declare} only the coefficients as complex.
+@end deffn
+
+@example
+@group
+(%i1) autobra([a,b,c]);
+(%o1)                             [ a  b  c ]
+(%i2) facts();
+(%o2) [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex), 
+                                                              kind(c, complex)]
+@end group
+@group
+(%i1) autobra([a*sin(x)+b*sin(x),c]);
+(%o1)                     [ b sin(x) + a sin(x)  c ]
 @end group
 @end example
 

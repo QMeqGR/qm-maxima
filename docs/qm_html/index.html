@@ -94,11 +94,20 @@ are
 </p>
 <p><code class="code">&lt;z-| = [0 1]</code>.
 </p>
-<p>Generally, if one wishes to do purely symbolic calculations, then input
-of basic kets, (j,m)-kets, and so forth should be done without lists. If
-one wishes to do numerical computations using the kets then enter the
-arguments as a list. The following examples illustrate some of the basic
-capabilities of the <code class="code">qm</code> package.
+<p>There are two types of kets and bras available in this package, the
+first type is given by a <em class="emph">matrix representation</em>. <code class="code">ket</code>s are
+column vectors and <code class="code">bra</code>s are row vectors, and their components are
+entered as Maxima lists in the <code class="code">bra</code> and <code class="code">ket</code> functions. The
+second type of bra or ket is <em class="emph">abstract</em>; there is no matrix
+representation. Abstract bras and kets are entered without using lists
+for the elements. Thus, if one wishes to do purely symbolic
+calculations, then input of abstract kets, (j,m)-kets, and so forth
+should be done without lists. If one wishes to do numerical or component
+computations using the kets then enter the arguments as a list. Note
+that abstract kets and bras are <em class="emph">assumed to be orthonormal</em>.
+</p>
+<p>The following examples illustrate some of the basic capabilities of the
+<code class="code">qm</code> package.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) ket(a,b)+ket(c,d);
@@ -247,6 +256,51 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 (%o1)                              [ a  b ]
 (%i2) brap(b);
 (%o2)                                true
+</pre></div></div>
+
+<p>Two additional functions are provided to create kets and bras in the
+matrix representation. Additionally these functions attempt to
+automatically <code class="code">declare</code> constants as complex. For example, if a
+list entry is <code class="code">a*sin(x)+b*cos(x)</code> then only <code class="code">a</code> and <code class="code">b</code>
+will be <code class="code">declare</code>-d complex and not <code class="code">x</code>.
+</p>
+<a class="anchor" id="autoket"></a><dl class="first-deffn">
+<dt class="deffn" id="index-autoket"><span class="category-def">Function: </span><span><strong class="def-name">autoket</strong> <var class="def-var-arguments">([<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>])</var><a class="copiable-link" href="#index-autoket"> &para;</a></span></dt>
+<dd><p><code class="code">autoket</code> takes a list [<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>] and
+returns a ket with the coefficients <code class="code">a<sub class="sub">i</sub></code> <code class="code">declare</code>-d
+complex. Simple expressions such as <code class="code">a*sin(x)+b*cos(x)</code> are allowed
+and will <code class="code">declare</code> only the coefficients as complex.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) autoket([a,b]);
+                                     [ a ]
+(%o1)                                [   ]
+                                     [ b ]
+(%i2) facts();
+(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
+</pre></div><div class="group"><pre class="example-preformatted">(%i1) autoket([a*sin(x),b*sin(x)]);
+                                 [ a sin(x) ]
+(%o1)                            [          ]
+                                 [ b sin(x) ]
+</pre></div></div>
+
+<a class="anchor" id="autobra"></a><dl class="first-deffn">
+<dt class="deffn" id="index-autobra"><span class="category-def">Function: </span><span><strong class="def-name">autobra</strong> <var class="def-var-arguments">([<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>])</var><a class="copiable-link" href="#index-autobra"> &para;</a></span></dt>
+<dd><p><code class="code">autobra</code> takes a list [<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>] and
+returns a bra with the coefficients <code class="code">a<sub class="sub">i</sub></code> <code class="code">declare</code>-d
+complex. Simple expressions such as <code class="code">a*sin(x)+b*cos(x)</code> are allowed
+and will <code class="code">declare</code> only the coefficients as complex.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) autobra([a,b,c]);
+(%o1)                             [ a  b  c ]
+(%i2) facts();
+(%o2) [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex), 
+                                                              kind(c, complex)]
+</pre></div><div class="group"><pre class="example-preformatted">(%i1) autobra([a*sin(x)+b*sin(x),c]);
+(%o1)                     [ b sin(x) + a sin(x)  c ]
 </pre></div></div>
 
 <a class="anchor" id="dagger"></a><dl class="first-deffn">

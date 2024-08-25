@@ -130,6 +130,10 @@ tellsimpafter( bra(i) . ket(j), braket(bra(i),ket(j)));
 tellsimpafter( braket(bra(a),ket(b)), kron_delta(a,b));
 tellsimpafter( braket(cx1*bra(i),cx2*ket(j)), cx1*cx2*kron_delta(i,j));
 
+matchdeclare([i1,i2,j1,j2,k1,k2],all);
+tellsimpafter( bra(i1,j1) . ket(i2,j2) , kron_delta(i1,i2)*kron_delta(j1,j2) );
+tellsimpafter( bra(i1,j1,k1) . ket(i2,j2,k2) , kron_delta(i1,i2)*kron_delta(j1,j2)*kron_delta(k1,k2) );
+
 /* norm */
 matchdeclare( kk, ketp, bb, brap );
 tellsimpafter(norm (kk), sqrt( braket(kk,kk) ));

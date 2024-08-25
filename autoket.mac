@@ -1,3 +1,5 @@
+common_functions: [sin,cos,asin,acos,tan,atan,exp,factorial] $
+
 autobra(u) := block(for elm in u do autodecl(elm),
 	      		matrix(u) ) $
 autoket(u) := block(for elm in u do autodecl(elm),
