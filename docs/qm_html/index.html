@@ -129,7 +129,7 @@ shown in abstract and matrix representations.
 (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
 (%i2) ketprod([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o2)                       [tpket, [[   ], [   ]]]
+(%o2)                       ketprod([[   ], [   ]])
                                      [ 0 ]  [ 1 ]
 </pre></div></div>
 
@@ -634,80 +634,80 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 the following functions.
 </p>
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fket"><span class="category-def">Function: </span><span><strong class="def-name">jm_ket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fket"> &para;</a></span></dt>
-<dd><p><code class="code">jm_ket</code> creates the ket <var class="var">|j,m&gt;</var> for total spin <var class="var">j</var>
+<dt class="deffn" id="index-jmket"><span class="category-def">Function: </span><span><strong class="def-name">jmket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmket"> &para;</a></span></dt>
+<dd><p><code class="code">jmket</code> creates the ket <var class="var">|j,m&gt;</var> for total spin <var class="var">j</var>
 and <var class="var">z</var>-component <var class="var">m</var>.
 </p></dd></dl>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fbra"><span class="category-def">Function: </span><span><strong class="def-name">jm_bra</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fbra"> &para;</a></span></dt>
-<dd><p><code class="code">jm_bra</code> creates the bra <var class="var">&lt;j,m|</var> for total spin <var class="var">j</var>
+<dt class="deffn" id="index-jmbra"><span class="category-def">Function: </span><span><strong class="def-name">jmbra</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmbra"> &para;</a></span></dt>
+<dd><p><code class="code">jmbra</code> creates the bra <var class="var">&lt;j,m|</var> for total spin <var class="var">j</var>
 and <var class="var">z</var>-component <var class="var">m</var>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) jm_bra(3/2,1/2);
+<div class="group"><pre class="example-preformatted">(%i1) jmbra(3/2,1/2);
                                         3  1
-(%o1)                            jm_bra(-, -)
+(%o1)                             jmbra(-, -)
                                         2  2
-(%i2) jm_bra([3/2,1/2]);
+(%i2) jmbra([3/2,1/2]);
                                        [ 3  1 ]
 (%o2)                          [jmbra, [ -  - ]]
                                        [ 2  2 ]
 </pre></div></div>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fketp"><span class="category-def">Function: </span><span><strong class="def-name">jm_ketp</strong> <var class="def-var-arguments">(jmket)</var><a class="copiable-link" href="#index-jm_005fketp"> &para;</a></span></dt>
-<dd><p><code class="code">jm_ketp</code> checks to see that the ket has the &rsquo;jmket&rsquo; marker.
+<dt class="deffn" id="index-jmketp"><span class="category-def">Function: </span><span><strong class="def-name">jmketp</strong> <var class="def-var-arguments">(jmket)</var><a class="copiable-link" href="#index-jmketp"> &para;</a></span></dt>
+<dd><p><code class="code">jmketp</code> checks to see that the ket has the &rsquo;jmket&rsquo; marker.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) jm_ketp(jm_ket(j,m));
+<div class="group"><pre class="example-preformatted">(%i1) jmketp(jmket(j,m));
 (%o1)                                false
-(%i2) jm_ketp(jm_ket([j,m]));
+(%i2) jmketp(jmket([j,m]));
 (%o2)                                true
 </pre></div></div>
 
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fbrap"><span class="category-def">Function: </span><span><strong class="def-name">jm_brap</strong> <var class="def-var-arguments">(jmbra)</var><a class="copiable-link" href="#index-jm_005fbrap"> &para;</a></span></dt>
-<dd><p><code class="code">jm_brap</code> checks to see that the bra has the &rsquo;jmbra&rsquo; marker.
+<dt class="deffn" id="index-jmbrap"><span class="category-def">Function: </span><span><strong class="def-name">jmbrap</strong> <var class="def-var-arguments">(jmbra)</var><a class="copiable-link" href="#index-jmbrap"> &para;</a></span></dt>
+<dd><p><code class="code">jmbrap</code> checks to see that the bra has the &rsquo;jmbra&rsquo; marker.
 </p></dd></dl>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fcheck"><span class="category-def">Function: </span><span><strong class="def-name">jm_check</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jm_005fcheck"> &para;</a></span></dt>
-<dd><p><code class="code">jm_check</code> checks to see that <var class="var">m</var> is one of {-j, &hellip;, +j}.
+<dt class="deffn" id="index-jmcheck"><span class="category-def">Function: </span><span><strong class="def-name">jmcheck</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmcheck"> &para;</a></span></dt>
+<dd><p><code class="code">jmcheck</code> checks to see that <var class="var">m</var> is one of {-j, &hellip;, +j}.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) jm_check(3/2,1/2);
+<div class="group"><pre class="example-preformatted">(%i1) jmcheck(3/2,1/2);
 (%o1)                                true
 </pre></div></div>
 
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jm_005fbraket"><span class="category-def">Function: </span><span><strong class="def-name">jm_braket</strong> <var class="def-var-arguments">(<em class="emph">jmbra,jmket</em>)</var><a class="copiable-link" href="#index-jm_005fbraket"> &para;</a></span></dt>
-<dd><p><code class="code">jm_braket</code> takes the inner product of the jm-kets.
+<dt class="deffn" id="index-jmbraket"><span class="category-def">Function: </span><span><strong class="def-name">jmbraket</strong> <var class="def-var-arguments">(<em class="emph">jmbra,jmket</em>)</var><a class="copiable-link" href="#index-jmbraket"> &para;</a></span></dt>
+<dd><p><code class="code">jmbraket</code> takes the inner product of the jm-kets.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) K:jm_ket(j1,m1);
-(%o1)                           jm_ket(j1, m1)
-(%i2) B:jm_bra(j2,m2);
-(%o2)                           jm_bra(j2, m2)
-(%i3) jm_braket(B,K);
+<div class="group"><pre class="example-preformatted">(%i1) K:jmket(j1,m1);
+(%o1)                            jmket(j1, m1)
+(%i2) B:jmbra(j2,m2);
+(%o2)                            jmbra(j2, m2)
+(%i3) jmbraket(B,K);
 (%o3)                kron_delta(j1, j2) kron_delta(m1, m2)
-(%i4) B:jm_bra(j1,m1);
-(%o4)                           jm_bra(j1, m1)
-(%i5) jm_braket(B,K);
+(%i4) B:jmbra(j1,m1);
+(%o4)                            jmbra(j1, m1)
+(%i5) jmbraket(B,K);
 (%o5)                                  1
-(%i6) K:jm_ket([j1,m1]);
+(%i6) K:jmket([j1,m1]);
 (%o6)                         [jmket, [ j1  m1 ]]
-(%i7) B:jm_bra([j2,m2]);
+(%i7) B:jmbra([j2,m2]);
 (%o7)                         [jmbra, [ j2  m2 ]]
-(%i8) jm_braket(B,K);
+(%i8) jmbraket(B,K);
 (%o8)                                  0
-(%i9) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+(%i9) jmbraket(jmbra(j1,m1)+jmbra(j3,m3),jmket(j2,m2));
 (%o9) kron_delta(j2, j3) kron_delta(m2, m3)
                                         + kron_delta(j1, j2) kron_delta(m1, m2)
 </pre></div></div>
@@ -715,41 +715,41 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 <dl class="first-deffn">
 <dt class="deffn" id="index-JP"><span class="category-def">Function: </span><span><strong class="def-name">JP</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-JP"> &para;</a></span></dt>
 <dd><p><code class="code">JP</code> is the <code class="code">J<sub class="sub">+</sub></code> operator. It takes a <code class="code">jmket</code>
-<code class="code">jm_ket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m+1))*hbar*jm_ket(j,m+1)</code>.
+<code class="code">jmket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)</code>.
 </p></dd></dl>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-JM"><span class="category-def">Function: </span><span><strong class="def-name">JM</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-JM"> &para;</a></span></dt>
 <dd><p><code class="code">JM</code> is the <code class="code">J<sub class="sub">-</sub></code> operator. It takes a <code class="code">jmket</code>
-<code class="code">jm_ket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m-1))*hbar*jm_ket(j,m-1)</code>.
+<code class="code">jmket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)</code>.
 </p></dd></dl>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-Jsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jsqr</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jsqr"> &para;</a></span></dt>
 <dd><p><code class="code">Jsqr</code> is the <code class="code">J<sup class="sup">2</sup></code> operator. It takes a <code class="code">jmket</code>
-<code class="code">jm_ket(j,m)</code> and returns <code class="code">(j*(j+1)*hbar<sup class="sup">2</sup>*jm_ket(j,m)</code>.
+<code class="code">jmket(j,m)</code> and returns <code class="code">(j*(j+1)*hbar<sup class="sup">2</sup>*jmket(j,m)</code>.
 </p></dd></dl>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-Jz"><span class="category-def">Function: </span><span><strong class="def-name">Jz</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jz"> &para;</a></span></dt>
 <dd><p><code class="code">Jz</code> is the <code class="code">J<sub class="sub">z</sub></code> operator. It takes a <code class="code">jmket</code>
-<code class="code">jm_ket(j,m)</code> and returns <code class="code">m*hbar*jm_ket(j,m)</code>.
+<code class="code">jmket(j,m)</code> and returns <code class="code">m*hbar*jmket(j,m)</code>.
 </p></dd></dl>
 
 <p>These functions are illustrated below.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) k:jm_ket([j,m]);
+<div class="group"><pre class="example-preformatted">(%i1) k:jmket([j,m]);
 (%o1)                          [jmket, [ j  m ]]
 (%i2) JP(k);
-(%o2)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%o2)          hbar jmket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
 (%i3) JM(k);
-(%o3)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%o3)          hbar jmket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
-                             2
-(%o4)                    hbar  j (j + 1) jm_ket(j, m)
+                              2
+(%o4)                     hbar  j (j + 1) jmket(j, m)
 (%i5) Jz(k);
-(%o5)                         hbar jm_ket(j, m) m
+(%o5)                         hbar jmket(j, m) m
 </pre></div></div>
 
 </div>
@@ -853,22 +853,22 @@ tensor product <code class="code">&lt;a,b|</code> is represented as <code class=
 ensure calculations are performed with the correct kind of objects.
 </p>
 <dl class="first-deffn">
-<dt class="deffn" id="index-ketprod"><span class="category-def">Function: </span><span><strong class="def-name">ketprod</strong> <var class="def-var-arguments">(<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-ketprod"> &para;</a></span></dt>
-<dd><p><code class="code">ketprod</code> produces a tensor product of kets <code class="code">k<sub class="sub">i</sub></code>. All
+<dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">(<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
+<dd><p><code class="code">tpket</code> produces a tensor product of kets <code class="code">k<sub class="sub">i</sub></code>. All
 of the elements must pass the <code class="code">ketp</code> predicate test to be
 accepted.
 </p></dd></dl>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-braprod"><span class="category-def">Function: </span><span><strong class="def-name">braprod</strong> <var class="def-var-arguments">(<code class="code">b<sub class="sub">1</sub></code>, <code class="code">b<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-braprod"> &para;</a></span></dt>
-<dd><p><code class="code">braprod</code> produces a tensor product of bras <code class="code">b<sub class="sub">i</sub></code>. All
+<dt class="deffn" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">(<code class="code">b<sub class="sub">1</sub></code>, <code class="code">b<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
+<dd><p><code class="code">tpbra</code> produces a tensor product of bras <code class="code">b<sub class="sub">i</sub></code>. All
 of the elements must pass the <code class="code">brap</code> predicate test to be
 accepted.
 </p></dd></dl>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-braketprod"><span class="category-def">Function: </span><span><strong class="def-name">braketprod</strong> <var class="def-var-arguments">(<code class="code">B,K</code>)</var><a class="copiable-link" href="#index-braketprod"> &para;</a></span></dt>
-<dd><p><code class="code">braketprod</code> takes the inner product of the tensor products
+<dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<code class="code">B,K</code>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
+<dd><p><code class="code">tpbraket</code> takes the inner product of the tensor products
 <code class="code">B</code> and <code class="code">K</code>. The tensor products must be of the same length
 (number of kets must equal the number of bras).
 </p></dd></dl>
@@ -877,34 +877,38 @@ accepted.
 the bracket of tensor products.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) ketprod(zp,zm);
+<div class="group"><pre class="example-preformatted">(%i1) tpket(zp,zm);
+                                    [ 1 ]  [ 0 ]
+(%o1)                         tpket([   ], [   ])
+                                    [ 0 ]  [ 1 ]
+(%i2) tpket('zp,'zm);
+(%o2)                            tpket(zp, zm)
+(%i3) tpket([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o1)                        ketprod([   ], [   ])
+(%o3)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
-(%i2) ketprod('zp,'zm);
-(%o2)                           ketprod(zp, zm)
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) kill(a,b,c,d);
 (%o1)                                done
 (%i2) declare([a,b,c,d],complex);
 (%o2)                                done
-(%i3) braprod(bra([a,b]),bra([c,d]));
-(%o3)                     braprod([ a  b ], [ c  d ])
-(%i4) braprod(dagger(zp),bra([c,d]));
-(%o4)                     braprod([ 1  0 ], [ c  d ])
-</pre></div><div class="group"><pre class="example-preformatted">(%i1) K:ketprod(zp,zm);
+(%i3) tpbra([bra([a,b]),bra([c,d])]);
+(%o3)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%i4) tpbra([dagger(zp),bra([c,d])]);
+(%o4)                    [tpbra, [[ 1  0 ], [ c  d ]]]
+</pre></div><div class="group"><pre class="example-preformatted">(%i1) K:tpket([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o1)                        ketprod([   ], [   ])
+(%o1)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 (%i2) zpb:dagger(zp);
 (%o2)                              [ 1  0 ]
 (%i3) zmb:dagger(zm);
 (%o3)                              [ 0  1 ]
-(%i4) B:braprod(zpb,zmb);
-(%o4)                     braprod([ 1  0 ], [ 0  1 ])
-(%i5) braketprod(K,B);
+(%i4) B:tpbra([zpb,zmb]);
+(%o4)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
+(%i5) tpbraket(K,B);
 (%o5)                                false
-(%i6) braketprod(B,K);
-(%o6)                                false
+(%i6) tpbraket(B,K);
+(%o6)                                  1
 </pre></div></div>
 
 </div>

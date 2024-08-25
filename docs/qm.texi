@@ -109,7 +109,7 @@ shown in abstract and matrix representations.
 (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
 (%i2) ketprod([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o2)                       [tpket, [[   ], [   ]]]
+(%o2)                       ketprod([[   ], [   ]])
                                      [ 0 ]  [ 1 ]
 @end group
 @end example
@@ -616,82 +616,82 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 To create kets and bras in the @var{|j,m>} representation you can use
 the following functions.
 
-@deffn {Function} jm_ket (@code{j,m})
-@code{jm_ket} creates the ket @var{|j,m>} for total spin @var{j}
+@deffn {Function} jmket (@code{j,m})
+@code{jmket} creates the ket @var{|j,m>} for total spin @var{j}
 and @var{z}-component @var{m}.
 @end deffn
 
-@deffn {Function} jm_bra (@code{j,m})
-@code{jm_bra} creates the bra @var{<j,m|} for total spin @var{j}
+@deffn {Function} jmbra (@code{j,m})
+@code{jmbra} creates the bra @var{<j,m|} for total spin @var{j}
 and @var{z}-component @var{m}.
 @end deffn
 
 @example
 @group
-(%i1) jm_bra(3/2,1/2);
+(%i1) jmbra(3/2,1/2);
                                         3  1
-(%o1)                            jm_bra(-, -)
+(%o1)                             jmbra(-, -)
                                         2  2
-(%i2) jm_bra([3/2,1/2]);
+(%i2) jmbra([3/2,1/2]);
                                        [ 3  1 ]
 (%o2)                          [jmbra, [ -  - ]]
                                        [ 2  2 ]
 @end group
 @end example
 
-@deffn {Function} jm_ketp (jmket)
-@code{jm_ketp} checks to see that the ket has the 'jmket' marker.
+@deffn {Function} jmketp (jmket)
+@code{jmketp} checks to see that the ket has the 'jmket' marker.
 @end deffn
 
 @example
 @group
-(%i1) jm_ketp(jm_ket(j,m));
+(%i1) jmketp(jmket(j,m));
 (%o1)                                false
-(%i2) jm_ketp(jm_ket([j,m]));
+(%i2) jmketp(jmket([j,m]));
 (%o2)                                true
 @end group
 @end example
 
 
-@deffn {Function} jm_brap (jmbra)
-@code{jm_brap} checks to see that the bra has the 'jmbra' marker.
+@deffn {Function} jmbrap (jmbra)
+@code{jmbrap} checks to see that the bra has the 'jmbra' marker.
 @end deffn
 
-@deffn {Function} jm_check (@code{j,m})
-@code{jm_check} checks to see that @var{m} is one of @{-j, @dots{}, +j@}.
+@deffn {Function} jmcheck (@code{j,m})
+@code{jmcheck} checks to see that @var{m} is one of @{-j, @dots{}, +j@}.
 @end deffn
 
 @example
 @group
-(%i1) jm_check(3/2,1/2);
+(%i1) jmcheck(3/2,1/2);
 (%o1)                                true
 @end group
 @end example
 
 
-@deffn {Function} jm_braket (@emph{jmbra,jmket})
-@code{jm_braket} takes the inner product of the jm-kets.
+@deffn {Function} jmbraket (@emph{jmbra,jmket})
+@code{jmbraket} takes the inner product of the jm-kets.
 @end deffn
 
 @example
 @group
-(%i1) K:jm_ket(j1,m1);
-(%o1)                           jm_ket(j1, m1)
-(%i2) B:jm_bra(j2,m2);
-(%o2)                           jm_bra(j2, m2)
-(%i3) jm_braket(B,K);
+(%i1) K:jmket(j1,m1);
+(%o1)                            jmket(j1, m1)
+(%i2) B:jmbra(j2,m2);
+(%o2)                            jmbra(j2, m2)
+(%i3) jmbraket(B,K);
 (%o3)                kron_delta(j1, j2) kron_delta(m1, m2)
-(%i4) B:jm_bra(j1,m1);
-(%o4)                           jm_bra(j1, m1)
-(%i5) jm_braket(B,K);
+(%i4) B:jmbra(j1,m1);
+(%o4)                            jmbra(j1, m1)
+(%i5) jmbraket(B,K);
 (%o5)                                  1
-(%i6) K:jm_ket([j1,m1]);
+(%i6) K:jmket([j1,m1]);
 (%o6)                         [jmket, [ j1  m1 ]]
-(%i7) B:jm_bra([j2,m2]);
+(%i7) B:jmbra([j2,m2]);
 (%o7)                         [jmbra, [ j2  m2 ]]
-(%i8) jm_braket(B,K);
+(%i8) jmbraket(B,K);
 (%o8)                                  0
-(%i9) jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+(%i9) jmbraket(jmbra(j1,m1)+jmbra(j3,m3),jmket(j2,m2));
 (%o9) kron_delta(j2, j3) kron_delta(m2, m3)
                                         + kron_delta(j1, j2) kron_delta(m1, m2)
 @end group
@@ -699,39 +699,39 @@ and @var{z}-component @var{m}.
 
 @deffn {Function} JP (@emph{jmket})
 @code{JP} is the @code{J@sub{+}} operator. It takes a @code{jmket}
-@code{jm_ket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m+1))*hbar*jm_ket(j,m+1)}.
+@code{jmket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)}.
 @end deffn
 
 @deffn {Function} JM (@emph{jmket})
 @code{JM} is the @code{J@sub{-}} operator. It takes a @code{jmket}
-@code{jm_ket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m-1))*hbar*jm_ket(j,m-1)}.
+@code{jmket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)}.
 @end deffn
 
 @deffn {Function} Jsqr (@emph{jmket})
 @code{Jsqr} is the @code{J@sup{2}} operator. It takes a @code{jmket}
-@code{jm_ket(j,m)} and returns @code{(j*(j+1)*hbar@sup{2}*jm_ket(j,m)}.
+@code{jmket(j,m)} and returns @code{(j*(j+1)*hbar@sup{2}*jmket(j,m)}.
 @end deffn
 
 @deffn {Function} Jz (@emph{jmket})
 @code{Jz} is the @code{J@sub{z}} operator. It takes a @code{jmket}
-@code{jm_ket(j,m)} and returns @code{m*hbar*jm_ket(j,m)}.
+@code{jmket(j,m)} and returns @code{m*hbar*jmket(j,m)}.
 @end deffn
 
 These functions are illustrated below.
 
 @example
 @group
-(%i1) k:jm_ket([j,m]);
+(%i1) k:jmket([j,m]);
 (%o1)                          [jmket, [ j  m ]]
 (%i2) JP(k);
-(%o2)          hbar jm_ket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%o2)          hbar jmket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
 (%i3) JM(k);
-(%o3)          hbar jm_ket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%o3)          hbar jmket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
-                             2
-(%o4)                    hbar  j (j + 1) jm_ket(j, m)
+                              2
+(%o4)                     hbar  j (j + 1) jmket(j, m)
 (%i5) Jz(k);
-(%o5)                         hbar jm_ket(j, m) m
+(%o5)                         hbar jmket(j, m) m
 @end group
 @end example
 
@@ -826,20 +826,20 @@ tensor product @code{<a,b|} is represented as @code{[tpbra,a,b]} for kets
 @code{a} and @code{b}. The list labels @code{tpket} and @code{tpbra}
 ensure calculations are performed with the correct kind of objects.
 
-@deffn {Function} ketprod (@code{k@sub{1}}, @code{k@sub{2}}, @dots{})
-@code{ketprod} produces a tensor product of kets @code{k@sub{i}}. All
+@deffn {Function} tpket (@code{k@sub{1}}, @code{k@sub{2}}, @dots{})
+@code{tpket} produces a tensor product of kets @code{k@sub{i}}. All
 of the elements must pass the @code{ketp} predicate test to be
 accepted.
 @end deffn
 
-@deffn {Function} braprod (@code{b@sub{1}}, @code{b@sub{2}}, @dots{})
-@code{braprod} produces a tensor product of bras @code{b@sub{i}}. All
+@deffn {Function} tpbra (@code{b@sub{1}}, @code{b@sub{2}}, @dots{})
+@code{tpbra} produces a tensor product of bras @code{b@sub{i}}. All
 of the elements must pass the @code{brap} predicate test to be
 accepted.
 @end deffn
 
-@deffn {Function} braketprod (@code{B,K})
-@code{braketprod} takes the inner product of the tensor products
+@deffn {Function} tpbraket (@code{B,K})
+@code{tpbraket} takes the inner product of the tensor products
 @code{B} and @code{K}. The tensor products must be of the same length
 (number of kets must equal the number of bras).
 @end deffn
@@ -849,38 +849,42 @@ the bracket of tensor products.
 
 @example
 @group
-(%i1) ketprod(zp,zm);
+(%i1) tpket(zp,zm);
+                                    [ 1 ]  [ 0 ]
+(%o1)                         tpket([   ], [   ])
+                                    [ 0 ]  [ 1 ]
+(%i2) tpket('zp,'zm);
+(%o2)                            tpket(zp, zm)
+(%i3) tpket([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o1)                        ketprod([   ], [   ])
+(%o3)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
-(%i2) ketprod('zp,'zm);
-(%o2)                           ketprod(zp, zm)
 @end group
 @group
 (%i1) kill(a,b,c,d);
 (%o1)                                done
 (%i2) declare([a,b,c,d],complex);
 (%o2)                                done
-(%i3) braprod(bra([a,b]),bra([c,d]));
-(%o3)                     braprod([ a  b ], [ c  d ])
-(%i4) braprod(dagger(zp),bra([c,d]));
-(%o4)                     braprod([ 1  0 ], [ c  d ])
+(%i3) tpbra([bra([a,b]),bra([c,d])]);
+(%o3)                    [tpbra, [[ a  b ], [ c  d ]]]
+(%i4) tpbra([dagger(zp),bra([c,d])]);
+(%o4)                    [tpbra, [[ 1  0 ], [ c  d ]]]
 @end group
 @group
-(%i1) K:ketprod(zp,zm);
+(%i1) K:tpket([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o1)                        ketprod([   ], [   ])
+(%o1)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 (%i2) zpb:dagger(zp);
 (%o2)                              [ 1  0 ]
 (%i3) zmb:dagger(zm);
 (%o3)                              [ 0  1 ]
-(%i4) B:braprod(zpb,zmb);
-(%o4)                     braprod([ 1  0 ], [ 0  1 ])
-(%i5) braketprod(K,B);
+(%i4) B:tpbra([zpb,zmb]);
+(%o4)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
+(%i5) tpbraket(K,B);
 (%o5)                                false
-(%i6) braketprod(B,K);
-(%o6)                                false
+(%i6) tpbraket(B,K);
+(%o6)                                  1
 @end group
 @end example
 

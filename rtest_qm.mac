@@ -11,7 +11,7 @@ ketprod('zp,'zm)+ketprod('zm,'zp);
 ketprod(zp,zm)+ketprod(zm,zp) $
 
 ketprod([zp,zm]);
-[tpket,[matrix([1],[0]),matrix([0],[1])]] $
+ketprod([matrix([1],[0]),matrix([0],[1])]) $
 
 declare([a,b],complex);
 done $
@@ -190,62 +190,62 @@ ev(expect(Sy,xp+ym),ratsimp);
 ev(qm_variance(Sy,xp+ym),ratsimp);
 (%i*hbar)/2 $
 
-jm_bra(3/2,1/2);
-jm_bra(3/2,1/2) $
+jmbra(3/2,1/2);
+jmbra(3/2,1/2) $
 
-jm_bra([3/2,1/2]);
+jmbra([3/2,1/2]);
 [jmbra,matrix([3/2,1/2])] $
 
-jm_ketp(jm_ket(j,m));
+jmketp(jmket(j,m));
 false $
 
-jm_ketp(jm_ket([j,m]));
+jmketp(jmket([j,m]));
 true $
 
-jm_check(3/2,1/2);
+jmcheck(3/2,1/2);
 true $
 
-K:jm_ket(j1,m1);
-jm_ket(j1,m1) $
+K:jmket(j1,m1);
+jmket(j1,m1) $
 
-B:jm_bra(j2,m2);
-jm_bra(j2,m2) $
+B:jmbra(j2,m2);
+jmbra(j2,m2) $
 
-jm_braket(B,K);
+jmbraket(B,K);
 kron_delta(j1,j2)*kron_delta(m1,m2) $
 
-B:jm_bra(j1,m1);
-jm_bra(j1,m1) $
+B:jmbra(j1,m1);
+jmbra(j1,m1) $
 
-jm_braket(B,K);
+jmbraket(B,K);
 1 $
 
-K:jm_ket([j1,m1]);
+K:jmket([j1,m1]);
 [jmket,matrix([j1,m1])] $
 
-B:jm_bra([j2,m2]);
+B:jmbra([j2,m2]);
 [jmbra,matrix([j2,m2])] $
 
-jm_braket(B,K);
+jmbraket(B,K);
 0 $
 
-jm_braket(jm_bra(j1,m1)+jm_bra(j3,m3),jm_ket(j2,m2));
+jmbraket(jmbra(j1,m1)+jmbra(j3,m3),jmket(j2,m2));
 kron_delta(j2,j3)*kron_delta(m2,m3)+kron_delta(j1,j2)*kron_delta(m1,m2) $
 
-k:jm_ket([j,m]);
+k:jmket([j,m]);
 [jmket,matrix([j,m])] $
 
 JP(k);
-hbar*'jm_ket(j,m+1)*sqrt(j*(j+1)-m*(m+1)) $
+hbar*'jmket(j,m+1)*sqrt(j*(j+1)-m*(m+1)) $
 
 JM(k);
-hbar*'jm_ket(j,m-1)*sqrt(j*(j+1)-(m-1)*m) $
+hbar*'jmket(j,m-1)*sqrt(j*(j+1)-(m-1)*m) $
 
 Jsqr(k);
-hbar^2*j*(j+1)*'jm_ket(j,m) $
+hbar^2*j*(j+1)*'jmket(j,m) $
 
 Jz(k);
-hbar*'jm_ket(j,m)*m $
+hbar*'jmket(j,m)*m $
 
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
@@ -259,11 +259,14 @@ matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)]) $
 UU(w*Sy,t);
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
-ketprod(zp,zm);
-ketprod(matrix([1],[0]),matrix([0],[1])) $
+tpket(zp,zm);
+tpket(matrix([1],[0]),matrix([0],[1])) $
 
-ketprod('zp,'zm);
-ketprod(zp,zm) $
+tpket('zp,'zm);
+tpket(zp,zm) $
+
+tpket([zp,zm]);
+[tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
 kill(a,b,c,d);
 done $
@@ -271,14 +274,14 @@ done $
 declare([a,b,c,d],complex);
 done $
 
-braprod(bra([a,b]),bra([c,d]));
-braprod(matrix([a,b]),matrix([c,d])) $
+tpbra([bra([a,b]),bra([c,d])]);
+[tpbra,[matrix([a,b]),matrix([c,d])]] $
 
-braprod(dagger(zp),bra([c,d]));
-braprod(matrix([1,0]),matrix([c,d])) $
+tpbra([dagger(zp),bra([c,d])]);
+[tpbra,[matrix([1,0]),matrix([c,d])]] $
 
-K:ketprod(zp,zm);
-ketprod(matrix([1],[0]),matrix([0],[1])) $
+K:tpket([zp,zm]);
+[tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
 zpb:dagger(zp);
 matrix([1,0]) $
@@ -286,14 +289,14 @@ matrix([1,0]) $
 zmb:dagger(zm);
 matrix([0,1]) $
 
-B:braprod(zpb,zmb);
-braprod(matrix([1,0]),matrix([0,1])) $
+B:tpbra([zpb,zmb]);
+[tpbra,[matrix([1,0]),matrix([0,1])]] $
 
-braketprod(K,B);
+tpbraket(K,B);
 false $
 
-braketprod(B,K);
-false $
+tpbraket(B,K);
+1 $
 
 "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
 
