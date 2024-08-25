@@ -838,6 +838,14 @@ of the elements must pass the @code{brap} predicate test to be
 accepted.
 @end deffn
 
+@deffn {Function} tpketp (tpket)
+@code{tpketp} checks to see that the ket has the 'tpket' marker.
+@end deffn
+
+@deffn {Function} tpbrap (tpbra)
+@code{tpbrap} checks to see that the bra has the 'tpbra' marker.
+@end deffn
+
 @deffn {Function} tpbraket (@code{B,K})
 @code{tpbraket} takes the inner product of the tensor products
 @code{B} and @code{K}. The tensor products must be of the same length

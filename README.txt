@@ -626,6 +626,12 @@ with the correct kind of objects.
      ‘tpbra’ produces a tensor product of bras ‘b_{i}’.  All of the
      elements must pass the ‘brap’ predicate test to be accepted.
 
+ -- Function: tpketp (tpket)
+     ‘tpketp’ checks to see that the ket has the 'tpket' marker.
+
+ -- Function: tpbrap (tpbra)
+     ‘tpbrap’ checks to see that the bra has the 'tpbra' marker.
+
  -- Function: tpbraket (B,K)
      ‘tpbraket’ takes the inner product of the tensor products ‘B’ and
      ‘K’.  The tensor products must be of the same length (number of
@@ -749,9 +755,13 @@ Appendix A Function and Variable index
 * tpbra:                                 Functions and Variables for qm.
                                                               (line 624)
 * tpbraket:                              Functions and Variables for qm.
-                                                              (line 628)
+                                                              (line 634)
+* tpbrap:                                Functions and Variables for qm.
+                                                              (line 631)
 * tpket:                                 Functions and Variables for qm.
                                                               (line 620)
+* tpketp:                                Functions and Variables for qm.
+                                                              (line 628)
 * UU:                                    Functions and Variables for qm.
                                                               (line 597)
 * xm:                                    Functions and Variables for qm.
