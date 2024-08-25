@@ -2,8 +2,8 @@ display2d:false$
 load(qm)$
 ket(a,b)+ket(c,d);
 ket([a,b,c])+ket([d,e,f]);
-ketprod('zp,'zm)+ketprod('zm,'zp);
-ketprod([zp,zm]);
+tpket('zp,'zm)+tpket('zm,'zp);
+tpket([zp,zm]);
 declare([a,b],complex);
 psi:a*ket(1)+b*ket(2);
 psidag:dagger(psi);

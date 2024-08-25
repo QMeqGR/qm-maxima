@@ -66,11 +66,11 @@ the ‘qm’ package.  Here both abstract, and concrete kets are shown.
    Next, tensor products of the spin-1/2 basis states ‘{zp,zm}’ are
 shown in abstract and matrix representations.
 
-     (%i1) ketprod('zp,'zm)+ketprod('zm,'zp);
-     (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
-     (%i2) ketprod([zp,zm]);
+     (%i1) tpket('zp,'zm)+tpket('zm,'zp);
+     (%o1)                    tpket(zp, zm) + tpket(zm, zp)
+     (%i2) tpket([zp,zm]);
                                           [ 1 ]  [ 0 ]
-     (%o2)                       ketprod([[   ], [   ]])
+     (%o2)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
 
    Abstract kets and bras are assumed to be orthonormal as shown in the

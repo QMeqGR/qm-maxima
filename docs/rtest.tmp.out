@@ -8,10 +8,10 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o4) ket(c,d)+ket(a,b)
 (%i5) ket([a,b,c])+ket([d,e,f])
 (%o5) matrix([d+a],[e+b],[f+c])
-(%i6) ketprod('zp,'zm)+ketprod('zm,'zp)
-(%o6) ketprod(zp,zm)+ketprod(zm,zp)
-(%i7) ketprod([zp,zm])
-(%o7) ketprod([matrix([1],[0]),matrix([0],[1])])
+(%i6) tpket('zp,'zm)+tpket('zm,'zp)
+(%o6) tpket(zp,zm)+tpket(zm,zp)
+(%i7) tpket([zp,zm])
+(%o7) [tpket,[matrix([1],[0]),matrix([0],[1])]]
 (%i8) declare([a,b],complex)
 (%o8) done
 (%i9) psi:a*ket(1)+b*ket(2)

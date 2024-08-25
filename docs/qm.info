@@ -95,11 +95,11 @@ the ‘qm’ package.  Here both abstract, and concrete kets are shown.
    Next, tensor products of the spin-1/2 basis states ‘{zp,zm}’ are
 shown in abstract and matrix representations.
 
-     (%i1) ketprod('zp,'zm)+ketprod('zm,'zp);
-     (%o1)                  ketprod(zp, zm) + ketprod(zm, zp)
-     (%i2) ketprod([zp,zm]);
+     (%i1) tpket('zp,'zm)+tpket('zm,'zp);
+     (%o1)                    tpket(zp, zm) + tpket(zm, zp)
+     (%i2) tpket([zp,zm]);
                                           [ 1 ]  [ 0 ]
-     (%o2)                       ketprod([[   ], [   ]])
+     (%o2)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
 
    Abstract kets and bras are assumed to be orthonormal as shown in the
@@ -827,17 +827,17 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm4803
-Ref: ket5156
-Ref: bra6099
-Ref: ketp6852
-Ref: brap7557
-Ref: autoket8280
-Ref: autobra9152
-Ref: dagger9822
-Ref: braket10164
-Ref: norm10773
-Node: Function and Variable Index28056
+Node: Functions and Variables for qm4795
+Ref: ket5148
+Ref: bra6091
+Ref: ketp6844
+Ref: brap7549
+Ref: autoket8272
+Ref: autobra9144
+Ref: dagger9814
+Ref: braket10156
+Ref: norm10765
+Node: Function and Variable Index28048
 
 End Tag Table
 

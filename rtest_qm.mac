@@ -7,11 +7,11 @@ ket(c,d)+ket(a,b) $
 ket([a,b,c])+ket([d,e,f]);
 matrix([d+a],[e+b],[f+c]) $
 
-ketprod('zp,'zm)+ketprod('zm,'zp);
-ketprod(zp,zm)+ketprod(zm,zp) $
+tpket('zp,'zm)+tpket('zm,'zp);
+tpket(zp,zm)+tpket(zm,zp) $
 
-ketprod([zp,zm]);
-ketprod([matrix([1],[0]),matrix([0],[1])]) $
+tpket([zp,zm]);
+[tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
 declare([a,b],complex);
 done $
