@@ -501,15 +501,18 @@ following functions.
      (%o4)                            jmbra(j1, m1)
      (%i5) jmbraket(B,K);
      (%o5)                                  1
-     (%i6) K:jmket([j1,m1]);
-     (%o6)                         [jmket, [ j1  m1 ]]
-     (%i7) B:jmbra([j2,m2]);
-     (%o7)                         [jmbra, [ j2  m2 ]]
+     (%i6) K:jmket([3/2,1/2]);
+                                            [ 3  1 ]
+     (%o6)                          [jmket, [ -  - ]]
+                                            [ 2  2 ]
+     (%i7) B:jmbra([3/2,1/2]);
+                                            [ 3  1 ]
+     (%o7)                          [jmbra, [ -  - ]]
+                                            [ 2  2 ]
      (%i8) jmbraket(B,K);
-     (%o8)                                  0
-     (%i9) jmbraket(jmbra(j1,m1)+jmbra(j3,m3),jmket(j2,m2));
-     (%o9) kron_delta(j2, j3) kron_delta(m2, m3)
-                                             + kron_delta(j1, j2) kron_delta(m1, m2)
+     (%o8)                                  1
+     (%i9) jmbraket(jmbra(j1,m1),jmket(j2,m2));
+     (%o9)                kron_delta(j1, j2) kron_delta(m1, m2)
 
  -- Function: JP (_jmket_)
      ‘JP’ is the ‘J_{+}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and
@@ -695,7 +698,7 @@ Appendix A Function and Variable index
 * expect:                                Functions and Variables for qm.
                                                               (line 434)
 * JM:                                    Functions and Variables for qm.
-                                                              (line 517)
+                                                              (line 520)
 * jmbra:                                 Functions and Variables for qm.
                                                               (line 460)
 * jmbraket:                              Functions and Variables for qm.
@@ -709,11 +712,11 @@ Appendix A Function and Variable index
 * jmketp:                                Functions and Variables for qm.
                                                               (line 473)
 * JP:                                    Functions and Variables for qm.
-                                                              (line 513)
+                                                              (line 516)
 * Jsqr:                                  Functions and Variables for qm.
-                                                              (line 521)
+                                                              (line 524)
 * Jz:                                    Functions and Variables for qm.
-                                                              (line 525)
+                                                              (line 528)
 * ket:                                   Functions and Variables for qm.
                                                               (line 108)
 * ketp:                                  Functions and Variables for qm.
@@ -725,11 +728,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                               (line 441)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 570)
+                                                              (line 573)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 574)
+                                                              (line 577)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 578)
+                                                              (line 581)
 * sigmax:                                Functions and Variables for qm.
                                                               (line 344)
 * sigmay:                                Functions and Variables for qm.
@@ -737,9 +740,9 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                               (line 350)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 549)
+                                                              (line 552)
 * SP:                                    Functions and Variables for qm.
-                                                              (line 546)
+                                                              (line 549)
 * Sx:                                    Functions and Variables for qm.
                                                               (line 353)
 * SX:                                    Functions and Variables for qm.
@@ -753,17 +756,17 @@ Appendix A Function and Variable index
 * SZ:                                    Functions and Variables for qm.
                                                               (line 403)
 * tpbra:                                 Functions and Variables for qm.
-                                                              (line 624)
+                                                              (line 627)
 * tpbraket:                              Functions and Variables for qm.
-                                                              (line 634)
+                                                              (line 637)
 * tpbrap:                                Functions and Variables for qm.
-                                                              (line 631)
+                                                              (line 634)
 * tpket:                                 Functions and Variables for qm.
-                                                              (line 620)
+                                                              (line 623)
 * tpketp:                                Functions and Variables for qm.
-                                                              (line 628)
+                                                              (line 631)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 597)
+                                                              (line 600)
 * xm:                                    Functions and Variables for qm.
                                                               (line 289)
 * xp:                                    Functions and Variables for qm.

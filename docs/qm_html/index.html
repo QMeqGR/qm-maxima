@@ -701,15 +701,18 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 (%o4)                            jmbra(j1, m1)
 (%i5) jmbraket(B,K);
 (%o5)                                  1
-(%i6) K:jmket([j1,m1]);
-(%o6)                         [jmket, [ j1  m1 ]]
-(%i7) B:jmbra([j2,m2]);
-(%o7)                         [jmbra, [ j2  m2 ]]
+(%i6) K:jmket([3/2,1/2]);
+                                       [ 3  1 ]
+(%o6)                          [jmket, [ -  - ]]
+                                       [ 2  2 ]
+(%i7) B:jmbra([3/2,1/2]);
+                                       [ 3  1 ]
+(%o7)                          [jmbra, [ -  - ]]
+                                       [ 2  2 ]
 (%i8) jmbraket(B,K);
-(%o8)                                  0
-(%i9) jmbraket(jmbra(j1,m1)+jmbra(j3,m3),jmket(j2,m2));
-(%o9) kron_delta(j2, j3) kron_delta(m2, m3)
-                                        + kron_delta(j1, j2) kron_delta(m1, m2)
+(%o8)                                  1
+(%i9) jmbraket(jmbra(j1,m1),jmket(j2,m2));
+(%o9)                kron_delta(j1, j2) kron_delta(m1, m2)
 </pre></div></div>
 
 <dl class="first-deffn">
