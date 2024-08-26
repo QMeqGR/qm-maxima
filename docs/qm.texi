@@ -834,24 +834,28 @@ tensor product @code{<a,b|} is represented as @code{[tpbra,a,b]} for kets
 @code{a} and @code{b}. The list labels @code{tpket} and @code{tpbra}
 ensure calculations are performed with the correct kind of objects.
 
-@deffn {Function} tpket (@code{k@sub{1}}, @code{k@sub{2}}, @dots{})
+@deffn {Function} tpket ([@code{k@sub{1}}, @code{k@sub{2}}, @dots{}])
 @code{tpket} produces a tensor product of kets @code{k@sub{i}}. All
 of the elements must pass the @code{ketp} predicate test to be
-accepted.
+accepted. If a list is not used for the input kets, the tpket will
+be an abstract tensor product ket.
 @end deffn
 
-@deffn {Function} tpbra (@code{b@sub{1}}, @code{b@sub{2}}, @dots{})
+@deffn {Function} tpbra ([@code{b@sub{1}}, @code{b@sub{2}}, @dots{}])
 @code{tpbra} produces a tensor product of bras @code{b@sub{i}}. All
 of the elements must pass the @code{brap} predicate test to be
-accepted.
+accepted. If a list is not used for the input bras, the tpbra will
+be an abstract tensor product bra.
 @end deffn
 
 @deffn {Function} tpketp (tpket)
-@code{tpketp} checks to see that the ket has the 'tpket' marker.
+@code{tpketp} checks to see that the ket has the 'tpket' marker. Only
+the matrix representation will pass this test.
 @end deffn
 
 @deffn {Function} tpbrap (tpbra)
-@code{tpbrap} checks to see that the bra has the 'tpbra' marker.
+@code{tpbrap} checks to see that the bra has the 'tpbra' marker. Only
+the matrix representation will pass this test.
 @end deffn
 
 @deffn {Function} tpbraket (@code{B,K})
@@ -860,21 +864,17 @@ accepted.
 (number of kets must equal the number of bras).
 @end deffn
 
-Examples below show how to create tensor products and take
-the bracket of tensor products.
+Examples below show how to create abstract and concrete tensor products
+and take the bracket of tensor products.
 
 @example
 @group
-(%i1) tpket(zp,zm);
-                                    [ 1 ]  [ 0 ]
-(%o1)                         tpket([   ], [   ])
-                                    [ 0 ]  [ 1 ]
-(%i2) tpket('zp,'zm);
-(%o2)                            tpket(zp, zm)
-(%i3) tpket([zp,zm]);
-                                     [ 1 ]  [ 0 ]
-(%o3)                       [tpket, [[   ], [   ]]]
-                                     [ 0 ]  [ 1 ]
+(%i1) K:tpket(a1,b1);
+(%o1)                            tpket(a1, b1)
+(%i2) B:tpbra(a2,b2);
+(%o2)                            tpbra(a2, b2)
+(%i3) tpbraket(B,K);
+(%o3)                kron_delta(a1, a2) kron_delta(b1, b2)
 @end group
 @group
 (%i1) kill(a,b,c,d);

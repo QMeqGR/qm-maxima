@@ -183,12 +183,12 @@ Proviso: assuming 64*t # 0
 (%i89) UU(w*Sy,t)
 Proviso: assuming 64*t*w # 0 
 (%o89) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
-(%i90) tpket(zp,zm)
-(%o90) tpket(matrix([1],[0]),matrix([0],[1]))
-(%i91) tpket('zp,'zm)
-(%o91) tpket(zp,zm)
-(%i92) tpket([zp,zm])
-(%o92) [tpket,[matrix([1],[0]),matrix([0],[1])]]
+(%i90) K:tpket(a1,b1)
+(%o90) tpket(a1,b1)
+(%i91) B:tpbra(a2,b2)
+(%o91) tpbra(a2,b2)
+(%i92) tpbraket(B,K)
+(%o92) kron_delta(a1,a2)*kron_delta(b1,b2)
 (%i93) kill(a,b,c,d)
 (%o93) done
 (%i94) declare([a,b,c,d],complex)

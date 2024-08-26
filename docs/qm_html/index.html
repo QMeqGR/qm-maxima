@@ -861,27 +861,31 @@ tensor product <code class="code">&lt;a,b|</code> is represented as <code class=
 ensure calculations are performed with the correct kind of objects.
 </p>
 <dl class="first-deffn">
-<dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">(<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
+<dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">([<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;])</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
 <dd><p><code class="code">tpket</code> produces a tensor product of kets <code class="code">k<sub class="sub">i</sub></code>. All
 of the elements must pass the <code class="code">ketp</code> predicate test to be
-accepted.
+accepted. If a list is not used for the input kets, the tpket will
+be an abstract tensor product ket.
 </p></dd></dl>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">(<code class="code">b<sub class="sub">1</sub></code>, <code class="code">b<sub class="sub">2</sub></code>, &hellip;)</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
+<dt class="deffn" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">([<code class="code">b<sub class="sub">1</sub></code>, <code class="code">b<sub class="sub">2</sub></code>, &hellip;])</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
 <dd><p><code class="code">tpbra</code> produces a tensor product of bras <code class="code">b<sub class="sub">i</sub></code>. All
 of the elements must pass the <code class="code">brap</code> predicate test to be
-accepted.
+accepted. If a list is not used for the input bras, the tpbra will
+be an abstract tensor product bra.
 </p></dd></dl>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-tpketp"><span class="category-def">Function: </span><span><strong class="def-name">tpketp</strong> <var class="def-var-arguments">(tpket)</var><a class="copiable-link" href="#index-tpketp"> &para;</a></span></dt>
-<dd><p><code class="code">tpketp</code> checks to see that the ket has the &rsquo;tpket&rsquo; marker.
+<dd><p><code class="code">tpketp</code> checks to see that the ket has the &rsquo;tpket&rsquo; marker. Only
+the matrix representation will pass this test.
 </p></dd></dl>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-tpbrap"><span class="category-def">Function: </span><span><strong class="def-name">tpbrap</strong> <var class="def-var-arguments">(tpbra)</var><a class="copiable-link" href="#index-tpbrap"> &para;</a></span></dt>
-<dd><p><code class="code">tpbrap</code> checks to see that the bra has the &rsquo;tpbra&rsquo; marker.
+<dd><p><code class="code">tpbrap</code> checks to see that the bra has the &rsquo;tpbra&rsquo; marker. Only
+the matrix representation will pass this test.
 </p></dd></dl>
 
 <dl class="first-deffn">
@@ -891,20 +895,16 @@ accepted.
 (number of kets must equal the number of bras).
 </p></dd></dl>
 
-<p>Examples below show how to create tensor products and take
-the bracket of tensor products.
+<p>Examples below show how to create abstract and concrete tensor products
+and take the bracket of tensor products.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) tpket(zp,zm);
-                                    [ 1 ]  [ 0 ]
-(%o1)                         tpket([   ], [   ])
-                                    [ 0 ]  [ 1 ]
-(%i2) tpket('zp,'zm);
-(%o2)                            tpket(zp, zm)
-(%i3) tpket([zp,zm]);
-                                     [ 1 ]  [ 0 ]
-(%o3)                       [tpket, [[   ], [   ]]]
-                                     [ 0 ]  [ 1 ]
+<div class="group"><pre class="example-preformatted">(%i1) K:tpket(a1,b1);
+(%o1)                            tpket(a1, b1)
+(%i2) B:tpbra(a2,b2);
+(%o2)                            tpbra(a2, b2)
+(%i3) tpbraket(B,K);
+(%o3)                kron_delta(a1, a2) kron_delta(b1, b2)
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) kill(a,b,c,d);
 (%o1)                                done
 (%i2) declare([a,b,c,d],complex);

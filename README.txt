@@ -624,38 +624,40 @@ product ‘<a,b|’ is represented as ‘[tpbra,a,b]’ for kets ‘a’ and ‘
 The list labels ‘tpket’ and ‘tpbra’ ensure calculations are performed
 with the correct kind of objects.
 
- -- Function: tpket (k_{1}, k_{2}, ...)
+ -- Function: tpket ([k_{1}, k_{2}, ...])
      ‘tpket’ produces a tensor product of kets ‘k_{i}’.  All of the
-     elements must pass the ‘ketp’ predicate test to be accepted.
+     elements must pass the ‘ketp’ predicate test to be accepted.  If a
+     list is not used for the input kets, the tpket will be an abstract
+     tensor product ket.
 
- -- Function: tpbra (b_{1}, b_{2}, ...)
+ -- Function: tpbra ([b_{1}, b_{2}, ...])
      ‘tpbra’ produces a tensor product of bras ‘b_{i}’.  All of the
-     elements must pass the ‘brap’ predicate test to be accepted.
+     elements must pass the ‘brap’ predicate test to be accepted.  If a
+     list is not used for the input bras, the tpbra will be an abstract
+     tensor product bra.
 
  -- Function: tpketp (tpket)
-     ‘tpketp’ checks to see that the ket has the 'tpket' marker.
+     ‘tpketp’ checks to see that the ket has the 'tpket' marker.  Only
+     the matrix representation will pass this test.
 
  -- Function: tpbrap (tpbra)
-     ‘tpbrap’ checks to see that the bra has the 'tpbra' marker.
+     ‘tpbrap’ checks to see that the bra has the 'tpbra' marker.  Only
+     the matrix representation will pass this test.
 
  -- Function: tpbraket (B,K)
      ‘tpbraket’ takes the inner product of the tensor products ‘B’ and
      ‘K’.  The tensor products must be of the same length (number of
      kets must equal the number of bras).
 
-   Examples below show how to create tensor products and take the
-bracket of tensor products.
+   Examples below show how to create abstract and concrete tensor
+products and take the bracket of tensor products.
 
-     (%i1) tpket(zp,zm);
-                                         [ 1 ]  [ 0 ]
-     (%o1)                         tpket([   ], [   ])
-                                         [ 0 ]  [ 1 ]
-     (%i2) tpket('zp,'zm);
-     (%o2)                            tpket(zp, zm)
-     (%i3) tpket([zp,zm]);
-                                          [ 1 ]  [ 0 ]
-     (%o3)                       [tpket, [[   ], [   ]]]
-                                          [ 0 ]  [ 1 ]
+     (%i1) K:tpket(a1,b1);
+     (%o1)                            tpket(a1, b1)
+     (%i2) B:tpbra(a2,b2);
+     (%o2)                            tpbra(a2, b2)
+     (%i3) tpbraket(B,K);
+     (%o3)                kron_delta(a1, a2) kron_delta(b1, b2)
      (%i1) kill(a,b,c,d);
      (%o1)                                done
      (%i2) declare([a,b,c,d],complex);
@@ -759,15 +761,15 @@ Appendix A Function and Variable index
 * SZ:                                    Functions and Variables for qm.
                                                               (line 406)
 * tpbra:                                 Functions and Variables for qm.
-                                                              (line 630)
+                                                              (line 632)
 * tpbraket:                              Functions and Variables for qm.
-                                                              (line 640)
+                                                              (line 646)
 * tpbrap:                                Functions and Variables for qm.
-                                                              (line 637)
+                                                              (line 642)
 * tpket:                                 Functions and Variables for qm.
                                                               (line 626)
 * tpketp:                                Functions and Variables for qm.
-                                                              (line 634)
+                                                              (line 638)
 * UU:                                    Functions and Variables for qm.
                                                               (line 603)
 * xm:                                    Functions and Variables for qm.

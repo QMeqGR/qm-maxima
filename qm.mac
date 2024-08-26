@@ -209,7 +209,7 @@ Jz(k) := block([j,m,sqrterm],
       m:k[2][1][2], return( m * hbar * 'jmket(j,m) ) )$
 
 /********************************************/
-/* Rules, simp for general jmkets/jmbras  */
+/* Rules, simp for general jmkets/jmbras    */
 /********************************************/
 matchdeclare([jj1,jj2,mm1,mm2],sym_ratp, c, all);
 tellsimpafter(jmbraket(jmbra(jj1,mm1),jmket(jj2,mm2)),
@@ -314,7 +314,7 @@ simptpbra(u) := block([N,fail:0],
 	     else disp("all elements must be bras") )$
 matchdeclare([L1,L2], listp);
 tellsimpafter(tpbraket(L1,L2), simptpbraket(L1,L2));
-tpbraket(B,K) := block([N,M,fail:0,prod:1],
+simptpbraket(B,K) := block([N,M,fail:0,prod:1],
 		if is(B[1]#tpbra) then return(false),
 		if is(K[1]#tpket) then return(false),
 		N: length(B[2]),
@@ -327,4 +327,9 @@ tpbraket(B,K) := block([N,M,fail:0,prod:1],
 /*******************************************/
 /* Rules and simp for general tensor prods */
 /*******************************************/
-/* This is much harder */
+matchdeclare([k1,k2],all,[b1,b2],all,c, all);
+tellsimpafter(tpbraket(tpbra(b1,b2),tpket(k1,k2)),
+	kron_delta(b1,k1)*kron_delta(b2,k2));
+tellsimpafter(tpbraket(tpbra(b1,b2)+c, tpket(k1,k2)),
+	tpbraket(tpbra(b1,b2),tpket(k1,k2))+tpbraket(c,tpket(k1,k2)));
+

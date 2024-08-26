@@ -259,14 +259,14 @@ matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)]) $
 UU(w*Sy,t);
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
-tpket(zp,zm);
-tpket(matrix([1],[0]),matrix([0],[1])) $
+K:tpket(a1,b1);
+tpket(a1,b1) $
 
-tpket('zp,'zm);
-tpket(zp,zm) $
+B:tpbra(a2,b2);
+tpbra(a2,b2) $
 
-tpket([zp,zm]);
-[tpket,[matrix([1],[0]),matrix([0],[1])]] $
+tpbraket(B,K);
+kron_delta(a1,a2)*kron_delta(b1,b2) $
 
 kill(a,b,c,d);
 done $
