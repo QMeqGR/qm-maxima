@@ -102,8 +102,7 @@ shown in abstract and matrix representations.
      (%o2)                       [tpket, [[   ], [   ]]]
                                           [ 0 ]  [ 1 ]
 
-   Abstract kets and bras are assumed to be orthonormal as shown in the
-following example.
+   Abstract kets and bras are assumed to be orthonormal as shown below.
 
      (%i1) declare([a,b],complex);
      (%o1)                                done
@@ -114,8 +113,8 @@ following example.
      (%i4) psidag . psi;
      (%o4)                   b conjugate(b) + a conjugate(a)
 
-   The following example show how to declare a ket with both real and
-complex components in the matrix representation.
+   The following shows how to declare a ket with both real and complex
+components in the matrix representation.
 
      (%i1) declare([c1,c2],complex,r,real);
      (%o1)                                done
@@ -831,17 +830,17 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm4915
-Ref: ket5268
-Ref: bra6211
-Ref: ketp6964
-Ref: brap7669
-Ref: autoket8392
-Ref: autobra9264
-Ref: dagger9934
-Ref: braket10276
-Ref: norm10885
-Node: Function and Variable Index28168
+Node: Functions and Variables for qm4889
+Ref: ket5242
+Ref: bra6185
+Ref: ketp6938
+Ref: brap7643
+Ref: autoket8366
+Ref: autobra9238
+Ref: dagger9908
+Ref: braket10250
+Ref: norm10859
+Node: Function and Variable Index28142
 
 End Tag Table
 

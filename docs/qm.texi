@@ -116,8 +116,7 @@ shown in abstract and matrix representations.
 @end group
 @end example
 
-Abstract kets and bras are assumed to be orthonormal as shown in
-the following example.
+Abstract kets and bras are assumed to be orthonormal as shown below.
 
 @example
 @group
@@ -132,7 +131,7 @@ the following example.
 @end group
 @end example
 
-The following example show how to declare a ket with both real and
+The following shows how to declare a ket with both real and
 complex components in the matrix representation.
 
 @example
