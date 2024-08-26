@@ -2,6 +2,7 @@ display2d:false$
 load(qm)$
 ket(a,b)+ket(c,d);
 ket([a,b,c])+ket([d,e,f]);
+braket(bra(a1,b1),ket(a2,b2));
 tpket('zp,'zm)+tpket('zm,'zp);
 tpket([zp,zm]);
 declare([a,b],complex);

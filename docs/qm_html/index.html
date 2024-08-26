@@ -123,6 +123,15 @@ enter the arguments as a list. Note that abstract kets and bras are
                                    [ f + c ]
 </pre></div></div>
 
+<p>Note that <code class="code">ket(a,b)</code> is treated as tensor product of states
+<code class="code">a</code> and <code class="code">b</code> as shown in this example. Tensor product states
+within the matrix representation are shown further in the manual.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) braket( bra(a1,b1), ket(a2,b2) );
+(%o1)                kron_delta(a1, a2) kron_delta(b1, b2)
+</pre></div></div>
+
 <p>Next, tensor products of the spin-1/2 basis states <code class="code">{zp,zm}</code> are
 shown in abstract and matrix representations.
 </p>

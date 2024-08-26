@@ -102,6 +102,17 @@ The following examples illustrate some of the basic capabilities of the
 @end group
 @end example
 
+Note that @code{ket(a,b)} is treated as tensor product of states
+@code{a} and @code{b} as shown in this example. Tensor product states
+within the matrix representation are shown further in the manual.
+
+@example
+@group
+(%i1) braket( bra(a1,b1), ket(a2,b2) );
+(%o1)                kron_delta(a1, a2) kron_delta(b1, b2)
+@end group
+@end example
+
 Next, tensor products of the spin-1/2 basis states @code{@{zp,zm@}} are
 shown in abstract and matrix representations.
 

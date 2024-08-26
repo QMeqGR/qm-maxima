@@ -7,6 +7,9 @@ ket(c,d)+ket(a,b) $
 ket([a,b,c])+ket([d,e,f]);
 matrix([d+a],[e+b],[f+c]) $
 
+braket(bra(a1,b1),ket(a2,b2));
+kron_delta(a1,b1)*kron_delta(a2,b2) $
+
 tpket('zp,'zm)+tpket('zm,'zp);
 tpket(zp,zm)+tpket(zm,zp) $
 
