@@ -136,7 +136,7 @@ shown in abstract and matrix representations.
 </pre></div></div>
 
 <p>Abstract kets and bras are assumed to be orthonormal as shown in
-the following examples.
+the following example.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) declare([a,b],complex);
@@ -147,7 +147,13 @@ the following examples.
 (%o3)                 &lt;2| conjugate(b) + &lt;1| conjugate(a)
 (%i4) psidag . psi;
 (%o4)                   b conjugate(b) + a conjugate(a)
-</pre></div><div class="group"><pre class="example-preformatted">(%i1) declare([c1,c2],complex,r,real);
+</pre></div></div>
+
+<p>The following example show how to declare a ket with both real and
+complex components in the matrix representation.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) declare([c1,c2],complex,r,real);
 (%o1)                                done
 (%i2) k:ket([c1,c2,r]);
                                     [ c1 ]
