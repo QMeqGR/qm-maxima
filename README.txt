@@ -64,8 +64,8 @@ the ‘qm’ package.  Here both abstract, and concrete kets are shown.
                                         [ f + c ]
 
    Note that ‘ket(a,b)’ is treated as tensor product of states ‘a’ and
-‘b’ as shown in this example.  Tensor product states within the matrix
-representation are shown further in the manual.
+‘b’ as shown below.  Tensor product states within the matrix
+representation are described in the section on tensor product states.
 
      (%i1) braket( bra(a1,b1), ket(a2,b2) );
      (%o1)                kron_delta(a1, a2) kron_delta(b1, b2)

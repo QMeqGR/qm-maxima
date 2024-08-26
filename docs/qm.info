@@ -93,8 +93,8 @@ the ‘qm’ package.  Here both abstract, and concrete kets are shown.
                                         [ f + c ]
 
    Note that ‘ket(a,b)’ is treated as tensor product of states ‘a’ and
-‘b’ as shown in this example.  Tensor product states within the matrix
-representation are shown further in the manual.
+‘b’ as shown below.  Tensor product states within the matrix
+representation are described in the section on tensor product states.
 
      (%i1) braket( bra(a1,b1), ket(a2,b2) );
      (%o1)                kron_delta(a1, a2) kron_delta(b1, b2)
@@ -839,17 +839,17 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5202
-Ref: ket5555
-Ref: bra6498
-Ref: ketp7251
-Ref: brap7956
-Ref: autoket8679
-Ref: autobra9551
-Ref: dagger10221
-Ref: braket10563
-Ref: norm11172
-Node: Function and Variable Index28590
+Node: Functions and Variables for qm5214
+Ref: ket5567
+Ref: bra6510
+Ref: ketp7263
+Ref: brap7968
+Ref: autoket8691
+Ref: autobra9563
+Ref: dagger10233
+Ref: braket10575
+Ref: norm11184
+Node: Function and Variable Index28602
 
 End Tag Table
 

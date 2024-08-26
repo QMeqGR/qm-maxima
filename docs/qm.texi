@@ -103,8 +103,9 @@ The following examples illustrate some of the basic capabilities of the
 @end example
 
 Note that @code{ket(a,b)} is treated as tensor product of states
-@code{a} and @code{b} as shown in this example. Tensor product states
-within the matrix representation are shown further in the manual.
+@code{a} and @code{b} as shown below. Tensor product states
+within the matrix representation are described in the section
+on tensor product states.
 
 @example
 @group
