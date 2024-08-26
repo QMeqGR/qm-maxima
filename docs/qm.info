@@ -41,6 +41,10 @@ Email: majzoube-at-umsystem.edu
 
    The package is loaded with: ‘load(qm);’
 
+   NOTE!! _The code base is under very active development.  Behavior
+related to tensor product states is being updated and the package
+behavior is likely to change or be in an unstable state._
+
    The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
 example, one can calculate the outcome of Stern-Gerlach experiments
@@ -839,17 +843,17 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5214
-Ref: ket5567
-Ref: bra6510
-Ref: ketp7263
-Ref: brap7968
-Ref: autoket8691
-Ref: autobra9563
-Ref: dagger10233
-Ref: braket10575
-Ref: norm11184
-Node: Function and Variable Index28602
+Node: Functions and Variables for qm5408
+Ref: ket5761
+Ref: bra6704
+Ref: ketp7457
+Ref: brap8162
+Ref: autoket8885
+Ref: autobra9757
+Ref: dagger10427
+Ref: braket10769
+Ref: norm11378
+Node: Function and Variable Index28796
 
 End Tag Table
 

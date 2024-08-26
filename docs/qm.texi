@@ -45,6 +45,10 @@ Missouri. Email: majzoube-at-umsystem.edu
 
 The package is loaded with: @code{load(qm);}
 
+NOTE!! @emph{The code base is under very active development. Behavior
+related to tensor product states is being updated and the package
+behavior is likely to change or be in an unstable state.}
+
 The @code{qm} package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
