@@ -852,10 +852,14 @@ Proviso: assuming 64*t*w # 0
 <div class="section-level-extent" id="Tensor-products">
 <h3 class="section"><span>1.5 Tensor products<a class="copiable-link" href="#Tensor-products"> &para;</a></span></h3>
 
-<p>Tensor products are represented as lists in the qm package. The ket tensor
-product <code class="code">|z+,z+&gt;</code> could be represented as <code class="code">ket([u,d])</code>, for example,
-and the bra tensor product <code class="code">&lt;a,b|</code> is represented as <code class="code">bra([a,b])</code> for
-states <code class="code">a</code> and <code class="code">b</code>.
+<p>Tensor products are represented as lists in the <code class="code">qm</code> package. The
+ket tensor product <code class="code">|z+,z+&gt;</code> could be represented as
+<code class="code">ket([u,d])</code>, for example, and the bra tensor product <code class="code">&lt;a,b|</code>
+is represented as <code class="code">bra([a,b])</code> for states <code class="code">a</code> and
+<code class="code">b</code>. For a tensor product where the identity is one of the elements
+of the product, substitute the string <code class="code">Id</code> in the ket or bra at the
+desired location. See the examples below for the use of the identity in
+tensor products.
 </p>
 <dl class="first-deffn">
 <dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">([<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;])</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
@@ -892,8 +896,8 @@ the matrix representation will pass this test.
 (number of kets must equal the number of bras).
 </p></dd></dl>
 
-<p>Examples below show how to create abstract and concrete tensor products
-and take the bracket of tensor products.
+<p>Examples below show how to create concrete (matrix representation)
+tensor products and take the bracket of tensor products.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) kill(a,b,c,d);
@@ -920,8 +924,9 @@ and take the bracket of tensor products.
 (%o6)                                  1
 </pre></div></div>
 
-<p>Examples below show how to create abstract and concrete tensor products
-and take the bracket of tensor products.
+<p>Examples below show how to create abstract tensor products that contain
+the identity element <code class="code">Id</code> and how to take the bracket of these
+tensor products.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) K:ket([a1,b1]);

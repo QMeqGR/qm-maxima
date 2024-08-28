@@ -828,10 +828,14 @@ Proviso: assuming 64*t*w # 0
 
 @section Tensor products
 
-Tensor products are represented as lists in the qm package. The ket tensor
-product @code{|z+,z+>} could be represented as @code{ket([u,d])}, for example,
-and the bra tensor product @code{<a,b|} is represented as @code{bra([a,b])} for
-states @code{a} and @code{b}.
+Tensor products are represented as lists in the @code{qm} package. The
+ket tensor product @code{|z+,z+>} could be represented as
+@code{ket([u,d])}, for example, and the bra tensor product @code{<a,b|}
+is represented as @code{bra([a,b])} for states @code{a} and
+@code{b}. For a tensor product where the identity is one of the elements
+of the product, substitute the string @code{Id} in the ket or bra at the
+desired location. See the examples below for the use of the identity in
+tensor products.
 
 @deffn {Function} tpket ([@code{k@sub{1}}, @code{k@sub{2}}, @dots{}])
 @code{tpket} produces a tensor product of kets @code{k@sub{i}}. All
@@ -863,8 +867,8 @@ the matrix representation will pass this test.
 (number of kets must equal the number of bras).
 @end deffn
 
-Examples below show how to create abstract and concrete tensor products
-and take the bracket of tensor products.
+Examples below show how to create concrete (matrix representation)
+tensor products and take the bracket of tensor products.
 
 @example
 @group
@@ -895,8 +899,9 @@ and take the bracket of tensor products.
 @end group
 @end example
 
-Examples below show how to create abstract and concrete tensor products
-and take the bracket of tensor products.
+Examples below show how to create abstract tensor products that contain
+the identity element @code{Id} and how to take the bracket of these
+tensor products.
 
 @example
 @group

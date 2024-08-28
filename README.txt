@@ -614,10 +614,13 @@ following functions.
 1.5 Tensor products
 ===================
 
-Tensor products are represented as lists in the qm package.  The ket
+Tensor products are represented as lists in the ‘qm’ package.  The ket
 tensor product ‘|z+,z+>’ could be represented as ‘ket([u,d])’, for
 example, and the bra tensor product ‘<a,b|’ is represented as
-‘bra([a,b])’ for states ‘a’ and ‘b’.
+‘bra([a,b])’ for states ‘a’ and ‘b’.  For a tensor product where the
+identity is one of the elements of the product, substitute the string
+‘Id’ in the ket or bra at the desired location.  See the examples below
+for the use of the identity in tensor products.
 
  -- Function: tpket ([k_{1}, k_{2}, ...])
      ‘tpket’ produces a tensor product of kets ‘k_{i}’.  All of the
@@ -644,8 +647,8 @@ example, and the bra tensor product ‘<a,b|’ is represented as
      ‘K’.  The tensor products must be of the same length (number of
      kets must equal the number of bras).
 
-   Examples below show how to create abstract and concrete tensor
-products and take the bracket of tensor products.
+   Examples below show how to create concrete (matrix representation)
+tensor products and take the bracket of tensor products.
 
      (%i1) kill(a,b,c,d);
      (%o1)                                done
@@ -670,8 +673,9 @@ products and take the bracket of tensor products.
      (%i6) tpbraket(B,K);
      (%o6)                                  1
 
-   Examples below show how to create abstract and concrete tensor
-products and take the bracket of tensor products.
+   Examples below show how to create abstract tensor products that
+contain the identity element ‘Id’ and how to take the bracket of these
+tensor products.
 
      (%i1) K:ket([a1,b1]);
      (%o1)                             |[a1, b1]>
@@ -764,15 +768,15 @@ Appendix A Function and Variable index
 * SZ:                                    Functions and Variables for qm.
                                                               (line 402)
 * tpbra:                                 Functions and Variables for qm.
-                                                              (line 627)
+                                                              (line 630)
 * tpbraket:                              Functions and Variables for qm.
-                                                              (line 641)
+                                                              (line 644)
 * tpbrap:                                Functions and Variables for qm.
-                                                              (line 637)
+                                                              (line 640)
 * tpket:                                 Functions and Variables for qm.
-                                                              (line 621)
+                                                              (line 624)
 * tpketp:                                Functions and Variables for qm.
-                                                              (line 633)
+                                                              (line 636)
 * UU:                                    Functions and Variables for qm.
                                                               (line 599)
 * xm:                                    Functions and Variables for qm.
