@@ -131,6 +131,11 @@ simp:false; tellsimpafter( cx1*bra(L2) . ket(L2)*cx4, cx1*cx4* (bra(L1) . ket(L2
 /* This works because of the way the simplifier outputs things in () */
 tellsimpafter( (bra(L1)*a) . (ket(L2)*b), a*b*(bra(L1) . ket(L2)));
 
+matchdeclare([L1,L2,L3],listp,[a,b],all);
+tellsimpafter(bra(L1) . ket(L2) . a , braket(bra(L1),ket(L2)) . a);
+tellsimpafter(a . bra(L1) . ket(L2) , a . braket(bra(L1),ket(L2)));
+tellsimpafter(a . bra(L1) . ket(L2) . b , a . braket(bra(L1),ket(L2)) . b);
+
 /* <a|b> --> delta(a,b), assumes an orthonormal set */
 tellsimpafter( bra(L1) . ket(L2), braket(bra(L1),ket(L2)));
 tellsimpafter( braket(bra(L1),ket(L2)), gsimpbraket(L1,L2) );
