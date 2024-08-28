@@ -89,11 +89,12 @@ declare(dagger,additive);
 declare(braket,additive);
 
 /* dagger */
+/* for general kets and bras */
 matchdeclare([i,j],all,[L1,L2],listp);
 tellsimpafter( dagger( bra(L1) ), ket(L1) );
 tellsimpafter( dagger( ket(L1) ), bra(L1) );
-tellsimpafter( dagger(i*ket(L1)), dagger(i)*bra(L1) );
-tellsimpafter( dagger(i*bra(L1)), dagger(i)*ket(L1) );
+tellsimpafter( dagger( i*ket(L1)), dagger(i)*bra(L1) );
+tellsimpafter( dagger( i*bra(L1)), dagger(i)*ket(L1) );
 
 /* simplify dagger for complex and real numbers */
 matchdeclare(cx,complexp,rx,numberp,rr,realp);
