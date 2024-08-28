@@ -90,15 +90,21 @@
          ("norm"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-norm")
+         ("mketp"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-mketp")
+         ("mket"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-mket")
+         ("mbrap"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-mbrap")
+         ("mbra"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-mbra")
          ("magsqr"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-magsqr")
-         ("ketp"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-ketp")
-         ("ket"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-ket")
          ("Jz"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-Jz")
@@ -138,15 +144,9 @@
          ("commutator"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-commutator")
-         ("brap"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-brap")
          ("braket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-braket")
-         ("bra"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-bra")
          ("autoket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-autoket")

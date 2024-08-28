@@ -1,14 +1,14 @@
 batch("examples.txt");
 display2d:false;
 load(qm);
-ket(a,b)+ket(c,d);
-ket(c,d)+ket(a,b) $
+ket([a,b])+ket([c,d]);
+ket([c,d])+ket([a,b]) $
 
-ket([a,b,c])+ket([d,e,f]);
-matrix([d+a],[e+b],[f+c]) $
+mket([a,b])+mket([c,d]);
+matrix([c+a],[d+b]) $
 
-braket(bra(a1,b1),ket(a2,b2));
-kron_delta(a1,b1)*kron_delta(a2,b2) $
+braket(bra([a1,b1]),ket([a2,b2]));
+kron_delta(a1,a2)*kron_delta(b1,b2) $
 
 tpket('zp,'zm)+tpket('zm,'zp);
 tpket(zp,zm)+tpket(zm,zp) $
@@ -19,11 +19,11 @@ tpket([zp,zm]);
 declare([a,b],complex);
 done $
 
-psi:a*ket(1)+b*ket(2);
-ket(2)*b+ket(1)*a $
+psi:a*ket([1])+b*ket([2]);
+ket([2])*b+ket([1])*a $
 
 psidag:dagger(psi);
-bra(2)*conjugate(b)+bra(1)*conjugate(a) $
+bra([2])*conjugate(b)+bra([1])*conjugate(a) $
 
 psidag.psi;
 b*conjugate(b)+a*conjugate(a) $
@@ -31,7 +31,7 @@ b*conjugate(b)+a*conjugate(a) $
 declare([c1,c2],complex,r,real);
 done $
 
-k:ket([c1,c2,r]);
+k:mket([c1,c2,r]);
 matrix([c1],[c2],[r]) $
 
 b:dagger(k);
@@ -40,112 +40,103 @@ matrix([conjugate(c1),conjugate(c2),r]) $
 b.k;
 r^2+c2*conjugate(c2)+c1*conjugate(c1) $
 
-kill(a);
-done $
-
-ket(a);
-ket(a) $
-
 declare([c1,c2],complex);
 done $
 
-ket([c1,c2]);
+mket([c1,c2]);
 matrix([c1],[c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(b,complex),kind(c1,complex), $
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex), $
 
 kill(c1,c2);
 done $
 
-bra(c1,c2);
-bra(c1,c2) $
-
-bra([c1,c2]);
+mbra([c1,c2]);
 matrix([c1,c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(b,complex),kind(r,real)] $
-
-kill(a,b,k);
-done $
-
-k:ket(a,b);
-ket(a,b) $
-
-ketp(k);
-false $
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
 
 k:ket([a,b]);
-matrix([a],[b]) $
+ket([a,matrix([conjugate(c1),conjugate(c2),r])]) $
 
-ketp(k);
-true $
+mketp(k);
+false $
 
-b:bra([a,b]);
-matrix([a,b]) $
+k:mket([a,b]);
+matrix([a],[matrix([conjugate(c1),conjugate(c2),r])]) $
 
-brap(b);
-true $
+mketp(k);
+false $
+
+b:mbra([a,b]);
+matrix([a,matrix([conjugate(c1),conjugate(c2),r])]) $
+
+mbrap(b);
+false $
 
 autoket([a,b]);
-matrix([a],[matrix([a,b])]) $
+matrix([a],[matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(r,real),kind(a,complex)] $
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
 
 autoket([a*sin(x),b*sin(x)]);
-matrix([a*sin(x)],[matrix([a*sin(x),b*sin(x)])]) $
+matrix([a*sin(x)], $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(r,real),kind(a,complex)] $
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
 
 autobra([a,b]);
-matrix([a,matrix([a,b])]) $
+matrix([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(r,real),kind(a,complex)] $
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
 
 autobra([a*sin(x),b]);
-matrix([a*sin(x),matrix([a,b])]) $
+matrix([a*sin(x),matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(r,real),kind(a,complex)] $
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
 
-dagger(bra([%i,2]));
+dagger(mbra([%i,2]));
 matrix([-%i],[2]) $
 
 declare([a,b,c],complex);
 done $
 
-braket(ket([a,b,c]),ket([a,b,c]));
-braket(matrix([a],[matrix([a,b])],[c]),matrix([a],[matrix([a,b])],[c])) $
+braket(mket([a,b,c]),mket([a,b,c]));
+braket(matrix([a], $
+
+braket(ket([a1,b1,c1]),ket([a2,b2,c2]));
+braket(ket([a1,b1,c1]),ket([a2,b2,c2])) $
 
 declare([a,b,c],complex);
 done $
 
 norm(ket([a,b,c]));
-norm(matrix([a],[matrix([a,b])],[c])) $
+norm(ket([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])]),c])) $
 
 norm(ket(a,b,c));
-norm(ket(a,matrix([a,b]),c)) $
+norm(ket(a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])]),c)) $
 
 declare([a,b,c,d],complex);
 done $
 
 A:braket(ket([a,b]),ket([c,d]));
-braket(matrix([a],[matrix([a,b])]),matrix([c],[d])) $
+braket(ket([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]), $
 
 P:magsqr(A);
-braket(matrix([a],[matrix([a,b])]),matrix([c],[d])) $
+braket(ket([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]), $
 
-ket(a)+ket(b);
-ket(matrix([a,b]))+ket(a) $
+ket([a])+ket([b]);
+ket([matrix([a,matrix([conjugate(c1),conjugate(c2),r])])])+ket([a]) $
 
-braket(bra(a),ket(b));
+braket(bra([a]),ket([b]));
 0 $
 
-braket(bra(a)+bra(c),ket(b));
+braket(bra([a])+bra([c]),ket([b]));
 0 $
 
 zp;
@@ -166,11 +157,11 @@ braket(xp,zp);
 declare([a,b],complex);
 done $
 
-psi:ket([a,b]);
-matrix([a],[matrix([a,b])]) $
+psi:mket([a,b]);
+matrix([a],[matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]) $
 
 psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
-braket(matrix([1/sqrt(2)],[1/sqrt(2)]),matrix([a],[matrix([a,b])]))*xp $
+braket(matrix([1/sqrt(2)],[1/sqrt(2)]), $
 
 sigmay;
 matrix([0,-%i],[%i,0]) $
@@ -262,25 +253,16 @@ matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)]) $
 UU(w*Sy,t);
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
-K:tpket(a1,b1);
-tpket(a1,b1) $
-
-B:tpbra(a2,b2);
-tpbra(a2,b2) $
-
-tpbraket(B,K);
-kron_delta(a1,a2)*kron_delta(b1,b2) $
-
 kill(a,b,c,d);
 done $
 
 declare([a,b,c,d],complex);
 done $
 
-tpbra([bra([a,b]),bra([c,d])]);
+tpbra([mbra([a,b]),mbra([c,d])]);
 [tpbra,[matrix([a,b]),matrix([c,d])]] $
 
-tpbra([dagger(zp),bra([c,d])]);
+tpbra([dagger(zp),mbra([c,d])]);
 [tpbra,[matrix([1,0]),matrix([c,d])]] $
 
 K:tpket([zp,zm]);
@@ -300,6 +282,21 @@ false $
 
 tpbraket(B,K);
 1 $
+
+K:ket([a1,b1]);
+ket([a1,b1]) $
+
+B:bra([a2,b2]);
+bra([a2,b2]) $
+
+braket(B,K);
+kron_delta(a1,a2)*kron_delta(b1,b2) $
+
+bra([a1,Id,c1]).ket([a2,b2,c2]);
+ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
+
+bra([a1,b1,c1]).ket([Id,b2,c2]);
+bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2) $
 
 "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
 

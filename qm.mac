@@ -79,22 +79,21 @@ rvec([u]) := matrix(u) $
 /* bras and kets entered as lists will be given matrix representations */
 /* bra and ket of a list represented as row and column matrices, respectively */
 matchdeclare(ll, listp);
-tellsimpafter(bra(ll), matrix(ll));
-tellsimpafter(ket(ll), transpose(matrix (ll)));
+tellsimpafter(mbra(ll), matrix(ll));
+tellsimpafter(mket(ll), transpose(matrix (ll)));
 
 /***************************************/
 /* Rules, simp for general kets/bras   */
 /***************************************/
-
 declare(dagger,additive);
 declare(braket,additive);
 
 /* dagger */
-matchdeclare([i,j],all);
-tellsimpafter( dagger( bra(i) ), ket(i) );
-tellsimpafter( dagger( ket(i) ), bra(i) );
-tellsimpafter( dagger(i*ket(j)), dagger(i)*bra(j) );
-tellsimpafter( dagger(i*bra(j)), dagger(i)*ket(j) );
+matchdeclare([i,j],all,[L1,L2],listp);
+tellsimpafter( dagger( bra(L1) ), ket(L1) );
+tellsimpafter( dagger( ket(L1) ), bra(L1) );
+tellsimpafter( dagger(i*ket(L1)), dagger(i)*bra(L1) );
+tellsimpafter( dagger(i*bra(L1)), dagger(i)*ket(L1) );
 
 /* simplify dagger for complex and real numbers */
 matchdeclare(cx,complexp,rx,numberp,rr,realp);
@@ -106,37 +105,47 @@ simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 matchdeclare(mx, matrixp);
 tellsimpafter(dagger (mx), conjugate (transpose (mx)));
 
-/* braket, these rules only work on matrix reps */
-matchdeclare([kk,ll], ketp, bb, brap );
+/* braket rules for matrix reps */
+matchdeclare([kk,ll], mketp, bb, mbrap );
 tellsimpafter( braket(bb,kk) , bb . kk );
 tellsimpafter( braket(ll,kk) , dagger(ll) . kk);
 tellsimpafter( braket(kk,bb) , false );
 tellsimpafter( braket(bb,bb) , false );
 
+/************************************/
+/* simp rules for general kets bras */
+/************************************/
 cnump(z):=if complexp(z) or numberp(z) then true;
-matchdeclare([a,b,i,j,A1,A2],all,[cx1,cx2,cx3,cx4],cnump);
+matchdeclare([a,b,A1,A2],all,[cx1,cx2,cx3,cx4],cnump,[L1,L2],listp);
 tellsimpafter( a . (A1+A2), expand(a . (A1 + A2)) );
-simp:false; tellsimpafter( cx1*bra(i) . cx3*ket(j), cx1*cx3* (bra(i) . ket(j))); simp:true;
-simp:false; tellsimpafter( bra(i)*cx2 . ket(j)*cx4, cx2*cx4* (bra(i) . ket(j))); simp:true;
-simp:false; tellsimpafter( bra(i)*cx2 . cx3*ket(j), cx2*cx3* (bra(i) . ket(j))); simp:true;
-simp:false; tellsimpafter( cx1*bra(i) . ket(j)*cx4, cx1*cx4* (bra(i) . ket(j))); simp:true;
+simp:false; tellsimpafter( cx1*bra(L1) . cx3*ket(L2), cx1*cx3* (bra(L1) . ket(L2))); simp:true;
+simp:false; tellsimpafter( bra(L1)*cx2 . ket(L2)*cx4, cx2*cx4* (bra(L1) . ket(L2))); simp:true;
+simp:false; tellsimpafter( bra(L1)*cx2 . cx3*ket(L2), cx2*cx3* (bra(L1) . ket(L2))); simp:true;
+simp:false; tellsimpafter( cx1*bra(L2) . ket(L2)*cx4, cx1*cx4* (bra(L1) . ket(L2))); simp:true;
 
 /* Very important rule that allows simplification of general expressions. */
 /* This works because of the way the simplifier outputs things in () */
-tellsimpafter( (bra(i)*a) . (ket(j)*b), a*b*(bra(i) . ket(j)));
+tellsimpafter( (bra(L1)*a) . (ket(L2)*b), a*b*(bra(L1) . ket(L2)));
 
 /* <a|b> --> delta(a,b), assumes an orthonormal set */
-tellsimpafter( bra(i) . ket(j), braket(bra(i),ket(j)));
-tellsimpafter( braket(bra(a),ket(b)), kron_delta(a,b));
-tellsimpafter( braket(cx1*bra(i),cx2*ket(j)), cx1*cx2*kron_delta(i,j));
+tellsimpafter( bra(L1) . ket(L2), braket(bra(L1),ket(L2)));
+tellsimpafter( braket(bra(L1),ket(L2)), gsimpbraket(L1,L2) );
+gsimpbraket(L1,L2):=block([i,l1flag:0,l2flag:0,prod:1,
+	L3:makelist("-",i,length(L1)),L4:makelist("-",i,length(L2))],
+	if length(L1)#length(L2) then return(false),
+	for i: 1 thru length(L1) do
+	    if L1[i]=Id then (L4[i]:L2[i],l1flag:1)
+	    elseif L2[i]=Id then (L3[i]:L1[i],l2flag:1) else
+	    prod: prod * kron_delta(L1[i],L2[i]),
+	    if l1flag=1 then return(prod*ket(L4))
+	    elseif l2flag=1 then return(prod*bra(L3))
+	    else return(prod) );
 
-/* need to generalize this to any number of arguments bra(i1,...,in) */
-matchdeclare([i1,i2,j1,j2,k1,k2],all);
-tellsimpafter( braket( bra(i1,i2) , ket(j1,j2) ), bra(i1,j1) . ket(i2,j2) );
-tellsimpafter( bra(i1,j1) . ket(i2,j2) , kron_delta(i1,i2)*kron_delta(j1,j2) );
-tellsimpafter( bra(i1,j1,k1) . ket(i2,j2,k2) , kron_delta(i1,i2)*kron_delta(j1,j2)*kron_delta(k1,k2) );
 
-/* norm */
+/*********************************/
+/*     miscellaneous rules       */
+/*********************************/
+/* norm for matrix represented kets/bras */
 matchdeclare( kk, ketp, bb, brap );
 tellsimpafter(norm (kk), sqrt( braket(kk,kk) ));
 tellsimpafter(norm (bb), sqrt( braket(bb,dagger(bb)) ));
@@ -155,12 +164,12 @@ probability(psi,n) := magsqr(psi[n]);
 /***************************************/
 /* Define predicates for kets and bras */
 /***************************************/
-ketp(psi) := block([r,c],
+mketp(psi) := block([r,c],
      if matrixp(psi) then (
         [r,c] : matrix_size(psi),
         (c = 1) and (r > 1) and every(lambda([q], not (matrixp(q) or listp(q) or setp(q))), psi))
     else false);
-brap(psi) := block([r,c],
+mbrap(psi) := block([r,c],
      if matrixp(psi) then (
         [r,c] : matrix_size(psi),
         (r = 1) and (c > 1) and every(lambda([q], not (matrixp(q) or listp(q) or setp(q))), psi))
@@ -294,7 +303,7 @@ UU(H,t) := block([M,demoivre:true], Rot(H,t))$
 /*****************************************************************/
 /*****************************************************************/
 /*****************************************************************/
-/*                tensor products                                */
+/*                tensor products in the matrix rep              */
 /*****************************************************************/
 /*****************************************************************/
 /*****************************************************************/
@@ -303,7 +312,7 @@ tellsimpafter(tpket(ll), simptpket(ll));
 simptpket(u) := block([N,fail:0],
 	     N: length(u),
 	     for i: 1 thru N do
-	     	 if ketp(''u[i])=false then fail:1,
+	     	 if mketp(''u[i])=false then fail:1,
 	     if fail=0 then [tpket,u]
 	     else disp("all elements must be kets") )$
 
@@ -311,7 +320,7 @@ tellsimpafter(tpbra(ll), simptpbra(ll));
 simptpbra(u) := block([N,fail:0],
 	     N: length(u),
 	     for i: 1 thru N do
-	     	 if brap(''u[i])=false then fail:1,
+	     	 if mbrap(''u[i])=false then fail:1,
 	     if fail=0 then [tpbra,u]
 	     else disp("all elements must be bras") )$
 matchdeclare([L1,L2], listp);
@@ -325,13 +334,4 @@ simptpbraket(B,K) := block([N,M,fail:0,prod:1],
 		else for i: 1 thru N do
 		     prod: prod*braket(B[2][i],K[2][i]),
 		prod )$
-
-/*******************************************/
-/* Rules and simp for general tensor prods */
-/*******************************************/
-matchdeclare([k1,k2],all,[b1,b2],all,c, all);
-tellsimpafter(tpbraket(tpbra(b1,b2),tpket(k1,k2)),
-	kron_delta(b1,k1)*kron_delta(b2,k2));
-tellsimpafter(tpbraket(tpbra(b1,b2)+c, tpket(k1,k2)),
-	tpbraket(tpbra(b1,b2),tpket(k1,k2))+tpbraket(c,tpket(k1,k2)));
 
