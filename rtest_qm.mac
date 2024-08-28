@@ -10,9 +10,6 @@ matrix([c+a],[d+b]) $
 braket(bra([a1,b1]),ket([a2,b2]));
 kron_delta(a1,a2)*kron_delta(b1,b2) $
 
-tpket('zp,'zm)+tpket('zm,'zp);
-tpket(zp,zm)+tpket(zm,zp) $
-
 tpket([zp,zm]);
 [tpket,[matrix([1],[0]),matrix([0],[1])]] $
 
@@ -110,25 +107,22 @@ braket(mket([a,b,c]),mket([a,b,c]));
 braket(matrix([a], $
 
 braket(ket([a1,b1,c1]),ket([a2,b2,c2]));
-braket(ket([a1,b1,c1]),ket([a2,b2,c2])) $
+kron_delta(a1,a2)*kron_delta(b1,b2)*kron_delta(c1,c2) $
 
 declare([a,b,c],complex);
 done $
 
-norm(ket([a,b,c]));
-norm(ket([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])]),c])) $
-
-norm(ket(a,b,c));
-norm(ket(a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])]),c)) $
+norm(mket([a,b,c]));
+norm(matrix([a],[matrix([a,matrix([conjugate(c1),conjugate(c2),r])])], $
 
 declare([a,b,c,d],complex);
 done $
 
-A:braket(ket([a,b]),ket([c,d]));
-braket(ket([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]), $
+A:braket(mket([a,b]),mket([c,d]));
+braket(matrix([a], $
 
 P:magsqr(A);
-braket(ket([a,matrix([a,matrix([conjugate(c1),conjugate(c2),r])])]), $
+braket(matrix([a], $
 
 ket([a])+ket([b]);
 ket([matrix([a,matrix([conjugate(c1),conjugate(c2),r])])])+ket([a]) $

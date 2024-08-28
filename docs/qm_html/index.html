@@ -68,23 +68,19 @@ Missouri. Email: majzoube-at-umsystem.edu
 </p>
 <p>The package is loaded with: <code class="code">load(qm);</code>
 </p>
-<p>NOTE!! <em class="emph">The code base is under very active development. Behavior
-related to tensor product states is being updated and the package
-behavior is likely to change or be in an unstable state.</em>
-</p>
 <p>The <code class="code">qm</code> package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
-experiments using the built-in definition of the Sx, Sy, and Sz
-operators for arbitrary spin, e.g. <code class="code">s={1/2, 1, 3/2,
-&hellip;}</code>. For spin-1/2 the standard basis states in the <code class="code">x</code>,
-<code class="code">y</code>, and <code class="code">z</code>-basis are available as <code class="code">{xp,xm}</code>,
-<code class="code">{yp,ym}</code>, and <code class="code">{zp,zm}</code>, respectively. One can create
-general ket vectors with arbitrary but finite dimension and perform
-standard computations such as expectation value, variance, etc. The
-angular momentum <var class="var">|j,m&gt;</var> representation of kets is also
-available. It is also possible to create tensor product states for
-multiparticle systems and to perform calculations on those systems.
+experiments using built-in definitions of the Sx, Sy, and Sz operators
+for arbitrary spin, e.g. <code class="code">s={1/2, 1, 3/2, &hellip;}</code>. For spin-1/2
+the standard basis states in the <code class="code">x</code>, <code class="code">y</code>, and <code class="code">z</code>-basis
+are available as <code class="code">{xp,xm}</code>, <code class="code">{yp,ym}</code>, and
+<code class="code">{zp,zm}</code>, respectively. One can create general ket vectors with
+arbitrary but finite dimension and perform standard computations such as
+expectation value, variance, etc. The angular momentum <var class="var">|j,m&gt;</var>
+representation of kets is also available. Tensor product states for
+multiparticle systems can be created to perform calculations on those
+systems.
 </p>
 <p>Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the <code class="code">z</code>-basis may be written as 
@@ -109,10 +105,13 @@ vectors, and their components are entered as Maxima <em class="emph">lists</em> 
 kets are entered using the <code class="code">bra</code> and <code class="code">ket</code> functions using
 lists for the elements. These general kets are displayed in Dirac
 notation. Note that abstract kets and bras are <em class="emph">assumed to be
-orthonormal</em>.
+orthonormal</em>. These general bras and kets may be used as tensor product
+states. Tensor product states in the matrix representation are also
+available.
 </p>
 <p>The following examples illustrate some of the basic capabilities of the
-<code class="code">qm</code> package. Here both abstract, and concrete kets are shown.
+<code class="code">qm</code> package. Here both abstract, and concrete (matrix
+representation) kets are shown.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) ket([a,b])+ket([c,d]);
@@ -124,9 +123,7 @@ orthonormal</em>.
 </pre></div></div>
 
 <p>Note that <code class="code">ket([a,b])</code> is treated as tensor product of states
-<code class="code">a</code> and <code class="code">b</code> as shown below. Tensor product states
-within the matrix representation are described in the section
-on tensor product states.
+<code class="code">a</code> and <code class="code">b</code> as shown below.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) braket(bra([a1,b1]),ket([a2,b2]));
@@ -134,18 +131,18 @@ on tensor product states.
 </pre></div></div>
 
 <p>Next, tensor products of the spin-1/2 basis states <code class="code">{zp,zm}</code> are
-shown in abstract and matrix representations.
+shown in the matrix representation.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) tpket('zp,'zm)+tpket('zm,'zp);
-(%o1)                    tpket(zp, zm) + tpket(zm, zp)
-(%i2) tpket([zp,zm]);
+<div class="group"><pre class="example-preformatted">(%i1) tpket([zp,zm]);
                                      [ 1 ]  [ 0 ]
-(%o2)                       [tpket, [[   ], [   ]]]
+(%o1)                       [tpket, [[   ], [   ]]]
                                      [ 0 ]  [ 1 ]
 </pre></div></div>
 
-<p>Abstract kets and bras are assumed to be orthonormal as shown below.
+<p>Constants that multiply kets and bras must be declared complex by
+the user in order for the dagger function to properly conjugate
+such constants. The example below illustrates this behavior.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) declare([a,b],complex);
@@ -266,7 +263,7 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 </pre></div></div>
 
 <p>Two additional functions are provided to create kets and bras in the
-matrix representation. Additionally these functions attempt to
+matrix representation. These functions conveniently attempt to
 automatically <code class="code">declare</code> constants as complex. For example, if a
 list entry is <code class="code">a*sin(x)+b*cos(x)</code> then only <code class="code">a</code> and <code class="code">b</code>
 will be <code class="code">declare</code>-d complex and not <code class="code">x</code>.
@@ -316,7 +313,8 @@ and will <code class="code">declare</code> only the coefficients as complex.
 <a class="anchor" id="dagger"></a><dl class="first-deffn">
 <dt class="deffn" id="index-dagger"><span class="category-def">Function: </span><span><strong class="def-name">dagger</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dagger"> &para;</a></span></dt>
 <dd><p><code class="code">dagger</code> is the quantum mechanical <em class="emph">dagger</em> function and returns
-the <code class="code">conjugate</code> <code class="code">transpose</code> of its input.
+the <code class="code">conjugate</code> <code class="code">transpose</code> of its input. Arbitrary constants
+must be <code class="code">declare</code>-d complex for dagger to produce the conjugate.
 </p></dd></dl>
 
 <div class="example">
@@ -341,7 +339,7 @@ product is taken. The vector <code class="code">phi</code> must always be a <cod
 (%i2) braket(mket([a,b,c]),mket([a,b,c]));
 (%o2)          c conjugate(c) + b conjugate(b) + a conjugate(a)
 (%i3) braket(ket([a1,b1,c1]),ket([a2,b2,c2]));
-(%o3)               braket(|[a1, b1, c1]&gt;, |[a2, b2, c2]&gt;)
+(%o3)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
 </pre></div></div>
 
 <a class="anchor" id="norm"></a><dl class="first-deffn">
@@ -355,10 +353,8 @@ function will return <code class="code">false</code>.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) declare([a,b,c],complex);
 (%o1)                                done
-(%i2) norm(ket([a,b,c]));
-(%o2)                          norm(|[a, b, c]&gt;)
-(%i3) norm(ket(a,b,c));
-(%o3)                           norm(|a, b, c&gt;)
+(%i2) norm(mket([a,b,c]));
+(%o2)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -370,10 +366,10 @@ squared of a complex number.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) declare([a,b,c,d],complex);
 (%o1)                                done
-(%i2) A:braket(ket([a,b]),ket([c,d]));
-(%o2)                     braket(|[a, b]&gt;, |[c, d]&gt;)
+(%i2) A:braket(mket([a,b]),mket([c,d]));
+(%o2)                   conjugate(b) d + conjugate(a) c
 (%i3) P:magsqr(A);
-(%o3)  braket(|[a, b]&gt;, |[c, d]&gt;) conjugate(braket(|[a, b]&gt;, |[c, d]&gt;))
+(%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
 </pre></div></div>
 
 <ul class="mini-toc">

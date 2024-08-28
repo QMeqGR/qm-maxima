@@ -115,6 +115,9 @@ tellsimpafter( braket(bb,bb) , false );
 /************************************/
 /* simp rules for general kets bras */
 /************************************/
+matchdeclare([L1,L2],listp);
+tellsimpafter(braket(ket(L1),ket(L2)), bra(L1) . ket(L2) );
+
 cnump(z):=if complexp(z) or numberp(z) then true;
 matchdeclare([a,b,A1,A2],all,[cx1,cx2,cx3,cx4],cnump,[L1,L2],listp);
 tellsimpafter( a . (A1+A2), expand(a . (A1 + A2)) );
@@ -146,7 +149,7 @@ gsimpbraket(L1,L2):=block([i,l1flag:0,l2flag:0,prod:1,
 /*     miscellaneous rules       */
 /*********************************/
 /* norm for matrix represented kets/bras */
-matchdeclare( kk, ketp, bb, brap );
+matchdeclare( kk, mketp, bb, mbrap );
 tellsimpafter(norm (kk), sqrt( braket(kk,kk) ));
 tellsimpafter(norm (bb), sqrt( braket(bb,dagger(bb)) ));
 
