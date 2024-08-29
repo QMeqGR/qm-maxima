@@ -57,16 +57,16 @@ calculations on those systems.
    Let us consider a simple example involving spin-1/2 particles.  A bra
 vector in the ‘z’-basis may be written as
 
-   ‘<psi| = a <z+| + b <z-|’.
+           ‘<psi| = a <z+| + b <z-|’.
 
    The bra will be represented in Maxima by the row vector ‘[a b]’,
 where the basis vectors are
 
-   ‘<z+| = [1 0]’
+           ‘<z+| = [1 0]’
 
-   and
+and
 
-   ‘<z-| = [0 1]’.
+           ‘<z-| = [0 1]’.
 
    There are two types of kets and bras available in this package, the
 first type is given by a _matrix representation_, as in the above
@@ -74,11 +74,17 @@ example.  ‘mket’s are column vectors and ‘mbra’s are row vectors, and
 their components are entered as Maxima _lists_ in the ‘mbra’ and ‘mket’
 functions.  The second type of bra or ket is _abstract_; there is no
 matrix representation.  Abstract bras and kets are entered using the
-‘bra’ and ‘ket’ functions using lists for the elements.  These general
-kets are displayed in Dirac notation.  Note that abstract kets and bras
-are _assumed to be orthonormal_.  These general bras and kets may be
-used as tensor product states.  Tensor product states in the matrix
-representation are also available.
+‘bra’ and ‘ket’ functions using Maxima lists for the elements.  These
+general kets are displayed in Dirac notation.  For example, a tensor
+product of two ket vectors ‘|a>’ and ‘|b>’ is input as ‘ket([a,b])’ and
+displayed as
+
+           ‘|[a,b]>’      (general ket)
+
+Note that abstract kets and bras are _assumed to be orthonormal_.  These
+general bras and kets may be used to build arbitrarily large tensor
+product states.  Tensor product states in the matrix representation are
+also available through the ‘tpket’ and ‘tpbra’ commands.
 
    The following examples illustrate some of the basic capabilities of
 the ‘qm’ package.  Here both abstract, and concrete (matrix
@@ -90,6 +96,10 @@ representation) kets are shown.
                                         [ c + a ]
      (%o2)                              [       ]
                                         [ d + b ]
+     (%i3) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+                                   |[u, d]> - |[d, u]>
+     (%o3)                         -------------------
+                                         sqrt(2)
 
    Note that ‘ket([a,b])’ is treated as tensor product of states ‘a’ and
 ‘b’ as shown below.
@@ -839,17 +849,17 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5013
-Ref: mket5366
-Ref: mbra6073
-Ref: mketp6652
-Ref: mbrap7296
-Ref: autoket8025
-Ref: autobra8897
-Ref: dagger9567
-Ref: braket10005
-Ref: norm10741
-Node: Function and Variable Index28643
+Node: Functions and Variables for qm5491
+Ref: mket5844
+Ref: mbra6551
+Ref: mketp7130
+Ref: mbrap7774
+Ref: autoket8503
+Ref: autobra9375
+Ref: dagger10045
+Ref: braket10483
+Ref: norm11219
+Node: Function and Variable Index29121
 
 End Tag Table
 

@@ -62,16 +62,17 @@ systems.
 Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the @code{z}-basis may be written as 
 
-@code{<psi| = a <z+| + b <z-|}.
+@ @ @ @ @ @ @ @ @code{<psi| = a <z+| + b <z-|}.
 
 The bra will be represented in Maxima by the row vector @code{[a b]},
 where the basis vectors are
 
-@code{<z+| = [1 0]}
+@ @ @ @ @ @ @ @ @code{<z+| = [1 0]}
 
+@noindent
 and
 
-@code{<z-| = [0 1]}.
+@ @ @ @ @ @ @ @ @code{<z-| = [0 1]}.
 
 There are two types of kets and bras available in this package, the
 first type is given by a @emph{matrix representation}, as in the above
@@ -80,11 +81,18 @@ vectors, and their components are entered as Maxima @emph{lists} in the
 @code{mbra} and @code{mket} functions. The second type of bra or ket is
 @emph{abstract}; there is no matrix representation. Abstract bras and
 kets are entered using the @code{bra} and @code{ket} functions using
-lists for the elements. These general kets are displayed in Dirac
-notation. Note that abstract kets and bras are @emph{assumed to be
-orthonormal}. These general bras and kets may be used as tensor product
-states. Tensor product states in the matrix representation are also
-available.
+Maxima lists for the elements. These general kets are displayed in Dirac
+notation. For example, a tensor product of two ket vectors @code{|a>}
+and @code{|b>} is input as @code{ket([a,b])} and displayed as
+
+@ @ @ @ @ @ @ @ @code{|[a,b]>} @ @ @ @ @ (general ket)
+
+@noindent
+Note that abstract kets and bras are @emph{assumed to be
+orthonormal}. These general bras and kets may be used to build
+arbitrarily large tensor product states. Tensor product states in the
+matrix representation are also available through the @code{tpket} and
+@code{tpbra} commands.
 
 The following examples illustrate some of the basic capabilities of the
 @code{qm} package. Here both abstract, and concrete (matrix
@@ -98,6 +106,10 @@ representation) kets are shown.
                                    [ c + a ]
 (%o2)                              [       ]
                                    [ d + b ]
+(%i3) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+                              |[u, d]> - |[d, u]>
+(%o3)                         -------------------
+                                    sqrt(2)
 @end group
 @end example
 

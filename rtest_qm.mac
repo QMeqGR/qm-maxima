@@ -7,6 +7,9 @@ ket([c,d])+ket([a,b]) $
 mket([a,b])+mket([c,d]);
 matrix([c+a],[d+b]) $
 
+bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+(ket([u,d])-ket([d,u]))/sqrt(2) $
+
 braket(bra([a1,b1]),ket([a2,b2]));
 kron_delta(a1,a2)*kron_delta(b1,b2) $
 

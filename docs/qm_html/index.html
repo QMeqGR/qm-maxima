@@ -85,16 +85,16 @@ systems.
 <p>Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the <code class="code">z</code>-basis may be written as 
 </p>
-<p><code class="code">&lt;psi| = a &lt;z+| + b &lt;z-|</code>.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;psi| = a &lt;z+| + b &lt;z-|</code>.
 </p>
 <p>The bra will be represented in Maxima by the row vector <code class="code">[a b]</code>,
 where the basis vectors are
 </p>
-<p><code class="code">&lt;z+| = [1 0]</code>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z+| = [1 0]</code>
 </p>
 <p>and
 </p>
-<p><code class="code">&lt;z-| = [0 1]</code>.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z-| = [0 1]</code>.
 </p>
 <p>There are two types of kets and bras available in this package, the
 first type is given by a <em class="emph">matrix representation</em>, as in the above
@@ -103,11 +103,17 @@ vectors, and their components are entered as Maxima <em class="emph">lists</em> 
 <code class="code">mbra</code> and <code class="code">mket</code> functions. The second type of bra or ket is
 <em class="emph">abstract</em>; there is no matrix representation. Abstract bras and
 kets are entered using the <code class="code">bra</code> and <code class="code">ket</code> functions using
-lists for the elements. These general kets are displayed in Dirac
-notation. Note that abstract kets and bras are <em class="emph">assumed to be
-orthonormal</em>. These general bras and kets may be used as tensor product
-states. Tensor product states in the matrix representation are also
-available.
+Maxima lists for the elements. These general kets are displayed in Dirac
+notation. For example, a tensor product of two ket vectors <code class="code">|a&gt;</code>
+and <code class="code">|b&gt;</code> is input as <code class="code">ket([a,b])</code> and displayed as
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|[a,b]&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
+</p>
+<p>Note that abstract kets and bras are <em class="emph">assumed to be
+orthonormal</em>. These general bras and kets may be used to build
+arbitrarily large tensor product states. Tensor product states in the
+matrix representation are also available through the <code class="code">tpket</code> and
+<code class="code">tpbra</code> commands.
 </p>
 <p>The following examples illustrate some of the basic capabilities of the
 <code class="code">qm</code> package. Here both abstract, and concrete (matrix
@@ -120,6 +126,10 @@ representation) kets are shown.
                                    [ c + a ]
 (%o2)                              [       ]
                                    [ d + b ]
+(%i3) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+                              |[u, d]&gt; - |[d, u]&gt;
+(%o3)                         -------------------
+                                    sqrt(2)
 </pre></div></div>
 
 <p>Note that <code class="code">ket([a,b])</code> is treated as tensor product of states
