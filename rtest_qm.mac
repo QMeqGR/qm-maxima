@@ -1,6 +1,6 @@
-batch("examples.txt");
-display2d:false;
-load(qm);
+(display2d:false,load(qm),0);
+0 $
+
 ket([a,b])+ket([c,d]);
 ket([c,d])+ket([a,b]) $
 
@@ -294,6 +294,4 @@ ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
 
 bra([a1,b1,c1]).ket([Id,b2,c2]);
 bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2) $
-
-"/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt" $
 

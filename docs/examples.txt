@@ -1,5 +1,4 @@
-display2d:false$
-load(qm)$
+(display2d:false,load(qm),0);
 ket([a,b])+ket([c,d]);
 mket([a,b])+mket([c,d]);
 bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));

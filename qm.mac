@@ -85,6 +85,10 @@ tellsimpafter(mket(ll), transpose(matrix (ll)));
 /***************************************/
 /* Rules, simp for general kets/bras   */
 /***************************************/
+/* predicates for general bras and kets, thanks to BW */
+ketp(psi) := not mapatom(psi) and is(inpart(psi,0) = 'ket) $
+brap(psi) := not mapatom(psi) and is(inpart(psi,0) = 'bra) $
+
 declare(dagger,additive);
 declare(braket,additive);
 
