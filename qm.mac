@@ -88,11 +88,18 @@ tellsimpafter(mket(ll), transpose(matrix (ll)));
 ketp(psi) := not mapatom(psi) and is(inpart(psi,0) = 'ket) $
 brap(psi) := not mapatom(psi) and is(inpart(psi,0) = 'bra) $
 
-declare(dagger,additive);
-declare(braket,additive);
-
+/**********/
 /* dagger */
-/* for general kets and bras */
+/**********/
+declare(dagger,additive);
+declare(dagger,multiplicative);
+
+matchdeclare([i,j],all,mm,mapatom,nn,integerp);
+simp:false; tellsimp( dagger(dagger(i)) , i); simp:true;
+simp:false; tellsimp( dagger(mm^nn), dagger(mm)^nn ); simp:true;
+simp:false; tellsimp( dagger( i . j ) , dagger(j) . dagger(i) ); simp:true;
+
+/* dagger for general kets and bras */
 matchdeclare([i,j],all,[L1,L2],listp);
 tellsimpafter( dagger( bra(L1) ), ket(L1) );
 tellsimpafter( dagger( ket(L1) ), bra(L1) );
@@ -106,8 +113,15 @@ simp:false; tellsimp( dagger(rx) , rx ); simp:true;
 simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 
 /* special case of dagger for matrix argument */
-matchdeclare(mx, matrixp);
-tellsimpafter(dagger (mx), conjugate (transpose (mx)));
+matchdeclare(mx, matrixp,nn,integerp);
+simp:false; tellsimp( dagger( mx^nn ), dagger(mx)^nn );
+simp:false; tellsimp( dagger( mx^^nn ), dagger(mx)^^nn );
+tellsimpafter( dagger(mx), conjugate(transpose (mx)) );
+
+/********************/
+/*    braket        */
+/********************/
+declare(braket,additive);
 
 /* braket rules for matrix reps */
 matchdeclare([kk,ll], mketp, bb, mbrap );
