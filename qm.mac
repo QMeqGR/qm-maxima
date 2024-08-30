@@ -29,7 +29,6 @@ load("qm-index-html.lisp")$
 /******************/
 /*    flags       */
 /******************/
-ortho_basis:1; /* assume orthonormal basis for abstract kets/bras */
 
 /*****************************************/
 /*    complexp and realp predicates      */
@@ -160,8 +159,13 @@ gsimpbraket(L1,L2):=block([i,l1flag:0,l2flag:0,prod:1,
 /*********************************/
 /* norm for matrix represented kets/bras */
 matchdeclare( kk, mketp, bb, mbrap );
-tellsimpafter(norm (kk), sqrt( braket(kk,kk) ));
-tellsimpafter(norm (bb), sqrt( braket(bb,dagger(bb)) ));
+tellsimpafter(norm(kk), sqrt( braket(kk,kk) ));
+tellsimpafter(norm(bb), sqrt( braket(bb,dagger(bb)) ));
+
+/* norm for abstract kets/bras */
+matchdeclare( ak, ketp, ab, brap );
+tellsimpafter(norm(ak),1);
+tellsimpafter(norm(ab),1);
 
 /* magsqr */
 magsqr(c) := c*conjugate(c);
