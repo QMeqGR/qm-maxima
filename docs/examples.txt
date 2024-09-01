@@ -65,6 +65,8 @@ SY(1/2);
 SX(1);
 ev(expect(Sy,xp+ym),ratsimp);
 ev(qm_variance(Sy,xp+ym),ratsimp);
+spin_mket(3/2,1/2,2);
+spin_mbra(1,1,1);
 jmbra(3/2,1/2);
 jmbra([3/2,1/2]);
 jmketp(jmket(j,m));

@@ -62,9 +62,7 @@ systems.
 Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the @code{z}-basis may be written as 
 
-@*
 @ @ @ @ @ @ @ @ @code{<psi| = a <z+| + b <z-|}.
-@*
 
 The bra will be represented in Maxima by the row vector @code{[a b]},
 where the basis vectors are
@@ -75,6 +73,8 @@ where the basis vectors are
 and
 
 @ @ @ @ @ @ @ @ @code{<z-| = [0 1]}.
+
+@subsection Types of kets and bras
 
 There are two types of kets and bras available in this package, the
 first type is given by a @emph{matrix representation}, as in the above
@@ -87,9 +87,7 @@ Maxima lists for the elements. These general kets are displayed in Dirac
 notation. For example, a tensor product of two ket vectors @code{|a>}
 and @code{|b>} is input as @code{ket([a,b])} and displayed as
 
-@*
 @ @ @ @ @ @ @ @ @code{|[a,b]>} @ @ @ @ @ (general ket)
-@*
 
 @noindent
 Note that abstract kets and bras are @emph{assumed to be
@@ -681,6 +679,54 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 @end example
 
 @subsection Angular momentum representation of kets and bras
+
+@subsubsection Matrix representation of (j,m)-kets and bras
+
+In the matrix representation the @code{qm} package works in the
+@code{z}-basis. To create a matrix representation of of a ket or bra
+in the (j,m)-basis one uses the @code{spin_mket} and @code{spin_mbra}
+functions.
+
+@deffn {Function} spin_mket (s,m@sub{s},[1,2])
+@code{spin_mket} returns a ket in the @code{z}-basis for spin @code{s}
+and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
+@end deffn
+
+@deffn {Function} spin_mbra (s,m@sub{s},[1,2])
+@code{spin_mbra} returns a bra in the @code{z}-basis for spin @code{s}
+and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
+@end deffn
+
+@example
+@group
+(%i1) spin_mket(3/2,1/2,2);
+                                [  sqrt(3)   ]
+                                [  -------   ]
+                                [    3/2     ]
+                                [   2        ]
+                                [            ]
+                                [     %i     ]
+                                [    ----    ]
+                                [     3/2    ]
+                                [    2       ]
+(%o1)                           [            ]
+                                [     1      ]
+                                [    ----    ]
+                                [     3/2    ]
+                                [    2       ]
+                                [            ]
+                                [ sqrt(3) %i ]
+                                [ ---------- ]
+                                [     3/2    ]
+                                [    2       ]
+(%i2) spin_mbra(1,1,1);
+                               [ 1     1     1 ]
+(%o2)                          [ -  -------  - ]
+                               [ 2  sqrt(2)  2 ]
+@end group
+@end example
+
+@subsubsection Abstract (j,m)-kets and bras
 
 To create kets and bras in the @var{|j,m>} representation you can use
 the following functions.

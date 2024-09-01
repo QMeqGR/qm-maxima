@@ -199,6 +199,13 @@ ev(expect(Sy,xp+ym),ratsimp);
 ev(qm_variance(Sy,xp+ym),ratsimp);
 (%i*hbar)/2 $
 
+spin_mket(3/2,1/2,2);
+matrix([sqrt(3)/2^(3/2)],[%i/2^(3/2)],[1/2^(3/2)],[ $
+
+;
+spin_mbra(1,1,1);
+matrix([1/2,1/sqrt(2),1/2]) $
+
 jmbra(3/2,1/2);
 jmbra(3/2,1/2) $
 

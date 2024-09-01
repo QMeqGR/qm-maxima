@@ -1,3 +1,8 @@
+
+
+/***********************************************/
+/* Automatically declare ket variables complex */
+/***********************************************/
 common_functions: [sin,cos,asin,acos,tan,atan,exp,factorial] $
 
 autobra(u) := block(for elm in u do autodecl(elm),
@@ -25,3 +30,22 @@ autodecl(elm):= block([i],
 			     	  apply('symbolp,[part(elm,i,1)])=true then
  	       	             	  apply('declare,[part(elm,i,1),complex])
         else 1);
+
+/**********************************************************/
+/* Compute the X and Y kets for spin-s, ms in the z-basis */
+/**********************************************************/
+spin_mket(s,ms,ax):=block([L,k,eql,soln,eq2,asol,n:2*s+1],
+    L:makelist(concat(c,i),i,n),
+    k: autoket(L),
+    if ax=1 then eq1:SX(s).k-hbar*ms.k
+        elseif ax=2 then eq1:SY(s).k-hbar*ms.k
+        else disp("ax must be 1,2 i.e., (X,Y)"),
+    eql: makelist(eq1[i][1],i,n-1),
+    soln: solve(eql,makelist(concat(c,i),i,2,n)),
+    k: subst(soln,k),
+    eq2: norm(k)=1,
+    asol: solve(eq2,c1*conjugate(c1)),
+    subst(sqrt(rhs(asol[1])),c1,k)
+)$
+
+spin_mbra(s,ms,ax):=dagger(spin_mket(s,ms,ax))$

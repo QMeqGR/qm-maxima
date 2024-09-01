@@ -85,9 +85,7 @@ systems.
 <p>Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the <code class="code">z</code>-basis may be written as 
 </p>
-<br>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;psi| = a &lt;z+| + b &lt;z-|</code>.
-<br>
 </p>
 <p>The bra will be represented in Maxima by the row vector <code class="code">[a b]</code>,
 where the basis vectors are
@@ -98,6 +96,12 @@ where the basis vectors are
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z-| = [0 1]</code>.
 </p>
+<ul class="mini-toc">
+<li><a href="#Types-of-kets-and-bras" accesskey="1">Types of kets and bras</a></li>
+</ul>
+<div class="subsection-level-extent" id="Types-of-kets-and-bras">
+<h4 class="subsection"><span>1.1.1 Types of kets and bras<a class="copiable-link" href="#Types-of-kets-and-bras"> &para;</a></span></h4>
+
 <p>There are two types of kets and bras available in this package, the
 first type is given by a <em class="emph">matrix representation</em>, as in the above
 example. <code class="code">mket</code>s are column vectors and <code class="code">mbra</code>s are row
@@ -109,9 +113,7 @@ Maxima lists for the elements. These general kets are displayed in Dirac
 notation. For example, a tensor product of two ket vectors <code class="code">|a&gt;</code>
 and <code class="code">|b&gt;</code> is input as <code class="code">ket([a,b])</code> and displayed as
 </p>
-<br>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|[a,b]&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
-<br>
 </p>
 <p>Note that abstract kets and bras are <em class="emph">assumed to be
 orthonormal</em>. These general bras and kets may be used to build
@@ -189,6 +191,7 @@ complex components in the matrix representation.
 </pre></div></div>
 
 <hr>
+</div>
 </div>
 <div class="section-level-extent" id="Functions-and-Variables-for-qm">
 <div class="nav-panel">
@@ -691,6 +694,61 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 <div class="subsection-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
 <h4 class="subsection"><span>1.2.6 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
 
+<ul class="mini-toc">
+<li><a href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras" accesskey="1">Matrix representation of (j,m)-kets and bras</a></li>
+<li><a href="#Abstract-_0028j_002cm_0029_002dkets-and-bras" accesskey="2">Abstract (j,m)-kets and bras</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
+<h4 class="subsubsection"><span>1.2.6.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+
+<p>In the matrix representation the <code class="code">qm</code> package works in the
+<code class="code">z</code>-basis. To create a matrix representation of of a ket or bra
+in the (j,m)-basis one uses the <code class="code">spin_mket</code> and <code class="code">spin_mbra</code>
+functions.
+</p>
+<dl class="first-deffn">
+<dt class="deffn" id="index-spin_005fmket"><span class="category-def">Function: </span><span><strong class="def-name">spin_mket</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2])</var><a class="copiable-link" href="#index-spin_005fmket"> &para;</a></span></dt>
+<dd><p><code class="code">spin_mket</code> returns a ket in the <code class="code">z</code>-basis for spin <code class="code">s</code>
+and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1=X or 2=Y.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-spin_005fmbra"><span class="category-def">Function: </span><span><strong class="def-name">spin_mbra</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2])</var><a class="copiable-link" href="#index-spin_005fmbra"> &para;</a></span></dt>
+<dd><p><code class="code">spin_mbra</code> returns a bra in the <code class="code">z</code>-basis for spin <code class="code">s</code>
+and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1=X or 2=Y.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) spin_mket(3/2,1/2,2);
+                                [  sqrt(3)   ]
+                                [  -------   ]
+                                [    3/2     ]
+                                [   2        ]
+                                [            ]
+                                [     %i     ]
+                                [    ----    ]
+                                [     3/2    ]
+                                [    2       ]
+(%o1)                           [            ]
+                                [     1      ]
+                                [    ----    ]
+                                [     3/2    ]
+                                [    2       ]
+                                [            ]
+                                [ sqrt(3) %i ]
+                                [ ---------- ]
+                                [     3/2    ]
+                                [    2       ]
+(%i2) spin_mbra(1,1,1);
+                               [ 1     1     1 ]
+(%o2)                          [ -  -------  - ]
+                               [ 2  sqrt(2)  2 ]
+</pre></div></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Abstract-_0028j_002cm_0029_002dkets-and-bras">
+<h4 class="subsubsection"><span>1.2.6.2 Abstract (j,m)-kets and bras<a class="copiable-link" href="#Abstract-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+
 <p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you can use
 the following functions.
 </p>
@@ -816,6 +874,7 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 (%o5)                         hbar jmket(j, m) m
 </pre></div></div>
 
+</div>
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
 <h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
