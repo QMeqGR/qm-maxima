@@ -210,51 +210,37 @@ mbrap(psi) := block([r,c],
 /*              (j,m) kets and bras                   */
 /******************************************************/
 /******************************************************/
+/* There are no longer any matrix reps for the jm kets and bras */
+
 rationalp(a):= if integerp(num(a)) and integerp(denom(a)) then true else false;
 sym_ratp(a):=block(if symbolp(a) or rationalp(a) then
 		      return(true) else return(false) );
-matchdeclare([j,m], sym_ratp );
-tellsimpafter( jmket([j,m]) , [jmket, matrix([j,m])] );
-tellsimpafter( jmbra([j,m]) , [jmbra, matrix([j,m])] );
-
-jmketp(k) := if k[1]#jmket then false else true$
-jmbrap(k) := if k[1]#jmbra then false else true$
-
-matchdeclare(jb, jmbrap, jk, jmketp); /* covers the matrix rep */
-tellsimpafter( jmbraket(jb,jk), simp_jmbraket(jb,jk) );
-simp_jmbraket(b,k) := block([j1,j2,m1,m2],
-	     if b[1]#jmbra or k[1]#jmket then return(false),
-	     j1:b[2][1][1], m1:b[2][1][2], j2:k[2][1][1], m2:k[2][1][2],
-	     if j1=j2 and m1=m2 then return(1) else return(0) )$
+matchdeclare(k,ketp,bb,brap,[j,m], sym_ratp );
 /* Check that m is within -j to +j */
 jmcheck(j,m) := block([pos:0],
 	      if rationalp(j)=false or rationalp(m)=false then return(false) else
 	      	 for jn: j step -1 thru -j do
 		     if jn=m then pos:1,
 		 if pos=1 then true else false )$
-JP(k) := block([j,m,sqrterm],
-      if k[1]#jmket then return(false),
-      j:k[2][1][1], m:k[2][1][2], sqrterm:sqrt(j*(j+1)-m*(m+1))*hbar,
-      return( sqrterm * 'jmket(j,m+1) ) )$
-JM(k) := block([j,m,sqrterm],
-      if k[1]#jmket then return(false),
-      j:k[2][1][1], m:k[2][1][2], sqrterm:sqrt(j*(j+1)-m*(m-1))*hbar,
-      return( sqrterm * 'jmket(j,m-1) ) )$
-Jsqr(k) := block([j,m,sqrterm],
-      if k[1]#jmket then return(false),
-      j:k[2][1][1], return( (j*(j+1)) * hbar^2 * 'jmket(j,m) ) )$
-Jz(k) := block([j,m,sqrterm],
-      if k[1]#jmket then return(false),
-      m:k[2][1][2], return( m * hbar * 'jmket(j,m) ) )$
 
-/********************************************/
-/* Rules, simp for general jmkets/jmbras    */
-/********************************************/
-matchdeclare([jj1,jj2,mm1,mm2],sym_ratp, c, all);
-tellsimpafter(jmbraket(jmbra(jj1,mm1),jmket(jj2,mm2)),
-	kron_delta(jj1,jj2)*kron_delta(mm1,mm2)); /* <j1m1,j2m2> --> delta(j1j2)*delta(m1m2) */
-tellsimpafter(jmbraket(jmbra(jj1,mm1)+c, jmket(jj2,mm2)),
-	jmbraket(jmbra(jj1,mm1),jmket(jj2,mm2))+jmbraket(c,jmket(jj2,mm2))); /* distribution */
+jmketp(k) := jmcheck( inpart(k,1)[1], inpart(k,1)[2] );
+jmbrap(bb) := jmcheck( inpart(bb,1)[1], inpart(bb,1)[2] );
+
+matchdeclare(k,ketp,bb,brap,a,all);
+tellsimpafter( JP(a*k), a*JP(k) );
+tellsimpafter( JP(k), block([j,m,sqrterm],
+      j:inpart(k,1)[1], m:inpart(k,1)[2], sqrterm:sqrt(j*(j+1)-m*(m+1))*hbar,
+      return( sqrterm * ket([j,m+1]) ) ) );
+tellsimpafter( JM(a*k), a*JM(k) );
+tellsimpafter( JM(k), block([j,m,sqrterm],
+      j:inpart(k,1)[1], m:inpart(k,1)[2], sqrterm:sqrt(j*(j+1)-m*(m-1))*hbar,
+      return( sqrterm * ket([j,m-1]) ) ) );
+tellsimpafter( Jsqr(a*k), a*Jsqr(k) );
+tellsimpafter( Jsqr(k), block([j,m],
+      j:inpart(k,1)[1], m:inpart(k,1)[2], return( (j*(j+1)) * hbar^2 * ket([j,m]) ) ));
+tellsimpafter( Jz(a*k), a*Jz(k) );
+tellsimpafter( Jz(k), block([j,m],
+      j:inpart(k,1)[1], m:inpart(k,1)[2], return( ( m * hbar * ket([j,m]) ) )));
 
 /******************************************************/
 /******************************************************/

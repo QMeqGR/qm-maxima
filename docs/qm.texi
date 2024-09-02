@@ -84,8 +84,10 @@ vectors, and their components are entered as Maxima @emph{lists} in the
 @emph{abstract}; there is no matrix representation. Abstract bras and
 kets are entered using the @code{bra} and @code{ket} functions using
 Maxima lists for the elements. These general kets are displayed in Dirac
-notation. For example, a tensor product of two ket vectors @code{|a>}
-and @code{|b>} is input as @code{ket([a,b])} and displayed as
+notation. Abstract bras and kets are used for both the @code{(j,m)}
+representation of states and also for tensor products. For example, a
+tensor product of two ket vectors @code{|a>} and @code{|b>} is input as
+@code{ket([a,b])} and displayed as
 
 @ @ @ @ @ @ @ @ @code{|[a,b]>} @ @ @ @ @ (general ket)
 
@@ -682,10 +684,10 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 
 @subsubsection Matrix representation of (j,m)-kets and bras
 
-In the matrix representation the @code{qm} package works in the
-@code{z}-basis. To create a matrix representation of of a ket or bra
-in the (j,m)-basis one uses the @code{spin_mket} and @code{spin_mbra}
-functions.
+The matrix representation of kets and bras in the @code{qm} package are
+represented in the @code{z}-basis. To create a matrix representation of
+of a ket or bra in the (j,m)-basis one uses the @code{spin_mket} and
+@code{spin_mbra} functions.
 
 @deffn {Function} spin_mket (s,m@sub{s},[1,2])
 @code{spin_mket} returns a ket in the @code{z}-basis for spin @code{s}
@@ -728,48 +730,41 @@ and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
 
 @subsubsection Abstract (j,m)-kets and bras
 
-To create kets and bras in the @var{|j,m>} representation you can use
-the following functions.
-
-@deffn {Function} jmket (@code{j,m})
-@code{jmket} creates the ket @var{|j,m>} for total spin @var{j}
-and @var{z}-component @var{m}.
-@end deffn
-
-@deffn {Function} jmbra (@code{j,m})
-@code{jmbra} creates the bra @var{<j,m|} for total spin @var{j}
-and @var{z}-component @var{m}.
-@end deffn
+To create kets and bras in the @var{|j,m>} representation you use the
+abstract @code{ket} and @code{bra} functions with @code{j,m} as
+arguments, as in @code{ket([j,m])} and @code{bra([j,m])}.
 
 @example
 @group
-(%i1) jmbra(3/2,1/2);
-                                        3  1
-(%o1)                             jmbra(-, -)
-                                        2  2
-(%i2) jmbra([3/2,1/2]);
-                                       [ 3  1 ]
-(%o2)                          [jmbra, [ -  - ]]
-                                       [ 2  2 ]
+(%i1) bra([3/2,1/2]);
+                                     3  1
+(%o1)                              <[-, -]|
+                                     2  2
+(%i2) ket([3/2,1/2]);
+                                     3  1
+(%o2)                              |[-, -]>
+                                     2  2
 @end group
 @end example
 
 @deffn {Function} jmketp (jmket)
-@code{jmketp} checks to see that the ket has the 'jmket' marker.
+@code{jmketp} checks to see that the ket has an @code{m}-value that is in
+the set @code{@{-j,-j+1,@dots{},+j@}}.
 @end deffn
 
 @example
 @group
-(%i1) jmketp(jmket(j,m));
+(%i1) jmketp(jmket([j,m]));
 (%o1)                                false
-(%i2) jmketp(jmket([j,m]));
+(%i2) jmketp(jmket([3/2,1/2]));
 (%o2)                                true
 @end group
 @end example
 
 
 @deffn {Function} jmbrap (jmbra)
-@code{jmbrap} checks to see that the bra has the 'jmbra' marker.
+@code{jmbrap} checks to see that the bra has an @code{m}-value that is in
+the set @code{@{-j,-j+1,@dots{},+j@}}.
 @end deffn
 
 @deffn {Function} jmcheck (@code{j,m})
@@ -780,38 +775,6 @@ and @var{z}-component @var{m}.
 @group
 (%i1) jmcheck(3/2,1/2);
 (%o1)                                true
-@end group
-@end example
-
-
-@deffn {Function} jmbraket (@emph{jmbra,jmket})
-@code{jmbraket} takes the inner product of the jm-kets.
-@end deffn
-
-@example
-@group
-(%i1) K:jmket(j1,m1);
-(%o1)                            jmket(j1, m1)
-(%i2) B:jmbra(j2,m2);
-(%o2)                            jmbra(j2, m2)
-(%i3) jmbraket(B,K);
-(%o3)                kron_delta(j1, j2) kron_delta(m1, m2)
-(%i4) B:jmbra(j1,m1);
-(%o4)                            jmbra(j1, m1)
-(%i5) jmbraket(B,K);
-(%o5)                                  1
-(%i6) K:jmket([3/2,1/2]);
-                                       [ 3  1 ]
-(%o6)                          [jmket, [ -  - ]]
-                                       [ 2  2 ]
-(%i7) B:jmbra([3/2,1/2]);
-                                       [ 3  1 ]
-(%o7)                          [jmbra, [ -  - ]]
-                                       [ 2  2 ]
-(%i8) jmbraket(B,K);
-(%o8)                                  1
-(%i9) jmbraket(jmbra(j1,m1),jmket(j2,m2));
-(%o9)                kron_delta(j1, j2) kron_delta(m1, m2)
 @end group
 @end example
 
@@ -839,17 +802,17 @@ These functions are illustrated below.
 
 @example
 @group
-(%i1) k:jmket([j,m]);
-(%o1)                          [jmket, [ j  m ]]
+(%i1) k:ket([j,m]);
+(%o1)                              |[j, m]>
 (%i2) JP(k);
-(%o2)          hbar jmket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%o2)            hbar |[j, m + 1]> sqrt(j (j + 1) - m (m + 1))
 (%i3) JM(k);
-(%o3)          hbar jmket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%o3)            hbar |[j, m - 1]> sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
-                              2
-(%o4)                     hbar  j (j + 1) jmket(j, m)
+                               2
+(%o4)                      hbar  j (j + 1) |[j, m]>
 (%i5) Jz(k);
-(%o5)                         hbar jmket(j, m) m
+(%o5)                           hbar |[j, m]> m
 @end group
 @end example
 

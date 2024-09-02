@@ -110,8 +110,10 @@ vectors, and their components are entered as Maxima <em class="emph">lists</em> 
 <em class="emph">abstract</em>; there is no matrix representation. Abstract bras and
 kets are entered using the <code class="code">bra</code> and <code class="code">ket</code> functions using
 Maxima lists for the elements. These general kets are displayed in Dirac
-notation. For example, a tensor product of two ket vectors <code class="code">|a&gt;</code>
-and <code class="code">|b&gt;</code> is input as <code class="code">ket([a,b])</code> and displayed as
+notation. Abstract bras and kets are used for both the <code class="code">(j,m)</code>
+representation of states and also for tensor products. For example, a
+tensor product of two ket vectors <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> is input as
+<code class="code">ket([a,b])</code> and displayed as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|[a,b]&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
 </p>
@@ -701,10 +703,10 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 <div class="subsubsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
 <h4 class="subsubsection"><span>1.2.6.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
-<p>In the matrix representation the <code class="code">qm</code> package works in the
-<code class="code">z</code>-basis. To create a matrix representation of of a ket or bra
-in the (j,m)-basis one uses the <code class="code">spin_mket</code> and <code class="code">spin_mbra</code>
-functions.
+<p>The matrix representation of kets and bras in the <code class="code">qm</code> package are
+represented in the <code class="code">z</code>-basis. To create a matrix representation of
+of a ket or bra in the (j,m)-basis one uses the <code class="code">spin_mket</code> and
+<code class="code">spin_mbra</code> functions.
 </p>
 <dl class="first-deffn">
 <dt class="deffn" id="index-spin_005fmket"><span class="category-def">Function: </span><span><strong class="def-name">spin_mket</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2])</var><a class="copiable-link" href="#index-spin_005fmket"> &para;</a></span></dt>
@@ -749,48 +751,39 @@ and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1
 <div class="subsubsection-level-extent" id="Abstract-_0028j_002cm_0029_002dkets-and-bras">
 <h4 class="subsubsection"><span>1.2.6.2 Abstract (j,m)-kets and bras<a class="copiable-link" href="#Abstract-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
-<p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you can use
-the following functions.
+<p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you use the
+abstract <code class="code">ket</code> and <code class="code">bra</code> functions with <code class="code">j,m</code> as
+arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra([j,m])</code>.
 </p>
-<dl class="first-deffn">
-<dt class="deffn" id="index-jmket"><span class="category-def">Function: </span><span><strong class="def-name">jmket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmket"> &para;</a></span></dt>
-<dd><p><code class="code">jmket</code> creates the ket <var class="var">|j,m&gt;</var> for total spin <var class="var">j</var>
-and <var class="var">z</var>-component <var class="var">m</var>.
-</p></dd></dl>
-
-<dl class="first-deffn">
-<dt class="deffn" id="index-jmbra"><span class="category-def">Function: </span><span><strong class="def-name">jmbra</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmbra"> &para;</a></span></dt>
-<dd><p><code class="code">jmbra</code> creates the bra <var class="var">&lt;j,m|</var> for total spin <var class="var">j</var>
-and <var class="var">z</var>-component <var class="var">m</var>.
-</p></dd></dl>
-
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) jmbra(3/2,1/2);
-                                        3  1
-(%o1)                             jmbra(-, -)
-                                        2  2
-(%i2) jmbra([3/2,1/2]);
-                                       [ 3  1 ]
-(%o2)                          [jmbra, [ -  - ]]
-                                       [ 2  2 ]
+<div class="group"><pre class="example-preformatted">(%i1) bra([3/2,1/2]);
+                                     3  1
+(%o1)                              &lt;[-, -]|
+                                     2  2
+(%i2) ket([3/2,1/2]);
+                                     3  1
+(%o2)                              |[-, -]&gt;
+                                     2  2
 </pre></div></div>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-jmketp"><span class="category-def">Function: </span><span><strong class="def-name">jmketp</strong> <var class="def-var-arguments">(jmket)</var><a class="copiable-link" href="#index-jmketp"> &para;</a></span></dt>
-<dd><p><code class="code">jmketp</code> checks to see that the ket has the &rsquo;jmket&rsquo; marker.
+<dd><p><code class="code">jmketp</code> checks to see that the ket has an <code class="code">m</code>-value that is in
+the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) jmketp(jmket(j,m));
+<div class="group"><pre class="example-preformatted">(%i1) jmketp(jmket([j,m]));
 (%o1)                                false
-(%i2) jmketp(jmket([j,m]));
+(%i2) jmketp(jmket([3/2,1/2]));
 (%o2)                                true
 </pre></div></div>
 
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-jmbrap"><span class="category-def">Function: </span><span><strong class="def-name">jmbrap</strong> <var class="def-var-arguments">(jmbra)</var><a class="copiable-link" href="#index-jmbrap"> &para;</a></span></dt>
-<dd><p><code class="code">jmbrap</code> checks to see that the bra has the &rsquo;jmbra&rsquo; marker.
+<dd><p><code class="code">jmbrap</code> checks to see that the bra has an <code class="code">m</code>-value that is in
+the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p></dd></dl>
 
 <dl class="first-deffn">
@@ -801,37 +794,6 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) jmcheck(3/2,1/2);
 (%o1)                                true
-</pre></div></div>
-
-
-<dl class="first-deffn">
-<dt class="deffn" id="index-jmbraket"><span class="category-def">Function: </span><span><strong class="def-name">jmbraket</strong> <var class="def-var-arguments">(<em class="emph">jmbra,jmket</em>)</var><a class="copiable-link" href="#index-jmbraket"> &para;</a></span></dt>
-<dd><p><code class="code">jmbraket</code> takes the inner product of the jm-kets.
-</p></dd></dl>
-
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) K:jmket(j1,m1);
-(%o1)                            jmket(j1, m1)
-(%i2) B:jmbra(j2,m2);
-(%o2)                            jmbra(j2, m2)
-(%i3) jmbraket(B,K);
-(%o3)                kron_delta(j1, j2) kron_delta(m1, m2)
-(%i4) B:jmbra(j1,m1);
-(%o4)                            jmbra(j1, m1)
-(%i5) jmbraket(B,K);
-(%o5)                                  1
-(%i6) K:jmket([3/2,1/2]);
-                                       [ 3  1 ]
-(%o6)                          [jmket, [ -  - ]]
-                                       [ 2  2 ]
-(%i7) B:jmbra([3/2,1/2]);
-                                       [ 3  1 ]
-(%o7)                          [jmbra, [ -  - ]]
-                                       [ 2  2 ]
-(%i8) jmbraket(B,K);
-(%o8)                                  1
-(%i9) jmbraket(jmbra(j1,m1),jmket(j2,m2));
-(%o9)                kron_delta(j1, j2) kron_delta(m1, m2)
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -861,17 +823,17 @@ and <var class="var">z</var>-component <var class="var">m</var>.
 <p>These functions are illustrated below.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) k:jmket([j,m]);
-(%o1)                          [jmket, [ j  m ]]
+<div class="group"><pre class="example-preformatted">(%i1) k:ket([j,m]);
+(%o1)                              |[j, m]&gt;
 (%i2) JP(k);
-(%o2)          hbar jmket(j, m + 1) sqrt(j (j + 1) - m (m + 1))
+(%o2)            hbar |[j, m + 1]&gt; sqrt(j (j + 1) - m (m + 1))
 (%i3) JM(k);
-(%o3)          hbar jmket(j, m - 1) sqrt(j (j + 1) - (m - 1) m)
+(%o3)            hbar |[j, m - 1]&gt; sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
-                              2
-(%o4)                     hbar  j (j + 1) jmket(j, m)
+                               2
+(%o4)                      hbar  j (j + 1) |[j, m]&gt;
 (%i5) Jz(k);
-(%o5)                         hbar jmket(j, m) m
+(%o5)                           hbar |[j, m]&gt; m
 </pre></div></div>
 
 </div>

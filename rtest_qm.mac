@@ -206,62 +206,35 @@ matrix([sqrt(3)/2^(3/2)],[%i/2^(3/2)],[1/2^(3/2)],[ $
 spin_mbra(1,1,1);
 matrix([1/2,1/sqrt(2),1/2]) $
 
-jmbra(3/2,1/2);
-jmbra(3/2,1/2) $
+bra([3/2,1/2]);
+bra([3/2,1/2]) $
 
-jmbra([3/2,1/2]);
-[jmbra,matrix([3/2,1/2])] $
-
-jmketp(jmket(j,m));
-false $
+ket([3/2,1/2]);
+ket([3/2,1/2]) $
 
 jmketp(jmket([j,m]));
+false $
+
+jmketp(jmket([3/2,1/2]));
 true $
 
 jmcheck(3/2,1/2);
 true $
 
-K:jmket(j1,m1);
-jmket(j1,m1) $
-
-B:jmbra(j2,m2);
-jmbra(j2,m2) $
-
-jmbraket(B,K);
-kron_delta(j1,j2)*kron_delta(m1,m2) $
-
-B:jmbra(j1,m1);
-jmbra(j1,m1) $
-
-jmbraket(B,K);
-1 $
-
-K:jmket([3/2,1/2]);
-[jmket,matrix([3/2,1/2])] $
-
-B:jmbra([3/2,1/2]);
-[jmbra,matrix([3/2,1/2])] $
-
-jmbraket(B,K);
-1 $
-
-jmbraket(jmbra(j1,m1),jmket(j2,m2));
-kron_delta(j1,j2)*kron_delta(m1,m2) $
-
-k:jmket([j,m]);
-[jmket,matrix([j,m])] $
+k:ket([j,m]);
+ket([j,m]) $
 
 JP(k);
-hbar*'jmket(j,m+1)*sqrt(j*(j+1)-m*(m+1)) $
+hbar*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1)) $
 
 JM(k);
-hbar*'jmket(j,m-1)*sqrt(j*(j+1)-(m-1)*m) $
+hbar*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m) $
 
 Jsqr(k);
-hbar^2*j*(j+1)*'jmket(j,m) $
+hbar^2*j*(j+1)*ket([j,m]) $
 
 Jz(k);
-hbar*'jmket(j,m)*m $
+hbar*ket([j,m])*m $
 
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $

@@ -129,21 +129,12 @@
          ("jmketp"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jmketp")
-         ("jmket"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-jmket")
          ("jmcheck"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jmcheck")
          ("jmbrap"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jmbrap")
-         ("jmbraket"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-jmbraket")
-         ("jmbra"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-jmbra")
          ("JM"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-JM")
