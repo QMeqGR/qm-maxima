@@ -87,8 +87,8 @@ A bra vector in the <code class="code">z</code>-basis may be written as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;psi| = a &lt;z+| + b &lt;z-|</code>.
 </p>
-<p>The bra will be represented in Maxima by the row vector <code class="code">[a b]</code>,
-where the basis vectors are
+<p>The bra <code class="code">&lt;psi|</code> will be represented in Maxima by the row vector
+<code class="code">[a b]</code>, where the basis vectors are
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z+| = [1 0]</code>
 </p>
@@ -102,30 +102,30 @@ where the basis vectors are
 <div class="subsection-level-extent" id="Types-of-kets-and-bras">
 <h4 class="subsection"><span>1.1.1 Types of kets and bras<a class="copiable-link" href="#Types-of-kets-and-bras"> &para;</a></span></h4>
 
-<p>There are two types of kets and bras available in this package, the
-first type is given by a <em class="emph">matrix representation</em>, as in the above
-example. <code class="code">mket</code>s are column vectors and <code class="code">mbra</code>s are row
-vectors, and their components are entered as Maxima <em class="emph">lists</em> in the
-<code class="code">mbra</code> and <code class="code">mket</code> functions. The second type of bra or ket is
-<em class="emph">abstract</em>; there is no matrix representation. Abstract bras and
-kets are entered using the <code class="code">bra</code> and <code class="code">ket</code> functions using
-Maxima lists for the elements. These general kets are displayed in Dirac
-notation. Abstract bras and kets are used for both the <code class="code">(j,m)</code>
-representation of states and also for tensor products. For example, a
-tensor product of two ket vectors <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> is input as
-<code class="code">ket([a,b])</code> and displayed as
+<p>There are two types of kets and bras available in the <code class="code">qm</code> package,
+the first type is given by a <em class="emph">matrix representation</em>, as in the
+functions <code class="code">mbra</code> and <code class="code">mket</code>. <code class="code">mket</code>s are column vectors
+and <code class="code">mbra</code>s are row vectors, and their components are entered as
+Maxima <em class="emph">lists</em> in the <code class="code">mbra</code> and <code class="code">mket</code> functions. The
+second type of bra or ket is <em class="emph">abstract</em>; there is no matrix
+representation. Abstract bras and kets are entered using the <code class="code">bra</code>
+and <code class="code">ket</code> functions, while also using Maxima lists for the
+elements. These general kets are displayed in Dirac notation. Abstract
+bras and kets are used for both the <code class="code">(j,m)</code> representation of
+states and also for tensor products. For example, a tensor product of
+two ket vectors <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> is input as <code class="code">ket([a,b])</code>
+and displayed as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|[a,b]&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
 </p>
 <p>Note that abstract kets and bras are <em class="emph">assumed to be
 orthonormal</em>. These general bras and kets may be used to build
-arbitrarily large tensor product states. Tensor product states in the
-matrix representation are also available through the <code class="code">tpket</code> and
-<code class="code">tpbra</code> commands.
+arbitrarily large tensor product states.
 </p>
 <p>The following examples illustrate some of the basic capabilities of the
 <code class="code">qm</code> package. Here both abstract, and concrete (matrix
-representation) kets are shown.
+representation) kets are shown. The last example shows how to contstruct
+an entangled Bell pair.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) ket([a,b])+ket([c,d]);
@@ -146,16 +146,6 @@ representation) kets are shown.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) braket(bra([a1,b1]),ket([a2,b2]));
 (%o1)                kron_delta(a1, a2) kron_delta(b1, b2)
-</pre></div></div>
-
-<p>Next, tensor products of the spin-1/2 basis states <code class="code">{zp,zm}</code> are
-shown in the matrix representation.
-</p>
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) tpket([zp,zm]);
-                                     [ 1 ]  [ 0 ]
-(%o1)                       [tpket, [[   ], [   ]]]
-                                     [ 0 ]  [ 1 ]
 </pre></div></div>
 
 <p>Constants that multiply kets and bras must be declared complex by
@@ -767,21 +757,21 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
 </pre></div></div>
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jmketp"><span class="category-def">Function: </span><span><strong class="def-name">jmketp</strong> <var class="def-var-arguments">(jmket)</var><a class="copiable-link" href="#index-jmketp"> &para;</a></span></dt>
+<dt class="deffn" id="index-jmketp"><span class="category-def">Function: </span><span><strong class="def-name">jmketp</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-jmketp"> &para;</a></span></dt>
 <dd><p><code class="code">jmketp</code> checks to see that the ket has an <code class="code">m</code>-value that is in
 the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) jmketp(jmket([j,m]));
+<div class="group"><pre class="example-preformatted">(%i1) jmketp(ket([j,m]));
 (%o1)                                false
-(%i2) jmketp(jmket([3/2,1/2]));
+(%i2) jmketp(ket([3/2,1/2]));
 (%o2)                                true
 </pre></div></div>
 
 
 <dl class="first-deffn">
-<dt class="deffn" id="index-jmbrap"><span class="category-def">Function: </span><span><strong class="def-name">jmbrap</strong> <var class="def-var-arguments">(jmbra)</var><a class="copiable-link" href="#index-jmbrap"> &para;</a></span></dt>
+<dt class="deffn" id="index-jmbrap"><span class="category-def">Function: </span><span><strong class="def-name">jmbrap</strong> <var class="def-var-arguments">(<em class="emph">jmbra</em>)</var><a class="copiable-link" href="#index-jmbrap"> &para;</a></span></dt>
 <dd><p><code class="code">jmbrap</code> checks to see that the bra has an <code class="code">m</code>-value that is in
 the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p></dd></dl>
@@ -892,17 +882,19 @@ rotation operator <code class="code">Rz</code> for rotation through angle <code 
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) RZ(1/2,t);
-Proviso: assuming 64*t # 0 
-                             [     %i t         ]
-                             [   - ----         ]
-                             [      2           ]
-                             [ %e          0    ]
-(%o1)                        [                  ]
-                             [             %i t ]
-                             [             ---- ]
-                             [              2   ]
-                             [    0      %e     ]
+<div class="group"><pre class="example-preformatted">(%i1) RY(1,t);
+Proviso: assuming 4*t # 0 
+                     [ cos(t) + 1    sin(t)   1 - cos(t) ]
+                     [ ----------  - -------  ---------- ]
+                     [     2         sqrt(2)      2      ]
+                     [                                   ]
+                     [  sin(t)                  sin(t)   ]
+(%o1)                [  -------     cos(t)    - -------  ]
+                     [  sqrt(2)                 sqrt(2)  ]
+                     [                                   ]
+                     [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
+                     [ ----------   -------   ---------- ]
+                     [     2        sqrt(2)       2      ]
 </pre></div></div>
 
 </div>
@@ -940,69 +932,6 @@ of the product, substitute the string <code class="code">Id</code> in the ket or
 desired location. See the examples below for the use of the identity in
 tensor products.
 </p>
-<dl class="first-deffn">
-<dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">([<code class="code">k<sub class="sub">1</sub></code>, <code class="code">k<sub class="sub">2</sub></code>, &hellip;])</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
-<dd><p><code class="code">tpket</code> produces a tensor product of kets <code class="code">k<sub class="sub">i</sub></code>. All
-of the elements must pass the <code class="code">ketp</code> predicate test to be
-accepted. If a list is not used for the input kets, the tpket will
-be an abstract tensor product ket.
-</p></dd></dl>
-
-<dl class="first-deffn">
-<dt class="deffn" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">([<code class="code">b<sub class="sub">1</sub></code>, <code class="code">b<sub class="sub">2</sub></code>, &hellip;])</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
-<dd><p><code class="code">tpbra</code> produces a tensor product of bras <code class="code">b<sub class="sub">i</sub></code>. All
-of the elements must pass the <code class="code">brap</code> predicate test to be
-accepted. If a list is not used for the input bras, the tpbra will
-be an abstract tensor product bra.
-</p></dd></dl>
-
-<dl class="first-deffn">
-<dt class="deffn" id="index-tpketp"><span class="category-def">Function: </span><span><strong class="def-name">tpketp</strong> <var class="def-var-arguments">(tpket)</var><a class="copiable-link" href="#index-tpketp"> &para;</a></span></dt>
-<dd><p><code class="code">tpketp</code> checks to see that the ket has the &rsquo;tpket&rsquo; marker. Only
-the matrix representation will pass this test.
-</p></dd></dl>
-
-<dl class="first-deffn">
-<dt class="deffn" id="index-tpbrap"><span class="category-def">Function: </span><span><strong class="def-name">tpbrap</strong> <var class="def-var-arguments">(tpbra)</var><a class="copiable-link" href="#index-tpbrap"> &para;</a></span></dt>
-<dd><p><code class="code">tpbrap</code> checks to see that the bra has the &rsquo;tpbra&rsquo; marker. Only
-the matrix representation will pass this test.
-</p></dd></dl>
-
-<dl class="first-deffn">
-<dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<code class="code">B,K</code>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
-<dd><p><code class="code">tpbraket</code> takes the inner product of the tensor products
-<code class="code">B</code> and <code class="code">K</code>. The tensor products must be of the same length
-(number of kets must equal the number of bras).
-</p></dd></dl>
-
-<p>Examples below show how to create concrete (matrix representation)
-tensor products and take the bracket of tensor products.
-</p>
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) kill(a,b,c,d);
-(%o1)                                done
-(%i2) declare([a,b,c,d],complex);
-(%o2)                                done
-(%i3) tpbra([mbra([a,b]),mbra([c,d])]);
-(%o3)                    [tpbra, [[ a  b ], [ c  d ]]]
-(%i4) tpbra([dagger(zp),mbra([c,d])]);
-(%o4)                    [tpbra, [[ 1  0 ], [ c  d ]]]
-</pre></div><div class="group"><pre class="example-preformatted">(%i1) K:tpket([zp,zm]);
-                                     [ 1 ]  [ 0 ]
-(%o1)                       [tpket, [[   ], [   ]]]
-                                     [ 0 ]  [ 1 ]
-(%i2) zpb:dagger(zp);
-(%o2)                              [ 1  0 ]
-(%i3) zmb:dagger(zm);
-(%o3)                              [ 0  1 ]
-(%i4) B:tpbra([zpb,zmb]);
-(%o4)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
-(%i5) tpbraket(K,B);
-(%o5)                                false
-(%i6) tpbraket(B,K);
-(%o6)                                  1
-</pre></div></div>
-
 <p>Examples below show how to create abstract tensor products that contain
 the identity element <code class="code">Id</code> and how to take the bracket of these
 tensor products.

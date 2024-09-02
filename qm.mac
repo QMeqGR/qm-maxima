@@ -314,38 +314,3 @@ RY(s,t) := block([demoivre:true], Rot(SY(s),t))$
 /* time-evolution operator */
 UU(H,t) := block([M,demoivre:true], Rot(H,t))$
 
-/*****************************************************************/
-/*****************************************************************/
-/*****************************************************************/
-/*                tensor products in the matrix rep              */
-/*****************************************************************/
-/*****************************************************************/
-/*****************************************************************/
-matchdeclare(ll,listp);
-tellsimpafter(tpket(ll), simptpket(ll));
-simptpket(u) := block([N,fail:0],
-	     N: length(u),
-	     for i: 1 thru N do
-	     	 if mketp(''u[i])=false then fail:1,
-	     if fail=0 then [tpket,u]
-	     else disp("all elements must be kets") )$
-
-tellsimpafter(tpbra(ll), simptpbra(ll));
-simptpbra(u) := block([N,fail:0],
-	     N: length(u),
-	     for i: 1 thru N do
-	     	 if mbrap(''u[i])=false then fail:1,
-	     if fail=0 then [tpbra,u]
-	     else disp("all elements must be bras") )$
-matchdeclare([L1,L2], listp);
-tellsimpafter(tpbraket(L1,L2), simptpbraket(L1,L2));
-simptpbraket(B,K) := block([N,M,fail:0,prod:1],
-		if is(B[1]#tpbra) then return(false),
-		if is(K[1]#tpket) then return(false),
-		N: length(B[2]),
-		M: length(K[2]),
-		if M#N then return(false)
-		else for i: 1 thru N do
-		     prod: prod*braket(B[2][i],K[2][i]),
-		prod )$
-

@@ -59,8 +59,8 @@ vector in the ‘z’-basis may be written as
 
            ‘<psi| = a <z+| + b <z-|’.
 
-   The bra will be represented in Maxima by the row vector ‘[a b]’,
-where the basis vectors are
+   The bra ‘<psi|’ will be represented in Maxima by the row vector ‘[a
+b]’, where the basis vectors are
 
            ‘<z+| = [1 0]’
 
@@ -71,28 +71,29 @@ and
 1.1.1 Types of kets and bras
 ----------------------------
 
-There are two types of kets and bras available in this package, the
-first type is given by a _matrix representation_, as in the above
-example.  ‘mket’s are column vectors and ‘mbra’s are row vectors, and
-their components are entered as Maxima _lists_ in the ‘mbra’ and ‘mket’
-functions.  The second type of bra or ket is _abstract_; there is no
-matrix representation.  Abstract bras and kets are entered using the
-‘bra’ and ‘ket’ functions using Maxima lists for the elements.  These
-general kets are displayed in Dirac notation.  Abstract bras and kets
-are used for both the ‘(j,m)’ representation of states and also for
-tensor products.  For example, a tensor product of two ket vectors ‘|a>’
-and ‘|b>’ is input as ‘ket([a,b])’ and displayed as
+There are two types of kets and bras available in the ‘qm’ package, the
+first type is given by a _matrix representation_, as in the functions
+‘mbra’ and ‘mket’.  ‘mket’s are column vectors and ‘mbra’s are row
+vectors, and their components are entered as Maxima _lists_ in the
+‘mbra’ and ‘mket’ functions.  The second type of bra or ket is
+_abstract_; there is no matrix representation.  Abstract bras and kets
+are entered using the ‘bra’ and ‘ket’ functions, while also using Maxima
+lists for the elements.  These general kets are displayed in Dirac
+notation.  Abstract bras and kets are used for both the ‘(j,m)’
+representation of states and also for tensor products.  For example, a
+tensor product of two ket vectors ‘|a>’ and ‘|b>’ is input as
+‘ket([a,b])’ and displayed as
 
            ‘|[a,b]>’      (general ket)
 
 Note that abstract kets and bras are _assumed to be orthonormal_.  These
 general bras and kets may be used to build arbitrarily large tensor
-product states.  Tensor product states in the matrix representation are
-also available through the ‘tpket’ and ‘tpbra’ commands.
+product states.
 
    The following examples illustrate some of the basic capabilities of
 the ‘qm’ package.  Here both abstract, and concrete (matrix
-representation) kets are shown.
+representation) kets are shown.  The last example shows how to
+contstruct an entangled Bell pair.
 
      (%i1) ket([a,b])+ket([c,d]);
      (%o1)                         |[c, d]> + |[a, b]>
@@ -110,14 +111,6 @@ representation) kets are shown.
 
      (%i1) braket(bra([a1,b1]),ket([a2,b2]));
      (%o1)                kron_delta(a1, a2) kron_delta(b1, b2)
-
-   Next, tensor products of the spin-1/2 basis states ‘{zp,zm}’ are
-shown in the matrix representation.
-
-     (%i1) tpket([zp,zm]);
-                                          [ 1 ]  [ 0 ]
-     (%o1)                       [tpket, [[   ], [   ]]]
-                                          [ 0 ]  [ 1 ]
 
    Constants that multiply kets and bras must be declared complex by the
 user in order for the dagger function to properly conjugate such
@@ -585,16 +578,16 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
      (%o2)                              |[-, -]>
                                           2  2
 
- -- Function: jmketp (jmket)
+ -- Function: jmketp (_jmket_)
      ‘jmketp’ checks to see that the ket has an ‘m’-value that is in the
      set ‘{-j,-j+1,...,+j}’.
 
-     (%i1) jmketp(jmket([j,m]));
+     (%i1) jmketp(ket([j,m]));
      (%o1)                                false
-     (%i2) jmketp(jmket([3/2,1/2]));
+     (%i2) jmketp(ket([3/2,1/2]));
      (%o2)                                true
 
- -- Function: jmbrap (jmbra)
+ -- Function: jmbrap (_jmbra_)
      ‘jmbrap’ checks to see that the bra has an ‘m’-value that is in the
      set ‘{-j,-j+1,...,+j}’.
 
@@ -673,17 +666,19 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
      ‘RZ(s)’ for spin ‘s’ returns the matrix representation of the
      rotation operator ‘Rz’ for rotation through angle ‘t’.
 
-     (%i1) RZ(1/2,t);
-     Proviso: assuming 64*t # 0
-                                  [     %i t         ]
-                                  [   - ----         ]
-                                  [      2           ]
-                                  [ %e          0    ]
-     (%o1)                        [                  ]
-                                  [             %i t ]
-                                  [             ---- ]
-                                  [              2   ]
-                                  [    0      %e     ]
+     (%i1) RY(1,t);
+     Proviso: assuming 4*t # 0
+                          [ cos(t) + 1    sin(t)   1 - cos(t) ]
+                          [ ----------  - -------  ---------- ]
+                          [     2         sqrt(2)      2      ]
+                          [                                   ]
+                          [  sin(t)                  sin(t)   ]
+     (%o1)                [  -------     cos(t)    - -------  ]
+                          [  sqrt(2)                 sqrt(2)  ]
+                          [                                   ]
+                          [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
+                          [ ----------   -------   ---------- ]
+                          [     2        sqrt(2)       2      ]
 
 1.4 Time-evolution operator
 ===========================
@@ -712,57 +707,6 @@ example, and the bra tensor product ‘<a,b|’ is represented as
 identity is one of the elements of the product, substitute the string
 ‘Id’ in the ket or bra at the desired location.  See the examples below
 for the use of the identity in tensor products.
-
- -- Function: tpket ([k_{1}, k_{2}, ...])
-     ‘tpket’ produces a tensor product of kets ‘k_{i}’.  All of the
-     elements must pass the ‘ketp’ predicate test to be accepted.  If a
-     list is not used for the input kets, the tpket will be an abstract
-     tensor product ket.
-
- -- Function: tpbra ([b_{1}, b_{2}, ...])
-     ‘tpbra’ produces a tensor product of bras ‘b_{i}’.  All of the
-     elements must pass the ‘brap’ predicate test to be accepted.  If a
-     list is not used for the input bras, the tpbra will be an abstract
-     tensor product bra.
-
- -- Function: tpketp (tpket)
-     ‘tpketp’ checks to see that the ket has the 'tpket' marker.  Only
-     the matrix representation will pass this test.
-
- -- Function: tpbrap (tpbra)
-     ‘tpbrap’ checks to see that the bra has the 'tpbra' marker.  Only
-     the matrix representation will pass this test.
-
- -- Function: tpbraket (B,K)
-     ‘tpbraket’ takes the inner product of the tensor products ‘B’ and
-     ‘K’.  The tensor products must be of the same length (number of
-     kets must equal the number of bras).
-
-   Examples below show how to create concrete (matrix representation)
-tensor products and take the bracket of tensor products.
-
-     (%i1) kill(a,b,c,d);
-     (%o1)                                done
-     (%i2) declare([a,b,c,d],complex);
-     (%o2)                                done
-     (%i3) tpbra([mbra([a,b]),mbra([c,d])]);
-     (%o3)                    [tpbra, [[ a  b ], [ c  d ]]]
-     (%i4) tpbra([dagger(zp),mbra([c,d])]);
-     (%o4)                    [tpbra, [[ 1  0 ], [ c  d ]]]
-     (%i1) K:tpket([zp,zm]);
-                                          [ 1 ]  [ 0 ]
-     (%o1)                       [tpket, [[   ], [   ]]]
-                                          [ 0 ]  [ 1 ]
-     (%i2) zpb:dagger(zp);
-     (%o2)                              [ 1  0 ]
-     (%i3) zmb:dagger(zm);
-     (%o3)                              [ 0  1 ]
-     (%i4) B:tpbra([zpb,zmb]);
-     (%o4)                    [tpbra, [[ 1  0 ], [ 0  1 ]]]
-     (%i5) tpbraket(K,B);
-     (%o5)                                false
-     (%i6) tpbraket(B,K);
-     (%o6)                                  1
 
    Examples below show how to create abstract tensor products that
 contain the identity element ‘Id’ and how to take the bracket of these
@@ -868,18 +812,8 @@ Appendix A Function and Variable index
                                                               (line 285)
 * SZ:                                    Functions and Variables for qm.
                                                               (line 329)
-* tpbra:                                 Functions and Variables for qm.
-                                                              (line 570)
-* tpbraket:                              Functions and Variables for qm.
-                                                              (line 584)
-* tpbrap:                                Functions and Variables for qm.
-                                                              (line 580)
-* tpket:                                 Functions and Variables for qm.
-                                                              (line 564)
-* tpketp:                                Functions and Variables for qm.
-                                                              (line 576)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 539)
+                                                              (line 541)
 * xm:                                    Functions and Variables for qm.
                                                               (line 215)
 * xp:                                    Functions and Variables for qm.
@@ -904,21 +838,21 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5660
-Ref: ket6013
-Ref: ketp6447
-Ref: bra6628
-Ref: brap7062
-Ref: mket7243
-Ref: mketp7950
-Ref: mbra8594
-Ref: mbrap9173
-Ref: autoket9902
-Ref: autobra10774
-Ref: dagger11444
-Ref: braket11882
-Ref: norm12618
-Node: Function and Variable Index31348
+Node: Functions and Variables for qm5355
+Ref: ket5708
+Ref: ketp6142
+Ref: bra6323
+Ref: brap6757
+Ref: mket6938
+Ref: mketp7645
+Ref: mbra8289
+Ref: mbrap8868
+Ref: autoket9597
+Ref: autobra10469
+Ref: dagger11139
+Ref: braket11577
+Ref: norm12313
+Node: Function and Variable Index29045
 
 End Tag Table
 

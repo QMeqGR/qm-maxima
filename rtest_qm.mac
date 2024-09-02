@@ -13,9 +13,6 @@ bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
 braket(bra([a1,b1]),ket([a2,b2]));
 kron_delta(a1,a2)*kron_delta(b1,b2) $
 
-tpket([zp,zm]);
-[tpket,[matrix([1],[0]),matrix([0],[1])]] $
-
 declare([a,b],complex);
 done $
 
@@ -212,10 +209,10 @@ bra([3/2,1/2]) $
 ket([3/2,1/2]);
 ket([3/2,1/2]) $
 
-jmketp(jmket([j,m]));
+jmketp(ket([j,m]));
 false $
 
-jmketp(jmket([3/2,1/2]));
+jmketp(ket([3/2,1/2]));
 true $
 
 jmcheck(3/2,1/2);
@@ -242,41 +239,11 @@ matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
 SM(1);
 matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
 
-RZ(1/2,t);
-matrix([%e^-((%i*t)/2),0],[0,%e^((%i*t)/2)]) $
+RY(1,t);
+matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2], $
 
 UU(w*Sy,t);
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
-
-kill(a,b,c,d);
-done $
-
-declare([a,b,c,d],complex);
-done $
-
-tpbra([mbra([a,b]),mbra([c,d])]);
-[tpbra,[matrix([a,b]),matrix([c,d])]] $
-
-tpbra([dagger(zp),mbra([c,d])]);
-[tpbra,[matrix([1,0]),matrix([c,d])]] $
-
-K:tpket([zp,zm]);
-[tpket,[matrix([1],[0]),matrix([0],[1])]] $
-
-zpb:dagger(zp);
-matrix([1,0]) $
-
-zmb:dagger(zm);
-matrix([0,1]) $
-
-B:tpbra([zpb,zmb]);
-[tpbra,[matrix([1,0]),matrix([0,1])]] $
-
-tpbraket(K,B);
-false $
-
-tpbraket(B,K);
-1 $
 
 K:ket([a1,b1]);
 ket([a1,b1]) $
