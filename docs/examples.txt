@@ -1,4 +1,5 @@
 (display2d:false,load(qm),0);
+psi_bra:a*dagger(zp)+b*dagger(zm);
 ket([a,b])+ket([c,d]);
 mket([a,b]);
 mbra([a,b]);
@@ -48,9 +49,6 @@ norm(mket([a,b,c]));
 declare([a,b,c,d],complex);
 A:braket(mket([a,b]),mket([c,d]));
 P:magsqr(A);
-ket([a])+ket([b]);
-braket(bra([a]),ket([b]));
-braket(bra([a])+bra([c]),ket([b]));
 zp;
 zm;
 yp;

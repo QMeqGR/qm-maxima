@@ -73,7 +73,7 @@ solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
 experiments using built-in definitions of the Sx, Sy, and Sz operators
 for arbitrary spin, e.g. <code class="code">s={1/2, 1, 3/2, &hellip;}</code>. For spin-1/2
-the standard basis states in the <code class="code">x</code>, <code class="code">y</code>, and <code class="code">z</code>-basis
+the standard basis kets in the <code class="code">x</code>, <code class="code">y</code>, and <code class="code">z</code>-basis
 are available as <code class="code">{xp,xm}</code>, <code class="code">{yp,ym}</code>, and
 <code class="code">{zp,zm}</code>, respectively. One can create general ket vectors with
 arbitrary but finite dimension and perform standard computations such as
@@ -96,6 +96,16 @@ A bra vector in the <code class="code">z</code>-basis may be written as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z-| = [0 1]</code>.
 </p>
+<p>In a Maxima session this looks like the following. The basis kets
+<code class="code">{zp,zm}</code> are transformed into bras using the <code class="code">dagger</code>
+function.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
+(%o1)                              [ a  b ]
+</pre></div></div>
+
+
 <ul class="mini-toc">
 <li><a href="#Types-of-kets-and-bras" accesskey="1">Types of kets and bras</a></li>
 </ul>
@@ -270,7 +280,7 @@ matrix representation the elements must be entered as a list in
 </pre></div></div>
 
 <a class="anchor" id="mketp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mketp"><span class="category-def">Function: </span><span><strong class="def-name">mketp</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-mketp"> &para;</a></span></dt>
+<dt class="deffn" id="index-mketp"><span class="category-def">Function: </span><span><strong class="def-name">mketp</strong> <var class="def-var-arguments">(<em class="emph">ket</em>)</var><a class="copiable-link" href="#index-mketp"> &para;</a></span></dt>
 <dd><p><code class="code">mketp</code> is a predicate function that checks if its input is an mket,
 in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
 <code class="code">mketp</code> only returns <code class="code">true</code> for the matrix representation of a ket.
@@ -308,7 +318,7 @@ in <code class="code">[&hellip;]</code> square brackets.
 </pre></div></div>
 
 <a class="anchor" id="mbrap"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mbrap"><span class="category-def">Function: </span><span><strong class="def-name">mbrap</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-mbrap"> &para;</a></span></dt>
+<dt class="deffn" id="index-mbrap"><span class="category-def">Function: </span><span><strong class="def-name">mbrap</strong> <var class="def-var-arguments">(<em class="emph">bra</em>)</var><a class="copiable-link" href="#index-mbrap"> &para;</a></span></dt>
 <dd><p><code class="code">mbrap</code> is a predicate function that checks if its input is an mbra,
 in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
 <code class="code">mbrap</code> only returns <code class="code">true</code> for the matrix representation of a bra.
@@ -432,33 +442,15 @@ squared of a complex number.
 </pre></div></div>
 
 <ul class="mini-toc">
-<li><a href="#Handling-general-kets-and-bras" accesskey="1">Handling general kets and bras</a></li>
-<li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="2">Spin-1/2 state kets and associated operators</a></li>
-<li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="3">Pauli matrices and Sz, Sx, Sy operators</a></li>
-<li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="4">SX, SY, SZ operators for any spin</a></li>
-<li><a href="#Expectation-value-and-variance" accesskey="5">Expectation value and variance</a></li>
-<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="6">Angular momentum representation of kets and bras</a></li>
-<li><a href="#Angular-momentum-and-ladder-operators" accesskey="7">Angular momentum and ladder operators</a></li>
+<li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="1">Spin-1/2 state kets and associated operators</a></li>
+<li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="2">Pauli matrices and Sz, Sx, Sy operators</a></li>
+<li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
+<li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
+<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="5">Angular momentum representation of kets and bras</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators" accesskey="6">Angular momentum and ladder operators</a></li>
 </ul>
-<div class="subsection-level-extent" id="Handling-general-kets-and-bras">
-<h4 class="subsection"><span>1.2.1 Handling general kets and bras<a class="copiable-link" href="#Handling-general-kets-and-bras"> &para;</a></span></h4>
-
-<p>General kets and bras are, as discussed, created without using a list
-when giving the arguments. The following examples show how general
-kets and bras can be manipulated.
-</p>
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) ket([a])+ket([b]);
-(%o1)                            |[b]&gt; + |[a]&gt;
-(%i2) braket(bra([a]),ket([b]));
-(%o2)                          kron_delta(a, b)
-(%i3) braket(bra([a])+bra([c]),ket([b]));
-(%o3)                 kron_delta(b, c) + kron_delta(a, b)
-</pre></div></div>
-
-</div>
 <div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
-<h4 class="subsection"><span>1.2.2 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.1 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
 
 <p>Spin-1/2 particles are characterized by a simple 2-dimensional Hilbert
 space of states. It is spanned by two vectors. In the <var class="var">z</var>-basis
@@ -544,7 +536,7 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
 
 </div>
 <div class="subsection-level-extent" id="Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators">
-<h4 class="subsection"><span>1.2.3 Pauli matrices and Sz, Sx, Sy operators<a class="copiable-link" href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.2 Pauli matrices and Sz, Sx, Sy operators<a class="copiable-link" href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-sigmax"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmax</code></strong><a class="copiable-link" href="#index-sigmax"> &para;</a></span></dt>
@@ -612,7 +604,7 @@ commutator <code class="code">X . Y - Y . X</code>.
 
 </div>
 <div class="subsection-level-extent" id="SX_002c-SY_002c-SZ-operators-for-any-spin">
-<h4 class="subsection"><span>1.2.4 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.3 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-SX"><span class="category-def">Function: </span><span><strong class="def-name">SX</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SX"> &para;</a></span></dt>
@@ -662,7 +654,7 @@ for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 
 </div>
 <div class="subsection-level-extent" id="Expectation-value-and-variance">
-<h4 class="subsection"><span>1.2.5 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.4 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-expect"><span class="category-def">Function: </span><span><strong class="def-name">expect</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-expect"> &para;</a></span></dt>
@@ -690,14 +682,14 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
-<h4 class="subsection"><span>1.2.6 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.5 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
 
 <ul class="mini-toc">
 <li><a href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras" accesskey="1">Matrix representation of (j,m)-kets and bras</a></li>
 <li><a href="#Abstract-_0028j_002cm_0029_002dkets-and-bras" accesskey="2">Abstract (j,m)-kets and bras</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
-<h4 class="subsubsection"><span>1.2.6.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>1.2.5.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
 <p>The matrix representation of kets and bras in the <code class="code">qm</code> package are
 represented in the <code class="code">z</code>-basis. To create a matrix representation of
@@ -745,7 +737,7 @@ and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1
 
 </div>
 <div class="subsubsection-level-extent" id="Abstract-_0028j_002cm_0029_002dkets-and-bras">
-<h4 class="subsubsection"><span>1.2.6.2 Abstract (j,m)-kets and bras<a class="copiable-link" href="#Abstract-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>1.2.5.2 Abstract (j,m)-kets and bras<a class="copiable-link" href="#Abstract-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
 <p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you use the
 abstract <code class="code">ket</code> and <code class="code">bra</code> functions with <code class="code">j,m</code> as
@@ -835,7 +827,7 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </div>
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
-<h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.6 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>

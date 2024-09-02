@@ -1,6 +1,9 @@
 (display2d:false,load(qm),0);
 0 $
 
+psi_bra:a*dagger(zp)+b*dagger(zm);
+matrix([a,b]) $
+
 ket([a,b])+ket([c,d]);
 ket([c,d])+ket([a,b]) $
 
@@ -147,15 +150,6 @@ braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d])) $
 
 P:magsqr(A);
 braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d])) $
-
-ket([a])+ket([b]);
-ket([matrix([a,bra([u,d])])])+ket([a]) $
-
-braket(bra([a]),ket([b]));
-0 $
-
-braket(bra([a])+bra([c]),ket([b]));
-0 $
 
 zp;
 matrix([1],[0]) $
