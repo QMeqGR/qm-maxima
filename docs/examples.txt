@@ -1,7 +1,9 @@
 (display2d:false,load(qm),0);
 ket([a,b])+ket([c,d]);
-mket([a,b])+mket([c,d]);
+mket([a,b]);
+mbra([a,b]);
 bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+dagger(bell);
 braket(bra([a1,b1]),ket([a2,b2]));
 declare([a,b],complex);
 psi:a*ket([1])+b*ket([2]);
@@ -85,3 +87,7 @@ B:bra([a2,b2]);
 braket(B,K);
 bra([a1,Id,c1]).ket([a2,b2,c2]);
 bra([a1,b1,c1]).ket([Id,b2,c2]);
+bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+rho:bell.dagger(bell);
+assume(notequal(u,d));
+trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);

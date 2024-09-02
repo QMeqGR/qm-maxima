@@ -72,9 +72,9 @@ and
 ----------------------------
 
 There are two types of kets and bras available in the ‘qm’ package, the
-first type is given by a _matrix representation_, as in the functions
-‘mbra’ and ‘mket’.  ‘mket’s are column vectors and ‘mbra’s are row
-vectors, and their components are entered as Maxima _lists_ in the
+first type is given by a _matrix representation_, as returned by the
+functions ‘mbra’ and ‘mket’.  ‘mket’s are column vectors and ‘mbra’s are
+row vectors, and their components are entered as Maxima _lists_ in the
 ‘mbra’ and ‘mket’ functions.  The second type of bra or ket is
 _abstract_; there is no matrix representation.  Abstract bras and kets
 are entered using the ‘bra’ and ‘ket’ functions, while also using Maxima
@@ -97,13 +97,19 @@ contstruct an entangled Bell pair.
 
      (%i1) ket([a,b])+ket([c,d]);
      (%o1)                         |[c, d]> + |[a, b]>
-     (%i2) mket([a,b])+mket([c,d]);
-                                        [ c + a ]
-     (%o2)                              [       ]
-                                        [ d + b ]
-     (%i3) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+     (%i2) mket([a,b]);
+                                          [ a ]
+     (%o2)                                [   ]
+                                          [ b ]
+     (%i3) mbra([a,b]);
+     (%o3)                              [ a  b ]
+     (%i4) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
                                    |[u, d]> - |[d, u]>
-     (%o3)                         -------------------
+     (%o4)                         -------------------
+                                         sqrt(2)
+     (%i5) dagger(bell);
+                                   <[u, d]| - <[d, u]|
+     (%o5)                         -------------------
                                          sqrt(2)
 
    Note that ‘ket([a,b])’ is treated as tensor product of states ‘a’ and
@@ -701,7 +707,7 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
 ===================
 
 Tensor products are represented as lists in the ‘qm’ package.  The ket
-tensor product ‘|z+,z+>’ could be represented as ‘ket([u,d])’, for
+tensor product ‘|z+,z+>’ can be represented as ‘ket([u,d])’, for
 example, and the bra tensor product ‘<a,b|’ is represented as
 ‘bra([a,b])’ for states ‘a’ and ‘b’.  For a tensor product where the
 identity is one of the elements of the product, substitute the string
@@ -722,6 +728,24 @@ tensor products.
      (%o1)         |[-, b2, -]> kron_delta(a1, a2) kron_delta(c1, c2)
      (%i2) bra([a1,b1,c1]) . ket([Id,b2,c2]);
      (%o2)         <[a1, -, -]| kron_delta(b1, b2) kron_delta(c1, c2)
+
+   In the next example we construct the state function for an entangled
+Bell pair, construct the density matrix, and then trace over the first
+particle to obtain the density submatrix for particle 2.
+
+     (%i1) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+                                   |[u, d]> - |[d, u]>
+     (%o1)                         -------------------
+                                         sqrt(2)
+     (%i2) rho:bell . dagger(bell);
+     (%o2) (|[u, d]> . <[u, d]| - |[u, d]> . <[d, u]| - |[d, u]> . <[u, d]|
+                                                            + |[d, u]> . <[d, u]|)/2
+     (%i3) assume(not equal(u,d));
+     (%o3)                          [notequal(u, d)]
+     (%i4) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id]);
+                        |[-, u]> . <[-, u]|   |[-, d]> . <[-, d]|
+     (%o4)              ------------------- + -------------------
+                                 2                     2
 
 
 File: qm.info,  Node: Function and Variable Index,  Prev: Top,  Up: Top
@@ -838,21 +862,21 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5355
-Ref: ket5708
-Ref: ketp6142
-Ref: bra6323
-Ref: brap6757
-Ref: mket6938
-Ref: mketp7645
-Ref: mbra8289
-Ref: mbrap8868
-Ref: autoket9597
-Ref: autobra10469
-Ref: dagger11139
-Ref: braket11577
-Ref: norm12313
-Node: Function and Variable Index29045
+Node: Functions and Variables for qm5603
+Ref: ket5956
+Ref: ketp6390
+Ref: bra6571
+Ref: brap7005
+Ref: mket7186
+Ref: mketp7893
+Ref: mbra8537
+Ref: mbrap9116
+Ref: autoket9845
+Ref: autobra10717
+Ref: dagger11387
+Ref: braket11825
+Ref: norm12561
+Node: Function and Variable Index30262
 
 End Tag Table
 

@@ -77,18 +77,18 @@ and
 @subsection Types of kets and bras
 
 There are two types of kets and bras available in the @code{qm} package,
-the first type is given by a @emph{matrix representation}, as in the
-functions @code{mbra} and @code{mket}. @code{mket}s are column vectors
-and @code{mbra}s are row vectors, and their components are entered as
-Maxima @emph{lists} in the @code{mbra} and @code{mket} functions. The
-second type of bra or ket is @emph{abstract}; there is no matrix
-representation. Abstract bras and kets are entered using the @code{bra}
-and @code{ket} functions, while also using Maxima lists for the
-elements. These general kets are displayed in Dirac notation. Abstract
-bras and kets are used for both the @code{(j,m)} representation of
-states and also for tensor products. For example, a tensor product of
-two ket vectors @code{|a>} and @code{|b>} is input as @code{ket([a,b])}
-and displayed as
+the first type is given by a @emph{matrix representation}, as returned
+by the functions @code{mbra} and @code{mket}. @code{mket}s are column
+vectors and @code{mbra}s are row vectors, and their components are
+entered as Maxima @emph{lists} in the @code{mbra} and @code{mket}
+functions. The second type of bra or ket is @emph{abstract}; there is no
+matrix representation. Abstract bras and kets are entered using the
+@code{bra} and @code{ket} functions, while also using Maxima lists for
+the elements. These general kets are displayed in Dirac
+notation. Abstract bras and kets are used for both the @code{(j,m)}
+representation of states and also for tensor products. For example, a
+tensor product of two ket vectors @code{|a>} and @code{|b>} is input as
+@code{ket([a,b])} and displayed as
 
 @ @ @ @ @ @ @ @ @code{|[a,b]>} @ @ @ @ @ (general ket)
 
@@ -106,13 +106,19 @@ an entangled Bell pair.
 @group
 (%i1) ket([a,b])+ket([c,d]);
 (%o1)                         |[c, d]> + |[a, b]>
-(%i2) mket([a,b])+mket([c,d]);
-                                   [ c + a ]
-(%o2)                              [       ]
-                                   [ d + b ]
-(%i3) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+(%i2) mket([a,b]);
+                                     [ a ]
+(%o2)                                [   ]
+                                     [ b ]
+(%i3) mbra([a,b]);
+(%o3)                              [ a  b ]
+(%i4) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
                               |[u, d]> - |[d, u]>
-(%o3)                         -------------------
+(%o4)                         -------------------
+                                    sqrt(2)
+(%i5) dagger(bell);
+                              <[u, d]| - <[d, u]|
+(%o5)                         -------------------
                                     sqrt(2)
 @end group
 @end example
@@ -892,7 +898,7 @@ Proviso: assuming 64*t*w # 0
 @section Tensor products
 
 Tensor products are represented as lists in the @code{qm} package. The
-ket tensor product @code{|z+,z+>} could be represented as
+ket tensor product @code{|z+,z+>} can be represented as
 @code{ket([u,d])}, for example, and the bra tensor product @code{<a,b|}
 is represented as @code{bra([a,b])} for states @code{a} and
 @code{b}. For a tensor product where the identity is one of the elements
@@ -918,6 +924,28 @@ tensor products.
 (%o1)         |[-, b2, -]> kron_delta(a1, a2) kron_delta(c1, c2)
 (%i2) bra([a1,b1,c1]) . ket([Id,b2,c2]);
 (%o2)         <[a1, -, -]| kron_delta(b1, b2) kron_delta(c1, c2)
+@end group
+@end example
+
+In the next example we construct the state function for an entangled
+Bell pair, construct the density matrix, and then trace over the first
+particle to obtain the density submatrix for particle 2.
+
+@example
+@group
+(%i1) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+                              |[u, d]> - |[d, u]>
+(%o1)                         -------------------
+                                    sqrt(2)
+(%i2) rho:bell . dagger(bell);
+(%o2) (|[u, d]> . <[u, d]| - |[u, d]> . <[d, u]| - |[d, u]> . <[u, d]|
+                                                       + |[d, u]> . <[d, u]|)/2
+(%i3) assume(not equal(u,d));
+(%o3)                          [notequal(u, d)]
+(%i4) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id]);
+                   |[-, u]> . <[-, u]|   |[-, d]> . <[-, d]|
+(%o4)              ------------------- + -------------------
+                            2                     2
 @end group
 @end example
 

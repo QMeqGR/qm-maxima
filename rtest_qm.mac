@@ -4,11 +4,17 @@
 ket([a,b])+ket([c,d]);
 ket([c,d])+ket([a,b]) $
 
-mket([a,b])+mket([c,d]);
-matrix([c+a],[d+b]) $
+mket([a,b]);
+matrix([a],[b]) $
+
+mbra([a,b]);
+matrix([a,b]) $
 
 bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
 (ket([u,d])-ket([d,u]))/sqrt(2) $
+
+dagger(bell);
+(bra([u,d])-bra([d,u]))/sqrt(2) $
 
 braket(bra([a1,b1]),ket([a2,b2]));
 kron_delta(a1,a2)*kron_delta(b1,b2) $
@@ -259,4 +265,16 @@ ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
 
 bra([a1,b1,c1]).ket([Id,b2,c2]);
 bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2) $
+
+bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+(ket([u,d])-ket([d,u]))/sqrt(2) $
+
+rho:bell.dagger(bell);
+(ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u]) $
+
+assume(notequal(u,d));
+[notequal(u,d)] $
+
+trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);
+ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2 $
 

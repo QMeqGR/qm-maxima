@@ -103,18 +103,18 @@ A bra vector in the <code class="code">z</code>-basis may be written as
 <h4 class="subsection"><span>1.1.1 Types of kets and bras<a class="copiable-link" href="#Types-of-kets-and-bras"> &para;</a></span></h4>
 
 <p>There are two types of kets and bras available in the <code class="code">qm</code> package,
-the first type is given by a <em class="emph">matrix representation</em>, as in the
-functions <code class="code">mbra</code> and <code class="code">mket</code>. <code class="code">mket</code>s are column vectors
-and <code class="code">mbra</code>s are row vectors, and their components are entered as
-Maxima <em class="emph">lists</em> in the <code class="code">mbra</code> and <code class="code">mket</code> functions. The
-second type of bra or ket is <em class="emph">abstract</em>; there is no matrix
-representation. Abstract bras and kets are entered using the <code class="code">bra</code>
-and <code class="code">ket</code> functions, while also using Maxima lists for the
-elements. These general kets are displayed in Dirac notation. Abstract
-bras and kets are used for both the <code class="code">(j,m)</code> representation of
-states and also for tensor products. For example, a tensor product of
-two ket vectors <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> is input as <code class="code">ket([a,b])</code>
-and displayed as
+the first type is given by a <em class="emph">matrix representation</em>, as returned
+by the functions <code class="code">mbra</code> and <code class="code">mket</code>. <code class="code">mket</code>s are column
+vectors and <code class="code">mbra</code>s are row vectors, and their components are
+entered as Maxima <em class="emph">lists</em> in the <code class="code">mbra</code> and <code class="code">mket</code>
+functions. The second type of bra or ket is <em class="emph">abstract</em>; there is no
+matrix representation. Abstract bras and kets are entered using the
+<code class="code">bra</code> and <code class="code">ket</code> functions, while also using Maxima lists for
+the elements. These general kets are displayed in Dirac
+notation. Abstract bras and kets are used for both the <code class="code">(j,m)</code>
+representation of states and also for tensor products. For example, a
+tensor product of two ket vectors <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> is input as
+<code class="code">ket([a,b])</code> and displayed as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|[a,b]&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
 </p>
@@ -130,13 +130,19 @@ an entangled Bell pair.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) ket([a,b])+ket([c,d]);
 (%o1)                         |[c, d]&gt; + |[a, b]&gt;
-(%i2) mket([a,b])+mket([c,d]);
-                                   [ c + a ]
-(%o2)                              [       ]
-                                   [ d + b ]
-(%i3) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+(%i2) mket([a,b]);
+                                     [ a ]
+(%o2)                                [   ]
+                                     [ b ]
+(%i3) mbra([a,b]);
+(%o3)                              [ a  b ]
+(%i4) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
                               |[u, d]&gt; - |[d, u]&gt;
-(%o3)                         -------------------
+(%o4)                         -------------------
+                                    sqrt(2)
+(%i5) dagger(bell);
+                              &lt;[u, d]| - &lt;[d, u]|
+(%o5)                         -------------------
                                     sqrt(2)
 </pre></div></div>
 
@@ -924,7 +930,7 @@ Proviso: assuming 64*t*w # 0
 <h3 class="section"><span>1.5 Tensor products<a class="copiable-link" href="#Tensor-products"> &para;</a></span></h3>
 
 <p>Tensor products are represented as lists in the <code class="code">qm</code> package. The
-ket tensor product <code class="code">|z+,z+&gt;</code> could be represented as
+ket tensor product <code class="code">|z+,z+&gt;</code> can be represented as
 <code class="code">ket([u,d])</code>, for example, and the bra tensor product <code class="code">&lt;a,b|</code>
 is represented as <code class="code">bra([a,b])</code> for states <code class="code">a</code> and
 <code class="code">b</code>. For a tensor product where the identity is one of the elements
@@ -947,6 +953,26 @@ tensor products.
 (%o1)         |[-, b2, -]&gt; kron_delta(a1, a2) kron_delta(c1, c2)
 (%i2) bra([a1,b1,c1]) . ket([Id,b2,c2]);
 (%o2)         &lt;[a1, -, -]| kron_delta(b1, b2) kron_delta(c1, c2)
+</pre></div></div>
+
+<p>In the next example we construct the state function for an entangled
+Bell pair, construct the density matrix, and then trace over the first
+particle to obtain the density submatrix for particle 2.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+                              |[u, d]&gt; - |[d, u]&gt;
+(%o1)                         -------------------
+                                    sqrt(2)
+(%i2) rho:bell . dagger(bell);
+(%o2) (|[u, d]&gt; . &lt;[u, d]| - |[u, d]&gt; . &lt;[d, u]| - |[d, u]&gt; . &lt;[u, d]|
+                                                       + |[d, u]&gt; . &lt;[d, u]|)/2
+(%i3) assume(not equal(u,d));
+(%o3)                          [notequal(u, d)]
+(%i4) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id]);
+                   |[-, u]&gt; . &lt;[-, u]|   |[-, d]&gt; . &lt;[-, d]|
+(%o4)              ------------------- + -------------------
+                            2                     2
 </pre></div></div>
 
 </div>

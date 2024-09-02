@@ -6,123 +6,127 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o2) 0
 (%i3) ket([a,b])+ket([c,d])
 (%o3) ket([c,d])+ket([a,b])
-(%i4) mket([a,b])+mket([c,d])
-(%o4) matrix([c+a],[d+b])
-(%i5) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
-(%o5) (ket([u,d])-ket([d,u]))/sqrt(2)
-(%i6) braket(bra([a1,b1]),ket([a2,b2]))
-(%o6) kron_delta(a1,a2)*kron_delta(b1,b2)
-(%i7) declare([a,b],complex)
-(%o7) done
-(%i8) psi:a*ket([1])+b*ket([2])
-(%o8) ket([2])*b+ket([1])*a
-(%i9) psidag:dagger(psi)
-(%o9) bra([2])*conjugate(b)+bra([1])*conjugate(a)
-(%i10) psidag . psi
-(%o10) b*conjugate(b)+a*conjugate(a)
-(%i11) declare([c1,c2],complex,r,real)
-(%o11) done
-(%i12) k:mket([c1,c2,r])
-(%o12) matrix([c1],[c2],[r])
-(%i13) b:dagger(k)
-(%o13) matrix([conjugate(c1),conjugate(c2),r])
-(%i14) b . k
-(%o14) r^2+c2*conjugate(c2)+c1*conjugate(c1)
-(%i15) k:ket([u,d])
-(%o15) ket([u,d])
-(%i16) b:bra([u,d])
-(%o16) bra([u,d])
-(%i17) b . k
-(%o17) 1
-(%i18) k:ket([u,d])
-(%o18) ket([u,d])
-(%i19) b:bra([u,d])
-(%o19) bra([u,d])
-(%i20) b . k
-(%o20) 1
-(%i21) declare([c1,c2],complex)
-(%o21) done
-(%i22) mket([c1,c2])
-(%o22) matrix([c1],[c2])
-(%i23) facts()
-(%o23) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),
+(%i4) mket([a,b])
+(%o4) matrix([a],[b])
+(%i5) mbra([a,b])
+(%o5) matrix([a,b])
+(%i6) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
+(%o6) (ket([u,d])-ket([d,u]))/sqrt(2)
+(%i7) dagger(bell)
+(%o7) (bra([u,d])-bra([d,u]))/sqrt(2)
+(%i8) braket(bra([a1,b1]),ket([a2,b2]))
+(%o8) kron_delta(a1,a2)*kron_delta(b1,b2)
+(%i9) declare([a,b],complex)
+(%o9) done
+(%i10) psi:a*ket([1])+b*ket([2])
+(%o10) ket([2])*b+ket([1])*a
+(%i11) psidag:dagger(psi)
+(%o11) bra([2])*conjugate(b)+bra([1])*conjugate(a)
+(%i12) psidag . psi
+(%o12) b*conjugate(b)+a*conjugate(a)
+(%i13) declare([c1,c2],complex,r,real)
+(%o13) done
+(%i14) k:mket([c1,c2,r])
+(%o14) matrix([c1],[c2],[r])
+(%i15) b:dagger(k)
+(%o15) matrix([conjugate(c1),conjugate(c2),r])
+(%i16) b . k
+(%o16) r^2+c2*conjugate(c2)+c1*conjugate(c1)
+(%i17) k:ket([u,d])
+(%o17) ket([u,d])
+(%i18) b:bra([u,d])
+(%o18) bra([u,d])
+(%i19) b . k
+(%o19) 1
+(%i20) k:ket([u,d])
+(%o20) ket([u,d])
+(%i21) b:bra([u,d])
+(%o21) bra([u,d])
+(%i22) b . k
+(%o22) 1
+(%i23) declare([c1,c2],complex)
+(%o23) done
+(%i24) mket([c1,c2])
+(%o24) matrix([c1],[c2])
+(%i25) facts()
+(%o25) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),
         kind(c1,complex),kind(c2,complex),kind(r,real)]
-(%i24) k:ket([a,b])
-(%o24) ket([a,bra([u,d])])
-(%i25) mketp(k)
-(%o25) false
-(%i26) k:mket([a,b])
-(%o26) matrix([a],[bra([u,d])])
+(%i26) k:ket([a,b])
+(%o26) ket([a,bra([u,d])])
 (%i27) mketp(k)
-(%o27) true
-(%i28) kill(c1,c2)
-(%o28) done
-(%i29) mbra([c1,c2])
-(%o29) matrix([c1,c2])
-(%i30) facts()
-(%o30) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
-(%i31) b:mbra([a,b])
-(%o31) matrix([a,bra([u,d])])
-(%i32) mbrap(b)
-(%o32) true
-(%i33) autoket([a,b])
-(%o33) matrix([a],[matrix([a,bra([u,d])])])
-(%i34) facts()
-(%o34) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
-(%i35) autoket([a*sin(x),b*sin(x)])
-(%o35) matrix([a*sin(x)],[matrix([a*sin(x),bra([u,d])*sin(x)])])
+(%o27) false
+(%i28) k:mket([a,b])
+(%o28) matrix([a],[bra([u,d])])
+(%i29) mketp(k)
+(%o29) true
+(%i30) kill(c1,c2)
+(%o30) done
+(%i31) mbra([c1,c2])
+(%o31) matrix([c1,c2])
+(%i32) facts()
+(%o32) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
+(%i33) b:mbra([a,b])
+(%o33) matrix([a,bra([u,d])])
+(%i34) mbrap(b)
+(%o34) true
+(%i35) autoket([a,b])
+(%o35) matrix([a],[matrix([a,bra([u,d])])])
 (%i36) facts()
 (%o36) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
-(%i37) autobra([a,b])
-(%o37) matrix([a,matrix([a,bra([u,d])])])
+(%i37) autoket([a*sin(x),b*sin(x)])
+(%o37) matrix([a*sin(x)],[matrix([a*sin(x),bra([u,d])*sin(x)])])
 (%i38) facts()
 (%o38) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
-(%i39) autobra([a*sin(x),b])
-(%o39) matrix([a*sin(x),matrix([a,bra([u,d])])])
+(%i39) autobra([a,b])
+(%o39) matrix([a,matrix([a,bra([u,d])])])
 (%i40) facts()
 (%o40) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
-(%i41) dagger(mbra([%i,2]))
-(%o41) matrix([-%i],[2])
-(%i42) declare([a,b,c],complex)
-(%o42) done
-(%i43) braket(mket([a,b,c]),mket([a,b,c]))
-(%o43) braket(matrix([a],[matrix([a,bra([u,d])])],[c]),
+(%i41) autobra([a*sin(x),b])
+(%o41) matrix([a*sin(x),matrix([a,bra([u,d])])])
+(%i42) facts()
+(%o42) [kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)]
+(%i43) dagger(mbra([%i,2]))
+(%o43) matrix([-%i],[2])
+(%i44) declare([a,b,c],complex)
+(%o44) done
+(%i45) braket(mket([a,b,c]),mket([a,b,c]))
+(%o45) braket(matrix([a],[matrix([a,bra([u,d])])],[c]),
               matrix([a],[matrix([a,bra([u,d])])],[c]))
-(%i44) braket(ket([a1,b1,c1]),ket([a2,b2,c2]))
-(%o44) kron_delta(a1,a2)*kron_delta(b1,b2)*kron_delta(c1,c2)
-(%i45) declare([a,b,c],complex)
-(%o45) done
-(%i46) norm(mket([a,b,c]))
-(%o46) norm(matrix([a],[matrix([a,bra([u,d])])],[c]))
-(%i47) declare([a,b,c,d],complex)
+(%i46) braket(ket([a1,b1,c1]),ket([a2,b2,c2]))
+(%o46) kron_delta(a1,a2)*kron_delta(b1,b2)*kron_delta(c1,c2)
+(%i47) declare([a,b,c],complex)
 (%o47) done
-(%i48) A:braket(mket([a,b]),mket([c,d]))
-(%o48) braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d]))
-(%i49) P:magsqr(A)
-(%o49) braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d]))
+(%i48) norm(mket([a,b,c]))
+(%o48) norm(matrix([a],[matrix([a,bra([u,d])])],[c]))
+(%i49) declare([a,b,c,d],complex)
+(%o49) done
+(%i50) A:braket(mket([a,b]),mket([c,d]))
+(%o50) braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d]))
+(%i51) P:magsqr(A)
+(%o51) braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d]))
  *conjugate(braket(matrix([a],[matrix([a,bra([u,d])])]),matrix([c],[d])))
-(%i50) ket([a])+ket([b])
-(%o50) ket([matrix([a,bra([u,d])])])+ket([a])
-(%i51) braket(bra([a]),ket([b]))
-(%o51) 0
-(%i52) braket(bra([a])+bra([c]),ket([b]))
-(%o52) 0
-(%i53) zp
-(%o53) matrix([1],[0])
-(%i54) zm
-(%o54) matrix([0],[1])
-(%i55) yp
-(%o55) matrix([1/sqrt(2)],[%i/sqrt(2)])
-(%i56) ym
-(%o56) matrix([1/sqrt(2)],[-(%i/sqrt(2))])
-(%i57) braket(xp,zp)
-(%o57) 1/sqrt(2)
-(%i58) declare([a,b],complex)
-(%o58) done
-(%i59) psi:mket([a,b])
-(%o59) matrix([a],[matrix([a,bra([u,d])])])
-(%i60) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi)
-(%o60) braket(matrix([1/sqrt(2)],[1/sqrt(2)]),matrix([a],
+(%i52) ket([a])+ket([b])
+(%o52) ket([matrix([a,bra([u,d])])])+ket([a])
+(%i53) braket(bra([a]),ket([b]))
+(%o53) 0
+(%i54) braket(bra([a])+bra([c]),ket([b]))
+(%o54) 0
+(%i55) zp
+(%o55) matrix([1],[0])
+(%i56) zm
+(%o56) matrix([0],[1])
+(%i57) yp
+(%o57) matrix([1/sqrt(2)],[%i/sqrt(2)])
+(%i58) ym
+(%o58) matrix([1/sqrt(2)],[-(%i/sqrt(2))])
+(%i59) braket(xp,zp)
+(%o59) 1/sqrt(2)
+(%i60) declare([a,b],complex)
+(%o60) done
+(%i61) psi:mket([a,b])
+(%o61) matrix([a],[matrix([a,bra([u,d])])])
+(%i62) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi)
+(%o62) braket(matrix([1/sqrt(2)],[1/sqrt(2)]),matrix([a],
                                                      [
                                                       matrix(
                                                        [a,bra([u,d])])]))
@@ -130,68 +134,79 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
  +braket(matrix([1/sqrt(2)],[-(1/sqrt(2))]),
          matrix([a],[matrix([a,bra([u,d])])]))
   *xm
-(%i61) sigmay
-(%o61) matrix([0,-%i],[%i,0])
-(%i62) Sy
-(%o62) matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0])
-(%i63) commutator(Sx,Sy)
-(%o63) matrix([(%i*hbar^2)/2,0],[0,-((%i*hbar^2)/2)])
-(%i64) SY(1/2)
+(%i63) sigmay
+(%o63) matrix([0,-%i],[%i,0])
+(%i64) Sy
 (%o64) matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0])
-(%i65) SX(1)
-(%o65) matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0,
+(%i65) commutator(Sx,Sy)
+(%o65) matrix([(%i*hbar^2)/2,0],[0,-((%i*hbar^2)/2)])
+(%i66) SY(1/2)
+(%o66) matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0])
+(%i67) SX(1)
+(%o67) matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0,
                                                                 hbar/sqrt(2),
                                                                 0])
-(%i66) ev(expect(Sy,xp+ym),ratsimp)
-(%o66) -hbar
-(%i67) ev(qm_variance(Sy,xp+ym),ratsimp)
-(%o67) (%i*hbar)/2
-(%i68) spin_mket(3/2,1/2,2)
-(%o68) matrix([sqrt(3)/2^(3/2)],[%i/2^(3/2)],[1/2^(3/2)],[
+(%i68) ev(expect(Sy,xp+ym),ratsimp)
+(%o68) -hbar
+(%i69) ev(qm_variance(Sy,xp+ym),ratsimp)
+(%o69) (%i*hbar)/2
+(%i70) spin_mket(3/2,1/2,2)
+(%o70) matrix([sqrt(3)/2^(3/2)],[%i/2^(3/2)],[1/2^(3/2)],[
                                                           (sqrt(3)*%i)
                                                            /2^(3/2)])
-(%i69) spin_mbra(1,1,1)
-(%o69) matrix([1/2,1/sqrt(2),1/2])
-(%i70) bra([3/2,1/2])
-(%o70) bra([3/2,1/2])
-(%i71) ket([3/2,1/2])
-(%o71) ket([3/2,1/2])
-(%i72) jmketp(ket([j,m]))
-(%o72) false
-(%i73) jmketp(ket([3/2,1/2]))
-(%o73) true
-(%i74) jmcheck(3/2,1/2)
-(%o74) true
-(%i75) k:ket([j,m])
-(%o75) ket([j,m])
-(%i76) JP(k)
-(%o76) hbar*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1))
-(%i77) JM(k)
-(%o77) hbar*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m)
-(%i78) Jsqr(k)
-(%o78) hbar^2*j*(j+1)*ket([j,m])
-(%i79) Jz(k)
-(%o79) hbar*ket([j,m])*m
-(%i80) SP(1)
-(%o80) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
-(%i81) SM(1)
-(%o81) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
-(%i82) RY(1,t)
+(%i71) spin_mbra(1,1,1)
+(%o71) matrix([1/2,1/sqrt(2),1/2])
+(%i72) bra([3/2,1/2])
+(%o72) bra([3/2,1/2])
+(%i73) ket([3/2,1/2])
+(%o73) ket([3/2,1/2])
+(%i74) jmketp(ket([j,m]))
+(%o74) false
+(%i75) jmketp(ket([3/2,1/2]))
+(%o75) true
+(%i76) jmcheck(3/2,1/2)
+(%o76) true
+(%i77) k:ket([j,m])
+(%o77) ket([j,m])
+(%i78) JP(k)
+(%o78) hbar*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1))
+(%i79) JM(k)
+(%o79) hbar*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m)
+(%i80) Jsqr(k)
+(%o80) hbar^2*j*(j+1)*ket([j,m])
+(%i81) Jz(k)
+(%o81) hbar*ket([j,m])*m
+(%i82) SP(1)
+(%o82) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
+(%i83) SM(1)
+(%o83) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
+(%i84) RY(1,t)
 Proviso: assuming 4*t # 0 
-(%o82) matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],
+(%o84) matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],
               [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))],
               [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2])
-(%i83) UU(w*Sy,t)
+(%i85) UU(w*Sy,t)
 Proviso: assuming 64*t*w # 0 
-(%o83) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
-(%i84) K:ket([a1,b1])
-(%o84) ket([a1,b1])
-(%i85) B:bra([a2,b2])
-(%o85) bra([a2,b2])
-(%i86) braket(B,K)
-(%o86) kron_delta(a1,a2)*kron_delta(b1,b2)
-(%i87) bra([a1,Id,c1]) . ket([a2,b2,c2])
-(%o87) ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2)
-(%i88) bra([a1,b1,c1]) . ket([Id,b2,c2])
-(%o88) bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2)
-(%o89) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
+(%o85) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
+(%i86) K:ket([a1,b1])
+(%o86) ket([a1,b1])
+(%i87) B:bra([a2,b2])
+(%o87) bra([a2,b2])
+(%i88) braket(B,K)
+(%o88) kron_delta(a1,a2)*kron_delta(b1,b2)
+(%i89) bra([a1,Id,c1]) . ket([a2,b2,c2])
+(%o89) ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2)
+(%i90) bra([a1,b1,c1]) . ket([Id,b2,c2])
+(%o90) bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2)
+(%i91) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
+(%o91) (ket([u,d])-ket([d,u]))/sqrt(2)
+(%i92) rho:bell . dagger(bell)
+(%o92) (ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])
+                               -ket([d,u]) . bra([u,d])
+                               +ket([d,u]) . bra([d,u]))
+ /2
+(%i93) assume(notequal(u,d))
+(%o93) [notequal(u,d)]
+(%i94) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id])
+(%o94) ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2
+(%o95) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
