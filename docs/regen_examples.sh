@@ -1,14 +1,27 @@
 #!/bin/bash
 
-debug=0;
+packname=""
+debug=0
 
-if [ $# -eq 0 ];then
-    echo Usage: regen_examples.sh packname
+# get package name
+n=$(ls *.texi | wc -l | awk '{print $1}');
+if [ $n -gt 1 ]; then
+    echo "Found more than one .texi file. There should be only one PKG.texi file."
+    if [ -e regen.texi ]; then
+        echo "Remove the regen.texi file before running create_docs.sh."
+    fi
     exit
-else
-    packname=$1;
-    echo "Found package name: "$packname
+elif [ "$packname" == "" ]; then
+    texifile=$(ls *.texi);
+    packname=${texifile%.texi}
+    echo "Found packname= "$packname;
 fi
+
+if [ ! -f "$packname.texi" ]; then
+    echo "$packname.texi is not a file"
+    exit 2
+fi
+
 
 ###########################################
 # awk script for generating markers
@@ -116,12 +129,12 @@ done
 # Strip the markers from the file for final output
 cat tmp.regen.2 | awk '{if($1!~/grpcnt/){print $0}}' > regen.texi;
 
-echo "Output is in: regen.texi"
+echo "##### Output is in: regen.texi"
 echo "#####"
 echo "##### Warning: Check this file carefully with 'diff' before"
 echo "##### you replace the original .texi file!!!"
 echo "#####"
-echo "##### try: diff $packname.texi regen.texi"
+echo "##### try: diff $packname.texi regen.texi | less"
 echo "#####"
 
 ############
