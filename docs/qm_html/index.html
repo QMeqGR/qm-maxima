@@ -602,6 +602,19 @@ commutator <code class="code">X . Y - Y . X</code>.
                            [                2     ]
 </pre></div></div>
 
+<dl class="first-deffn">
+<dt class="deffn" id="index-anticommutator"><span class="category-def">Function: </span><span><strong class="def-name">anticommutator</strong> <var class="def-var-arguments">(<code class="code">X,Y</code>)</var><a class="copiable-link" href="#index-anticommutator"> &para;</a></span></dt>
+<dd><p>Given two operators <code class="code">X</code> and <code class="code">Y</code>, return the
+commutator <code class="code">X . Y + Y . X</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) (1/2)*anticommutator(sigmax,sigmax);
+                                   [ 1  0 ]
+(%o1)                              [      ]
+                                   [ 0  1 ]
+</pre></div></div>
+
 </div>
 <div class="subsection-level-extent" id="SX_002c-SY_002c-SZ-operators-for-any-spin">
 <h4 class="subsection"><span>1.2.3 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>

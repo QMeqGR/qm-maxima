@@ -184,6 +184,9 @@ matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
 commutator(Sx,Sy);
 matrix([(%i*hbar^2)/2,0],[0,-((%i*hbar^2)/2)]) $
 
+(1/2)*anticommutator(sigmax,sigmax);
+matrix([1,0],[0,1]) $
+
 SY(1/2);
 matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
 

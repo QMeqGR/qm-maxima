@@ -146,5 +146,8 @@
           "index-autoket")
          ("autobra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-autobra"))))
+          "index-autobra")
+         ("anticommutator"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-anticommutator"))))
   (load-html-index html-index))

@@ -60,6 +60,7 @@ psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
 sigmay;
 Sy;
 commutator(Sx,Sy);
+(1/2)*anticommutator(sigmax,sigmax);
 SY(1/2);
 SX(1);
 ev(expect(Sy,xp+ym),ratsimp);

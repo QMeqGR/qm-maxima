@@ -183,6 +183,7 @@ magsqr(c) := c*conjugate(c);
 
 /* commutator */
 commutator(X,Y) := X.Y - Y.X;
+anticommutator(X,Y) := X.Y + Y.X;
 expect(Op,psi) := dagger(psi) . Op . psi $
 qm_variance(Op,psi) := sqrt(expect(Op . Op,psi) - expect(Op,psi)^2) $
 

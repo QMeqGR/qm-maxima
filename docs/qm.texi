@@ -594,6 +594,20 @@ commutator @code{X . Y - Y . X}.
 @end group
 @end example
 
+@deffn {Function} anticommutator (@code{X,Y})
+Given two operators @code{X} and @code{Y}, return the
+commutator @code{X . Y + Y . X}.
+@end deffn
+
+@example
+@group
+(%i1) (1/2)*anticommutator(sigmax,sigmax);
+                                   [ 1  0 ]
+(%o1)                              [      ]
+                                   [ 0  1 ]
+@end group
+@end example
+
 @subsection SX, SY, SZ operators for any spin
 
 @deffn {Function} SX (@code{s})
