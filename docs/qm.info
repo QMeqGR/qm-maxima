@@ -772,10 +772,9 @@ always use the total ‘Jtxx’ defined function.
      (%o2)               [tpket, - -----, |[-, - -]>, |[-, -]>]
                                      4      2    2      2  2
      (%i3) Jtsqr(k);
-                          2
-                   17 hbar     3    1      1  1
-     (%o3) [tpket, --------, |[-, - -]>, |[-, -]>]
-                      2        2    2      2  2
+                         2    3    1      1  1
+     (%o3) [tpket, 4 hbar , |[-, - -]>, |[-, -]>]
+                              2    2      2  2
                                                             2    3  1      1    1
                                             + [tpket, 2 hbar , |[-, -]>, |[-, - -]>]
                                                                  2  2      2    2
@@ -984,11 +983,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                               (line 362)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 653)
+                                                              (line 652)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 657)
+                                                              (line 656)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 661)
+                                                              (line 660)
 * sigmax:                                Functions and Variables for qm.
                                                               (line 256)
 * sigmay:                                Functions and Variables for qm.
@@ -996,9 +995,9 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                               (line 262)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 632)
+                                                              (line 631)
 * SP:                                    Functions and Variables for qm.
-                                                              (line 629)
+                                                              (line 628)
 * spin_mbra:                             Functions and Variables for qm.
                                                               (line 386)
 * spin_mket:                             Functions and Variables for qm.
@@ -1022,7 +1021,7 @@ Appendix A Function and Variable index
 * tpket:                                 Functions and Variables for qm.
                                                               (line 504)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 682)
+                                                              (line 681)
 * xm:                                    Functions and Variables for qm.
                                                               (line 201)
 * xp:                                    Functions and Variables for qm.
@@ -1061,7 +1060,7 @@ Ref: autobra10949
 Ref: dagger11619
 Ref: braket12057
 Ref: norm12793
-Node: Function and Variable Index36304
+Node: Function and Variable Index36273
 
 End Tag Table
 

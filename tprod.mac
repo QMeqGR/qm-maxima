@@ -91,8 +91,8 @@ J1zJ2z(k):= block([R],
 /* Jtsqr = J1sqr + J2sqr + J1p*J2m + J1m*J2p + 2J1zJ2z */
 Jtsqr(k):=block([R,r1,r2], 
     if tpketp(k)=false then return(disp("must enter a tpket")),
-    r1: J1sqr(k) + J2sqr(k) + J1zJ2z(k),
+    r1: J1sqr(k) + J2sqr(k) + 2*J1zJ2z(k),
     listarith:false,
-    r2: r1 + J1p2m(k) + J1m2p(k), R: r1+r2,
+    r2: J1p2m(k) + J1m2p(k), R: r1+r2,
     listarith:true,
     R);

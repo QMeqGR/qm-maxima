@@ -3,8 +3,6 @@ Loading /home/ehm/.maxima/maxima-init.mac
 
 read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i2) (display2d:false,load(qm),0)
-tellsimp: warning: rule will treat 'mtimes
-                                    ' as noncommutative and nonassociative.
 (%o2) 0
 (%i3) psi_bra:a*dagger(zp)+b*dagger(zm)
 (%o3) matrix([a,b])
@@ -203,7 +201,7 @@ tellsimp: warning: rule will treat 'mtimes
 (%i93) J1zJ2z(k)
 (%o93) [tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])]
 (%i94) Jtsqr(k)
-(%o94) [tpket,(17*hbar^2)/2,ket([3/2,-(1/2)]),ket([1/2,1/2])]
+(%o94) [tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]
  +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
 (%i95) SP(1)
 (%o95) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
