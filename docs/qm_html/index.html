@@ -447,7 +447,8 @@ squared of a complex number.
 <li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
 <li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
 <li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="5">Angular momentum representation of kets and bras</a></li>
-<li><a href="#Angular-momentum-and-ladder-operators" accesskey="6">Angular momentum and ladder operators</a></li>
+<li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="6">Addition of angular momentum in the (j,m)-representation</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators" accesskey="7">Angular momentum and ladder operators</a></li>
 </ul>
 <div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
 <h4 class="subsection"><span>1.2.1 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
@@ -839,8 +840,202 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 
 </div>
 </div>
+<div class="subsection-level-extent" id="Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation">
+<h4 class="subsection"><span>1.2.6 Addition of angular momentum in the (j,m)-representation<a class="copiable-link" href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation"> &para;</a></span></h4>
+
+<p>Addition of angular momentum calculations can be performed in the
+(j,m)-representation using the function definitions below. The internal
+representation of kets and bras for this purpose is the following. Given
+kets <code class="code">|j1,m1&gt;</code> and <code class="code">|j2,m2&gt;</code> a tensor product of (j,m)-kets
+is instantiated as:
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">[tpket,1,|j1,m1&gt;,|j2,m2&gt;]</code>
+</p>
+<p>and the corresponding bra is instantiated as:
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">[tpket,1,&lt;j1,m1|,&lt;j2,m2|]</code>
+</p>
+<p>where the factor of 1 is the multiplicative factor of the tensor product.
+</p>
+<p>Using the function definitions below one must be careful to avoid errors
+produced by Maxima&rsquo;s automatic list arithmetic. For example, do not
+use <code class="code">(J1z+J2z)</code>, and instead use the defined function <code class="code">Jtz</code>.
+Similarly for any of the operators that are added together, one should
+always use the total <code class="code">Jtxx</code> defined function.
+</p>
+<dl class="first-deffn">
+<dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">(<em class="emph">jmket1,jmket2</em>)</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
+<dd><p><code class="code">tpket</code> instantiates a tensor product of two (j,m)-kets.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+                                     3  1      1  1
+(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
+                                     2  2      2  2
+</pre></div></div>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">(<em class="emph">jmbra1,jmbra2</em>)</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
+<dd><p><code class="code">tpbra</code> instantiates a tensor product of two (j,m)-bras.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
+                                     3  1      1  1
+(%o1)                   [tpbra, 1, &lt;[-, -]|, &lt;[-, -]|]
+                                     2  2      2  2
+</pre></div></div>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
+<dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1z"><span class="category-def">Function: </span><span><strong class="def-name">J1z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1z"> &para;</a></span></dt>
+<dd><p><code class="code">J1z</code> returns the tensor product of a tpket with <code class="code">Jz</code> acting
+on the first ket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J2z"><span class="category-def">Function: </span><span><strong class="def-name">J2z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2z"> &para;</a></span></dt>
+<dd><p><code class="code">J2z</code> returns the tensor product of a tpket with <code class="code">Jz</code> acting
+on the second ket.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+                                     3  3      1  1
+(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
+                                     2  2      2  2
+(%i2) J1z(k);
+                              3 hbar    3  3      1  1
+(%o2)                 [tpket, ------, |[-, -]&gt;, |[-, -]&gt;]
+                                2       2  2      2  2
+(%i3) J2z(k);
+                               hbar    3  3      1  1
+(%o3)                  [tpket, ----, |[-, -]&gt;, |[-, -]&gt;]
+                                2      2  2      2  2
+</pre></div></div>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Jtz"><span class="category-def">Function: </span><span><strong class="def-name">Jtz</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtz"> &para;</a></span></dt>
+<dd><p><code class="code">Jtz</code> is the total z-projection of spin operator acting on a tpket
+and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2z</sub>)</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+                                     3  3      1  1
+(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
+                                     2  2      2  2
+(%i2) Jtz(k);
+                                        3  3      1  1
+(%o2)                 [tpket, 2 hbar, |[-, -]&gt;, |[-, -]&gt;]
+                                        2  2      2  2
+</pre></div></div>
+
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1sqr"><span class="category-def">Function: </span><span><strong class="def-name">J1sqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1sqr"> &para;</a></span></dt>
+<dd><p><code class="code">J1sqr</code> returns <code class="code">Jsqr</code> for the first ket of a tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J2sqr"><span class="category-def">Function: </span><span><strong class="def-name">J2sqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2sqr"> &para;</a></span></dt>
+<dd><p><code class="code">J2sqr</code> returns <code class="code">Jsqr</code> for the second ket of a tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1p"><span class="category-def">Function: </span><span><strong class="def-name">J1p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1p"> &para;</a></span></dt>
+<dd><p><code class="code">J1p</code> returns <code class="code">J<sub class="sub">+</sub></code> for the first ket of a tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J2p"><span class="category-def">Function: </span><span><strong class="def-name">J2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2p"> &para;</a></span></dt>
+<dd><p><code class="code">J2p</code> returns <code class="code">J<sub class="sub">+</sub></code> for the second ket of a tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Jtp"><span class="category-def">Function: </span><span><strong class="def-name">Jtp</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtp"> &para;</a></span></dt>
+<dd><p><code class="code">Jtp</code> returns <code class="code">(J<sub class="sub">1+</sub>+J<sub class="sub">2+</sub>)</code> for the tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1m"><span class="category-def">Function: </span><span><strong class="def-name">J1m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m"> &para;</a></span></dt>
+<dd><p><code class="code">J1m</code> returns <code class="code">J<sub class="sub">-</sub></code> for the first ket of a tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J2m"><span class="category-def">Function: </span><span><strong class="def-name">J2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2m"> &para;</a></span></dt>
+<dd><p><code class="code">J2m</code> returns <code class="code">J<sub class="sub">=</sub></code> for the second ket of a tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Jtm"><span class="category-def">Function: </span><span><strong class="def-name">Jtm</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtm"> &para;</a></span></dt>
+<dd><p><code class="code">Jtm</code> returns <code class="code">(J<sub class="sub">1-</sub>+J<sub class="sub">2-</sub>)</code> for the tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1p2m"><span class="category-def">Function: </span><span><strong class="def-name">J1p2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1p2m"> &para;</a></span></dt>
+<dd><p><code class="code">J1p2m</code> returns <code class="code">(J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>)</code> for the tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1m2p"><span class="category-def">Function: </span><span><strong class="def-name">J1m2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m2p"> &para;</a></span></dt>
+<dd><p><code class="code">J1m2p</code> returns <code class="code">(J<sub class="sub">1-</sub>J<sub class="sub">2+</sub>)</code> for the tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-J1zJ2z"><span class="category-def">Function: </span><span><strong class="def-name">J1zJ2z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1zJ2z"> &para;</a></span></dt>
+<dd><p><code class="code">J1zJ2z</code> returns <code class="code">(J<sub class="sub">1z</sub>J<sub class="sub">2z</sub>)</code> for the tpket.
+</p></dd></dl>
+
+<dl class="first-deffn">
+<dt class="deffn" id="index-Jtsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jtsqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtsqr"> &para;</a></span></dt>
+<dd><p><code class="code">Jtsqr</code> returns <code class="code">(J<sub class="sub">1</sub><sup class="sup">2</sup>+J<sub class="sub">2</sub><sup class="sup">2</sup>+
+J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>+J<sub class="sub">1-</sub>J<sub class="sub">2+</sub>+J<sub class="sub">1z</sub>J<sub class="sub">2z</sub>)</code> for the
+tpket.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+                                     3  1      1  1
+(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
+                                     2  2      2  2
+(%i2) b:dagger(k);
+                                     3  1      1  1
+(%o2)                   [tpbra, 1, &lt;[-, -]|, &lt;[-, -]|]
+                                     2  2      2  2
+(%i3) J1p2m(k);
+                                     2    3  3      1    1
+(%o3)            [tpket, sqrt(3) hbar , |[-, -]&gt;, |[-, - -]&gt;]
+                                          2  2      2    2
+(%i4) J1m2p(k);
+(%o4)                                  0
+</pre></div><div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
+                                    3    1      1  1
+(%o1)                  [tpket, 1, |[-, - -]&gt;, |[-, -]&gt;]
+                                    2    2      2  2
+(%i2) J1zJ2z(k);
+                                  2
+                              hbar     3    1      1  1
+(%o2)               [tpket, - -----, |[-, - -]&gt;, |[-, -]&gt;]
+                                4      2    2      2  2
+(%i3) Jtsqr(k);
+                     2
+              17 hbar     3    1      1  1
+(%o3) [tpket, --------, |[-, - -]&gt;, |[-, -]&gt;]
+                 2        2    2      2  2
+                                                       2    3  1      1    1
+                                       + [tpket, 2 hbar , |[-, -]&gt;, |[-, - -]&gt;]
+                                                            2  2      2    2
+</pre></div></div>
+
+</div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
-<h4 class="subsection"><span>1.2.6 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
 
 <dl class="first-deffn">
 <dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>

@@ -236,6 +236,48 @@ hbar^2*j*(j+1)*ket([j,m]) $
 Jz(k);
 hbar*ket([j,m])*m $
 
+tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+[tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
+
+tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
+[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
+
+k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+[tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
+
+J1z(k);
+[tpket,(3*hbar)/2,ket([3/2,3/2]),ket([1/2,1/2])] $
+
+J2z(k);
+[tpket,hbar/2,ket([3/2,3/2]),ket([1/2,1/2])] $
+
+k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+[tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
+
+Jtz(k);
+[tpket,2*hbar,ket([3/2,3/2]),ket([1/2,1/2])] $
+
+k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+[tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
+
+b:dagger(k);
+[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
+
+J1p2m(k);
+[tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])] $
+
+J1m2p(k);
+0 $
+
+k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
+[tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
+
+J1zJ2z(k);
+[tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])] $
+
+Jtsqr(k);
+[tpket,(17*hbar^2)/2,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
+
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
 

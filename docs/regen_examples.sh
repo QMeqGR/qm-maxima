@@ -91,11 +91,13 @@ for i in $(seq 1 $ngrps); do
       '($1~/grpcnt/ && $2==G){for(i=6;i<NF+1;i++){printf("%s ",$i);}printf("\n");}' >> .tmp.grp.$i.mac
     # now batch run the file
     maxima -q --batch .tmp.grp.$i.mac > .tmp.grp.$i.tmp1
+    # throw out any tellsimp warnings
+    cat .tmp.grp.$i.tmp1 | awk '($1 !~ "tellsimp" && $2 !~ "warning"){print $0}' > .tmp.grp.$i.tmp2
     # throw away the header and the last line
-    nlines=$(wc -l .tmp.grp.$i.tmp1 | awk '{print $1}')
-    cat .tmp.grp.$i.tmp1 | awk -v N="$nlines" --source '(NR>7 && NR<N){print $0}' > .tmp.grp.$i.tmp2
+    nlines=$(wc -l .tmp.grp.$i.tmp2 | awk '{print $1}')
+    cat .tmp.grp.$i.tmp2 | awk -v N="$nlines" --source '(NR>7 && NR<N){print $0}' > .tmp.grp.$i.tmp3
     # Now post process the output
-    cat .tmp.grp.$i.tmp2 | awk '{if($1~/\(%i[1-9]/){printf("%s;\n",$0)}else{print $0}}' > .tmp.grp.$i.out
+    cat .tmp.grp.$i.tmp3 | awk '{if($1~/\(%i[1-9]/){printf("%s;\n",$0)}else{print $0}}' > .tmp.grp.$i.out
 done
 
 ####################################################

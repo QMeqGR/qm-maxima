@@ -3,6 +3,8 @@ Loading /home/ehm/.maxima/maxima-init.mac
 
 read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i2) (display2d:false,load(qm),0)
+tellsimp: warning: rule will treat 'mtimes
+                                    ' as noncommutative and nonassociative.
 (%o2) 0
 (%i3) psi_bra:a*dagger(zp)+b*dagger(zm)
 (%o3) matrix([a,b])
@@ -174,37 +176,66 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o79) hbar^2*j*(j+1)*ket([j,m])
 (%i80) Jz(k)
 (%o80) hbar*ket([j,m])*m
-(%i81) SP(1)
-(%o81) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
-(%i82) SM(1)
-(%o82) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
-(%i83) RY(1,t)
+(%i81) tpket(ket([3/2,1/2]),ket([1/2,1/2]))
+(%o81) [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]
+(%i82) tpbra(bra([3/2,1/2]),bra([1/2,1/2]))
+(%o82) [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]
+(%i83) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]))
+(%o83) [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i84) J1z(k)
+(%o84) [tpket,(3*hbar)/2,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i85) J2z(k)
+(%o85) [tpket,hbar/2,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i86) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]))
+(%o86) [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i87) Jtz(k)
+(%o87) [tpket,2*hbar,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i88) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]))
+(%o88) [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]
+(%i89) b:dagger(k)
+(%o89) [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]
+(%i90) J1p2m(k)
+(%o90) [tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])]
+(%i91) J1m2p(k)
+(%o91) 0
+(%i92) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]))
+(%o92) [tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])]
+(%i93) J1zJ2z(k)
+(%o93) [tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])]
+(%i94) Jtsqr(k)
+(%o94) [tpket,(17*hbar^2)/2,ket([3/2,-(1/2)]),ket([1/2,1/2])]
+ +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
+(%i95) SP(1)
+(%o95) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
+(%i96) SM(1)
+(%o96) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
+(%i97) RY(1,t)
 Proviso: assuming 4*t # 0 
-(%o83) matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],
+(%o97) matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],
               [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))],
               [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2])
-(%i84) UU(w*Sy,t)
+(%i98) UU(w*Sy,t)
 Proviso: assuming 64*t*w # 0 
-(%o84) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
-(%i85) K:ket([a1,b1])
-(%o85) ket([a1,b1])
-(%i86) B:bra([a2,b2])
-(%o86) bra([a2,b2])
-(%i87) braket(B,K)
-(%o87) kron_delta(a1,a2)*kron_delta(b1,b2)
-(%i88) bra([a1,Id,c1]) . ket([a2,b2,c2])
-(%o88) ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2)
-(%i89) bra([a1,b1,c1]) . ket([Id,b2,c2])
-(%o89) bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2)
-(%i90) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
-(%o90) (ket([u,d])-ket([d,u]))/sqrt(2)
-(%i91) rho:bell . dagger(bell)
-(%o91) (ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])
-                               -ket([d,u]) . bra([u,d])
-                               +ket([d,u]) . bra([d,u]))
+(%o98) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
+(%i99) K:ket([a1,b1])
+(%o99) ket([a1,b1])
+(%i100) B:bra([a2,b2])
+(%o100) bra([a2,b2])
+(%i101) braket(B,K)
+(%o101) kron_delta(a1,a2)*kron_delta(b1,b2)
+(%i102) bra([a1,Id,c1]) . ket([a2,b2,c2])
+(%o102) ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2)
+(%i103) bra([a1,b1,c1]) . ket([Id,b2,c2])
+(%o103) bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2)
+(%i104) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
+(%o104) (ket([u,d])-ket([d,u]))/sqrt(2)
+(%i105) rho:bell . dagger(bell)
+(%o105) (ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])
+                                -ket([d,u]) . bra([u,d])
+                                +ket([d,u]) . bra([d,u]))
  /2
-(%i92) assume(notequal(u,d))
-(%o92) [notequal(u,d)]
-(%i93) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id])
-(%o93) ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2
-(%o94) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
+(%i106) assume(notequal(u,d))
+(%o106) [notequal(u,d)]
+(%i107) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id])
+(%o107) ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2
+(%o108) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"

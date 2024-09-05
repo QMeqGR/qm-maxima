@@ -1,0 +1,100 @@
+/*****************************************************/
+/*****************************************************/
+/*             tensor product code                   */
+/*****************************************************/
+/*****************************************************/
+
+/*
+The tensor product code here is necessary for dealing with tensor
+products of (j,m)-kets in order to do addition of addtion of angular
+momentum calculations of Clebsh-Gordon coefficients. -ehm
+*/
+
+/***********************************/
+/*          simp rules             */
+/***********************************/
+/* extended tensor product functionality */
+/* The form of a type2 tensor product is the
+    Maxima list [tpket,CF,k1,k2] 
+where CF=common factors that come out of say Jz, etc. */
+
+tpketp(k):=if k[1]=tpket then true else false $
+tpbrap(k):=if k[1]=tpbra then true else false $
+
+matchdeclare(tpk,tpketp,tpb,tpbrap);
+tellsimpafter( dagger(tpk), [tpbra,dagger(tpk[2]),
+        bra([part(tpk[3],1,1),part(tpk[3],1,2)]),
+        bra([part(tpk[4],1,1),part(tpk[4],1,2)])]);
+tellsimpafter( dagger(tpb), [tpket,dagger(tpb[2]),
+        ket([part(tpb[3],1,1),part(tpb[3],1,2)]),
+        ket([part(tpb[4],1,1),part(tpb[4],1,2)])]);
+
+matchdeclare([k1,k2,k3,k4],ketp,[b1,b2],brap,ll,listp);
+matchdeclare([c1,c2,c3,c4,cf1,cf2],all);
+tellsimpafter( [tpket,cf1,c1*k1,c2*k2], [tpket,cf1*c1*c2,k1,k2] );
+
+simp:false;
+tellsimp( c1*[tpket,cf1,k1,k2] , [tpket,c1*cf1,k1,k2] ); simp:true;
+tellsimp( [tpket,cf1,k1,k2]+[tpket,cf2,k1,k2], [tpket,cf1+cf2,k1,k2] );
+tellsimp( [tpket,cf1,0,k2], 0 );
+tellsimp( [tpket,cf1,k1,0], 0 );
+simp:true;
+tellsimpafter( [tpket,cf1,k1,k2]+[tpket,cf2,k1,k2], [tpket,cf1+cf2,k1,k2] );
+
+
+/***********************************************/
+/*        Function definitions                 */
+/***********************************************/
+
+tpket(a,b):= block(
+    if ketp(a)=false or ketp(b)=false then return (disp ("inputs must be kets")),
+    [tpket,1,a,b]);
+tpbra(a,b):= block(
+    if brap(a)=false or brap(b)=false then return (disp ("inputs must be bras")),
+    [tpbra,1,a,b]);
+tpbraket(b,k):=block([R],
+    if tpketp(k)=false or tpbrap(b)=false then return(false),
+    R: b[2]*k[2]*braket(b[3],k[3])*braket(b[4],k[4]),
+    R);
+
+J1z(k):= if tpketp(k) then [tpket,k[2],Jz(k[3]),k[4]];
+J2z(k):= if tpketp(k) then [tpket,k[2],k[3],Jz(k[4])];
+Jtz(k):= [tpket, J1z(k)[2]+J2z(k)[2], k[3],k[4] ];
+
+J1sqr(k):= if tpketp(k) then [tpket,k[2],Jsqr(k[3]),k[4]];
+J2sqr(k):= if tpketp(k) then [tpket,k[2],k[3],Jsqr(k[4])];
+
+J1p(k):= if tpketp(k) then [tpket,k[2],JP(k[3]),k[4]];
+J2p(k):= if tpketp(k) then [tpket,k[2],k[3],JP(k[4])];
+Jtp(k):= block([R],listarith:false,
+        if tpketp(k) then R: J1p(k)+J2p(k), listarit:true, R);
+J1m(k):= if tpketp(k) then [tpket,k[2],JM(k[3]),k[4]];
+J2m(k):= if tpketp(k) then [tpket,k[2],k[3],JM(k[4])];
+Jtm(k):= block([R],listarith:false,
+        if tpketp(k) then R: J1m(k)+J2m(k), listarith:true, R);
+
+J1p2m(k):= block([R],
+    if tpketp(k)=false then return(false),
+    R:[tpket,k[2],JP(k[3]),JM(k[4])],
+    if R[3]=0 or R[4]=0 then return(0),
+    R);
+J1m2p(k):= block([R],
+    if tpketp(k)=false then return(false),
+    R:[tpket,k[2],JM(k[3]),JP(k[4])],
+    if R[3]=0 or R[4]=0 then return(0),
+    R);
+
+J1zJ2z(k):= block([R],
+    if tpketp(k)=false then return(false),
+    R:[tpket,k[2],Jz(k[3]),Jz(k[4])],
+    if R[3]=0 or R[4]=0 then return(0),
+    R);
+
+/* Jtsqr = J1sqr + J2sqr + J1p*J2m + J1m*J2p + 2J1zJ2z */
+Jtsqr(k):=block([R,r1,r2], 
+    if tpketp(k)=false then return(disp("must enter a tpket")),
+    r1: J1sqr(k) + J2sqr(k) + J1zJ2z(k),
+    listarith:false,
+    r2: r1 + J1p2m(k) + J1m2p(k), R: r1+r2,
+    listarith:true,
+    R);

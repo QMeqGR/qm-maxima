@@ -21,6 +21,7 @@ qm_version: "0.9pre"$
 /* load additional codes */
 load("qm.lisp") $
 load("autoket.mac") $
+load("tprod.mac") $
 
 /* load the documentation */
 load("qm-index.lisp")$

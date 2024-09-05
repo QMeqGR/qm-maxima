@@ -819,6 +819,192 @@ These functions are illustrated below.
 @end group
 @end example
 
+@subsection Addition of angular momentum in the (j,m)-representation
+
+Addition of angular momentum calculations can be performed in the
+(j,m)-representation using the function definitions below. The internal
+representation of kets and bras for this purpose is the following. Given
+kets @code{|j1,m1>} and @code{|j2,m2>} a tensor product of (j,m)-kets
+is instantiated as:
+
+@ @ @ @ @ @ @ @ @ @ @code{[tpket,1,|j1,m1>,|j2,m2>]}
+
+and the corresponding bra is instantiated as:
+
+@ @ @ @ @ @ @ @ @ @ @code{[tpket,1,<j1,m1|,<j2,m2|]}
+
+where the factor of 1 is the multiplicative factor of the tensor product.
+
+Using the function definitions below one must be careful to avoid errors
+produced by Maxima's automatic list arithmetic. For example, do not
+use @code{(J1z+J2z)}, and instead use the defined function @code{Jtz}.
+Similarly for any of the operators that are added together, one should
+always use the total @code{Jtxx} defined function.
+
+@deffn {Function} tpket (@emph{jmket1,jmket2})
+@code{tpket} instantiates a tensor product of two (j,m)-kets.
+@end deffn
+
+@example
+@group
+(%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+                                     3  1      1  1
+(%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
+                                     2  2      2  2
+@end group
+@end example
+
+@deffn {Function} tpbra (@emph{jmbra1,jmbra2})
+@code{tpbra} instantiates a tensor product of two (j,m)-bras.
+@end deffn
+
+@example
+@group
+(%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
+                                     3  1      1  1
+(%o1)                   [tpbra, 1, <[-, -]|, <[-, -]|]
+                                     2  2      2  2
+@end group
+@end example
+
+@deffn {Function} tpbraket (@emph{tpbra,tpket})
+@code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
+@end deffn
+
+@deffn {Function} J1z (@emph{tpket})
+@code{J1z} returns the tensor product of a tpket with @code{Jz} acting
+on the first ket.
+@end deffn
+
+@deffn {Function} J2z (@emph{tpket})
+@code{J2z} returns the tensor product of a tpket with @code{Jz} acting
+on the second ket.
+@end deffn
+
+@example
+@group
+(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+                                     3  3      1  1
+(%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
+                                     2  2      2  2
+(%i2) J1z(k);
+                              3 hbar    3  3      1  1
+(%o2)                 [tpket, ------, |[-, -]>, |[-, -]>]
+                                2       2  2      2  2
+(%i3) J2z(k);
+                               hbar    3  3      1  1
+(%o3)                  [tpket, ----, |[-, -]>, |[-, -]>]
+                                2      2  2      2  2
+@end group
+@end example
+
+@deffn {Function} Jtz (@emph{tpket})
+@code{Jtz} is the total z-projection of spin operator acting on a tpket
+and returning @code{(J@sub{1z}+J@sub{2z})}.
+@end deffn
+
+@example
+@group
+(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+                                     3  3      1  1
+(%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
+                                     2  2      2  2
+(%i2) Jtz(k);
+                                        3  3      1  1
+(%o2)                 [tpket, 2 hbar, |[-, -]>, |[-, -]>]
+                                        2  2      2  2
+@end group
+@end example
+
+
+@deffn {Function} J1sqr (@emph{tpket})
+@code{J1sqr} returns @code{Jsqr} for the first ket of a tpket.
+@end deffn
+
+@deffn {Function} J2sqr (@emph{tpket})
+@code{J2sqr} returns @code{Jsqr} for the second ket of a tpket.
+@end deffn
+
+@deffn {Function} J1p (@emph{tpket})
+@code{J1p} returns @code{J@sub{+}} for the first ket of a tpket.
+@end deffn
+
+@deffn {Function} J2p (@emph{tpket})
+@code{J2p} returns @code{J@sub{+}} for the second ket of a tpket.
+@end deffn
+
+@deffn {Function} Jtp (@emph{tpket})
+@code{Jtp} returns @code{(J@sub{1+}+J@sub{2+})} for the tpket.
+@end deffn
+
+@deffn {Function} J1m (@emph{tpket})
+@code{J1m} returns @code{J@sub{-}} for the first ket of a tpket.
+@end deffn
+
+@deffn {Function} J2m (@emph{tpket})
+@code{J2m} returns @code{J@sub{=}} for the second ket of a tpket.
+@end deffn
+
+@deffn {Function} Jtm (@emph{tpket})
+@code{Jtm} returns @code{(J@sub{1-}+J@sub{2-})} for the tpket.
+@end deffn
+
+@deffn {Function} J1p2m (@emph{tpket})
+@code{J1p2m} returns @code{(J@sub{1+}J@sub{2-})} for the tpket.
+@end deffn
+
+@deffn {Function} J1m2p (@emph{tpket})
+@code{J1m2p} returns @code{(J@sub{1-}J@sub{2+})} for the tpket.
+@end deffn
+
+@deffn {Function} J1zJ2z (@emph{tpket})
+@code{J1zJ2z} returns @code{(J@sub{1z}J@sub{2z})} for the tpket.
+@end deffn
+
+@deffn {Function} Jtsqr (@emph{tpket})
+@code{Jtsqr} returns @code{(J@sub{1}@sup{2}+J@sub{2}@sup{2}+
+J@sub{1+}J@sub{2-}+J@sub{1-}J@sub{2+}+J@sub{1z}J@sub{2z})} for the
+tpket.
+@end deffn
+
+@example
+@group
+(%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+                                     3  1      1  1
+(%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
+                                     2  2      2  2
+(%i2) b:dagger(k);
+                                     3  1      1  1
+(%o2)                   [tpbra, 1, <[-, -]|, <[-, -]|]
+                                     2  2      2  2
+(%i3) J1p2m(k);
+                                     2    3  3      1    1
+(%o3)            [tpket, sqrt(3) hbar , |[-, -]>, |[-, - -]>]
+                                          2  2      2    2
+(%i4) J1m2p(k);
+(%o4)                                  0
+@end group
+@group
+(%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
+                                    3    1      1  1
+(%o1)                  [tpket, 1, |[-, - -]>, |[-, -]>]
+                                    2    2      2  2
+(%i2) J1zJ2z(k);
+                                  2
+                              hbar     3    1      1  1
+(%o2)               [tpket, - -----, |[-, - -]>, |[-, -]>]
+                                4      2    2      2  2
+(%i3) Jtsqr(k);
+                     2
+              17 hbar     3    1      1  1
+(%o3) [tpket, --------, |[-, - -]>, |[-, -]>]
+                 2        2    2      2  2
+                                                       2    3  1      1    1
+                                       + [tpket, 2 hbar , |[-, -]>, |[-, - -]>]
+                                                            2  2      2    2
+@end group
+@end example
+
 @subsection Angular momentum and ladder operators
 
 @deffn {Function} SP (@code{s})
