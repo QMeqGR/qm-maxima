@@ -920,7 +920,7 @@ below, ignoring any physical constants in the problem.
 
 
    Another package that handles quantum mechanical operators is
-‘operator_algebra’ package written by Barton Willis.
+‘operator_algebra’ written by Barton Willis.
 
 
 File: qm.info,  Node: Function and Variable Index,  Prev: Top,  Up: Top
@@ -1089,7 +1089,7 @@ Ref: autobra10930
 Ref: dagger11600
 Ref: braket12038
 Ref: norm12774
-Node: Function and Variable Index37369
+Node: Function and Variable Index37361
 
 End Tag Table
 

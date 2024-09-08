@@ -888,7 +888,7 @@ below, ignoring any physical constants in the problem.
 
 
    Another package that handles quantum mechanical operators is
-‘operator_algebra’ package written by Barton Willis.
+‘operator_algebra’ written by Barton Willis.
 
 Appendix A Function and Variable index
 **************************************

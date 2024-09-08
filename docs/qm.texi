@@ -1172,7 +1172,7 @@ performed below, ignoring any physical constants in the problem.
 
 @*
 Another package that handles quantum mechanical operators is
-@code{operator_algebra} package written by Barton Willis.
+@code{operator_algebra} written by Barton Willis.
 
 @node Function and Variable Index, , Top, Top
 @appendix Function and Variable index
