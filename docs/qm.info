@@ -36,8 +36,9 @@ File: qm.info,  Node: Introduction to package qm,  Next: Functions and Variables
 1.1 Introduction to package qm
 ==============================
 
-The ‘qm’ package was written by Eric Majzoub, University of Missouri.
-Email: majzoube-at-umsystem.edu
+The ‘qm’ package was written by Eric Majzoub, University of Missouri
+(email: majzoube-at-umsystem.edu), with help from Robert Dodier and
+Barton Willis.
 
    The package is loaded with: ‘load(qm);’
 
@@ -1075,21 +1076,21 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5827
-Ref: ket6180
-Ref: ketp6612
-Ref: bra6793
-Ref: brap7225
-Ref: mket7406
-Ref: mketp8113
-Ref: mbra8753
-Ref: mbrap9332
-Ref: autoket10058
-Ref: autobra10930
-Ref: dagger11600
-Ref: braket12038
-Ref: norm12774
-Node: Function and Variable Index37361
+Node: Functions and Variables for qm5877
+Ref: ket6230
+Ref: ketp6662
+Ref: bra6843
+Ref: brap7275
+Ref: mket7456
+Ref: mketp8163
+Ref: mbra8803
+Ref: mbrap9382
+Ref: autoket10108
+Ref: autobra10980
+Ref: dagger11650
+Ref: braket12088
+Ref: norm12824
+Node: Function and Variable Index37411
 
 End Tag Table
 
