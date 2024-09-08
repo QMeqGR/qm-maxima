@@ -139,7 +139,7 @@ an entangled Bell pair.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) ket([a,b])+ket([c,d]);
-(%o1)                         |[c, d]&gt; + |[a, b]&gt;
+(%o1)                           |c, d&gt; + |a, b&gt;
 (%i2) mket([a,b]);
                                      [ a ]
 (%o2)                                [   ]
@@ -147,12 +147,12 @@ an entangled Bell pair.
 (%i3) mbra([a,b]);
 (%o3)                              [ a  b ]
 (%i4) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
-                              |[u, d]&gt; - |[d, u]&gt;
-(%o4)                         -------------------
+                                |u, d&gt; - |d, u&gt;
+(%o4)                           ---------------
                                     sqrt(2)
 (%i5) dagger(bell);
-                              &lt;[u, d]| - &lt;[d, u]|
-(%o5)                         -------------------
+                                &lt;u, d| - &lt;d, u|
+(%o5)                           ---------------
                                     sqrt(2)
 </pre></div></div>
 
@@ -172,9 +172,9 @@ such constants. The example below illustrates this behavior.
 <div class="group"><pre class="example-preformatted">(%i1) declare([a,b],complex);
 (%o1)                                done
 (%i2) psi:a*ket([1])+b*ket([2]);
-(%o2)                          |[2]&gt; b + |[1]&gt; a
+(%o2)                            |2&gt; b + |1&gt; a
 (%i3) psidag:dagger(psi);
-(%o3)               &lt;[2]| conjugate(b) + &lt;[1]| conjugate(a)
+(%o3)                 &lt;2| conjugate(b) + &lt;1| conjugate(a)
 (%i4) psidag . psi;
 (%o4)                   b conjugate(b) + a conjugate(a)
 </pre></div></div>
@@ -224,9 +224,9 @@ are assumed to be orthonormal.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:ket([u,d]);
-(%o1)                              |[u, d]&gt;
+(%o1)                               |u, d&gt;
 (%i2) b:bra([u,d]);
-(%o2)                              &lt;[u, d]|
+(%o2)                               &lt;u, d|
 (%i3) b . k;
 (%o3)                                  1
 </pre></div></div>
@@ -246,9 +246,9 @@ are assumed to be orthonormal.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:ket([u,d]);
-(%o1)                              |[u, d]&gt;
+(%o1)                               |u, d&gt;
 (%i2) b:bra([u,d]);
-(%o2)                              &lt;[u, d]|
+(%o2)                               &lt;u, d|
 (%i3) b . k;
 (%o3)                                  1
 </pre></div></div>
@@ -288,7 +288,7 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:ket([a,b]);
-(%o1)                              |[a, b]&gt;
+(%o1)                               |a, b&gt;
 (%i2) mketp(k);
 (%o2)                                false
 (%i3) k:mket([a,b]);
@@ -760,11 +760,11 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) bra([3/2,1/2]);
                                      3  1
-(%o1)                              &lt;[-, -]|
+(%o1)                               &lt;-, -|
                                      2  2
 (%i2) ket([3/2,1/2]);
                                      3  1
-(%o2)                              |[-, -]&gt;
+(%o2)                               |-, -&gt;
                                      2  2
 </pre></div></div>
 
@@ -826,16 +826,16 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:ket([j,m]);
-(%o1)                              |[j, m]&gt;
+(%o1)                               |j, m&gt;
 (%i2) JP(k);
-(%o2)            hbar |[j, m + 1]&gt; sqrt(j (j + 1) - m (m + 1))
+(%o2)             hbar |j, m + 1&gt; sqrt(j (j + 1) - m (m + 1))
 (%i3) JM(k);
-(%o3)            hbar |[j, m - 1]&gt; sqrt(j (j + 1) - (m - 1) m)
+(%o3)             hbar |j, m - 1&gt; sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
-                               2
-(%o4)                      hbar  j (j + 1) |[j, m]&gt;
+                                2
+(%o4)                       hbar  j (j + 1) |j, m&gt;
 (%i5) Jz(k);
-(%o5)                           hbar |[j, m]&gt; m
+(%o5)                            hbar |j, m&gt; m
 </pre></div></div>
 
 </div>
@@ -870,9 +870,9 @@ always use the total <code class="code">Jtxx</code> defined function.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2]));
-                                     3  1      1  1
-(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
-                                     2  2      2  2
+                                      3  1    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -882,9 +882,9 @@ always use the total <code class="code">Jtxx</code> defined function.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
-                                     3  1      1  1
-(%o1)                   [tpbra, 1, &lt;[-, -]|, &lt;[-, -]|]
-                                     2  2      2  2
+                                      3  1    1  1
+(%o1)                     [tpbra, 1, &lt;-, -|, &lt;-, -|]
+                                      2  2    2  2
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -906,17 +906,17 @@ on the second ket.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
-                                     3  3      1  1
-(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
-                                     2  2      2  2
+                                      3  3    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
 (%i2) J1z(k);
-                              3 hbar    3  3      1  1
-(%o2)                 [tpket, ------, |[-, -]&gt;, |[-, -]&gt;]
-                                2       2  2      2  2
+                                3 hbar   3  3    1  1
+(%o2)                   [tpket, ------, |-, -&gt;, |-, -&gt;]
+                                  2      2  2    2  2
 (%i3) J2z(k);
-                               hbar    3  3      1  1
-(%o3)                  [tpket, ----, |[-, -]&gt;, |[-, -]&gt;]
-                                2      2  2      2  2
+                                 hbar   3  3    1  1
+(%o3)                    [tpket, ----, |-, -&gt;, |-, -&gt;]
+                                  2     2  2    2  2
 </pre></div></div>
 
 <dl class="first-deffn">
@@ -927,13 +927,13 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
-                                     3  3      1  1
-(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
-                                     2  2      2  2
+                                      3  3    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
 (%i2) Jtz(k);
-                                        3  3      1  1
-(%o2)                 [tpket, 2 hbar, |[-, -]&gt;, |[-, -]&gt;]
-                                        2  2      2  2
+                                         3  3    1  1
+(%o2)                   [tpket, 2 hbar, |-, -&gt;, |-, -&gt;]
+                                         2  2    2  2
 </pre></div></div>
 
 
@@ -1001,35 +1001,32 @@ tpket.
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
-                                     3  1      1  1
-(%o1)                   [tpket, 1, |[-, -]&gt;, |[-, -]&gt;]
-                                     2  2      2  2
+                                      3  1    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
 (%i2) b:dagger(k);
-                                     3  1      1  1
-(%o2)                   [tpbra, 1, &lt;[-, -]|, &lt;[-, -]|]
-                                     2  2      2  2
+                                      3  1    1  1
+(%o2)                     [tpbra, 1, &lt;-, -|, &lt;-, -|]
+                                      2  2    2  2
 (%i3) J1p2m(k);
-                                     2    3  3      1    1
-(%o3)            [tpket, sqrt(3) hbar , |[-, -]&gt;, |[-, - -]&gt;]
-                                          2  2      2    2
+                                       2   3  3    1    1
+(%o3)              [tpket, sqrt(3) hbar , |-, -&gt;, |-, - -&gt;]
+                                           2  2    2    2
 (%i4) J1m2p(k);
 (%o4)                                  0
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
-                                    3    1      1  1
-(%o1)                  [tpket, 1, |[-, - -]&gt;, |[-, -]&gt;]
-                                    2    2      2  2
+                                     3    1    1  1
+(%o1)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
+                                     2    2    2  2
 (%i2) J1zJ2z(k);
-                                  2
-                              hbar     3    1      1  1
-(%o2)               [tpket, - -----, |[-, - -]&gt;, |[-, -]&gt;]
-                                4      2    2      2  2
+                                    2
+                                hbar    3    1    1  1
+(%o2)                 [tpket, - -----, |-, - -&gt;, |-, -&gt;]
+                                  4     2    2    2  2
 (%i3) Jtsqr(k);
-                    2    3    1      1  1
-(%o3) [tpket, 4 hbar , |[-, - -]&gt;, |[-, -]&gt;]
-                         2    2      2  2
-                                                       2    3  1      1    1
-                                       + [tpket, 2 hbar , |[-, -]&gt;, |[-, - -]&gt;]
-                                                            2  2      2    2
+                    2   3    1    1  1                   2   3  1    1    1
+(%o3) [tpket, 4 hbar , |-, - -&gt;, |-, -&gt;] + [tpket, 2 hbar , |-, -&gt;, |-, - -&gt;]
+                        2    2    2  2                       2  2    2    2
 </pre></div></div>
 
 </div>
@@ -1143,15 +1140,15 @@ tensor products.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) K:ket([a1,b1]);
-(%o1)                             |[a1, b1]&gt;
+(%o1)                              |a1, b1&gt;
 (%i2) B:bra([a2,b2]);
-(%o2)                             &lt;[a2, b2]|
+(%o2)                              &lt;a2, b2|
 (%i3) braket(B,K);
 (%o3)                kron_delta(a1, a2) kron_delta(b1, b2)
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) bra([a1,Id,c1]) . ket([a2,b2,c2]);
-(%o1)         |[-, b2, -]&gt; kron_delta(a1, a2) kron_delta(c1, c2)
+(%o1)          |-, b2, -&gt; kron_delta(a1, a2) kron_delta(c1, c2)
 (%i2) bra([a1,b1,c1]) . ket([Id,b2,c2]);
-(%o2)         &lt;[a1, -, -]| kron_delta(b1, b2) kron_delta(c1, c2)
+(%o2)          &lt;a1, -, -| kron_delta(b1, b2) kron_delta(c1, c2)
 </pre></div></div>
 
 <p>In the next example we construct the state function for an entangled
@@ -1160,20 +1157,57 @@ particle to obtain the density submatrix for particle 2.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
-                              |[u, d]&gt; - |[d, u]&gt;
-(%o1)                         -------------------
+                                |u, d&gt; - |d, u&gt;
+(%o1)                           ---------------
                                     sqrt(2)
 (%i2) rho:bell . dagger(bell);
-(%o2) (|[u, d]&gt; . &lt;[u, d]| - |[u, d]&gt; . &lt;[d, u]| - |[d, u]&gt; . &lt;[u, d]|
-                                                       + |[d, u]&gt; . &lt;[d, u]|)/2
+      |u, d&gt; . &lt;u, d| - |u, d&gt; . &lt;d, u| - |d, u&gt; . &lt;u, d| + |d, u&gt; . &lt;d, u|
+(%o2) ---------------------------------------------------------------------
+                                        2
 (%i3) assume(not equal(u,d));
 (%o3)                          [notequal(u, d)]
 (%i4) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id]);
-                   |[-, u]&gt; . &lt;[-, u]|   |[-, d]&gt; . &lt;[-, d]|
-(%o4)              ------------------- + -------------------
-                            2                     2
+                       |-, u&gt; . &lt;-, u|   |-, d&gt; . &lt;-, d|
+(%o4)                  --------------- + ---------------
+                              2                 2
 </pre></div></div>
 
+<ul class="mini-toc">
+<li><a href="#Quantum-harmonic-oscillator" accesskey="1">Quantum harmonic oscillator</a></li>
+</ul>
+<div class="subsection-level-extent" id="Quantum-harmonic-oscillator">
+<h4 class="subsection"><span>1.5.1 Quantum harmonic oscillator<a class="copiable-link" href="#Quantum-harmonic-oscillator"> &para;</a></span></h4>
+
+<p>The <code class="code">qm</code> package can perform simple quantum harmonic oscillator
+calculations involving the ladder operators <code class="code">a<sup class="sup">+</sup></code> and
+<code class="code">a<sup class="sup">-</sup></code>. These are referred to in the package as <code class="code">ap</code> and
+<code class="code">am</code> respectively. To do the following examples you must load the
+<code class="code">qho</code> package that is included in <code class="code">qm</code> with <code class="code">load(qho)</code>.
+</p>
+<p>A common problem is to compute the 1st order change in energy of a state
+due to a perturbation of the harmonic potential, say an additional
+factor <code class="code">V(x) = x^2 + g*x^4</code> for small <code class="code">g</code>. This example is
+performed below, ignoring any physical constants in the problem.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) load(qho);
+(%o1)          /home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac
+(%i2) declare(n,integer,n,scalar);
+(%o2)                                done
+(%i3) ap . ket([n]);
+(%o3)                         sqrt(n + 1) |n + 1&gt;
+(%i4) am . ket([n]);
+(%o4)                           |n - 1&gt; sqrt(n)
+(%i5) bra([n]) . (ap+am)^^4 . ket([n]);
+                                   2
+(%o5)                           6 n  + 6 n + 3
+</pre></div></div>
+
+<br>
+<p>Another package that handles quantum mechanical operators is
+<code class="code">operator_algebra</code> package written by Barton Willis.
+</p>
+</div>
 </div>
 </div>
 </div>

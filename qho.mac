@@ -1,0 +1,15 @@
+tellsimpafter(dagger(am),ap)$
+tellsimpafter(dagger(ap),am)$
+
+/* rules for reducing a+ and a- operators */
+dotexptsimp: false;  /* infix(".",110,110); breaks things */ 
+matchdeclare([n,m],lambda([x], featurep(x,integer)));
+matchdeclare([b,c],all);
+
+tellsimpafter(ap . ket([m])*b, b*sqrt(m+1)*ket([m+1]));
+tellsimpafter(ap . (b * ket([m])), b*sqrt(m+1)*ket([m+1]));
+tellsimp( ap^^n . (b*ket([m])) , b*sqrt(m+1) * ap^^(n-1) . ket([m+1]) );
+
+tellsimpafter(am . ket([m])*b, b*sqrt(m)*ket([m-1]));
+tellsimpafter(am . (b *ket([m])), b*sqrt(m)*ket([m-1]));
+tellsimp( am^^n . (b*ket([m])) , b*sqrt(m) * am^^(n-1) . ket([m-1]) );

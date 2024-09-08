@@ -104,3 +104,8 @@ bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
 rho:bell.dagger(bell);
 assume(notequal(u,d));
 trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);
+load(qho);
+declare(n,integer,n,scalar);
+ap.ket([n]);
+am.ket([n]);
+bra([n]).(ap+am)^^4.ket([n]);

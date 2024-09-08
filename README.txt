@@ -73,7 +73,7 @@ representation) kets are shown.  The last example shows how to
 contstruct an entangled Bell pair.
 
      (%i1) ket([a,b])+ket([c,d]);
-     (%o1)                         |[c, d]> + |[a, b]>
+     (%o1)                           |c, d> + |a, b>
      (%i2) mket([a,b]);
                                           [ a ]
      (%o2)                                [   ]
@@ -81,12 +81,12 @@ contstruct an entangled Bell pair.
      (%i3) mbra([a,b]);
      (%o3)                              [ a  b ]
      (%i4) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
-                                   |[u, d]> - |[d, u]>
-     (%o4)                         -------------------
+                                     |u, d> - |d, u>
+     (%o4)                           ---------------
                                          sqrt(2)
      (%i5) dagger(bell);
-                                   <[u, d]| - <[d, u]|
-     (%o5)                         -------------------
+                                     <u, d| - <d, u|
+     (%o5)                           ---------------
                                          sqrt(2)
 
    Note that ‘ket([a,b])’ is treated as tensor product of states ‘a’ and
@@ -102,9 +102,9 @@ constants.  The example below illustrates this behavior.
      (%i1) declare([a,b],complex);
      (%o1)                                done
      (%i2) psi:a*ket([1])+b*ket([2]);
-     (%o2)                          |[2]> b + |[1]> a
+     (%o2)                            |2> b + |1> a
      (%i3) psidag:dagger(psi);
-     (%o3)               <[2]| conjugate(b) + <[1]| conjugate(a)
+     (%o3)                 <2| conjugate(b) + <1| conjugate(a)
      (%i4) psidag . psi;
      (%o4)                   b conjugate(b) + a conjugate(a)
 
@@ -139,9 +139,9 @@ components in the matrix representation.
      assumed to be orthonormal.
 
      (%i1) k:ket([u,d]);
-     (%o1)                              |[u, d]>
+     (%o1)                               |u, d>
      (%i2) b:bra([u,d]);
-     (%o2)                              <[u, d]|
+     (%o2)                               <u, d|
      (%i3) b . k;
      (%o3)                                  1
 
@@ -155,9 +155,9 @@ components in the matrix representation.
      assumed to be orthonormal.
 
      (%i1) k:ket([u,d]);
-     (%o1)                              |[u, d]>
+     (%o1)                               |u, d>
      (%i2) b:bra([u,d]);
-     (%o2)                              <[u, d]|
+     (%o2)                               <u, d|
      (%i3) b . k;
      (%o3)                                  1
 
@@ -187,7 +187,7 @@ components in the matrix representation.
      ‘mketp’ only returns ‘true’ for the matrix representation of a ket.
 
      (%i1) k:ket([a,b]);
-     (%o1)                              |[a, b]>
+     (%o1)                               |a, b>
      (%i2) mketp(k);
      (%o2)                                false
      (%i3) k:mket([a,b]);
@@ -546,11 +546,11 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
 
      (%i1) bra([3/2,1/2]);
                                           3  1
-     (%o1)                              <[-, -]|
+     (%o1)                               <-, -|
                                           2  2
      (%i2) ket([3/2,1/2]);
                                           3  1
-     (%o2)                              |[-, -]>
+     (%o2)                               |-, ->
                                           2  2
 
  -- Function: jmketp (_jmket_)
@@ -591,16 +591,16 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
    These functions are illustrated below.
 
      (%i1) k:ket([j,m]);
-     (%o1)                              |[j, m]>
+     (%o1)                               |j, m>
      (%i2) JP(k);
-     (%o2)            hbar |[j, m + 1]> sqrt(j (j + 1) - m (m + 1))
+     (%o2)             hbar |j, m + 1> sqrt(j (j + 1) - m (m + 1))
      (%i3) JM(k);
-     (%o3)            hbar |[j, m - 1]> sqrt(j (j + 1) - (m - 1) m)
+     (%o3)             hbar |j, m - 1> sqrt(j (j + 1) - (m - 1) m)
      (%i4) Jsqr(k);
-                                    2
-     (%o4)                      hbar  j (j + 1) |[j, m]>
+                                     2
+     (%o4)                       hbar  j (j + 1) |j, m>
      (%i5) Jz(k);
-     (%o5)                           hbar |[j, m]> m
+     (%o5)                            hbar |j, m> m
 
 1.2.6 Addition of angular momentum in the (j,m)-representation
 --------------------------------------------------------------
@@ -630,17 +630,17 @@ always use the total ‘Jtxx’ defined function.
      ‘tpket’ instantiates a tensor product of two (j,m)-kets.
 
      (%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2]));
-                                          3  1      1  1
-     (%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
-                                          2  2      2  2
+                                           3  1    1  1
+     (%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                           2  2    2  2
 
  -- Function: tpbra (_jmbra1,jmbra2_)
      ‘tpbra’ instantiates a tensor product of two (j,m)-bras.
 
      (%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
-                                          3  1      1  1
-     (%o1)                   [tpbra, 1, <[-, -]|, <[-, -]|]
-                                          2  2      2  2
+                                           3  1    1  1
+     (%o1)                     [tpbra, 1, <-, -|, <-, -|]
+                                           2  2    2  2
 
  -- Function: tpbraket (_tpbra,tpket_)
      ‘tpbraket’ returns the bracket of a ‘tpbra’ and a ‘tpket’.
@@ -654,30 +654,30 @@ always use the total ‘Jtxx’ defined function.
      second ket.
 
      (%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
-                                          3  3      1  1
-     (%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
-                                          2  2      2  2
+                                           3  3    1  1
+     (%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                           2  2    2  2
      (%i2) J1z(k);
-                                   3 hbar    3  3      1  1
-     (%o2)                 [tpket, ------, |[-, -]>, |[-, -]>]
-                                     2       2  2      2  2
+                                     3 hbar   3  3    1  1
+     (%o2)                   [tpket, ------, |-, ->, |-, ->]
+                                       2      2  2    2  2
      (%i3) J2z(k);
-                                    hbar    3  3      1  1
-     (%o3)                  [tpket, ----, |[-, -]>, |[-, -]>]
-                                     2      2  2      2  2
+                                      hbar   3  3    1  1
+     (%o3)                    [tpket, ----, |-, ->, |-, ->]
+                                       2     2  2    2  2
 
  -- Function: Jtz (_tpket_)
      ‘Jtz’ is the total z-projection of spin operator acting on a tpket
      and returning ‘(J_{1z}+J_{2z})’.
 
      (%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
-                                          3  3      1  1
-     (%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
-                                          2  2      2  2
+                                           3  3    1  1
+     (%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                           2  2    2  2
      (%i2) Jtz(k);
-                                             3  3      1  1
-     (%o2)                 [tpket, 2 hbar, |[-, -]>, |[-, -]>]
-                                             2  2      2  2
+                                              3  3    1  1
+     (%o2)                   [tpket, 2 hbar, |-, ->, |-, ->]
+                                              2  2    2  2
 
  -- Function: J1sqr (_tpket_)
      ‘J1sqr’ returns ‘Jsqr’ for the first ket of a tpket.
@@ -717,35 +717,32 @@ always use the total ‘Jtxx’ defined function.
      J_{1+}J_{2-}+J_{1-}J_{2+}+J_{1z}J_{2z})’ for the tpket.
 
      (%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
-                                          3  1      1  1
-     (%o1)                   [tpket, 1, |[-, -]>, |[-, -]>]
-                                          2  2      2  2
+                                           3  1    1  1
+     (%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                           2  2    2  2
      (%i2) b:dagger(k);
-                                          3  1      1  1
-     (%o2)                   [tpbra, 1, <[-, -]|, <[-, -]|]
-                                          2  2      2  2
+                                           3  1    1  1
+     (%o2)                     [tpbra, 1, <-, -|, <-, -|]
+                                           2  2    2  2
      (%i3) J1p2m(k);
-                                          2    3  3      1    1
-     (%o3)            [tpket, sqrt(3) hbar , |[-, -]>, |[-, - -]>]
-                                               2  2      2    2
+                                            2   3  3    1    1
+     (%o3)              [tpket, sqrt(3) hbar , |-, ->, |-, - ->]
+                                                2  2    2    2
      (%i4) J1m2p(k);
      (%o4)                                  0
      (%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
-                                         3    1      1  1
-     (%o1)                  [tpket, 1, |[-, - -]>, |[-, -]>]
-                                         2    2      2  2
+                                          3    1    1  1
+     (%o1)                    [tpket, 1, |-, - ->, |-, ->]
+                                          2    2    2  2
      (%i2) J1zJ2z(k);
-                                       2
-                                   hbar     3    1      1  1
-     (%o2)               [tpket, - -----, |[-, - -]>, |[-, -]>]
-                                     4      2    2      2  2
+                                         2
+                                     hbar    3    1    1  1
+     (%o2)                 [tpket, - -----, |-, - ->, |-, ->]
+                                       4     2    2    2  2
      (%i3) Jtsqr(k);
-                         2    3    1      1  1
-     (%o3) [tpket, 4 hbar , |[-, - -]>, |[-, -]>]
-                              2    2      2  2
-                                                            2    3  1      1    1
-                                            + [tpket, 2 hbar , |[-, -]>, |[-, - -]>]
-                                                                 2  2      2    2
+                         2   3    1    1  1                   2   3  1    1    1
+     (%o3) [tpket, 4 hbar , |-, - ->, |-, ->] + [tpket, 2 hbar , |-, ->, |-, - ->]
+                             2    2    2  2                       2  2    2    2
 
 1.2.7 Angular momentum and ladder operators
 -------------------------------------------
@@ -833,33 +830,65 @@ contain the identity element ‘Id’ and how to take the bracket of these
 tensor products.
 
      (%i1) K:ket([a1,b1]);
-     (%o1)                             |[a1, b1]>
+     (%o1)                              |a1, b1>
      (%i2) B:bra([a2,b2]);
-     (%o2)                             <[a2, b2]|
+     (%o2)                              <a2, b2|
      (%i3) braket(B,K);
      (%o3)                kron_delta(a1, a2) kron_delta(b1, b2)
      (%i1) bra([a1,Id,c1]) . ket([a2,b2,c2]);
-     (%o1)         |[-, b2, -]> kron_delta(a1, a2) kron_delta(c1, c2)
+     (%o1)          |-, b2, -> kron_delta(a1, a2) kron_delta(c1, c2)
      (%i2) bra([a1,b1,c1]) . ket([Id,b2,c2]);
-     (%o2)         <[a1, -, -]| kron_delta(b1, b2) kron_delta(c1, c2)
+     (%o2)          <a1, -, -| kron_delta(b1, b2) kron_delta(c1, c2)
 
    In the next example we construct the state function for an entangled
 Bell pair, construct the density matrix, and then trace over the first
 particle to obtain the density submatrix for particle 2.
 
      (%i1) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
-                                   |[u, d]> - |[d, u]>
-     (%o1)                         -------------------
+                                     |u, d> - |d, u>
+     (%o1)                           ---------------
                                          sqrt(2)
      (%i2) rho:bell . dagger(bell);
-     (%o2) (|[u, d]> . <[u, d]| - |[u, d]> . <[d, u]| - |[d, u]> . <[u, d]|
-                                                            + |[d, u]> . <[d, u]|)/2
+           |u, d> . <u, d| - |u, d> . <d, u| - |d, u> . <u, d| + |d, u> . <d, u|
+     (%o2) ---------------------------------------------------------------------
+                                             2
      (%i3) assume(not equal(u,d));
      (%o3)                          [notequal(u, d)]
      (%i4) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id]);
-                        |[-, u]> . <[-, u]|   |[-, d]> . <[-, d]|
-     (%o4)              ------------------- + -------------------
-                                 2                     2
+                            |-, u> . <-, u|   |-, d> . <-, d|
+     (%o4)                  --------------- + ---------------
+                                   2                 2
+
+1.5.1 Quantum harmonic oscillator
+---------------------------------
+
+The ‘qm’ package can perform simple quantum harmonic oscillator
+calculations involving the ladder operators ‘a^{+}’ and ‘a^{-}’.  These
+are referred to in the package as ‘ap’ and ‘am’ respectively.  To do the
+following examples you must load the ‘qho’ package that is included in
+‘qm’ with ‘load(qho)’.
+
+   A common problem is to compute the 1st order change in energy of a
+state due to a perturbation of the harmonic potential, say an additional
+factor ‘V(x) = x^2 + g*x^4’ for small ‘g’.  This example is performed
+below, ignoring any physical constants in the problem.
+
+     (%i1) load(qho);
+     (%o1)          /home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac
+     (%i2) declare(n,integer,n,scalar);
+     (%o2)                                done
+     (%i3) ap . ket([n]);
+     (%o3)                         sqrt(n + 1) |n + 1>
+     (%i4) am . ket([n]);
+     (%o4)                           |n - 1> sqrt(n)
+     (%i5) bra([n]) . (ap+am)^^4 . ket([n]);
+                                        2
+     (%o5)                           6 n  + 6 n + 3
+
+
+
+   Another package that handles quantum mechanical operators is
+‘operator_algebra’ package written by Barton Willis.
 
 Appendix A Function and Variable index
 **************************************
@@ -947,11 +976,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                               (line 486)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 776)
+                                                              (line 773)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 780)
+                                                              (line 777)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 784)
+                                                              (line 781)
 * sigmax:                                Functions and Variables for qm.
                                                               (line 380)
 * sigmay:                                Functions and Variables for qm.
@@ -959,9 +988,9 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                               (line 386)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 755)
-* SP:                                    Functions and Variables for qm.
                                                               (line 752)
+* SP:                                    Functions and Variables for qm.
+                                                              (line 749)
 * spin_mbra:                             Functions and Variables for qm.
                                                               (line 510)
 * spin_mket:                             Functions and Variables for qm.
@@ -985,7 +1014,7 @@ Appendix A Function and Variable index
 * tpket:                                 Functions and Variables for qm.
                                                               (line 628)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 805)
+                                                              (line 802)
 * xm:                                    Functions and Variables for qm.
                                                               (line 325)
 * xp:                                    Functions and Variables for qm.

@@ -236,4 +236,15 @@ Proviso: assuming 64*t*w # 0
 (%o106) [notequal(u,d)]
 (%i107) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id])
 (%o107) ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2
-(%o108) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
+(%i108) load(qho)
+(%o108) "/home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac"
+(%i109) declare(n,integer,n,scalar)
+(%o109) done
+(%i110) ap . ket([n])
+(%o110) sqrt(n+1)*ket([n+1])
+(%i111) am . ket([n])
+(%o111) ket([n-1])*sqrt(n)
+/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:111:23:incorrect syntax: ket is not an infix operator
+[n]).(ap+am)^^4.ket(
+                  ^
+(%o113) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"

@@ -317,3 +317,15 @@ assume(notequal(u,d));
 trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);
 ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2 $
 
+load(qho);
+"/home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac" $
+
+declare(n,integer,n,scalar);
+done $
+
+ap.ket([n]);
+sqrt(n+1)*ket([n+1]) $
+
+am.ket([n]);
+ket([n-1])*sqrt(n) $
+
