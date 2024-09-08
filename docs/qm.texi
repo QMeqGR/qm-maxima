@@ -1152,6 +1152,16 @@ you must @code{declare} the harmonic oscillator state, say @code{n}, to
 be both @code{scalar} and @code{integer}, as shown in the examples
 below.
 
+@deffn {Function} ap
+@code{ap} is the raising operator @code{a@sup{+}} for quantum harmonic
+oscillator states.
+@end deffn
+
+@deffn {Function} am
+@code{a} is the lowering operator @code{a@sup{-}} for quantum harmonic
+oscillator states.
+@end deffn
+
 A common problem is to compute the 1st order change in energy of a state
 due to a perturbation of the harmonic potential, say an additional
 factor @code{V(x) = x^2 + g*x^4} for small @code{g}. This example is

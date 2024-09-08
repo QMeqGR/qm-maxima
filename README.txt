@@ -870,6 +870,14 @@ computations with arbitrary states to work you must ‘declare’ the
 harmonic oscillator state, say ‘n’, to be both ‘scalar’ and ‘integer’,
 as shown in the examples below.
 
+ -- Function: ap
+     ‘ap’ is the raising operator ‘a^{+}’ for quantum harmonic
+     oscillator states.
+
+ -- Function: am
+     ‘a’ is the lowering operator ‘a^{-}’ for quantum harmonic
+     oscillator states.
+
    A common problem is to compute the 1st order change in energy of a
 state due to a perturbation of the harmonic potential, say an additional
 factor ‘V(x) = x^2 + g*x^4’ for small ‘g’.  This example is performed
@@ -895,8 +903,12 @@ Appendix A Function and Variable index
 
 * Menu:
 
+* am:                                    Functions and Variables for qm.
+                                                              (line 876)
 * anticommutator:                        Functions and Variables for qm.
                                                               (line 427)
+* ap:                                    Functions and Variables for qm.
+                                                              (line 872)
 * autobra:                               Functions and Variables for qm.
                                                               (line 249)
 * autoket:                               Functions and Variables for qm.

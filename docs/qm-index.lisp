@@ -33,7 +33,9 @@
 ("Sy" . ("qm.info" 16627 56 "Functions and Variables for qm"))
 ("Sz" . ("qm.info" 16684 636 "Functions and Variables for qm"))
 ("UU" . ("qm.info" 33331 621 "Functions and Variables for qm"))
+("am" . ("qm.info" 36722 874 "Functions and Variables for qm"))
 ("anticommutator" . ("qm.info" 17991 314 "Functions and Variables for qm"))
+("ap" . ("qm.info" 36609 104 "Functions and Variables for qm"))
 ("autobra" . ("qm.info" 10977 645 "Functions and Variables for qm"))
 ("autoket" . ("qm.info" 10105 847 "Functions and Variables for qm"))
 ("bra" . ("qm.info" 6840 419 "Functions and Variables for qm"))
@@ -72,7 +74,7 @@
 ))
 (section-pairs '(
 ; CONTENT: (<NODE NAME> . (<FILENAME> <BYTE OFFSET> <LENGTH IN CHARACTERS>))
-("Functions and Variables for qm" . ("qm.info" 5976 30478))
+("Functions and Variables for qm" . ("qm.info" 5976 30688))
 ("Introduction to package qm" . ("qm.info" 718 5013))
 )))
 (load-info-hashtables (maxima::maxima-load-pathname-directory) deffn-defvr-pairs section-pairs))

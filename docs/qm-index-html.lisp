@@ -201,7 +201,13 @@
          ("autobra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-autobra")
+         ("ap"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-ap")
          ("anticommutator"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-anticommutator"))))
+          "index-anticommutator")
+         ("am"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-am"))))
   (load-html-index html-index))
