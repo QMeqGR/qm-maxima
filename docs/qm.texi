@@ -103,7 +103,7 @@ representation of states and also for tensor products. For example, a
 tensor product of two ket vectors @code{|a>} and @code{|b>} is input as
 @code{ket([a,b])} and displayed as
 
-@ @ @ @ @ @ @ @ @code{|[a,b]>} @ @ @ @ @ (general ket)
+@ @ @ @ @ @ @ @ @code{|a,b>} @ @ @ @ @ (general ket)
 
 @noindent
 Note that abstract kets and bras are @emph{assumed to be
@@ -1147,8 +1147,10 @@ particle to obtain the density submatrix for particle 2.
 The @code{qm} package can perform simple quantum harmonic oscillator
 calculations involving the ladder operators @code{a@sup{+}} and
 @code{a@sup{-}}. These are referred to in the package as @code{ap} and
-@code{am} respectively. To do the following examples you must load the
-@code{qho} package that is included in @code{qm} with @code{load(qho)}.
+@code{am} respectively. For computations with arbitrary states to work
+you must @code{declare} the harmonic oscillator state, say @code{n}, to
+be both @code{scalar} and @code{integer}, as shown in the examples
+below.
 
 A common problem is to compute the 1st order change in energy of a state
 due to a perturbation of the harmonic potential, say an additional
@@ -1157,17 +1159,15 @@ performed below, ignoring any physical constants in the problem.
 
 @example
 @group
-(%i1) load(qho);
-(%o1)          /home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac
-(%i2) declare(n,integer,n,scalar);
-(%o2)                                done
-(%i3) ap . ket([n]);
-(%o3)                         sqrt(n + 1) |n + 1>
-(%i4) am . ket([n]);
-(%o4)                           |n - 1> sqrt(n)
-(%i5) bra([n]) . (ap+am)^^4 . ket([n]);
+(%i1) declare(n,integer,n,scalar);
+(%o1)                                done
+(%i2) ap . ket([n]);
+(%o2)                         sqrt(n + 1) |n + 1>
+(%i3) am . ket([n]);
+(%o3)                           |n - 1> sqrt(n)
+(%i4) bra([n]) . (ap+am)^^4 . ket([n]);
                                    2
-(%o5)                           6 n  + 6 n + 3
+(%o4)                           6 n  + 6 n + 3
 @end group
 @end example
 

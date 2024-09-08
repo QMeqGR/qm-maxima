@@ -62,7 +62,7 @@ representation of states and also for tensor products.  For example, a
 tensor product of two ket vectors ‘|a>’ and ‘|b>’ is input as
 ‘ket([a,b])’ and displayed as
 
-           ‘|[a,b]>’      (general ket)
+           ‘|a,b>’      (general ket)
 
 Note that abstract kets and bras are _assumed to be orthonormal_.  These
 general bras and kets may be used to build arbitrarily large tensor
@@ -865,26 +865,25 @@ particle to obtain the density submatrix for particle 2.
 
 The ‘qm’ package can perform simple quantum harmonic oscillator
 calculations involving the ladder operators ‘a^{+}’ and ‘a^{-}’.  These
-are referred to in the package as ‘ap’ and ‘am’ respectively.  To do the
-following examples you must load the ‘qho’ package that is included in
-‘qm’ with ‘load(qho)’.
+are referred to in the package as ‘ap’ and ‘am’ respectively.  For
+computations with arbitrary states to work you must ‘declare’ the
+harmonic oscillator state, say ‘n’, to be both ‘scalar’ and ‘integer’,
+as shown in the examples below.
 
    A common problem is to compute the 1st order change in energy of a
 state due to a perturbation of the harmonic potential, say an additional
 factor ‘V(x) = x^2 + g*x^4’ for small ‘g’.  This example is performed
 below, ignoring any physical constants in the problem.
 
-     (%i1) load(qho);
-     (%o1)          /home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac
-     (%i2) declare(n,integer,n,scalar);
-     (%o2)                                done
-     (%i3) ap . ket([n]);
-     (%o3)                         sqrt(n + 1) |n + 1>
-     (%i4) am . ket([n]);
-     (%o4)                           |n - 1> sqrt(n)
-     (%i5) bra([n]) . (ap+am)^^4 . ket([n]);
+     (%i1) declare(n,integer,n,scalar);
+     (%o1)                                done
+     (%i2) ap . ket([n]);
+     (%o2)                         sqrt(n + 1) |n + 1>
+     (%i3) am . ket([n]);
+     (%o3)                           |n - 1> sqrt(n)
+     (%i4) bra([n]) . (ap+am)^^4 . ket([n]);
                                         2
-     (%o5)                           6 n  + 6 n + 3
+     (%o4)                           6 n  + 6 n + 3
 
 
 

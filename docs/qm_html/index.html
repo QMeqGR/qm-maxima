@@ -127,7 +127,7 @@ representation of states and also for tensor products. For example, a
 tensor product of two ket vectors <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> is input as
 <code class="code">ket([a,b])</code> and displayed as
 </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|[a,b]&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|a,b&gt;</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(general ket)
 </p>
 <p>Note that abstract kets and bras are <em class="emph">assumed to be
 orthonormal</em>. These general bras and kets may be used to build
@@ -1182,8 +1182,10 @@ particle to obtain the density submatrix for particle 2.
 <p>The <code class="code">qm</code> package can perform simple quantum harmonic oscillator
 calculations involving the ladder operators <code class="code">a<sup class="sup">+</sup></code> and
 <code class="code">a<sup class="sup">-</sup></code>. These are referred to in the package as <code class="code">ap</code> and
-<code class="code">am</code> respectively. To do the following examples you must load the
-<code class="code">qho</code> package that is included in <code class="code">qm</code> with <code class="code">load(qho)</code>.
+<code class="code">am</code> respectively. For computations with arbitrary states to work
+you must <code class="code">declare</code> the harmonic oscillator state, say <code class="code">n</code>, to
+be both <code class="code">scalar</code> and <code class="code">integer</code>, as shown in the examples
+below.
 </p>
 <p>A common problem is to compute the 1st order change in energy of a state
 due to a perturbation of the harmonic potential, say an additional
@@ -1191,17 +1193,15 @@ factor <code class="code">V(x) = x^2 + g*x^4</code> for small <code class="code"
 performed below, ignoring any physical constants in the problem.
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) load(qho);
-(%o1)          /home/ehm/math/Maxima/share/ehm/qm-maxima/qho.mac
-(%i2) declare(n,integer,n,scalar);
-(%o2)                                done
-(%i3) ap . ket([n]);
-(%o3)                         sqrt(n + 1) |n + 1&gt;
-(%i4) am . ket([n]);
-(%o4)                           |n - 1&gt; sqrt(n)
-(%i5) bra([n]) . (ap+am)^^4 . ket([n]);
+<div class="group"><pre class="example-preformatted">(%i1) declare(n,integer,n,scalar);
+(%o1)                                done
+(%i2) ap . ket([n]);
+(%o2)                         sqrt(n + 1) |n + 1&gt;
+(%i3) am . ket([n]);
+(%o3)                           |n - 1&gt; sqrt(n)
+(%i4) bra([n]) . (ap+am)^^4 . ket([n]);
                                    2
-(%o5)                           6 n  + 6 n + 3
+(%o4)                           6 n  + 6 n + 3
 </pre></div></div>
 
 <br>
