@@ -125,7 +125,7 @@ declare(braket,additive);
 /* braket rules for matrix reps */
 matchdeclare([kk,ll], mketp, bb, mbrap );
 tellsimpafter( braket(bb,kk) , bb . kk );
-tellsimpafter( braket(ll,kk) , dagger(ll) . kk);
+tellsimpafter( braket(ll,kk) , false );
 tellsimpafter( braket(kk,bb) , false );
 tellsimpafter( braket(bb,bb) , false );
 
@@ -134,6 +134,10 @@ tellsimpafter( braket(bb,bb) , false );
 /************************************/
 matchdeclare([L1,L2],listp);
 tellsimpafter(braket(ket(L1),ket(L2)), bra(L1) . ket(L2) );
+
+/* these rules are experimental, they only go one way */
+tellsimp( ket(L1) . ket(L2) , ket(append(L1,L2)) );
+tellsimp( bra(L1) . bra(L2) , bra(append(L1,L2)) );
 
 cnump(z):=if complexp(z) or numberp(z) then true;
 matchdeclare([a,b,A1,A2],all,[cx1,cx2,cx3,cx4],cnump,[L1,L2],listp);
@@ -172,7 +176,7 @@ gsimpbraket(L1,L2):=block([i,l1flag:0,l2flag:0,prod:1,
 /*********************************/
 /* norm for matrix represented kets/bras */
 matchdeclare( kk, mketp, bb, mbrap );
-tellsimpafter(norm(kk), sqrt( braket(kk,kk) ));
+tellsimpafter(norm(kk), sqrt( braket(dagger(kk),kk) ));
 tellsimpafter(norm(bb), sqrt( braket(bb,dagger(bb)) ));
 
 /* norm for abstract kets/bras */

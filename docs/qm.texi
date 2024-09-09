@@ -395,21 +395,21 @@ must be @code{declare}-d complex for dagger to produce the conjugate.
 
 @anchor{braket}
 @deffn {Function} braket (@code{psi,phi})
-Given two kets @code{psi} and @code{phi}, @code{braket} returns the
-quantum mechanical bracket @code{<psi|phi>}. The vector @code{psi} may be
-input as either a @code{ket} or @code{bra}. If it is a @code{ket} it will be
-turned into a @code{bra} with the @code{dagger} function before the inner
-product is taken. The vector @code{phi} must always be a @code{ket}.
+Given a bra @code{psi} and ket @code{phi}, @code{braket} returns the
+quantum mechanical bracket @code{<psi|phi>}.
 @end deffn
 
 @example
 @group
 (%i1) declare([a,b,c],complex);
 (%o1)                                done
-(%i2) braket(mket([a,b,c]),mket([a,b,c]));
-(%o2)          c conjugate(c) + b conjugate(b) + a conjugate(a)
-(%i3) braket(ket([a1,b1,c1]),ket([a2,b2,c2]));
-(%o3)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
+(%i2) braket(mbra([a,b,c]),mket([a,b,c]));
+                                  2    2    2
+(%o2)                            c  + b  + a
+(%i3) braket(dagger(mket([a,b,c])),mket([a,b,c]));
+(%o3)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+(%i4) braket(bra([a1,b1,c1]),ket([a2,b2,c2]));
+(%o4)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
 @end group
 @end example
 
@@ -430,6 +430,7 @@ function will return @code{false}.
 @end group
 @end example
 
+@anchor{magsqr}
 @deffn {Function} magsqr (@code{c})
 @code{magsqr} returns @code{conjugate(c)*c}, the magnitude
 squared of a complex number.
@@ -439,10 +440,10 @@ squared of a complex number.
 @group
 (%i1) declare([a,b,c,d],complex);
 (%o1)                                done
-(%i2) A:braket(mket([a,b]),mket([c,d]));
-(%o2)                   conjugate(b) d + conjugate(a) c
+(%i2) A:braket(mbra([a,b]),mket([c,d]));
+(%o2)                              b d + a c
 (%i3) P:magsqr(A);
-(%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+(%o3) (b d + a c) (conjugate(b) conjugate(d) + conjugate(a) conjugate(c))
 @end group
 @end example
 
@@ -453,26 +454,32 @@ space of states. It is spanned by two vectors. In the @var{z}-basis
 these vectors are @code{@{zp,zm@}}, and the basis kets in the
 @var{z}-basis are @code{@{xp,xm@}} and @code{@{yp,ym@}} respectively.
 
+@anchor{zp}
 @deffn {Function} zp
 Return the @var{|z+>} ket in the @var{z}-basis.
 @end deffn
 
+@anchor{zm}
 @deffn {Function} zm
 Return the @var{|z->} ket in the @var{z}-basis.
 @end deffn
 
+@anchor{xp}
 @deffn {Function} xp
 Return the @var{|x+>} ket in the @var{z}-basis.
 @end deffn
 
+@anchor{xm}
 @deffn {Function} xm
 Return the @var{|x->} ket in the @var{z}-basis.
 @end deffn
 
+@anchor{yp}
 @deffn {Function} yp
 Return the @var{|y+>} ket in the @var{z}-basis.
 @end deffn
 
+@anchor{ym}
 @deffn {Function} ym
 Return the @var{|y->} ket in the @var{z}-basis.
 @end deffn
@@ -507,7 +514,7 @@ Return the @var{|y->} ket in the @var{z}-basis.
                                  [   sqrt(2) ]
 @end group
 @group
-(%i1) braket(xp,zp);
+(%i1) braket(dagger(xp),zp);
                                        1
 (%o1)                               -------
                                     sqrt(2)
@@ -525,7 +532,7 @@ ket is constructed and the @var{x}-basis ket is computed.
                                      [ a ]
 (%o2)                                [   ]
                                      [ b ]
-(%i3) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+(%i3) psi_x:'xp*braket(dagger(xp),psi)+'xm*braket(dagger(xm),psi);
                     b         a              a         b
 (%o3)           (------- + -------) xp + (------- - -------) xm
                  sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
@@ -534,26 +541,32 @@ ket is constructed and the @var{x}-basis ket is computed.
 
 @subsection Pauli matrices and Sz, Sx, Sy operators
 
+@anchor{sigmax}
 @deffn {Function} @code{sigmax}
 Returns the Pauli @var{x} matrix.
 @end deffn
 
+@anchor{sigmay}
 @deffn {Function} @code{sigmay}
 Returns the Pauli @var{y} matrix.
 @end deffn
 
+@anchor{sigmaz}
 @deffn {Function} @code{sigmaz}
 Returns the Pauli @var{z} matrix.
 @end deffn
 
+@anchor{Sx}
 @deffn {Function} @code{Sx}
 Returns the spin-1/2 @var{Sx} matrix.
 @end deffn
 
+@anchor{Sy}
 @deffn {Function} @code{Sy}
 Returns the spin-1/2 @var{Sy} matrix.
 @end deffn
 
+@anchor{Sz}
 @deffn {Function} @code{Sz}
 Returns the spin-1/2 @var{Sz} matrix.
 @end deffn
@@ -575,6 +588,7 @@ Returns the spin-1/2 @var{Sz} matrix.
 @end group
 @end example
 
+@anchor{commutator}
 @deffn {Function} commutator (@code{X,Y})
 Given two operators @code{X} and @code{Y}, return the
 commutator @code{X . Y - Y . X}.
@@ -595,6 +609,7 @@ commutator @code{X . Y - Y . X}.
 @end group
 @end example
 
+@anchor{anticommutator}
 @deffn {Function} anticommutator (@code{X,Y})
 Given two operators @code{X} and @code{Y}, return the
 commutator @code{X . Y + Y . X}.
@@ -611,18 +626,21 @@ commutator @code{X . Y + Y . X}.
 
 @subsection SX, SY, SZ operators for any spin
 
+@anchor{SX}
 @deffn {Function} SX (@code{s})
 @code{SX(s)} for spin @code{s} returns the matrix representation of the
 spin operator @code{Sx}. Shortcuts for spin-1/2 are @code{Sx,Sy,Sz}, and
 for spin-1 are @code{Sx1,Sy1,Sz1}.
 @end deffn
 
+@anchor{SY}
 @deffn {Function} SY (@code{s})
 @code{SY(s)} for spin @code{s} returns the matrix representation of the
 spin operator @code{Sy}. Shortcuts for spin-1/2 are @code{Sx,Sy,Sz}, and
 for spin-1 are @code{Sx1,Sy1,Sz1}.
 @end deffn
 
+@anchor{SZ}
 @deffn {Function} SZ (@code{s})
 @code{SZ(s)} for spin @code{s} returns the matrix representation of the
 spin operator @code{Sz}. Shortcuts for spin-1/2 are @code{Sx,Sy,Sz}, and
@@ -658,6 +676,7 @@ Example:
 
 @subsection Expectation value and variance
 
+@anchor{expect}
 @deffn {Function} expect (@code{O,psi})
 Computes the quantum mechanical expectation value of the operator @code{O}
 in state @code{psi}, @code{<psi|O|psi>}.
@@ -670,6 +689,7 @@ in state @code{psi}, @code{<psi|O|psi>}.
 @end group
 @end example
 
+@anchor{qm_variance}
 @deffn {Function} qm_variance (@code{O,psi})
 Computes the quantum mechanical variance of the operator @code{O}
 in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
@@ -693,11 +713,13 @@ represented in the @code{z}-basis. To create a matrix representation of
 of a ket or bra in the (j,m)-basis one uses the @code{spin_mket} and
 @code{spin_mbra} functions.
 
+@anchor{spin_mket}
 @deffn {Function} spin_mket (s,m@sub{s},[1,2])
 @code{spin_mket} returns a ket in the @code{z}-basis for spin @code{s}
 and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
 @end deffn
 
+@anchor{spin_mbra}
 @deffn {Function} spin_mbra (s,m@sub{s},[1,2])
 @code{spin_mbra} returns a bra in the @code{z}-basis for spin @code{s}
 and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
@@ -751,6 +773,7 @@ arguments, as in @code{ket([j,m])} and @code{bra([j,m])}.
 @end group
 @end example
 
+@anchor{jmketp}
 @deffn {Function} jmketp (@emph{jmket})
 @code{jmketp} checks to see that the ket has an @code{m}-value that is in
 the set @code{@{-j,-j+1,@dots{},+j@}}.
@@ -765,12 +788,13 @@ the set @code{@{-j,-j+1,@dots{},+j@}}.
 @end group
 @end example
 
-
+@anchor{jmbrap}
 @deffn {Function} jmbrap (@emph{jmbra})
 @code{jmbrap} checks to see that the bra has an @code{m}-value that is in
 the set @code{@{-j,-j+1,@dots{},+j@}}.
 @end deffn
 
+@anchor{jmcheck}
 @deffn {Function} jmcheck (@code{j,m})
 @code{jmcheck} checks to see that @var{m} is one of @{-j, @dots{}, +j@}.
 @end deffn
@@ -782,21 +806,25 @@ the set @code{@{-j,-j+1,@dots{},+j@}}.
 @end group
 @end example
 
+@anchor{JP}
 @deffn {Function} JP (@emph{jmket})
 @code{JP} is the @code{J@sub{+}} operator. It takes a @code{jmket}
 @code{jmket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)}.
 @end deffn
 
+@anchor{JM}
 @deffn {Function} JM (@emph{jmket})
 @code{JM} is the @code{J@sub{-}} operator. It takes a @code{jmket}
 @code{jmket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)}.
 @end deffn
 
+@anchor{Jsqr}
 @deffn {Function} Jsqr (@emph{jmket})
 @code{Jsqr} is the @code{J@sup{2}} operator. It takes a @code{jmket}
 @code{jmket(j,m)} and returns @code{(j*(j+1)*hbar@sup{2}*jmket(j,m)}.
 @end deffn
 
+@anchor{Jz}
 @deffn {Function} Jz (@emph{jmket})
 @code{Jz} is the @code{J@sub{z}} operator. It takes a @code{jmket}
 @code{jmket(j,m)} and returns @code{m*hbar*jmket(j,m)}.
@@ -842,6 +870,7 @@ use @code{(J1z+J2z)}, and instead use the defined function @code{Jtz}.
 Similarly for any of the operators that are added together, one should
 always use the total @code{Jtxx} defined function.
 
+@anchor{tpket}
 @deffn {Function} tpket (@emph{jmket1,jmket2})
 @code{tpket} instantiates a tensor product of two (j,m)-kets.
 @end deffn
@@ -855,6 +884,7 @@ always use the total @code{Jtxx} defined function.
 @end group
 @end example
 
+@anchor{tpbra}
 @deffn {Function} tpbra (@emph{jmbra1,jmbra2})
 @code{tpbra} instantiates a tensor product of two (j,m)-bras.
 @end deffn
@@ -868,15 +898,18 @@ always use the total @code{Jtxx} defined function.
 @end group
 @end example
 
+@anchor{tpbraket}
 @deffn {Function} tpbraket (@emph{tpbra,tpket})
 @code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
 @end deffn
 
+@anchor{J1z}
 @deffn {Function} J1z (@emph{tpket})
 @code{J1z} returns the tensor product of a tpket with @code{Jz} acting
 on the first ket.
 @end deffn
 
+@anchor{J2z}
 @deffn {Function} J2z (@emph{tpket})
 @code{J2z} returns the tensor product of a tpket with @code{Jz} acting
 on the second ket.
@@ -899,6 +932,7 @@ on the second ket.
 @end group
 @end example
 
+@anchor{Jtz}
 @deffn {Function} Jtz (@emph{tpket})
 @code{Jtz} is the total z-projection of spin operator acting on a tpket
 and returning @code{(J@sub{1z}+J@sub{2z})}.
@@ -917,51 +951,62 @@ and returning @code{(J@sub{1z}+J@sub{2z})}.
 @end group
 @end example
 
-
+@anchor{J1sqr}
 @deffn {Function} J1sqr (@emph{tpket})
 @code{J1sqr} returns @code{Jsqr} for the first ket of a tpket.
 @end deffn
 
+@anchor{J2sqr}
 @deffn {Function} J2sqr (@emph{tpket})
 @code{J2sqr} returns @code{Jsqr} for the second ket of a tpket.
 @end deffn
 
+@anchor{J1p}
 @deffn {Function} J1p (@emph{tpket})
 @code{J1p} returns @code{J@sub{+}} for the first ket of a tpket.
 @end deffn
 
+@anchor{J2p}
 @deffn {Function} J2p (@emph{tpket})
 @code{J2p} returns @code{J@sub{+}} for the second ket of a tpket.
 @end deffn
 
+@anchor{Jtp}
 @deffn {Function} Jtp (@emph{tpket})
 @code{Jtp} returns @code{(J@sub{1+}+J@sub{2+})} for the tpket.
 @end deffn
 
+@anchor{J1m}
 @deffn {Function} J1m (@emph{tpket})
 @code{J1m} returns @code{J@sub{-}} for the first ket of a tpket.
 @end deffn
 
+@anchor{J2m}
 @deffn {Function} J2m (@emph{tpket})
 @code{J2m} returns @code{J@sub{=}} for the second ket of a tpket.
 @end deffn
 
+@anchor{Jtm}
 @deffn {Function} Jtm (@emph{tpket})
 @code{Jtm} returns @code{(J@sub{1-}+J@sub{2-})} for the tpket.
 @end deffn
 
+@anchor{J1p2m}
 @deffn {Function} J1p2m (@emph{tpket})
 @code{J1p2m} returns @code{(J@sub{1+}J@sub{2-})} for the tpket.
 @end deffn
 
+@anchor{J1m2p}
 @deffn {Function} J1m2p (@emph{tpket})
 @code{J1m2p} returns @code{(J@sub{1-}J@sub{2+})} for the tpket.
 @end deffn
 
+@anchor{J1zJ2z}
 @deffn {Function} J1zJ2z (@emph{tpket})
 @code{J1zJ2z} returns @code{(J@sub{1z}J@sub{2z})} for the tpket.
 @end deffn
 
+@anchor{Jtsqr}
 @deffn {Function} Jtsqr (@emph{tpket})
 @code{Jtsqr} returns @code{(J@sub{1}@sup{2}+J@sub{2}@sup{2}+
 J@sub{1+}J@sub{2-}+J@sub{1-}J@sub{2+}+J@sub{1z}J@sub{2z})} for the
@@ -1004,10 +1049,12 @@ tpket.
 
 @subsection Angular momentum and ladder operators
 
+@anchor{SP}
 @deffn {Function} SP (@code{s})
 @code{SP} is the raising ladder operator @var{S@sub{+}} for spin @code{s}.
 @end deffn
 
+@anchor{SM}
 @deffn {Function} SM (@code{s})
 @code{SM} is the raising ladder operator @var{S@sub{-}} for spin @code{s}.
 @end deffn
@@ -1033,16 +1080,19 @@ Examples of the ladder operators:
 
 @section Rotation operators
 
+@anchor{RX}
 @deffn {Function} RX (@code{s,t})
 @code{RX(s)} for spin @code{s} returns the matrix representation of the
 rotation operator @code{Rx} for rotation through angle @code{t}.
 @end deffn
 
+@anchor{RY}
 @deffn {Function} RY (@code{s,t})
 @code{RY(s)} for spin @code{s} returns the matrix representation of the
 rotation operator @code{Ry} for rotation through angle @code{t}.
 @end deffn
 
+@anchor{RZ}
 @deffn {Function} RZ (@code{s,t})
 @code{RZ(s)} for spin @code{s} returns the matrix representation of the
 rotation operator @code{Rz} for rotation through angle @code{t}.
@@ -1068,6 +1118,7 @@ Proviso: assuming 4*t # 0
 
 @section Time-evolution operator
 
+@anchor{UU}
 @deffn {Function} UU (@code{H,t})
 @code{UU(H,t)} is the time evolution operator for Hamiltonian @code{H}. It
 is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
@@ -1152,11 +1203,13 @@ you must @code{declare} the harmonic oscillator state, say @code{n}, to
 be both @code{scalar} and @code{integer}, as shown in the examples
 below.
 
+@anchor{ap}
 @deffn {Function} ap
 @code{ap} is the raising operator @code{a@sup{+}} for quantum harmonic
 oscillator states.
 @end deffn
 
+@anchor{am}
 @deffn {Function} am
 @code{a} is the lowering operator @code{a@sup{-}} for quantum harmonic
 oscillator states.

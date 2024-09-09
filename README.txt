@@ -273,18 +273,18 @@ complex and not ‘x’.
                                         [  2   ]
 
  -- Function: braket (psi,phi)
-     Given two kets ‘psi’ and ‘phi’, ‘braket’ returns the quantum
-     mechanical bracket ‘<psi|phi>’.  The vector ‘psi’ may be input as
-     either a ‘ket’ or ‘bra’.  If it is a ‘ket’ it will be turned into a
-     ‘bra’ with the ‘dagger’ function before the inner product is taken.
-     The vector ‘phi’ must always be a ‘ket’.
+     Given a bra ‘psi’ and ket ‘phi’, ‘braket’ returns the quantum
+     mechanical bracket ‘<psi|phi>’.
 
      (%i1) declare([a,b,c],complex);
      (%o1)                                done
-     (%i2) braket(mket([a,b,c]),mket([a,b,c]));
-     (%o2)          c conjugate(c) + b conjugate(b) + a conjugate(a)
-     (%i3) braket(ket([a1,b1,c1]),ket([a2,b2,c2]));
-     (%o3)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
+     (%i2) braket(mbra([a,b,c]),mket([a,b,c]));
+                                       2    2    2
+     (%o2)                            c  + b  + a
+     (%i3) braket(dagger(mket([a,b,c])),mket([a,b,c]));
+     (%o3)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+     (%i4) braket(bra([a1,b1,c1]),ket([a2,b2,c2]));
+     (%o4)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
 
  -- Function: norm (psi)
      Given a ‘ket’ or ‘bra’ ‘psi’, ‘norm’ returns the square root of the
@@ -302,10 +302,10 @@ complex and not ‘x’.
 
      (%i1) declare([a,b,c,d],complex);
      (%o1)                                done
-     (%i2) A:braket(mket([a,b]),mket([c,d]));
-     (%o2)                   conjugate(b) d + conjugate(a) c
+     (%i2) A:braket(mbra([a,b]),mket([c,d]));
+     (%o2)                              b d + a c
      (%i3) P:magsqr(A);
-     (%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+     (%o3) (b d + a c) (conjugate(b) conjugate(d) + conjugate(a) conjugate(c))
 
 1.2.1 Spin-1/2 state kets and associated operators
 --------------------------------------------------
@@ -357,7 +357,7 @@ and ‘{yp,ym}’ respectively.
                                       [     %i    ]
                                       [ - ------- ]
                                       [   sqrt(2) ]
-     (%i1) braket(xp,zp);
+     (%i1) braket(dagger(xp),zp);
                                             1
      (%o1)                               -------
                                          sqrt(2)
@@ -371,7 +371,7 @@ ket is constructed and the <x>-basis ket is computed.
                                           [ a ]
      (%o2)                                [   ]
                                           [ b ]
-     (%i3) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+     (%i3) psi_x:'xp*braket(dagger(xp),psi)+'xm*braket(dagger(xm),psi);
                          b         a              a         b
      (%o3)           (------- + -------) xp + (------- - -------) xm
                       sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)

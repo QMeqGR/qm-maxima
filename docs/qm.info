@@ -305,18 +305,18 @@ complex and not ‘x’.
                                         [  2   ]
 
  -- Function: braket (psi,phi)
-     Given two kets ‘psi’ and ‘phi’, ‘braket’ returns the quantum
-     mechanical bracket ‘<psi|phi>’.  The vector ‘psi’ may be input as
-     either a ‘ket’ or ‘bra’.  If it is a ‘ket’ it will be turned into a
-     ‘bra’ with the ‘dagger’ function before the inner product is taken.
-     The vector ‘phi’ must always be a ‘ket’.
+     Given a bra ‘psi’ and ket ‘phi’, ‘braket’ returns the quantum
+     mechanical bracket ‘<psi|phi>’.
 
      (%i1) declare([a,b,c],complex);
      (%o1)                                done
-     (%i2) braket(mket([a,b,c]),mket([a,b,c]));
-     (%o2)          c conjugate(c) + b conjugate(b) + a conjugate(a)
-     (%i3) braket(ket([a1,b1,c1]),ket([a2,b2,c2]));
-     (%o3)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
+     (%i2) braket(mbra([a,b,c]),mket([a,b,c]));
+                                       2    2    2
+     (%o2)                            c  + b  + a
+     (%i3) braket(dagger(mket([a,b,c])),mket([a,b,c]));
+     (%o3)          c conjugate(c) + b conjugate(b) + a conjugate(a)
+     (%i4) braket(bra([a1,b1,c1]),ket([a2,b2,c2]));
+     (%o4)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
 
  -- Function: norm (psi)
      Given a ‘ket’ or ‘bra’ ‘psi’, ‘norm’ returns the square root of the
@@ -334,10 +334,10 @@ complex and not ‘x’.
 
      (%i1) declare([a,b,c,d],complex);
      (%o1)                                done
-     (%i2) A:braket(mket([a,b]),mket([c,d]));
-     (%o2)                   conjugate(b) d + conjugate(a) c
+     (%i2) A:braket(mbra([a,b]),mket([c,d]));
+     (%o2)                              b d + a c
      (%i3) P:magsqr(A);
-     (%o3) (conjugate(b) d + conjugate(a) c) (b conjugate(d) + a conjugate(c))
+     (%o3) (b d + a c) (conjugate(b) conjugate(d) + conjugate(a) conjugate(c))
 
 1.2.1 Spin-1/2 state kets and associated operators
 --------------------------------------------------
@@ -389,7 +389,7 @@ and ‘{yp,ym}’ respectively.
                                       [     %i    ]
                                       [ - ------- ]
                                       [   sqrt(2) ]
-     (%i1) braket(xp,zp);
+     (%i1) braket(dagger(xp),zp);
                                             1
      (%o1)                               -------
                                          sqrt(2)
@@ -403,7 +403,7 @@ ket is constructed and the <x>-basis ket is computed.
                                           [ a ]
      (%o2)                                [   ]
                                           [ b ]
-     (%i3) psi_x:'xp*braket(xp,psi)+'xm*braket(xm,psi);
+     (%i3) psi_x:'xp*braket(dagger(xp),psi)+'xm*braket(dagger(xm),psi);
                          b         a              a         b
      (%o3)           (------- + -------) xp + (------- - -------) xm
                       sqrt(2)   sqrt(2)        sqrt(2)   sqrt(2)
@@ -1100,8 +1100,63 @@ Ref: autoket10106
 Ref: autobra10978
 Ref: dagger11648
 Ref: braket12086
-Ref: norm12822
-Node: Function and Variable Index37616
+Ref: norm12722
+Ref: magsqr13178
+Ref: zp13946
+Ref: zm14009
+Ref: xp14072
+Ref: xm14135
+Ref: yp14198
+Ref: ym14261
+Ref: sigmax16313
+Ref: sigmay16370
+Ref: sigmaz16427
+Ref: Sx16484
+Ref: Sy16541
+Ref: Sz16598
+Ref: commutator17235
+Ref: anticommutator17905
+Ref: SX18312
+Ref: SY18525
+Ref: SZ18738
+Ref: expect20130
+Ref: qm_variance20373
+Ref: spin_mket21198
+Ref: spin_mbra21368
+Ref: jmketp23349
+Ref: jmbrap23657
+Ref: jmcheck23803
+Ref: JP23976
+Ref: JM24152
+Ref: Jsqr24328
+Ref: Jz24497
+Ref: tpket26107
+Ref: tpbra26432
+Ref: tpbraket26757
+Ref: J1z26873
+Ref: J2z26999
+Ref: Jtz27741
+Ref: J1sqr28308
+Ref: J2sqr28405
+Ref: J1p28503
+Ref: J2p28597
+Ref: Jtp28692
+Ref: J1m28781
+Ref: J2m28875
+Ref: Jtm28970
+Ref: J1p2m29059
+Ref: J1m2p29151
+Ref: J1zJ2z29243
+Ref: Jtsqr29337
+Ref: SP31003
+Ref: SM31096
+Ref: RX31931
+Ref: RY32098
+Ref: RZ32265
+Ref: UU33245
+Ref: ap36523
+Ref: am36636
+Node: Function and Variable Index37529
 
 End Tag Table
 
