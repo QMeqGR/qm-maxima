@@ -21,23 +21,17 @@ where CF=common factors that come out of say Jz, etc. */
 tpketp(k):=if k[1]=tpket then true else false $
 tpbrap(k):=if k[1]=tpbra then true else false $
 
-matchdeclare(tpk,tpketp,tpb,tpbrap);
-tellsimpafter( dagger(tpk), [tpbra,dagger(tpk[2]),
-        bra([part(tpk[3],1,1),part(tpk[3],1,2)]),
-        bra([part(tpk[4],1,1),part(tpk[4],1,2)])]);
-tellsimpafter( dagger(tpb), [tpket,dagger(tpb[2]),
-        ket([part(tpb[3],1,1),part(tpb[3],1,2)]),
-        ket([part(tpb[4],1,1),part(tpb[4],1,2)])]);
 
 matchdeclare([k1,k2,k3,k4],ketp,[b1,b2],brap,ll,listp);
 matchdeclare([c1,c2,c3,c4,cf1,cf2],all);
 tellsimpafter( [tpket,cf1,c1*k1,c2*k2], [tpket,cf1*c1*c2,k1,k2] );
 
 simp:false; tellsimpafter( c1*[tpket,cf1,k1,k2] , [tpket,c1*cf1,k1,k2] ); simp:true;
-tellsimp( [tpket,cf1,k1,k2]+[tpket,cf2,k1,k2], [tpket,cf1+cf2,k1,k2] );
+/* tellsimp( [tpket,cf1,k1,k2]+[tpket,cf2,k1,k2], [tpket,cf1+cf2,k1,k2] ); */
 tellsimp( [tpket,cf1,0,k2], 0 );
 tellsimp( [tpket,cf1,k1,0], 0 );
-tellsimpafter( [tpket,cf1,k1,k2]+[tpket,cf2,k1,k2], [tpket,cf1+cf2,k1,k2] );
+/* tellsimpafter( [tpket,cf1,k1,k2]+[tpket,cf2,k1,k2], [tpket,cf1+cf2,k1,k2] ); */
+
 
 
 /***********************************************/
@@ -53,6 +47,19 @@ tpbra(a,b):= block(
 tpbraket(b,k):=block([R],
     if tpketp(k)=false or tpbrap(b)=false then return(false),
     R: b[2]*k[2]*braket(b[3],k[3])*braket(b[4],k[4]),
+    R);
+tpadd(tpka,tpkb):=block([R,cf,k1,k2],
+    if not tpka[1]=tpket or not tpkb[1]=tpket then return(disp("inputs must be tpkets")),
+    if tpka[3]=tpkb[3] and tpka[4]=tpkb[4] then cf:tpka[2]+tpkb[2] else cf:1,
+    k1:tpka[3]+tpkb[3], k2:tpka[4]+tpkb[4],
+    R:[tpket,cf,k1,k2],
+    R);
+tpdagger(tp):=block([R],
+    if tp[1]=tpket then R:[tpbra,dagger(tp[2]),
+    dagger(tp[3]),dagger(tp[4])]
+    elseif tp[1]=tpbra then R:[tpket,dagger(tp[2]),
+    dagger(tp[3]),dagger(tp[4])]
+    else return(disp("must be a tpket or tpbra")),
     R);
 
 J1z(k):= if tpketp(k) then [tpket,k[2],Jz(k[3]),k[4]];

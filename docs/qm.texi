@@ -903,6 +903,47 @@ always use the total @code{Jtxx} defined function.
 @code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
 @end deffn
 
+@anchor{tpadd}
+@deffn {Function} tpadd (@emph{tpket,tpket})
+@code{tpadd} adds two @code{tpket}s. This function is necessary
+to avoid trouble with Maxima's automatic list arithmetic.
+@end deffn
+
+@example
+@group
+(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o1)                    [tpket, 1, |-, ->, |-, - ->]
+                                     2  2    2    2
+(%i2) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                     1    1    1  1
+(%o2)                    [tpket, 1, |-, - ->, |-, ->]
+                                     2    2    2  2
+(%i3) tpadd(k1,k2);
+                           1  1     1    1    1  1     1    1
+(%o3)          [tpket, 1, |-, -> + |-, - ->, |-, -> + |-, - ->]
+                           2  2     2    2    2  2     2    2
+@end group
+@end example
+
+@anchor{tpdagger}
+@deffn {Function} tpdagger (@emph{tpket or tpbra})
+@code{tpdagger} takes the quantum mechanical dagger of a @code{tpket} or @code{tpbra}.
+@end deffn
+
+@example
+@group
+(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o1)                    [tpket, 1, |-, ->, |-, - ->]
+                                     2  2    2    2
+(%i2) tpdagger(k1);
+                                     1  1    1    1
+(%o2)                    [tpbra, 1, <-, -|, <-, - -|]
+                                     2  2    2    2
+@end group
+@end example
+
 @anchor{J1z}
 @deffn {Function} J1z (@emph{tpket})
 @code{J1z} returns the tensor product of a tpket with @code{Jz} acting
@@ -1021,7 +1062,7 @@ tpket.
                                       2  2    2  2
 (%i2) b:dagger(k);
                                       3  1    1  1
-(%o2)                     [tpbra, 1, <-, -|, <-, -|]
+(%o2)                    ([tpket, 1, |-, ->, |-, ->])†
                                       2  2    2  2
 (%i3) J1p2m(k);
                                        2   3  3    1    1
@@ -1041,9 +1082,12 @@ tpket.
 (%o2)                 [tpket, - -----, |-, - ->, |-, ->]
                                   4     2    2    2  2
 (%i3) Jtsqr(k);
-                    2   3    1    1  1                   2   3  1    1    1
-(%o3) [tpket, 4 hbar , |-, - ->, |-, ->] + [tpket, 2 hbar , |-, ->, |-, - ->]
-                        2    2    2  2                       2  2    2    2
+                      2     3    1      1  1
+(%o3) [4 tpket, 4 hbar , 4 |-, - ->, 4 |-, ->]
+                            2    2      2  2
+                                                           2   3  1    1    1
+                                           + [tpket, 2 hbar , |-, ->, |-, - ->]
+                                                               2  2    2    2
 @end group
 @end example
 

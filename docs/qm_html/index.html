@@ -892,6 +892,43 @@ always use the total <code class="code">Jtxx</code> defined function.
 <dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
 </p></dd></dl>
 
+<a class="anchor" id="tpadd"></a><dl class="first-deffn">
+<dt class="deffn" id="index-tpadd"><span class="category-def">Function: </span><span><strong class="def-name">tpadd</strong> <var class="def-var-arguments">(<em class="emph">tpket,tpket</em>)</var><a class="copiable-link" href="#index-tpadd"> &para;</a></span></dt>
+<dd><p><code class="code">tpadd</code> adds two <code class="code">tpket</code>s. This function is necessary
+to avoid trouble with Maxima&rsquo;s automatic list arithmetic.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o1)                    [tpket, 1, |-, -&gt;, |-, - -&gt;]
+                                     2  2    2    2
+(%i2) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                     1    1    1  1
+(%o2)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
+                                     2    2    2  2
+(%i3) tpadd(k1,k2);
+                           1  1     1    1    1  1     1    1
+(%o3)          [tpket, 1, |-, -&gt; + |-, - -&gt;, |-, -&gt; + |-, - -&gt;]
+                           2  2     2    2    2  2     2    2
+</pre></div></div>
+
+<a class="anchor" id="tpdagger"></a><dl class="first-deffn">
+<dt class="deffn" id="index-tpdagger"><span class="category-def">Function: </span><span><strong class="def-name">tpdagger</strong> <var class="def-var-arguments">(<em class="emph">tpket or tpbra</em>)</var><a class="copiable-link" href="#index-tpdagger"> &para;</a></span></dt>
+<dd><p><code class="code">tpdagger</code> takes the quantum mechanical dagger of a <code class="code">tpket</code> or <code class="code">tpbra</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o1)                    [tpket, 1, |-, -&gt;, |-, - -&gt;]
+                                     2  2    2    2
+(%i2) tpdagger(k1);
+                                     1  1    1    1
+(%o2)                    [tpbra, 1, &lt;-, -|, &lt;-, - -|]
+                                     2  2    2    2
+</pre></div></div>
+
 <a class="anchor" id="J1z"></a><dl class="first-deffn">
 <dt class="deffn" id="index-J1z"><span class="category-def">Function: </span><span><strong class="def-name">J1z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1z"> &para;</a></span></dt>
 <dd><p><code class="code">J1z</code> returns the tensor product of a tpket with <code class="code">Jz</code> acting
@@ -1005,7 +1042,7 @@ tpket.
                                       2  2    2  2
 (%i2) b:dagger(k);
                                       3  1    1  1
-(%o2)                     [tpbra, 1, &lt;-, -|, &lt;-, -|]
+(%o2)                    ([tpket, 1, |-, -&gt;, |-, -&gt;])†
                                       2  2    2  2
 (%i3) J1p2m(k);
                                        2   3  3    1    1
@@ -1023,9 +1060,12 @@ tpket.
 (%o2)                 [tpket, - -----, |-, - -&gt;, |-, -&gt;]
                                   4     2    2    2  2
 (%i3) Jtsqr(k);
-                    2   3    1    1  1                   2   3  1    1    1
-(%o3) [tpket, 4 hbar , |-, - -&gt;, |-, -&gt;] + [tpket, 2 hbar , |-, -&gt;, |-, - -&gt;]
-                        2    2    2  2                       2  2    2    2
+                      2     3    1      1  1
+(%o3) [4 tpket, 4 hbar , 4 |-, - -&gt;, 4 |-, -&gt;]
+                            2    2      2  2
+                                                           2   3  1    1    1
+                                           + [tpket, 2 hbar , |-, -&gt;, |-, - -&gt;]
+                                                               2  2    2    2
 </pre></div></div>
 
 </div>
