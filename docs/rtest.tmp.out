@@ -206,8 +206,8 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o95) [tpket,2*hbar,ket([3/2,3/2]),ket([1/2,1/2])]
 (%i96) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]))
 (%o96) [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]
-(%i97) b:dagger(k)
-(%o97) dagger([tpket,1,ket([3/2,1/2]),ket([1/2,1/2])])
+(%i97) b:tpdagger(k)
+(%o97) [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]
 (%i98) J1p2m(k)
 (%o98) [tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])]
 (%i99) J1m2p(k)

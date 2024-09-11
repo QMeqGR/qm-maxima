@@ -184,6 +184,15 @@ complex components in the matrix representation.
 @end group
 @end example
 
+@subsubsection Special ket types
+
+Some kets are difficult to work with using either the matrix
+representation or the general ket representation. These include tensor
+products of (j,m) kets used in the addition of angular momentum
+computations. For this reason there are a set of @code{tpket}s and
+associated @code{tpXX} functions defined in section @code{(j,m)-kets and
+bras}.
+
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm
 
@@ -754,7 +763,7 @@ and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
 @end group
 @end example
 
-@subsubsection Abstract (j,m)-kets and bras
+@subsection (j,m)-kets and bras
 
 To create kets and bras in the @var{|j,m>} representation you use the
 abstract @code{ket} and @code{bra} functions with @code{j,m} as
@@ -1083,9 +1092,9 @@ tpket.
                                       3  1    1  1
 (%o1)                     [tpket, 1, |-, ->, |-, ->]
                                       2  2    2  2
-(%i2) b:dagger(k);
+(%i2) b:tpdagger(k);
                                       3  1    1  1
-(%o2)                    ([tpket, 1, |-, ->, |-, ->])†
+(%o2)                     [tpbra, 1, <-, -|, <-, -|]
                                       2  2    2  2
 (%i3) J1p2m(k);
                                        2   3  3    1    1
@@ -1114,13 +1123,16 @@ tpket.
 @end group
 @end example
 
-@subsubsection Explicit computations
+@subsubsection Explicit computation
 
 Let's see how to compute the matrix elements of the operator
-@code{(J1z-J1z)} in the z-basis for two spin-1/2 particles. Note
-that we use the @code{tpadd} and @code{tpscmult} functions
-to add the two operators. We skip taking the braket below
-so the common factor will be the matrix element.
+@code{(J1z-J1z)} in the z-basis for two spin-1/2 particles. Note that we
+use the @code{tpadd} and @code{tpscmult} functions to add the two
+operators. First, we form the four basis kets
+@code{@{phi@sub{1},phi@sub{2},phi@sub{3},phi@sub{4}@}} of the form
+@code{|j@sub{1},m@sub{1};j@sub{2},m@sub{2}>}. The next four entries are
+for the operator acting on the basis kets. We skip taking the braket
+below; the common factor is the resulting matrix element.
 
 @example
 @group

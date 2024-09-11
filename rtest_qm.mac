@@ -284,8 +284,8 @@ Jtz(k);
 k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
 
-b:dagger(k);
-dagger([tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]) $
+b:tpdagger(k);
+[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
 
 J1p2m(k);
 [tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])] $

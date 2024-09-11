@@ -155,6 +155,15 @@ components in the matrix representation.
                          2
      (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
 
+1.1.1.1 Special ket types
+.........................
+
+Some kets are difficult to work with using either the matrix
+representation or the general ket representation.  These include tensor
+products of (j,m) kets used in the addition of angular momentum
+computations.  For this reason there are a set of ‘tpket’s and
+associated ‘tpXX’ functions defined in section ‘(j,m)-kets and bras’.
+
 
 File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to package qm,  Up: Top
 
@@ -570,8 +579,8 @@ functions.
      (%o2)                          [ -  -------  - ]
                                     [ 2  sqrt(2)  2 ]
 
-1.2.5.2 Abstract (j,m)-kets and bras
-....................................
+1.2.6 (j,m)-kets and bras
+-------------------------
 
 To create kets and bras in the <|j,m>> representation you use the
 abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
@@ -635,7 +644,7 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
      (%i5) Jz(k);
      (%o5)                            hbar |j, m> m
 
-1.2.6 Addition of angular momentum in the (j,m)-representation
+1.2.7 Addition of angular momentum in the (j,m)-representation
 --------------------------------------------------------------
 
 Addition of angular momentum calculations can be performed in the
@@ -798,9 +807,9 @@ always use the total ‘Jtxx’ defined function.
                                            3  1    1  1
      (%o1)                     [tpket, 1, |-, ->, |-, ->]
                                            2  2    2  2
-     (%i2) b:dagger(k);
+     (%i2) b:tpdagger(k);
                                            3  1    1  1
-     (%o2)                    ([tpket, 1, |-, ->, |-, ->])†
+     (%o2)                     [tpbra, 1, <-, -|, <-, -|]
                                            2  2    2  2
      (%i3) J1p2m(k);
                                             2   3  3    1    1
@@ -825,13 +834,16 @@ always use the total ‘Jtxx’ defined function.
                                                 + [tpket, 2 hbar , |-, ->, |-, - ->]
                                                                     2  2    2    2
 
-1.2.6.1 Explicit computations
-.............................
+1.2.7.1 Explicit computation
+............................
 
 Let's see how to compute the matrix elements of the operator ‘(J1z-J1z)’
 in the z-basis for two spin-1/2 particles.  Note that we use the ‘tpadd’
-and ‘tpscmult’ functions to add the two operators.  We skip taking the
-braket below so the common factor will be the matrix element.
+and ‘tpscmult’ functions to add the two operators.  First, we form the
+four basis kets ‘{phi_{1},phi_{2},phi_{3},phi_{4}}’ of the form
+‘|j_{1},m_{1};j_{2},m_{2}>’.  The next four entries are for the operator
+acting on the basis kets.  We skip taking the braket below; the common
+factor is the resulting matrix element.
 
      (%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
                                            1  1    1  1
@@ -862,7 +874,7 @@ braket below so the common factor will be the matrix element.
      (%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
      (%o8)                                  0
 
-1.2.7 Angular momentum and ladder operators
+1.2.8 Angular momentum and ladder operators
 -------------------------------------------
 
  -- Function: SP (s)
@@ -1025,11 +1037,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                              (line 836)
+                                                              (line 839)
 * anticommutator:                        Functions and Variables for qm.
                                                               (line 302)
 * ap:                                    Functions and Variables for qm.
-                                                              (line 832)
+                                                              (line 835)
 * autobra:                               Functions and Variables for qm.
                                                               (line 124)
 * autoket:                               Functions and Variables for qm.
@@ -1109,11 +1121,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                               (line 362)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 734)
+                                                              (line 737)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 738)
+                                                              (line 741)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 742)
+                                                              (line 745)
 * sigmax:                                Functions and Variables for qm.
                                                               (line 256)
 * sigmay:                                Functions and Variables for qm.
@@ -1121,9 +1133,9 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                               (line 262)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 713)
+                                                              (line 716)
 * SP:                                    Functions and Variables for qm.
-                                                              (line 710)
+                                                              (line 713)
 * spin_mbra:                             Functions and Variables for qm.
                                                               (line 386)
 * spin_mket:                             Functions and Variables for qm.
@@ -1153,7 +1165,7 @@ Appendix A Function and Variable index
 * tpscmult:                              Functions and Variables for qm.
                                                               (line 526)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 763)
+                                                              (line 766)
 * xm:                                    Functions and Variables for qm.
                                                               (line 201)
 * xp:                                    Functions and Variables for qm.
@@ -1178,79 +1190,79 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm5875
-Ref: ket6228
-Ref: ketp6660
-Ref: bra6841
-Ref: brap7273
-Ref: mket7454
-Ref: mketp8161
-Ref: mbra8801
-Ref: mbrap9380
-Ref: autoket10106
-Ref: autobra10978
-Ref: dagger11648
-Ref: braket12086
-Ref: norm12722
-Ref: magsqr13178
-Ref: zp13946
-Ref: zm14009
-Ref: xp14072
-Ref: xm14135
-Ref: yp14198
-Ref: ym14261
-Ref: sigmax16313
-Ref: sigmay16370
-Ref: sigmaz16427
-Ref: Sx16484
-Ref: Sy16541
-Ref: Sz16598
-Ref: commutator17235
-Ref: anticommutator17905
-Ref: SX18312
-Ref: SY18525
-Ref: SZ18738
-Ref: expect20130
-Ref: qm_variance20373
-Ref: spin_mket21198
-Ref: spin_mbra21368
-Ref: jmketp23349
-Ref: jmbrap23657
-Ref: jmcheck23803
-Ref: JP23976
-Ref: JM24152
-Ref: Jsqr24328
-Ref: Jz24497
-Ref: tpket26289
-Ref: tpbra26614
-Ref: tpbraket26939
-Ref: tpscmult27055
-Ref: tpadd27596
-Ref: tpdagger28445
-Ref: J1z29007
-Ref: J2z29133
-Ref: Jtz29875
-Ref: J1sqr30442
-Ref: J2sqr30539
-Ref: J1p30637
-Ref: J2p30731
-Ref: Jtp30826
-Ref: J1m30915
-Ref: J2m31009
-Ref: Jtm31104
-Ref: J1p2m31193
-Ref: J1m2p31285
-Ref: J1zJ2z31377
-Ref: Jtsqr31471
-Ref: SP35226
-Ref: SM35319
-Ref: RX36154
-Ref: RY36321
-Ref: RZ36488
-Ref: UU37468
-Ref: ap40746
-Ref: am40859
-Node: Function and Variable Index41752
+Node: Functions and Variables for qm6271
+Ref: ket6624
+Ref: ketp7056
+Ref: bra7237
+Ref: brap7669
+Ref: mket7850
+Ref: mketp8557
+Ref: mbra9197
+Ref: mbrap9776
+Ref: autoket10502
+Ref: autobra11374
+Ref: dagger12044
+Ref: braket12482
+Ref: norm13118
+Ref: magsqr13574
+Ref: zp14342
+Ref: zm14405
+Ref: xp14468
+Ref: xm14531
+Ref: yp14594
+Ref: ym14657
+Ref: sigmax16709
+Ref: sigmay16766
+Ref: sigmaz16823
+Ref: Sx16880
+Ref: Sy16937
+Ref: Sz16994
+Ref: commutator17631
+Ref: anticommutator18301
+Ref: SX18708
+Ref: SY18921
+Ref: SZ19134
+Ref: expect20526
+Ref: qm_variance20769
+Ref: spin_mket21594
+Ref: spin_mbra21764
+Ref: jmketp23723
+Ref: jmbrap24031
+Ref: jmcheck24177
+Ref: JP24350
+Ref: JM24526
+Ref: Jsqr24702
+Ref: Jz24871
+Ref: tpket26663
+Ref: tpbra26988
+Ref: tpbraket27313
+Ref: tpscmult27429
+Ref: tpadd27970
+Ref: tpdagger28819
+Ref: J1z29381
+Ref: J2z29507
+Ref: Jtz30249
+Ref: J1sqr30816
+Ref: J2sqr30913
+Ref: J1p31011
+Ref: J2p31105
+Ref: Jtp31200
+Ref: J1m31289
+Ref: J2m31383
+Ref: Jtm31478
+Ref: J1p2m31567
+Ref: J1m2p31659
+Ref: J1zJ2z31751
+Ref: Jtsqr31845
+Ref: SP35790
+Ref: SM35883
+Ref: RX36718
+Ref: RY36885
+Ref: RZ37052
+Ref: UU38032
+Ref: ap41310
+Ref: am41423
+Node: Function and Variable Index42316
 
 End Tag Table
 

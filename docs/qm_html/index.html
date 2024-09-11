@@ -199,7 +199,21 @@ complex components in the matrix representation.
 (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
 </pre></div></div>
 
+<ul class="mini-toc">
+<li><a href="#Special-ket-types" accesskey="1">Special ket types</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="Special-ket-types">
+<h4 class="subsubsection"><span>1.1.1.1 Special ket types<a class="copiable-link" href="#Special-ket-types"> &para;</a></span></h4>
+
+<p>Some kets are difficult to work with using either the matrix
+representation or the general ket representation. These include tensor
+products of (j,m) kets used in the addition of angular momentum
+computations. For this reason there are a set of <code class="code">tpket</code>s and
+associated <code class="code">tpXX</code> functions defined in section <code class="code">(j,m)-kets and
+bras</code>.
+</p>
 <hr>
+</div>
 </div>
 </div>
 <div class="section-level-extent" id="Functions-and-Variables-for-qm">
@@ -448,8 +462,9 @@ squared of a complex number.
 <li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
 <li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
 <li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="5">Angular momentum representation of kets and bras</a></li>
-<li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="6">Addition of angular momentum in the (j,m)-representation</a></li>
-<li><a href="#Angular-momentum-and-ladder-operators" accesskey="7">Angular momentum and ladder operators</a></li>
+<li><a href="#g_t_0028j_002cm_0029_002dkets-and-bras" accesskey="6">(j,m)-kets and bras</a></li>
+<li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="7">Addition of angular momentum in the (j,m)-representation</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators" accesskey="8">Angular momentum and ladder operators</a></li>
 </ul>
 <div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
 <h4 class="subsection"><span>1.2.1 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
@@ -701,7 +716,6 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 
 <ul class="mini-toc">
 <li><a href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras" accesskey="1">Matrix representation of (j,m)-kets and bras</a></li>
-<li><a href="#Abstract-_0028j_002cm_0029_002dkets-and-bras" accesskey="2">Abstract (j,m)-kets and bras</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
 <h4 class="subsubsection"><span>1.2.5.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
@@ -751,8 +765,9 @@ and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1
 </pre></div></div>
 
 </div>
-<div class="subsubsection-level-extent" id="Abstract-_0028j_002cm_0029_002dkets-and-bras">
-<h4 class="subsubsection"><span>1.2.5.2 Abstract (j,m)-kets and bras<a class="copiable-link" href="#Abstract-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+</div>
+<div class="subsection-level-extent" id="g_t_0028j_002cm_0029_002dkets-and-bras">
+<h4 class="subsection"><span>1.2.6 (j,m)-kets and bras<a class="copiable-link" href="#g_t_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
 <p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you use the
 abstract <code class="code">ket</code> and <code class="code">bra</code> functions with <code class="code">j,m</code> as
@@ -839,9 +854,8 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </pre></div></div>
 
 </div>
-</div>
 <div class="subsection-level-extent" id="Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation">
-<h4 class="subsection"><span>1.2.6 Addition of angular momentum in the (j,m)-representation<a class="copiable-link" href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.7 Addition of angular momentum in the (j,m)-representation<a class="copiable-link" href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation"> &para;</a></span></h4>
 
 <p>Addition of angular momentum calculations can be performed in the
 (j,m)-representation using the function definitions below. The internal
@@ -1061,9 +1075,9 @@ tpket.
                                       3  1    1  1
 (%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
                                       2  2    2  2
-(%i2) b:dagger(k);
+(%i2) b:tpdagger(k);
                                       3  1    1  1
-(%o2)                    ([tpket, 1, |-, -&gt;, |-, -&gt;])†
+(%o2)                     [tpbra, 1, &lt;-, -|, &lt;-, -|]
                                       2  2    2  2
 (%i3) J1p2m(k);
                                        2   3  3    1    1
@@ -1090,16 +1104,19 @@ tpket.
 </pre></div></div>
 
 <ul class="mini-toc">
-<li><a href="#Explicit-computations" accesskey="1">Explicit computations</a></li>
+<li><a href="#Explicit-computation" accesskey="1">Explicit computation</a></li>
 </ul>
-<div class="subsubsection-level-extent" id="Explicit-computations">
-<h4 class="subsubsection"><span>1.2.6.1 Explicit computations<a class="copiable-link" href="#Explicit-computations"> &para;</a></span></h4>
+<div class="subsubsection-level-extent" id="Explicit-computation">
+<h4 class="subsubsection"><span>1.2.7.1 Explicit computation<a class="copiable-link" href="#Explicit-computation"> &para;</a></span></h4>
 
 <p>Let&rsquo;s see how to compute the matrix elements of the operator
-<code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles. Note
-that we use the <code class="code">tpadd</code> and <code class="code">tpscmult</code> functions
-to add the two operators. We skip taking the braket below
-so the common factor will be the matrix element.
+<code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles. Note that we
+use the <code class="code">tpadd</code> and <code class="code">tpscmult</code> functions to add the two
+operators. First, we form the four basis kets
+<code class="code">{phi<sub class="sub">1</sub>,phi<sub class="sub">2</sub>,phi<sub class="sub">3</sub>,phi<sub class="sub">4</sub>}</code> of the form
+<code class="code">|j<sub class="sub">1</sub>,m<sub class="sub">1</sub>;j<sub class="sub">2</sub>,m<sub class="sub">2</sub>&gt;</code>. The next four entries are
+for the operator acting on the basis kets. We skip taking the braket
+below; the common factor is the resulting matrix element.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
@@ -1135,7 +1152,7 @@ so the common factor will be the matrix element.
 </div>
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
-<h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.8 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
 
 <a class="anchor" id="SP"></a><dl class="first-deffn">
 <dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>

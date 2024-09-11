@@ -93,7 +93,7 @@ J2z(k);
 k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
 Jtz(k);
 k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
-b:dagger(k);
+b:tpdagger(k);
 J1p2m(k);
 J1m2p(k);
 k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
