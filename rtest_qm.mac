@@ -248,6 +248,12 @@ tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
+tpscmult(c,k1);
+[tpket,c,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
+k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
 k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
 
@@ -295,6 +301,30 @@ J1zJ2z(k);
 
 Jtsqr(k);
 [4*tpket,4*hbar^2,4*ket([3/2,-(1/2)]),4*ket([1/2,1/2])] $
+
+phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
+
+phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
+phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
+
+phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+[tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+
+tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
+0 $
+
+tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
+[tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
+tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
+[tpket,-hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
+
+tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
+0 $
 
 SP(1);
 matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $

@@ -855,7 +855,12 @@ is instantiated as:
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">[tpket,1,&lt;j1,m1|,&lt;j2,m2|]</code>
 </p>
-<p>where the factor of 1 is the multiplicative factor of the tensor product.
+<p>where the factor of 1 is the multiplicative factor of the tensor
+product. We call this the <em class="emph">common factor</em> (cf) of the tensor
+product. The general form of a tensor product in the (j,m)
+representation is:
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">[tpket, cf, |j1,m1&gt;, |j2,m2&gt;]</code>.
 </p>
 <p>Using the function definitions below one must be careful to avoid errors
 produced by Maxima&rsquo;s automatic list arithmetic. For example, do not
@@ -891,6 +896,22 @@ always use the total <code class="code">Jtxx</code> defined function.
 <dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
 <dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
 </p></dd></dl>
+
+<a class="anchor" id="tpscmult"></a><dl class="first-deffn">
+<dt class="deffn" id="index-tpscmult"><span class="category-def">Function: </span><span><strong class="def-name">tpscmult</strong> <var class="def-var-arguments">(<code class="code">a</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpscmult"> &para;</a></span></dt>
+<dd><p><code class="code">tpscmult</code> multiplies the tensor product&rsquo;s common factor by <code class="code">a</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o1)                    [tpket, 1, |-, -&gt;, |-, - -&gt;]
+                                     2  2    2    2
+(%i2) tpscmult(c,k1);
+                                     1  1    1    1
+(%o2)                    [tpket, c, |-, -&gt;, |-, - -&gt;]
+                                     2  2    2    2
+</pre></div></div>
 
 <a class="anchor" id="tpadd"></a><dl class="first-deffn">
 <dt class="deffn" id="index-tpadd"><span class="category-def">Function: </span><span><strong class="def-name">tpadd</strong> <var class="def-var-arguments">(<em class="emph">tpket,tpket</em>)</var><a class="copiable-link" href="#index-tpadd"> &para;</a></span></dt>
@@ -1068,6 +1089,50 @@ tpket.
                                                                2  2    2    2
 </pre></div></div>
 
+<ul class="mini-toc">
+<li><a href="#Explicit-computations" accesskey="1">Explicit computations</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="Explicit-computations">
+<h4 class="subsubsection"><span>1.2.6.1 Explicit computations<a class="copiable-link" href="#Explicit-computations"> &para;</a></span></h4>
+
+<p>Let&rsquo;s see how to compute the matrix elements of the operator
+<code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles. Note
+that we use the <code class="code">tpadd</code> and <code class="code">tpscmult</code> functions
+to add the two operators. We skip taking the braket below
+so the common factor will be the matrix element.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+                                      1  1    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
+(%i2) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o2)                    [tpket, 1, |-, -&gt;, |-, - -&gt;]
+                                     2  2    2    2
+(%i3) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                     1    1    1  1
+(%o3)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
+                                     2    2    2  2
+(%i4) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+                                    1    1    1    1
+(%o4)                   [tpket, 1, |-, - -&gt;, |-, - -&gt;]
+                                    2    2    2    2
+(%i5) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
+(%o5)                                  0
+(%i6) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
+                                       1  1    1    1
+(%o6)                   [tpket, hbar, |-, -&gt;, |-, - -&gt;]
+                                       2  2    2    2
+(%i7) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
+                                        1    1    1  1
+(%o7)                  [tpket, - hbar, |-, - -&gt;, |-, -&gt;]
+                                        2    2    2  2
+(%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
+(%o8)                                  0
+</pre></div></div>
+
+</div>
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
 <h4 class="subsection"><span>1.2.7 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>

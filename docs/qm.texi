@@ -862,7 +862,12 @@ and the corresponding bra is instantiated as:
 
 @ @ @ @ @ @ @ @ @ @ @code{[tpket,1,<j1,m1|,<j2,m2|]}
 
-where the factor of 1 is the multiplicative factor of the tensor product.
+where the factor of 1 is the multiplicative factor of the tensor
+product. We call this the @emph{common factor} (cf) of the tensor
+product. The general form of a tensor product in the (j,m)
+representation is:
+
+@ @ @ @ @ @ @ @ @ @ @code{[tpket, cf, |j1,m1>, |j2,m2>]}.
 
 Using the function definitions below one must be careful to avoid errors
 produced by Maxima's automatic list arithmetic. For example, do not
@@ -902,6 +907,24 @@ always use the total @code{Jtxx} defined function.
 @deffn {Function} tpbraket (@emph{tpbra,tpket})
 @code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
 @end deffn
+
+@anchor{tpscmult}
+@deffn {Function} tpscmult (@code{a},@emph{tpket})
+@code{tpscmult} multiplies the tensor product's common factor by @code{a}.
+@end deffn
+
+@example
+@group
+(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o1)                    [tpket, 1, |-, ->, |-, - ->]
+                                     2  2    2    2
+(%i2) tpscmult(c,k1);
+                                     1  1    1    1
+(%o2)                    [tpket, c, |-, ->, |-, - ->]
+                                     2  2    2    2
+@end group
+@end example
 
 @anchor{tpadd}
 @deffn {Function} tpadd (@emph{tpket,tpket})
@@ -1088,6 +1111,47 @@ tpket.
                                                            2   3  1    1    1
                                            + [tpket, 2 hbar , |-, ->, |-, - ->]
                                                                2  2    2    2
+@end group
+@end example
+
+@subsubsection Explicit computations
+
+Let's see how to compute the matrix elements of the operator
+@code{(J1z-J1z)} in the z-basis for two spin-1/2 particles. Note
+that we use the @code{tpadd} and @code{tpscmult} functions
+to add the two operators. We skip taking the braket below
+so the common factor will be the matrix element.
+
+@example
+@group
+(%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+                                      1  1    1  1
+(%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                      2  2    2  2
+(%i2) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o2)                    [tpket, 1, |-, ->, |-, - ->]
+                                     2  2    2    2
+(%i3) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                     1    1    1  1
+(%o3)                    [tpket, 1, |-, - ->, |-, ->]
+                                     2    2    2  2
+(%i4) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+                                    1    1    1    1
+(%o4)                   [tpket, 1, |-, - ->, |-, - ->]
+                                    2    2    2    2
+(%i5) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
+(%o5)                                  0
+(%i6) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
+                                       1  1    1    1
+(%o6)                   [tpket, hbar, |-, ->, |-, - ->]
+                                       2  2    2    2
+(%i7) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
+                                        1    1    1  1
+(%o7)                  [tpket, - hbar, |-, - ->, |-, ->]
+                                        2    2    2  2
+(%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
+(%o8)                                  0
 @end group
 @end example
 

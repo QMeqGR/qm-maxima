@@ -233,6 +233,8 @@ jmcheck(j,m) := block([pos:0],
 jmketp(k) := jmcheck( inpart(k,1)[1], inpart(k,1)[2] );
 jmbrap(bb) := jmcheck( inpart(bb,1)[1], inpart(bb,1)[2] );
 
+declare([JP,JM,Jsqr,Jz],additive);
+
 matchdeclare(k,ketp,bb,brap,a,all);
 tellsimpafter( JP(a*k), a*JP(k) );
 tellsimpafter( JP(k), block([j,m,sqrterm],
@@ -248,6 +250,7 @@ tellsimpafter( Jsqr(k), block([j,m],
 tellsimpafter( Jz(a*k), a*Jz(k) );
 tellsimpafter( Jz(k), block([j,m],
       j:inpart(k,1)[1], m:inpart(k,1)[2], return( ( m * hbar * ket([j,m]) ) )));
+
 
 /******************************************************/
 /******************************************************/
