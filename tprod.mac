@@ -43,6 +43,8 @@ tpbra(a,b):= block(
     if brap(a)=false or brap(b)=false then return (disp ("inputs must be bras")),
     [tpbra,1,a,b]);
 */
+
+tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
 tpscmult(f,tp):=[tp[1], f*tp[2], tp[3], tp[4]];
 tpbraket(b,k):=block([R],
     if tpketp(k)=false or tpbrap(b)=false then return(false),

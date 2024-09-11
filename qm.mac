@@ -223,6 +223,12 @@ rationalp(a):= if integerp(num(a)) and integerp(denom(a)) then true else false;
 sym_ratp(a):=block(if symbolp(a) or rationalp(a) then
 		      return(true) else return(false) );
 matchdeclare(k,ketp,bb,brap,[j,m], sym_ratp );
+
+/* some convenience functions */
+jmtop(j):=ket([j,j]);
+jmket(j,m):=ket([j,m]);
+jmbot(j):=ket([j,-j]);
+
 /* Check that m is within -j to +j */
 jmcheck(j,m) := block([pos:0],
 	      if rationalp(j)=false or rationalp(m)=false then return(false) else

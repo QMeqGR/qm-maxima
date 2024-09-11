@@ -109,6 +109,7 @@ function.
 
 <ul class="mini-toc">
 <li><a href="#Types-of-kets-and-bras" accesskey="1">Types of kets and bras</a></li>
+<li><a href="#Special-ket-types" accesskey="2">Special ket types</a></li>
 </ul>
 <div class="subsection-level-extent" id="Types-of-kets-and-bras">
 <h4 class="subsection"><span>1.1.1 Types of kets and bras<a class="copiable-link" href="#Types-of-kets-and-bras"> &para;</a></span></h4>
@@ -199,11 +200,9 @@ complex components in the matrix representation.
 (%o4)              r  + c2 conjugate(c2) + c1 conjugate(c1)
 </pre></div></div>
 
-<ul class="mini-toc">
-<li><a href="#Special-ket-types" accesskey="1">Special ket types</a></li>
-</ul>
-<div class="subsubsection-level-extent" id="Special-ket-types">
-<h4 class="subsubsection"><span>1.1.1.1 Special ket types<a class="copiable-link" href="#Special-ket-types"> &para;</a></span></h4>
+</div>
+<div class="subsection-level-extent" id="Special-ket-types">
+<h4 class="subsection"><span>1.1.2 Special ket types<a class="copiable-link" href="#Special-ket-types"> &para;</a></span></h4>
 
 <p>Some kets are difficult to work with using either the matrix
 representation or the general ket representation. These include tensor
@@ -213,7 +212,6 @@ associated <code class="code">tpXX</code> functions defined in section <code cla
 bras</code>.
 </p>
 <hr>
-</div>
 </div>
 </div>
 <div class="section-level-extent" id="Functions-and-Variables-for-qm">
@@ -462,7 +460,7 @@ squared of a complex number.
 <li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
 <li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
 <li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="5">Angular momentum representation of kets and bras</a></li>
-<li><a href="#g_t_0028j_002cm_0029_002dkets-and-bras" accesskey="6">(j,m)-kets and bras</a></li>
+<li><a href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras" accesskey="6">Angular momentum (j,m)-kets and bras</a></li>
 <li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="7">Addition of angular momentum in the (j,m)-representation</a></li>
 <li><a href="#Angular-momentum-and-ladder-operators" accesskey="8">Angular momentum and ladder operators</a></li>
 </ul>
@@ -766,8 +764,8 @@ and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1
 
 </div>
 </div>
-<div class="subsection-level-extent" id="g_t_0028j_002cm_0029_002dkets-and-bras">
-<h4 class="subsection"><span>1.2.6 (j,m)-kets and bras<a class="copiable-link" href="#g_t_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+<div class="subsection-level-extent" id="Angular-momentum-_0028j_002cm_0029_002dkets-and-bras">
+<h4 class="subsection"><span>1.2.6 Angular momentum (j,m)-kets and bras<a class="copiable-link" href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
 <p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you use the
 abstract <code class="code">ket</code> and <code class="code">bra</code> functions with <code class="code">j,m</code> as
@@ -781,6 +779,44 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
 (%i2) ket([3/2,1/2]);
                                      3  1
 (%o2)                               |-, -&gt;
+                                     2  2
+</pre></div></div>
+
+<p>Some convenience functions for making the kets are the following:
+</p>
+<a class="anchor" id="jmtop"></a><dl class="first-deffn">
+<dt class="deffn" id="index-jmtop"><span class="category-def">Function: </span><span><strong class="def-name">jmtop</strong> <var class="def-var-arguments">(<code class="code">j</code>)</var><a class="copiable-link" href="#index-jmtop"> &para;</a></span></dt>
+<dd><p><code class="code">jmtop</code> creates a (j,m)-ket with <code class="code">m=j</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) jmtop(3/2);
+                                     3  3
+(%o1)                               |-, -&gt;
+                                     2  2
+</pre></div></div>
+
+<a class="anchor" id="jmbot"></a><dl class="first-deffn">
+<dt class="deffn" id="index-jmbot"><span class="category-def">Function: </span><span><strong class="def-name">jmbot</strong> <var class="def-var-arguments">(<code class="code">j</code>)</var><a class="copiable-link" href="#index-jmbot"> &para;</a></span></dt>
+<dd><p><code class="code">jmbot</code> creates a (j,m)-ket with <code class="code">m=-j</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) jmbot(3/2);
+                                    3    3
+(%o1)                              |-, - -&gt;
+                                    2    2
+</pre></div></div>
+
+<a class="anchor" id="jmket"></a><dl class="first-deffn">
+<dt class="deffn" id="index-jmket"><span class="category-def">Function: </span><span><strong class="def-name">jmket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmket"> &para;</a></span></dt>
+<dd><p><code class="code">jmket</code> creates a (j,m)-ket.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) jmket(3/2,1/2);
+                                     3  1
+(%o1)                               |-, -&gt;
                                      2  2
 </pre></div></div>
 
@@ -909,6 +945,11 @@ always use the total <code class="code">Jtxx</code> defined function.
 <a class="anchor" id="tpbraket"></a><dl class="first-deffn">
 <dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
 <dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
+</p></dd></dl>
+
+<a class="anchor" id="tpcfset"></a><dl class="first-deffn">
+<dt class="deffn" id="index-tpcfset"><span class="category-def">Function: </span><span><strong class="def-name">tpcfset</strong> <var class="def-var-arguments">(<code class="code">cf</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpcfset"> &para;</a></span></dt>
+<dd><p><code class="code">tpcfset</code> manually sets the <em class="emph">common factor</em> <code class="code">cf</code> of a <code class="code">tpket</code>.
 </p></dd></dl>
 
 <a class="anchor" id="tpscmult"></a><dl class="first-deffn">

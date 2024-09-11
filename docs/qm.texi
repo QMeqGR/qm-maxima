@@ -184,7 +184,7 @@ complex components in the matrix representation.
 @end group
 @end example
 
-@subsubsection Special ket types
+@subsection Special ket types
 
 Some kets are difficult to work with using either the matrix
 representation or the general ket representation. These include tensor
@@ -763,7 +763,7 @@ and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
 @end group
 @end example
 
-@subsection (j,m)-kets and bras
+@subsection Angular momentum (j,m)-kets and bras
 
 To create kets and bras in the @var{|j,m>} representation you use the
 abstract @code{ket} and @code{bra} functions with @code{j,m} as
@@ -778,6 +778,50 @@ arguments, as in @code{ket([j,m])} and @code{bra([j,m])}.
 (%i2) ket([3/2,1/2]);
                                      3  1
 (%o2)                               |-, ->
+                                     2  2
+@end group
+@end example
+
+Some convenience functions for making the kets are the following:
+
+@anchor{jmtop}
+@deffn {Function} jmtop (@code{j})
+@code{jmtop} creates a (j,m)-ket with @code{m=j}.
+@end deffn
+
+@example
+@group
+(%i1) jmtop(3/2);
+                                     3  3
+(%o1)                               |-, ->
+                                     2  2
+@end group
+@end example
+
+@anchor{jmbot}
+@deffn {Function} jmbot (@code{j})
+@code{jmbot} creates a (j,m)-ket with @code{m=-j}.
+@end deffn
+
+@example
+@group
+(%i1) jmbot(3/2);
+                                    3    3
+(%o1)                              |-, - ->
+                                    2    2
+@end group
+@end example
+
+@anchor{jmket}
+@deffn {Function} jmket (@code{j,m})
+@code{jmket} creates a (j,m)-ket.
+@end deffn
+
+@example
+@group
+(%i1) jmket(3/2,1/2);
+                                     3  1
+(%o1)                               |-, ->
                                      2  2
 @end group
 @end example
@@ -867,10 +911,12 @@ is instantiated as:
 
 @ @ @ @ @ @ @ @ @ @ @code{[tpket,1,|j1,m1>,|j2,m2>]}
 
+@noindent
 and the corresponding bra is instantiated as:
 
 @ @ @ @ @ @ @ @ @ @ @code{[tpket,1,<j1,m1|,<j2,m2|]}
 
+@noindent
 where the factor of 1 is the multiplicative factor of the tensor
 product. We call this the @emph{common factor} (cf) of the tensor
 product. The general form of a tensor product in the (j,m)
@@ -878,6 +924,7 @@ representation is:
 
 @ @ @ @ @ @ @ @ @ @ @code{[tpket, cf, |j1,m1>, |j2,m2>]}.
 
+@noindent
 Using the function definitions below one must be careful to avoid errors
 produced by Maxima's automatic list arithmetic. For example, do not
 use @code{(J1z+J2z)}, and instead use the defined function @code{Jtz}.
@@ -915,6 +962,11 @@ always use the total @code{Jtxx} defined function.
 @anchor{tpbraket}
 @deffn {Function} tpbraket (@emph{tpbra,tpket})
 @code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
+@end deffn
+
+@anchor{tpcfset}
+@deffn {Function} tpcfset (@code{cf},@emph{tpket})
+@code{tpcfset} manually sets the @emph{common factor} @code{cf} of a @code{tpket}.
 @end deffn
 
 @anchor{tpscmult}
