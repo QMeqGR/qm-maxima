@@ -824,12 +824,12 @@ total ‘Jtxx’ defined function.
      (%o2)                 [tpket, - -----, |-, - ->, |-, ->]
                                        4     2    2    2  2
      (%i3) Jtsqr(k);
-                           2     3    1      1  1
-     (%o3) [4 tpket, 4 hbar , 4 |-, - ->, 4 |-, ->]
-                                 2    2      2  2
-                                                                2   3  1    1    1
-                                                + [tpket, 2 hbar , |-, ->, |-, - ->]
-                                                                    2  2    2    2
+                         3  1      2      3    1      2
+     (%o3) [tpket, 1, 2 |-, -> hbar  + 4 |-, - -> hbar ,
+                         2  2             2    2
+                                                     1  1      2      1    1      2
+                                                  4 |-, -> hbar  + 2 |-, - -> hbar ]
+                                                     2  2             2    2
 
 1.2.7.1 Explicit computation
 ............................

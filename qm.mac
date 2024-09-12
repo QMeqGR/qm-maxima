@@ -120,8 +120,6 @@ tellsimpafter( dagger(mx), conjugate(transpose (mx)) );
 /********************/
 /*    braket        */
 /********************/
-declare(braket,additive);
-
 /* braket rules for matrix reps */
 matchdeclare([kk,ll], mketp, bb, mbrap );
 tellsimpafter( braket(bb,kk) , bb . kk );
@@ -129,12 +127,15 @@ tellsimpafter( braket(ll,kk) , false );
 tellsimpafter( braket(kk,bb) , false );
 tellsimpafter( braket(bb,bb) , false );
 
-/************************************/
-/* simp rules for general kets bras */
-/************************************/
-matchdeclare([L1,L2],listp);
-tellsimpafter(braket(ket(L1),ket(L2)), bra(L1) . ket(L2) );
-
+/***************************************/
+/* braket rules for general kets bras  */
+/***************************************/
+/* Note that we do calculations by going from "bra . ket" to "braket(bra,ket)",
+   which is defined for only one bra and one ket. If the bra or ket is a sum of
+   bras or kets, then use ".", i.e. (bra1 + bra2) . (ket), which has rules
+   below to go to bra1.ket + bra2.ket = braket(bra1,ket) + braket(bra2,ket).
+*/
+   
 /* these rules are experimental, they only go one way */
 tellsimp( ket(L1) . ket(L2) , ket(append(L1,L2)) );
 tellsimp( bra(L1) . bra(L2) , bra(append(L1,L2)) );
@@ -151,6 +152,7 @@ simp:false; tellsimpafter( cx1*bra(L2) . ket(L2)*cx4, cx1*cx4* (bra(L1) . ket(L2
 /* This works because of the way the simplifier outputs things in () */
 tellsimpafter( (bra(L1)*a) . (ket(L2)*b), a*b*(bra(L1) . ket(L2)));
 
+/* bra . ket ---> braket(bra,ket) */
 matchdeclare([L1,L2,L3],listp,[a,b],all);
 tellsimpafter(bra(L1) . ket(L2) . a , braket(bra(L1),ket(L2)) . a);
 tellsimpafter(a . bra(L1) . ket(L2) , a . braket(bra(L1),ket(L2)));
@@ -169,7 +171,6 @@ gsimpbraket(L1,L2):=block([i,l1flag:0,l2flag:0,prod:1,
 	    if l1flag=1 then return(prod*ket(L4))
 	    elseif l2flag=1 then return(prod*bra(L3))
 	    else return(prod) );
-
 
 /*********************************/
 /*     miscellaneous rules       */

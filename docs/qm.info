@@ -856,12 +856,12 @@ total ‘Jtxx’ defined function.
      (%o2)                 [tpket, - -----, |-, - ->, |-, ->]
                                        4     2    2    2  2
      (%i3) Jtsqr(k);
-                           2     3    1      1  1
-     (%o3) [4 tpket, 4 hbar , 4 |-, - ->, 4 |-, ->]
-                                 2    2      2  2
-                                                                2   3  1    1    1
-                                                + [tpket, 2 hbar , |-, ->, |-, - ->]
-                                                                    2  2    2    2
+                         3  1      2      3    1      2
+     (%o3) [tpket, 1, 2 |-, -> hbar  + 4 |-, - -> hbar ,
+                         2  2             2    2
+                                                     1  1      2      1    1      2
+                                                  4 |-, -> hbar  + 2 |-, - -> hbar ]
+                                                     2  2             2    2
 
 1.2.7.1 Explicit computation
 ............................
@@ -1295,15 +1295,15 @@ Ref: J1p2m32502
 Ref: J1m2p32594
 Ref: J1zJ2z32686
 Ref: Jtsqr32780
-Ref: SP36725
-Ref: SM36818
-Ref: RX37653
-Ref: RY37820
-Ref: RZ37987
-Ref: UU38967
-Ref: ap42245
-Ref: am42358
-Node: Function and Variable Index43251
+Ref: SP36730
+Ref: SM36823
+Ref: RX37658
+Ref: RY37825
+Ref: RZ37992
+Ref: UU38972
+Ref: ap42250
+Ref: am42363
+Node: Function and Variable Index43256
 
 End Tag Table
 
