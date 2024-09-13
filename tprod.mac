@@ -46,10 +46,12 @@ tpbra(a,b):= block(
 
 tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
 tpscmult(f,tp):=[tp[1], f*tp[2], tp[3], tp[4]];
+
 tpbraket(b,k):=block([R],
     if tpketp(k)=false or tpbrap(b)=false then return(false),
     R: b[2]*k[2]*braket(b[3],k[3])*braket(b[4],k[4]),
     R);
+
 tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1],
     if tpka=0 then return(tpkb),
     if tpkb=0 then return(tpka),
@@ -57,14 +59,14 @@ tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1],
     cfa:tpka[2],cfb:tpkb[2],
     if not tpka[1]=tpket or not tpkb[1]=tpket then return(disp("inputs must be tpkets")),
     if tpka[3]=tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, cfa+cfb, tpka[3], tpka[4]],
-    q: factor(cfa+cfb), if numberp(q)=false and symbolp(q)=false then
-       		for i: 1 thru length(q) do if freeof("+",part(q,i))=false then fac: part(q,i),
-    	if fac#1 then cfac: q/fac,
-    if tpka[3]=tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, 1, cfac*tpka[3], cfa/cfac*tpka[4]+cfb/cfac*tpkb[4]], 
-    if tpka[3]#tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, 1, cfa/cfac*tpka[3]+cfb/cfac*tpkb[3], cfac*tpkb[4]],
-    if tpka[3]#tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, 1, cfa*tpka[3]+cfb*tpkb[3],
-       		       	   		   	   	   cfa/cfac*tpka[4]+cfb/cfac*tpkb[4]],
+    if tpka[3]=tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, 1, tpka[3], cfa*tpka[4]+cfb*tpkb[4]], 
+    if tpka[3]#tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, 1, cfa*tpka[3]+cfb*tpkb[3], tpkb[4]],
+    listarith:false,
+    if tpka[3]#tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, cfa, tpka[3], tpka[4]] +
+       		       	   		   	   [tpket, cfb, tpkb[3], tpkb[4]],
+    listarith:true,				   
     R);
+
 tpdagger(tp):=block([R],
     if tp[1]=tpket then R:[tpbra,dagger(tp[2]),
     dagger(tp[3]),dagger(tp[4])]

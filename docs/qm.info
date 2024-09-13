@@ -744,9 +744,9 @@ total ‘Jtxx’ defined function.
      (%o2)                    [tpket, 1, |-, - ->, |-, ->]
                                           2    2    2  2
      (%i3) tpadd(k1,k2);
-                                1  1     1    1    1  1     1    1
-     (%o3)          [tpket, 1, |-, -> + |-, - ->, |-, -> + |-, - ->]
-                                2  2     2    2    2  2     2    2
+                           1  1    1    1                 1    1    1  1
+     (%o3)     [tpket, 1, |-, ->, |-, - ->] + [tpket, 1, |-, - ->, |-, ->]
+                           2  2    2    2                 2    2    2  2
 
  -- Function: tpdagger (_tpket or tpbra_)
      ‘tpdagger’ takes the quantum mechanical dagger of a ‘tpket’ or
@@ -856,12 +856,9 @@ total ‘Jtxx’ defined function.
      (%o2)                 [tpket, - -----, |-, - ->, |-, ->]
                                        4     2    2    2  2
      (%i3) Jtsqr(k);
-                         3  1      2      3    1      2
-     (%o3) [tpket, 1, 2 |-, -> hbar  + 4 |-, - -> hbar ,
-                         2  2             2    2
-                                                     1  1      2      1    1      2
-                                                  4 |-, -> hbar  + 2 |-, - -> hbar ]
-                                                     2  2             2    2
+                         2   3    1    1  1                   2   3  1    1    1
+     (%o3) [tpket, 4 hbar , |-, - ->, |-, ->] + [tpket, 2 hbar , |-, ->, |-, - ->]
+                             2    2    2  2                       2  2    2    2
 
 1.2.7.1 Explicit computation
 ............................
@@ -1066,11 +1063,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                              (line 868)
+                                                              (line 865)
 * anticommutator:                        Functions and Variables for qm.
                                                               (line 302)
 * ap:                                    Functions and Variables for qm.
-                                                              (line 864)
+                                                              (line 861)
 * autobra:                               Functions and Variables for qm.
                                                               (line 124)
 * autoket:                               Functions and Variables for qm.
@@ -1156,11 +1153,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                               (line 362)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 766)
+                                                              (line 763)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 770)
+                                                              (line 767)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 774)
+                                                              (line 771)
 * sigmax:                                Functions and Variables for qm.
                                                               (line 256)
 * sigmay:                                Functions and Variables for qm.
@@ -1168,9 +1165,9 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                               (line 262)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 745)
-* SP:                                    Functions and Variables for qm.
                                                               (line 742)
+* SP:                                    Functions and Variables for qm.
+                                                              (line 739)
 * spin_mbra:                             Functions and Variables for qm.
                                                               (line 386)
 * spin_mket:                             Functions and Variables for qm.
@@ -1202,7 +1199,7 @@ Appendix A Function and Variable index
 * tpscmult:                              Functions and Variables for qm.
                                                               (line 555)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 795)
+                                                              (line 792)
 * xm:                                    Functions and Variables for qm.
                                                               (line 201)
 * xp:                                    Functions and Variables for qm.
@@ -1279,31 +1276,31 @@ Ref: tpbraket28132
 Ref: tpcfset28248
 Ref: tpscmult28364
 Ref: tpadd28905
-Ref: tpdagger29754
-Ref: J1z30316
-Ref: J2z30442
-Ref: Jtz31184
-Ref: J1sqr31751
-Ref: J2sqr31848
-Ref: J1p31946
-Ref: J2p32040
-Ref: Jtp32135
-Ref: J1m32224
-Ref: J2m32318
-Ref: Jtm32413
-Ref: J1p2m32502
-Ref: J1m2p32594
-Ref: J1zJ2z32686
-Ref: Jtsqr32780
-Ref: SP36730
-Ref: SM36823
-Ref: RX37658
-Ref: RY37825
-Ref: RZ37992
-Ref: UU38972
-Ref: ap42250
-Ref: am42363
-Node: Function and Variable Index43256
+Ref: tpdagger29772
+Ref: J1z30334
+Ref: J2z30460
+Ref: Jtz31202
+Ref: J1sqr31769
+Ref: J2sqr31866
+Ref: J1p31964
+Ref: J2p32058
+Ref: Jtp32153
+Ref: J1m32242
+Ref: J2m32336
+Ref: Jtm32431
+Ref: J1p2m32520
+Ref: J1m2p32612
+Ref: J1zJ2z32704
+Ref: Jtsqr32798
+Ref: SP36585
+Ref: SM36678
+Ref: RX37513
+Ref: RY37680
+Ref: RZ37847
+Ref: UU38827
+Ref: ap42105
+Ref: am42218
+Node: Function and Variable Index43111
 
 End Tag Table
 

@@ -194,8 +194,8 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i90) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]))
 (%o90) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
 (%i91) tpadd(k1,k2)
-(%o91) [tpket,1,ket([1/2,1/2])+ket([1/2,-(1/2)]),ket([1/2,1/2])
-                                                  +ket([1/2,-(1/2)])]
+(%o91) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+ +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
 (%i92) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
 (%o92) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
 (%i93) tpdagger(k1)
@@ -223,8 +223,8 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i104) J1zJ2z(k)
 (%o104) [tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])]
 (%i105) Jtsqr(k)
-(%o105) [tpket,1,2*ket([3/2,1/2])*hbar^2+4*ket([3/2,-(1/2)])*hbar^2,
-         4*ket([1/2,1/2])*hbar^2+2*ket([1/2,-(1/2)])*hbar^2]
+(%o105) [tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]
+ +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
 (%i106) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]))
 (%o106) [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])]
 (%i107) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
