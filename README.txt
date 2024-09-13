@@ -695,7 +695,7 @@ total ‘Jtxx’ defined function.
      (%i3) B:tpdagger(k);
      (%o3)                    [tpbra, 1, <1, 1|, <1, - 1|]
      (%i4) tpbraket(B,K);
-                                 inputs must be tp lists
+                        Inputs must be a single tpbra and tpket.
 
      (%o4)                                done
      (%i5) tpbraket(B,part(K,1));

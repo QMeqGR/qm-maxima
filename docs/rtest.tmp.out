@@ -193,7 +193,7 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%i89) B:tpdagger(k)
 (%o89) [tpbra,1,bra([1,1]),bra([1,-1])]
 (%i90) tpbraket(B,K)
-"inputs must be tp lists"
+"Inputs must be a single tpbra and tpket."
 
 (%o90) done
 (%i91) tpbraket(B,part(K,1))

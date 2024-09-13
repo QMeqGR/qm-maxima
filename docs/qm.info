@@ -727,7 +727,7 @@ total ‘Jtxx’ defined function.
      (%i3) B:tpdagger(k);
      (%o3)                    [tpbra, 1, <1, 1|, <1, - 1|]
      (%i4) tpbraket(B,K);
-                                 inputs must be tp lists
+                        Inputs must be a single tpbra and tpket.
 
      (%o4)                                done
      (%i5) tpbraket(B,part(K,1));
@@ -1296,34 +1296,34 @@ Ref: Jz25698
 Ref: tpket27482
 Ref: tpbra27807
 Ref: tpbraket28132
-Ref: tpcfset29154
-Ref: tpscmult29270
-Ref: tpadd29811
-Ref: tpdagger30678
-Ref: J1z31240
-Ref: J2z31366
-Ref: Jtz32108
-Ref: J1sqr32675
-Ref: J2sqr32772
-Ref: J1p32870
-Ref: J2p32964
-Ref: Jtp33059
-Ref: J1m33148
-Ref: J2m33242
-Ref: Jtm33337
-Ref: J1p2m33426
-Ref: J1m2p33518
-Ref: J1zJ2z33610
-Ref: Jtsqr33704
-Ref: SP37640
-Ref: SM37733
-Ref: RX38568
-Ref: RY38735
-Ref: RZ38902
-Ref: UU39882
-Ref: ap43160
-Ref: am43273
-Node: Function and Variable Index44166
+Ref: tpcfset29162
+Ref: tpscmult29278
+Ref: tpadd29819
+Ref: tpdagger30686
+Ref: J1z31248
+Ref: J2z31374
+Ref: Jtz32116
+Ref: J1sqr32683
+Ref: J2sqr32780
+Ref: J1p32878
+Ref: J2p32972
+Ref: Jtp33067
+Ref: J1m33156
+Ref: J2m33250
+Ref: Jtm33345
+Ref: J1p2m33434
+Ref: J1m2p33526
+Ref: J1zJ2z33618
+Ref: Jtsqr33712
+Ref: SP37648
+Ref: SM37741
+Ref: RX38576
+Ref: RY38743
+Ref: RZ38910
+Ref: UU39890
+Ref: ap43168
+Ref: am43281
+Node: Function and Variable Index44174
 
 End Tag Table
 
