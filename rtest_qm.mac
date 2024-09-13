@@ -254,6 +254,27 @@ tpket(ket([3/2,1/2]),ket([1/2,1/2]));
 tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
 [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
 
+b1:bra([c,d]);
+bra([c,d]) $
+
+b2:bra([a,c]);
+bra([a,c]) $
+
+k1:ket([a,b]);
+ket([a,matrix([a,bra([u,d])])]) $
+
+k2:ket([a,c]);
+ket([a,c]) $
+
+B:tpbra(b1,b2);
+[tpbra,1,bra([c,d]),bra([a,c])] $
+
+K:tpket(k1,k2);
+[tpket,1,ket([a,matrix([a,bra([u,d])])]),ket([a,c])] $
+
+tpbraket(B,K);
+0 $
+
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
@@ -305,11 +326,14 @@ J1m2p(k);
 k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
 
-J1zJ2z(k);
+K1:J1zJ2z(k);
 [tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])] $
 
-Jtsqr(k);
+K2:Jtsqr(k);
 [tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
+
+tpbraket(tpdagger(K1),part(K2,1));
+-hbar^4 $
 
 phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
@@ -348,19 +372,19 @@ UU(w*Sy,t);
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
 K:ket([a1,b1]);
-ket([a1,b1]) $
+ket([a1,bra([c,d])]) $
 
 B:bra([a2,b2]);
-bra([a2,b2]) $
+bra([a2,bra([a,c])]) $
 
 braket(B,K);
-kron_delta(a1,a2)*kron_delta(b1,b2) $
+kron_delta(bra([a,c]),bra([c,d]))*kron_delta(a1,a2) $
 
 bra([a1,Id,c1]).ket([a2,b2,c2]);
-ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
+ket(["-",bra([a,c]),"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
 
 bra([a1,b1,c1]).ket([Id,b2,c2]);
-bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2) $
+kron_delta(bra([a,c]),bra([c,d]))*bra([a1,"-","-"])*kron_delta(c1,c2) $
 
 bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
 (ket([u,d])-ket([d,u]))/sqrt(2) $

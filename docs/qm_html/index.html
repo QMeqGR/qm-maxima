@@ -944,8 +944,28 @@ always use the total <code class="code">Jtxx</code> defined function.
 
 <a class="anchor" id="tpbraket"></a><dl class="first-deffn">
 <dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
-<dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
+<dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>. If either
+entry is a sum of <code class="code">tpbra</code>s or <code class="code">tpket</code>s the function <code class="code">tpbraket</code> will
+return <code class="code">false</code>. A sum of <code class="code">tpbra</code>s or <code class="code">tpket</code>s can be separated
+using the <code class="code">part</code> command.
 </p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) b1:bra([c,d]);
+(%o1)                               &lt;c, d|
+(%i2) b2:bra([a,c]);
+(%o2)                               &lt;a, c|
+(%i3) k1:ket([a,b]);
+(%o3)                               |a, b&gt;
+(%i4) k2:ket([a,c]);
+(%o4)                               |a, c&gt;
+(%i5) B:tpbra(b1,b2);
+(%o5)                     [tpbra, 1, &lt;c, d|, &lt;a, c|]
+(%i6) K:tpket(k1,k2);
+(%o6)                     [tpket, 1, |a, b&gt;, |a, c&gt;]
+(%i7) tpbraket(B,K);
+(%o7)                  kron_delta(a, c) kron_delta(b, d)
+</pre></div></div>
 
 <a class="anchor" id="tpcfset"></a><dl class="first-deffn">
 <dt class="deffn" id="index-tpcfset"><span class="category-def">Function: </span><span><strong class="def-name">tpcfset</strong> <var class="def-var-arguments">(<code class="code">cf</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpcfset"> &para;</a></span></dt>
@@ -1130,15 +1150,18 @@ tpket.
                                      3    1    1  1
 (%o1)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
                                      2    2    2  2
-(%i2) J1zJ2z(k);
+(%i2) K1:J1zJ2z(k);
                                     2
                                 hbar    3    1    1  1
 (%o2)                 [tpket, - -----, |-, - -&gt;, |-, -&gt;]
                                   4     2    2    2  2
-(%i3) Jtsqr(k);
+(%i3) K2:Jtsqr(k);
                     2   3    1    1  1                   2   3  1    1    1
 (%o3) [tpket, 4 hbar , |-, - -&gt;, |-, -&gt;] + [tpket, 2 hbar , |-, -&gt;, |-, - -&gt;]
                         2    2    2  2                       2  2    2    2
+(%i4) tpbraket(tpdagger(K1),part(K2,1));
+                                          4
+(%o4)                               - hbar
 </pre></div></div>
 
 <ul class="mini-toc">

@@ -961,8 +961,30 @@ always use the total @code{Jtxx} defined function.
 
 @anchor{tpbraket}
 @deffn {Function} tpbraket (@emph{tpbra,tpket})
-@code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
+@code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}. If either
+entry is a sum of @code{tpbra}s or @code{tpket}s the function @code{tpbraket} will
+return @code{false}. A sum of @code{tpbra}s or @code{tpket}s can be separated
+using the @code{part} command.
 @end deffn
+
+@example
+@group
+(%i1) b1:bra([c,d]);
+(%o1)                               <c, d|
+(%i2) b2:bra([a,c]);
+(%o2)                               <a, c|
+(%i3) k1:ket([a,b]);
+(%o3)                               |a, b>
+(%i4) k2:ket([a,c]);
+(%o4)                               |a, c>
+(%i5) B:tpbra(b1,b2);
+(%o5)                     [tpbra, 1, <c, d|, <a, c|]
+(%i6) K:tpket(k1,k2);
+(%o6)                     [tpket, 1, |a, b>, |a, c>]
+(%i7) tpbraket(B,K);
+(%o7)                  kron_delta(a, c) kron_delta(b, d)
+@end group
+@end example
 
 @anchor{tpcfset}
 @deffn {Function} tpcfset (@code{cf},@emph{tpket})
@@ -1160,15 +1182,18 @@ tpket.
                                      3    1    1  1
 (%o1)                    [tpket, 1, |-, - ->, |-, ->]
                                      2    2    2  2
-(%i2) J1zJ2z(k);
+(%i2) K1:J1zJ2z(k);
                                     2
                                 hbar    3    1    1  1
 (%o2)                 [tpket, - -----, |-, - ->, |-, ->]
                                   4     2    2    2  2
-(%i3) Jtsqr(k);
+(%i3) K2:Jtsqr(k);
                     2   3    1    1  1                   2   3  1    1    1
 (%o3) [tpket, 4 hbar , |-, - ->, |-, ->] + [tpket, 2 hbar , |-, ->, |-, - ->]
                         2    2    2  2                       2  2    2    2
+(%i4) tpbraket(tpdagger(K1),part(K2,1));
+                                          4
+(%o4)                               - hbar
 @end group
 @end example
 

@@ -35,21 +35,12 @@ tellsimp( [tpket,0,k1,k2], 0 );
 /***********************************************/
 /*        Function definitions                 */
 /***********************************************/
-/* throw this away if the tellsimp rules work
-tpket(a,b):= block(
-    if ketp(a)=false or ketp(b)=false then return (disp ("inputs must be kets")),
-    [tpket,1,a,b]);
-tpbra(a,b):= block(
-    if brap(a)=false or brap(b)=false then return (disp ("inputs must be bras")),
-    [tpbra,1,a,b]);
-*/
-
 tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
 tpscmult(f,tp):=[tp[1], f*tp[2], tp[3], tp[4]];
 
 tpbraket(b,k):=block([R],
-    if tpketp(k)=false or tpbrap(b)=false then return(false),
-    R: b[2]*k[2]*braket(b[3],k[3])*braket(b[4],k[4]),
+    if tpketp(k)=false or tpbrap(b)=false then return(disp("inputs must be tp lists")),
+    R: b[2]*k[2]*( b[3] . k[3] )*( b[4] . k[4] ),
     R);
 
 tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1],
