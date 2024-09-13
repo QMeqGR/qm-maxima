@@ -969,20 +969,22 @@ using the @code{part} command.
 
 @example
 @group
-(%i1) b1:bra([c,d]);
-(%o1)                               <c, d|
-(%i2) b2:bra([a,c]);
-(%o2)                               <a, c|
-(%i3) k1:ket([a,b]);
-(%o3)                               |a, b>
-(%i4) k2:ket([a,c]);
-(%o4)                               |a, c>
-(%i5) B:tpbra(b1,b2);
-(%o5)                     [tpbra, 1, <c, d|, <a, c|]
-(%i6) K:tpket(k1,k2);
-(%o6)                     [tpket, 1, |a, b>, |a, c>]
-(%i7) tpbraket(B,K);
-(%o7)                  kron_delta(a, c) kron_delta(b, d)
+(%i1) k:tpket(jmtop(1),jmbot(1));
+(%o1)                    [tpket, 1, |1, 1>, |1, - 1>]
+(%i2) K:Jtsqr(k);
+                    2                                    2
+(%o2) [tpket, 2 hbar , |1, 1>, |1, - 1>] + [tpket, 2 hbar , |1, 0>, |1, 0>]
+(%i3) B:tpdagger(k);
+(%o3)                    [tpbra, 1, <1, 1|, <1, - 1|]
+(%i4) tpbraket(B,K);
+                            inputs must be tp lists
+
+(%o4)                                done
+(%i5) tpbraket(B,part(K,1));
+                                          2
+(%o5)                               2 hbar
+(%i6) tpbraket(B,part(K,2));
+(%o6)                                  0
 @end group
 @end example
 

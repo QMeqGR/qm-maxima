@@ -185,118 +185,119 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o85) [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]
 (%i86) tpbra(bra([3/2,1/2]),bra([1/2,1/2]))
 (%o86) [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]
-(%i87) b1:bra([c,d])
-(%o87) bra([c,d])
-(%i88) b2:bra([a,c])
-(%o88) bra([a,c])
-(%i89) k1:ket([a,b])
-(%o89) ket([a,matrix([a,bra([u,d])])])
-(%i90) k2:ket([a,c])
-(%o90) ket([a,c])
-(%i91) B:tpbra(b1,b2)
-(%o91) [tpbra,1,bra([c,d]),bra([a,c])]
-(%i92) K:tpket(k1,k2)
-(%o92) [tpket,1,ket([a,matrix([a,bra([u,d])])]),ket([a,c])]
-(%i93) tpbraket(B,K)
-(%o93) 0
-(%i94) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
-(%o94) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-(%i95) tpscmult(c,k1)
-(%o95) [tpket,c,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-(%i96) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
-(%o96) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-(%i97) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]))
-(%o97) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
-(%i98) tpadd(k1,k2)
-(%o98) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i87) k:tpket(jmtop(1),jmbot(1))
+(%o87) [tpket,1,ket([1,1]),ket([1,-1])]
+(%i88) K:Jtsqr(k)
+(%o88) [tpket,2*hbar^2,ket([1,1]),ket([1,-1])]
+ +[tpket,2*hbar^2,ket([1,0]),ket([1,0])]
+(%i89) B:tpdagger(k)
+(%o89) [tpbra,1,bra([1,1]),bra([1,-1])]
+(%i90) tpbraket(B,K)
+"inputs must be tp lists"
+
+(%o90) done
+(%i91) tpbraket(B,part(K,1))
+(%o91) 2*hbar^2
+(%i92) tpbraket(B,part(K,2))
+(%o92) 0
+(%i93) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
+(%o93) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i94) tpscmult(c,k1)
+(%o94) [tpket,c,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i95) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
+(%o95) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i96) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]))
+(%o96) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+(%i97) tpadd(k1,k2)
+(%o97) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
  +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
-(%i99) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
-(%o99) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-(%i100) tpdagger(k1)
-(%o100) [tpbra,1,bra([1/2,1/2]),bra([1/2,-(1/2)])]
-(%i101) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]))
-(%o101) [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])]
-(%i102) J1z(k)
-(%o102) [tpket,(3*hbar)/2,ket([3/2,3/2]),ket([1/2,1/2])]
-(%i103) J2z(k)
-(%o103) [tpket,hbar/2,ket([3/2,3/2]),ket([1/2,1/2])]
-(%i104) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]))
-(%o104) [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])]
-(%i105) Jtz(k)
-(%o105) [tpket,2*hbar,ket([3/2,3/2]),ket([1/2,1/2])]
-(%i106) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]))
-(%o106) [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]
-(%i107) b:tpdagger(k)
-(%o107) [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]
-(%i108) J1p2m(k)
-(%o108) [tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])]
-(%i109) J1m2p(k)
-(%o109) 0
-(%i110) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]))
-(%o110) [tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])]
-(%i111) K1:J1zJ2z(k)
-(%o111) [tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])]
-(%i112) K2:Jtsqr(k)
-(%o112) [tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]
+(%i98) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
+(%o98) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i99) tpdagger(k1)
+(%o99) [tpbra,1,bra([1/2,1/2]),bra([1/2,-(1/2)])]
+(%i100) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]))
+(%o100) [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i101) J1z(k)
+(%o101) [tpket,(3*hbar)/2,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i102) J2z(k)
+(%o102) [tpket,hbar/2,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i103) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]))
+(%o103) [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i104) Jtz(k)
+(%o104) [tpket,2*hbar,ket([3/2,3/2]),ket([1/2,1/2])]
+(%i105) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]))
+(%o105) [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])]
+(%i106) b:tpdagger(k)
+(%o106) [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]
+(%i107) J1p2m(k)
+(%o107) [tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])]
+(%i108) J1m2p(k)
+(%o108) 0
+(%i109) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]))
+(%o109) [tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])]
+(%i110) K1:J1zJ2z(k)
+(%o110) [tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])]
+(%i111) K2:Jtsqr(k)
+(%o111) [tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]
  +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
-(%i113) tpbraket(tpdagger(K1),part(K2,1))
-(%o113) -hbar^4
-(%i114) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]))
-(%o114) [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])]
-(%i115) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
-(%o115) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-(%i116) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]))
-(%o116) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
-(%i117) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]))
-(%o117) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]
-(%i118) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)))
-(%o118) 0
-(%i119) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)))
-(%o119) [tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-(%i120) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)))
-(%o120) [tpket,-hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])]
-(%i121) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)))
-(%o121) 0
-(%i122) SP(1)
-(%o122) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
-(%i123) SM(1)
-(%o123) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
-(%i124) RY(1,t)
+(%i112) tpbraket(tpdagger(K1),part(K2,1))
+(%o112) -hbar^4
+(%i113) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]))
+(%o113) [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])]
+(%i114) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]))
+(%o114) [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i115) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]))
+(%o115) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+(%i116) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]))
+(%o116) [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]
+(%i117) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)))
+(%o117) 0
+(%i118) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)))
+(%o118) [tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])]
+(%i119) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)))
+(%o119) [tpket,-hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+(%i120) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)))
+(%o120) 0
+(%i121) SP(1)
+(%o121) matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0])
+(%i122) SM(1)
+(%o122) matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0])
+(%i123) RY(1,t)
 Proviso: assuming 4*t # 0 
-(%o124) matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],
+(%o123) matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],
                [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))],
                [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2])
-(%i125) UU(w*Sy,t)
+(%i124) UU(w*Sy,t)
 Proviso: assuming 64*t*w # 0 
-(%o125) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
-(%i126) K:ket([a1,b1])
-(%o126) ket([a1,bra([c,d])])
-(%i127) B:bra([a2,b2])
-(%o127) bra([a2,bra([a,c])])
-(%i128) braket(B,K)
-(%o128) kron_delta(bra([a,c]),bra([c,d]))*kron_delta(a1,a2)
-(%i129) bra([a1,Id,c1]) . ket([a2,b2,c2])
-(%o129) ket(["-",bra([a,c]),"-"])*kron_delta(a1,a2)*kron_delta(c1,c2)
-(%i130) bra([a1,b1,c1]) . ket([Id,b2,c2])
-(%o130) kron_delta(bra([a,c]),bra([c,d]))*bra([a1,"-","-"])*kron_delta(c1,c2)
-(%i131) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
-(%o131) (ket([u,d])-ket([d,u]))/sqrt(2)
-(%i132) rho:bell . dagger(bell)
-(%o132) (ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])
+(%o124) matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)])
+(%i125) K:ket([a1,b1])
+(%o125) ket([a1,b1])
+(%i126) B:bra([a2,b2])
+(%o126) bra([a2,b2])
+(%i127) braket(B,K)
+(%o127) kron_delta(a1,a2)*kron_delta(b1,b2)
+(%i128) bra([a1,Id,c1]) . ket([a2,b2,c2])
+(%o128) ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2)
+(%i129) bra([a1,b1,c1]) . ket([Id,b2,c2])
+(%o129) bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2)
+(%i130) bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]))
+(%o130) (ket([u,d])-ket([d,u]))/sqrt(2)
+(%i131) rho:bell . dagger(bell)
+(%o131) (ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])
                                 -ket([d,u]) . bra([u,d])
                                 +ket([d,u]) . bra([d,u]))
  /2
-(%i133) assume(notequal(u,d))
-(%o133) [notequal(u,d)]
-(%i134) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id])
-(%o134) ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2
-(%i135) declare(n,integer,n,scalar)
-(%o135) done
-(%i136) ap . ket([n])
-(%o136) sqrt(n+1)*ket([n+1])
-(%i137) am . ket([n])
-(%o137) ket([n-1])*sqrt(n)
-/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:137:23:incorrect syntax: ket is not an infix operator
+(%i132) assume(notequal(u,d))
+(%o132) [notequal(u,d)]
+(%i133) trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id])
+(%o133) ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2
+(%i134) declare(n,integer,n,scalar)
+(%o134) done
+(%i135) ap . ket([n])
+(%o135) sqrt(n+1)*ket([n+1])
+(%i136) am . ket([n])
+(%o136) ket([n-1])*sqrt(n)
+/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:136:23:incorrect syntax: ket is not an infix operator
 [n]).(ap+am)^^4.ket(
                   ^
-(%o139) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
+(%o138) "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt"
