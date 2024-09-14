@@ -38,7 +38,17 @@ tellsimp( [tpket,0,k1,k2], 0 );
 tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
 tpscmult(f,tp):=[tp[1], f*tp[2], tp[3], tp[4]];
 
-tpbraket(b,k):=block([R],
+matchdeclare([cx1,cx2],cnump,tpb,lambda([x],x[1]=tpbra),tpk,lambda([x],x[1]=tpket));
+tellsimpafter(tpb.tpk, tpbraket_single(tpb,tpk));
+
+flin(x):=x; declare(flin,linear);
+tpbraket(x,y):=block([A1,A2,tmp],
+    listarith:false,
+    A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
+    listarith:true,
+    tmp);
+
+tpbraket_single(b,k):=block([R],
     if tpketp(k)=false or tpbrap(b)=false then return(disp("Inputs must be a single tpbra and tpket.")),
     R: b[2]*k[2]*( b[3] . k[3] )*( b[4] . k[4] ),
     R);

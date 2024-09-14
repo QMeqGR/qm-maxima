@@ -264,13 +264,7 @@ B:tpdagger(k);
 [tpbra,1,bra([1,1]),bra([1,-1])] $
 
 tpbraket(B,K);
-done $
-
-tpbraket(B,part(K,1));
 2*hbar^2 $
-
-tpbraket(B,part(K,2));
-0 $
 
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
@@ -323,14 +317,14 @@ J1m2p(k);
 k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
 
-K1:J1zJ2z(k);
-[tpket,-(hbar^2/4),ket([3/2,-(1/2)]),ket([1/2,1/2])] $
+B:tpdagger(k);
+[tpbra,1,bra([3/2,-(1/2)]),bra([1/2,1/2])] $
 
 K2:Jtsqr(k);
 [tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
 
-tpbraket(tpdagger(K1),part(K2,1));
--hbar^4 $
+tpbraket(B,K2);
+4*hbar^2 $
 
 phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $

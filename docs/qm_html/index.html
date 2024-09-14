@@ -944,10 +944,7 @@ always use the total <code class="code">Jtxx</code> defined function.
 
 <a class="anchor" id="tpbraket"></a><dl class="first-deffn">
 <dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
-<dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>. If either
-entry is a sum of <code class="code">tpbra</code>s or <code class="code">tpket</code>s the function <code class="code">tpbraket</code> will
-return <code class="code">false</code>. A sum of <code class="code">tpbra</code>s or <code class="code">tpket</code>s can be separated
-using the <code class="code">part</code> command.
+<dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
 </p></dd></dl>
 
 <div class="example">
@@ -959,14 +956,8 @@ using the <code class="code">part</code> command.
 (%i3) B:tpdagger(k);
 (%o3)                    [tpbra, 1, &lt;1, 1|, &lt;1, - 1|]
 (%i4) tpbraket(B,K);
-                   Inputs must be a single tpbra and tpket.
-
-(%o4)                                done
-(%i5) tpbraket(B,part(K,1));
                                           2
-(%o5)                               2 hbar
-(%i6) tpbraket(B,part(K,2));
-(%o6)                                  0
+(%o4)                               2 hbar
 </pre></div></div>
 
 <a class="anchor" id="tpcfset"></a><dl class="first-deffn">
@@ -1152,18 +1143,17 @@ tpket.
                                      3    1    1  1
 (%o1)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
                                      2    2    2  2
-(%i2) K1:J1zJ2z(k);
-                                    2
-                                hbar    3    1    1  1
-(%o2)                 [tpket, - -----, |-, - -&gt;, |-, -&gt;]
-                                  4     2    2    2  2
+(%i2) B:tpdagger(k);
+                                     3    1    1  1
+(%o2)                    [tpbra, 1, &lt;-, - -|, &lt;-, -|]
+                                     2    2    2  2
 (%i3) K2:Jtsqr(k);
                     2   3    1    1  1                   2   3  1    1    1
 (%o3) [tpket, 4 hbar , |-, - -&gt;, |-, -&gt;] + [tpket, 2 hbar , |-, -&gt;, |-, - -&gt;]
                         2    2    2  2                       2  2    2    2
-(%i4) tpbraket(tpdagger(K1),part(K2,1));
-                                          4
-(%o4)                               - hbar
+(%i4) tpbraket(B,K2);
+                                          2
+(%o4)                               4 hbar
 </pre></div></div>
 
 <ul class="mini-toc">

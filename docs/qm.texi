@@ -961,10 +961,7 @@ always use the total @code{Jtxx} defined function.
 
 @anchor{tpbraket}
 @deffn {Function} tpbraket (@emph{tpbra,tpket})
-@code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}. If either
-entry is a sum of @code{tpbra}s or @code{tpket}s the function @code{tpbraket} will
-return @code{false}. A sum of @code{tpbra}s or @code{tpket}s can be separated
-using the @code{part} command.
+@code{tpbraket} returns the bracket of a @code{tpbra} and a @code{tpket}.
 @end deffn
 
 @example
@@ -977,14 +974,8 @@ using the @code{part} command.
 (%i3) B:tpdagger(k);
 (%o3)                    [tpbra, 1, <1, 1|, <1, - 1|]
 (%i4) tpbraket(B,K);
-                   Inputs must be a single tpbra and tpket.
-
-(%o4)                                done
-(%i5) tpbraket(B,part(K,1));
                                           2
-(%o5)                               2 hbar
-(%i6) tpbraket(B,part(K,2));
-(%o6)                                  0
+(%o4)                               2 hbar
 @end group
 @end example
 
@@ -1184,18 +1175,17 @@ tpket.
                                      3    1    1  1
 (%o1)                    [tpket, 1, |-, - ->, |-, ->]
                                      2    2    2  2
-(%i2) K1:J1zJ2z(k);
-                                    2
-                                hbar    3    1    1  1
-(%o2)                 [tpket, - -----, |-, - ->, |-, ->]
-                                  4     2    2    2  2
+(%i2) B:tpdagger(k);
+                                     3    1    1  1
+(%o2)                    [tpbra, 1, <-, - -|, <-, -|]
+                                     2    2    2  2
 (%i3) K2:Jtsqr(k);
                     2   3    1    1  1                   2   3  1    1    1
 (%o3) [tpket, 4 hbar , |-, - ->, |-, ->] + [tpket, 2 hbar , |-, ->, |-, - ->]
                         2    2    2  2                       2  2    2    2
-(%i4) tpbraket(tpdagger(K1),part(K2,1));
-                                          4
-(%o4)                               - hbar
+(%i4) tpbraket(B,K2);
+                                          2
+(%o4)                               4 hbar
 @end group
 @end example
 
