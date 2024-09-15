@@ -44,6 +44,14 @@ The @code{qm} package was written by Eric Majzoub, University of
 Missouri (email: majzoube-at-umsystem.edu), with help from Robert Dodier
 and Barton Willis.
 
+This purpose of this package is to provide computational tools for
+solving quantum mechanics problems in a finite-dimensional Hilbert
+space. It was written with students in mind and is appropriate for
+upper-level undergraduate quantum mechanics at the level of Townsend's
+@emph{A Modern Introduction to Quantum Mechanics}. Please report any
+errors or unexpected behavior by submitting an issue on the Github page
+for this project.
+
 The package is loaded with: @code{load(qm);}
 
 The @code{qm} package provides functions and standard definitions to
@@ -1189,9 +1197,62 @@ tpket.
 @end group
 @end example
 
-@subsubsection Explicit computation
+@subsubsection Explicit computations
 
-Let's see how to compute the matrix elements of the operator
+For the first example, let us see how to determine the total spin state
+@code{|j,m>} of the two-particle state @code{|1/2,1/2;1,1>}.
+
+@example
+@group
+(%i1) k:tpket(jmtop(1/2),jmtop(1));
+                                      1  1
+(%o1)                     [tpket, 1, |-, ->, |1, 1>]
+                                      2  2
+(%i2) Jtsqr(k);
+                                      2
+                               15 hbar    1  1
+(%o2)                  [tpket, --------, |-, ->, |1, 1>]
+                                  4       2  2
+(%i3) get_j(15/4);
+                                         3
+(%o3)                                j = -
+                                         2
+@end group
+@end example
+
+This is an eigenket of @code{Jtsqr}, thus @code{|3/2,3/2> =
+|1/2,1/2;1,1>}, and it is also the top state. One can now apply the
+lowering operator to find the other states: @code{|3/2,1/2>},
+@code{|3/2,-1/2>}, and @code{|3/2,-3/2>}.
+
+@example
+@group
+(%i1) k:tpket(jmtop(1/2),jmtop(1));
+                                      1  1
+(%o1)                     [tpket, 1, |-, ->, |1, 1>]
+                                      2  2
+(%i2) k2:Jtm(k);
+                             1  1                            1    1
+(%o2) [tpket, sqrt(2) hbar, |-, ->, |1, 0>] + [tpket, hbar, |-, - ->, |1, 1>]
+                             2  2                            2    2
+(%i3) k3:Jtm(k2);
+               3/2     2   1    1
+(%o3) [tpket, 2    hbar , |-, - ->, |1, 0>]
+                           2    2
+                                                           2   1  1
+                                           + [tpket, 2 hbar , |-, ->, |1, - 1>]
+                                                               2  2
+(%i4) k4:Jtm(k3);
+                    3   1    1
+(%o4) [tpket, 4 hbar , |-, - ->, |1, - 1>]
+                        2    2
+                                                         3   1    1
+                                         + [tpket, 2 hbar , |-, - ->, |1, - 1>]
+                                                             2    2
+@end group
+@end example
+
+Let us see how to compute the matrix elements of the operator
 @code{(J1z-J1z)} in the z-basis for two spin-1/2 particles. Note that we
 use the @code{tpadd} and @code{tpscmult} functions to add the two
 operators. First, we form the four basis kets

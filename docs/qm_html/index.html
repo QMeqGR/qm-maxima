@@ -67,6 +67,14 @@ Next: <a href="#Functions-and-Variables-for-qm" accesskey="n" rel="next">Functio
 Missouri (email: majzoube-at-umsystem.edu), with help from Robert Dodier
 and Barton Willis.
 </p>
+<p>This purpose of this package is to provide computational tools for
+solving quantum mechanics problems in a finite-dimensional Hilbert
+space. It was written with students in mind and is appropriate for
+upper-level undergraduate quantum mechanics at the level of Townsend&rsquo;s
+<em class="emph">A Modern Introduction to Quantum Mechanics</em>. Please report any
+errors or unexpected behavior by submitting an issue on the Github page
+for this project.
+</p>
 <p>The package is loaded with: <code class="code">load(qm);</code>
 </p>
 <p>The <code class="code">qm</code> package provides functions and standard definitions to
@@ -1157,12 +1165,61 @@ tpket.
 </pre></div></div>
 
 <ul class="mini-toc">
-<li><a href="#Explicit-computation" accesskey="1">Explicit computation</a></li>
+<li><a href="#Explicit-computations" accesskey="1">Explicit computations</a></li>
 </ul>
-<div class="subsubsection-level-extent" id="Explicit-computation">
-<h4 class="subsubsection"><span>1.2.7.1 Explicit computation<a class="copiable-link" href="#Explicit-computation"> &para;</a></span></h4>
+<div class="subsubsection-level-extent" id="Explicit-computations">
+<h4 class="subsubsection"><span>1.2.7.1 Explicit computations<a class="copiable-link" href="#Explicit-computations"> &para;</a></span></h4>
 
-<p>Let&rsquo;s see how to compute the matrix elements of the operator
+<p>For the first example, let us see how to determine the total spin state
+<code class="code">|j,m&gt;</code> of the two-particle state <code class="code">|1/2,1/2;1,1&gt;</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(jmtop(1/2),jmtop(1));
+                                      1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |1, 1&gt;]
+                                      2  2
+(%i2) Jtsqr(k);
+                                      2
+                               15 hbar    1  1
+(%o2)                  [tpket, --------, |-, -&gt;, |1, 1&gt;]
+                                  4       2  2
+(%i3) get_j(15/4);
+                                         3
+(%o3)                                j = -
+                                         2
+</pre></div></div>
+
+<p>This is an eigenket of <code class="code">Jtsqr</code>, thus <code class="code">|3/2,3/2&gt; =
+|1/2,1/2;1,1&gt;</code>, and it is also the top state. One can now apply the
+lowering operator to find the other states: <code class="code">|3/2,1/2&gt;</code>,
+<code class="code">|3/2,-1/2&gt;</code>, and <code class="code">|3/2,-3/2&gt;</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(jmtop(1/2),jmtop(1));
+                                      1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |1, 1&gt;]
+                                      2  2
+(%i2) k2:Jtm(k);
+                             1  1                            1    1
+(%o2) [tpket, sqrt(2) hbar, |-, -&gt;, |1, 0&gt;] + [tpket, hbar, |-, - -&gt;, |1, 1&gt;]
+                             2  2                            2    2
+(%i3) k3:Jtm(k2);
+               3/2     2   1    1
+(%o3) [tpket, 2    hbar , |-, - -&gt;, |1, 0&gt;]
+                           2    2
+                                                           2   1  1
+                                           + [tpket, 2 hbar , |-, -&gt;, |1, - 1&gt;]
+                                                               2  2
+(%i4) k4:Jtm(k3);
+                    3   1    1
+(%o4) [tpket, 4 hbar , |-, - -&gt;, |1, - 1&gt;]
+                        2    2
+                                                         3   1    1
+                                         + [tpket, 2 hbar , |-, - -&gt;, |1, - 1&gt;]
+                                                             2    2
+</pre></div></div>
+
+<p>Let us see how to compute the matrix elements of the operator
 <code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles. Note that we
 use the <code class="code">tpadd</code> and <code class="code">tpscmult</code> functions to add the two
 operators. First, we form the four basis kets

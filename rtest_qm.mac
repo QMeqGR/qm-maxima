@@ -326,6 +326,27 @@ K2:Jtsqr(k);
 tpbraket(B,K2);
 4*hbar^2 $
 
+k:tpket(jmtop(1/2),jmtop(1));
+[tpket,1,ket([1/2,1/2]),ket([1,1])] $
+
+Jtsqr(k);
+[tpket,(15*hbar^2)/4,ket([1/2,1/2]),ket([1,1])] $
+
+get_j(15/4);
+j = 3/2 $
+
+k:tpket(jmtop(1/2),jmtop(1));
+[tpket,1,ket([1/2,1/2]),ket([1,1])] $
+
+k2:Jtm(k);
+[tpket,sqrt(2)*hbar,ket([1/2,1/2]),ket([1,0])] $
+
+k3:Jtm(k2);
+[tpket,2^(3/2)*hbar^2,ket([1/2,-(1/2)]),ket([1,0])] $
+
+k4:Jtm(k3);
+[tpket,4*hbar^3,ket([1/2,-(1/2)]),ket([1,-1])] $
+
 phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
