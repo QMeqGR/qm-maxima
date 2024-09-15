@@ -691,7 +691,7 @@ instantiated as:
 
 and the corresponding bra is instantiated as:
 
-             ‘[tpket,1,<j1,m1|,<j2,m2|]’
+             ‘[tpbra,1,<j1,m1|,<j2,m2|]’
 
 where the factor of 1 is the multiplicative factor of the tensor
 product.  We call this the _common factor_ (cf) of the tensor product.
@@ -850,6 +850,11 @@ total ‘Jtxx’ defined function.
  -- Function: Jtsqr (_tpket_)
      ‘Jtsqr’ returns ‘(J_{1}^{2}+J_{2}^{2}+
      J_{1+}J_{2-}+J_{1-}J_{2+}+J_{1z}J_{2z})’ for the tpket.
+
+ -- Function: get_j (q)
+     ‘get_j’ is a convenience function that computes ‘j’ from ‘j(j+1)=q’
+     where ‘q’ is a rational number.  This function is useful after
+     using the function ‘Jtsqr’.
 
      (%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
                                            3  1    1  1
@@ -1128,11 +1133,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                              (line 922)
+                                                              (line 927)
 * anticommutator:                        Functions and Variables for qm.
                                                               (line 302)
 * ap:                                    Functions and Variables for qm.
-                                                              (line 918)
+                                                              (line 923)
 * autobra:                               Functions and Variables for qm.
                                                               (line 124)
 * autoket:                               Functions and Variables for qm.
@@ -1149,6 +1154,8 @@ Appendix A Function and Variable index
                                                               (line 139)
 * expect:                                Functions and Variables for qm.
                                                               (line 355)
+* get_j:                                 Functions and Variables for qm.
+                                                              (line 679)
 * J1m:                                   Functions and Variables for qm.
                                                               (line 657)
 * J1m2p:                                 Functions and Variables for qm.
@@ -1218,11 +1225,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                               (line 362)
 * RX:                                    Functions and Variables for qm.
-                                                              (line 820)
+                                                              (line 825)
 * RY:                                    Functions and Variables for qm.
-                                                              (line 824)
+                                                              (line 829)
 * RZ:                                    Functions and Variables for qm.
-                                                              (line 828)
+                                                              (line 833)
 * sigmax:                                Functions and Variables for qm.
                                                               (line 256)
 * sigmay:                                Functions and Variables for qm.
@@ -1230,9 +1237,9 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                               (line 262)
 * SM:                                    Functions and Variables for qm.
-                                                              (line 799)
+                                                              (line 804)
 * SP:                                    Functions and Variables for qm.
-                                                              (line 796)
+                                                              (line 801)
 * spin_mbra:                             Functions and Variables for qm.
                                                               (line 386)
 * spin_mket:                             Functions and Variables for qm.
@@ -1264,7 +1271,7 @@ Appendix A Function and Variable index
 * tpscmult:                              Functions and Variables for qm.
                                                               (line 566)
 * UU:                                    Functions and Variables for qm.
-                                                              (line 849)
+                                                              (line 854)
 * xm:                                    Functions and Variables for qm.
                                                               (line 201)
 * xp:                                    Functions and Variables for qm.
@@ -1357,15 +1364,16 @@ Ref: J1p2m33427
 Ref: J1m2p33519
 Ref: J1zJ2z33611
 Ref: Jtsqr33705
-Ref: SP39739
-Ref: SM39832
-Ref: RX40667
-Ref: RY40834
-Ref: RZ41001
-Ref: UU41981
-Ref: ap45259
-Ref: am45372
-Node: Function and Variable Index46265
+Ref: get_j33849
+Ref: SP39958
+Ref: SM40051
+Ref: RX40886
+Ref: RY41053
+Ref: RZ41220
+Ref: UU42200
+Ref: ap45478
+Ref: am45591
+Node: Function and Variable Index46484
 
 End Tag Table
 

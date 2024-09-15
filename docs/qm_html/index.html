@@ -911,7 +911,7 @@ is instantiated as:
 </p>
 <p>and the corresponding bra is instantiated as:
 </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">[tpket,1,&lt;j1,m1|,&lt;j2,m2|]</code>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">[tpbra,1,&lt;j1,m1|,&lt;j2,m2|]</code>
 </p>
 <p>where the factor of 1 is the multiplicative factor of the tensor
 product. We call this the <em class="emph">common factor</em> (cf) of the tensor
@@ -1130,6 +1130,13 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 <dd><p><code class="code">Jtsqr</code> returns <code class="code">(J<sub class="sub">1</sub><sup class="sup">2</sup>+J<sub class="sub">2</sub><sup class="sup">2</sup>+
 J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>+J<sub class="sub">1-</sub>J<sub class="sub">2+</sub>+J<sub class="sub">1z</sub>J<sub class="sub">2z</sub>)</code> for the
 tpket.
+</p></dd></dl>
+
+<a class="anchor" id="get_005fj"></a><dl class="first-deffn">
+<dt class="deffn" id="index-get_005fj"><span class="category-def">Function: </span><span><strong class="def-name">get_j</strong> <var class="def-var-arguments">(<code class="code">q</code>)</var><a class="copiable-link" href="#index-get_005fj"> &para;</a></span></dt>
+<dd><p><code class="code">get_j</code> is a convenience function that computes <code class="code">j</code> from
+<code class="code">j(j+1)=q</code> where <code class="code">q</code> is a rational number. This function is
+useful after using the function <code class="code">Jtsqr</code>.
 </p></dd></dl>
 
 <div class="example">

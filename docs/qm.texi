@@ -922,7 +922,7 @@ is instantiated as:
 @noindent
 and the corresponding bra is instantiated as:
 
-@ @ @ @ @ @ @ @ @ @ @code{[tpket,1,<j1,m1|,<j2,m2|]}
+@ @ @ @ @ @ @ @ @ @ @code{[tpbra,1,<j1,m1|,<j2,m2|]}
 
 @noindent
 where the factor of 1 is the multiplicative factor of the tensor
@@ -1159,6 +1159,13 @@ and returning @code{(J@sub{1z}+J@sub{2z})}.
 @code{Jtsqr} returns @code{(J@sub{1}@sup{2}+J@sub{2}@sup{2}+
 J@sub{1+}J@sub{2-}+J@sub{1-}J@sub{2+}+J@sub{1z}J@sub{2z})} for the
 tpket.
+@end deffn
+
+@anchor{get_j}
+@deffn {Function} get_j (@code{q})
+@code{get_j} is a convenience function that computes @code{j} from
+@code{j(j+1)=q} where @code{q} is a rational number. This function is
+useful after using the function @code{Jtsqr}.
 @end deffn
 
 @example

@@ -42,7 +42,8 @@ tpscmult(f,tp):=[tp[1], f*tp[2], tp[3], tp[4]];
 matchdeclare([cx1,cx2],cnump,tpb,lambda([x],x[1]=tpbra),tpk,lambda([x],x[1]=tpket));
 tellsimpafter(tpb.tpk, tpbraket_single(tpb,tpk));
 
-flin(x):=x; declare(flin,linear);
+flin(x):=x;
+declare(flin,linear);
 tpbraket(x,y):=block([A1,A2,tmp],
     listarith:false,
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
