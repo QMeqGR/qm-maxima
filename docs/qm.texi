@@ -83,6 +83,11 @@ and
 
 @ @ @ @ @ @ @ @ @code{<z-| = [0 1]}.
 
+This bra vector can be created with the @code{mbra} command
+
+@ @ @ @ @ @ @ @ @code{mbra([a,b])}
+
+or taking the quantum mechanical dagger of the corresponding ket.
 In a Maxima session this looks like the following. The basis kets
 @code{@{zp,zm@}} are transformed into bras using the @code{dagger}
 function.
@@ -93,7 +98,6 @@ function.
 (%o1)                              [ a  b ]
 @end group
 @end example
-
 
 @subsection Types of kets and bras
 
@@ -200,6 +204,15 @@ products of (j,m) kets used in the addition of angular momentum
 computations. For this reason there are a set of @code{tpket}s and
 associated @code{tpXX} functions defined in section @code{(j,m)-kets and
 bras}.
+
+@subsection Types of spin operators
+
+When working with kets and bras in the matrix representation, use the
+spin operators @code{Sxx}. When working with abstract kets and bras in
+the (j,m) representation use the operators @code{Jxx}. The family of
+@code{Sxx} operators are represented as matrices in Maxima, while the
+family of @code{Jxx} operators are rule based or function based.
+
 
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm

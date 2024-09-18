@@ -130,7 +130,7 @@ Jtsqr(k):=block([R,r1,r2],
     R: tpadd(r1,r2),
     R);
 
-get_j(x):=block([out,jval],
+get_j(x):=block([out,jval,j],
     if rationalp(x)=false then return(disp("Input must be rational number.")),
     out: solve(j*(j+1)=x,j),
     for i: 1 thru 2 do if rhs(out[i])>0 then jval:out[i],

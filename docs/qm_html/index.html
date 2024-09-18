@@ -105,7 +105,12 @@ A bra vector in the <code class="code">z</code>-basis may be written as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z-| = [0 1]</code>.
 </p>
-<p>In a Maxima session this looks like the following. The basis kets
+<p>This bra vector can be created with the <code class="code">mbra</code> command
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">mbra([a,b])</code>
+</p>
+<p>or taking the quantum mechanical dagger of the corresponding ket.
+In a Maxima session this looks like the following. The basis kets
 <code class="code">{zp,zm}</code> are transformed into bras using the <code class="code">dagger</code>
 function.
 </p>
@@ -114,10 +119,10 @@ function.
 (%o1)                              [ a  b ]
 </pre></div></div>
 
-
 <ul class="mini-toc">
 <li><a href="#Types-of-kets-and-bras" accesskey="1">Types of kets and bras</a></li>
 <li><a href="#Special-ket-types" accesskey="2">Special ket types</a></li>
+<li><a href="#Types-of-spin-operators" accesskey="3">Types of spin operators</a></li>
 </ul>
 <div class="subsection-level-extent" id="Types-of-kets-and-bras">
 <h4 class="subsection"><span>1.1.1 Types of kets and bras<a class="copiable-link" href="#Types-of-kets-and-bras"> &para;</a></span></h4>
@@ -219,6 +224,17 @@ computations. For this reason there are a set of <code class="code">tpket</code>
 associated <code class="code">tpXX</code> functions defined in section <code class="code">(j,m)-kets and
 bras</code>.
 </p>
+</div>
+<div class="subsection-level-extent" id="Types-of-spin-operators">
+<h4 class="subsection"><span>1.1.3 Types of spin operators<a class="copiable-link" href="#Types-of-spin-operators"> &para;</a></span></h4>
+
+<p>When working with kets and bras in the matrix representation, use the
+spin operators <code class="code">Sxx</code>. When working with abstract kets and bras in
+the (j,m) representation use the operators <code class="code">Jxx</code>. The family of
+<code class="code">Sxx</code> operators are represented as matrices in Maxima, while the
+family of <code class="code">Jxx</code> operators are rule based or function based.
+</p>
+
 <hr>
 </div>
 </div>

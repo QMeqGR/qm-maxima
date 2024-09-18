@@ -77,7 +77,12 @@ and
 
            ‘<z-| = [0 1]’.
 
-   In a Maxima session this looks like the following.  The basis kets
+   This bra vector can be created with the ‘mbra’ command
+
+           ‘mbra([a,b])’
+
+   or taking the quantum mechanical dagger of the corresponding ket.  In
+a Maxima session this looks like the following.  The basis kets
 ‘{zp,zm}’ are transformed into bras using the ‘dagger’ function.
 
      (%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
@@ -171,6 +176,15 @@ representation or the general ket representation.  These include tensor
 products of (j,m) kets used in the addition of angular momentum
 computations.  For this reason there are a set of ‘tpket’s and
 associated ‘tpXX’ functions defined in section ‘(j,m)-kets and bras’.
+
+1.1.3 Types of spin operators
+-----------------------------
+
+When working with kets and bras in the matrix representation, use the
+spin operators ‘Sxx’.  When working with abstract kets and bras in the
+(j,m) representation use the operators ‘Jxx’.  The family of ‘Sxx’
+operators are represented as matrices in Maxima, while the family of
+‘Jxx’ operators are rule based or function based.
 
 
 File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to package qm,  Up: Top
@@ -1296,84 +1310,84 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm6699
-Ref: ket7052
-Ref: ketp7484
-Ref: bra7665
-Ref: brap8097
-Ref: mket8278
-Ref: mketp8985
-Ref: mbra9625
-Ref: mbrap10204
-Ref: autoket10930
-Ref: autobra11802
-Ref: dagger12472
-Ref: braket12910
-Ref: norm13546
-Ref: magsqr14002
-Ref: zp14770
-Ref: zm14833
-Ref: xp14896
-Ref: xm14959
-Ref: yp15022
-Ref: ym15085
-Ref: sigmax17137
-Ref: sigmay17194
-Ref: sigmaz17251
-Ref: Sx17308
-Ref: Sy17365
-Ref: Sz17422
-Ref: commutator18059
-Ref: anticommutator18729
-Ref: SX19136
-Ref: SY19349
-Ref: SZ19562
-Ref: expect20954
-Ref: qm_variance21197
-Ref: spin_mket22022
-Ref: spin_mbra22192
-Ref: jmtop24255
-Ref: jmbot24499
-Ref: jmket24747
-Ref: jmketp24982
-Ref: jmbrap25290
-Ref: jmcheck25436
-Ref: JP25609
-Ref: JM25785
-Ref: Jsqr25961
-Ref: Jz26130
-Ref: tpket27914
-Ref: tpbra28239
-Ref: tpbraket28564
-Ref: tpcfset29155
-Ref: tpscmult29271
-Ref: tpadd29812
-Ref: tpdagger30679
-Ref: J1z31241
-Ref: J2z31367
-Ref: Jtz32109
-Ref: J1sqr32676
-Ref: J2sqr32773
-Ref: J1p32871
-Ref: J2p32965
-Ref: Jtp33060
-Ref: J1m33149
-Ref: J2m33243
-Ref: Jtm33338
-Ref: J1p2m33427
-Ref: J1m2p33519
-Ref: J1zJ2z33611
-Ref: Jtsqr33705
-Ref: get_j33849
-Ref: SP39958
-Ref: SM40051
-Ref: RX40886
-Ref: RY41053
-Ref: RZ41220
-Ref: UU42200
-Ref: ap45478
-Ref: am45591
-Node: Function and Variable Index46484
+Node: Functions and Variables for qm7264
+Ref: ket7617
+Ref: ketp8049
+Ref: bra8230
+Ref: brap8662
+Ref: mket8843
+Ref: mketp9550
+Ref: mbra10190
+Ref: mbrap10769
+Ref: autoket11495
+Ref: autobra12367
+Ref: dagger13037
+Ref: braket13475
+Ref: norm14111
+Ref: magsqr14567
+Ref: zp15335
+Ref: zm15398
+Ref: xp15461
+Ref: xm15524
+Ref: yp15587
+Ref: ym15650
+Ref: sigmax17702
+Ref: sigmay17759
+Ref: sigmaz17816
+Ref: Sx17873
+Ref: Sy17930
+Ref: Sz17987
+Ref: commutator18624
+Ref: anticommutator19294
+Ref: SX19701
+Ref: SY19914
+Ref: SZ20127
+Ref: expect21519
+Ref: qm_variance21762
+Ref: spin_mket22587
+Ref: spin_mbra22757
+Ref: jmtop24820
+Ref: jmbot25064
+Ref: jmket25312
+Ref: jmketp25547
+Ref: jmbrap25855
+Ref: jmcheck26001
+Ref: JP26174
+Ref: JM26350
+Ref: Jsqr26526
+Ref: Jz26695
+Ref: tpket28479
+Ref: tpbra28804
+Ref: tpbraket29129
+Ref: tpcfset29720
+Ref: tpscmult29836
+Ref: tpadd30377
+Ref: tpdagger31244
+Ref: J1z31806
+Ref: J2z31932
+Ref: Jtz32674
+Ref: J1sqr33241
+Ref: J2sqr33338
+Ref: J1p33436
+Ref: J2p33530
+Ref: Jtp33625
+Ref: J1m33714
+Ref: J2m33808
+Ref: Jtm33903
+Ref: J1p2m33992
+Ref: J1m2p34084
+Ref: J1zJ2z34176
+Ref: Jtsqr34270
+Ref: get_j34414
+Ref: SP40523
+Ref: SM40616
+Ref: RX41451
+Ref: RY41618
+Ref: RZ41785
+Ref: UU42765
+Ref: ap46043
+Ref: am46156
+Node: Function and Variable Index47049
 
 End Tag Table
 
