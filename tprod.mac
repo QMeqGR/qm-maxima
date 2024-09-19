@@ -18,8 +18,8 @@ momentum calculations of Clebsh-Gordon coefficients. -ehm
     Maxima list [tpket,CF,k1,k2] 
 where CF=common factors that come out of say Jz, etc. */
 
-tpketp(k):=if k[1]=tpket then true else false $
-tpbrap(k):=if k[1]=tpbra then true else false $
+tpketp(k):= if k[1]=tpket then true else false $
+tpbrap(k):= if k[1]=tpbra then true else false $
 
 matchdeclare([k1,k2,k3,k4],ketp,[b1,b2],brap,ll,listp,pf,numberp);
 tellsimp( tpket(k1,k2), [tpket,1,k1,k2] );
@@ -28,6 +28,7 @@ tellsimp( tpbra(b1,b2), [tpbra,1,b1,b2] );
 matchdeclare([c1,c2,c3,c4,cf1,cf2],all,[cx1,cx2],cnump);
 tellsimpafter( [tpket,cf1,c1*k1,c2*k2], [tpket,cf1*c1*c2,k1,k2] );
 simp:false; tellsimpafter( cx1*[tpket,cf1,k1,k2] , [tpket,cx1*cf1,k1,k2] ); simp:true;
+simp:false; tellsimpafter( [tpket,c1,c3,c4]+[tpk,c2,c3,c4], [tpket,c1+c2,c3,c4] ); simp:true;
 
 tellsimp( [tpket,cf1,0,k2], 0 );
 tellsimp( [tpket,cf1,k1,0], 0 );
@@ -94,23 +95,33 @@ J2sqr(k):= if tpketp(k) then [tpket,k[2],k[3],Jsqr(k[4])];
 
 J1p(k):= if tpketp(k) then [tpket,k[2],Jp(k[3]),k[4]];
 J2p(k):= if tpketp(k) then [tpket,k[2],k[3],Jp(k[4])];
-Jtp(k):= block([R:0],listarith:false,
+Jtp(k):= block([R:0,R2:0],listarith:false,
 	 if listp(k)=true and length(k)=4 then R: J1p(k)+J2p(k)
 	 elseif listp(k)=false then
 	 	for i: 1 thru length(k) do
          	R: R + J1p(part(k,i)) + J2p(part(k,i)),
 	 listarith:true,
-	 R);
+         if R=0 then return(0),
+         if listp(R)=true then return(R),
+         if listp(R)=false and length(R) > 1 then
+            R2: part(R,1),
+            for i: 2 thru length(R) do R2:tpadd(R2,part(R,i)),
+            return(R2));
 
 J1m(k):= if tpketp(k) then [tpket,k[2],Jm(k[3]),k[4]];
 J2m(k):= if tpketp(k) then [tpket,k[2],k[3],Jm(k[4])];
-Jtm(k):= block([R:0],listarith:false,
+Jtm(k):= block([R:0,R2:0],listarith:false,
 	 if listp(k)=true and length(k)=4 then R: J1m(k)+J2m(k)
 	 elseif listp(k)=false then
 	 	for i: 1 thru length(k) do
          	R: R + J1m(part(k,i)) + J2m(part(k,i)),
 	 listarith:true,
-	 R);
+         if R=0 then return(0),
+         if listp(R)=true then return(R),
+         if listp(R)=false and length(R) > 1 then
+            R2: part(R,1),
+            for i: 2 thru length(R) do R2:tpadd(R2,part(R,i)),
+            return(R2));
 
 J1p2m(k):= block([R],
     if tpketp(k)=false then return(false),
