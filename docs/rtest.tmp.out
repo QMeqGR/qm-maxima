@@ -173,9 +173,9 @@ read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt
 (%o79) true
 (%i80) k:ket([j,m])
 (%o80) ket([j,m])
-(%i81) JP(k)
+(%i81) Jp(k)
 (%o81) hbar*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1))
-(%i82) JM(k)
+(%i82) Jm(k)
 (%o82) hbar*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m)
 (%i83) Jsqr(k)
 (%o83) hbar^2*j*(j+1)*ket([j,m])

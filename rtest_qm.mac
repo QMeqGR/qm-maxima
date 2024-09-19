@@ -236,10 +236,10 @@ true $
 k:ket([j,m]);
 ket([j,m]) $
 
-JP(k);
+Jp(k);
 hbar*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1)) $
 
-JM(k);
+Jm(k);
 hbar*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m) $
 
 Jsqr(k);

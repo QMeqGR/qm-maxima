@@ -141,9 +141,9 @@
          ("Jsqr"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-Jsqr")
-         ("JP"
+         ("Jp"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-JP")
+          "index-Jp")
          ("jmtop"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jmtop")
@@ -162,9 +162,9 @@
          ("jmbot"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-jmbot")
-         ("JM"
+         ("Jm"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-JM")
+          "index-Jm")
          ("J2z"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-J2z")

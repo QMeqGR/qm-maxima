@@ -880,15 +880,15 @@ the set @code{@{-j,-j+1,@dots{},+j@}}.
 @end group
 @end example
 
-@anchor{JP}
-@deffn {Function} JP (@emph{jmket})
-@code{JP} is the @code{J@sub{+}} operator. It takes a @code{jmket}
+@anchor{Jp}
+@deffn {Function} Jp (@emph{jmket})
+@code{Jp} is the @code{J@sub{+}} operator. It takes a @code{jmket}
 @code{jmket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)}.
 @end deffn
 
-@anchor{JM}
-@deffn {Function} JM (@emph{jmket})
-@code{JM} is the @code{J@sub{-}} operator. It takes a @code{jmket}
+@anchor{Jm}
+@deffn {Function} Jm (@emph{jmket})
+@code{Jm} is the @code{J@sub{-}} operator. It takes a @code{jmket}
 @code{jmket(j,m)} and returns @code{sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)}.
 @end deffn
 
@@ -910,9 +910,9 @@ These functions are illustrated below.
 @group
 (%i1) k:ket([j,m]);
 (%o1)                               |j, m>
-(%i2) JP(k);
+(%i2) Jp(k);
 (%o2)             hbar |j, m + 1> sqrt(j (j + 1) - m (m + 1))
-(%i3) JM(k);
+(%i3) Jm(k);
 (%o3)             hbar |j, m - 1> sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
                                 2
@@ -1217,7 +1217,7 @@ useful after using the function @code{Jtsqr}.
 @end group
 @end example
 
-@subsubsection Explicit computations
+@subsubsection Example computations
 
 For the first example, let us see how to determine the total spin state
 @code{|j,m>} of the two-particle state @code{|1/2,1/2;1,1>}.

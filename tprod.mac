@@ -36,14 +36,21 @@ tellsimp( [tpket,0,k1,k2], 0 );
 /***********************************************/
 /*        Function definitions                 */
 /***********************************************/
-tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
-tpscmult(f,tp):=[tp[1], f*tp[2], tp[3], tp[4]];
-
 matchdeclare([cx1,cx2],cnump,tpb,lambda([x],x[1]=tpbra),tpk,lambda([x],x[1]=tpket));
 tellsimpafter(tpb.tpk, tpbraket_single(tpb,tpk));
 
 flin(x):=x;
 declare(flin,linear);
+
+tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
+tpscmult(f,tp):=block([k:0],
+    listarith:false,
+    if listp(tp)=true then return( [tp[1],tp[2]*f,tp[3],tp[4]] )
+    else for i: 1 thru length(tp) do
+        k: k + [part(tp,i)[1], f* part(tp,i)[2], part(tp,i)[3], part(tp,i)[4]],
+    listarith:true,
+    k);
+
 tpbraket(x,y):=block([A1,A2,tmp],
     listarith:false,
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
@@ -85,8 +92,8 @@ Jtz(k):= [tpket, J1z(k)[2]+J2z(k)[2], k[3],k[4] ];
 J1sqr(k):= if tpketp(k) then [tpket,k[2],Jsqr(k[3]),k[4]];
 J2sqr(k):= if tpketp(k) then [tpket,k[2],k[3],Jsqr(k[4])];
 
-J1p(k):= if tpketp(k) then [tpket,k[2],JP(k[3]),k[4]];
-J2p(k):= if tpketp(k) then [tpket,k[2],k[3],JP(k[4])];
+J1p(k):= if tpketp(k) then [tpket,k[2],Jp(k[3]),k[4]];
+J2p(k):= if tpketp(k) then [tpket,k[2],k[3],Jp(k[4])];
 Jtp(k):= block([R:0],listarith:false,
 	 if listp(k)=true and length(k)=4 then R: J1p(k)+J2p(k)
 	 elseif listp(k)=false then
@@ -95,8 +102,8 @@ Jtp(k):= block([R:0],listarith:false,
 	 listarith:true,
 	 R);
 
-J1m(k):= if tpketp(k) then [tpket,k[2],JM(k[3]),k[4]];
-J2m(k):= if tpketp(k) then [tpket,k[2],k[3],JM(k[4])];
+J1m(k):= if tpketp(k) then [tpket,k[2],Jm(k[3]),k[4]];
+J2m(k):= if tpketp(k) then [tpket,k[2],k[3],Jm(k[4])];
 Jtm(k):= block([R:0],listarith:false,
 	 if listp(k)=true and length(k)=4 then R: J1m(k)+J2m(k)
 	 elseif listp(k)=false then
@@ -107,12 +114,12 @@ Jtm(k):= block([R:0],listarith:false,
 
 J1p2m(k):= block([R],
     if tpketp(k)=false then return(false),
-    R:[tpket,k[2],JP(k[3]),JM(k[4])],
+    R:[tpket,k[2],Jp(k[3]),Jm(k[4])],
     if R[3]=0 or R[4]=0 then return(0),
     R);
 J1m2p(k):= block([R],
     if tpketp(k)=false then return(false),
-    R:[tpket,k[2],JM(k[3]),JP(k[4])],
+    R:[tpket,k[2],Jm(k[3]),Jp(k[4])],
     if R[3]=0 or R[4]=0 then return(0),
     R);
 

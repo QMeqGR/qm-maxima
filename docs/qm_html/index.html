@@ -873,15 +873,15 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 (%o1)                                true
 </pre></div></div>
 
-<a class="anchor" id="JP"></a><dl class="first-deffn">
-<dt class="deffn" id="index-JP"><span class="category-def">Function: </span><span><strong class="def-name">JP</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-JP"> &para;</a></span></dt>
-<dd><p><code class="code">JP</code> is the <code class="code">J<sub class="sub">+</sub></code> operator. It takes a <code class="code">jmket</code>
+<a class="anchor" id="Jp"></a><dl class="first-deffn">
+<dt class="deffn" id="index-Jp"><span class="category-def">Function: </span><span><strong class="def-name">Jp</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jp"> &para;</a></span></dt>
+<dd><p><code class="code">Jp</code> is the <code class="code">J<sub class="sub">+</sub></code> operator. It takes a <code class="code">jmket</code>
 <code class="code">jmket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)</code>.
 </p></dd></dl>
 
-<a class="anchor" id="JM"></a><dl class="first-deffn">
-<dt class="deffn" id="index-JM"><span class="category-def">Function: </span><span><strong class="def-name">JM</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-JM"> &para;</a></span></dt>
-<dd><p><code class="code">JM</code> is the <code class="code">J<sub class="sub">-</sub></code> operator. It takes a <code class="code">jmket</code>
+<a class="anchor" id="Jm"></a><dl class="first-deffn">
+<dt class="deffn" id="index-Jm"><span class="category-def">Function: </span><span><strong class="def-name">Jm</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jm"> &para;</a></span></dt>
+<dd><p><code class="code">Jm</code> is the <code class="code">J<sub class="sub">-</sub></code> operator. It takes a <code class="code">jmket</code>
 <code class="code">jmket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)</code>.
 </p></dd></dl>
 
@@ -902,9 +902,9 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:ket([j,m]);
 (%o1)                               |j, m&gt;
-(%i2) JP(k);
+(%i2) Jp(k);
 (%o2)             hbar |j, m + 1&gt; sqrt(j (j + 1) - m (m + 1))
-(%i3) JM(k);
+(%i3) Jm(k);
 (%o3)             hbar |j, m - 1&gt; sqrt(j (j + 1) - (m - 1) m)
 (%i4) Jsqr(k);
                                 2
@@ -1188,10 +1188,10 @@ useful after using the function <code class="code">Jtsqr</code>.
 </pre></div></div>
 
 <ul class="mini-toc">
-<li><a href="#Explicit-computations" accesskey="1">Explicit computations</a></li>
+<li><a href="#Example-computations" accesskey="1">Example computations</a></li>
 </ul>
-<div class="subsubsection-level-extent" id="Explicit-computations">
-<h4 class="subsubsection"><span>1.2.7.1 Explicit computations<a class="copiable-link" href="#Explicit-computations"> &para;</a></span></h4>
+<div class="subsubsection-level-extent" id="Example-computations">
+<h4 class="subsubsection"><span>1.2.7.1 Example computations<a class="copiable-link" href="#Example-computations"> &para;</a></span></h4>
 
 <p>For the first example, let us see how to determine the total spin state
 <code class="code">|j,m&gt;</code> of the two-particle state <code class="code">|1/2,1/2;1,1&gt;</code>.

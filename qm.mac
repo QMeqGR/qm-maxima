@@ -240,15 +240,15 @@ jmcheck(j,m) := block([pos:0],
 jmketp(k) := jmcheck( inpart(k,1)[1], inpart(k,1)[2] );
 jmbrap(bb) := jmcheck( inpart(bb,1)[1], inpart(bb,1)[2] );
 
-declare([JP,JM,Jsqr,Jz],additive);
+declare([Jp,Jm,Jsqr,Jz],additive);
 
 matchdeclare(k,ketp,bb,brap,a,all);
-tellsimpafter( JP(a*k), a*JP(k) );
-tellsimpafter( JP(k), block([j,m,sqrterm],
+tellsimpafter( Jp(a*k), a*Jp(k) );
+tellsimpafter( Jp(k), block([j,m,sqrterm],
       j:inpart(k,1)[1], m:inpart(k,1)[2], sqrterm:sqrt(j*(j+1)-m*(m+1))*hbar,
       return( sqrterm * ket([j,m+1]) ) ) );
-tellsimpafter( JM(a*k), a*JM(k) );
-tellsimpafter( JM(k), block([j,m,sqrterm],
+tellsimpafter( Jm(a*k), a*Jm(k) );
+tellsimpafter( Jm(k), block([j,m,sqrterm],
       j:inpart(k,1)[1], m:inpart(k,1)[2], sqrterm:sqrt(j*(j+1)-m*(m-1))*hbar,
       return( sqrterm * ket([j,m-1]) ) ) );
 tellsimpafter( Jsqr(a*k), a*Jsqr(k) );

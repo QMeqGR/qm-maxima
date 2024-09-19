@@ -630,12 +630,12 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
      (%i1) jmcheck(3/2,1/2);
      (%o1)                                true
 
- -- Function: JP (_jmket_)
-     ‘JP’ is the ‘J_{+}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and
+ -- Function: Jp (_jmket_)
+     ‘Jp’ is the ‘J_{+}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and
      returns ‘sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)’.
 
- -- Function: JM (_jmket_)
-     ‘JM’ is the ‘J_{-}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and
+ -- Function: Jm (_jmket_)
+     ‘Jm’ is the ‘J_{-}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and
      returns ‘sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)’.
 
  -- Function: Jsqr (_jmket_)
@@ -650,9 +650,9 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
 
      (%i1) k:ket([j,m]);
      (%o1)                               |j, m>
-     (%i2) JP(k);
+     (%i2) Jp(k);
      (%o2)             hbar |j, m + 1> sqrt(j (j + 1) - m (m + 1))
-     (%i3) JM(k);
+     (%i3) Jm(k);
      (%o3)             hbar |j, m - 1> sqrt(j (j + 1) - (m - 1) m)
      (%i4) Jsqr(k);
                                      2
@@ -868,8 +868,8 @@ total ‘Jtxx’ defined function.
                                                2
      (%o4)                               4 hbar
 
-1.2.7.1 Explicit computations
-.............................
+1.2.7.1 Example computations
+............................
 
 For the first example, let us see how to determine the total spin state
 ‘|j,m>’ of the two-particle state ‘|1/2,1/2;1,1>’.
@@ -1156,7 +1156,7 @@ Appendix A Function and Variable index
                                                              (line  801)
 * J2z:                                   Functions and Variables for qm.
                                                              (line  768)
-* JM:                                    Functions and Variables for qm.
+* Jm:                                    Functions and Variables for qm.
                                                              (line  636)
 * jmbot:                                 Functions and Variables for qm.
                                                              (line  597)
@@ -1170,7 +1170,7 @@ Appendix A Function and Variable index
                                                              (line  613)
 * jmtop:                                 Functions and Variables for qm.
                                                              (line  589)
-* JP:                                    Functions and Variables for qm.
+* Jp:                                    Functions and Variables for qm.
                                                              (line  632)
 * Jsqr:                                  Functions and Variables for qm.
                                                              (line  640)
