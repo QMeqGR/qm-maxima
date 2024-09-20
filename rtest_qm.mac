@@ -214,13 +214,10 @@ matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2], $
 UU(w*Sy,t);
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
-spin_mket(3/2,1/2,2);
-matrix([sqrt(3)/2^(3/2)],[%i/2^(3/2)],[1/2^(3/2)],[ $
+spin_mbra(3/2,1/2,2);
+matrix([sqrt(3)/2^(3/2),-(%i/2^(3/2)),1/2^(3/2), $
 
 ;
-spin_mbra(1,1,1);
-matrix([1/2,1/sqrt(2),1/2]) $
-
 bra([3/2,1/2]);
 bra([3/2,1/2]) $
 

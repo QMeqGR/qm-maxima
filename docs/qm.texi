@@ -848,30 +848,11 @@ and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
 
 @example
 @group
-(%i1) spin_mket(3/2,1/2,2);
-                                [  sqrt(3)   ]
-                                [  -------   ]
-                                [    3/2     ]
-                                [   2        ]
-                                [            ]
-                                [     %i     ]
-                                [    ----    ]
-                                [     3/2    ]
-                                [    2       ]
-(%o1)                           [            ]
-                                [     1      ]
-                                [    ----    ]
-                                [     3/2    ]
-                                [    2       ]
-                                [            ]
-                                [ sqrt(3) %i ]
-                                [ ---------- ]
-                                [     3/2    ]
-                                [    2       ]
-(%i2) spin_mbra(1,1,1);
-                               [ 1     1     1 ]
-(%o2)                          [ -  -------  - ]
-                               [ 2  sqrt(2)  2 ]
+(%i1) spin_mbra(3/2,1/2,2);
+                    [ sqrt(3)     %i    1      sqrt(3) %i ]
+(%o1)               [ -------  - ----  ----  - ---------- ]
+                    [   3/2       3/2   3/2        3/2    ]
+                    [  2         2     2          2       ]
 @end group
 @end example
 
@@ -1320,7 +1301,7 @@ useful after using the function @code{Jtsqr}.
 @end group
 @end example
 
-
+@page
 @subsubsection Example computations
 
 For the first example, let us see how to determine the total spin state
@@ -1373,6 +1354,7 @@ lowering operator to find the other states: @code{|3/2,1/2>},
 @end group
 @end example
 
+@page
 Let us see how to compute the matrix elements of the operator
 @code{(J1z-J1z)} in the z-basis for two spin-1/2 particles. Note that we
 use the @code{tpadd} and @code{tpscmult} functions to add the two
@@ -1415,6 +1397,7 @@ below; the common factor is the resulting matrix element.
 @end group
 @end example
 
+@page
 In the example below we calculate the Clebsh-Gordon coefficients of the
 two-particle state with two spin-1/2 particles. We begin by
 defining the top rung of the ladder and stepping down. 
@@ -1460,7 +1443,7 @@ defining the top rung of the ladder and stepping down.
 @end group
 @end example
 
-
+@page
 @section General tensor products
 
 Tensor products are represented as lists in the @code{qm} package. The
