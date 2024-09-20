@@ -51,9 +51,9 @@ Next: <a href="#Introduction-to-package-qm" accesskey="n" rel="next">Introductio
 <ul class="mini-toc">
 <li><a href="#Introduction-to-package-qm" accesskey="1">Introduction to package qm</a></li>
 <li><a href="#Functions-and-Variables-for-qm" accesskey="2">Functions and Variables for qm</a></li>
-<li><a href="#Rotation-operators" accesskey="3">Rotation operators</a></li>
-<li><a href="#Time_002devolution-operator" accesskey="4">Time-evolution operator</a></li>
-<li><a href="#Tensor-products" accesskey="5">Tensor products</a></li>
+<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="3">Angular momentum representation of kets and bras</a></li>
+<li><a href="#General-tensor-products" accesskey="4">General tensor products</a></li>
+<li><a href="#Quantum-harmonic-oscillator" accesskey="5">Quantum harmonic oscillator</a></li>
 </ul>
 <hr>
 <div class="section-level-extent" id="Introduction-to-package-qm">
@@ -88,8 +88,8 @@ are available as <code class="code">{xp,xm}</code>, <code class="code">{yp,ym}</
 arbitrary but finite dimension and perform standard computations such as
 expectation value, variance, etc. The angular momentum <var class="var">|j,m&gt;</var>
 representation of kets is also available. Tensor product states for
-multiparticle systems can be created to perform calculations on those
-systems.
+multiparticle systems can be created to perform calculations such as
+computing the Clebsh-Gordon coefficients.
 </p>
 <p>Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the <code class="code">z</code>-basis may be written as 
@@ -483,10 +483,9 @@ squared of a complex number.
 <li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="2">Pauli matrices and Sz, Sx, Sy operators</a></li>
 <li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
 <li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
-<li><a href="#Angular-momentum-representation-of-kets-and-bras" accesskey="5">Angular momentum representation of kets and bras</a></li>
-<li><a href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras" accesskey="6">Angular momentum (j,m)-kets and bras</a></li>
-<li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="7">Addition of angular momentum in the (j,m)-representation</a></li>
-<li><a href="#Angular-momentum-and-ladder-operators" accesskey="8">Angular momentum and ladder operators</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation" accesskey="5">Angular momentum and ladder operators in the matrix representation</a></li>
+<li><a href="#Rotation-operators" accesskey="6">Rotation operators</a></li>
+<li><a href="#Time_002devolution-operator" accesskey="7">Time-evolution operator</a></li>
 </ul>
 <div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
 <h4 class="subsection"><span>1.2.1 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
@@ -733,14 +732,108 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 </pre></div></div>
 
 </div>
-<div class="subsection-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
-<h4 class="subsection"><span>1.2.5 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h4>
+<div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators-in-the-matrix-representation">
+<h4 class="subsection"><span>1.2.5 Angular momentum and ladder operators in the matrix representation<a class="copiable-link" href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation"> &para;</a></span></h4>
+
+<a class="anchor" id="SP"></a><dl class="first-deffn">
+<dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>
+<dd><p><code class="code">SP</code> is the raising ladder operator <var class="var">S<sub class="sub">+</sub></var> for spin <code class="code">s</code>.
+</p></dd></dl>
+
+<a class="anchor" id="SM"></a><dl class="first-deffn">
+<dt class="deffn" id="index-SM"><span class="category-def">Function: </span><span><strong class="def-name">SM</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SM"> &para;</a></span></dt>
+<dd><p><code class="code">SM</code> is the raising ladder operator <var class="var">S<sub class="sub">-</sub></var> for spin <code class="code">s</code>.
+</p></dd></dl>
+
+<p>Examples of the ladder operators:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) SP(1);
+                       [ 0  sqrt(2) hbar       0       ]
+                       [                               ]
+(%o1)                  [ 0       0        sqrt(2) hbar ]
+                       [                               ]
+                       [ 0       0             0       ]
+(%i2) SM(1);
+                       [      0             0        0 ]
+                       [                               ]
+(%o2)                  [ sqrt(2) hbar       0        0 ]
+                       [                               ]
+                       [      0        sqrt(2) hbar  0 ]
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Rotation-operators">
+<h4 class="subsection"><span>1.2.6 Rotation operators<a class="copiable-link" href="#Rotation-operators"> &para;</a></span></h4>
+
+<a class="anchor" id="RX"></a><dl class="first-deffn">
+<dt class="deffn" id="index-RX"><span class="category-def">Function: </span><span><strong class="def-name">RX</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RX"> &para;</a></span></dt>
+<dd><p><code class="code">RX(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
+rotation operator <code class="code">Rx</code> for rotation through angle <code class="code">t</code>.
+</p></dd></dl>
+
+<a class="anchor" id="RY"></a><dl class="first-deffn">
+<dt class="deffn" id="index-RY"><span class="category-def">Function: </span><span><strong class="def-name">RY</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RY"> &para;</a></span></dt>
+<dd><p><code class="code">RY(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
+rotation operator <code class="code">Ry</code> for rotation through angle <code class="code">t</code>.
+</p></dd></dl>
+
+<a class="anchor" id="RZ"></a><dl class="first-deffn">
+<dt class="deffn" id="index-RZ"><span class="category-def">Function: </span><span><strong class="def-name">RZ</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RZ"> &para;</a></span></dt>
+<dd><p><code class="code">RZ(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
+rotation operator <code class="code">Rz</code> for rotation through angle <code class="code">t</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) RY(1,t);
+Proviso: assuming 4*t # 0 
+                     [ cos(t) + 1    sin(t)   1 - cos(t) ]
+                     [ ----------  - -------  ---------- ]
+                     [     2         sqrt(2)      2      ]
+                     [                                   ]
+                     [  sin(t)                  sin(t)   ]
+(%o1)                [  -------     cos(t)    - -------  ]
+                     [  sqrt(2)                 sqrt(2)  ]
+                     [                                   ]
+                     [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
+                     [ ----------   -------   ---------- ]
+                     [     2        sqrt(2)       2      ]
+</pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Time_002devolution-operator">
+<h4 class="subsection"><span>1.2.7 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h4>
+
+<a class="anchor" id="UU"></a><dl class="first-deffn">
+<dt class="deffn" id="index-UU"><span class="category-def">Function: </span><span><strong class="def-name">UU</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-UU"> &para;</a></span></dt>
+<dd><p><code class="code">UU(H,t)</code> is the time evolution operator for Hamiltonian <code class="code">H</code>. It
+is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) UU(w*Sy,t);
+Proviso: assuming 64*t*w # 0 
+                           [     t w         t w  ]
+                           [ cos(---)  - sin(---) ]
+                           [      2           2   ]
+(%o1)                      [                      ]
+                           [     t w        t w   ]
+                           [ sin(---)   cos(---)  ]
+                           [      2          2    ]
+</pre></div></div>
+
+</div>
+</div>
+<div class="section-level-extent" id="Angular-momentum-representation-of-kets-and-bras">
+<h3 class="section"><span>1.3 Angular momentum representation of kets and bras<a class="copiable-link" href="#Angular-momentum-representation-of-kets-and-bras"> &para;</a></span></h3>
 
 <ul class="mini-toc">
 <li><a href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras" accesskey="1">Matrix representation of (j,m)-kets and bras</a></li>
+<li><a href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras" accesskey="2">Angular momentum (j,m)-kets and bras</a></li>
+<li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="3">Addition of angular momentum in the (j,m)-representation</a></li>
 </ul>
-<div class="subsubsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
-<h4 class="subsubsection"><span>1.2.5.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+<div class="subsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
+<h4 class="subsection"><span>1.3.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
 <p>The matrix representation of kets and bras in the <code class="code">qm</code> package are
 represented in the <code class="code">z</code>-basis. To create a matrix representation of
@@ -787,9 +880,8 @@ and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1
 </pre></div></div>
 
 </div>
-</div>
 <div class="subsection-level-extent" id="Angular-momentum-_0028j_002cm_0029_002dkets-and-bras">
-<h4 class="subsection"><span>1.2.6 Angular momentum (j,m)-kets and bras<a class="copiable-link" href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.3.2 Angular momentum (j,m)-kets and bras<a class="copiable-link" href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
 
 <p>To create kets and bras in the <var class="var">|j,m&gt;</var> representation you use the
 abstract <code class="code">ket</code> and <code class="code">bra</code> functions with <code class="code">j,m</code> as
@@ -915,7 +1007,7 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 
 </div>
 <div class="subsection-level-extent" id="Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation">
-<h4 class="subsection"><span>1.2.7 Addition of angular momentum in the (j,m)-representation<a class="copiable-link" href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.3.3 Addition of angular momentum in the (j,m)-representation<a class="copiable-link" href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation"> &para;</a></span></h4>
 
 <p>Addition of angular momentum calculations can be performed in the
 (j,m)-representation using the function definitions below. The internal
@@ -1131,6 +1223,23 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 <dd><p><code class="code">J1p2m</code> returns <code class="code">(J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>)</code> for the tpket.
 </p></dd></dl>
 
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+                                      3  1    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
+(%i2) b:tpdagger(k);
+                                      3  1    1  1
+(%o2)                     [tpbra, 1, &lt;-, -|, &lt;-, -|]
+                                      2  2    2  2
+(%i3) J1p2m(k);
+                                       2   3  3    1    1
+(%o3)              [tpket, sqrt(3) hbar , |-, -&gt;, |-, - -&gt;]
+                                           2  2    2    2
+(%i4) J1m2p(k);
+(%o4)                                  0
+</pre></div></div>
+
 <a class="anchor" id="J1m2p"></a><dl class="first-deffn">
 <dt class="deffn" id="index-J1m2p"><span class="category-def">Function: </span><span><strong class="def-name">J1m2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m2p"> &para;</a></span></dt>
 <dd><p><code class="code">J1m2p</code> returns <code class="code">(J<sub class="sub">1-</sub>J<sub class="sub">2+</sub>)</code> for the tpket.
@@ -1148,29 +1257,8 @@ J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>+J<sub class="sub">1-</sub>J
 tpket.
 </p></dd></dl>
 
-<a class="anchor" id="get_005fj"></a><dl class="first-deffn">
-<dt class="deffn" id="index-get_005fj"><span class="category-def">Function: </span><span><strong class="def-name">get_j</strong> <var class="def-var-arguments">(<code class="code">q</code>)</var><a class="copiable-link" href="#index-get_005fj"> &para;</a></span></dt>
-<dd><p><code class="code">get_j</code> is a convenience function that computes <code class="code">j</code> from
-<code class="code">j(j+1)=q</code> where <code class="code">q</code> is a rational number. This function is
-useful after using the function <code class="code">Jtsqr</code>.
-</p></dd></dl>
-
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
-                                      3  1    1  1
-(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
-                                      2  2    2  2
-(%i2) b:tpdagger(k);
-                                      3  1    1  1
-(%o2)                     [tpbra, 1, &lt;-, -|, &lt;-, -|]
-                                      2  2    2  2
-(%i3) J1p2m(k);
-                                       2   3  3    1    1
-(%o3)              [tpket, sqrt(3) hbar , |-, -&gt;, |-, - -&gt;]
-                                           2  2    2    2
-(%i4) J1m2p(k);
-(%o4)                                  0
-</pre></div><div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
+<div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
                                      3    1    1  1
 (%o1)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
                                      2    2    2  2
@@ -1187,11 +1275,26 @@ useful after using the function <code class="code">Jtsqr</code>.
 (%o4)                               4 hbar
 </pre></div></div>
 
+<a class="anchor" id="get_005fj"></a><dl class="first-deffn">
+<dt class="deffn" id="index-get_005fj"><span class="category-def">Function: </span><span><strong class="def-name">get_j</strong> <var class="def-var-arguments">(<code class="code">q</code>)</var><a class="copiable-link" href="#index-get_005fj"> &para;</a></span></dt>
+<dd><p><code class="code">get_j</code> is a convenience function that computes <code class="code">j</code> from
+<code class="code">j(j+1)=q</code> where <code class="code">q</code> is a rational number. This function is
+useful after using the function <code class="code">Jtsqr</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) get_j(15/4);
+                                         3
+(%o1)                                j = -
+                                         2
+</pre></div></div>
+
+
 <ul class="mini-toc">
 <li><a href="#Example-computations" accesskey="1">Example computations</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="Example-computations">
-<h4 class="subsubsection"><span>1.2.7.1 Example computations<a class="copiable-link" href="#Example-computations"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>1.3.3.1 Example computations<a class="copiable-link" href="#Example-computations"> &para;</a></span></h4>
 
 <p>For the first example, let us see how to determine the total spin state
 <code class="code">|j,m&gt;</code> of the two-particle state <code class="code">|1/2,1/2;1,1&gt;</code>.
@@ -1234,12 +1337,9 @@ lowering operator to find the other states: <code class="code">|3/2,1/2&gt;</cod
                                            + [tpket, 2 hbar , |-, -&gt;, |1, - 1&gt;]
                                                                2  2
 (%i4) k4:Jtm(k3);
-                    3   1    1
-(%o4) [tpket, 4 hbar , |-, - -&gt;, |1, - 1&gt;]
-                        2    2
-                                                         3   1    1
-                                         + [tpket, 2 hbar , |-, - -&gt;, |1, - 1&gt;]
-                                                             2    2
+                                   3   1    1
+(%o4)                [tpket, 6 hbar , |-, - -&gt;, |1, - 1&gt;]
+                                       2    2
 </pre></div></div>
 
 <p>Let us see how to compute the matrix elements of the operator
@@ -1282,102 +1382,55 @@ below; the common factor is the resulting matrix element.
 (%o8)                                  0
 </pre></div></div>
 
-</div>
-</div>
-<div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators">
-<h4 class="subsection"><span>1.2.8 Angular momentum and ladder operators<a class="copiable-link" href="#Angular-momentum-and-ladder-operators"> &para;</a></span></h4>
-
-<a class="anchor" id="SP"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>
-<dd><p><code class="code">SP</code> is the raising ladder operator <var class="var">S<sub class="sub">+</sub></var> for spin <code class="code">s</code>.
-</p></dd></dl>
-
-<a class="anchor" id="SM"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SM"><span class="category-def">Function: </span><span><strong class="def-name">SM</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SM"> &para;</a></span></dt>
-<dd><p><code class="code">SM</code> is the raising ladder operator <var class="var">S<sub class="sub">-</sub></var> for spin <code class="code">s</code>.
-</p></dd></dl>
-
-<p>Examples of the ladder operators:
+<p>In the example below we calculate the Clebsh-Gordon coefficients of the
+two-particle state with two spin-1/2 particles. We begin by
+defining the top rung of the ladder and stepping down. 
 </p>
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) SP(1);
-                       [ 0  sqrt(2) hbar       0       ]
-                       [                               ]
-(%o1)                  [ 0       0        sqrt(2) hbar ]
-                       [                               ]
-                       [ 0       0             0       ]
-(%i2) SM(1);
-                       [      0             0        0 ]
-                       [                               ]
-(%o2)                  [ sqrt(2) hbar       0        0 ]
-                       [                               ]
-                       [      0        sqrt(2) hbar  0 ]
+<div class="group"><pre class="example-preformatted">(%i1) top:tpket(jmtop(1/2),jmtop(1/2));
+                                      1  1    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
+(%i2) Jtsqr(top);
+                                     2   1  1    1  1
+(%o2)                  [tpket, 2 hbar , |-, -&gt;, |-, -&gt;]
+                                         2  2    2  2
+(%i3) get_j(2);
+(%o3)                                j = 1
+(%i4) Jtz(top);
+                                        1  1    1  1
+(%o4)                    [tpket, hbar, |-, -&gt;, |-, -&gt;]
+                                        2  2    2  2
+(%i5) JMtop:ket([1,1]);
+(%o5)                               |1, 1&gt;
+(%i6) mid:Jtm(top);
+                      1  1    1    1                    1    1    1  1
+(%o6)  [tpket, hbar, |-, -&gt;, |-, - -&gt;] + [tpket, hbar, |-, - -&gt;, |-, -&gt;]
+                      2  2    2    2                    2    2    2  2
+(%i7) Jm(JMtop);
+(%o7)                         sqrt(2) |1, 0&gt; hbar
+(%i8) mid:tpscmult(1/(sqrt(2)*hbar),mid);
+                 1      1  1    1    1                1      1    1    1  1
+(%o8) [tpket, -------, |-, -&gt;, |-, - -&gt;] + [tpket, -------, |-, - -&gt;, |-, -&gt;]
+              sqrt(2)   2  2    2    2             sqrt(2)   2    2    2  2
+(%i9) bot:Jtm(mid);
+                                          1    1    1    1
+(%o9)              [tpket, sqrt(2) hbar, |-, - -&gt;, |-, - -&gt;]
+                                          2    2    2    2
+(%i10) Jm(ket([1,0]));
+(%o10)                       sqrt(2) |1, - 1&gt; hbar
+(%i11) bot:tpscmult(1/(sqrt(2)*hbar),bot);
+                                    1    1    1    1
+(%o11)                  [tpket, 1, |-, - -&gt;, |-, - -&gt;]
+                                    2    2    2    2
 </pre></div></div>
 
-</div>
-</div>
-<div class="section-level-extent" id="Rotation-operators">
-<h3 class="section"><span>1.3 Rotation operators<a class="copiable-link" href="#Rotation-operators"> &para;</a></span></h3>
-
-<a class="anchor" id="RX"></a><dl class="first-deffn">
-<dt class="deffn" id="index-RX"><span class="category-def">Function: </span><span><strong class="def-name">RX</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RX"> &para;</a></span></dt>
-<dd><p><code class="code">RX(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
-rotation operator <code class="code">Rx</code> for rotation through angle <code class="code">t</code>.
-</p></dd></dl>
-
-<a class="anchor" id="RY"></a><dl class="first-deffn">
-<dt class="deffn" id="index-RY"><span class="category-def">Function: </span><span><strong class="def-name">RY</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RY"> &para;</a></span></dt>
-<dd><p><code class="code">RY(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
-rotation operator <code class="code">Ry</code> for rotation through angle <code class="code">t</code>.
-</p></dd></dl>
-
-<a class="anchor" id="RZ"></a><dl class="first-deffn">
-<dt class="deffn" id="index-RZ"><span class="category-def">Function: </span><span><strong class="def-name">RZ</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RZ"> &para;</a></span></dt>
-<dd><p><code class="code">RZ(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
-rotation operator <code class="code">Rz</code> for rotation through angle <code class="code">t</code>.
-</p></dd></dl>
-
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) RY(1,t);
-Proviso: assuming 4*t # 0 
-                     [ cos(t) + 1    sin(t)   1 - cos(t) ]
-                     [ ----------  - -------  ---------- ]
-                     [     2         sqrt(2)      2      ]
-                     [                                   ]
-                     [  sin(t)                  sin(t)   ]
-(%o1)                [  -------     cos(t)    - -------  ]
-                     [  sqrt(2)                 sqrt(2)  ]
-                     [                                   ]
-                     [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
-                     [ ----------   -------   ---------- ]
-                     [     2        sqrt(2)       2      ]
-</pre></div></div>
 
 </div>
-<div class="section-level-extent" id="Time_002devolution-operator">
-<h3 class="section"><span>1.4 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h3>
-
-<a class="anchor" id="UU"></a><dl class="first-deffn">
-<dt class="deffn" id="index-UU"><span class="category-def">Function: </span><span><strong class="def-name">UU</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-UU"> &para;</a></span></dt>
-<dd><p><code class="code">UU(H,t)</code> is the time evolution operator for Hamiltonian <code class="code">H</code>. It
-is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)</code>.
-</p></dd></dl>
-
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) UU(w*Sy,t);
-Proviso: assuming 64*t*w # 0 
-                           [     t w         t w  ]
-                           [ cos(---)  - sin(---) ]
-                           [      2           2   ]
-(%o1)                      [                      ]
-                           [     t w        t w   ]
-                           [ sin(---)   cos(---)  ]
-                           [      2          2    ]
-</pre></div></div>
-
 </div>
-<div class="section-level-extent" id="Tensor-products">
-<h3 class="section"><span>1.5 Tensor products<a class="copiable-link" href="#Tensor-products"> &para;</a></span></h3>
+</div>
+<div class="section-level-extent" id="General-tensor-products">
+<h3 class="section"><span>1.4 General tensor products<a class="copiable-link" href="#General-tensor-products"> &para;</a></span></h3>
 
 <p>Tensor products are represented as lists in the <code class="code">qm</code> package. The
 ket tensor product <code class="code">|z+,z+&gt;</code> can be represented as
@@ -1426,11 +1479,9 @@ particle to obtain the density submatrix for particle 2.
                               2                 2
 </pre></div></div>
 
-<ul class="mini-toc">
-<li><a href="#Quantum-harmonic-oscillator" accesskey="1">Quantum harmonic oscillator</a></li>
-</ul>
-<div class="subsection-level-extent" id="Quantum-harmonic-oscillator">
-<h4 class="subsection"><span>1.5.1 Quantum harmonic oscillator<a class="copiable-link" href="#Quantum-harmonic-oscillator"> &para;</a></span></h4>
+</div>
+<div class="section-level-extent" id="Quantum-harmonic-oscillator">
+<h3 class="section"><span>1.5 Quantum harmonic oscillator<a class="copiable-link" href="#Quantum-harmonic-oscillator"> &para;</a></span></h3>
 
 <p>The <code class="code">qm</code> package can perform simple quantum harmonic oscillator
 calculations involving the ladder operators <code class="code">a<sup class="sup">+</sup></code> and
@@ -1473,7 +1524,6 @@ performed below, ignoring any physical constants in the problem.
 <p>Another package that handles quantum mechanical operators is
 <code class="code">operator_algebra</code> written by Barton Willis.
 </p>
-</div>
 </div>
 </div>
 </div>

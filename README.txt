@@ -32,7 +32,7 @@ vectors with arbitrary but finite dimension and perform standard
 computations such as expectation value, variance, etc.  The angular
 momentum <|j,m>> representation of kets is also available.  Tensor
 product states for multiparticle systems can be created to perform
-calculations on those systems.
+calculations such as computing the Clebsh-Gordon coefficients.
 
    Let us consider a simple example involving spin-1/2 particles.  A bra
 vector in the ‘z’-basis may be written as
@@ -525,11 +525,81 @@ ket is constructed and the <x>-basis ket is computed.
      (%o1)                               -------
                                             2
 
-1.2.5 Angular momentum representation of kets and bras
-------------------------------------------------------
+1.2.5 Angular momentum and ladder operators in the matrix representation
+------------------------------------------------------------------------
 
-1.2.5.1 Matrix representation of (j,m)-kets and bras
-....................................................
+ -- Function: SP (s)
+     ‘SP’ is the raising ladder operator <S_{+}> for spin ‘s’.
+
+ -- Function: SM (s)
+     ‘SM’ is the raising ladder operator <S_{-}> for spin ‘s’.
+
+   Examples of the ladder operators:
+
+     (%i1) SP(1);
+                            [ 0  sqrt(2) hbar       0       ]
+                            [                               ]
+     (%o1)                  [ 0       0        sqrt(2) hbar ]
+                            [                               ]
+                            [ 0       0             0       ]
+     (%i2) SM(1);
+                            [      0             0        0 ]
+                            [                               ]
+     (%o2)                  [ sqrt(2) hbar       0        0 ]
+                            [                               ]
+                            [      0        sqrt(2) hbar  0 ]
+
+1.2.6 Rotation operators
+------------------------
+
+ -- Function: RX (s,t)
+     ‘RX(s)’ for spin ‘s’ returns the matrix representation of the
+     rotation operator ‘Rx’ for rotation through angle ‘t’.
+
+ -- Function: RY (s,t)
+     ‘RY(s)’ for spin ‘s’ returns the matrix representation of the
+     rotation operator ‘Ry’ for rotation through angle ‘t’.
+
+ -- Function: RZ (s,t)
+     ‘RZ(s)’ for spin ‘s’ returns the matrix representation of the
+     rotation operator ‘Rz’ for rotation through angle ‘t’.
+
+     (%i1) RY(1,t);
+     Proviso: assuming 4*t # 0
+                          [ cos(t) + 1    sin(t)   1 - cos(t) ]
+                          [ ----------  - -------  ---------- ]
+                          [     2         sqrt(2)      2      ]
+                          [                                   ]
+                          [  sin(t)                  sin(t)   ]
+     (%o1)                [  -------     cos(t)    - -------  ]
+                          [  sqrt(2)                 sqrt(2)  ]
+                          [                                   ]
+                          [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
+                          [ ----------   -------   ---------- ]
+                          [     2        sqrt(2)       2      ]
+
+1.2.7 Time-evolution operator
+-----------------------------
+
+ -- Function: UU (H,t)
+     ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
+     is defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
+
+     (%i1) UU(w*Sy,t);
+     Proviso: assuming 64*t*w # 0
+                                [     t w         t w  ]
+                                [ cos(---)  - sin(---) ]
+                                [      2           2   ]
+     (%o1)                      [                      ]
+                                [     t w        t w   ]
+                                [ sin(---)   cos(---)  ]
+                                [      2          2    ]
+
+1.3 Angular momentum representation of kets and bras
+====================================================
+
+1.3.1 Matrix representation of (j,m)-kets and bras
+--------------------------------------------------
 
 The matrix representation of kets and bras in the ‘qm’ package are
 represented in the ‘z’-basis.  To create a matrix representation of of a
@@ -569,7 +639,7 @@ functions.
      (%o2)                          [ -  -------  - ]
                                     [ 2  sqrt(2)  2 ]
 
-1.2.6 Angular momentum (j,m)-kets and bras
+1.3.2 Angular momentum (j,m)-kets and bras
 ------------------------------------------
 
 To create kets and bras in the <|j,m>> representation you use the
@@ -660,7 +730,7 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
      (%i5) Jz(k);
      (%o5)                            hbar |j, m> m
 
-1.2.7 Addition of angular momentum in the (j,m)-representation
+1.3.3 Addition of angular momentum in the (j,m)-representation
 --------------------------------------------------------------
 
 Addition of angular momentum calculations can be performed in the
@@ -823,21 +893,6 @@ total ‘Jtxx’ defined function.
  -- Function: J1p2m (_tpket_)
      ‘J1p2m’ returns ‘(J_{1+}J_{2-})’ for the tpket.
 
- -- Function: J1m2p (_tpket_)
-     ‘J1m2p’ returns ‘(J_{1-}J_{2+})’ for the tpket.
-
- -- Function: J1zJ2z (_tpket_)
-     ‘J1zJ2z’ returns ‘(J_{1z}J_{2z})’ for the tpket.
-
- -- Function: Jtsqr (_tpket_)
-     ‘Jtsqr’ returns ‘(J_{1}^{2}+J_{2}^{2}+
-     J_{1+}J_{2-}+J_{1-}J_{2+}+J_{1z}J_{2z})’ for the tpket.
-
- -- Function: get_j (q)
-     ‘get_j’ is a convenience function that computes ‘j’ from ‘j(j+1)=q’
-     where ‘q’ is a rational number.  This function is useful after
-     using the function ‘Jtsqr’.
-
      (%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
                                            3  1    1  1
      (%o1)                     [tpket, 1, |-, ->, |-, ->]
@@ -852,6 +907,17 @@ total ‘Jtxx’ defined function.
                                                 2  2    2    2
      (%i4) J1m2p(k);
      (%o4)                                  0
+
+ -- Function: J1m2p (_tpket_)
+     ‘J1m2p’ returns ‘(J_{1-}J_{2+})’ for the tpket.
+
+ -- Function: J1zJ2z (_tpket_)
+     ‘J1zJ2z’ returns ‘(J_{1z}J_{2z})’ for the tpket.
+
+ -- Function: Jtsqr (_tpket_)
+     ‘Jtsqr’ returns ‘(J_{1}^{2}+J_{2}^{2}+
+     J_{1+}J_{2-}+J_{1-}J_{2+}+J_{1z}J_{2z})’ for the tpket.
+
      (%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
                                           3    1    1  1
      (%o1)                    [tpket, 1, |-, - ->, |-, ->]
@@ -868,7 +934,17 @@ total ‘Jtxx’ defined function.
                                                2
      (%o4)                               4 hbar
 
-1.2.7.1 Example computations
+ -- Function: get_j (q)
+     ‘get_j’ is a convenience function that computes ‘j’ from ‘j(j+1)=q’
+     where ‘q’ is a rational number.  This function is useful after
+     using the function ‘Jtsqr’.
+
+     (%i1) get_j(15/4);
+                                              3
+     (%o1)                                j = -
+                                              2
+
+1.3.3.1 Example computations
 ............................
 
 For the first example, let us see how to determine the total spin state
@@ -908,12 +984,9 @@ find the other states: ‘|3/2,1/2>’, ‘|3/2,-1/2>’, and ‘|3/2,-3/2>’.
                                                 + [tpket, 2 hbar , |-, ->, |1, - 1>]
                                                                     2  2
      (%i4) k4:Jtm(k3);
-                         3   1    1
-     (%o4) [tpket, 4 hbar , |-, - ->, |1, - 1>]
-                             2    2
-                                                              3   1    1
-                                              + [tpket, 2 hbar , |-, - ->, |1, - 1>]
-                                                                  2    2
+                                        3   1    1
+     (%o4)                [tpket, 6 hbar , |-, - ->, |1, - 1>]
+                                            2    2
 
    Let us see how to compute the matrix elements of the operator
 ‘(J1z-J1z)’ in the z-basis for two spin-1/2 particles.  Note that we use
@@ -952,78 +1025,49 @@ common factor is the resulting matrix element.
      (%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
      (%o8)                                  0
 
-1.2.8 Angular momentum and ladder operators
--------------------------------------------
+   In the example below we calculate the Clebsh-Gordon coefficients of
+the two-particle state with two spin-1/2 particles.  We begin by
+defining the top rung of the ladder and stepping down.
 
- -- Function: SP (s)
-     ‘SP’ is the raising ladder operator <S_{+}> for spin ‘s’.
+     (%i1) top:tpket(jmtop(1/2),jmtop(1/2));
+                                           1  1    1  1
+     (%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                           2  2    2  2
+     (%i2) Jtsqr(top);
+                                          2   1  1    1  1
+     (%o2)                  [tpket, 2 hbar , |-, ->, |-, ->]
+                                              2  2    2  2
+     (%i3) get_j(2);
+     (%o3)                                j = 1
+     (%i4) Jtz(top);
+                                             1  1    1  1
+     (%o4)                    [tpket, hbar, |-, ->, |-, ->]
+                                             2  2    2  2
+     (%i5) JMtop:ket([1,1]);
+     (%o5)                               |1, 1>
+     (%i6) mid:Jtm(top);
+                           1  1    1    1                    1    1    1  1
+     (%o6)  [tpket, hbar, |-, ->, |-, - ->] + [tpket, hbar, |-, - ->, |-, ->]
+                           2  2    2    2                    2    2    2  2
+     (%i7) Jm(JMtop);
+     (%o7)                         sqrt(2) |1, 0> hbar
+     (%i8) mid:tpscmult(1/(sqrt(2)*hbar),mid);
+                      1      1  1    1    1                1      1    1    1  1
+     (%o8) [tpket, -------, |-, ->, |-, - ->] + [tpket, -------, |-, - ->, |-, ->]
+                   sqrt(2)   2  2    2    2             sqrt(2)   2    2    2  2
+     (%i9) bot:Jtm(mid);
+                                               1    1    1    1
+     (%o9)              [tpket, sqrt(2) hbar, |-, - ->, |-, - ->]
+                                               2    2    2    2
+     (%i10) Jm(ket([1,0]));
+     (%o10)                       sqrt(2) |1, - 1> hbar
+     (%i11) bot:tpscmult(1/(sqrt(2)*hbar),bot);
+                                         1    1    1    1
+     (%o11)                  [tpket, 1, |-, - ->, |-, - ->]
+                                         2    2    2    2
 
- -- Function: SM (s)
-     ‘SM’ is the raising ladder operator <S_{-}> for spin ‘s’.
-
-   Examples of the ladder operators:
-
-     (%i1) SP(1);
-                            [ 0  sqrt(2) hbar       0       ]
-                            [                               ]
-     (%o1)                  [ 0       0        sqrt(2) hbar ]
-                            [                               ]
-                            [ 0       0             0       ]
-     (%i2) SM(1);
-                            [      0             0        0 ]
-                            [                               ]
-     (%o2)                  [ sqrt(2) hbar       0        0 ]
-                            [                               ]
-                            [      0        sqrt(2) hbar  0 ]
-
-1.3 Rotation operators
-======================
-
- -- Function: RX (s,t)
-     ‘RX(s)’ for spin ‘s’ returns the matrix representation of the
-     rotation operator ‘Rx’ for rotation through angle ‘t’.
-
- -- Function: RY (s,t)
-     ‘RY(s)’ for spin ‘s’ returns the matrix representation of the
-     rotation operator ‘Ry’ for rotation through angle ‘t’.
-
- -- Function: RZ (s,t)
-     ‘RZ(s)’ for spin ‘s’ returns the matrix representation of the
-     rotation operator ‘Rz’ for rotation through angle ‘t’.
-
-     (%i1) RY(1,t);
-     Proviso: assuming 4*t # 0
-                          [ cos(t) + 1    sin(t)   1 - cos(t) ]
-                          [ ----------  - -------  ---------- ]
-                          [     2         sqrt(2)      2      ]
-                          [                                   ]
-                          [  sin(t)                  sin(t)   ]
-     (%o1)                [  -------     cos(t)    - -------  ]
-                          [  sqrt(2)                 sqrt(2)  ]
-                          [                                   ]
-                          [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
-                          [ ----------   -------   ---------- ]
-                          [     2        sqrt(2)       2      ]
-
-1.4 Time-evolution operator
+1.4 General tensor products
 ===========================
-
- -- Function: UU (H,t)
-     ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
-     is defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
-
-     (%i1) UU(w*Sy,t);
-     Proviso: assuming 64*t*w # 0
-                                [     t w         t w  ]
-                                [ cos(---)  - sin(---) ]
-                                [      2           2   ]
-     (%o1)                      [                      ]
-                                [     t w        t w   ]
-                                [ sin(---)   cos(---)  ]
-                                [      2          2    ]
-
-1.5 Tensor products
-===================
 
 Tensor products are represented as lists in the ‘qm’ package.  The ket
 tensor product ‘|z+,z+>’ can be represented as ‘ket([u,d])’, for
@@ -1067,8 +1111,8 @@ particle to obtain the density submatrix for particle 2.
      (%o4)                  --------------- + ---------------
                                    2                 2
 
-1.5.1 Quantum harmonic oscillator
----------------------------------
+1.5 Quantum harmonic oscillator
+===============================
 
 The ‘qm’ package can perform simple quantum harmonic oscillator
 calculations involving the ladder operators ‘a^{+}’ and ‘a^{-}’.  These
@@ -1111,11 +1155,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1083)
+                                                             (line 1127)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  458)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1079)
+                                                             (line 1123)
 * autobra:                               Functions and Variables for qm.
                                                              (line  280)
 * autoket:                               Functions and Variables for qm.
@@ -1133,57 +1177,57 @@ Appendix A Function and Variable index
 * expect:                                Functions and Variables for qm.
                                                              (line  511)
 * get_j:                                 Functions and Variables for qm.
-                                                             (line  835)
+                                                             (line  936)
 * J1m:                                   Functions and Variables for qm.
-                                                             (line  813)
+                                                             (line  883)
 * J1m2p:                                 Functions and Variables for qm.
-                                                             (line  825)
+                                                             (line  910)
 * J1p:                                   Functions and Variables for qm.
-                                                             (line  804)
+                                                             (line  874)
 * J1p2m:                                 Functions and Variables for qm.
-                                                             (line  822)
+                                                             (line  892)
 * J1sqr:                                 Functions and Variables for qm.
-                                                             (line  798)
+                                                             (line  868)
 * J1z:                                   Functions and Variables for qm.
-                                                             (line  764)
+                                                             (line  834)
 * J1zJ2z:                                Functions and Variables for qm.
-                                                             (line  828)
+                                                             (line  913)
 * J2m:                                   Functions and Variables for qm.
-                                                             (line  816)
+                                                             (line  886)
 * J2p:                                   Functions and Variables for qm.
-                                                             (line  807)
+                                                             (line  877)
 * J2sqr:                                 Functions and Variables for qm.
-                                                             (line  801)
+                                                             (line  871)
 * J2z:                                   Functions and Variables for qm.
-                                                             (line  768)
+                                                             (line  838)
 * Jm:                                    Functions and Variables for qm.
-                                                             (line  636)
+                                                             (line  706)
 * jmbot:                                 Functions and Variables for qm.
-                                                             (line  597)
+                                                             (line  667)
 * jmbrap:                                Functions and Variables for qm.
-                                                             (line  622)
+                                                             (line  692)
 * jmcheck:                               Functions and Variables for qm.
-                                                             (line  626)
+                                                             (line  696)
 * jmket:                                 Functions and Variables for qm.
-                                                             (line  605)
+                                                             (line  675)
 * jmketp:                                Functions and Variables for qm.
-                                                             (line  613)
+                                                             (line  683)
 * jmtop:                                 Functions and Variables for qm.
-                                                             (line  589)
+                                                             (line  659)
 * Jp:                                    Functions and Variables for qm.
-                                                             (line  632)
+                                                             (line  702)
 * Jsqr:                                  Functions and Variables for qm.
-                                                             (line  640)
+                                                             (line  710)
 * Jtm:                                   Functions and Variables for qm.
-                                                             (line  819)
+                                                             (line  889)
 * Jtp:                                   Functions and Variables for qm.
-                                                             (line  810)
+                                                             (line  880)
 * Jtsqr:                                 Functions and Variables for qm.
-                                                             (line  831)
+                                                             (line  916)
 * Jtz:                                   Functions and Variables for qm.
-                                                             (line  785)
+                                                             (line  855)
 * Jz:                                    Functions and Variables for qm.
-                                                             (line  644)
+                                                             (line  714)
 * ket:                                   Functions and Variables for qm.
                                                              (line  167)
 * ketp:                                  Functions and Variables for qm.
@@ -1203,11 +1247,11 @@ Appendix A Function and Variable index
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  518)
 * RX:                                    Functions and Variables for qm.
-                                                             (line  981)
+                                                             (line  554)
 * RY:                                    Functions and Variables for qm.
-                                                             (line  985)
+                                                             (line  558)
 * RZ:                                    Functions and Variables for qm.
-                                                             (line  989)
+                                                             (line  562)
 * sigmax:                                Functions and Variables for qm.
                                                              (line  412)
 * sigmay:                                Functions and Variables for qm.
@@ -1215,13 +1259,13 @@ Appendix A Function and Variable index
 * sigmaz:                                Functions and Variables for qm.
                                                              (line  418)
 * SM:                                    Functions and Variables for qm.
-                                                             (line  960)
+                                                             (line  533)
 * SP:                                    Functions and Variables for qm.
-                                                             (line  957)
+                                                             (line  530)
 * spin_mbra:                             Functions and Variables for qm.
-                                                             (line  542)
+                                                             (line  612)
 * spin_mket:                             Functions and Variables for qm.
-                                                             (line  538)
+                                                             (line  608)
 * Sx:                                    Functions and Variables for qm.
                                                              (line  421)
 * SX:                                    Functions and Variables for qm.
@@ -1235,21 +1279,21 @@ Appendix A Function and Variable index
 * SZ:                                    Functions and Variables for qm.
                                                              (line  480)
 * tpadd:                                 Functions and Variables for qm.
-                                                             (line  734)
+                                                             (line  804)
 * tpbra:                                 Functions and Variables for qm.
-                                                             (line  697)
+                                                             (line  767)
 * tpbraket:                              Functions and Variables for qm.
-                                                             (line  705)
+                                                             (line  775)
 * tpcfset:                               Functions and Variables for qm.
-                                                             (line  719)
+                                                             (line  789)
 * tpdagger:                              Functions and Variables for qm.
-                                                             (line  751)
+                                                             (line  821)
 * tpket:                                 Functions and Variables for qm.
-                                                             (line  689)
+                                                             (line  759)
 * tpscmult:                              Functions and Variables for qm.
-                                                             (line  722)
+                                                             (line  792)
 * UU:                                    Functions and Variables for qm.
-                                                             (line 1010)
+                                                             (line  583)
 * xm:                                    Functions and Variables for qm.
                                                              (line  357)
 * xp:                                    Functions and Variables for qm.

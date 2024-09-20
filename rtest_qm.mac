@@ -202,6 +202,18 @@ ev(expect(Sy,xp+ym),ratsimp);
 ev(qm_variance(Sy,xp+ym),ratsimp);
 (%i*hbar)/2 $
 
+SP(1);
+matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
+
+SM(1);
+matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
+
+RY(1,t);
+matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2], $
+
+UU(w*Sy,t);
+matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
+
 spin_mket(3/2,1/2,2);
 matrix([sqrt(3)/2^(3/2)],[%i/2^(3/2)],[1/2^(3/2)],[ $
 
@@ -326,6 +338,9 @@ K2:Jtsqr(k);
 tpbraket(B,K2);
 4*hbar^2 $
 
+get_j(15/4);
+j = 3/2 $
+
 k:tpket(jmtop(1/2),jmtop(1));
 [tpket,1,ket([1/2,1/2]),ket([1,1])] $
 
@@ -345,7 +360,7 @@ k3:Jtm(k2);
 [tpket,2^(3/2)*hbar^2,ket([1/2,-(1/2)]),ket([1,0])] $
 
 k4:Jtm(k3);
-[tpket,4*hbar^3,ket([1/2,-(1/2)]),ket([1,-1])] $
+[tpket,6*hbar^3,ket([1/2,-(1/2)]),ket([1,-1])] $
 
 phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
@@ -371,17 +386,38 @@ tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
 tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
 0 $
 
-SP(1);
-matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
+top:tpket(jmtop(1/2),jmtop(1/2));
+[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
-SM(1);
-matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
+Jtsqr(top);
+[tpket,2*hbar^2,ket([1/2,1/2]),ket([1/2,1/2])] $
 
-RY(1,t);
-matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2], $
+get_j(2);
+j = 1 $
 
-UU(w*Sy,t);
-matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
+Jtz(top);
+[tpket,hbar,ket([1/2,1/2]),ket([1/2,1/2])] $
+
+JMtop:ket([1,1]);
+ket([1,1]) $
+
+mid:Jtm(top);
+[tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
+Jm(JMtop);
+sqrt(2)*ket([1,0])*hbar $
+
+mid:tpscmult(1/(sqrt(2)*hbar),mid);
+[tpket,1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
+bot:Jtm(mid);
+[tpket,sqrt(2)*hbar,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+
+Jm(ket([1,0]));
+sqrt(2)*ket([1,-1])*hbar $
+
+bot:tpscmult(1/(sqrt(2)*hbar),bot);
+[tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
 
 K:ket([a1,b1]);
 ket([a1,b1]) $

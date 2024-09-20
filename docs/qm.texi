@@ -65,8 +65,8 @@ are available as @code{@{xp,xm@}}, @code{@{yp,ym@}}, and
 arbitrary but finite dimension and perform standard computations such as
 expectation value, variance, etc. The angular momentum @var{|j,m>}
 representation of kets is also available. Tensor product states for
-multiparticle systems can be created to perform calculations on those
-systems.
+multiparticle systems can be created to perform calculations such as
+computing the Clebsh-Gordon coefficients.
 
 Let us consider a simple example involving spin-1/2 particles.
 A bra vector in the @code{z}-basis may be written as 
@@ -734,9 +734,100 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 @end group
 @end example
 
-@subsection Angular momentum representation of kets and bras
+@subsection Angular momentum and ladder operators in the matrix representation
 
-@subsubsection Matrix representation of (j,m)-kets and bras
+@anchor{SP}
+@deffn {Function} SP (@code{s})
+@code{SP} is the raising ladder operator @var{S@sub{+}} for spin @code{s}.
+@end deffn
+
+@anchor{SM}
+@deffn {Function} SM (@code{s})
+@code{SM} is the raising ladder operator @var{S@sub{-}} for spin @code{s}.
+@end deffn
+
+Examples of the ladder operators:
+
+@example
+@group
+(%i1) SP(1);
+                       [ 0  sqrt(2) hbar       0       ]
+                       [                               ]
+(%o1)                  [ 0       0        sqrt(2) hbar ]
+                       [                               ]
+                       [ 0       0             0       ]
+(%i2) SM(1);
+                       [      0             0        0 ]
+                       [                               ]
+(%o2)                  [ sqrt(2) hbar       0        0 ]
+                       [                               ]
+                       [      0        sqrt(2) hbar  0 ]
+@end group
+@end example
+
+@subsection Rotation operators
+
+@anchor{RX}
+@deffn {Function} RX (@code{s,t})
+@code{RX(s)} for spin @code{s} returns the matrix representation of the
+rotation operator @code{Rx} for rotation through angle @code{t}.
+@end deffn
+
+@anchor{RY}
+@deffn {Function} RY (@code{s,t})
+@code{RY(s)} for spin @code{s} returns the matrix representation of the
+rotation operator @code{Ry} for rotation through angle @code{t}.
+@end deffn
+
+@anchor{RZ}
+@deffn {Function} RZ (@code{s,t})
+@code{RZ(s)} for spin @code{s} returns the matrix representation of the
+rotation operator @code{Rz} for rotation through angle @code{t}.
+@end deffn
+
+@example
+@group
+(%i1) RY(1,t);
+Proviso: assuming 4*t # 0 
+                     [ cos(t) + 1    sin(t)   1 - cos(t) ]
+                     [ ----------  - -------  ---------- ]
+                     [     2         sqrt(2)      2      ]
+                     [                                   ]
+                     [  sin(t)                  sin(t)   ]
+(%o1)                [  -------     cos(t)    - -------  ]
+                     [  sqrt(2)                 sqrt(2)  ]
+                     [                                   ]
+                     [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
+                     [ ----------   -------   ---------- ]
+                     [     2        sqrt(2)       2      ]
+@end group
+@end example
+
+@subsection Time-evolution operator
+
+@anchor{UU}
+@deffn {Function} UU (@code{H,t})
+@code{UU(H,t)} is the time evolution operator for Hamiltonian @code{H}. It
+is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
+@end deffn
+
+@example
+@group
+(%i1) UU(w*Sy,t);
+Proviso: assuming 64*t*w # 0 
+                           [     t w         t w  ]
+                           [ cos(---)  - sin(---) ]
+                           [      2           2   ]
+(%o1)                      [                      ]
+                           [     t w        t w   ]
+                           [ sin(---)   cos(---)  ]
+                           [      2          2    ]
+@end group
+@end example
+
+@section Angular momentum representation of kets and bras
+
+@subsection Matrix representation of (j,m)-kets and bras
 
 The matrix representation of kets and bras in the @code{qm} package are
 represented in the @code{z}-basis. To create a matrix representation of
@@ -1157,30 +1248,6 @@ and returning @code{(J@sub{1z}+J@sub{2z})}.
 @code{J1p2m} returns @code{(J@sub{1+}J@sub{2-})} for the tpket.
 @end deffn
 
-@anchor{J1m2p}
-@deffn {Function} J1m2p (@emph{tpket})
-@code{J1m2p} returns @code{(J@sub{1-}J@sub{2+})} for the tpket.
-@end deffn
-
-@anchor{J1zJ2z}
-@deffn {Function} J1zJ2z (@emph{tpket})
-@code{J1zJ2z} returns @code{(J@sub{1z}J@sub{2z})} for the tpket.
-@end deffn
-
-@anchor{Jtsqr}
-@deffn {Function} Jtsqr (@emph{tpket})
-@code{Jtsqr} returns @code{(J@sub{1}@sup{2}+J@sub{2}@sup{2}+
-J@sub{1+}J@sub{2-}+J@sub{1-}J@sub{2+}+J@sub{1z}J@sub{2z})} for the
-tpket.
-@end deffn
-
-@anchor{get_j}
-@deffn {Function} get_j (@code{q})
-@code{get_j} is a convenience function that computes @code{j} from
-@code{j(j+1)=q} where @code{q} is a rational number. This function is
-useful after using the function @code{Jtsqr}.
-@end deffn
-
 @example
 @group
 (%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
@@ -1198,6 +1265,26 @@ useful after using the function @code{Jtsqr}.
 (%i4) J1m2p(k);
 (%o4)                                  0
 @end group
+@end example
+
+@anchor{J1m2p}
+@deffn {Function} J1m2p (@emph{tpket})
+@code{J1m2p} returns @code{(J@sub{1-}J@sub{2+})} for the tpket.
+@end deffn
+
+@anchor{J1zJ2z}
+@deffn {Function} J1zJ2z (@emph{tpket})
+@code{J1zJ2z} returns @code{(J@sub{1z}J@sub{2z})} for the tpket.
+@end deffn
+
+@anchor{Jtsqr}
+@deffn {Function} Jtsqr (@emph{tpket})
+@code{Jtsqr} returns @code{(J@sub{1}@sup{2}+J@sub{2}@sup{2}+
+J@sub{1+}J@sub{2-}+J@sub{1-}J@sub{2+}+J@sub{1z}J@sub{2z})} for the
+tpket.
+@end deffn
+
+@example
 @group
 (%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
                                      3    1    1  1
@@ -1216,6 +1303,23 @@ useful after using the function @code{Jtsqr}.
 (%o4)                               4 hbar
 @end group
 @end example
+
+@anchor{get_j}
+@deffn {Function} get_j (@code{q})
+@code{get_j} is a convenience function that computes @code{j} from
+@code{j(j+1)=q} where @code{q} is a rational number. This function is
+useful after using the function @code{Jtsqr}.
+@end deffn
+
+@example
+@group
+(%i1) get_j(15/4);
+                                         3
+(%o1)                                j = -
+                                         2
+@end group
+@end example
+
 
 @subsubsection Example computations
 
@@ -1263,12 +1367,9 @@ lowering operator to find the other states: @code{|3/2,1/2>},
                                            + [tpket, 2 hbar , |-, ->, |1, - 1>]
                                                                2  2
 (%i4) k4:Jtm(k3);
-                    3   1    1
-(%o4) [tpket, 4 hbar , |-, - ->, |1, - 1>]
-                        2    2
-                                                         3   1    1
-                                         + [tpket, 2 hbar , |-, - ->, |1, - 1>]
-                                                             2    2
+                                   3   1    1
+(%o4)                [tpket, 6 hbar , |-, - ->, |1, - 1>]
+                                       2    2
 @end group
 @end example
 
@@ -1314,98 +1415,53 @@ below; the common factor is the resulting matrix element.
 @end group
 @end example
 
-@subsection Angular momentum and ladder operators
-
-@anchor{SP}
-@deffn {Function} SP (@code{s})
-@code{SP} is the raising ladder operator @var{S@sub{+}} for spin @code{s}.
-@end deffn
-
-@anchor{SM}
-@deffn {Function} SM (@code{s})
-@code{SM} is the raising ladder operator @var{S@sub{-}} for spin @code{s}.
-@end deffn
-
-Examples of the ladder operators:
+In the example below we calculate the Clebsh-Gordon coefficients of the
+two-particle state with two spin-1/2 particles. We begin by
+defining the top rung of the ladder and stepping down. 
 
 @example
 @group
-(%i1) SP(1);
-                       [ 0  sqrt(2) hbar       0       ]
-                       [                               ]
-(%o1)                  [ 0       0        sqrt(2) hbar ]
-                       [                               ]
-                       [ 0       0             0       ]
-(%i2) SM(1);
-                       [      0             0        0 ]
-                       [                               ]
-(%o2)                  [ sqrt(2) hbar       0        0 ]
-                       [                               ]
-                       [      0        sqrt(2) hbar  0 ]
+(%i1) top:tpket(jmtop(1/2),jmtop(1/2));
+                                      1  1    1  1
+(%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                      2  2    2  2
+(%i2) Jtsqr(top);
+                                     2   1  1    1  1
+(%o2)                  [tpket, 2 hbar , |-, ->, |-, ->]
+                                         2  2    2  2
+(%i3) get_j(2);
+(%o3)                                j = 1
+(%i4) Jtz(top);
+                                        1  1    1  1
+(%o4)                    [tpket, hbar, |-, ->, |-, ->]
+                                        2  2    2  2
+(%i5) JMtop:ket([1,1]);
+(%o5)                               |1, 1>
+(%i6) mid:Jtm(top);
+                      1  1    1    1                    1    1    1  1
+(%o6)  [tpket, hbar, |-, ->, |-, - ->] + [tpket, hbar, |-, - ->, |-, ->]
+                      2  2    2    2                    2    2    2  2
+(%i7) Jm(JMtop);
+(%o7)                         sqrt(2) |1, 0> hbar
+(%i8) mid:tpscmult(1/(sqrt(2)*hbar),mid);
+                 1      1  1    1    1                1      1    1    1  1
+(%o8) [tpket, -------, |-, ->, |-, - ->] + [tpket, -------, |-, - ->, |-, ->]
+              sqrt(2)   2  2    2    2             sqrt(2)   2    2    2  2
+(%i9) bot:Jtm(mid);
+                                          1    1    1    1
+(%o9)              [tpket, sqrt(2) hbar, |-, - ->, |-, - ->]
+                                          2    2    2    2
+(%i10) Jm(ket([1,0]));
+(%o10)                       sqrt(2) |1, - 1> hbar
+(%i11) bot:tpscmult(1/(sqrt(2)*hbar),bot);
+                                    1    1    1    1
+(%o11)                  [tpket, 1, |-, - ->, |-, - ->]
+                                    2    2    2    2
 @end group
 @end example
 
-@section Rotation operators
 
-@anchor{RX}
-@deffn {Function} RX (@code{s,t})
-@code{RX(s)} for spin @code{s} returns the matrix representation of the
-rotation operator @code{Rx} for rotation through angle @code{t}.
-@end deffn
-
-@anchor{RY}
-@deffn {Function} RY (@code{s,t})
-@code{RY(s)} for spin @code{s} returns the matrix representation of the
-rotation operator @code{Ry} for rotation through angle @code{t}.
-@end deffn
-
-@anchor{RZ}
-@deffn {Function} RZ (@code{s,t})
-@code{RZ(s)} for spin @code{s} returns the matrix representation of the
-rotation operator @code{Rz} for rotation through angle @code{t}.
-@end deffn
-
-@example
-@group
-(%i1) RY(1,t);
-Proviso: assuming 4*t # 0 
-                     [ cos(t) + 1    sin(t)   1 - cos(t) ]
-                     [ ----------  - -------  ---------- ]
-                     [     2         sqrt(2)      2      ]
-                     [                                   ]
-                     [  sin(t)                  sin(t)   ]
-(%o1)                [  -------     cos(t)    - -------  ]
-                     [  sqrt(2)                 sqrt(2)  ]
-                     [                                   ]
-                     [ 1 - cos(t)   sin(t)    cos(t) + 1 ]
-                     [ ----------   -------   ---------- ]
-                     [     2        sqrt(2)       2      ]
-@end group
-@end example
-
-@section Time-evolution operator
-
-@anchor{UU}
-@deffn {Function} UU (@code{H,t})
-@code{UU(H,t)} is the time evolution operator for Hamiltonian @code{H}. It
-is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
-@end deffn
-
-@example
-@group
-(%i1) UU(w*Sy,t);
-Proviso: assuming 64*t*w # 0 
-                           [     t w         t w  ]
-                           [ cos(---)  - sin(---) ]
-                           [      2           2   ]
-(%o1)                      [                      ]
-                           [     t w        t w   ]
-                           [ sin(---)   cos(---)  ]
-                           [      2          2    ]
-@end group
-@end example
-
-@section Tensor products
+@section General tensor products
 
 Tensor products are represented as lists in the @code{qm} package. The
 ket tensor product @code{|z+,z+>} can be represented as
@@ -1460,7 +1516,7 @@ particle to obtain the density submatrix for particle 2.
 @end group
 @end example
 
-@subsection Quantum harmonic oscillator
+@section Quantum harmonic oscillator
 
 The @code{qm} package can perform simple quantum harmonic oscillator
 calculations involving the ladder operators @code{a@sup{+}} and
