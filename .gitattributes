@@ -1,0 +1,4 @@
+*.texi linguist-languate=TeXinfo
+*.mac linguist-language=Maxima
+*.lisp linguist-language=CommonLisp
+*.sh linguist-language=bash
