@@ -1,6 +1,3 @@
-Loading /home/ehm/.maxima/maxima-init.mac $$$
- $$$
-read and interpret /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt $$$
 
 (display2d:false,load(qm),0);
 0 $
@@ -35,9 +32,7 @@ ket([2])*b+ket([1])*a $
 psidag:dagger(psi);
 bra([2])*conjugate(b)+bra([1])*conjugate(a) $
 
-psidag
-.
-psi;
+psidag.psi;
 b*conjugate(b)+a*conjugate(a) $
 
 declare([c1,c2],complex,r,real);
@@ -49,9 +44,7 @@ matrix([c1],[c2],[r]) $
 b:dagger(k);
 matrix([conjugate(c1),conjugate(c2),r]) $
 
-b
-.
-k;
+b.k;
 r^2+c2*conjugate(c2)+c1*conjugate(c1) $
 
 k:ket([u,d]);
@@ -60,9 +53,7 @@ ket([u,d]) $
 b:bra([u,d]);
 bra([u,d]) $
 
-b
-.
-k;
+b.k;
 1 $
 
 k:ket([u,d]);
@@ -71,9 +62,7 @@ ket([u,d]) $
 b:bra([u,d]);
 bra([u,d]) $
 
-b
-.
-k;
+b.k;
 1 $
 
 declare([c1,c2],complex);
@@ -83,8 +72,8 @@ mket([c1,c2]);
 matrix([c1],[c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex), $
-        kind(c1,complex),kind(c2,complex),kind(r,real)] $$$
+[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(c1,complex),kind(c2,complex),kind(r,real)]
+$
 
 k:ket([a,b]);
 ket([a,bra([u,d])]) $
@@ -144,13 +133,13 @@ declare([a,b,c],complex);
 done $
 
 braket(mbra([a,b,c]),mket([a,b,c]));
-braket(matrix([a,matrix([a,bra([u,d])]),c]), $
-              matrix([a],[matrix([a,bra([u,d])])],[c])) $$$
+braket(matrix([a,matrix([a,bra([u,d])]),c]),               matrix([a],[matrix([a,bra([u,d])])],[c]))
+$
 
 braket(dagger(mket([a,b,c])),mket([a,b,c]));
-braket(matrix([conjugate(a), $
-                      matrix([conjugate(a),conjugate(bra([u,d]))]), $$$
-                      conjugate(c)]),matrix([a],[matrix([a,bra([u,d])])],[c])) $$$
+braket(matrix([conjugate(a),                       matrix([conjugate(a),conjugate(bra([u,d]))]),
+                      conjugate(c)]),matrix([a],[matrix([a,bra([u,d])])],[c]))
+$
 
 braket(bra([a1,b1,c1]),ket([a2,b2,c2]));
 kron_delta(a1,a2)*kron_delta(b1,b2)*kron_delta(c1,c2) $
@@ -168,8 +157,8 @@ A:braket(mbra([a,b]),mket([c,d]));
 braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])) $
 
 P:magsqr(A);
-braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])) $
- *conjugate(braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d]))) $$$
+braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d]))  *conjugate(braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])))
+$
 
 zp;
 matrix([1],[0]) $
@@ -193,11 +182,11 @@ psi:mket([a,b]);
 matrix([a],[matrix([a,bra([u,d])])]) $
 
 psi_x:'xp*braket(dagger(xp),psi)+'xm*braket(dagger(xm),psi);
-braket(matrix([1/sqrt(2),1/sqrt(2)]),matrix([a], $
-                                                   [matrix([a,bra([u,d])])]))*xp $$$
- +braket(matrix([1/sqrt(2),-(1/sqrt(2))]), $$$
-         matrix([a],[matrix([a,bra([u,d])])])) $$$
-  *xm $$$
+braket(matrix([1/sqrt(2),1/sqrt(2)]),matrix([a],                                                    [matrix([a,bra([u,d])])]))*xp
+ +braket(matrix([1/sqrt(2),-(1/sqrt(2))]),
+         matrix([a],[matrix([a,bra([u,d])])]))
+  *xm
+$
 
 sigmay;
 matrix([0,-%i],[%i,0]) $
@@ -215,9 +204,9 @@ SY(1/2);
 matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
 
 SX(1);
-matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0, $
-                                                                hbar/sqrt(2), $$$
-                                                                0]) $$$
+matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0,                                                                 hbar/sqrt(2),
+                                                                0])
+$
 
 ev(expect(Sy,xp+ym),ratsimp);
 -hbar $
@@ -232,18 +221,16 @@ SM(1);
 matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
 
 RY(1,t);
-Proviso: assuming 4*t # 0  $$$
-matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2], $
-              [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))], $$$
-              [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2]) $$$
+matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],               [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))],
+              [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2])
+$
 
 U(w*Sy,t);
-Proviso: assuming 64*t*w # 0  $$$
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
 spin_mbra(3/2,1/2,2);
-matrix([sqrt(3)/2^(3/2),-(%i/2^(3/2)),1/2^(3/2), $
-               -((sqrt(3)*%i)/2^(3/2))]) $$$
+matrix([sqrt(3)/2^(3/2),-(%i/2^(3/2)),1/2^(3/2),                -((sqrt(3)*%i)/2^(3/2))])
+$
 
 bra([3/2,1/2]);
 bra([3/2,1/2]) $
@@ -294,8 +281,8 @@ k:tpket(jmtop(1),jmbot(1));
 [tpket,1,ket([1,1]),ket([1,-1])] $
 
 K:Jtsqr(k);
-[tpket,2*hbar^2,ket([1,1]),ket([1,-1])] $
- +[tpket,2*hbar^2,ket([1,0]),ket([1,0])] $$$
+[tpket,2*hbar^2,ket([1,1]),ket([1,-1])]  +[tpket,2*hbar^2,ket([1,0]),ket([1,0])]
+$
 
 B:tpdagger(k);
 [tpbra,1,bra([1,1]),bra([1,-1])] $
@@ -316,8 +303,8 @@ k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
 
 tpadd(k1,k2);
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
- +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $$$
+[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+$
 
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
@@ -359,8 +346,8 @@ B:tpdagger(k);
 [tpbra,1,bra([3/2,-(1/2)]),bra([1/2,1/2])] $
 
 K2:Jtsqr(k);
-[tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
- +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])] $$$
+[tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]  +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
+$
 
 tpbraket(B,K2);
 4*hbar^2 $
@@ -381,12 +368,12 @@ k:tpket(jmtop(1/2),jmtop(1));
 [tpket,1,ket([1/2,1/2]),ket([1,1])] $
 
 k2:Jtm(k);
-[tpket,sqrt(2)*hbar,ket([1/2,1/2]),ket([1,0])] $
- +[tpket,hbar,ket([1/2,-(1/2)]),ket([1,1])] $$$
+[tpket,sqrt(2)*hbar,ket([1/2,1/2]),ket([1,0])]  +[tpket,hbar,ket([1/2,-(1/2)]),ket([1,1])]
+$
 
 k3:Jtm(k2);
-[tpket,2^(3/2)*hbar^2,ket([1/2,-(1/2)]),ket([1,0])] $
- +[tpket,2*hbar^2,ket([1/2,1/2]),ket([1,-1])] $$$
+[tpket,2^(3/2)*hbar^2,ket([1/2,-(1/2)]),ket([1,0])]  +[tpket,2*hbar^2,ket([1/2,1/2]),ket([1,-1])]
+$
 
 k4:Jtm(k3);
 [tpket,6*hbar^3,ket([1/2,-(1/2)]),ket([1,-1])] $
@@ -431,15 +418,15 @@ JMtop:ket([1,1]);
 ket([1,1]) $
 
 mid:Jtm(top);
-[tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
- +[tpket,hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])] $$$
+[tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+$
 
 Jm(JMtop);
 sqrt(2)*ket([1,0])*hbar $
 
 mid:tpscmult(1/(sqrt(2)*hbar),mid);
-[tpket,1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)])] $
- +[tpket,1/sqrt(2),ket([1/2,-(1/2)]),ket([1/2,1/2])] $$$
+[tpket,1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1/sqrt(2),ket([1/2,-(1/2)]),ket([1/2,1/2])]
+$
 
 bot:Jtm(mid);
 [tpket,sqrt(2)*hbar,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
@@ -459,53 +446,34 @@ bra([a2,b2]) $
 braket(B,K);
 kron_delta(a1,a2)*kron_delta(b1,b2) $
 
-bra([a1,Id,c1])
-.
-ket([a2,b2,c2]);
+bra([a1,Id,c1]).ket([a2,b2,c2]);
 ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
 
-bra([a1,b1,c1])
-.
-ket([Id,b2,c2]);
+bra([a1,b1,c1]).ket([Id,b2,c2]);
 bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2) $
 
 bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
 (ket([u,d])-ket([d,u]))/sqrt(2) $
 
-rho:bell
-.
-dagger(bell);
-(ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u]) $
-                                -ket([d,u]) . bra([u,d]) $$$
-                                +ket([d,u]) . bra([d,u])) $$$
- /2 $$$
+rho:bell.dagger(bell);
+(ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])                                 -ket([d,u]) . bra([u,d])
+                                +ket([d,u]) . bra([d,u]))
+ /2
+$
 
 assume(notequal(u,d));
 [notequal(u,d)] $
 
-trace1:bra([u,Id])
-.
-rho
-.
-ket([u,Id])+bra([d,Id])
-.
-rho
-.
-ket([d,Id]);
+trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);
 ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2 $
 
 declare(n,integer,n,scalar);
 done $
 
-ap
-.
-ket([n]);
+ap.ket([n]);
 sqrt(n+1)*ket([n+1]) $
 
-am
-.
-ket([n]);
-ket([n-1])*sqrt(n) $
-/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:152:23:incorrect syntax: ket is not an infix operator $$$
-[n]).(ap+am)^^4.ket( $$$
-                  ^ $$$
+am.ket([n]);
+ket([n-1])*sqrt(n) /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:152:23:incorrect syntax: ket is not an infix operator
+[n]).(ap+am)^^4.ket(
+                  ^

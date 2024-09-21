@@ -109,11 +109,11 @@ cat $packname.texi | grep "(%i" | \
 
 $MAXIMA -q -b examples.txt > rtest.tmp.out;
 
-
-cat rtest.tmp.out | awk '($1~/\(%i[1-9]/ && $2 !~ /batch/){for(i=2;i<NF+1;i++){printf("\n%s",$i)};printf(";\n");}\
-    	      ($1~/\(%o[1-9]/ && $2 !~ /examples.txt/){for(i=2;i<NF+1;i++){printf("%s ",$i)};printf("$\n");}\
-	      ($1 !~/\(%i[1-9]/ && $1 !~ /\(%o[1-9]/){print $0, "$$$"}'\
-			> rtest_$packname.tmp.mac;
+cat rtest.tmp.out | awk '($1~/\(%i[1-9]/ && $2 !~ /batch/){printf("$\n\n");\
+    		    	for(i=2;i<NF+1;i++){printf("%s",$i)};printf(";\n");}\
+    	      ($1~/\(%o[1-9]/ && $2 !~ /examples.txt/){for(i=2;i<NF+1;i++){printf("%s ",$i)}}\
+	      ($1 !~/\(%i[1-9]/ && $1 !~ /\(%o[1-9]/ && $1 !~ /Proviso/){print $0}'\
+		| tail -n +5 > rtest_$packname.mac;
 
 if [ $debug -eq 0 ]; then
     rm -f examples.txt rtest.tmp.out    
