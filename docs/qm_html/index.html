@@ -804,14 +804,14 @@ Proviso: assuming 4*t # 0
 <div class="subsection-level-extent" id="Time_002devolution-operator">
 <h4 class="subsection"><span>1.2.7 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h4>
 
-<a class="anchor" id="UU"></a><dl class="first-deffn">
-<dt class="deffn" id="index-UU"><span class="category-def">Function: </span><span><strong class="def-name">UU</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-UU"> &para;</a></span></dt>
-<dd><p><code class="code">UU(H,t)</code> is the time evolution operator for Hamiltonian <code class="code">H</code>. It
+<a class="anchor" id="U"></a><dl class="first-deffn">
+<dt class="deffn" id="index-U"><span class="category-def">Function: </span><span><strong class="def-name">U</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-U"> &para;</a></span></dt>
+<dd><p><code class="code">U(H,t)</code> is the time evolution operator for Hamiltonian <code class="code">H</code>. It
 is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)</code>.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) UU(w*Sy,t);
+<div class="group"><pre class="example-preformatted">(%i1) U(w*Sy,t);
 Proviso: assuming 64*t*w # 0 
                            [     t w         t w  ]
                            [ cos(---)  - sin(---) ]

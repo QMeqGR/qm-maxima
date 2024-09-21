@@ -805,15 +805,15 @@ Proviso: assuming 4*t # 0
 
 @subsection Time-evolution operator
 
-@anchor{UU}
-@deffn {Function} UU (@code{H,t})
-@code{UU(H,t)} is the time evolution operator for Hamiltonian @code{H}. It
+@anchor{U}
+@deffn {Function} U (@code{H,t})
+@code{U(H,t)} is the time evolution operator for Hamiltonian @code{H}. It
 is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
 @end deffn
 
 @example
 @group
-(%i1) UU(w*Sy,t);
+(%i1) U(w*Sy,t);
 Proviso: assuming 64*t*w # 0 
                            [     t w         t w  ]
                            [ cos(---)  - sin(---) ]

@@ -329,5 +329,5 @@ RX(s,t) := block([demoivre:true], Rot(SX(s),t))$
 RY(s,t) := block([demoivre:true], Rot(SY(s),t))$
 
 /* time-evolution operator */
-UU(H,t) := block([M,demoivre:true], Rot(H,t))$
+U(H,t) := block([M,demoivre:true], Rot(H,t))$
 

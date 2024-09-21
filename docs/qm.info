@@ -613,11 +613,11 @@ ket is constructed and the <x>-basis ket is computed.
 1.2.7 Time-evolution operator
 -----------------------------
 
- -- Function: UU (H,t)
-     ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
-     is defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
+ -- Function: U (H,t)
+     ‘U(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It is
+     defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
 
-     (%i1) UU(w*Sy,t);
+     (%i1) U(w*Sy,t);
      Proviso: assuming 64*t*w # 0
                                 [     t w         t w  ]
                                 [ cos(---)  - sin(---) ]
@@ -1309,7 +1309,7 @@ Appendix A Function and Variable index
                                                               (line 584)
 * tpscmult:                              Functions and Variables for qm.
                                                               (line 617)
-* UU:                                    Functions and Variables for qm.
+* U:                                     Functions and Variables for qm.
                                                               (line 427)
 * xm:                                    Functions and Variables for qm.
                                                               (line 201)
@@ -1374,45 +1374,45 @@ Ref: SM22402
 Ref: RX23241
 Ref: RY23408
 Ref: RZ23575
-Ref: UU24559
-Ref: spin_mket25641
-Ref: spin_mbra25811
-Ref: jmtop26955
-Ref: jmbot27199
-Ref: jmket27447
-Ref: jmketp27682
-Ref: jmbrap27990
-Ref: jmcheck28136
-Ref: Jp28309
-Ref: Jm28485
-Ref: Jsqr28661
-Ref: Jz28830
-Ref: tpket30614
-Ref: tpbra30939
-Ref: tpbraket31264
-Ref: tpcfset31855
-Ref: tpscmult31971
-Ref: tpadd32512
-Ref: tpdagger33379
-Ref: J1z33941
-Ref: J2z34067
-Ref: Jtz34809
-Ref: J1sqr35376
-Ref: J2sqr35473
-Ref: J1p35571
-Ref: J2p35665
-Ref: Jtp35760
-Ref: J1m35849
-Ref: J2m35943
-Ref: Jtm36038
-Ref: J1p2m36127
-Ref: J1m2p36916
-Ref: J1zJ2z37008
-Ref: Jtsqr37102
-Ref: get_j38064
-Ref: ap47312
-Ref: am47425
-Node: Function and Variable Index48318
+Ref: U24559
+Ref: spin_mket25638
+Ref: spin_mbra25808
+Ref: jmtop26952
+Ref: jmbot27196
+Ref: jmket27444
+Ref: jmketp27679
+Ref: jmbrap27987
+Ref: jmcheck28133
+Ref: Jp28306
+Ref: Jm28482
+Ref: Jsqr28658
+Ref: Jz28827
+Ref: tpket30611
+Ref: tpbra30936
+Ref: tpbraket31261
+Ref: tpcfset31852
+Ref: tpscmult31968
+Ref: tpadd32509
+Ref: tpdagger33376
+Ref: J1z33938
+Ref: J2z34064
+Ref: Jtz34806
+Ref: J1sqr35373
+Ref: J2sqr35470
+Ref: J1p35568
+Ref: J2p35662
+Ref: Jtp35757
+Ref: J1m35846
+Ref: J2m35940
+Ref: Jtm36035
+Ref: J1p2m36124
+Ref: J1m2p36913
+Ref: J1zJ2z37005
+Ref: Jtsqr37099
+Ref: get_j38061
+Ref: ap47309
+Ref: am47422
+Node: Function and Variable Index48315
 
 End Tag Table
 

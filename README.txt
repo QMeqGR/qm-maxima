@@ -581,11 +581,11 @@ ket is constructed and the <x>-basis ket is computed.
 1.2.7 Time-evolution operator
 -----------------------------
 
- -- Function: UU (H,t)
-     ‘UU(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It
-     is defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
+ -- Function: U (H,t)
+     ‘U(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It is
+     defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
 
-     (%i1) UU(w*Sy,t);
+     (%i1) U(w*Sy,t);
      Proviso: assuming 64*t*w # 0
                                 [     t w         t w  ]
                                 [ cos(---)  - sin(---) ]
@@ -1273,7 +1273,7 @@ Appendix A Function and Variable index
                                                              (line  740)
 * tpscmult:                              Functions and Variables for qm.
                                                              (line  773)
-* UU:                                    Functions and Variables for qm.
+* U:                                     Functions and Variables for qm.
                                                              (line  583)
 * xm:                                    Functions and Variables for qm.
                                                              (line  357)

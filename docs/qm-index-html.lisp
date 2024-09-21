@@ -24,9 +24,9 @@
          ("xm"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-xm")
-         ("UU"
+         ("U"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-UU")
+          "index-U")
          ("tpscmult"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-tpscmult")
