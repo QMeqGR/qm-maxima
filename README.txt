@@ -8,20 +8,20 @@ Package qm
 ==============================
 
 The ‘qm’ package was written by Eric Majzoub, University of Missouri
-(email: majzoube-at-umsystem.edu), with help from Robert Dodier and
-Barton Willis.
+(email: majzoube-at-umsystem.edu), with help from Maxima developers
+Robert Dodier and Barton Willis.
 
-   This purpose of this package is to provide computational tools for
+This purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
-space.  It was written with students in mind and is appropriate for
-upper-level undergraduate quantum mechanics at the level of Townsend's
-_A Modern Introduction to Quantum Mechanics_.  Please report any errors
-or unexpected behavior by submitting an issue on the Github page for
-this project.
+space.  It was written with students in mind as well as practitioners,
+and is appropriate for upper-level undergraduate quantum mechanics at
+the level of Townsend's _A Modern Introduction to Quantum Mechanics_ and
+above.  Please report any errors or unexpected behavior by submitting an
+issue on the Github page for this project.
 
-   The package is loaded with: ‘load(qm);’
+The package is loaded with: ‘load(qm);’
 
-   The ‘qm’ package provides functions and standard definitions to solve
+The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
 example, one can calculate the outcome of Stern-Gerlach experiments
 using built-in definitions of the Sx, Sy, and Sz operators for arbitrary
@@ -34,8 +34,8 @@ momentum <|j,m>> representation of kets is also available.  Tensor
 product states for multiparticle systems can be created to perform
 calculations such as computing the Clebsh-Gordon coefficients.
 
-   Let us consider a simple example involving spin-1/2 particles.  A bra
-vector in the ‘z’-basis may be written as
+   Let us consider a trivial example involving spin-1/2 particles.  A
+bra vector in the ‘z’-basis may be written as
 
            ‘<psi| = a <z+| + b <z-|’.
 
@@ -52,9 +52,9 @@ and
 
            ‘mbra([a,b])’
 
-   or taking the quantum mechanical dagger of the corresponding ket.  In
-a Maxima session this looks like the following.  The basis kets
-‘{zp,zm}’ are transformed into bras using the ‘dagger’ function.
+or taking the quantum mechanical dagger of the corresponding ket.  In a
+Maxima session this looks like the following.  The basis kets ‘{zp,zm}’
+are transformed into bras using the ‘dagger’ function.
 
      (%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
      (%o1)                              [ a  b ]

@@ -37,20 +37,20 @@ File: qm.info,  Node: Introduction to package qm,  Next: Functions and Variables
 ==============================
 
 The ‘qm’ package was written by Eric Majzoub, University of Missouri
-(email: majzoube-at-umsystem.edu), with help from Robert Dodier and
-Barton Willis.
+(email: majzoube-at-umsystem.edu), with help from Maxima developers
+Robert Dodier and Barton Willis.
 
-   This purpose of this package is to provide computational tools for
+This purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
-space.  It was written with students in mind and is appropriate for
-upper-level undergraduate quantum mechanics at the level of Townsend's
-_A Modern Introduction to Quantum Mechanics_.  Please report any errors
-or unexpected behavior by submitting an issue on the Github page for
-this project.
+space.  It was written with students in mind as well as practitioners,
+and is appropriate for upper-level undergraduate quantum mechanics at
+the level of Townsend's _A Modern Introduction to Quantum Mechanics_ and
+above.  Please report any errors or unexpected behavior by submitting an
+issue on the Github page for this project.
 
-   The package is loaded with: ‘load(qm);’
+The package is loaded with: ‘load(qm);’
 
-   The ‘qm’ package provides functions and standard definitions to solve
+The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
 example, one can calculate the outcome of Stern-Gerlach experiments
 using built-in definitions of the Sx, Sy, and Sz operators for arbitrary
@@ -63,8 +63,8 @@ momentum <|j,m>> representation of kets is also available.  Tensor
 product states for multiparticle systems can be created to perform
 calculations such as computing the Clebsh-Gordon coefficients.
 
-   Let us consider a simple example involving spin-1/2 particles.  A bra
-vector in the ‘z’-basis may be written as
+   Let us consider a trivial example involving spin-1/2 particles.  A
+bra vector in the ‘z’-basis may be written as
 
            ‘<psi| = a <z+| + b <z-|’.
 
@@ -81,9 +81,9 @@ and
 
            ‘mbra([a,b])’
 
-   or taking the quantum mechanical dagger of the corresponding ket.  In
-a Maxima session this looks like the following.  The basis kets
-‘{zp,zm}’ are transformed into bras using the ‘dagger’ function.
+or taking the quantum mechanical dagger of the corresponding ket.  In a
+Maxima session this looks like the following.  The basis kets ‘{zp,zm}’
+are transformed into bras using the ‘dagger’ function.
 
      (%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
      (%o1)                              [ a  b ]
@@ -1335,84 +1335,84 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm7296
-Ref: ket7649
-Ref: ketp8081
-Ref: bra8262
-Ref: brap8694
-Ref: mket8875
-Ref: mketp9582
-Ref: mbra10222
-Ref: mbrap10801
-Ref: autoket11527
-Ref: autobra12399
-Ref: dagger13069
-Ref: braket13507
-Ref: norm14143
-Ref: magsqr14599
-Ref: zp15367
-Ref: zm15430
-Ref: xp15493
-Ref: xm15556
-Ref: yp15619
-Ref: ym15682
-Ref: sigmax17734
-Ref: sigmay17791
-Ref: sigmaz17848
-Ref: Sx17905
-Ref: Sy17962
-Ref: Sz18019
-Ref: commutator18656
-Ref: anticommutator19326
-Ref: SX19733
-Ref: SY19946
-Ref: SZ20159
-Ref: expect21551
-Ref: qm_variance21794
-Ref: SP22309
-Ref: SM22402
-Ref: RX23241
-Ref: RY23408
-Ref: RZ23575
-Ref: U24559
-Ref: spin_mket25638
-Ref: spin_mbra25808
-Ref: jmtop26952
-Ref: jmbot27196
-Ref: jmket27444
-Ref: jmketp27679
-Ref: jmbrap27987
-Ref: jmcheck28133
-Ref: Jp28306
-Ref: Jm28482
-Ref: Jsqr28658
-Ref: Jz28827
-Ref: tpket30611
-Ref: tpbra30936
-Ref: tpbraket31261
-Ref: tpcfset31852
-Ref: tpscmult31968
-Ref: tpadd32509
-Ref: tpdagger33376
-Ref: J1z33938
-Ref: J2z34064
-Ref: Jtz34806
-Ref: J1sqr35373
-Ref: J2sqr35470
-Ref: J1p35568
-Ref: J2p35662
-Ref: Jtp35757
-Ref: J1m35846
-Ref: J2m35940
-Ref: Jtm36035
-Ref: J1p2m36124
-Ref: J1m2p36913
-Ref: J1zJ2z37005
-Ref: Jtsqr37099
-Ref: get_j38061
-Ref: ap47309
-Ref: am47422
-Node: Function and Variable Index48315
+Node: Functions and Variables for qm7339
+Ref: ket7692
+Ref: ketp8124
+Ref: bra8305
+Ref: brap8737
+Ref: mket8918
+Ref: mketp9625
+Ref: mbra10265
+Ref: mbrap10844
+Ref: autoket11570
+Ref: autobra12442
+Ref: dagger13112
+Ref: braket13550
+Ref: norm14186
+Ref: magsqr14642
+Ref: zp15410
+Ref: zm15473
+Ref: xp15536
+Ref: xm15599
+Ref: yp15662
+Ref: ym15725
+Ref: sigmax17777
+Ref: sigmay17834
+Ref: sigmaz17891
+Ref: Sx17948
+Ref: Sy18005
+Ref: Sz18062
+Ref: commutator18699
+Ref: anticommutator19369
+Ref: SX19776
+Ref: SY19989
+Ref: SZ20202
+Ref: expect21594
+Ref: qm_variance21837
+Ref: SP22352
+Ref: SM22445
+Ref: RX23284
+Ref: RY23451
+Ref: RZ23618
+Ref: U24602
+Ref: spin_mket25681
+Ref: spin_mbra25851
+Ref: jmtop26995
+Ref: jmbot27239
+Ref: jmket27487
+Ref: jmketp27722
+Ref: jmbrap28030
+Ref: jmcheck28176
+Ref: Jp28349
+Ref: Jm28525
+Ref: Jsqr28701
+Ref: Jz28870
+Ref: tpket30654
+Ref: tpbra30979
+Ref: tpbraket31304
+Ref: tpcfset31895
+Ref: tpscmult32011
+Ref: tpadd32552
+Ref: tpdagger33419
+Ref: J1z33981
+Ref: J2z34107
+Ref: Jtz34849
+Ref: J1sqr35416
+Ref: J2sqr35513
+Ref: J1p35611
+Ref: J2p35705
+Ref: Jtp35800
+Ref: J1m35889
+Ref: J2m35983
+Ref: Jtm36078
+Ref: J1p2m36167
+Ref: J1m2p36956
+Ref: J1zJ2z37048
+Ref: Jtsqr37142
+Ref: get_j38104
+Ref: ap47352
+Ref: am47465
+Node: Function and Variable Index48358
 
 End Tag Table
 
