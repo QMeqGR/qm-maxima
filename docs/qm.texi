@@ -55,7 +55,10 @@ Mechanics} and above. Please report any errors or unexpected behavior by
 submitting an issue on the Github page for this project.
 
 @noindent
-The package is loaded with: @code{load(qm);}
+The package is loaded with: @code{load(qm);} If you use wxMaxima then
+issue @code{load("wx.lisp");} @emph{after} loading the @code{qm}
+package. This will allow pretty printing of the kets and bras similar to
+what you see in this manual.
 
 @noindent
 The @code{qm} package provides functions and standard definitions to
@@ -1221,7 +1224,7 @@ and returning @code{(J@sub{1z}+J@sub{2z})}.
 
 @anchor{J2m}
 @deffn {Function} J2m (@emph{tpket})
-@code{J2m} returns @code{J@sub{=}} for the second ket of a tpket.
+@code{J2m} returns @code{J@sub{-}} for the second ket of a tpket.
 @end deffn
 
 @anchor{Jtm}

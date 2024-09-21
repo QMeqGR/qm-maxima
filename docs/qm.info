@@ -48,7 +48,10 @@ the level of Townsend's _A Modern Introduction to Quantum Mechanics_ and
 above.  Please report any errors or unexpected behavior by submitting an
 issue on the Github page for this project.
 
-The package is loaded with: ‘load(qm);’
+The package is loaded with: ‘load(qm);’ If you use wxMaxima then issue
+‘load("wx.lisp");’ _after_ loading the ‘qm’ package.  This will allow
+pretty printing of the kets and bras similar to what you see in this
+manual.
 
 The ‘qm’ package provides functions and standard definitions to solve
 quantum mechanics problems in a finite dimensional Hilbert space.  For
@@ -898,7 +901,7 @@ total ‘Jtxx’ defined function.
      ‘J1m’ returns ‘J_{-}’ for the first ket of a tpket.
 
  -- Function: J2m (_tpket_)
-     ‘J2m’ returns ‘J_{=}’ for the second ket of a tpket.
+     ‘J2m’ returns ‘J_{-}’ for the second ket of a tpket.
 
  -- Function: Jtm (_tpket_)
      ‘Jtm’ returns ‘(J_{1-}+J_{2-})’ for the tpket.
@@ -1335,84 +1338,84 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm7339
-Ref: ket7692
-Ref: ketp8124
-Ref: bra8305
-Ref: brap8737
-Ref: mket8918
-Ref: mketp9625
-Ref: mbra10265
-Ref: mbrap10844
-Ref: autoket11570
-Ref: autobra12442
-Ref: dagger13112
-Ref: braket13550
-Ref: norm14186
-Ref: magsqr14642
-Ref: zp15410
-Ref: zm15473
-Ref: xp15536
-Ref: xm15599
-Ref: yp15662
-Ref: ym15725
-Ref: sigmax17777
-Ref: sigmay17834
-Ref: sigmaz17891
-Ref: Sx17948
-Ref: Sy18005
-Ref: Sz18062
-Ref: commutator18699
-Ref: anticommutator19369
-Ref: SX19776
-Ref: SY19989
-Ref: SZ20202
-Ref: expect21594
-Ref: qm_variance21837
-Ref: SP22352
-Ref: SM22445
-Ref: RX23284
-Ref: RY23451
-Ref: RZ23618
-Ref: U24602
-Ref: spin_mket25681
-Ref: spin_mbra25851
-Ref: jmtop26995
-Ref: jmbot27239
-Ref: jmket27487
-Ref: jmketp27722
-Ref: jmbrap28030
-Ref: jmcheck28176
-Ref: Jp28349
-Ref: Jm28525
-Ref: Jsqr28701
-Ref: Jz28870
-Ref: tpket30654
-Ref: tpbra30979
-Ref: tpbraket31304
-Ref: tpcfset31895
-Ref: tpscmult32011
-Ref: tpadd32552
-Ref: tpdagger33419
-Ref: J1z33981
-Ref: J2z34107
-Ref: Jtz34849
-Ref: J1sqr35416
-Ref: J2sqr35513
-Ref: J1p35611
-Ref: J2p35705
-Ref: Jtp35800
-Ref: J1m35889
-Ref: J2m35983
-Ref: Jtm36078
-Ref: J1p2m36167
-Ref: J1m2p36956
-Ref: J1zJ2z37048
-Ref: Jtsqr37142
-Ref: get_j38104
-Ref: ap47352
-Ref: am47465
-Node: Function and Variable Index48358
+Node: Functions and Variables for qm7525
+Ref: ket7878
+Ref: ketp8310
+Ref: bra8491
+Ref: brap8923
+Ref: mket9104
+Ref: mketp9811
+Ref: mbra10451
+Ref: mbrap11030
+Ref: autoket11756
+Ref: autobra12628
+Ref: dagger13298
+Ref: braket13736
+Ref: norm14372
+Ref: magsqr14828
+Ref: zp15596
+Ref: zm15659
+Ref: xp15722
+Ref: xm15785
+Ref: yp15848
+Ref: ym15911
+Ref: sigmax17963
+Ref: sigmay18020
+Ref: sigmaz18077
+Ref: Sx18134
+Ref: Sy18191
+Ref: Sz18248
+Ref: commutator18885
+Ref: anticommutator19555
+Ref: SX19962
+Ref: SY20175
+Ref: SZ20388
+Ref: expect21780
+Ref: qm_variance22023
+Ref: SP22538
+Ref: SM22631
+Ref: RX23470
+Ref: RY23637
+Ref: RZ23804
+Ref: U24788
+Ref: spin_mket25867
+Ref: spin_mbra26037
+Ref: jmtop27181
+Ref: jmbot27425
+Ref: jmket27673
+Ref: jmketp27908
+Ref: jmbrap28216
+Ref: jmcheck28362
+Ref: Jp28535
+Ref: Jm28711
+Ref: Jsqr28887
+Ref: Jz29056
+Ref: tpket30840
+Ref: tpbra31165
+Ref: tpbraket31490
+Ref: tpcfset32081
+Ref: tpscmult32197
+Ref: tpadd32738
+Ref: tpdagger33605
+Ref: J1z34167
+Ref: J2z34293
+Ref: Jtz35035
+Ref: J1sqr35602
+Ref: J2sqr35699
+Ref: J1p35797
+Ref: J2p35891
+Ref: Jtp35986
+Ref: J1m36075
+Ref: J2m36169
+Ref: Jtm36264
+Ref: J1p2m36353
+Ref: J1m2p37142
+Ref: J1zJ2z37234
+Ref: Jtsqr37328
+Ref: get_j38290
+Ref: ap47538
+Ref: am47651
+Node: Function and Variable Index48544
 
 End Tag Table
 

@@ -75,7 +75,10 @@ the level of Townsend&rsquo;s <em class="emph">A Modern Introduction to Quantum
 Mechanics</em> and above. Please report any errors or unexpected behavior by
 submitting an issue on the Github page for this project.
 </p>
-<p>The package is loaded with: <code class="code">load(qm);</code>
+<p>The package is loaded with: <code class="code">load(qm);</code> If you use wxMaxima then
+issue <code class="code">load(&quot;wx.lisp&quot;);</code> <em class="emph">after</em> loading the <code class="code">qm</code>
+package. This will allow pretty printing of the kets and bras similar to
+what you see in this manual.
 </p>
 <p>The <code class="code">qm</code> package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
@@ -1191,7 +1194,7 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 
 <a class="anchor" id="J2m"></a><dl class="first-deffn">
 <dt class="deffn" id="index-J2m"><span class="category-def">Function: </span><span><strong class="def-name">J2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2m"> &para;</a></span></dt>
-<dd><p><code class="code">J2m</code> returns <code class="code">J<sub class="sub">=</sub></code> for the second ket of a tpket.
+<dd><p><code class="code">J2m</code> returns <code class="code">J<sub class="sub">-</sub></code> for the second ket of a tpket.
 </p></dd></dl>
 
 <a class="anchor" id="Jtm"></a><dl class="first-deffn">
