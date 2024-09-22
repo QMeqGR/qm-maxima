@@ -35,7 +35,7 @@ vectors with arbitrary but finite dimension and perform standard
 computations such as expectation value, variance, etc.  The angular
 momentum <|j,m>> representation of kets is also available.  Tensor
 product states for multiparticle systems can be created to perform
-calculations such as computing the Clebsh-Gordon coefficients.
+calculations such as computing the Clebsch-Gordan coefficients.
 
    Let us consider a trivial example involving spin-1/2 particles.  A
 bra vector in the ‘z’-basis may be written as
@@ -1009,7 +1009,7 @@ common factor is the resulting matrix element.
      (%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
      (%o8)                                  0
 
-   In the example below we calculate the Clebsh-Gordon coefficients of
+   In the example below we calculate the Clebsch-Gordan coefficients of
 the two-particle state with two spin-1/2 particles.  We begin by
 defining the top rung of the ladder and stepping down.
 

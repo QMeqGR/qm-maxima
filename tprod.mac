@@ -7,7 +7,7 @@
 /*
 The tensor product code here is necessary for dealing with tensor
 products of (j,m)-kets in order to do addition of addtion of angular
-momentum calculations of Clebsh-Gordon coefficients. -ehm
+momentum calculations of Clebsch-Gordan coefficients. -ehm
 */
 
 /***********************************/

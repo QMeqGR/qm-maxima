@@ -64,7 +64,7 @@ vectors with arbitrary but finite dimension and perform standard
 computations such as expectation value, variance, etc.  The angular
 momentum <|j,m>> representation of kets is also available.  Tensor
 product states for multiparticle systems can be created to perform
-calculations such as computing the Clebsh-Gordon coefficients.
+calculations such as computing the Clebsch-Gordan coefficients.
 
    Let us consider a trivial example involving spin-1/2 particles.  A
 bra vector in the ‘z’-basis may be written as
@@ -1041,7 +1041,7 @@ common factor is the resulting matrix element.
      (%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
      (%o8)                                  0
 
-   In the example below we calculate the Clebsh-Gordon coefficients of
+   In the example below we calculate the Clebsch-Gordan coefficients of
 the two-particle state with two spin-1/2 particles.  We begin by
 defining the top rung of the ladder and stepping down.
 
@@ -1338,84 +1338,84 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm7525
-Ref: ket7878
-Ref: ketp8310
-Ref: bra8491
-Ref: brap8923
-Ref: mket9104
-Ref: mketp9811
-Ref: mbra10451
-Ref: mbrap11030
-Ref: autoket11756
-Ref: autobra12628
-Ref: dagger13298
-Ref: braket13736
-Ref: norm14372
-Ref: magsqr14828
-Ref: zp15596
-Ref: zm15659
-Ref: xp15722
-Ref: xm15785
-Ref: yp15848
-Ref: ym15911
-Ref: sigmax17963
-Ref: sigmay18020
-Ref: sigmaz18077
-Ref: Sx18134
-Ref: Sy18191
-Ref: Sz18248
-Ref: commutator18885
-Ref: anticommutator19555
-Ref: SX19962
-Ref: SY20175
-Ref: SZ20388
-Ref: expect21780
-Ref: qm_variance22023
-Ref: SP22538
-Ref: SM22631
-Ref: RX23470
-Ref: RY23637
-Ref: RZ23804
-Ref: U24788
-Ref: spin_mket25867
-Ref: spin_mbra26037
-Ref: jmtop27181
-Ref: jmbot27425
-Ref: jmket27673
-Ref: jmketp27908
-Ref: jmbrap28216
-Ref: jmcheck28362
-Ref: Jp28535
-Ref: Jm28711
-Ref: Jsqr28887
-Ref: Jz29056
-Ref: tpket30840
-Ref: tpbra31165
-Ref: tpbraket31490
-Ref: tpcfset32081
-Ref: tpscmult32197
-Ref: tpadd32738
-Ref: tpdagger33605
-Ref: J1z34167
-Ref: J2z34293
-Ref: Jtz35035
-Ref: J1sqr35602
-Ref: J2sqr35699
-Ref: J1p35797
-Ref: J2p35891
-Ref: Jtp35986
-Ref: J1m36075
-Ref: J2m36169
-Ref: Jtm36264
-Ref: J1p2m36353
-Ref: J1m2p37142
-Ref: J1zJ2z37234
-Ref: Jtsqr37328
-Ref: get_j38290
-Ref: ap47538
-Ref: am47651
-Node: Function and Variable Index48544
+Node: Functions and Variables for qm7526
+Ref: ket7879
+Ref: ketp8311
+Ref: bra8492
+Ref: brap8924
+Ref: mket9105
+Ref: mketp9812
+Ref: mbra10452
+Ref: mbrap11031
+Ref: autoket11757
+Ref: autobra12629
+Ref: dagger13299
+Ref: braket13737
+Ref: norm14373
+Ref: magsqr14829
+Ref: zp15597
+Ref: zm15660
+Ref: xp15723
+Ref: xm15786
+Ref: yp15849
+Ref: ym15912
+Ref: sigmax17964
+Ref: sigmay18021
+Ref: sigmaz18078
+Ref: Sx18135
+Ref: Sy18192
+Ref: Sz18249
+Ref: commutator18886
+Ref: anticommutator19556
+Ref: SX19963
+Ref: SY20176
+Ref: SZ20389
+Ref: expect21781
+Ref: qm_variance22024
+Ref: SP22539
+Ref: SM22632
+Ref: RX23471
+Ref: RY23638
+Ref: RZ23805
+Ref: U24789
+Ref: spin_mket25868
+Ref: spin_mbra26038
+Ref: jmtop27182
+Ref: jmbot27426
+Ref: jmket27674
+Ref: jmketp27909
+Ref: jmbrap28217
+Ref: jmcheck28363
+Ref: Jp28536
+Ref: Jm28712
+Ref: Jsqr28888
+Ref: Jz29057
+Ref: tpket30841
+Ref: tpbra31166
+Ref: tpbraket31491
+Ref: tpcfset32082
+Ref: tpscmult32198
+Ref: tpadd32739
+Ref: tpdagger33606
+Ref: J1z34168
+Ref: J2z34294
+Ref: Jtz35036
+Ref: J1sqr35603
+Ref: J2sqr35700
+Ref: J1p35798
+Ref: J2p35892
+Ref: Jtp35987
+Ref: J1m36076
+Ref: J2m36170
+Ref: Jtm36265
+Ref: J1p2m36354
+Ref: J1m2p37143
+Ref: J1zJ2z37235
+Ref: Jtsqr37329
+Ref: get_j38291
+Ref: ap47540
+Ref: am47653
+Node: Function and Variable Index48546
 
 End Tag Table
 
