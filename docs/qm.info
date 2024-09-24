@@ -1043,7 +1043,13 @@ common factor is the resulting matrix element.
 
    In the example below we calculate the Clebsch-Gordan coefficients of
 the two-particle state with two spin-1/2 particles.  We begin by
-defining the top rung of the ladder and stepping down.
+defining the top rung of the ladder and stepping down.  To calculate the
+coefficients one first creates the tensor product top state, and
+computes the values for the total angular momentum ‘|J,M>’.  At the top
+of the ladder ‘M=J’.  For the first step down the ladder one computes
+‘Jm |J,M>’, which must be equal to ‘Jtm |j1,m1;j2,m2>’.  This gives
+first set of coefficients and one continues down the ladder to compute
+the rest of them.
 
      (%i1) top:tpket(jmtop(1/2),jmtop(1/2));
                                            1  1    1  1
@@ -1175,11 +1181,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                              (line 952)
+                                                              (line 958)
 * anticommutator:                        Functions and Variables for qm.
                                                               (line 302)
 * ap:                                    Functions and Variables for qm.
-                                                              (line 948)
+                                                              (line 954)
 * autobra:                               Functions and Variables for qm.
                                                               (line 124)
 * autoket:                               Functions and Variables for qm.
@@ -1413,9 +1419,9 @@ Ref: J1m2p37143
 Ref: J1zJ2z37235
 Ref: Jtsqr37329
 Ref: get_j38291
-Ref: ap47540
-Ref: am47653
-Node: Function and Variable Index48546
+Ref: ap47938
+Ref: am48051
+Node: Function and Variable Index48944
 
 End Tag Table
 

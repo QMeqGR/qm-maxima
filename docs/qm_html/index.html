@@ -1366,8 +1366,14 @@ below; the common factor is the resulting matrix element.
 </pre></div></div>
 
 <p>In the example below we calculate the Clebsch-Gordan coefficients of the
-two-particle state with two spin-1/2 particles. We begin by
-defining the top rung of the ladder and stepping down. 
+two-particle state with two spin-1/2 particles. We begin by defining the
+top rung of the ladder and stepping down. To calculate the coefficients
+one first creates the tensor product top state, and computes the values
+for the total angular momentum <code class="code">|J,M&gt;</code>. At the top of the ladder
+<code class="code">M=J</code>. For the first step down the ladder one computes <code class="code">Jm
+|J,M&gt;</code>, which must be equal to <code class="code">Jtm |j1,m1;j2,m2&gt;</code>. This gives
+first set of coefficients and one continues down the ladder to compute
+the rest of them.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) top:tpket(jmtop(1/2),jmtop(1/2));
