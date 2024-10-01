@@ -1,0 +1,43 @@
+/* Basis set utilities */
+/* E.H. Majzoub        */
+/* GPL 3 or greater    */
+
+/*************************/
+/* Matrix rep basis sets */
+/*************************/
+basis_set_p(B):=block([N:length(B)],
+  for i: 1 thru N do
+  if mketp(B[i])=false then return(false) else return(true) );
+
+mtrans(B1,B2):=block([N1:length(B1),N2:length(B2),M],
+  if basis_set_p(B1)=false or basis_set_p(B2)=false or N1#N2 then
+     return(disp("Bad basis set(s)")),
+  /* construct the transition matrix */
+  M: zeromatrix(N1,N1),
+  for i: 1 thru N1 do
+     for j: 1 thru N1 do
+        M[i,j]: dagger(B1[i]) . B2[j],
+  M);
+
+/* transform operator A from basis B1 to basis B2 */
+op_trans(A,B1,B2):=block([N1:length(B1),N2:length(B2),M,Md],
+  if basis_set_p(B1)=false or basis_set_p(B2)=false or N1#N2 then
+     return(disp("Bad basis set(s)")),
+  /* construct the transition matrix */
+  M: mtrans(B1,B2), Md: dagger(M),
+  Md . A . M);
+
+
+/*******************************/
+/*   Abstract basis sets       */
+/*******************************/
+
+/* construct matrix representation of an operator A */
+/* in basis B */
+matrep(A,B):=block([N:length(B),M],
+  M: zeromatrix(N,N),
+  for i: 1 thru N do
+    for j: 1 thru N do
+        M[i,j]: dagger(B[i]) . rho . B[j],
+  M);
+

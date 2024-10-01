@@ -485,10 +485,11 @@ squared of a complex number.
 <li><a href="#Spin_002d1_002f2-state-kets-and-associated-operators" accesskey="1">Spin-1/2 state kets and associated operators</a></li>
 <li><a href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators" accesskey="2">Pauli matrices and Sz, Sx, Sy operators</a></li>
 <li><a href="#SX_002c-SY_002c-SZ-operators-for-any-spin" accesskey="3">SX, SY, SZ operators for any spin</a></li>
-<li><a href="#Expectation-value-and-variance" accesskey="4">Expectation value and variance</a></li>
-<li><a href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation" accesskey="5">Angular momentum and ladder operators in the matrix representation</a></li>
-<li><a href="#Rotation-operators" accesskey="6">Rotation operators</a></li>
-<li><a href="#Time_002devolution-operator" accesskey="7">Time-evolution operator</a></li>
+<li><a href="#Basis-set-transformations" accesskey="4">Basis set transformations</a></li>
+<li><a href="#Expectation-value-and-variance" accesskey="5">Expectation value and variance</a></li>
+<li><a href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation" accesskey="6">Angular momentum and ladder operators in the matrix representation</a></li>
+<li><a href="#Rotation-operators" accesskey="7">Rotation operators</a></li>
+<li><a href="#Time_002devolution-operator" accesskey="8">Time-evolution operator</a></li>
 </ul>
 <div class="subsection-level-extent" id="Spin_002d1_002f2-state-kets-and-associated-operators">
 <h4 class="subsection"><span>1.2.1 Spin-1/2 state kets and associated operators<a class="copiable-link" href="#Spin_002d1_002f2-state-kets-and-associated-operators"> &para;</a></span></h4>
@@ -707,8 +708,66 @@ for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 </pre></div></div>
 
 </div>
+<div class="subsection-level-extent" id="Basis-set-transformations">
+<h4 class="subsection"><span>1.2.4 Basis set transformations<a class="copiable-link" href="#Basis-set-transformations"> &para;</a></span></h4>
+
+<p>Given a matrix representation of an operator in terms of <code class="code">mket</code>s
+one may transform from one <code class="code">mket</code> basis to another.
+</p>
+<a class="anchor" id="basis_005fset_005fp"></a><dl class="first-deffn">
+<dt class="deffn" id="index-basis_005fset_005fp"><span class="category-def">Function: </span><span><strong class="def-name">basis_set_p</strong> <var class="def-var-arguments">(<code class="code">B</code>)</var><a class="copiable-link" href="#index-basis_005fset_005fp"> &para;</a></span></dt>
+<dd><p>The predicate function <code class="code">basis_set_p</code> takes as an argument a basis
+set <code class="code">[b<sub class="sub">1</sub>,b<sub class="sub">2</sub>,&hellip;]</code> enclosed in square brackets,
+where each <code class="code">b<sub class="sub">i</sub></code> is <code class="code">true</code> for the predicate function
+<code class="code">mketp</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) basis_set_p([zp,zm]);
+(%o1)                                true
+</pre></div></div>
+
+<a class="anchor" id="mtrans"></a><dl class="first-deffn">
+<dt class="deffn" id="index-mtrans"><span class="category-def">Function: </span><span><strong class="def-name">mtrans</strong> <var class="def-var-arguments">(<code class="code">B<sub class="sub">1</sub>,B<sub class="sub">2</sub></code>)</var><a class="copiable-link" href="#index-mtrans"> &para;</a></span></dt>
+<dd><p>The function <code class="code">mtrans</code> returns the matrix of inner products of the
+two bases <code class="code">B<sub class="sub">1</sub></code> and <code class="code">B<sub class="sub">2</sub></code>. The bases must be of the
+same dimension.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) mtrans([zp,zm],[yp,ym]);
+                            [    1         1     ]
+                            [ -------   -------  ]
+                            [ sqrt(2)   sqrt(2)  ]
+(%o1)                       [                    ]
+                            [   %i         %i    ]
+                            [ -------  - ------- ]
+                            [ sqrt(2)    sqrt(2) ]
+</pre></div></div>
+
+
+<a class="anchor" id="op_005ftrans"></a><dl class="first-deffn">
+<dt class="deffn" id="index-op_005ftrans"><span class="category-def">Function: </span><span><strong class="def-name">op_trans</strong> <var class="def-var-arguments">(<code class="code">A,B<sub class="sub">1</sub>,B<sub class="sub">2</sub></code>)</var><a class="copiable-link" href="#index-op_005ftrans"> &para;</a></span></dt>
+<dd><p>The function <code class="code">op_trans</code> returns the matrix representation of
+operator <code class="code">A</code> in basis <code class="code">B<sub class="sub">2</sub></code>. The operator <code class="code">A</code> must
+be given in the basis <code class="code">B<sub class="sub">1</sub></code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) op_trans(Sy,[zp,zm],[yp,ym]);
+                               [ hbar         ]
+                               [ ----    0    ]
+                               [  2           ]
+(%o1)                          [              ]
+                               [         hbar ]
+                               [  0    - ---- ]
+                               [          2   ]
+</pre></div></div>
+
+
+</div>
 <div class="subsection-level-extent" id="Expectation-value-and-variance">
-<h4 class="subsection"><span>1.2.4 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.5 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
 
 <a class="anchor" id="expect"></a><dl class="first-deffn">
 <dt class="deffn" id="index-expect"><span class="category-def">Function: </span><span><strong class="def-name">expect</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-expect"> &para;</a></span></dt>
@@ -736,7 +795,7 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 
 </div>
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators-in-the-matrix-representation">
-<h4 class="subsection"><span>1.2.5 Angular momentum and ladder operators in the matrix representation<a class="copiable-link" href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.6 Angular momentum and ladder operators in the matrix representation<a class="copiable-link" href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation"> &para;</a></span></h4>
 
 <a class="anchor" id="SP"></a><dl class="first-deffn">
 <dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>
@@ -767,7 +826,7 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 
 </div>
 <div class="subsection-level-extent" id="Rotation-operators">
-<h4 class="subsection"><span>1.2.6 Rotation operators<a class="copiable-link" href="#Rotation-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.7 Rotation operators<a class="copiable-link" href="#Rotation-operators"> &para;</a></span></h4>
 
 <a class="anchor" id="RX"></a><dl class="first-deffn">
 <dt class="deffn" id="index-RX"><span class="category-def">Function: </span><span><strong class="def-name">RX</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RX"> &para;</a></span></dt>
@@ -805,7 +864,7 @@ Proviso: assuming 4*t # 0
 
 </div>
 <div class="subsection-level-extent" id="Time_002devolution-operator">
-<h4 class="subsection"><span>1.2.7 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.2.8 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h4>
 
 <a class="anchor" id="U"></a><dl class="first-deffn">
 <dt class="deffn" id="index-U"><span class="category-def">Function: </span><span><strong class="def-name">U</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-U"> &para;</a></span></dt>
@@ -1465,6 +1524,41 @@ particle to obtain the density submatrix for particle 2.
                        |-, u&gt; . &lt;-, u|   |-, d&gt; . &lt;-, d|
 (%o4)                  --------------- + ---------------
                               2                 2
+</pre></div></div>
+
+<p>One can also construct the density matrix using the function <code class="code">matrep</code>.
+</p>
+<a class="anchor" id="matrep"></a><dl class="first-deffn">
+<dt class="deffn" id="index-matrep"><span class="category-def">Function: </span><span><strong class="def-name">matrep</strong> <var class="def-var-arguments">(<code class="code">A,B</code>)</var><a class="copiable-link" href="#index-matrep"> &para;</a></span></dt>
+<dd><p>Given an abstract representation of an operator as shown above for the
+density matrix of a bell pair, the function <code class="code">matrep</code> takes the
+operator <code class="code">A</code> and basis set <code class="code">B</code> and constructs the matrix
+representation of the operator <code class="code">A</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+                                |1, 0&gt; - |0, 1&gt;
+(%o1)                           ---------------
+                                    sqrt(2)
+(%i2) rho:bell . dagger(bell);
+      |1, 0&gt; . &lt;1, 0| - |1, 0&gt; . &lt;0, 1| - |0, 1&gt; . &lt;1, 0| + |0, 1&gt; . &lt;0, 1|
+(%o2) ---------------------------------------------------------------------
+                                        2
+(%i3) B:[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])];
+(%o3)                  [|1, 1&gt;, |1, 0&gt;, |0, 1&gt;, |0, 0&gt;]
+(%i4) matrep(rho,B);
+                              [ 0   0    0   0 ]
+                              [                ]
+                              [     1     1    ]
+                              [ 0   -   - -  0 ]
+                              [     2     2    ]
+(%o4)                         [                ]
+                              [      1   1     ]
+                              [ 0  - -   -   0 ]
+                              [      2   2     ]
+                              [                ]
+                              [ 0   0    0   0 ]
 </pre></div></div>
 
 </div>

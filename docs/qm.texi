@@ -712,6 +712,68 @@ Example:
 @end group
 @end example
 
+@subsection Basis set transformations
+
+Given a matrix representation of an operator in terms of @code{mket}s
+one may transform from one @code{mket} basis to another.
+
+@anchor{basis_set_p}
+@deffn {Function} basis_set_p (@code{B})
+The predicate function @code{basis_set_p} takes as an argument a basis
+set @code{[b@sub{1},b@sub{2},@dots{}]} enclosed in square brackets,
+where each @code{b@sub{i}} is @code{true} for the predicate function
+@code{mketp}.
+@end deffn
+
+@example
+@group
+(%i1) basis_set_p([zp,zm]);
+(%o1)                                true
+@end group
+@end example
+
+@anchor{mtrans}
+@deffn {Function} mtrans (@code{B@sub{1},B@sub{2}})
+The function @code{mtrans} returns the matrix of inner products of the
+two bases @code{B@sub{1}} and @code{B@sub{2}}. The bases must be of the
+same dimension.
+@end deffn
+
+@example
+@group
+(%i1) mtrans([zp,zm],[yp,ym]);
+                            [    1         1     ]
+                            [ -------   -------  ]
+                            [ sqrt(2)   sqrt(2)  ]
+(%o1)                       [                    ]
+                            [   %i         %i    ]
+                            [ -------  - ------- ]
+                            [ sqrt(2)    sqrt(2) ]
+@end group
+@end example
+
+
+@anchor{op_trans}
+@deffn {Function} op_trans (@code{A,B@sub{1},B@sub{2}})
+The function @code{op_trans} returns the matrix representation of
+operator @code{A} in basis @code{B@sub{2}}. The operator @code{A} must
+be given in the basis @code{B@sub{1}}.
+@end deffn
+
+@example
+@group
+(%i1) op_trans(Sy,[zp,zm],[yp,ym]);
+                               [ hbar         ]
+                               [ ----    0    ]
+                               [  2           ]
+(%o1)                          [              ]
+                               [         hbar ]
+                               [  0    - ---- ]
+                               [          2   ]
+@end group
+@end example
+
+
 @subsection Expectation value and variance
 
 @anchor{expect}
@@ -1510,6 +1572,43 @@ particle to obtain the density submatrix for particle 2.
                        |-, u> . <-, u|   |-, d> . <-, d|
 (%o4)                  --------------- + ---------------
                               2                 2
+@end group
+@end example
+
+One can also construct the density matrix using the function @code{matrep}.
+
+@anchor{matrep}
+@deffn {Function} matrep (@code{A,B})
+Given an abstract representation of an operator as shown above for the
+density matrix of a bell pair, the function @code{matrep} takes the
+operator @code{A} and basis set @code{B} and constructs the matrix
+representation of the operator @code{A}.
+@end deffn
+
+@example
+@group
+(%i1) bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+                                |1, 0> - |0, 1>
+(%o1)                           ---------------
+                                    sqrt(2)
+(%i2) rho:bell . dagger(bell);
+      |1, 0> . <1, 0| - |1, 0> . <0, 1| - |0, 1> . <1, 0| + |0, 1> . <0, 1|
+(%o2) ---------------------------------------------------------------------
+                                        2
+(%i3) B:[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])];
+(%o3)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
+(%i4) matrep(rho,B);
+                              [ 0   0    0   0 ]
+                              [                ]
+                              [     1     1    ]
+                              [ 0   -   - -  0 ]
+                              [     2     2    ]
+(%o4)                         [                ]
+                              [      1   1     ]
+                              [ 0  - -   -   0 ]
+                              [      2   2     ]
+                              [                ]
+                              [ 0   0    0   0 ]
 @end group
 @end example
 

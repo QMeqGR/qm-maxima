@@ -208,6 +208,15 @@ matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0,                     
                                                                 0])
 $
 
+basis_set_p([zp,zm]);
+true $
+
+mtrans([zp,zm],[yp,ym]);
+matrix([1/sqrt(2),1/sqrt(2)],[%i/sqrt(2),-(%i/sqrt(2))]) $
+
+op_trans(Sy,[zp,zm],[yp,ym]);
+matrix([hbar/2,0],[0,-(hbar/2)]) $
+
 ev(expect(Sy,xp+ym),ratsimp);
 -hbar $
 
@@ -467,6 +476,21 @@ assume(notequal(u,d));
 trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);
 ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2 $
 
+bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+(ket([1,0])-ket([0,1]))/sqrt(2) $
+
+rho:bell.dagger(bell);
+(ket([1,0]) . bra([1,0])-ket([1,0]) . bra([0,1])                                 -ket([0,1]) . bra([1,0])
+                                +ket([0,1]) . bra([0,1]))
+ /2
+$
+
+B:[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])];
+[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])] $
+
+matrep(rho,B);
+matrix([0,0,0,0],[0,1/2,-(1/2),0],[0,-(1/2),1/2,0],[0,0,0,0]) $
+
 declare(n,integer,n,scalar);
 done $
 
@@ -474,6 +498,6 @@ ap.ket([n]);
 sqrt(n+1)*ket([n+1]) $
 
 am.ket([n]);
-ket([n-1])*sqrt(n) /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:152:23:incorrect syntax: ket is not an infix operator
+ket([n-1])*sqrt(n) /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:159:23:incorrect syntax: ket is not an infix operator
 [n]).(ap+am)^^4.ket(
                   ^

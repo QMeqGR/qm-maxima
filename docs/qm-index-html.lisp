@@ -99,9 +99,15 @@
          ("qm_variance"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-qm_005fvariance")
+         ("op_trans"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-op_005ftrans")
          ("norm"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-norm")
+         ("mtrans"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-mtrans")
          ("mketp"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-mketp")
@@ -114,6 +120,9 @@
          ("mbra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-mbra")
+         ("matrep"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-matrep")
          ("magsqr"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-magsqr")
@@ -219,6 +228,9 @@
          ("bra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-bra")
+         ("basis_set_p"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-basis_005fset_005fp")
          ("autoket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-autoket")
