@@ -1532,7 +1532,10 @@ particle to obtain the density submatrix for particle 2.
 <dd><p>Given an abstract representation of an operator, e.g.  <code class="code">A = |a&gt;
 . &lt;b| + |b&gt; . &lt;a|</code>, the function <code class="code">matrep</code> takes the operator
 <code class="code">A</code> and basis set <code class="code">B</code> and constructs the matrix representation
-of <code class="code">A</code>.
+of <code class="code">A</code>. NOTE: if there are symbolic constants as coefficients in
+the abstract representation they must be <code class="code">declared</code>d as scalar for
+the simplification rules to work properly with the non-commutative &ldquo;.&rdquo;
+operator.
 </p></dd></dl>
 
 <div class="example">
@@ -1558,6 +1561,16 @@ of <code class="code">A</code>.
                               [      2   2     ]
                               [                ]
                               [ 0   0    0   0 ]
+(%i5) declare([a,b],scalar);
+(%o5)                                done
+(%i6) O:a*ket([1]) . bra([0])+b*ket([0]) . bra([1]);
+(%o6)                    (|0&gt; . &lt;1|) b + (|1&gt; . &lt;0|) a
+(%i7) B:[ket([1]),ket([0])];
+(%o7)                             [|1&gt;, |0&gt;]
+(%i8) matrep(O,B);
+                                   [ 0  a ]
+(%o8)                              [      ]
+                                   [ b  0 ]
 </pre></div></div>
 
 </div>

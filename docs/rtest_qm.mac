@@ -491,6 +491,28 @@ B:[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])];
 matrep(rho,B);
 matrix([0,0,0,0],[0,1/2,-(1/2),0],[0,-(1/2),1/2,0],[0,0,0,0]) $
 
+declare([a,b],scalar);
+done $
+
+O:a*ket([1]).bra([0])+b*ket([0]).bra([1]);
+ket([0]) . bra([1])*[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]  +ket([1]) . bra([0])*a
+$
+
+B:[ket([1]),ket([0])];
+[ket([1]),ket([0])] $
+
+matrep(O,B);
+matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]) . ket([1]),
+                a+bra([1]) . (ket([0]) . bra([1])
+                           *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])])
+                           . ket([0])],
+               [bra([0]) . (ket([0]) . bra([1])
+                         *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]) . ket([1]),
+                bra([0]) . (ket([0]) . bra([1])
+                         *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])])
+                         . ket([0])])
+$
+
 declare(n,integer,n,scalar);
 done $
 
@@ -498,6 +520,6 @@ ap.ket([n]);
 sqrt(n+1)*ket([n+1]) $
 
 am.ket([n]);
-ket([n-1])*sqrt(n) /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:159:23:incorrect syntax: ket is not an infix operator
+ket([n-1])*sqrt(n) /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:163:23:incorrect syntax: ket is not an infix operator
 [n]).(ap+am)^^4.ket(
                   ^

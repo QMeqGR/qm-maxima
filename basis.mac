@@ -32,9 +32,11 @@ op_trans(A,B1,B2):=block([N1:length(B1),N2:length(B2),M,Md],
 /*   Abstract basis sets       */
 /*******************************/
 
-/* construct matrix representation of an operator A */
-/* in basis B */
-matrep(A,B):=block([N:length(B),M],
+/* Construct matrix representation of an operator A
+in basis B. Note: if there are symbols as coefficients
+in the kets, they must be declared 'scalar' for the
+rules to work. */
+matrep(A,B):=block([N:length(B),M,dotscrules:true],
   M: zeromatrix(N,N),
   for i: 1 thru N do
     for j: 1 thru N do

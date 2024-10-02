@@ -1581,7 +1581,10 @@ One can also construct the density matrix using the function @code{matrep}.
 Given an abstract representation of an operator, e.g.  @code{A = |a>
 . <b| + |b> . <a|}, the function @code{matrep} takes the operator
 @code{A} and basis set @code{B} and constructs the matrix representation
-of @code{A}.
+of @code{A}. NOTE: if there are symbolic constants as coefficients in
+the abstract representation they must be @code{declared}d as scalar for
+the simplification rules to work properly with the non-commutative ``.''
+operator.
 @end deffn
 
 @example
@@ -1608,6 +1611,16 @@ of @code{A}.
                               [      2   2     ]
                               [                ]
                               [ 0   0    0   0 ]
+(%i5) declare([a,b],scalar);
+(%o5)                                done
+(%i6) O:a*ket([1]) . bra([0])+b*ket([0]) . bra([1]);
+(%o6)                    (|0> . <1|) b + (|1> . <0|) a
+(%i7) B:[ket([1]),ket([0])];
+(%o7)                             [|1>, |0>]
+(%i8) matrep(O,B);
+                                   [ 0  a ]
+(%o8)                              [      ]
+                                   [ b  0 ]
 @end group
 @end example
 

@@ -1150,6 +1150,10 @@ particle to obtain the density submatrix for particle 2.
      Given an abstract representation of an operator, e.g.  ‘A = |a> .
      <b| + |b> . <a|’, the function ‘matrep’ takes the operator ‘A’ and
      basis set ‘B’ and constructs the matrix representation of ‘A’.
+     NOTE: if there are symbolic constants as coefficients in the
+     abstract representation they must be ‘declared’d as scalar for the
+     simplification rules to work properly with the non-commutative "."
+     operator.
 
      (%i1) bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
                                      |1, 0> - |0, 1>
@@ -1173,6 +1177,16 @@ particle to obtain the density submatrix for particle 2.
                                    [      2   2     ]
                                    [                ]
                                    [ 0   0    0   0 ]
+     (%i5) declare([a,b],scalar);
+     (%o5)                                done
+     (%i6) O:a*ket([1]) . bra([0])+b*ket([0]) . bra([1]);
+     (%o6)                    (|0> . <1|) b + (|1> . <0|) a
+     (%i7) B:[ket([1]),ket([0])];
+     (%o7)                             [|1>, |0>]
+     (%i8) matrep(O,B);
+                                        [ 0  a ]
+     (%o8)                              [      ]
+                                        [ b  0 ]
 
 1.5 Quantum harmonic oscillator
 ===============================
@@ -1218,11 +1232,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1190)
+                                                             (line 1204)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  461)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1186)
+                                                             (line 1200)
 * autobra:                               Functions and Variables for qm.
                                                              (line  283)
 * autoket:                               Functions and Variables for qm.
