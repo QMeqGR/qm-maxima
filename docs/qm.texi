@@ -34,7 +34,6 @@
 @end detailmenu
 @end menu
 
-
 @chapter Package qm
 
 @node Introduction to package qm, Functions and Variables for qm, Top, Top
