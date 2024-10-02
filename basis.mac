@@ -38,6 +38,6 @@ matrep(A,B):=block([N:length(B),M],
   M: zeromatrix(N,N),
   for i: 1 thru N do
     for j: 1 thru N do
-        M[i,j]: dagger(B[i]) . rho . B[j],
+        M[i,j]: dagger(B[i]) . A . B[j],
   M);
 
