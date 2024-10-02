@@ -1147,10 +1147,9 @@ particle to obtain the density submatrix for particle 2.
 ‘matrep’.
 
  -- Function: matrep (A,B)
-     Given an abstract representation of an operator as shown above for
-     the density matrix of a bell pair, the function ‘matrep’ takes the
-     operator ‘A’ and basis set ‘B’ and constructs the matrix
-     representation of the operator ‘A’.
+     Given an abstract representation of an operator, e.g.  ‘A = |a> .
+     <b| + |b> . <a|’, the function ‘matrep’ takes the operator ‘A’ and
+     basis set ‘B’ and constructs the matrix representation of ‘A’.
 
      (%i1) bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
                                      |1, 0> - |0, 1>
@@ -1219,11 +1218,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1191)
+                                                             (line 1190)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  461)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1187)
+                                                             (line 1186)
 * autobra:                               Functions and Variables for qm.
                                                              (line  283)
 * autoket:                               Functions and Variables for qm.

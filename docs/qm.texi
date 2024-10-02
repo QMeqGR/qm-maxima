@@ -1579,10 +1579,10 @@ One can also construct the density matrix using the function @code{matrep}.
 
 @anchor{matrep}
 @deffn {Function} matrep (@code{A,B})
-Given an abstract representation of an operator as shown above for the
-density matrix of a bell pair, the function @code{matrep} takes the
-operator @code{A} and basis set @code{B} and constructs the matrix
-representation of the operator @code{A}.
+Given an abstract representation of an operator, e.g.  @code{A = |a>
+. <b| + |b> . <a|}, the function @code{matrep} takes the operator
+@code{A} and basis set @code{B} and constructs the matrix representation
+of @code{A}.
 @end deffn
 
 @example
