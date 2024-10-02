@@ -1036,7 +1036,7 @@ the set @code{@{-j,-j+1,@dots{},+j@}}.
 @anchor{Jsqr}
 @deffn {Function} Jsqr (@emph{jmket})
 @code{Jsqr} is the @code{J@sup{2}} operator. It takes a @code{jmket}
-@code{jmket(j,m)} and returns @code{(j*(j+1)*hbar@sup{2}*jmket(j,m)}.
+@code{jmket(j,m)} and returns @code{j*(j+1)*hbar@sup{2}*jmket(j,m)}.
 @end deffn
 
 @anchor{Jz}
