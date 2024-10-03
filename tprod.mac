@@ -44,18 +44,14 @@ flin(x):=x;
 declare(flin,linear);
 
 tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
-tpscmult(f,tp):=block([k:0],
-    listarith:false,
+tpscmult(f,tp):=block([k:0,listarith:false],
     if listp(tp)=true then return( [tp[1],tp[2]*f,tp[3],tp[4]] )
     else for i: 1 thru length(tp) do
         k: k + [part(tp,i)[1], f* part(tp,i)[2], part(tp,i)[3], part(tp,i)[4]],
-    listarith:true,
     k);
 
-tpbraket(x,y):=block([A1,A2,tmp],
-    listarith:false,
+tpbraket(x,y):=block([A1,A2,tmp,listarith:false],
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
-    listarith:true,
     tmp);
 
 tpbraket_single(b,k):=block([R],
@@ -63,7 +59,7 @@ tpbraket_single(b,k):=block([R],
     R: b[2]*k[2]*( b[3] . k[3] )*( b[4] . k[4] ),
     R);
 
-tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1],
+tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1,listarith:false],
     if tpka=0 then return(tpkb),
     if tpkb=0 then return(tpka),
     if tpka=0 and tpkb=0 then return(0),
@@ -72,10 +68,8 @@ tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1],
     if tpka[3]=tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, cfa+cfb, tpka[3], tpka[4]],
     if tpka[3]=tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, 1, tpka[3], cfa*tpka[4]+cfb*tpkb[4]], 
     if tpka[3]#tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, 1, cfa*tpka[3]+cfb*tpkb[3], tpkb[4]],
-    listarith:false,
     if tpka[3]#tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, cfa, tpka[3], tpka[4]] +
        		       	   		   	   [tpket, cfb, tpkb[3], tpkb[4]],
-    listarith:true,				   
     R);
 
 tpdagger(tp):=block([R],
@@ -95,12 +89,11 @@ J2sqr(k):= if tpketp(k) then [tpket,k[2],k[3],Jsqr(k[4])];
 
 J1p(k):= if tpketp(k) then [tpket,k[2],Jp(k[3]),k[4]];
 J2p(k):= if tpketp(k) then [tpket,k[2],k[3],Jp(k[4])];
-Jtp(k):= block([R:0,R2:0],listarith:false,
+Jtp(k):= block([R:0,R2:0,listarith:false],
 	 if listp(k)=true and length(k)=4 then R: J1p(k)+J2p(k)
 	 elseif listp(k)=false then
 	 	for i: 1 thru length(k) do
          	R: R + J1p(part(k,i)) + J2p(part(k,i)),
-	 listarith:true,
          if R=0 then return(0),
          if listp(R)=true then return(R),
          if listp(R)=false and length(R) > 1 then
@@ -110,12 +103,11 @@ Jtp(k):= block([R:0,R2:0],listarith:false,
 
 J1m(k):= if tpketp(k) then [tpket,k[2],Jm(k[3]),k[4]];
 J2m(k):= if tpketp(k) then [tpket,k[2],k[3],Jm(k[4])];
-Jtm(k):= block([R:0,R2:0],listarith:false,
+Jtm(k):= block([R:0,R2:0,listarith:false],
 	 if listp(k)=true and length(k)=4 then R: J1m(k)+J2m(k)
 	 elseif listp(k)=false then
 	 	for i: 1 thru length(k) do
          	R: R + J1m(part(k,i)) + J2m(part(k,i)),
-	 listarith:true,
          if R=0 then return(0),
          if listp(R)=true then return(R),
          if listp(R)=false and length(R) > 1 then
