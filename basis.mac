@@ -36,10 +36,11 @@ op_trans(A,B1,B2):=block([N1:length(B1),N2:length(B2),M,Md],
 in basis B. Note: if there are symbols as coefficients
 in the kets, they must be declared 'scalar' for the
 rules to work. */
-matrep(A,B):=block([N:length(B),M,dotscrules:true],
+matrep(A,B):=block([N:length(B),M,dotscrules:true,listarith:false],
   M: zeromatrix(N,N),
   for i: 1 thru N do
     for j: 1 thru N do
-        M[i,j]: dagger(B[i]) . A . B[j],
+        if tpketp(B[i]) then M[i,j]: tpbraket(tpdagger(B[i]) , A . B[j])
+        else M[i,j]: dagger(B[i]) . A . B[j],
   M);
 

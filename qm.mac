@@ -63,7 +63,7 @@ tellsimpafter(cos(x)-%i*sin(x),%e^(-%i*x));
 /*******************************/
 /* Constants and assumptions   */
 /*******************************/
-declare(hbar,real) $
+declare(hbar,[real,scalar]) $
 assume(hbar>0) $
 
 /************************/

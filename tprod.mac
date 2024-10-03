@@ -153,3 +153,21 @@ get_j(x):=block([out,jval,j],
     out: solve(j*(j+1)=x,j),
     for i: 1 thru 2 do if rhs(out[i])>0 then jval:out[i],
     jval);
+
+/* Rules for calculating abstract hamiltonian matrix reps */
+matchdeclare(tpk,tpketp);
+tellsimpafter(J1z . tpk , J1z(tpk));
+tellsimpafter(J2z . tpk , J2z(tpk));
+tellsimpafter(Jtz . tpk , Jtz(tpk));
+tellsimpafter(J1sqr . tpk , J1sqr(tpk));
+tellsimpafter(J2sqr . tpk , J2sqr(tpk));
+tellsimpafter(J1p . tpk , J1p(tpk));
+tellsimpafter(J2p . tpk , J2p(tpk));
+tellsimpafter(Jtp . tpk , Jtp(tpk));
+tellsimpafter(J1m . tpk , J1m(tpk));
+tellsimpafter(J2m . tpk , J2m(tpk));
+tellsimpafter(Jtm . tpk , Jtm(tpk));
+tellsimpafter(J1p2m . tpk , J1p2m(tpk));
+tellsimpafter(J1m2p . tpk , J1m2p(tpk));
+tellsimpafter(J1zJ2z . tpk , J1zJ2z(tpk));
+tellsimpafter(Jtsqr . tpk , Jtsqr(tpk));
