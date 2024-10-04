@@ -1220,6 +1220,32 @@ particle to obtain the density submatrix for particle 2.
      (%o8)                              [      ]
                                         [ b  0 ]
 
+1.4.1 Matrix trace functions
+----------------------------
+
+ -- Function: qm_mtrace (_matrix_)
+     The function ‘qm_mtrace’ is the usual matrix trace; it takes a
+     square matrix and returns the sum of the diagonal components.
+
+ -- Function: qm_atrace (A,B)
+     The function ‘qm_atrace’ takes an abstract operator ‘A’ and a basis
+     ‘B’ and attempts to compute the matrix representation using the
+     ‘matrep’ function.  If successful it will return the matrix trace
+     the resulting matrix.
+
+     (%i1) B:[ket([1]),ket([0])];
+     (%o1)                             [|1>, |0>]
+     (%i2) declare(c,scalar);
+     (%o2)                                done
+     (%i3) A:c*ket([1]) . bra([1]);
+     (%o3)                            (|1> . <1|) c
+     (%i4) matrep(A,B);
+                                        [ c  0 ]
+     (%o4)                              [      ]
+                                        [ 0  0 ]
+     (%i5) qm_atrace(A,B);
+     (%o5)                                  c
+
 1.5 Quantum harmonic oscillator
 ===============================
 
@@ -1268,11 +1294,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1045)
+                                                             (line 1071)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  302)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1041)
+                                                             (line 1067)
 * autobra:                               Functions and Variables for qm.
                                                              (line  124)
 * autoket:                               Functions and Variables for qm.
@@ -1365,6 +1391,10 @@ Appendix A Function and Variable index
                                                              (line  163)
 * op_trans:                              Functions and Variables for qm.
                                                              (line  380)
+* qm_atrace:                             Functions and Variables for qm.
+                                                             (line 1038)
+* qm_mtrace:                             Functions and Variables for qm.
+                                                             (line 1034)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  404)
 * RX:                                    Functions and Variables for qm.
@@ -1518,9 +1548,11 @@ Ref: J1zJ2z39020
 Ref: Jtsqr39114
 Ref: get_j40076
 Ref: matrep49328
-Ref: ap51939
-Ref: am52052
-Node: Function and Variable Index52945
+Ref: qm_mtrace51524
+Ref: qm_atrace51699
+Ref: ap52954
+Ref: am53067
+Node: Function and Variable Index53960
 
 End Tag Table
 

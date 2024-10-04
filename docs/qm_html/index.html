@@ -1573,6 +1573,43 @@ operator.
                                    [ b  0 ]
 </pre></div></div>
 
+<ul class="mini-toc">
+<li><a href="#Matrix-trace-functions" accesskey="1">Matrix trace functions</a></li>
+</ul>
+<div class="subsection-level-extent" id="Matrix-trace-functions">
+<h4 class="subsection"><span>1.4.1 Matrix trace functions<a class="copiable-link" href="#Matrix-trace-functions"> &para;</a></span></h4>
+
+<a class="anchor" id="qm_005fmtrace"></a><dl class="first-deffn">
+<dt class="deffn" id="index-qm_005fmtrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_mtrace</strong> <var class="def-var-arguments">(<em class="emph">matrix</em>)</var><a class="copiable-link" href="#index-qm_005fmtrace"> &para;</a></span></dt>
+<dd><p>The function <code class="code">qm_mtrace</code> is the usual matrix trace; it takes
+a square matrix and returns the sum of the diagonal components.
+</p></dd></dl>
+
+<a class="anchor" id="qm_005fatrace"></a><dl class="first-deffn">
+<dt class="deffn" id="index-qm_005fatrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_atrace</strong> <var class="def-var-arguments">(<code class="code">A,B</code>)</var><a class="copiable-link" href="#index-qm_005fatrace"> &para;</a></span></dt>
+<dd><p>The function <code class="code">qm_atrace</code> takes an abstract operator <code class="code">A</code> and a
+basis <code class="code">B</code> and attempts to compute the matrix representation using
+the <code class="code">matrep</code> function.  If successful it will return the matrix
+trace the resulting matrix.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) B:[ket([1]),ket([0])];
+(%o1)                             [|1&gt;, |0&gt;]
+(%i2) declare(c,scalar);
+(%o2)                                done
+(%i3) A:c*ket([1]) . bra([1]);
+(%o3)                            (|1&gt; . &lt;1|) c
+(%i4) matrep(A,B);
+                                   [ c  0 ]
+(%o4)                              [      ]
+                                   [ 0  0 ]
+(%i5) qm_atrace(A,B);
+(%o5)                                  c
+</pre></div></div>
+
+
+</div>
 </div>
 <div class="section-level-extent" id="Quantum-harmonic-oscillator">
 <h3 class="section"><span>1.5 Quantum harmonic oscillator<a class="copiable-link" href="#Quantum-harmonic-oscillator"> &para;</a></span></h3>

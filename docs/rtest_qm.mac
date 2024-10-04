@@ -513,6 +513,21 @@ matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([
                          . ket([0])])
 $
 
+B:[ket([1]),ket([0])];
+[ket([1]),ket([0])] $
+
+declare(c,scalar);
+done $
+
+A:c*ket([1]).bra([1]);
+ket([1]) . bra([1])*c $
+
+matrep(A,B);
+matrix([c,0],[0,0]) $
+
+qm_atrace(A,B);
+c $
+
 declare(n,integer,n,scalar);
 done $
 

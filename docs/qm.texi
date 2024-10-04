@@ -1624,6 +1624,40 @@ operator.
 @end group
 @end example
 
+@subsection Matrix trace functions
+
+@anchor{qm_mtrace}
+@deffn {Function} qm_mtrace (@emph{matrix})
+The function @code{qm_mtrace} is the usual matrix trace; it takes
+a square matrix and returns the sum of the diagonal components.
+@end deffn
+
+@anchor{qm_atrace}
+@deffn {Function} qm_atrace (@code{A,B})
+The function @code{qm_atrace} takes an abstract operator @code{A} and a
+basis @code{B} and attempts to compute the matrix representation using
+the @code{matrep} function.  If successful it will return the matrix
+trace the resulting matrix.
+@end deffn
+
+@example
+@group
+(%i1) B:[ket([1]),ket([0])];
+(%o1)                             [|1>, |0>]
+(%i2) declare(c,scalar);
+(%o2)                                done
+(%i3) A:c*ket([1]) . bra([1]);
+(%o3)                            (|1> . <1|) c
+(%i4) matrep(A,B);
+                                   [ c  0 ]
+(%o4)                              [      ]
+                                   [ 0  0 ]
+(%i5) qm_atrace(A,B);
+(%o5)                                  c
+@end group
+@end example
+
+
 @section Quantum harmonic oscillator
 
 The @code{qm} package can perform simple quantum harmonic oscillator

@@ -99,6 +99,12 @@
          ("qm_variance"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-qm_005fvariance")
+         ("qm_mtrace"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-qm_005fmtrace")
+         ("qm_atrace"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-qm_005fatrace")
          ("op_trans"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-op_005ftrans")

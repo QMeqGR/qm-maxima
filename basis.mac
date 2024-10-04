@@ -50,3 +50,15 @@ matrep(A,B):=block([N:length(B),M,dotscrules:true,listarith:false],
               else M[i,j]: dagger(B[i]) . A . B[j],        
 M);
 
+/****************************/
+/*        QM trace          */
+/****************************/
+/* matrix trace */
+qm_mtrace(M) := if matrixp(M) then
+      block([n:matrix_size(M)[1],m:matrix_size(M)[2],tr:0],
+            if n # m then return(disp("matrix is not square"))
+            else for i: 1 thru n do tr: tr + M[i,i], tr)
+      else disp("function requires matrix as input");
+
+/* abstract trace */
+qm_atrace(A,B) := qm_mtrace( matrep(A,B) );
