@@ -520,4 +520,7 @@ ap.ket([n]);
 sqrt(n+1)*ket([n+1]) $
 
 am.ket([n]);
-ket([n-1])*sqrt(n) 
+ket([n-1])*sqrt(n) $
+
+bra([n]).(ap+am)^^4.ket([n]);
+6*n^2+6*n+3 

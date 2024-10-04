@@ -104,7 +104,7 @@ echo "Generating test suite from examples..."
 ## Create test suite from examples in $packname.texi
 echo "(display2d:false,load($packname),0);" > examples.txt
 cat $packname.texi | grep "(%i" | \
-    awk '(NF>1){for(i=2;i<NF+1;i++){printf("%s",$i)};printf("\n");}' \
+    awk '(NF>1){for(i=2;i<NF+1;i++){printf("%s ",$i)};printf("\n");}' \
 	 >> examples.txt;
 
 $MAXIMA -q -b examples.txt > rtest.tmp.out;
