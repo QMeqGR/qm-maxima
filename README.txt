@@ -736,7 +736,7 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
 
  -- Function: Jsqr (_jmket_)
      ‘Jsqr’ is the ‘J^{2}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’
-     and returns ‘(j*(j+1)*hbar^{2}*jmket(j,m)’.
+     and returns ‘j*(j+1)*hbar^{2}*jmket(j,m)’.
 
  -- Function: Jz (_jmket_)
      ‘Jz’ is the ‘J_{z}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and

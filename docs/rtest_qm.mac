@@ -520,6 +520,4 @@ ap.ket([n]);
 sqrt(n+1)*ket([n+1]) $
 
 am.ket([n]);
-ket([n-1])*sqrt(n) /home/ehm/math/Maxima/share/ehm/qm-maxima/docs/examples.txt:163:23:incorrect syntax: ket is not an infix operator
-[n]).(ap+am)^^4.ket(
-                  ^
+ket([n-1])*sqrt(n) 

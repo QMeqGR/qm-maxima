@@ -39,8 +39,14 @@ rules to work. */
 matrep(A,B):=block([N:length(B),M,dotscrules:true,listarith:false],
   M: zeromatrix(N,N),
   for i: 1 thru N do
-    for j: 1 thru N do
-        if tpketp(B[i]) then M[i,j]: tpbraket(tpdagger(B[i]) , A . B[j])
-        else M[i,j]: dagger(B[i]) . A . B[j],
-  M);
+     for j: 1 thru N do
+        if freeof("+",A)=false then /* allows for claculations with H = H1 + H2 +... */
+           block([rho:expand(A)],
+           for k: 1 thru length(rho) do
+              if tpketp(B[i]) then M[i,j]: M[i,j] + tpbraket(tpdagger(B[i]) , part(rho,k) . B[j])
+              else M[i,j]: M[i,j] + dagger(B[i]) . part(rho,k) . B[j])
+        else
+              if tpketp(B[i]) then M[i,j]: tpbraket(tpdagger(B[i]) , A . B[j])
+              else M[i,j]: dagger(B[i]) . A . B[j],        
+M);
 

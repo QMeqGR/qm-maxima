@@ -40,7 +40,7 @@ The ‘qm’ package was written by Eric Majzoub, University of Missouri
 (email: majzoube-at-umsystem.edu), with help from Maxima developers
 Robert Dodier and Barton Willis.
 
-This purpose of this package is to provide computational tools for
+The purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
 space.  It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
@@ -768,7 +768,7 @@ abstract ‘ket’ and ‘bra’ functions with ‘j,m’ as arguments, as in
 
  -- Function: Jsqr (_jmket_)
      ‘Jsqr’ is the ‘J^{2}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’
-     and returns ‘(j*(j+1)*hbar^{2}*jmket(j,m)’.
+     and returns ‘j*(j+1)*hbar^{2}*jmket(j,m)’.
 
  -- Function: Jz (_jmket_)
      ‘Jz’ is the ‘J_{z}’ operator.  It takes a ‘jmket’ ‘jmket(j,m)’ and
@@ -1439,88 +1439,88 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm7526
-Ref: ket7879
-Ref: ketp8311
-Ref: bra8492
-Ref: brap8924
-Ref: mket9105
-Ref: mketp9812
-Ref: mbra10452
-Ref: mbrap11031
-Ref: autoket11757
-Ref: autobra12629
-Ref: dagger13299
-Ref: braket13737
-Ref: norm14373
-Ref: magsqr14829
-Ref: zp15597
-Ref: zm15660
-Ref: xp15723
-Ref: xm15786
-Ref: yp15849
-Ref: ym15912
-Ref: sigmax17964
-Ref: sigmay18021
-Ref: sigmaz18078
-Ref: Sx18135
-Ref: Sy18192
-Ref: Sz18249
-Ref: commutator18886
-Ref: anticommutator19556
-Ref: SX19963
-Ref: SY20176
-Ref: SZ20389
-Ref: basis_set_p21897
-Ref: mtrans22228
-Ref: op_trans22859
-Ref: expect23568
-Ref: qm_variance23811
-Ref: SP24326
-Ref: SM24419
-Ref: RX25258
-Ref: RY25425
-Ref: RZ25592
-Ref: U26576
-Ref: spin_mket27655
-Ref: spin_mbra27825
-Ref: jmtop28969
-Ref: jmbot29213
-Ref: jmket29461
-Ref: jmketp29696
-Ref: jmbrap30004
-Ref: jmcheck30150
-Ref: Jp30323
-Ref: Jm30499
-Ref: Jsqr30675
-Ref: Jz30844
-Ref: tpket32628
-Ref: tpbra32953
-Ref: tpbraket33278
-Ref: tpcfset33869
-Ref: tpscmult33985
-Ref: tpadd34526
-Ref: tpdagger35393
-Ref: J1z35955
-Ref: J2z36081
-Ref: Jtz36823
-Ref: J1sqr37390
-Ref: J2sqr37487
-Ref: J1p37585
-Ref: J2p37679
-Ref: Jtp37774
-Ref: J1m37863
-Ref: J2m37957
-Ref: Jtm38052
-Ref: J1p2m38141
-Ref: J1m2p38930
-Ref: J1zJ2z39022
-Ref: Jtsqr39116
-Ref: get_j40078
-Ref: matrep49330
-Ref: ap51941
-Ref: am52054
-Node: Function and Variable Index52947
+Node: Functions and Variables for qm7525
+Ref: ket7878
+Ref: ketp8310
+Ref: bra8491
+Ref: brap8923
+Ref: mket9104
+Ref: mketp9811
+Ref: mbra10451
+Ref: mbrap11030
+Ref: autoket11756
+Ref: autobra12628
+Ref: dagger13298
+Ref: braket13736
+Ref: norm14372
+Ref: magsqr14828
+Ref: zp15596
+Ref: zm15659
+Ref: xp15722
+Ref: xm15785
+Ref: yp15848
+Ref: ym15911
+Ref: sigmax17963
+Ref: sigmay18020
+Ref: sigmaz18077
+Ref: Sx18134
+Ref: Sy18191
+Ref: Sz18248
+Ref: commutator18885
+Ref: anticommutator19555
+Ref: SX19962
+Ref: SY20175
+Ref: SZ20388
+Ref: basis_set_p21896
+Ref: mtrans22227
+Ref: op_trans22858
+Ref: expect23567
+Ref: qm_variance23810
+Ref: SP24325
+Ref: SM24418
+Ref: RX25257
+Ref: RY25424
+Ref: RZ25591
+Ref: U26575
+Ref: spin_mket27654
+Ref: spin_mbra27824
+Ref: jmtop28968
+Ref: jmbot29212
+Ref: jmket29460
+Ref: jmketp29695
+Ref: jmbrap30003
+Ref: jmcheck30149
+Ref: Jp30322
+Ref: Jm30498
+Ref: Jsqr30674
+Ref: Jz30842
+Ref: tpket32626
+Ref: tpbra32951
+Ref: tpbraket33276
+Ref: tpcfset33867
+Ref: tpscmult33983
+Ref: tpadd34524
+Ref: tpdagger35391
+Ref: J1z35953
+Ref: J2z36079
+Ref: Jtz36821
+Ref: J1sqr37388
+Ref: J2sqr37485
+Ref: J1p37583
+Ref: J2p37677
+Ref: Jtp37772
+Ref: J1m37861
+Ref: J2m37955
+Ref: Jtm38050
+Ref: J1p2m38139
+Ref: J1m2p38928
+Ref: J1zJ2z39020
+Ref: Jtsqr39114
+Ref: get_j40076
+Ref: matrep49328
+Ref: ap51939
+Ref: am52052
+Node: Function and Variable Index52945
 
 End Tag Table
 
