@@ -11,7 +11,7 @@ The ‘qm’ package was written by Eric Majzoub, University of Missouri
 (email: majzoube-at-umsystem.edu), with help from Maxima developers
 Robert Dodier and Barton Willis.
 
-This purpose of this package is to provide computational tools for
+The purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
 space.  It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
