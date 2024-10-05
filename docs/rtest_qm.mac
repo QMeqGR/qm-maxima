@@ -528,6 +528,24 @@ matrix([c,0],[0,0]) $
 qm_atrace(A,B);
 c $
 
+bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+(ket([1,0])-ket([0,1]))/sqrt(2) $
+
+rho:bell.dagger(bell);
+(ket([1,0]) . bra([1,0])-ket([1,0]) . bra([0,1])                                 -ket([0,1]) . bra([1,0])
+                                +ket([0,1]) . bra([0,1]))
+ /2
+$
+
+trace1:bra([1,Id]).rho.ket([1,Id])+bra([0,Id]).rho.ket([0,Id]);
+ket(["-",1]) . bra(["-",1])/2+ket(["-",0]) . bra(["-",0])/2 $
+
+B:[ket([Id,1]),ket([Id,0])];
+[ket([Id,1]),ket([Id,0])] $
+
+matrep(trace1,B);
+matrix([1/2,0],[0,1/2]) $
+
 declare(n,integer,n,scalar);
 done $
 

@@ -1213,6 +1213,28 @@ particle to obtain the density submatrix for particle 2.
                                         [ 0  0 ]
      (%i5) qm_atrace(A,B);
      (%o5)                                  c
+     (%i6) bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+                                     |1, 0> - |0, 1>
+     (%o6)                           ---------------
+                                         sqrt(2)
+     (%i7) rho:bell . dagger(bell);
+           |1, 0> . <1, 0| - |1, 0> . <0, 1| - |0, 1> . <1, 0| + |0, 1> . <0, 1|
+     (%o7) ---------------------------------------------------------------------
+                                             2
+     (%i8) trace1:bra([1,Id]) . rho . ket([1,Id])+bra([0,Id]) . rho . ket([0,Id]);
+                            |-, 1> . <-, 1|   |-, 0> . <-, 0|
+     (%o8)                  --------------- + ---------------
+                                   2                 2
+     (%i9) B:[ket([Id,1]),ket([Id,0])];
+     (%o9)                         [|Id, 1>, |Id, 0>]
+     (%i10) matrep(trace1,B);
+                                        [ 1    ]
+                                        [ -  0 ]
+                                        [ 2    ]
+     (%o10)                             [      ]
+                                        [    1 ]
+                                        [ 0  - ]
+                                        [    2 ]
 
 1.5 Quantum harmonic oscillator
 ===============================
@@ -1258,11 +1280,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1230)
+                                                             (line 1252)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  461)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1226)
+                                                             (line 1248)
 * autobra:                               Functions and Variables for qm.
                                                              (line  283)
 * autoket:                               Functions and Variables for qm.
