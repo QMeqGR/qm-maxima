@@ -1423,48 +1423,6 @@ lowering operator to find the other states: @code{|3/2,1/2>},
 @end group
 @end example
 
-@page
-Let us see how to compute the matrix elements of the operator
-@code{(J1z-J1z)} in the z-basis for two spin-1/2 particles. Note that we
-use the @code{tpadd} and @code{tpscmult} functions to add the two
-operators. First, we form the four basis kets
-@code{@{phi@sub{1},phi@sub{2},phi@sub{3},phi@sub{4}@}} of the form
-@code{|j@sub{1},m@sub{1};j@sub{2},m@sub{2}>}. The next four entries are
-for the operator acting on the basis kets. We skip taking the braket
-below; the common factor is the resulting matrix element.
-
-@example
-@group
-(%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
-                                      1  1    1  1
-(%o1)                     [tpket, 1, |-, ->, |-, ->]
-                                      2  2    2  2
-(%i2) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
-                                     1  1    1    1
-(%o2)                    [tpket, 1, |-, ->, |-, - ->]
-                                     2  2    2    2
-(%i3) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
-                                     1    1    1  1
-(%o3)                    [tpket, 1, |-, - ->, |-, ->]
-                                     2    2    2  2
-(%i4) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
-                                    1    1    1    1
-(%o4)                   [tpket, 1, |-, - ->, |-, - ->]
-                                    2    2    2    2
-(%i5) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
-(%o5)                                  0
-(%i6) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
-                                       1  1    1    1
-(%o6)                   [tpket, hbar, |-, ->, |-, - ->]
-                                       2  2    2    2
-(%i7) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
-                                        1    1    1  1
-(%o7)                  [tpket, - hbar, |-, - ->, |-, ->]
-                                        2    2    2  2
-(%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
-(%o8)                                  0
-@end group
-@end example
 
 @page
 In the example below we calculate the Clebsch-Gordan coefficients of the
@@ -1623,6 +1581,54 @@ operator.
                                    [ b  0 ]
 @end group
 @end example
+
+@page
+Let us see how to compute the matrix elements of the operator
+@code{(J1z-J1z)} in the z-basis for two spin-1/2 particles.  First, we
+define the four basis kets of the form
+@code{|j@sub{1},m@sub{1};j@sub{2},m@sub{2}>}. Next we define the
+Hamiltonian and then use the function @code{matrep}.
+
+@example
+@group
+(%i1) b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+                                      1  1    1  1
+(%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                      2  2    2  2
+(%i2) b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o2)                    [tpket, 1, |-, ->, |-, - ->]
+                                     2  2    2    2
+(%i3) b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                     1    1    1  1
+(%o3)                    [tpket, 1, |-, - ->, |-, ->]
+                                     2    2    2  2
+(%i4) b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+                                    1    1    1    1
+(%o4)                   [tpket, 1, |-, - ->, |-, - ->]
+                                    2    2    2    2
+(%i5) B:[b1,b2,b3,b4];
+                   1  1    1  1                1  1    1    1
+(%o5) [[tpket, 1, |-, ->, |-, ->], [tpket, 1, |-, ->, |-, - ->], 
+                   2  2    2  2                2  2    2    2
+                              1    1    1  1                1    1    1    1
+                  [tpket, 1, |-, - ->, |-, ->], [tpket, 1, |-, - ->, |-, - ->]]
+                              2    2    2  2                2    2    2    2
+(%i6) H:omega*(J1z-J2z);
+(%o6)                          (J1z - J2z) omega
+(%i7) declare(omega,scalar);
+(%o7)                                done
+(%i8) matrep(H,B);
+                      [ 0      0            0        0 ]
+                      [                                ]
+                      [ 0  hbar omega       0        0 ]
+(%o8)                 [                                ]
+                      [ 0      0       - hbar omega  0 ]
+                      [                                ]
+                      [ 0      0            0        0 ]
+@end group
+@end example
+
 
 @subsection Matrix trace functions
 

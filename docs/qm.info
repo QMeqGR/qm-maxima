@@ -1046,43 +1046,6 @@ find the other states: ‘|3/2,1/2>’, ‘|3/2,-1/2>’, and ‘|3/2,-3/2>’.
      (%o4)                [tpket, 6 hbar , |-, - ->, |1, - 1>]
                                             2    2
 
-   Let us see how to compute the matrix elements of the operator
-‘(J1z-J1z)’ in the z-basis for two spin-1/2 particles.  Note that we use
-the ‘tpadd’ and ‘tpscmult’ functions to add the two operators.  First,
-we form the four basis kets ‘{phi_{1},phi_{2},phi_{3},phi_{4}}’ of the
-form ‘|j_{1},m_{1};j_{2},m_{2}>’.  The next four entries are for the
-operator acting on the basis kets.  We skip taking the braket below; the
-common factor is the resulting matrix element.
-
-     (%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
-                                           1  1    1  1
-     (%o1)                     [tpket, 1, |-, ->, |-, ->]
-                                           2  2    2  2
-     (%i2) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
-                                          1  1    1    1
-     (%o2)                    [tpket, 1, |-, ->, |-, - ->]
-                                          2  2    2    2
-     (%i3) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
-                                          1    1    1  1
-     (%o3)                    [tpket, 1, |-, - ->, |-, ->]
-                                          2    2    2  2
-     (%i4) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
-                                         1    1    1    1
-     (%o4)                   [tpket, 1, |-, - ->, |-, - ->]
-                                         2    2    2    2
-     (%i5) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
-     (%o5)                                  0
-     (%i6) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
-                                            1  1    1    1
-     (%o6)                   [tpket, hbar, |-, ->, |-, - ->]
-                                            2  2    2    2
-     (%i7) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
-                                             1    1    1  1
-     (%o7)                  [tpket, - hbar, |-, - ->, |-, ->]
-                                             2    2    2  2
-     (%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
-     (%o8)                                  0
-
    In the example below we calculate the Clebsch-Gordan coefficients of
 the two-particle state with two spin-1/2 particles.  We begin by
 defining the top rung of the ladder and stepping down.  To calculate the
@@ -1220,6 +1183,47 @@ particle to obtain the density submatrix for particle 2.
      (%o8)                              [      ]
                                         [ b  0 ]
 
+   Let us see how to compute the matrix elements of the operator
+‘(J1z-J1z)’ in the z-basis for two spin-1/2 particles.  First, we define
+the four basis kets of the form ‘|j_{1},m_{1};j_{2},m_{2}>’.  Next we
+define the Hamiltonian and then use the function ‘matrep’.
+
+     (%i1) b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+                                           1  1    1  1
+     (%o1)                     [tpket, 1, |-, ->, |-, ->]
+                                           2  2    2  2
+     (%i2) b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                          1  1    1    1
+     (%o2)                    [tpket, 1, |-, ->, |-, - ->]
+                                          2  2    2    2
+     (%i3) b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                          1    1    1  1
+     (%o3)                    [tpket, 1, |-, - ->, |-, ->]
+                                          2    2    2  2
+     (%i4) b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+                                         1    1    1    1
+     (%o4)                   [tpket, 1, |-, - ->, |-, - ->]
+                                         2    2    2    2
+     (%i5) B:[b1,b2,b3,b4];
+                        1  1    1  1                1  1    1    1
+     (%o5) [[tpket, 1, |-, ->, |-, ->], [tpket, 1, |-, ->, |-, - ->],
+                        2  2    2  2                2  2    2    2
+                                   1    1    1  1                1    1    1    1
+                       [tpket, 1, |-, - ->, |-, ->], [tpket, 1, |-, - ->, |-, - ->]]
+                                   2    2    2  2                2    2    2    2
+     (%i6) H:omega*(J1z-J2z);
+     (%o6)                          (J1z - J2z) omega
+     (%i7) declare(omega,scalar);
+     (%o7)                                done
+     (%i8) matrep(H,B);
+                           [ 0      0            0        0 ]
+                           [                                ]
+                           [ 0  hbar omega       0        0 ]
+     (%o8)                 [                                ]
+                           [ 0      0       - hbar omega  0 ]
+                           [                                ]
+                           [ 0      0            0        0 ]
+
 1.4.1 Matrix trace functions
 ----------------------------
 
@@ -1316,11 +1320,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1093)
+                                                             (line 1097)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  302)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1089)
+                                                             (line 1093)
 * autobra:                               Functions and Variables for qm.
                                                              (line  124)
 * autoket:                               Functions and Variables for qm.
@@ -1398,7 +1402,7 @@ Appendix A Function and Variable index
 * magsqr:                                Functions and Variables for qm.
                                                              (line  173)
 * matrep:                                Functions and Variables for qm.
-                                                             (line  989)
+                                                             (line  952)
 * mbra:                                  Functions and Variables for qm.
                                                              (line   75)
 * mbrap:                                 Functions and Variables for qm.
@@ -1414,9 +1418,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  380)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1038)
+                                                             (line 1042)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1034)
+                                                             (line 1038)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  404)
 * RX:                                    Functions and Variables for qm.
@@ -1569,12 +1573,12 @@ Ref: J1m2p38928
 Ref: J1zJ2z39020
 Ref: Jtsqr39114
 Ref: get_j40076
-Ref: matrep49328
-Ref: qm_mtrace51524
-Ref: qm_atrace51699
-Ref: ap54136
-Ref: am54249
-Node: Function and Variable Index55142
+Ref: matrep47264
+Ref: qm_mtrace51749
+Ref: qm_atrace51924
+Ref: ap54361
+Ref: am54474
+Node: Function and Variable Index55367
 
 End Tag Table
 

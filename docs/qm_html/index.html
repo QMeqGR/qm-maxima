@@ -1383,45 +1383,6 @@ lowering operator to find the other states: <code class="code">|3/2,1/2&gt;</cod
                                        2    2
 </pre></div></div>
 
-<p>Let us see how to compute the matrix elements of the operator
-<code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles. Note that we
-use the <code class="code">tpadd</code> and <code class="code">tpscmult</code> functions to add the two
-operators. First, we form the four basis kets
-<code class="code">{phi<sub class="sub">1</sub>,phi<sub class="sub">2</sub>,phi<sub class="sub">3</sub>,phi<sub class="sub">4</sub>}</code> of the form
-<code class="code">|j<sub class="sub">1</sub>,m<sub class="sub">1</sub>;j<sub class="sub">2</sub>,m<sub class="sub">2</sub>&gt;</code>. The next four entries are
-for the operator acting on the basis kets. We skip taking the braket
-below; the common factor is the resulting matrix element.
-</p>
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
-                                      1  1    1  1
-(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
-                                      2  2    2  2
-(%i2) phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
-                                     1  1    1    1
-(%o2)                    [tpket, 1, |-, -&gt;, |-, - -&gt;]
-                                     2  2    2    2
-(%i3) phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
-                                     1    1    1  1
-(%o3)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
-                                     2    2    2  2
-(%i4) phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
-                                    1    1    1    1
-(%o4)                   [tpket, 1, |-, - -&gt;, |-, - -&gt;]
-                                    2    2    2    2
-(%i5) tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
-(%o5)                                  0
-(%i6) tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
-                                       1  1    1    1
-(%o6)                   [tpket, hbar, |-, -&gt;, |-, - -&gt;]
-                                       2  2    2    2
-(%i7) tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
-                                        1    1    1  1
-(%o7)                  [tpket, - hbar, |-, - -&gt;, |-, -&gt;]
-                                        2    2    2  2
-(%i8) tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
-(%o8)                                  0
-</pre></div></div>
 
 <p>In the example below we calculate the Clebsch-Gordan coefficients of the
 two-particle state with two spin-1/2 particles. We begin by defining the
@@ -1572,6 +1533,51 @@ operator.
 (%o8)                              [      ]
                                    [ b  0 ]
 </pre></div></div>
+
+<p>Let us see how to compute the matrix elements of the operator
+<code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles.  First, we
+define the four basis kets of the form
+<code class="code">|j<sub class="sub">1</sub>,m<sub class="sub">1</sub>;j<sub class="sub">2</sub>,m<sub class="sub">2</sub>&gt;</code>. Next we define the
+Hamiltonian and then use the function <code class="code">matrep</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+                                      1  1    1  1
+(%o1)                     [tpket, 1, |-, -&gt;, |-, -&gt;]
+                                      2  2    2  2
+(%i2) b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+                                     1  1    1    1
+(%o2)                    [tpket, 1, |-, -&gt;, |-, - -&gt;]
+                                     2  2    2    2
+(%i3) b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+                                     1    1    1  1
+(%o3)                    [tpket, 1, |-, - -&gt;, |-, -&gt;]
+                                     2    2    2  2
+(%i4) b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+                                    1    1    1    1
+(%o4)                   [tpket, 1, |-, - -&gt;, |-, - -&gt;]
+                                    2    2    2    2
+(%i5) B:[b1,b2,b3,b4];
+                   1  1    1  1                1  1    1    1
+(%o5) [[tpket, 1, |-, -&gt;, |-, -&gt;], [tpket, 1, |-, -&gt;, |-, - -&gt;], 
+                   2  2    2  2                2  2    2    2
+                              1    1    1  1                1    1    1    1
+                  [tpket, 1, |-, - -&gt;, |-, -&gt;], [tpket, 1, |-, - -&gt;, |-, - -&gt;]]
+                              2    2    2  2                2    2    2    2
+(%i6) H:omega*(J1z-J2z);
+(%o6)                          (J1z - J2z) omega
+(%i7) declare(omega,scalar);
+(%o7)                                done
+(%i8) matrep(H,B);
+                      [ 0      0            0        0 ]
+                      [                                ]
+                      [ 0  hbar omega       0        0 ]
+(%o8)                 [                                ]
+                      [ 0      0       - hbar omega  0 ]
+                      [                                ]
+                      [ 0      0            0        0 ]
+</pre></div></div>
+
 
 <ul class="mini-toc">
 <li><a href="#Matrix-trace-functions" accesskey="1">Matrix trace functions</a></li>

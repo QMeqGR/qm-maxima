@@ -387,30 +387,6 @@ $
 k4:Jtm(k3);
 [tpket,6*hbar^3,ket([1/2,-(1/2)]),ket([1,-1])] $
 
-phi1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
-[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
-
-phi2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
-
-phi3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
-[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
-
-phi4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
-[tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
-
-tpadd(J1z(phi1),tpscmult(-1,J2z(phi1)));
-0 $
-
-tpadd(J1z(phi2),tpscmult(-1,J2z(phi2)));
-[tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
-
-tpadd(J1z(phi3),tpscmult(-1,J2z(phi3)));
-[tpket,-hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
-
-tpadd(J1z(phi4),tpscmult(-1,J2z(phi4)));
-0 $
-
 top:tpket(jmtop(1/2),jmtop(1/2));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
@@ -512,6 +488,33 @@ matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([
                          *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])])
                          . ket([0])])
 $
+
+b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
+
+b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+
+b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
+
+b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+[tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+
+B:[b1,b2,b3,b4];
+[[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],          [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])],
+         [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])],
+         [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]]
+$
+
+H:omega*(J1z-J2z);
+(J1z-J2z)*omega $
+
+declare(omega,scalar);
+done $
+
+matrep(H,B);
+matrix([0,0,0,0],[0,hbar*omega,0,0],[0,0,-(hbar*omega),0],[0,0,0,0]) $
 
 B:[ket([1]),ket([0])];
 [ket([1]),ket([0])] $

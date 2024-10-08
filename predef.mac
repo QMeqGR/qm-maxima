@@ -16,18 +16,23 @@
 ;; Quantum mechanics package for Maxima.
 */
 
-tellsimpafter(dagger(am),ap)$
-tellsimpafter(dagger(ap),am)$
+/* predef.mac, part of the qm-maxima package */
+/* E. Majzoub Oct 2024 */
+/* Pre-defined basis sets and other conveniences,
+This file is not loaded autmatically. */
 
-/* rules for reducing a+ and a- operators */
-dotexptsimp: false;  /* infix(".",110,110); breaks things */ 
-matchdeclare([n,m],lambda([x], featurep(x,integer)));
-matchdeclare([b,c],all);
+B12: [ ket([1]), ket([0]) ];
+B22: [ ket([1,1]), ket([1,0]), ket([0,1]), ket([0,0]) ];
 
-tellsimpafter(ap . ket([m])*b, b*sqrt(m+1)*ket([m+1]));
-tellsimpafter(ap . (b * ket([m])), b*sqrt(m+1)*ket([m+1]));
-tellsimp( ap^^n . (b*ket([m])) , b*sqrt(m+1) * ap^^(n-1) . ket([m+1]) );
+Bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
 
-tellsimpafter(am . ket([m])*b, b*sqrt(m)*ket([m-1]));
-tellsimpafter(am . (b *ket([m])), b*sqrt(m)*ket([m-1]));
-tellsimp( am^^n . (b*ket([m])) , b*sqrt(m) * am^^(n-1) . ket([m-1]) );
+Bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,1]),ket([1/2,-1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
+         [tpket,1,ket([1,-1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+
