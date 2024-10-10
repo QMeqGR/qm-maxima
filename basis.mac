@@ -20,6 +20,32 @@
 /* E.H. Majzoub        */
 /* GPL 3 or greater    */
 
+/*****************************/
+/*  create simple basis sets */
+/*****************************/
+/* This works only up to n=3 particles. m=number of states per particle */
+basis_set(n,m) := block([M,cv],
+    /* 1 particle states */
+    ops: transpose( matrix( makelist(i-1,i,m) ) ),
+    if n=1 then return( make_bkets(ops,m) ),
+    for i: 1 thru m do
+        ( cv[i]: transpose( matrix( makelist(i-1,j,m) ) ),
+        if i=1 then M: addcol(cv[i],ops) else
+        M: addrow(M, addcol(cv[i],ops) ) ),
+    if n=2 then return( make_bkets(M,m^2) ),
+    for i: 1 thru m do
+        ( cv[i]: transpose( matrix( makelist(i-1,j,m^2) ) ),
+        if i=1 then M2: addcol(cv[i],M) else
+        M2: addrow(M2, addcol(cv[i],M) ) ),
+    if n=3 then return( make_bkets(M2,m^3) ),
+    M2);
+make_bkets(M,n) := block([basis:[]],
+    l: length(row(M,1)),
+    for j: 1 thru n do
+        ( newket: [ ket( makelist(row(M,j)[i],i,l)[1] ) ],
+          basis: append(basis, newket) ),
+     reverse(basis) );
+
 /*************************/
 /* Matrix rep basis sets */
 /*************************/

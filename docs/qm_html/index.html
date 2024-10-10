@@ -1534,6 +1534,18 @@ operator.
                                    [ b  0 ]
 </pre></div></div>
 
+<a class="anchor" id="basis_005fset"></a><dl class="first-deffn">
+<dt class="deffn" id="index-basis_005fset"><span class="category-def">Function: </span><span><strong class="def-name">basis_set</strong> <var class="def-var-arguments">(<code class="code">n,m</code>)</var><a class="copiable-link" href="#index-basis_005fset"> &para;</a></span></dt>
+<dd><p>The function <code class="code">basis_set</code> takes two arguments, <code class="code">n</code> is the
+number of particles, and <code class="code">m</code> is the number of states per
+particle. The state kets are labeled with values <code class="code">0, &hellip;, m-1</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) basis_set(2,2);
+(%o1)                  [|1, 1&gt;, |1, 0&gt;, |0, 1&gt;, |0, 0&gt;]
+</pre></div></div>
+
 <p>Let us see how to compute the matrix elements of the operator
 <code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles.  First, we
 define the four basis kets of the form

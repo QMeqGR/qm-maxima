@@ -1183,6 +1183,14 @@ particle to obtain the density submatrix for particle 2.
      (%o8)                              [      ]
                                         [ b  0 ]
 
+ -- Function: basis_set (n,m)
+     The function ‘basis_set’ takes two arguments, ‘n’ is the number of
+     particles, and ‘m’ is the number of states per particle.  The state
+     kets are labeled with values ‘0, ..., m-1’.
+
+     (%i1) basis_set(2,2);
+     (%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
+
    Let us see how to compute the matrix elements of the operator
 ‘(J1z-J1z)’ in the z-basis for two spin-1/2 particles.  First, we define
 the four basis kets of the form ‘|j_{1},m_{1};j_{2},m_{2}>’.  Next we
@@ -1320,15 +1328,17 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1097)
+                                                             (line 1105)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  302)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1093)
+                                                             (line 1101)
 * autobra:                               Functions and Variables for qm.
                                                              (line  124)
 * autoket:                               Functions and Variables for qm.
                                                              (line  105)
+* basis_set:                             Functions and Variables for qm.
+                                                             (line  994)
 * basis_set_p:                           Functions and Variables for qm.
                                                              (line  358)
 * bra:                                   Functions and Variables for qm.
@@ -1418,9 +1428,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  380)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1042)
+                                                             (line 1050)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1038)
+                                                             (line 1046)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  404)
 * RX:                                    Functions and Variables for qm.
@@ -1574,11 +1584,12 @@ Ref: J1zJ2z39020
 Ref: Jtsqr39114
 Ref: get_j40076
 Ref: matrep47264
-Ref: qm_mtrace51749
-Ref: qm_atrace51924
-Ref: ap54361
-Ref: am54474
-Node: Function and Variable Index55367
+Ref: basis_set49401
+Ref: qm_mtrace52079
+Ref: qm_atrace52254
+Ref: ap54691
+Ref: am54804
+Node: Function and Variable Index55697
 
 End Tag Table
 

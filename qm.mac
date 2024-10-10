@@ -65,6 +65,7 @@ tellsimpafter(cos(x)-%i*sin(x),%e^(-%i*x));
 /*******************************/
 declare(hbar,[real,scalar]) $
 assume(hbar>0) $
+hbar: if display2d_unicode=true then parse_string(unicode("latin small letter h with stroke")) else hbar;
 
 /************************/
 /* make simple vectors  */

@@ -237,6 +237,9 @@
          ("basis_set_p"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-basis_005fset_005fp")
+         ("basis_set"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-basis_005fset")
          ("autoket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-autoket")

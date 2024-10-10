@@ -192,21 +192,19 @@ sigmay;
 matrix([0,-%i],[%i,0]) $
 
 Sy;
-matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
+matrix([0,-((%i*ħ)/2)],[(%i*ħ)/2,0]) $
 
 commutator(Sx,Sy);
-matrix([(%i*hbar^2)/2,0],[0,-((%i*hbar^2)/2)]) $
+matrix([(%i*ħ^2)/2,0],[0,-((%i*ħ^2)/2)]) $
 
 (1/2)*anticommutator(sigmax,sigmax);
 matrix([1,0],[0,1]) $
 
 SY(1/2);
-matrix([0,-((%i*hbar)/2)],[(%i*hbar)/2,0]) $
+matrix([0,-((%i*ħ)/2)],[(%i*ħ)/2,0]) $
 
 SX(1);
-matrix([0,hbar/sqrt(2),0],[hbar/sqrt(2),0,hbar/sqrt(2)],[0,                                                                 hbar/sqrt(2),
-                                                                0])
-$
+matrix([0,ħ/sqrt(2),0],[ħ/sqrt(2),0,ħ/sqrt(2)],[0,ħ/sqrt(2),0]) $
 
 basis_set_p([zp,zm]);
 true $
@@ -215,19 +213,19 @@ mtrans([zp,zm],[yp,ym]);
 matrix([1/sqrt(2),1/sqrt(2)],[%i/sqrt(2),-(%i/sqrt(2))]) $
 
 op_trans(Sy,[zp,zm],[yp,ym]);
-matrix([hbar/2,0],[0,-(hbar/2)]) $
+matrix([ħ/2,0],[0,-(ħ/2)]) $
 
 ev(expect(Sy,xp+ym),ratsimp);
--hbar $
+-ħ $
 
 ev(qm_variance(Sy,xp+ym),ratsimp);
-(%i*hbar)/2 $
+(%i*abs(ħ))/2 $
 
 SP(1);
-matrix([0,sqrt(2)*hbar,0],[0,0,sqrt(2)*hbar],[0,0,0]) $
+matrix([0,sqrt(2)*ħ,0],[0,0,sqrt(2)*ħ],[0,0,0]) $
 
 SM(1);
-matrix([0,0,0],[sqrt(2)*hbar,0,0],[0,sqrt(2)*hbar,0]) $
+matrix([0,0,0],[sqrt(2)*ħ,0,0],[0,sqrt(2)*ħ,0]) $
 
 RY(1,t);
 matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],               [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))],
@@ -269,16 +267,16 @@ k:ket([j,m]);
 ket([j,m]) $
 
 Jp(k);
-hbar*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1)) $
+ket([j,m+1])*sqrt(j*(j+1)-m*(m+1))*ħ $
 
 Jm(k);
-hbar*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m) $
+ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m)*ħ $
 
 Jsqr(k);
-hbar^2*j*(j+1)*ket([j,m]) $
+j*(j+1)*ket([j,m])*ħ^2 $
 
 Jz(k);
-hbar*ket([j,m])*m $
+ket([j,m])*m*ħ $
 
 tpket(ket([3/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
@@ -290,14 +288,14 @@ k:tpket(jmtop(1),jmbot(1));
 [tpket,1,ket([1,1]),ket([1,-1])] $
 
 K:Jtsqr(k);
-[tpket,2*hbar^2,ket([1,1]),ket([1,-1])]  +[tpket,2*hbar^2,ket([1,0]),ket([1,0])]
+[tpket,2*ħ^2,ket([1,1]),ket([1,-1])]+[tpket,2*ħ^2,ket([1,0]),                                              ket([1,0])]
 $
 
 B:tpdagger(k);
 [tpbra,1,bra([1,1]),bra([1,-1])] $
 
 tpbraket(B,K);
-2*hbar^2 $
+2*ħ^2 $
 
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
@@ -325,16 +323,16 @@ k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
 
 J1z(k);
-[tpket,(3*hbar)/2,ket([3/2,3/2]),ket([1/2,1/2])] $
+[tpket,(3*ħ)/2,ket([3/2,3/2]),ket([1/2,1/2])] $
 
 J2z(k);
-[tpket,hbar/2,ket([3/2,3/2]),ket([1/2,1/2])] $
+[tpket,ħ/2,ket([3/2,3/2]),ket([1/2,1/2])] $
 
 k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
 
 Jtz(k);
-[tpket,2*hbar,ket([3/2,3/2]),ket([1/2,1/2])] $
+[tpket,2*ħ,ket([3/2,3/2]),ket([1/2,1/2])] $
 
 k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
@@ -343,7 +341,7 @@ b:tpdagger(k);
 [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
 
 J1p2m(k);
-[tpket,sqrt(3)*hbar^2,ket([3/2,3/2]),ket([1/2,-(1/2)])] $
+[tpket,sqrt(3)*ħ^2,ket([3/2,3/2]),ket([1/2,-(1/2)])] $
 
 J1m2p(k);
 0 $
@@ -355,11 +353,11 @@ B:tpdagger(k);
 [tpbra,1,bra([3/2,-(1/2)]),bra([1/2,1/2])] $
 
 K2:Jtsqr(k);
-[tpket,4*hbar^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]  +[tpket,2*hbar^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
+[tpket,4*ħ^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]  +[tpket,2*ħ^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
 $
 
 tpbraket(B,K2);
-4*hbar^2 $
+4*ħ^2 $
 
 get_j(15/4);
 j = 3/2 $
@@ -368,7 +366,7 @@ k:tpket(jmtop(1/2),jmtop(1));
 [tpket,1,ket([1/2,1/2]),ket([1,1])] $
 
 Jtsqr(k);
-[tpket,(15*hbar^2)/4,ket([1/2,1/2]),ket([1,1])] $
+[tpket,(15*ħ^2)/4,ket([1/2,1/2]),ket([1,1])] $
 
 get_j(15/4);
 j = 3/2 $
@@ -377,47 +375,47 @@ k:tpket(jmtop(1/2),jmtop(1));
 [tpket,1,ket([1/2,1/2]),ket([1,1])] $
 
 k2:Jtm(k);
-[tpket,sqrt(2)*hbar,ket([1/2,1/2]),ket([1,0])]  +[tpket,hbar,ket([1/2,-(1/2)]),ket([1,1])]
+[tpket,sqrt(2)*ħ,ket([1/2,1/2]),ket([1,0])]  +[tpket,ħ,ket([1/2,-(1/2)]),ket([1,1])]
 $
 
 k3:Jtm(k2);
-[tpket,2^(3/2)*hbar^2,ket([1/2,-(1/2)]),ket([1,0])]  +[tpket,2*hbar^2,ket([1/2,1/2]),ket([1,-1])]
+[tpket,2^(3/2)*ħ^2,ket([1/2,-(1/2)]),ket([1,0])]  +[tpket,2*ħ^2,ket([1/2,1/2]),ket([1,-1])]
 $
 
 k4:Jtm(k3);
-[tpket,6*hbar^3,ket([1/2,-(1/2)]),ket([1,-1])] $
+[tpket,6*ħ^3,ket([1/2,-(1/2)]),ket([1,-1])] $
 
 top:tpket(jmtop(1/2),jmtop(1/2));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
 Jtsqr(top);
-[tpket,2*hbar^2,ket([1/2,1/2]),ket([1/2,1/2])] $
+[tpket,2*ħ^2,ket([1/2,1/2]),ket([1/2,1/2])] $
 
 get_j(2);
 j = 1 $
 
 Jtz(top);
-[tpket,hbar,ket([1/2,1/2]),ket([1/2,1/2])] $
+[tpket,ħ,ket([1/2,1/2]),ket([1/2,1/2])] $
 
 JMtop:ket([1,1]);
 ket([1,1]) $
 
 mid:Jtm(top);
-[tpket,hbar,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,hbar,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+[tpket,ħ,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,ħ,ket([1/2,-(1/2)]),ket([1/2,1/2])]
 $
 
 Jm(JMtop);
-sqrt(2)*ket([1,0])*hbar $
+sqrt(2)*ket([1,0])*ħ $
 
 mid:tpscmult(1/(sqrt(2)*hbar),mid);
 [tpket,1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1/sqrt(2),ket([1/2,-(1/2)]),ket([1/2,1/2])]
 $
 
 bot:Jtm(mid);
-[tpket,sqrt(2)*hbar,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+[tpket,sqrt(2)*ħ,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
 
 Jm(ket([1,0]));
-sqrt(2)*ket([1,-1])*hbar $
+sqrt(2)*ket([1,-1])*ħ $
 
 bot:tpscmult(1/(sqrt(2)*hbar),bot);
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
@@ -489,6 +487,9 @@ matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([
                          . ket([0])])
 $
 
+basis_set(2,2);
+[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])] $
+
 b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
@@ -514,7 +515,7 @@ declare(omega,scalar);
 done $
 
 matrep(H,B);
-matrix([0,0,0,0],[0,hbar*omega,0,0],[0,0,-(hbar*omega),0],[0,0,0,0]) $
+matrix([0,0,0,0],[0,omega*ħ,0,0],[0,0,-(omega*ħ),0],[0,0,0,0]) $
 
 B:[ket([1]),ket([0])];
 [ket([1]),ket([0])] $

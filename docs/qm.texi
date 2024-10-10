@@ -1582,6 +1582,20 @@ operator.
 @end group
 @end example
 
+@anchor{basis_set}
+@deffn {Function} basis_set (@code{n,m})
+The function @code{basis_set} takes two arguments, @code{n} is the
+number of particles, and @code{m} is the number of states per
+particle. The state kets are labeled with values @code{0, @dots{}, m-1}.
+@end deffn
+
+@example
+@group
+(%i1) basis_set(2,2);
+(%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
+@end group
+@end example
+
 @page
 Let us see how to compute the matrix elements of the operator
 @code{(J1z-J1z)} in the z-basis for two spin-1/2 particles.  First, we
