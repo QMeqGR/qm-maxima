@@ -1151,15 +1151,24 @@ particle to obtain the density submatrix for particle 2.
      (%o8)                              [      ]
                                         [ b  0 ]
 
+1.4.1 Abstract basis set generator
+----------------------------------
+
  -- Function: basis_set (n,m)
      The function ‘basis_set’ takes two arguments, ‘n’ is the number of
      particles, and ‘m’ is the number of states per particle.  The state
-     kets are labeled with values ‘0, ..., m-1’.
+     kets are labeled with values ‘0, ..., m-1’.  Currently this
+     function accepts up to three particles (‘n=1,2,3,4’).  The number
+     of elements in the basis set is ‘m^{n}’ so a 4-particle system with
+     four states will have 256 basis kets.
 
      (%i1) basis_set(2,2);
      (%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
 
-   Let us see how to compute the matrix elements of the operator
+1.4.2 Example calculation of matrix elements
+--------------------------------------------
+
+Let us see how to compute the matrix elements of the operator
 ‘(J1z-J1z)’ in the z-basis for two spin-1/2 particles.  First, we define
 the four basis kets of the form ‘|j_{1},m_{1};j_{2},m_{2}>’.  Next we
 define the Hamiltonian and then use the function ‘matrep’.
@@ -1200,7 +1209,7 @@ define the Hamiltonian and then use the function ‘matrep’.
                            [                                ]
                            [ 0      0            0        0 ]
 
-1.4.1 Matrix trace functions
+1.4.3 Matrix trace functions
 ----------------------------
 
  -- Function: qm_mtrace (_matrix_)
@@ -1292,17 +1301,17 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1264)
+                                                             (line 1273)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  461)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1260)
+                                                             (line 1269)
 * autobra:                               Functions and Variables for qm.
                                                              (line  283)
 * autoket:                               Functions and Variables for qm.
                                                              (line  264)
 * basis_set:                             Functions and Variables for qm.
-                                                             (line 1153)
+                                                             (line 1156)
 * basis_set_p:                           Functions and Variables for qm.
                                                              (line  517)
 * bra:                                   Functions and Variables for qm.
@@ -1392,9 +1401,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  539)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1209)
+                                                             (line 1218)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1205)
+                                                             (line 1214)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  563)
 * RX:                                    Functions and Variables for qm.

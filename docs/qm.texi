@@ -713,6 +713,7 @@ Example:
 
 @subsection Basis set transformations
 
+
 Given a matrix representation of an operator in terms of @code{mket}s
 one may transform from one @code{mket} basis to another.
 
@@ -1582,11 +1583,17 @@ operator.
 @end group
 @end example
 
+@subsection Abstract basis set generator
+
 @anchor{basis_set}
 @deffn {Function} basis_set (@code{n,m})
 The function @code{basis_set} takes two arguments, @code{n} is the
 number of particles, and @code{m} is the number of states per
 particle. The state kets are labeled with values @code{0, @dots{}, m-1}.
+Currently this function accepts up to three particles
+(@code{n=1,2,3,4}).  The number of elements in the basis set is
+@code{m@sup{n}} so a 4-particle system with four states will have 256
+basis kets.
 @end deffn
 
 @example
@@ -1597,6 +1604,8 @@ particle. The state kets are labeled with values @code{0, @dots{}, m-1}.
 @end example
 
 @page
+@subsection Example calculation of matrix elements
+
 Let us see how to compute the matrix elements of the operator
 @code{(J1z-J1z)} in the z-basis for two spin-1/2 particles.  First, we
 define the four basis kets of the form

@@ -710,6 +710,7 @@ for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 <div class="subsection-level-extent" id="Basis-set-transformations">
 <h4 class="subsection"><span>1.2.4 Basis set transformations<a class="copiable-link" href="#Basis-set-transformations"> &para;</a></span></h4>
 
+
 <p>Given a matrix representation of an operator in terms of <code class="code">mket</code>s
 one may transform from one <code class="code">mket</code> basis to another.
 </p>
@@ -1534,17 +1535,33 @@ operator.
                                    [ b  0 ]
 </pre></div></div>
 
+<ul class="mini-toc">
+<li><a href="#Abstract-basis-set-generator" accesskey="1">Abstract basis set generator</a></li>
+<li><a href="#Example-calculation-of-matrix-elements" accesskey="2">Example calculation of matrix elements</a></li>
+<li><a href="#Matrix-trace-functions" accesskey="3">Matrix trace functions</a></li>
+</ul>
+<div class="subsection-level-extent" id="Abstract-basis-set-generator">
+<h4 class="subsection"><span>1.4.1 Abstract basis set generator<a class="copiable-link" href="#Abstract-basis-set-generator"> &para;</a></span></h4>
+
 <a class="anchor" id="basis_005fset"></a><dl class="first-deffn">
 <dt class="deffn" id="index-basis_005fset"><span class="category-def">Function: </span><span><strong class="def-name">basis_set</strong> <var class="def-var-arguments">(<code class="code">n,m</code>)</var><a class="copiable-link" href="#index-basis_005fset"> &para;</a></span></dt>
 <dd><p>The function <code class="code">basis_set</code> takes two arguments, <code class="code">n</code> is the
 number of particles, and <code class="code">m</code> is the number of states per
 particle. The state kets are labeled with values <code class="code">0, &hellip;, m-1</code>.
+Currently this function accepts up to three particles
+(<code class="code">n=1,2,3,4</code>).  The number of elements in the basis set is
+<code class="code">m<sup class="sup">n</sup></code> so a 4-particle system with four states will have 256
+basis kets.
 </p></dd></dl>
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) basis_set(2,2);
 (%o1)                  [|1, 1&gt;, |1, 0&gt;, |0, 1&gt;, |0, 0&gt;]
 </pre></div></div>
+
+</div>
+<div class="subsection-level-extent" id="Example-calculation-of-matrix-elements">
+<h4 class="subsection"><span>1.4.2 Example calculation of matrix elements<a class="copiable-link" href="#Example-calculation-of-matrix-elements"> &para;</a></span></h4>
 
 <p>Let us see how to compute the matrix elements of the operator
 <code class="code">(J1z-J1z)</code> in the z-basis for two spin-1/2 particles.  First, we
@@ -1591,11 +1608,9 @@ Hamiltonian and then use the function <code class="code">matrep</code>.
 </pre></div></div>
 
 
-<ul class="mini-toc">
-<li><a href="#Matrix-trace-functions" accesskey="1">Matrix trace functions</a></li>
-</ul>
+</div>
 <div class="subsection-level-extent" id="Matrix-trace-functions">
-<h4 class="subsection"><span>1.4.1 Matrix trace functions<a class="copiable-link" href="#Matrix-trace-functions"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.4.3 Matrix trace functions<a class="copiable-link" href="#Matrix-trace-functions"> &para;</a></span></h4>
 
 <a class="anchor" id="qm_005fmtrace"></a><dl class="first-deffn">
 <dt class="deffn" id="index-qm_005fmtrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_mtrace</strong> <var class="def-var-arguments">(<em class="emph">matrix</em>)</var><a class="copiable-link" href="#index-qm_005fmtrace"> &para;</a></span></dt>

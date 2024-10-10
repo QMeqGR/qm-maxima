@@ -1183,15 +1183,24 @@ particle to obtain the density submatrix for particle 2.
      (%o8)                              [      ]
                                         [ b  0 ]
 
+1.4.1 Abstract basis set generator
+----------------------------------
+
  -- Function: basis_set (n,m)
      The function ‘basis_set’ takes two arguments, ‘n’ is the number of
      particles, and ‘m’ is the number of states per particle.  The state
-     kets are labeled with values ‘0, ..., m-1’.
+     kets are labeled with values ‘0, ..., m-1’.  Currently this
+     function accepts up to three particles (‘n=1,2,3,4’).  The number
+     of elements in the basis set is ‘m^{n}’ so a 4-particle system with
+     four states will have 256 basis kets.
 
      (%i1) basis_set(2,2);
      (%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
 
-   Let us see how to compute the matrix elements of the operator
+1.4.2 Example calculation of matrix elements
+--------------------------------------------
+
+Let us see how to compute the matrix elements of the operator
 ‘(J1z-J1z)’ in the z-basis for two spin-1/2 particles.  First, we define
 the four basis kets of the form ‘|j_{1},m_{1};j_{2},m_{2}>’.  Next we
 define the Hamiltonian and then use the function ‘matrep’.
@@ -1232,7 +1241,7 @@ define the Hamiltonian and then use the function ‘matrep’.
                            [                                ]
                            [ 0      0            0        0 ]
 
-1.4.1 Matrix trace functions
+1.4.3 Matrix trace functions
 ----------------------------
 
  -- Function: qm_mtrace (_matrix_)
@@ -1328,17 +1337,17 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1105)
+                                                             (line 1114)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  302)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1101)
+                                                             (line 1110)
 * autobra:                               Functions and Variables for qm.
                                                              (line  124)
 * autoket:                               Functions and Variables for qm.
                                                              (line  105)
 * basis_set:                             Functions and Variables for qm.
-                                                             (line  994)
+                                                             (line  997)
 * basis_set_p:                           Functions and Variables for qm.
                                                              (line  358)
 * bra:                                   Functions and Variables for qm.
@@ -1428,9 +1437,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  380)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1050)
+                                                             (line 1059)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1046)
+                                                             (line 1055)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  404)
 * RX:                                    Functions and Variables for qm.
@@ -1584,12 +1593,12 @@ Ref: J1zJ2z39020
 Ref: Jtsqr39114
 Ref: get_j40076
 Ref: matrep47264
-Ref: basis_set49401
-Ref: qm_mtrace52079
-Ref: qm_atrace52254
-Ref: ap54691
-Ref: am54804
-Node: Function and Variable Index55697
+Ref: basis_set49472
+Ref: qm_mtrace52449
+Ref: qm_atrace52624
+Ref: ap55061
+Ref: am55174
+Node: Function and Variable Index56067
 
 End Tag Table
 
