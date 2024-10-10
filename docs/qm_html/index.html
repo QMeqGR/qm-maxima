@@ -1544,19 +1544,21 @@ operator.
 <h4 class="subsection"><span>1.4.1 Abstract basis set generator<a class="copiable-link" href="#Abstract-basis-set-generator"> &para;</a></span></h4>
 
 <a class="anchor" id="basis_005fset"></a><dl class="first-deffn">
-<dt class="deffn" id="index-basis_005fset"><span class="category-def">Function: </span><span><strong class="def-name">basis_set</strong> <var class="def-var-arguments">(<code class="code">n,m</code>)</var><a class="copiable-link" href="#index-basis_005fset"> &para;</a></span></dt>
+<dt class="deffn" id="index-basis_005fset"><span class="category-def">Function: </span><span><strong class="def-name">basis_set</strong> <var class="def-var-arguments">(<code class="code">n,[l<sub class="sub">1</sub>,l<sub class="sub">2</sub>,&hellip;]</code>)</var><a class="copiable-link" href="#index-basis_005fset"> &para;</a></span></dt>
 <dd><p>The function <code class="code">basis_set</code> takes two arguments, <code class="code">n</code> is the
-number of particles, and <code class="code">m</code> is the number of states per
-particle. The state kets are labeled with values <code class="code">0, &hellip;, m-1</code>.
-Currently this function accepts up to three particles
+number of particles, and the second argument is a list of labels of the
+particle states. Currently this function accepts up to four particles
 (<code class="code">n=1,2,3,4</code>).  The number of elements in the basis set is
-<code class="code">m<sup class="sup">n</sup></code> so a 4-particle system with four states will have 256
-basis kets.
+<code class="code">m<sup class="sup">n</sup></code>, where <code class="code">m</code> is the number of states per particle, so
+a 4-particle system with four states will have 256 basis kets.
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) basis_set(2,2);
+<div class="group"><pre class="example-preformatted">(%i1) basis_set(2,[0,1]);
 (%o1)                  [|1, 1&gt;, |1, 0&gt;, |0, 1&gt;, |0, 0&gt;]
+(%i2) basis_set(3,[u,d]);
+(%o2) [|d, d, d&gt;, |d, d, u&gt;, |d, u, d&gt;, |d, u, u&gt;, |u, d, d&gt;, |u, d, u&gt;, 
+                                                          |u, u, d&gt;, |u, u, u&gt;]
 </pre></div></div>
 
 </div>

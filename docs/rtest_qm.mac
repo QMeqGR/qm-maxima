@@ -487,8 +487,12 @@ matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([
                          . ket([0])])
 $
 
-basis_set(2,2);
+basis_set(2,[0,1]);
 [ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])] $
+
+basis_set(3,[u,d]);
+[ket([d,d,d]),ket([d,d,u]),ket([d,u,d]),ket([d,u,u]),ket([u,d,d]),          ket([u,d,u]),ket([u,u,d]),ket([u,u,u])]
+$
 
 b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $

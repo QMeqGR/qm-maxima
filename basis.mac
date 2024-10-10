@@ -23,26 +23,27 @@
 /*****************************/
 /*  create simple basis sets */
 /*****************************/
-/* This works only up to n=4 particles. m=number of states per particle */
-basis_set(n,m) := block([M,M2,M3,ops],
+basis_set(n,L) := block([M,M2,M3,ops,m,cv],
+    if listp(L)=false then return( disp("second arg must be a list")),
+    m:length(L),
     if n>4 then return( disp("limited to n<5 particles")),
     if n<1 then return( disp("must have at least one particle present!")),
     if m<1 then return( disp("must have at least one state per particle!")),
     /* 1 particle states */
-    ops: transpose( matrix( makelist(i-1,i,m) ) ),
+    ops: transpose( matrix( makelist(L[i],i,m) ) ),
     if n=1 then return( make_bkets(ops,m) ),
     for i: 1 thru m do
-        ( cv[i]: transpose( matrix( makelist(i-1,j,m) ) ),
+        ( cv[i]: transpose( matrix( makelist(L[i],j,m) ) ),
         if i=1 then M: addcol(cv[i],ops) else
         M: addrow(M, addcol(cv[i],ops) ) ),
     if n=2 then return( make_bkets(M,m^2) ),
     for i: 1 thru m do
-        ( cv[i]: transpose( matrix( makelist(i-1,j,m^2) ) ),
+        ( cv[i]: transpose( matrix( makelist(L[i],j,m^2) ) ),
         if i=1 then M2: addcol(cv[i],M) else
         M2: addrow(M2, addcol(cv[i],M) ) ),
     if n=3 then return( make_bkets(M2,m^3) ),
     for i: 1 thru m do
-        ( cv[i]: transpose( matrix( makelist(i-1,j,m^3) ) ),
+        ( cv[i]: transpose( matrix( makelist(L[i],j,m^3) ) ),
         if i=1 then M3: addcol(cv[i],M2) else
         M3: addrow(M3, addcol(cv[i],M2) ) ),
     if n=4 then return( make_bkets(M3,m^4) ),

@@ -1586,20 +1586,22 @@ operator.
 @subsection Abstract basis set generator
 
 @anchor{basis_set}
-@deffn {Function} basis_set (@code{n,m})
+@deffn {Function} basis_set (@code{n,[l@sub{1},l@sub{2},@dots{}]})
 The function @code{basis_set} takes two arguments, @code{n} is the
-number of particles, and @code{m} is the number of states per
-particle. The state kets are labeled with values @code{0, @dots{}, m-1}.
-Currently this function accepts up to three particles
+number of particles, and the second argument is a list of labels of the
+particle states. Currently this function accepts up to four particles
 (@code{n=1,2,3,4}).  The number of elements in the basis set is
-@code{m@sup{n}} so a 4-particle system with four states will have 256
-basis kets.
+@code{m@sup{n}}, where @code{m} is the number of states per particle, so
+a 4-particle system with four states will have 256 basis kets.
 @end deffn
 
 @example
 @group
-(%i1) basis_set(2,2);
+(%i1) basis_set(2,[0,1]);
 (%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
+(%i2) basis_set(3,[u,d]);
+(%o2) [|d, d, d>, |d, d, u>, |d, u, d>, |d, u, u>, |u, d, d>, |u, d, u>, 
+                                                          |u, u, d>, |u, u, u>]
 @end group
 @end example
 
