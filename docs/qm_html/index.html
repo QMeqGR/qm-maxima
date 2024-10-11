@@ -151,7 +151,7 @@ arbitrarily large tensor product states.
 </p>
 <p>The following examples illustrate some of the basic capabilities of the
 <code class="code">qm</code> package. Here both abstract, and concrete (matrix
-representation) kets are shown. The last example shows how to contstruct
+representation) kets are shown. The last example shows how to construct
 an entangled Bell pair.
 </p>
 <div class="example">
@@ -251,7 +251,8 @@ Previous: <a href="#Introduction-to-package-qm" accesskey="p" rel="prev">Introdu
 <dt class="defvr" id="index-hbar"><span class="category-def">Variable: </span><span><strong class="def-name">hbar</strong><a class="copiable-link" href="#index-hbar"> &para;</a></span></dt>
 <dd><p>Planck&rsquo;s constant divided by <code class="code">2*%pi</code>. <code class="code">hbar</code> is not given a
 floating point value, but is declared to be a real number greater than
-zero.
+zero. If the system variable <code class="code">display2d_unicode</code> is <code class="code">true</code> then
+<code class="code">hbar</code> will be displayed as its Unicode character.
 </p></dd></dl>
 
 <a class="anchor" id="ket"></a><dl class="first-deffn">
@@ -893,6 +894,7 @@ Proviso: assuming 64*t*w # 0
 <li><a href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras" accesskey="1">Matrix representation of (j,m)-kets and bras</a></li>
 <li><a href="#Angular-momentum-_0028j_002cm_0029_002dkets-and-bras" accesskey="2">Angular momentum (j,m)-kets and bras</a></li>
 <li><a href="#Addition-of-angular-momentum-in-the-_0028j_002cm_0029_002drepresentation" accesskey="3">Addition of angular momentum in the (j,m)-representation</a></li>
+<li><a href="#Example-computations" accesskey="4">Example computations</a></li>
 </ul>
 <div class="subsection-level-extent" id="Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras">
 <h4 class="subsection"><span>1.3.1 Matrix representation of (j,m)-kets and bras<a class="copiable-link" href="#Matrix-representation-of-_0028j_002cm_0029_002dkets-and-bras"> &para;</a></span></h4>
@@ -1332,11 +1334,9 @@ useful after using the function <code class="code">Jtsqr</code>.
                                          2
 </pre></div></div>
 
-<ul class="mini-toc">
-<li><a href="#Example-computations" accesskey="1">Example computations</a></li>
-</ul>
-<div class="subsubsection-level-extent" id="Example-computations">
-<h4 class="subsubsection"><span>1.3.3.1 Example computations<a class="copiable-link" href="#Example-computations"> &para;</a></span></h4>
+</div>
+<div class="subsection-level-extent" id="Example-computations">
+<h4 class="subsection"><span>1.3.4 Example computations<a class="copiable-link" href="#Example-computations"> &para;</a></span></h4>
 
 <p>For the first example, let us see how to determine the total spin state
 <code class="code">|j,m&gt;</code> of the two-particle state <code class="code">|1/2,1/2;1,1&gt;</code>.
@@ -1434,7 +1434,6 @@ the rest of them.
                                     2    2    2    2
 </pre></div></div>
 
-</div>
 </div>
 </div>
 <div class="section-level-extent" id="General-tensor-products">

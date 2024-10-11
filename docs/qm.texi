@@ -131,7 +131,7 @@ arbitrarily large tensor product states.
 
 The following examples illustrate some of the basic capabilities of the
 @code{qm} package. Here both abstract, and concrete (matrix
-representation) kets are shown. The last example shows how to contstruct
+representation) kets are shown. The last example shows how to construct
 an entangled Bell pair.
 
 @example
@@ -227,7 +227,8 @@ family of @code{Jxx} operators are rule based or function based.
 @defvr {Variable} hbar
 Planck's constant divided by @code{2*%pi}. @code{hbar} is not given a
 floating point value, but is declared to be a real number greater than
-zero.
+zero. If the system variable @code{display2d_unicode} is @code{true} then
+@code{hbar} will be displayed as its Unicode character.
 @end defvr
 
 @anchor{ket}
@@ -1372,7 +1373,7 @@ useful after using the function @code{Jtsqr}.
 @end example
 
 @page
-@subsubsection Example computations
+@subsection Example computations
 
 For the first example, let us see how to determine the total spin state
 @code{|j,m>} of the two-particle state @code{|1/2,1/2;1,1>}.
