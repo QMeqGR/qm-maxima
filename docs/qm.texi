@@ -39,46 +39,72 @@
 @node Introduction to package qm, Functions and Variables for qm, Top, Top
 @section Introduction to package qm
 
-@noindent
 The @code{qm} package was written by Eric Majzoub, University of
-Missouri (email: majzoube-at-umsystem.edu), with help from Maxima
-developers Robert Dodier and Barton Willis.
+Missouri (email: majzoube-at-umsystem.edu). EM thanks Maxima developers
+Robert Dodier and Barton Willis for their contributions that have
+improved the package considerably. Please report any errors or
+unexpected behavior by submitting an issue on the Github page for this
+project (https://github.com/QMeqGR/qm-maxima).
 
-@noindent
 The purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
 space. It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend's @emph{A Modern Introduction to Quantum
-Mechanics} and above. Please report any errors or unexpected behavior by
-submitting an issue on the Github page for this project.
+Mechanics} and above. The package is loaded with: @code{load(qm);} If
+you use wxMaxima then issue @code{load("wx.lisp");} @emph{after} loading
+the @code{qm} package. This will allow pretty printing of the kets and
+bras similar to what you see in this manual.
 
-@noindent
-The package is loaded with: @code{load(qm);} If you use wxMaxima then
-issue @code{load("wx.lisp");} @emph{after} loading the @code{qm}
-package. This will allow pretty printing of the kets and bras similar to
-what you see in this manual.
+@subsection Basic capabilities
 
-@noindent
 The @code{qm} package provides functions and standard definitions to
 solve quantum mechanics problems in a finite dimensional Hilbert
 space. For example, one can calculate the outcome of Stern-Gerlach
 experiments using built-in definitions of the Sx, Sy, and Sz operators
 for arbitrary spin, e.g. @code{s=@{1/2, 1, 3/2, @dots{}@}}. For spin-1/2
 the standard basis kets in the @code{x}, @code{y}, and @code{z}-basis
-are available as @code{@{xp,xm@}}, @code{@{yp,ym@}}, and
-@code{@{zp,zm@}}, respectively. One can create general ket vectors with
-arbitrary but finite dimension and perform standard computations such as
-expectation value, variance, etc. The angular momentum @var{|j,m>}
-representation of kets is also available. Tensor product states for
-multiparticle systems can be created to perform calculations such as
-computing the Clebsch-Gordan coefficients.
+are defined in the package as @code{@{xp,xm@}}, @code{@{yp,ym@}}, and
+@code{@{zp,zm@}}, respectively.
 
-Let us consider a trivial example involving spin-1/2 particles.
-A bra vector in the @code{z}-basis may be written as 
+@*
+@noindent
+Brief list of some capabilities:
+@itemize @bullet
+@item
+Create kets and bras in a matrix representation with arbitrary but
+finite dimension.
+@item
+Create @emph{general} ket vectors with arbitrary but finite dimension.
+@item
+Given an operator and a state ket, perform standard computations of
+expectation values, variance, etc.
+@item
+For time-independent Hamiltonians one can construct the time evolution
+operator and study, for example, magnetic resonance.  
+@item
+Create kets and bras in the angular momentum @var{|j,m>} representation.
+@item
+Create tensor products of states to represent multi-particle systems.
+@item
+Compute Clebsch-Gordan coefficients by stepping up and down the ladder
+of states constructed using tensor products of @var{|j,m>} kets.
+@item
+Construct Bell states and compute quantities of interest for entangled
+systems such as density matrices.
+@item
+Perform partial traces over density matrices to compute reduced
+density matrices.
+@end itemize
+
+Let us begin with a trivial example involving spin-1/2 particles. This
+will illustrate how kets and bras in a matrix representation are defined
+within the @code{qm} package. A bra vector in the @code{z}-basis may be
+written as
 
 @ @ @ @ @ @ @ @ @code{<psi| = a <z+| + b <z-|}.
 
+@noindent
 The bra @code{<psi|} will be represented in Maxima by the row vector
 @code{[a b]}, where the basis vectors are
 
@@ -89,6 +115,7 @@ and
 
 @ @ @ @ @ @ @ @ @code{<z-| = [0 1]}.
 
+@noindent
 This bra vector can be created with the @code{mbra} command
 
 @ @ @ @ @ @ @ @ @code{mbra([a,b])}
@@ -434,7 +461,9 @@ must be @code{declare}-d complex for dagger to produce the conjugate.
 @anchor{braket}
 @deffn {Function} braket (@code{psi,phi})
 Given a bra @code{psi} and ket @code{phi}, @code{braket} returns the
-quantum mechanical bracket @code{<psi|phi>}.
+quantum mechanical bracket @code{<psi|phi>}. Note, @code{braket(b,k)} is
+equivalent to @code{b . k} where @code{.} is the Maxima non-commutative
+@code{dot} operator.
 @end deffn
 
 @example
