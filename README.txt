@@ -1299,6 +1299,14 @@ below, ignoring any physical constants in the problem.
    Another package that handles quantum mechanical operators is
 ‘operator_algebra’ written by Barton Willis.
 
+1.6 Pre-defined quantities
+==========================
+
+There are some pre-defined quantities in the file ‘predef.mac’ that may
+be convenient for the user.  These include Bell states, and some basis
+sets that are tedious to input.  The ‘predef.mac’ file is not loaded
+automatically.  To make the definitions available issue ‘load(predef);’.
+
 Appendix A Function and Variable index
 **************************************
 

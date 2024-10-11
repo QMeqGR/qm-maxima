@@ -178,8 +178,10 @@ gsimpbraket(L1,L2):=block([i,l1flag:0,l2flag:0,prod:1,
 /* This rule is for when, after a partial trace one wants
 to compute the matrix representation of the reduced densiy
 matrix. Terms will end up containing totally traced out
-bras and kets */
+bras and kets. */
 tellsimpafter( ket(["-","-"]) . bra(["-","-"]) , 1 );
+tellsimpafter( ket(["-","-","-"]) . bra(["-","-","-"]) , 1 );
+tellsimpafter( ket(["-","-","-","-"]) . bra(["-","-","-","-"]) , 1 );
 
 /*********************************/
 /*     miscellaneous rules       */
