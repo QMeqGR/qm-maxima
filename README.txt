@@ -1180,10 +1180,8 @@ particle to obtain the density submatrix for particle 2.
  -- Function: basis_set (n,[l_{1},l_{2},...])
      The function ‘basis_set’ takes two arguments, ‘n’ is the number of
      particles, and the second argument is a list of labels of the
-     particle states.  Currently this function accepts up to four
-     particles (‘n=1,2,3,4’).  The number of elements in the basis set
-     is ‘m^{n}’, where ‘m’ is the number of states per particle, so a
-     4-particle system with four states will have 256 basis kets.
+     particle states.  The number of elements in the basis set is
+     ‘m^{n}’, where ‘m’ is the number of states per particle.
 
      (%i1) basis_set(2,[0,1]);
      (%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
@@ -1335,11 +1333,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1299)
+                                                             (line 1297)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  484)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1295)
+                                                             (line 1293)
 * autobra:                               Functions and Variables for qm.
                                                              (line  305)
 * autoket:                               Functions and Variables for qm.
@@ -1435,9 +1433,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  562)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1244)
+                                                             (line 1242)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1240)
+                                                             (line 1238)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  586)
 * RX:                                    Functions and Variables for qm.

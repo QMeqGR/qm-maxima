@@ -1619,10 +1619,8 @@ operator.
 @deffn {Function} basis_set (@code{n,[l@sub{1},l@sub{2},@dots{}]})
 The function @code{basis_set} takes two arguments, @code{n} is the
 number of particles, and the second argument is a list of labels of the
-particle states. Currently this function accepts up to four particles
-(@code{n=1,2,3,4}).  The number of elements in the basis set is
-@code{m@sup{n}}, where @code{m} is the number of states per particle, so
-a 4-particle system with four states will have 256 basis kets.
+particle states. The number of elements in the basis set is
+@code{m@sup{n}}, where @code{m} is the number of states per particle.
 @end deffn
 
 @example
