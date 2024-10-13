@@ -269,6 +269,11 @@ tellsimpafter( Jz(a*k), a*Jz(k) );
 tellsimpafter( Jz(k), block([j,m],
       j:inpart(k,1)[1], m:inpart(k,1)[2], return( ( m * hbar * ket([j,m]) ) )));
 
+/* These rules allow one to add operators together */
+tellsimpafter( Jp . k, Jp(k) );
+tellsimpafter( Jm . k, Jm(k) );
+tellsimpafter( Jz . k, Jz(k) );
+tellsimpafter( Jsqr . k, Jsqr(k) );
 
 /******************************************************/
 /******************************************************/
