@@ -64,8 +64,8 @@ tellsimpafter(cos(x)-%i*sin(x),%e^(-%i*x));
 /* Constants and assumptions   */
 /*******************************/
 declare([hbar,ħ],[real,scalar]) $
-assume(hbar>0,ħ>0) $
-hbar: if display2d_unicode=true then parse_string(unicode("latin small letter h with stroke")) else hbar;
+assume(hbar>0) $
+if display2d_unicode=true then hbar:ħ;
 
 /************************/
 /* make simple vectors  */
