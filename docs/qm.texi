@@ -1696,7 +1696,7 @@ a square matrix and returns the sum of the diagonal components.
 The function @code{qm_atrace} takes an abstract operator @code{A} and a
 basis @code{B} and attempts to compute the matrix representation using
 the @code{matrep} function.  If successful it will return the matrix
-trace the resulting matrix.
+trace of the resulting matrix.
 @end deffn
 
 @example
