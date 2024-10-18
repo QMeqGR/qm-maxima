@@ -379,9 +379,9 @@ complex and not ‘x’.
 
      (%i1) declare([a,b,c,d],complex);
      (%o1)                                done
-     (%i2) A:braket(mbra([a,b]),mket([c,d]));
+     (%i2) braket(mbra([a,b]),mket([c,d]));
      (%o2)                              b d + a c
-     (%i3) P:magsqr(A);
+     (%i3) P:magsqr(%);
      (%o3) (b d + a c) (conjugate(b) conjugate(d) + conjugate(a) conjugate(c))
 
 1.2.1 Spin-1/2 state kets and associated operators
@@ -1245,7 +1245,64 @@ define the Hamiltonian and then use the function ‘matrep’.
                            [                                ]
                            [ 0      0            0        0 ]
 
-1.4.3 Matrix trace functions
+1.4.3 Stationary states from a Hamiltonian
+------------------------------------------
+
+ -- Function: stationary (evals,evecs,basis)
+     The function ‘stationary’ takes the output of the ‘eigenvectors’
+     command and a basis set and constructs the stationary states from
+     the basis used to construct the matrix representation of the
+     Hamiltonian.
+
+Example:
+
+   The hyperfine splitting in the hydrogen atom is due to the spin-spin
+interaction of the electron and the proton.  The Hamiltonian is
+2*A/hbar^2 * (S1 dot S2).  Let's calculate the energy levels and the
+stationary states.
+
+     (%i1) declare(A,scalar);
+     (%o1)                                done
+     (%i2) H:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z);
+                              A (2 J1zJ2z + J1p2m + J1m2p)
+     (%o2)                    ----------------------------
+                                             2
+                                         hbar
+     (%i3) Hmat:matrep(H,bj1212);
+                                   [ A              ]
+                                   [ -   0    0   0 ]
+                                   [ 2              ]
+                                   [                ]
+                                   [      A         ]
+                                   [ 0  - -   A   0 ]
+                                   [      2         ]
+     (%o3)                         [                ]
+                                   [           A    ]
+                                   [ 0   A   - -  0 ]
+                                   [           2    ]
+                                   [                ]
+                                   [              A ]
+                                   [ 0   0    0   - ]
+                                   [              2 ]
+     (%i4) [evals,evecs]:eigenvectors(Hmat);
+                3 A  A
+     (%o4) [[[- ---, -], [1, 3]], [[[0, 1, - 1, 0]],
+                 2   2
+                                        [[1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1]]]]
+     (%i5) states:stationary(evals,evecs,bj1212);
+                        1  1    1    1                   1    1    1  1
+     (%o5) [[tpket, 1, |-, ->, |-, - ->] + [tpket, - 1, |-, - ->, |-, ->],
+                        2  2    2    2                   2    2    2  2
+                 1  1    1  1                1  1    1    1
+     [tpket, 1, |-, ->, |-, ->], [tpket, 1, |-, ->, |-, - ->]
+                 2  2    2  2                2  2    2    2
+                    1    1    1  1                1    1    1    1
+      + [tpket, 1, |-, - ->, |-, ->], [tpket, 1, |-, - ->, |-, - ->]]
+                    2    2    2  2                2    2    2    2
+     (%i6) Jtz(states[1]);
+     (%o6)                                  0
+
+1.4.4 Matrix trace functions
 ----------------------------
 
  -- Function: qm_mtrace (_matrix_)
@@ -1344,11 +1401,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1309)
+                                                             (line 1366)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  496)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1305)
+                                                             (line 1362)
 * autobra:                               Functions and Variables for qm.
                                                              (line  323)
 * autoket:                               Functions and Variables for qm.
@@ -1444,9 +1501,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  574)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1254)
+                                                             (line 1311)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1250)
+                                                             (line 1307)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  598)
 * RX:                                    Functions and Variables for qm.
@@ -1469,6 +1526,8 @@ Appendix A Function and Variable index
                                                              (line  692)
 * spin_mket:                             Functions and Variables for qm.
                                                              (line  688)
+* stationary:                            Functions and Variables for qm.
+                                                             (line 1250)
 * Sx:                                    Functions and Variables for qm.
                                                              (line  459)
 * SX:                                    Functions and Variables for qm.

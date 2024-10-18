@@ -524,9 +524,9 @@ squared of a complex number.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) declare([a,b,c,d],complex);
 (%o1)                                done
-(%i2) A:braket(mbra([a,b]),mket([c,d]));
+(%i2) braket(mbra([a,b]),mket([c,d]));
 (%o2)                              b d + a c
-(%i3) P:magsqr(A);
+(%i3) P:magsqr(%);
 (%o3) (b d + a c) (conjugate(b) conjugate(d) + conjugate(a) conjugate(c))
 </pre></div></div>
 
@@ -1579,7 +1579,8 @@ operator.
 <ul class="mini-toc">
 <li><a href="#Abstract-basis-set-generator" accesskey="1">Abstract basis set generator</a></li>
 <li><a href="#Example-calculation-of-matrix-elements" accesskey="2">Example calculation of matrix elements</a></li>
-<li><a href="#Matrix-trace-functions" accesskey="3">Matrix trace functions</a></li>
+<li><a href="#Stationary-states-from-a-Hamiltonian" accesskey="3">Stationary states from a Hamiltonian</a></li>
+<li><a href="#Matrix-trace-functions" accesskey="4">Matrix trace functions</a></li>
 </ul>
 <div class="subsection-level-extent" id="Abstract-basis-set-generator">
 <h4 class="subsection"><span>1.4.1 Abstract basis set generator<a class="copiable-link" href="#Abstract-basis-set-generator"> &para;</a></span></h4>
@@ -1648,10 +1649,71 @@ Hamiltonian and then use the function <code class="code">matrep</code>.
                       [ 0      0            0        0 ]
 </pre></div></div>
 
+</div>
+<div class="subsection-level-extent" id="Stationary-states-from-a-Hamiltonian">
+<h4 class="subsection"><span>1.4.3 Stationary states from a Hamiltonian<a class="copiable-link" href="#Stationary-states-from-a-Hamiltonian"> &para;</a></span></h4>
+
+<a class="anchor" id="stationary"></a><dl class="first-deffn">
+<dt class="deffn" id="index-stationary"><span class="category-def">Function: </span><span><strong class="def-name">stationary</strong> <var class="def-var-arguments">(<code class="code">evals,evecs,basis</code>)</var><a class="copiable-link" href="#index-stationary"> &para;</a></span></dt>
+<dd><p>The function <code class="code">stationary</code> takes the output of the
+<code class="code">eigenvectors</code> command and a basis set and constructs
+the stationary states from the basis used to construct
+the matrix representation of the Hamiltonian.
+</p></dd></dl>
+
+<p>Example:
+</p>
+<p>The hyperfine splitting in the hydrogen atom is due to the
+spin-spin interaction of the electron and the proton. The
+Hamiltonian is  2*A/hbar^2 * (S1 dot S2). Let&rsquo;s calculate
+the energy levels and the stationary states.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) declare(A,scalar);
+(%o1)                                done
+(%i2) H:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z);
+                         A (2 J1zJ2z + J1p2m + J1m2p)
+(%o2)                    ----------------------------
+                                        2
+                                    hbar
+(%i3) Hmat:matrep(H,bj1212);
+                              [ A              ]
+                              [ -   0    0   0 ]
+                              [ 2              ]
+                              [                ]
+                              [      A         ]
+                              [ 0  - -   A   0 ]
+                              [      2         ]
+(%o3)                         [                ]
+                              [           A    ]
+                              [ 0   A   - -  0 ]
+                              [           2    ]
+                              [                ]
+                              [              A ]
+                              [ 0   0    0   - ]
+                              [              2 ]
+(%i4) [evals,evecs]:eigenvectors(Hmat);
+           3 A  A
+(%o4) [[[- ---, -], [1, 3]], [[[0, 1, - 1, 0]], 
+            2   2
+                                   [[1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1]]]]
+(%i5) states:stationary(evals,evecs,bj1212);
+                   1  1    1    1                   1    1    1  1
+(%o5) [[tpket, 1, |-, -&gt;, |-, - -&gt;] + [tpket, - 1, |-, - -&gt;, |-, -&gt;], 
+                   2  2    2    2                   2    2    2  2
+            1  1    1  1                1  1    1    1
+[tpket, 1, |-, -&gt;, |-, -&gt;], [tpket, 1, |-, -&gt;, |-, - -&gt;]
+            2  2    2  2                2  2    2    2
+               1    1    1  1                1    1    1    1
+ + [tpket, 1, |-, - -&gt;, |-, -&gt;], [tpket, 1, |-, - -&gt;, |-, - -&gt;]]
+               2    2    2  2                2    2    2    2
+(%i6) Jtz(states[1]);
+(%o6)                                  0
+</pre></div></div>
 
 </div>
 <div class="subsection-level-extent" id="Matrix-trace-functions">
-<h4 class="subsection"><span>1.4.3 Matrix trace functions<a class="copiable-link" href="#Matrix-trace-functions"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.4.4 Matrix trace functions<a class="copiable-link" href="#Matrix-trace-functions"> &para;</a></span></h4>
 
 <a class="anchor" id="qm_005fmtrace"></a><dl class="first-deffn">
 <dt class="deffn" id="index-qm_005fmtrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_mtrace</strong> <var class="def-var-arguments">(<em class="emph">matrix</em>)</var><a class="copiable-link" href="#index-qm_005fmtrace"> &para;</a></span></dt>

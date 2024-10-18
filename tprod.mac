@@ -98,15 +98,19 @@ tpdagger(tp):=block([R],
     else return(disp("must be a tpket or tpbra")),
     R);
 
-J1z(k):= if tpketp(k) then [tpket,k[2],Jz(k[3]),k[4]];
-J2z(k):= if tpketp(k) then [tpket,k[2],k[3],Jz(k[4])];
-Jtz(k):= [tpket, J1z(k)[2]+J2z(k)[2], k[3],k[4] ];
+declare([J1z,J2z,Jtz,J1sqr,J2sqr,J1p,J2p,Jtp,J1m,J2m,Jtm],additive);
 
-J1sqr(k):= if tpketp(k) then [tpket,k[2],Jsqr(k[3]),k[4]];
-J2sqr(k):= if tpketp(k) then [tpket,k[2],k[3],Jsqr(k[4])];
+matchdeclare([tpk1,tpk2,k],tpketp);
+tellsimpafter( J1z(k), [tpket,k[2],Jz(k[3]),k[4]] );
+tellsimpafter( J2z(k), [tpket,k[2],k[3],Jz(k[4])] );
+tellsimpafter( Jtz(k), [tpket, J1z(k)[2]+J2z(k)[2], k[3],k[4] ] );
 
-J1p(k):= if tpketp(k) then [tpket,k[2],Jp(k[3]),k[4]];
-J2p(k):= if tpketp(k) then [tpket,k[2],k[3],Jp(k[4])];
+tellsimpafter( J1sqr(k), [tpket,k[2],Jsqr(k[3]),k[4]] );
+tellsimpafter( J2sqr(k), [tpket,k[2],k[3],Jsqr(k[4])] );
+
+tellsimpafter( J1p(k), [tpket,k[2],Jp(k[3]),k[4]] );
+tellsimpafter( J2p(k), [tpket,k[2],k[3],Jp(k[4])] );
+
 Jtp(k):= block([R:0,R2:0,listarith:false],
 	 if listp(k)=true and length(k)=4 then R: J1p(k)+J2p(k)
 	 elseif listp(k)=false then
@@ -119,8 +123,8 @@ Jtp(k):= block([R:0,R2:0,listarith:false],
             for i: 2 thru length(R) do R2:tpadd(R2,part(R,i)),
             return(R2));
 
-J1m(k):= if tpketp(k) then [tpket,k[2],Jm(k[3]),k[4]];
-J2m(k):= if tpketp(k) then [tpket,k[2],k[3],Jm(k[4])];
+tellsimpafter( J1m(k), [tpket,k[2],Jm(k[3]),k[4]] );
+tellsimpafter( J2m(k), [tpket,k[2],k[3],Jm(k[4])] );
 Jtm(k):= block([R:0,R2:0,listarith:false],
 	 if listp(k)=true and length(k)=4 then R: J1m(k)+J2m(k)
 	 elseif listp(k)=false then
@@ -133,6 +137,7 @@ Jtm(k):= block([R:0,R2:0,listarith:false],
             for i: 2 thru length(R) do R2:tpadd(R2,part(R,i)),
             return(R2));
 
+declare([J1p2m,J1m2p,J1zJ2z],additive);
 J1p2m(k):= block([R],
     if tpketp(k)=false then return(false),
     R:[tpket,k[2],Jp(k[3]),Jm(k[4])],

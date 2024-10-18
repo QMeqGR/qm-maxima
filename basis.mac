@@ -109,3 +109,17 @@ qm_mtrace(M) := if matrixp(M) then
 
 /* abstract trace */
 qm_atrace(A,B) := qm_mtrace( matrep(A,B) );
+
+/************************************/
+/* Construct stationary states      */
+/* From eigenvalues/vectors of      */
+/* a Hamiltonian.                   */
+/************************************/
+stationary(evals,evecs,basis):=block([degen:evals[2],i,j,states:[]],
+    for i: 1 thru length(degen) do
+        for j: 1 thru degen[i] do
+            block([l:length(evecs[i][j]),k,R:0],
+                for k: 1 thru l do
+                    R: tpadd(R, tpscmult(evecs[i][j][k], basis[k]) ),
+            states:append(states,[R]) ),
+states)$
