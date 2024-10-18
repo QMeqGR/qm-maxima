@@ -31,15 +31,25 @@ ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
 
 
 /* pre-defined tpket bases */
-Bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
+bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
         [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
         [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
         [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
 
-Bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
+bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
          [tpket,1,ket([1,1]),ket([1/2,-1/2])],
          [tpket,1,ket([1,0]),ket([1/2,1/2])],
          [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
          [tpket,1,ket([1,-1]),ket([1/2,1/2])],
          [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+
+bj11:  [ [tpket,1,ket([1,1]),ket([1,1])],
+         [tpket,1,ket([1,1]),ket([1,0])],
+         [tpket,1,ket([1,1]),ket([1,-1])],
+         [tpket,1,ket([1,0]),ket([1,1])],
+         [tpket,1,ket([1,0]),ket([1,0])],
+         [tpket,1,ket([1,0]),ket([1,-1])],         
+         [tpket,1,ket([1,-1]),ket([1,1])],
+         [tpket,1,ket([1,-1]),ket([1,0])],
+         [tpket,1,ket([1,-1]),ket([1,-1])] ];
 

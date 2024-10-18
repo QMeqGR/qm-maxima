@@ -76,14 +76,17 @@ solving quantum mechanics problems in a finite-dimensional Hilbert
 space. It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend&rsquo;s <em class="emph">A Modern Introduction to Quantum
-Mechanics</em> and above. The package is loaded with: <code class="code">load(qm);</code> If
-you use wxMaxima then issue <code class="code">load(&quot;wx.lisp&quot;);</code> <em class="emph">after</em> loading
-the <code class="code">qm</code> package. This will allow pretty printing of the kets and
-bras similar to what you see in this manual.
+Mechanics</em> and above.
+</p>
+<p>The package is loaded with: <code class="code">load(qm);</code>
+</p>
+<p>If you use wxMaxima then issue <code class="code">load(&quot;wx.lisp&quot;);</code> <em class="emph">after</em>
+loading the <code class="code">qm</code> package. This will allow pretty printing of the
+kets and bras similar to what you see in this manual.
 </p>
 <ul class="mini-toc">
 <li><a href="#Basic-capabilities" accesskey="1">Basic capabilities</a></li>
-<li><a href="#Types-of-kets-and-bras" accesskey="2">Types of kets and bras</a></li>
+<li><a href="#Two-types-of-kets-and-bras" accesskey="2">Two types of kets and bras</a></li>
 <li><a href="#Special-ket-types" accesskey="3">Special ket types</a></li>
 <li><a href="#Types-of-spin-operators" accesskey="4">Types of spin operators</a></li>
 </ul>
@@ -99,7 +102,6 @@ the standard basis kets in the <code class="code">x</code>, <code class="code">y
 are defined in the package as <code class="code">{xp,xm}</code>, <code class="code">{yp,ym}</code>, and
 <code class="code">{zp,zm}</code>, respectively.
 </p>
-<br>
 <p>Brief list of some capabilities:
 </p><ul class="itemize mark-bullet">
 <li>Create kets and bras in a matrix representation with arbitrary but
@@ -119,15 +121,15 @@ systems such as density matrices.
 density matrices.
 </li></ul>
 
-<p>Let us begin with a trivial example involving spin-1/2 particles. This
-will illustrate how kets and bras in a matrix representation are defined
+<p>Let us begin with the trivial example of a spin-1/2 particle. This will
+illustrate how kets and bras in a matrix representation are defined
 within the <code class="code">qm</code> package. A bra vector in the <code class="code">z</code>-basis may be
 written as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;psi| = a &lt;z+| + b &lt;z-|</code>.
 </p>
-<p>The bra <code class="code">&lt;psi|</code> will be represented in Maxima by the row vector
-<code class="code">[a b]</code>, where the basis vectors are
+<p>The matrix representation of the bra <code class="code">&lt;psi|</code> will be represented in
+Maxima by the row vector <code class="code">[a b]</code>, where the basis vectors are
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z+| = [1 0]</code>
 </p>
@@ -135,23 +137,39 @@ written as
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;z-| = [0 1]</code>.
 </p>
-<p>This bra vector can be created with the <code class="code">mbra</code> command
+<p>This bra vector can be created in several ways. First, with the
+<code class="code">mbra</code> command
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">mbra([a,b])</code>
 </p>
-<p>or taking the quantum mechanical dagger of the corresponding ket.
-In a Maxima session this looks like the following. The basis kets
+<p>or by taking the quantum mechanical dagger of the corresponding ket. In
+a Maxima session this looks like the following. The basis kets
 <code class="code">{zp,zm}</code> are transformed into bras using the <code class="code">dagger</code>
 function.
 </p>
 <div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) zp;
+                                     [ 1 ]
+(%o1)                                [   ]
+                                     [ 0 ]
+(%i2) zm;
+                                     [ 0 ]
+(%o2)                                [   ]
+                                     [ 1 ]
+</pre></div></div>
+
+<div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
 (%o1)                              [ a  b ]
+(%i2) dagger(mket([a,b]));
+(%o2)                              [ a  b ]
+(%i3) mbra([a,b]);
+(%o3)                              [ a  b ]
 </pre></div></div>
 
 </div>
-<div class="subsection-level-extent" id="Types-of-kets-and-bras">
-<h4 class="subsection"><span>1.1.2 Types of kets and bras<a class="copiable-link" href="#Types-of-kets-and-bras"> &para;</a></span></h4>
+<div class="subsection-level-extent" id="Two-types-of-kets-and-bras">
+<h4 class="subsection"><span>1.1.2 Two types of kets and bras<a class="copiable-link" href="#Two-types-of-kets-and-bras"> &para;</a></span></h4>
 
 <p>There are two types of kets and bras available in the <code class="code">qm</code> package,
 the first type is given by a <em class="emph">matrix representation</em>, as returned
@@ -340,7 +358,8 @@ matrix representation the elements must be entered as a list in
 (%o2)                               [    ]
                                     [ c2 ]
 (%i3) facts();
-(%o3) [kind(hbar, real), hbar &gt; 0, kind(c1, complex), kind(c2, complex)]
+(%o3) [kind(hbar, real), kind(ħ, real), hbar &gt; 0, kind(c1, complex), 
+                                                             kind(c2, complex)]
 </pre></div></div>
 
 <a class="anchor" id="mketp"></a><dl class="first-deffn">
@@ -378,7 +397,7 @@ in <code class="code">[&hellip;]</code> square brackets.
 (%i2) mbra([c1,c2]);
 (%o2)                             [ c1  c2 ]
 (%i3) facts();
-(%o3)                    [kind(hbar, real), hbar &gt; 0]
+(%o3)             [kind(hbar, real), kind(ħ, real), hbar &gt; 0]
 </pre></div></div>
 
 <a class="anchor" id="mbrap"></a><dl class="first-deffn">
@@ -415,13 +434,15 @@ and will <code class="code">declare</code> only the coefficients as complex.
 (%o1)                                [   ]
                                      [ b ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar &gt; 0, kind(a, complex), 
+                                                              kind(b, complex)]
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) autoket([a*sin(x),b*sin(x)]);
                                  [ a sin(x) ]
 (%o1)                            [          ]
                                  [ b sin(x) ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar &gt; 0, kind(a, complex), 
+                                                              kind(b, complex)]
 </pre></div></div>
 
 <a class="anchor" id="autobra"></a><dl class="first-deffn">
@@ -436,11 +457,13 @@ and will <code class="code">declare</code> only the coefficients as complex.
 <div class="group"><pre class="example-preformatted">(%i1) autobra([a,b]);
 (%o1)                              [ a  b ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar &gt; 0, kind(a, complex), 
+                                                              kind(b, complex)]
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) autobra([a*sin(x),b]);
 (%o1)                           [ a sin(x)  b ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar &gt; 0, kind(a, complex), 
+                                                              kind(b, complex)]
 </pre></div></div>
 
 <a class="anchor" id="dagger"></a><dl class="first-deffn">
@@ -555,16 +578,9 @@ these vectors are <code class="code">{zp,zm}</code>, and the basis kets in the
 <dd><p>Return the <var class="var">|y-&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
+
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) zp;
-                                     [ 1 ]
-(%o1)                                [   ]
-                                     [ 0 ]
-(%i2) zm;
-                                     [ 0 ]
-(%o2)                                [   ]
-                                     [ 1 ]
-</pre></div><div class="group"><pre class="example-preformatted">(%i1) yp;
+<div class="group"><pre class="example-preformatted">(%i1) yp;
                                   [    1    ]
                                   [ ------- ]
                                   [ sqrt(2) ]
@@ -1648,7 +1664,7 @@ a square matrix and returns the sum of the diagonal components.
 <dd><p>The function <code class="code">qm_atrace</code> takes an abstract operator <code class="code">A</code> and a
 basis <code class="code">B</code> and attempts to compute the matrix representation using
 the <code class="code">matrep</code> function.  If successful it will return the matrix
-trace the resulting matrix.
+trace of the resulting matrix.
 </p></dd></dl>
 
 <div class="example">
@@ -1741,9 +1757,7 @@ performed below, ignoring any physical constants in the problem.
 
 <p>There are some pre-defined quantities in the file <code class="code">predef.mac</code>
 that may be convenient for the user. These include Bell states, and 
-some basis sets that are tedious to input. The <code class="code">predef.mac</code> file
-is not loaded automatically. To make the definitions available issue
-<code class="code">load(predef);</code>.
+some basis sets that are tedious to input.
 </p>
 </div>
 </div>

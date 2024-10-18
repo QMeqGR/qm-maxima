@@ -51,10 +51,15 @@ solving quantum mechanics problems in a finite-dimensional Hilbert
 space. It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend's @emph{A Modern Introduction to Quantum
-Mechanics} and above. The package is loaded with: @code{load(qm);} If
-you use wxMaxima then issue @code{load("wx.lisp");} @emph{after} loading
-the @code{qm} package. This will allow pretty printing of the kets and
-bras similar to what you see in this manual.
+Mechanics} and above.
+
+@noindent
+The package is loaded with: @code{load(qm);}
+
+@noindent
+If you use wxMaxima then issue @code{load("wx.lisp");} @emph{after}
+loading the @code{qm} package. This will allow pretty printing of the
+kets and bras similar to what you see in this manual.
 
 @subsection Basic capabilities
 
@@ -67,7 +72,6 @@ the standard basis kets in the @code{x}, @code{y}, and @code{z}-basis
 are defined in the package as @code{@{xp,xm@}}, @code{@{yp,ym@}}, and
 @code{@{zp,zm@}}, respectively.
 
-@*
 @noindent
 Brief list of some capabilities:
 @itemize @bullet
@@ -97,16 +101,16 @@ Perform partial traces over density matrices to compute reduced
 density matrices.
 @end itemize
 
-Let us begin with a trivial example involving spin-1/2 particles. This
-will illustrate how kets and bras in a matrix representation are defined
+Let us begin with the trivial example of a spin-1/2 particle. This will
+illustrate how kets and bras in a matrix representation are defined
 within the @code{qm} package. A bra vector in the @code{z}-basis may be
 written as
 
 @ @ @ @ @ @ @ @ @code{<psi| = a <z+| + b <z-|}.
 
 @noindent
-The bra @code{<psi|} will be represented in Maxima by the row vector
-@code{[a b]}, where the basis vectors are
+The matrix representation of the bra @code{<psi|} will be represented in
+Maxima by the row vector @code{[a b]}, where the basis vectors are
 
 @ @ @ @ @ @ @ @ @code{<z+| = [1 0]}
 
@@ -116,24 +120,42 @@ and
 @ @ @ @ @ @ @ @ @code{<z-| = [0 1]}.
 
 @noindent
-This bra vector can be created with the @code{mbra} command
+This bra vector can be created in several ways. First, with the
+@code{mbra} command
 
 @ @ @ @ @ @ @ @ @code{mbra([a,b])}
 
 @noindent
-or taking the quantum mechanical dagger of the corresponding ket.
-In a Maxima session this looks like the following. The basis kets
+or by taking the quantum mechanical dagger of the corresponding ket. In
+a Maxima session this looks like the following. The basis kets
 @code{@{zp,zm@}} are transformed into bras using the @code{dagger}
 function.
 
 @example
 @group
-(%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
-(%o1)                              [ a  b ]
+(%i1) zp;
+                                     [ 1 ]
+(%o1)                                [   ]
+                                     [ 0 ]
+(%i2) zm;
+                                     [ 0 ]
+(%o2)                                [   ]
+                                     [ 1 ]
 @end group
 @end example
 
-@subsection Types of kets and bras
+@example
+@group
+(%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
+(%o1)                              [ a  b ]
+(%i2) dagger(mket([a,b]));
+(%o2)                              [ a  b ]
+(%i3) mbra([a,b]);
+(%o3)                              [ a  b ]
+@end group
+@end example
+
+@subsection Two types of kets and bras
 
 There are two types of kets and bras available in the @code{qm} package,
 the first type is given by a @emph{matrix representation}, as returned
@@ -324,7 +346,8 @@ matrix representation the elements must be entered as a list in
 (%o2)                               [    ]
                                     [ c2 ]
 (%i3) facts();
-(%o3) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+(%o3) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(c1, complex), 
+                                                             kind(c2, complex)]
 @end group
 @end example
 
@@ -366,7 +389,7 @@ in @code{[@dots{}]} square brackets.
 (%i2) mbra([c1,c2]);
 (%o2)                             [ c1  c2 ]
 (%i3) facts();
-(%o3)                    [kind(hbar, real), hbar > 0]
+(%o3)             [kind(hbar, real), kind(ħ, real), hbar > 0]
 @end group
 @end example
 
@@ -407,7 +430,8 @@ and will @code{declare} only the coefficients as complex.
 (%o1)                                [   ]
                                      [ b ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex), 
+                                                              kind(b, complex)]
 @end group
 @group
 (%i1) autoket([a*sin(x),b*sin(x)]);
@@ -415,7 +439,8 @@ and will @code{declare} only the coefficients as complex.
 (%o1)                            [          ]
                                  [ b sin(x) ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex), 
+                                                              kind(b, complex)]
 @end group
 @end example
 
@@ -432,13 +457,15 @@ and will @code{declare} only the coefficients as complex.
 (%i1) autobra([a,b]);
 (%o1)                              [ a  b ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex), 
+                                                              kind(b, complex)]
 @end group
 @group
 (%i1) autobra([a*sin(x),b]);
 (%o1)                           [ a sin(x)  b ]
 (%i2) facts();
-(%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+(%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex), 
+                                                              kind(b, complex)]
 @end group
 @end example
 
@@ -551,17 +578,8 @@ Return the @var{|y+>} ket in the @var{z}-basis.
 Return the @var{|y->} ket in the @var{z}-basis.
 @end deffn
 
+
 @example
-@group
-(%i1) zp;
-                                     [ 1 ]
-(%o1)                                [   ]
-                                     [ 0 ]
-(%i2) zm;
-                                     [ 0 ]
-(%o2)                                [   ]
-                                     [ 1 ]
-@end group
 @group
 (%i1) yp;
                                   [    1    ]
@@ -1788,9 +1806,7 @@ Another package that handles quantum mechanical operators is
 
 There are some pre-defined quantities in the file @code{predef.mac}
 that may be convenient for the user. These include Bell states, and 
-some basis sets that are tedious to input. The @code{predef.mac} file
-is not loaded automatically. To make the definitions available issue
-@code{load(predef);}.
+some basis sets that are tedious to input.
 
 @node Function and Variable Index, , Top, Top
 @appendix Function and Variable index

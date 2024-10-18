@@ -2,7 +2,19 @@
 (display2d:false,load(qm),0);
 0 $
 
+zp;
+matrix([1],[0]) $
+
+zm;
+matrix([0],[1]) $
+
 psi_bra:a*dagger(zp)+b*dagger(zm);
+matrix([a,b]) $
+
+dagger(mket([a,b]));
+matrix([a,b]) $
+
+mbra([a,b]);
 matrix([a,b]) $
 
 ket([a,b])+ket([c,d]);
@@ -72,7 +84,7 @@ mket([c1,c2]);
 matrix([c1],[c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(c1,complex),kind(c2,complex),kind(r,real)]
+[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(c1,complex),kind(c2,complex),kind(r,real)]
 $
 
 k:ket([a,b]);
@@ -94,7 +106,8 @@ mbra([c1,c2]);
 matrix([c1,c2]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
+[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+$
 
 b:mbra([a,b]);
 matrix([a,bra([u,d])]) $
@@ -106,25 +119,29 @@ autoket([a,b]);
 matrix([a],[matrix([a,bra([u,d])])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
+[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+$
 
 autoket([a*sin(x),b*sin(x)]);
 matrix([a*sin(x)],[matrix([a*sin(x),bra([u,d])*sin(x)])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
+[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+$
 
 autobra([a,b]);
 matrix([a,matrix([a,bra([u,d])])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
+[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+$
 
 autobra([a*sin(x),b]);
 matrix([a*sin(x),matrix([a,bra([u,d])])]) $
 
 facts();
-[kind(hbar,real),hbar > 0,kind(a,complex),kind(b,complex),kind(r,real)] $
+[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+$
 
 dagger(mbra([%i,2]));
 matrix([-%i],[2]) $
@@ -159,12 +176,6 @@ braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])) $
 P:magsqr(A);
 braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d]))  *conjugate(braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])))
 $
-
-zp;
-matrix([1],[0]) $
-
-zm;
-matrix([0],[1]) $
 
 yp;
 matrix([1/sqrt(2)],[%i/sqrt(2)]) $
@@ -267,16 +278,16 @@ k:ket([j,m]);
 ket([j,m]) $
 
 Jp(k);
-ket([j,m+1])*sqrt(j*(j+1)-m*(m+1))*ħ $
+ħ*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1)) $
 
 Jm(k);
-ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m)*ħ $
+ħ*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m) $
 
 Jsqr(k);
-j*(j+1)*ket([j,m])*ħ^2 $
+ħ^2*j*(j+1)*ket([j,m]) $
 
 Jz(k);
-ket([j,m])*m*ħ $
+ħ*ket([j,m])*m $
 
 tpket(ket([3/2,1/2]),ket([1/2,1/2]));
 [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $

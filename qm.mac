@@ -25,6 +25,7 @@ load("autoket.mac") $
 load("tprod.mac") $
 load("qho.mac") $
 load("basis.mac") $
+load("predef.mac") $
 
 /* load the documentation */
 load("qm-index.lisp")$

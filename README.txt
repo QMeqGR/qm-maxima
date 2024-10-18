@@ -19,10 +19,13 @@ solving quantum mechanics problems in a finite-dimensional Hilbert
 space.  It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend's _A Modern Introduction to Quantum Mechanics_ and
-above.  The package is loaded with: ‘load(qm);’ If you use wxMaxima then
-issue ‘load("wx.lisp");’ _after_ loading the ‘qm’ package.  This will
-allow pretty printing of the kets and bras similar to what you see in
-this manual.
+above.
+
+The package is loaded with: ‘load(qm);’
+
+If you use wxMaxima then issue ‘load("wx.lisp");’ _after_ loading the
+‘qm’ package.  This will allow pretty printing of the kets and bras
+similar to what you see in this manual.
 
 1.1.1 Basic capabilities
 ------------------------
@@ -34,8 +37,6 @@ using built-in definitions of the Sx, Sy, and Sz operators for arbitrary
 spin, e.g.  ‘s={1/2, 1, 3/2, ...}’.  For spin-1/2 the standard basis
 kets in the ‘x’, ‘y’, and ‘z’-basis are defined in the package as
 ‘{xp,xm}’, ‘{yp,ym}’, and ‘{zp,zm}’, respectively.
-
-
 
 Brief list of some capabilities:
    • Create kets and bras in a matrix representation with arbitrary but
@@ -56,15 +57,15 @@ Brief list of some capabilities:
    • Perform partial traces over density matrices to compute reduced
      density matrices.
 
-   Let us begin with a trivial example involving spin-1/2 particles.
-This will illustrate how kets and bras in a matrix representation are
-defined within the ‘qm’ package.  A bra vector in the ‘z’-basis may be
-written as
+   Let us begin with the trivial example of a spin-1/2 particle.  This
+will illustrate how kets and bras in a matrix representation are defined
+within the ‘qm’ package.  A bra vector in the ‘z’-basis may be written
+as
 
            ‘<psi| = a <z+| + b <z-|’.
 
-The bra ‘<psi|’ will be represented in Maxima by the row vector ‘[a b]’,
-where the basis vectors are
+The matrix representation of the bra ‘<psi|’ will be represented in
+Maxima by the row vector ‘[a b]’, where the basis vectors are
 
            ‘<z+| = [1 0]’
 
@@ -72,19 +73,33 @@ and
 
            ‘<z-| = [0 1]’.
 
-This bra vector can be created with the ‘mbra’ command
+This bra vector can be created in several ways.  First, with the ‘mbra’
+command
 
            ‘mbra([a,b])’
 
-or taking the quantum mechanical dagger of the corresponding ket.  In a
-Maxima session this looks like the following.  The basis kets ‘{zp,zm}’
-are transformed into bras using the ‘dagger’ function.
+or by taking the quantum mechanical dagger of the corresponding ket.  In
+a Maxima session this looks like the following.  The basis kets
+‘{zp,zm}’ are transformed into bras using the ‘dagger’ function.
+
+     (%i1) zp;
+                                          [ 1 ]
+     (%o1)                                [   ]
+                                          [ 0 ]
+     (%i2) zm;
+                                          [ 0 ]
+     (%o2)                                [   ]
+                                          [ 1 ]
 
      (%i1) psi_bra:a*dagger(zp)+b*dagger(zm);
      (%o1)                              [ a  b ]
+     (%i2) dagger(mket([a,b]));
+     (%o2)                              [ a  b ]
+     (%i3) mbra([a,b]);
+     (%o3)                              [ a  b ]
 
-1.1.2 Types of kets and bras
-----------------------------
+1.1.2 Two types of kets and bras
+--------------------------------
 
 There are two types of kets and bras available in the ‘qm’ package, the
 first type is given by a _matrix representation_, as returned by the
@@ -236,7 +251,8 @@ operators are represented as matrices in Maxima, while the family of
      (%o2)                               [    ]
                                          [ c2 ]
      (%i3) facts();
-     (%o3) [kind(hbar, real), hbar > 0, kind(c1, complex), kind(c2, complex)]
+     (%o3) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(c1, complex),
+                                                                  kind(c2, complex)]
 
  -- Function: mketp (_ket_)
      ‘mketp’ is a predicate function that checks if its input is an
@@ -266,7 +282,7 @@ operators are represented as matrices in Maxima, while the family of
      (%i2) mbra([c1,c2]);
      (%o2)                             [ c1  c2 ]
      (%i3) facts();
-     (%o3)                    [kind(hbar, real), hbar > 0]
+     (%o3)             [kind(hbar, real), kind(ħ, real), hbar > 0]
 
  -- Function: mbrap (_bra_)
      ‘mbrap’ is a predicate function that checks if its input is an
@@ -295,13 +311,15 @@ complex and not ‘x’.
      (%o1)                                [   ]
                                           [ b ]
      (%i2) facts();
-     (%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+     (%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex),
+                                                                   kind(b, complex)]
      (%i1) autoket([a*sin(x),b*sin(x)]);
                                       [ a sin(x) ]
      (%o1)                            [          ]
                                       [ b sin(x) ]
      (%i2) facts();
-     (%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+     (%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex),
+                                                                   kind(b, complex)]
 
  -- Function: autobra ([a_{1},a_{2},...])
      ‘autobra’ takes a list [‘a_{1},a_{2},...’] and returns a bra with
@@ -312,11 +330,13 @@ complex and not ‘x’.
      (%i1) autobra([a,b]);
      (%o1)                              [ a  b ]
      (%i2) facts();
-     (%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+     (%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex),
+                                                                   kind(b, complex)]
      (%i1) autobra([a*sin(x),b]);
      (%o1)                           [ a sin(x)  b ]
      (%i2) facts();
-     (%o2)  [kind(hbar, real), hbar > 0, kind(a, complex), kind(b, complex)]
+     (%o2) [kind(hbar, real), kind(ħ, real), hbar > 0, kind(a, complex),
+                                                                   kind(b, complex)]
 
  -- Function: dagger (_vector_)
      ‘dagger’ is the quantum mechanical _dagger_ function and returns
@@ -390,14 +410,6 @@ and ‘{yp,ym}’ respectively.
  -- Function: ym
      Return the <|y->> ket in the <z>-basis.
 
-     (%i1) zp;
-                                          [ 1 ]
-     (%o1)                                [   ]
-                                          [ 0 ]
-     (%i2) zm;
-                                          [ 0 ]
-     (%o2)                                [   ]
-                                          [ 1 ]
      (%i1) yp;
                                        [    1    ]
                                        [ ------- ]
@@ -1244,7 +1256,7 @@ define the Hamiltonian and then use the function ‘matrep’.
      The function ‘qm_atrace’ takes an abstract operator ‘A’ and a basis
      ‘B’ and attempts to compute the matrix representation using the
      ‘matrep’ function.  If successful it will return the matrix trace
-     the resulting matrix.
+     of the resulting matrix.
 
      (%i1) B:[ket([1]),ket([0])];
      (%o1)                             [|1>, |0>]
@@ -1324,8 +1336,7 @@ below, ignoring any physical constants in the problem.
 
 There are some pre-defined quantities in the file ‘predef.mac’ that may
 be convenient for the user.  These include Bell states, and some basis
-sets that are tedious to input.  The ‘predef.mac’ file is not loaded
-automatically.  To make the definitions available issue ‘load(predef);’.
+sets that are tedious to input.
 
 Appendix A Function and Variable index
 **************************************
@@ -1333,174 +1344,174 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1297)
+                                                             (line 1309)
 * anticommutator:                        Functions and Variables for qm.
-                                                             (line  484)
-* ap:                                    Functions and Variables for qm.
-                                                             (line 1293)
-* autobra:                               Functions and Variables for qm.
-                                                             (line  305)
-* autoket:                               Functions and Variables for qm.
-                                                             (line  286)
-* basis_set:                             Functions and Variables for qm.
-                                                             (line 1179)
-* basis_set_p:                           Functions and Variables for qm.
-                                                             (line  540)
-* bra:                                   Functions and Variables for qm.
-                                                             (line  208)
-* braket:                                Functions and Variables for qm.
-                                                             (line  330)
-* brap:                                  Functions and Variables for qm.
-                                                             (line  220)
-* commutator:                            Functions and Variables for qm.
-                                                             (line  469)
-* dagger:                                Functions and Variables for qm.
-                                                             (line  320)
-* expect:                                Functions and Variables for qm.
-                                                             (line  579)
-* get_j:                                 Functions and Variables for qm.
-                                                             (line  985)
-* J1m:                                   Functions and Variables for qm.
-                                                             (line  932)
-* J1m2p:                                 Functions and Variables for qm.
-                                                             (line  959)
-* J1p:                                   Functions and Variables for qm.
-                                                             (line  923)
-* J1p2m:                                 Functions and Variables for qm.
-                                                             (line  941)
-* J1sqr:                                 Functions and Variables for qm.
-                                                             (line  917)
-* J1z:                                   Functions and Variables for qm.
-                                                             (line  883)
-* J1zJ2z:                                Functions and Variables for qm.
-                                                             (line  962)
-* J2m:                                   Functions and Variables for qm.
-                                                             (line  935)
-* J2p:                                   Functions and Variables for qm.
-                                                             (line  926)
-* J2sqr:                                 Functions and Variables for qm.
-                                                             (line  920)
-* J2z:                                   Functions and Variables for qm.
-                                                             (line  887)
-* Jm:                                    Functions and Variables for qm.
-                                                             (line  755)
-* jmbot:                                 Functions and Variables for qm.
-                                                             (line  716)
-* jmbrap:                                Functions and Variables for qm.
-                                                             (line  741)
-* jmcheck:                               Functions and Variables for qm.
-                                                             (line  745)
-* jmket:                                 Functions and Variables for qm.
-                                                             (line  724)
-* jmketp:                                Functions and Variables for qm.
-                                                             (line  732)
-* jmtop:                                 Functions and Variables for qm.
-                                                             (line  708)
-* Jp:                                    Functions and Variables for qm.
-                                                             (line  751)
-* Jsqr:                                  Functions and Variables for qm.
-                                                             (line  759)
-* Jtm:                                   Functions and Variables for qm.
-                                                             (line  938)
-* Jtp:                                   Functions and Variables for qm.
-                                                             (line  929)
-* Jtsqr:                                 Functions and Variables for qm.
-                                                             (line  965)
-* Jtz:                                   Functions and Variables for qm.
-                                                             (line  904)
-* Jz:                                    Functions and Variables for qm.
-                                                             (line  763)
-* ket:                                   Functions and Variables for qm.
-                                                             (line  192)
-* ketp:                                  Functions and Variables for qm.
-                                                             (line  204)
-* magsqr:                                Functions and Variables for qm.
-                                                             (line  355)
-* matrep:                                Functions and Variables for qm.
-                                                             (line 1134)
-* mbra:                                  Functions and Variables for qm.
-                                                             (line  256)
-* mbrap:                                 Functions and Variables for qm.
-                                                             (line  270)
-* mket:                                  Functions and Variables for qm.
-                                                             (line  224)
-* mketp:                                 Functions and Variables for qm.
-                                                             (line  240)
-* mtrans:                                Functions and Variables for qm.
-                                                             (line  548)
-* norm:                                  Functions and Variables for qm.
-                                                             (line  345)
-* op_trans:                              Functions and Variables for qm.
-                                                             (line  562)
-* qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1242)
-* qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1238)
-* qm_variance:                           Functions and Variables for qm.
-                                                             (line  586)
-* RX:                                    Functions and Variables for qm.
-                                                             (line  622)
-* RY:                                    Functions and Variables for qm.
-                                                             (line  626)
-* RZ:                                    Functions and Variables for qm.
-                                                             (line  630)
-* sigmax:                                Functions and Variables for qm.
-                                                             (line  438)
-* sigmay:                                Functions and Variables for qm.
-                                                             (line  441)
-* sigmaz:                                Functions and Variables for qm.
-                                                             (line  444)
-* SM:                                    Functions and Variables for qm.
-                                                             (line  601)
-* SP:                                    Functions and Variables for qm.
-                                                             (line  598)
-* spin_mbra:                             Functions and Variables for qm.
-                                                             (line  680)
-* spin_mket:                             Functions and Variables for qm.
-                                                             (line  676)
-* Sx:                                    Functions and Variables for qm.
-                                                             (line  447)
-* SX:                                    Functions and Variables for qm.
                                                              (line  496)
-* Sy:                                    Functions and Variables for qm.
+* ap:                                    Functions and Variables for qm.
+                                                             (line 1305)
+* autobra:                               Functions and Variables for qm.
+                                                             (line  323)
+* autoket:                               Functions and Variables for qm.
+                                                             (line  302)
+* basis_set:                             Functions and Variables for qm.
+                                                             (line 1191)
+* basis_set_p:                           Functions and Variables for qm.
+                                                             (line  552)
+* bra:                                   Functions and Variables for qm.
+                                                             (line  223)
+* braket:                                Functions and Variables for qm.
+                                                             (line  350)
+* brap:                                  Functions and Variables for qm.
+                                                             (line  235)
+* commutator:                            Functions and Variables for qm.
+                                                             (line  481)
+* dagger:                                Functions and Variables for qm.
+                                                             (line  340)
+* expect:                                Functions and Variables for qm.
+                                                             (line  591)
+* get_j:                                 Functions and Variables for qm.
+                                                             (line  997)
+* J1m:                                   Functions and Variables for qm.
+                                                             (line  944)
+* J1m2p:                                 Functions and Variables for qm.
+                                                             (line  971)
+* J1p:                                   Functions and Variables for qm.
+                                                             (line  935)
+* J1p2m:                                 Functions and Variables for qm.
+                                                             (line  953)
+* J1sqr:                                 Functions and Variables for qm.
+                                                             (line  929)
+* J1z:                                   Functions and Variables for qm.
+                                                             (line  895)
+* J1zJ2z:                                Functions and Variables for qm.
+                                                             (line  974)
+* J2m:                                   Functions and Variables for qm.
+                                                             (line  947)
+* J2p:                                   Functions and Variables for qm.
+                                                             (line  938)
+* J2sqr:                                 Functions and Variables for qm.
+                                                             (line  932)
+* J2z:                                   Functions and Variables for qm.
+                                                             (line  899)
+* Jm:                                    Functions and Variables for qm.
+                                                             (line  767)
+* jmbot:                                 Functions and Variables for qm.
+                                                             (line  728)
+* jmbrap:                                Functions and Variables for qm.
+                                                             (line  753)
+* jmcheck:                               Functions and Variables for qm.
+                                                             (line  757)
+* jmket:                                 Functions and Variables for qm.
+                                                             (line  736)
+* jmketp:                                Functions and Variables for qm.
+                                                             (line  744)
+* jmtop:                                 Functions and Variables for qm.
+                                                             (line  720)
+* Jp:                                    Functions and Variables for qm.
+                                                             (line  763)
+* Jsqr:                                  Functions and Variables for qm.
+                                                             (line  771)
+* Jtm:                                   Functions and Variables for qm.
+                                                             (line  950)
+* Jtp:                                   Functions and Variables for qm.
+                                                             (line  941)
+* Jtsqr:                                 Functions and Variables for qm.
+                                                             (line  977)
+* Jtz:                                   Functions and Variables for qm.
+                                                             (line  916)
+* Jz:                                    Functions and Variables for qm.
+                                                             (line  775)
+* ket:                                   Functions and Variables for qm.
+                                                             (line  207)
+* ketp:                                  Functions and Variables for qm.
+                                                             (line  219)
+* magsqr:                                Functions and Variables for qm.
+                                                             (line  375)
+* matrep:                                Functions and Variables for qm.
+                                                             (line 1146)
+* mbra:                                  Functions and Variables for qm.
+                                                             (line  272)
+* mbrap:                                 Functions and Variables for qm.
+                                                             (line  286)
+* mket:                                  Functions and Variables for qm.
+                                                             (line  239)
+* mketp:                                 Functions and Variables for qm.
+                                                             (line  256)
+* mtrans:                                Functions and Variables for qm.
+                                                             (line  560)
+* norm:                                  Functions and Variables for qm.
+                                                             (line  365)
+* op_trans:                              Functions and Variables for qm.
+                                                             (line  574)
+* qm_atrace:                             Functions and Variables for qm.
+                                                             (line 1254)
+* qm_mtrace:                             Functions and Variables for qm.
+                                                             (line 1250)
+* qm_variance:                           Functions and Variables for qm.
+                                                             (line  598)
+* RX:                                    Functions and Variables for qm.
+                                                             (line  634)
+* RY:                                    Functions and Variables for qm.
+                                                             (line  638)
+* RZ:                                    Functions and Variables for qm.
+                                                             (line  642)
+* sigmax:                                Functions and Variables for qm.
                                                              (line  450)
-* SY:                                    Functions and Variables for qm.
-                                                             (line  501)
-* Sz:                                    Functions and Variables for qm.
+* sigmay:                                Functions and Variables for qm.
                                                              (line  453)
+* sigmaz:                                Functions and Variables for qm.
+                                                             (line  456)
+* SM:                                    Functions and Variables for qm.
+                                                             (line  613)
+* SP:                                    Functions and Variables for qm.
+                                                             (line  610)
+* spin_mbra:                             Functions and Variables for qm.
+                                                             (line  692)
+* spin_mket:                             Functions and Variables for qm.
+                                                             (line  688)
+* Sx:                                    Functions and Variables for qm.
+                                                             (line  459)
+* SX:                                    Functions and Variables for qm.
+                                                             (line  508)
+* Sy:                                    Functions and Variables for qm.
+                                                             (line  462)
+* SY:                                    Functions and Variables for qm.
+                                                             (line  513)
+* Sz:                                    Functions and Variables for qm.
+                                                             (line  465)
 * SZ:                                    Functions and Variables for qm.
-                                                             (line  506)
+                                                             (line  518)
 * tpadd:                                 Functions and Variables for qm.
-                                                             (line  853)
+                                                             (line  865)
 * tpbra:                                 Functions and Variables for qm.
-                                                             (line  816)
+                                                             (line  828)
 * tpbraket:                              Functions and Variables for qm.
-                                                             (line  824)
+                                                             (line  836)
 * tpcfset:                               Functions and Variables for qm.
-                                                             (line  838)
+                                                             (line  850)
 * tpdagger:                              Functions and Variables for qm.
-                                                             (line  870)
+                                                             (line  882)
 * tpket:                                 Functions and Variables for qm.
-                                                             (line  808)
+                                                             (line  820)
 * tpscmult:                              Functions and Variables for qm.
-                                                             (line  841)
+                                                             (line  853)
 * U:                                     Functions and Variables for qm.
-                                                             (line  651)
+                                                             (line  663)
 * xm:                                    Functions and Variables for qm.
-                                                             (line  383)
+                                                             (line  403)
 * xp:                                    Functions and Variables for qm.
-                                                             (line  380)
+                                                             (line  400)
 * ym:                                    Functions and Variables for qm.
-                                                             (line  389)
+                                                             (line  409)
 * yp:                                    Functions and Variables for qm.
-                                                             (line  386)
+                                                             (line  406)
 * zm:                                    Functions and Variables for qm.
-                                                             (line  377)
+                                                             (line  397)
 * zp:                                    Functions and Variables for qm.
-                                                             (line  374)
+                                                             (line  394)
 
 * Menu:
 
 * hbar:                                  Functions and Variables for qm.
-                                                              (line 186)
+                                                              (line 201)
 
