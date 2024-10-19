@@ -42,20 +42,26 @@
 The @code{qm} package was written by Eric Majzoub, University of
 Missouri (email: majzoube-at-umsystem.edu). EM thanks Maxima developers
 Robert Dodier and Barton Willis for their contributions that have
-improved the package considerably. Please report any errors or
-unexpected behavior by submitting an issue on the Github page for this
-project (https://github.com/QMeqGR/qm-maxima).
+improved the package. Please report any errors or unexpected behavior by
+submitting an issue on the Github page for this project
+(https://github.com/QMeqGR/qm-maxima).
 
 The purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
 space. It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend's @emph{A Modern Introduction to Quantum
-Mechanics} and above.
+Mechanics} and above. Using the package one may compute, for example,
+the hyperfine splitting in hydrogen with only a few commands
+(@xref{stationary}). Numerous other examples are given throughout the
+manual. Additional examples are provided as wxMaxima worksheets in the
+@code{doc/examples} folder of the package.
 
+@*
 @noindent
 The package is loaded with: @code{load(qm);}
 
+@*
 @noindent
 If you use wxMaxima then issue @code{load("wx.lisp");} @emph{after}
 loading the @code{qm} package. This will allow pretty printing of the
@@ -155,7 +161,7 @@ function.
 @end group
 @end example
 
-@subsection Two types of kets and bras
+@subsection Kets and bras: abstract and matrix representations
 
 There are two types of kets and bras available in the @code{qm} package,
 the first type is given by a @emph{matrix representation}, as returned
@@ -261,7 +267,7 @@ computations. For this reason there are a set of @code{tpket}s and
 associated @code{tpXX} functions defined in section @code{(j,m)-kets and
 bras}.
 
-@subsection Types of spin operators
+@subsection Types of spin operators: Jxx and Sxx operators
 
 When working with kets and bras in the matrix representation, use the
 spin operators @code{Sxx}. When working with abstract kets and bras in
@@ -273,6 +279,7 @@ family of @code{Jxx} operators are rule based or function based.
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm
 
+@anchor{hbar}
 @defvr {Variable} hbar
 Planck's constant divided by @code{2*%pi}. @code{hbar} is not given a
 floating point value, but is declared to be a real number greater than
@@ -1715,7 +1722,7 @@ Example:
 
 The hyperfine splitting in the hydrogen atom is due to the
 spin-spin interaction of the electron and the proton. The
-Hamiltonian is  2*A/hbar^2 * (S1 dot S2). Let's calculate
+Hamiltonian is  2*A/hbar^2 * (S@sub{1} @bullet{} S@sub{2}). Let's calculate
 the energy levels and the stationary states.
 
 @example
@@ -1869,6 +1876,40 @@ Another package that handles quantum mechanical operators is
 There are some pre-defined quantities in the file @code{predef.mac}
 that may be convenient for the user. These include Bell states, and 
 some basis sets that are tedious to input.
+
+@verbatim
+bell1: 1/sqrt(2)*(ket([1,0])-ket([0,1]));
+bell2: 1/sqrt(2)*(ket([1,0])+ket([0,1]));
+bell3: 1/sqrt(2)*(ket([0,0])+ket([1,1]));
+bell4: 1/sqrt(2)*(ket([0,0])-ket([1,1]));
+
+ghz1: 1/sqrt(2)*(ket([0,0,0])-ket([1,1,1]));
+ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
+
+
+/* pre-defined tpket bases */
+bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
+
+bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,1]),ket([1/2,-1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
+         [tpket,1,ket([1,-1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+
+bj11:  [ [tpket,1,ket([1,1]),ket([1,1])],
+         [tpket,1,ket([1,1]),ket([1,0])],
+         [tpket,1,ket([1,1]),ket([1,-1])],
+         [tpket,1,ket([1,0]),ket([1,1])],
+         [tpket,1,ket([1,0]),ket([1,0])],
+         [tpket,1,ket([1,0]),ket([1,-1])],         
+         [tpket,1,ket([1,-1]),ket([1,1])],
+         [tpket,1,ket([1,-1]),ket([1,0])],
+         [tpket,1,ket([1,-1]),ket([1,-1])] ];
+@end verbatim
 
 @node Function and Variable Index, , Top, Top
 @appendix Function and Variable index

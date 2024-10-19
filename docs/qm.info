@@ -39,8 +39,8 @@ File: qm.info,  Node: Introduction to package qm,  Next: Functions and Variables
 The ‘qm’ package was written by Eric Majzoub, University of Missouri
 (email: majzoube-at-umsystem.edu).  EM thanks Maxima developers Robert
 Dodier and Barton Willis for their contributions that have improved the
-package considerably.  Please report any errors or unexpected behavior
-by submitting an issue on the Github page for this project
+package.  Please report any errors or unexpected behavior by submitting
+an issue on the Github page for this project
 (https://github.com/QMeqGR/qm-maxima).
 
    The purpose of this package is to provide computational tools for
@@ -48,9 +48,17 @@ solving quantum mechanics problems in a finite-dimensional Hilbert
 space.  It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend's _A Modern Introduction to Quantum Mechanics_ and
-above.
+above.  Using the package one may compute, for example, the hyperfine
+splitting in hydrogen with only a few commands (*Note stationary::).
+Numerous other examples are given throughout the manual.  Additional
+examples are provided as wxMaxima worksheets in the ‘doc/examples’
+folder of the package.
+
+
 
 The package is loaded with: ‘load(qm);’
+
+
 
 If you use wxMaxima then issue ‘load("wx.lisp");’ _after_ loading the
 ‘qm’ package.  This will allow pretty printing of the kets and bras
@@ -127,8 +135,8 @@ a Maxima session this looks like the following.  The basis kets
      (%i3) mbra([a,b]);
      (%o3)                              [ a  b ]
 
-1.1.2 Two types of kets and bras
---------------------------------
+1.1.2 Kets and bras: abstract and matrix representations
+--------------------------------------------------------
 
 There are two types of kets and bras available in the ‘qm’ package, the
 first type is given by a _matrix representation_, as returned by the
@@ -216,8 +224,8 @@ products of (j,m) kets used in the addition of angular momentum
 computations.  For this reason there are a set of ‘tpket’s and
 associated ‘tpXX’ functions defined in section ‘(j,m)-kets and bras’.
 
-1.1.4 Types of spin operators
------------------------------
+1.1.4 Types of spin operators: Jxx and Sxx operators
+----------------------------------------------------
 
 When working with kets and bras in the matrix representation, use the
 spin operators ‘Sxx’.  When working with abstract kets and bras in the
@@ -1290,7 +1298,7 @@ Example:
 
    The hyperfine splitting in the hydrogen atom is due to the spin-spin
 interaction of the electron and the proton.  The Hamiltonian is
-2*A/hbar^2 * (S1 dot S2).  Let's calculate the energy levels and the
+2*A/hbar^2 * (S_{1} • S_{2}).  Let's calculate the energy levels and the
 stationary states.
 
      (%i1) declare(A,scalar);
@@ -1426,6 +1434,38 @@ below, ignoring any physical constants in the problem.
 There are some pre-defined quantities in the file ‘predef.mac’ that may
 be convenient for the user.  These include Bell states, and some basis
 sets that are tedious to input.
+
+bell1: 1/sqrt(2)*(ket([1,0])-ket([0,1]));
+bell2: 1/sqrt(2)*(ket([1,0])+ket([0,1]));
+bell3: 1/sqrt(2)*(ket([0,0])+ket([1,1]));
+bell4: 1/sqrt(2)*(ket([0,0])-ket([1,1]));
+
+ghz1: 1/sqrt(2)*(ket([0,0,0])-ket([1,1,1]));
+ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
+
+
+/* pre-defined tpket bases */
+bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
+
+bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,1]),ket([1/2,-1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
+         [tpket,1,ket([1,-1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+
+bj11:  [ [tpket,1,ket([1,1]),ket([1,1])],
+         [tpket,1,ket([1,1]),ket([1,0])],
+         [tpket,1,ket([1,1]),ket([1,-1])],
+         [tpket,1,ket([1,0]),ket([1,1])],
+         [tpket,1,ket([1,0]),ket([1,0])],
+         [tpket,1,ket([1,0]),ket([1,-1])],         
+         [tpket,1,ket([1,-1]),ket([1,1])],
+         [tpket,1,ket([1,-1]),ket([1,0])],
+         [tpket,1,ket([1,-1]),ket([1,-1])] ];
 
 
 File: qm.info,  Node: Function and Variable Index,  Prev: Top,  Up: Top
@@ -1616,92 +1656,93 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm8946
-Ref: ket9426
-Ref: ketp9858
-Ref: bra10039
-Ref: brap10471
-Ref: mket10652
-Ref: mketp11441
-Ref: mbra12081
-Ref: mbrap12669
-Ref: autoket13395
-Ref: autobra14431
-Ref: dagger15265
-Ref: braket15703
-Ref: norm16462
-Ref: magsqr16918
-Ref: zp17684
-Ref: zm17747
-Ref: xp17810
-Ref: xm17873
-Ref: yp17936
-Ref: ym17999
-Ref: sigmax19733
-Ref: sigmay19790
-Ref: sigmaz19847
-Ref: Sx19904
-Ref: Sy19961
-Ref: Sz20018
-Ref: commutator20655
-Ref: anticommutator21325
-Ref: SX21732
-Ref: SY21945
-Ref: SZ22158
-Ref: basis_set_p23666
-Ref: mtrans23997
-Ref: op_trans24628
-Ref: expect25337
-Ref: qm_variance25580
-Ref: SP26095
-Ref: SM26188
-Ref: RX27027
-Ref: RY27194
-Ref: RZ27361
-Ref: U28345
-Ref: spin_mket29424
-Ref: spin_mbra29594
-Ref: jmtop30738
-Ref: jmbot30982
-Ref: jmket31230
-Ref: jmketp31465
-Ref: jmbrap31773
-Ref: jmcheck31919
-Ref: Jp32092
-Ref: Jm32268
-Ref: Jsqr32444
-Ref: Jz32612
-Ref: tpket34396
-Ref: tpbra34721
-Ref: tpbraket35046
-Ref: tpcfset35637
-Ref: tpscmult35753
-Ref: tpadd36294
-Ref: tpdagger37161
-Ref: J1z37723
-Ref: J2z37849
-Ref: Jtz38591
-Ref: J1sqr39158
-Ref: J2sqr39255
-Ref: J1p39353
-Ref: J2p39447
-Ref: Jtp39542
-Ref: J1m39631
-Ref: J2m39725
-Ref: Jtm39820
-Ref: J1p2m39909
-Ref: J1m2p40698
-Ref: J1zJ2z40790
-Ref: Jtsqr40884
-Ref: get_j41846
-Ref: matrep49030
-Ref: basis_set51238
-Ref: stationary54319
-Ref: qm_mtrace57030
-Ref: qm_atrace57205
-Ref: ap59645
-Ref: am59758
-Node: Function and Variable Index60886
+Node: Functions and Variables for qm9326
+Ref: hbar9498
+Ref: ket9806
+Ref: ketp10238
+Ref: bra10419
+Ref: brap10851
+Ref: mket11032
+Ref: mketp11821
+Ref: mbra12461
+Ref: mbrap13049
+Ref: autoket13775
+Ref: autobra14811
+Ref: dagger15645
+Ref: braket16083
+Ref: norm16842
+Ref: magsqr17298
+Ref: zp18064
+Ref: zm18127
+Ref: xp18190
+Ref: xm18253
+Ref: yp18316
+Ref: ym18379
+Ref: sigmax20113
+Ref: sigmay20170
+Ref: sigmaz20227
+Ref: Sx20284
+Ref: Sy20341
+Ref: Sz20398
+Ref: commutator21035
+Ref: anticommutator21705
+Ref: SX22112
+Ref: SY22325
+Ref: SZ22538
+Ref: basis_set_p24046
+Ref: mtrans24377
+Ref: op_trans25008
+Ref: expect25717
+Ref: qm_variance25960
+Ref: SP26475
+Ref: SM26568
+Ref: RX27407
+Ref: RY27574
+Ref: RZ27741
+Ref: U28725
+Ref: spin_mket29804
+Ref: spin_mbra29974
+Ref: jmtop31118
+Ref: jmbot31362
+Ref: jmket31610
+Ref: jmketp31845
+Ref: jmbrap32153
+Ref: jmcheck32299
+Ref: Jp32472
+Ref: Jm32648
+Ref: Jsqr32824
+Ref: Jz32992
+Ref: tpket34776
+Ref: tpbra35101
+Ref: tpbraket35426
+Ref: tpcfset36017
+Ref: tpscmult36133
+Ref: tpadd36674
+Ref: tpdagger37541
+Ref: J1z38103
+Ref: J2z38229
+Ref: Jtz38971
+Ref: J1sqr39538
+Ref: J2sqr39635
+Ref: J1p39733
+Ref: J2p39827
+Ref: Jtp39922
+Ref: J1m40011
+Ref: J2m40105
+Ref: Jtm40200
+Ref: J1p2m40289
+Ref: J1m2p41078
+Ref: J1zJ2z41170
+Ref: Jtsqr41264
+Ref: get_j42226
+Ref: matrep49410
+Ref: basis_set51618
+Ref: stationary54699
+Ref: qm_mtrace57416
+Ref: qm_atrace57591
+Ref: ap60031
+Ref: am60144
+Node: Function and Variable Index62457
 
 End Tag Table
 

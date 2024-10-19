@@ -67,28 +67,34 @@ Next: <a href="#Functions-and-Variables-for-qm" accesskey="n" rel="next">Functio
 <p>The <code class="code">qm</code> package was written by Eric Majzoub, University of
 Missouri (email: majzoube-at-umsystem.edu). EM thanks Maxima developers
 Robert Dodier and Barton Willis for their contributions that have
-improved the package considerably. Please report any errors or
-unexpected behavior by submitting an issue on the Github page for this
-project (https://github.com/QMeqGR/qm-maxima).
+improved the package. Please report any errors or unexpected behavior by
+submitting an issue on the Github page for this project
+(https://github.com/QMeqGR/qm-maxima).
 </p>
 <p>The purpose of this package is to provide computational tools for
 solving quantum mechanics problems in a finite-dimensional Hilbert
 space. It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend&rsquo;s <em class="emph">A Modern Introduction to Quantum
-Mechanics</em> and above.
+Mechanics</em> and above. Using the package one may compute, for example,
+the hyperfine splitting in hydrogen with only a few commands
+(See <a class="xref" href="#stationary">stationary</a>). Numerous other examples are given throughout the
+manual. Additional examples are provided as wxMaxima worksheets in the
+<code class="code">doc/examples</code> folder of the package.
 </p>
+<br>
 <p>The package is loaded with: <code class="code">load(qm);</code>
 </p>
+<br>
 <p>If you use wxMaxima then issue <code class="code">load(&quot;wx.lisp&quot;);</code> <em class="emph">after</em>
 loading the <code class="code">qm</code> package. This will allow pretty printing of the
 kets and bras similar to what you see in this manual.
 </p>
 <ul class="mini-toc">
 <li><a href="#Basic-capabilities" accesskey="1">Basic capabilities</a></li>
-<li><a href="#Two-types-of-kets-and-bras" accesskey="2">Two types of kets and bras</a></li>
+<li><a href="#Kets-and-bras_003a-abstract-and-matrix-representations" accesskey="2">Kets and bras: abstract and matrix representations</a></li>
 <li><a href="#Special-ket-types" accesskey="3">Special ket types</a></li>
-<li><a href="#Types-of-spin-operators" accesskey="4">Types of spin operators</a></li>
+<li><a href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators" accesskey="4">Types of spin operators: Jxx and Sxx operators</a></li>
 </ul>
 <div class="subsection-level-extent" id="Basic-capabilities">
 <h4 class="subsection"><span>1.1.1 Basic capabilities<a class="copiable-link" href="#Basic-capabilities"> &para;</a></span></h4>
@@ -168,8 +174,8 @@ function.
 </pre></div></div>
 
 </div>
-<div class="subsection-level-extent" id="Two-types-of-kets-and-bras">
-<h4 class="subsection"><span>1.1.2 Two types of kets and bras<a class="copiable-link" href="#Two-types-of-kets-and-bras"> &para;</a></span></h4>
+<div class="subsection-level-extent" id="Kets-and-bras_003a-abstract-and-matrix-representations">
+<h4 class="subsection"><span>1.1.2 Kets and bras: abstract and matrix representations<a class="copiable-link" href="#Kets-and-bras_003a-abstract-and-matrix-representations"> &para;</a></span></h4>
 
 <p>There are two types of kets and bras available in the <code class="code">qm</code> package,
 the first type is given by a <em class="emph">matrix representation</em>, as returned
@@ -269,8 +275,8 @@ associated <code class="code">tpXX</code> functions defined in section <code cla
 bras</code>.
 </p>
 </div>
-<div class="subsection-level-extent" id="Types-of-spin-operators">
-<h4 class="subsection"><span>1.1.4 Types of spin operators<a class="copiable-link" href="#Types-of-spin-operators"> &para;</a></span></h4>
+<div class="subsection-level-extent" id="Types-of-spin-operators_003a-Jxx-and-Sxx-operators">
+<h4 class="subsection"><span>1.1.4 Types of spin operators: Jxx and Sxx operators<a class="copiable-link" href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators"> &para;</a></span></h4>
 
 <p>When working with kets and bras in the matrix representation, use the
 spin operators <code class="code">Sxx</code>. When working with abstract kets and bras in
@@ -289,7 +295,7 @@ Previous: <a href="#Introduction-to-package-qm" accesskey="p" rel="prev">Introdu
 </div>
 <h3 class="section" id="Functions-and-Variables-for-qm-1"><span>1.2 Functions and Variables for qm<a class="copiable-link" href="#Functions-and-Variables-for-qm-1"> &para;</a></span></h3>
 
-<dl class="first-defvr">
+<a class="anchor" id="hbar"></a><dl class="first-defvr">
 <dt class="defvr" id="index-hbar"><span class="category-def">Variable: </span><span><strong class="def-name">hbar</strong><a class="copiable-link" href="#index-hbar"> &para;</a></span></dt>
 <dd><p>Planck&rsquo;s constant divided by <code class="code">2*%pi</code>. <code class="code">hbar</code> is not given a
 floating point value, but is declared to be a real number greater than
@@ -1665,7 +1671,7 @@ the matrix representation of the Hamiltonian.
 </p>
 <p>The hyperfine splitting in the hydrogen atom is due to the
 spin-spin interaction of the electron and the proton. The
-Hamiltonian is  2*A/hbar^2 * (S1 dot S2). Let&rsquo;s calculate
+Hamiltonian is  2*A/hbar^2 * (S<sub class="sub">1</sub> &bull; S<sub class="sub">2</sub>). Let&rsquo;s calculate
 the energy levels and the stationary states.
 </p>
 <div class="example">
@@ -1821,6 +1827,38 @@ performed below, ignoring any physical constants in the problem.
 that may be convenient for the user. These include Bell states, and 
 some basis sets that are tedious to input.
 </p>
+<pre class="verbatim">bell1: 1/sqrt(2)*(ket([1,0])-ket([0,1]));
+bell2: 1/sqrt(2)*(ket([1,0])+ket([0,1]));
+bell3: 1/sqrt(2)*(ket([0,0])+ket([1,1]));
+bell4: 1/sqrt(2)*(ket([0,0])-ket([1,1]));
+
+ghz1: 1/sqrt(2)*(ket([0,0,0])-ket([1,1,1]));
+ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
+
+
+/* pre-defined tpket bases */
+bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
+        [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
+
+bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,1]),ket([1/2,-1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,1/2])],
+         [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
+         [tpket,1,ket([1,-1]),ket([1/2,1/2])],
+         [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+
+bj11:  [ [tpket,1,ket([1,1]),ket([1,1])],
+         [tpket,1,ket([1,1]),ket([1,0])],
+         [tpket,1,ket([1,1]),ket([1,-1])],
+         [tpket,1,ket([1,0]),ket([1,1])],
+         [tpket,1,ket([1,0]),ket([1,0])],
+         [tpket,1,ket([1,0]),ket([1,-1])],         
+         [tpket,1,ket([1,-1]),ket([1,1])],
+         [tpket,1,ket([1,-1]),ket([1,0])],
+         [tpket,1,ket([1,-1]),ket([1,-1])] ];
+</pre>
 </div>
 </div>
 </div>
