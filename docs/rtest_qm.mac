@@ -84,7 +84,8 @@ mket([c1,c2]) ;
 matrix([c1],[c2]) $
 
 facts() ;
-[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(c1,complex),kind(c2,complex),kind(r,real)]
+[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(c1,complex),kind(c2,complex),
+        kind(r,real)]
 $
 
 k:ket([a,b]) ;
@@ -106,7 +107,7 @@ mbra([c1,c2]) ;
 matrix([c1,c2]) $
 
 facts() ;
-[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
 $
 
 b:mbra([a,b]) ;
@@ -119,28 +120,28 @@ autoket([a,b]) ;
 matrix([a],[matrix([a,bra([u,d])])]) $
 
 facts() ;
-[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
 $
 
 autoket([a*sin(x),b*sin(x)]) ;
 matrix([a*sin(x)],[matrix([a*sin(x),bra([u,d])*sin(x)])]) $
 
 facts() ;
-[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
 $
 
 autobra([a,b]) ;
 matrix([a,matrix([a,bra([u,d])])]) $
 
 facts() ;
-[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
 $
 
 autobra([a*sin(x),b]) ;
 matrix([a*sin(x),matrix([a,bra([u,d])])]) $
 
 facts() ;
-[kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
+[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
 $
 
 dagger(mbra([%i,2])) ;
@@ -290,81 +291,83 @@ Jz(k) ;
 ħ*ket([j,m])*m $
 
 tpket(ket([3/2,1/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
+tpket(1,ket([3/2,1/2]),ket([1/2,1/2])) $
 
 tpbra(bra([3/2,1/2]),bra([1/2,1/2])) ;
-[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
+tpbra(1,bra([3/2,1/2]),bra([1/2,1/2])) $
 
 k:tpket(jmtop(1),jmbot(1)) ;
-[tpket,1,ket([1,1]),ket([1,-1])] $
+tpket(1,ket([1,1]),ket([1,-1])) $
 
 K:Jtsqr(k) ;
-[tpket,2*ħ^2,ket([1,1]),ket([1,-1])]+[tpket,2*ħ^2,ket([1,0]),                                              ket([1,0])]
-$
+tpket(2*ħ^2,ket([1,1]),ket([1,-1]))+tpket(2*ħ^2,ket([1,0]),ket([1,0])) $
 
 B:tpdagger(k) ;
-[tpbra,1,bra([1,1]),bra([1,-1])] $
+tpbra(1,bra([1,1]),bra([1,-1])) $
 
 tpbraket(B,K) ;
 2*ħ^2 $
 
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)])) $
+
+declare(c,scalar) ;
+done $
 
 tpscmult(c,k1) ;
-[tpket,c,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+tpket(c,ket([1/2,1/2]),ket([1/2,-(1/2)])) $
 
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)])) $
 
 k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
+tpket(1,ket([1/2,-(1/2)]),ket([1/2,1/2])) $
 
 tpadd(k1,k2) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)]))  +tpket(1,ket([1/2,-(1/2)]),ket([1/2,1/2]))
 $
 
 k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)])) $
 
 tpdagger(k1) ;
-[tpbra,1,bra([1/2,1/2]),bra([1/2,-(1/2)])] $
+tpbra(1,bra([1/2,1/2]),bra([1/2,-(1/2)])) $
 
 k:tpket(ket([3/2,3/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
+tpket(1,ket([3/2,3/2]),ket([1/2,1/2])) $
 
 J1z(k) ;
-[tpket,(3*ħ)/2,ket([3/2,3/2]),ket([1/2,1/2])] $
+tpket((3*ħ)/2,ket([3/2,3/2]),ket([1/2,1/2])) $
 
 J2z(k) ;
-[tpket,ħ/2,ket([3/2,3/2]),ket([1/2,1/2])] $
+tpket(ħ/2,ket([3/2,3/2]),ket([1/2,1/2])) $
 
 k:tpket(ket([3/2,3/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
+tpket(1,ket([3/2,3/2]),ket([1/2,1/2])) $
 
 Jtz(k) ;
-[tpket,2*ħ,ket([3/2,3/2]),ket([1/2,1/2])] $
+tpket(2*ħ,ket([3/2,3/2]),ket([1/2,1/2])) $
 
 k:tpket(ket([3/2,1/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
+tpket(1,ket([3/2,1/2]),ket([1/2,1/2])) $
 
 b:tpdagger(k) ;
-[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
+tpbra(1,bra([3/2,1/2]),bra([1/2,1/2])) $
 
 J1p2m(k) ;
-[tpket,sqrt(3)*ħ^2,ket([3/2,3/2]),ket([1/2,-(1/2)])] $
+tpket(sqrt(3)*ħ^2,ket([3/2,3/2]),ket([1/2,-(1/2)])) $
 
 J1m2p(k) ;
 0 $
 
 k:tpket(ket([3/2,-1/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
+tpket(1,ket([3/2,-(1/2)]),ket([1/2,1/2])) $
 
 B:tpdagger(k) ;
-[tpbra,1,bra([3/2,-(1/2)]),bra([1/2,1/2])] $
+tpbra(1,bra([3/2,-(1/2)]),bra([1/2,1/2])) $
 
 K2:Jtsqr(k) ;
-[tpket,4*ħ^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]  +[tpket,2*ħ^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
+tpket(4*ħ^2,ket([3/2,-(1/2)]),ket([1/2,1/2]))  +tpket(2*ħ^2,ket([3/2,1/2]),ket([1/2,-(1/2)]))
 $
 
 tpbraket(B,K2) ;
@@ -374,62 +377,63 @@ get_j(15/4) ;
 j = 3/2 $
 
 k:tpket(jmtop(1/2),jmtop(1)) ;
-[tpket,1,ket([1/2,1/2]),ket([1,1])] $
+tpket(1,ket([1/2,1/2]),ket([1,1])) $
 
 Jtsqr(k) ;
-[tpket,(15*ħ^2)/4,ket([1/2,1/2]),ket([1,1])] $
+tpket((15*ħ^2)/4,ket([1/2,1/2]),ket([1,1])) $
 
 get_j(15/4) ;
 j = 3/2 $
 
 k:tpket(jmtop(1/2),jmtop(1)) ;
-[tpket,1,ket([1/2,1/2]),ket([1,1])] $
+tpket(1,ket([1/2,1/2]),ket([1,1])) $
 
 k2:Jtm(k) ;
-[tpket,sqrt(2)*ħ,ket([1/2,1/2]),ket([1,0])]  +[tpket,ħ,ket([1/2,-(1/2)]),ket([1,1])]
+tpket(sqrt(2)*ħ,ket([1/2,1/2]),ket([1,0]))  +tpket(ħ,ket([1/2,-(1/2)]),ket([1,1]))
 $
 
 k3:Jtm(k2) ;
-[tpket,2^(3/2)*ħ^2,ket([1/2,-(1/2)]),ket([1,0])]  +[tpket,2*ħ^2,ket([1/2,1/2]),ket([1,-1])]
+tpket(2^(3/2)*ħ^2,ket([1/2,-(1/2)]),ket([1,0]))  +tpket(2*ħ^2,ket([1/2,1/2]),ket([1,-1]))
 $
 
 k4:Jtm(k3) ;
-[tpket,6*ħ^3,ket([1/2,-(1/2)]),ket([1,-1])] $
+tpket(4*ħ^3,ket([1/2,-(1/2)]),ket([1,-1]))  +tpket(2*ħ^3,ket([1/2,-(1/2)]),ket([1,-1]))
+$
 
 top:tpket(jmtop(1/2),jmtop(1/2)) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
+tpket(1,ket([1/2,1/2]),ket([1/2,1/2])) $
 
 Jtsqr(top) ;
-[tpket,2*ħ^2,ket([1/2,1/2]),ket([1/2,1/2])] $
+tpket(2*ħ^2,ket([1/2,1/2]),ket([1/2,1/2])) $
 
 get_j(2) ;
 j = 1 $
 
 Jtz(top) ;
-[tpket,ħ,ket([1/2,1/2]),ket([1/2,1/2])] $
+tpket(ħ,ket([1/2,1/2]),ket([1/2,1/2])) $
 
 JMtop:ket([1,1]) ;
 ket([1,1]) $
 
 mid:Jtm(top) ;
-[tpket,ħ,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,ħ,ket([1/2,-(1/2)]),ket([1/2,1/2])]
+tpket(ħ,ket([1/2,1/2]),ket([1/2,-(1/2)]))  +tpket(ħ,ket([1/2,-(1/2)]),ket([1/2,1/2]))
 $
 
 Jm(JMtop) ;
 sqrt(2)*ket([1,0])*ħ $
 
 mid:tpscmult(1/(sqrt(2)*hbar),mid) ;
-[tpket,1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1/sqrt(2),ket([1/2,-(1/2)]),ket([1/2,1/2])]
+tpket(1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)]))  +tpket(1/sqrt(2),ket([1/2,-(1/2)]),ket([1/2,1/2]))
 $
 
 bot:Jtm(mid) ;
-[tpket,sqrt(2)*ħ,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+tpket(sqrt(2)*ħ,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])) $
 
 Jm(ket([1,0])) ;
 sqrt(2)*ket([1,-1])*ħ $
 
 bot:tpscmult(1/(sqrt(2)*hbar),bot) ;
-[tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+tpket(1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])) $
 
 K:ket([a1,b1]) ;
 ket([a1,b1]) $
@@ -480,22 +484,20 @@ declare([a,b],scalar) ;
 done $
 
 O:a*ket([1]) . bra([0])+b*ket([0]) . bra([1]) ;
-ket([0]) . bra([1])*[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]  +ket([1]) . bra([0])*a
+ket([1]) . bra([0])*a+tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))                               *ket([0]) . bra([1])
 $
 
 B:[ket([1]),ket([0])] ;
 [ket([1]),ket([0])] $
 
 matrep(O,B) ;
-matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]) . ket([1]),
-                a+bra([1]) . (ket([0]) . bra([1])
-                           *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])])
-                           . ket([0])],
-               [bra([0]) . (ket([0]) . bra([1])
-                         *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]) . ket([1]),
-                bra([0]) . (ket([0]) . bra([1])
-                         *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])])
-                         . ket([0])])
+matrix([bra([1]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))                          *ket([0]) . bra([1])) . ket([1]),
+                a+bra([1]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))
+                           *ket([0]) . bra([1])) . ket([0])],
+               [bra([0]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))
+                         *ket([0]) . bra([1])) . ket([1]),
+                bra([0]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))
+                         *ket([0]) . bra([1])) . ket([0])])
 $
 
 basis_set(2,[0,1]) ;
@@ -506,21 +508,21 @@ basis_set(3,[u,d]) ;
 $
 
 b1:tpket(ket([1/2,1/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
+tpket(1,ket([1/2,1/2]),ket([1/2,1/2])) $
 
 b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
-[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
+tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)])) $
 
 b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2])) ;
-[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
+tpket(1,ket([1/2,-(1/2)]),ket([1/2,1/2])) $
 
 b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2])) ;
-[tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
+tpket(1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])) $
 
 B:[b1,b2,b3,b4] ;
-[[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],          [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])],
-         [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])],
-         [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]]
+[tpket(1,ket([1/2,1/2]),ket([1/2,1/2])),          tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)])),
+         tpket(1,ket([1/2,-(1/2)]),ket([1/2,1/2])),
+         tpket(1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)]))]
 $
 
 H:omega*(J1z-J2z) ;
@@ -546,11 +548,11 @@ matrix([A/2,0,0,0],[0,-(A/2),A,0],[0,A,-(A/2),0],[0,0,0,A/2]) $
 $
 
 states:stationary(evals,evecs,bj1212) ;
-[[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]           +[tpket,-1,ket([1/2,-(1/2)]),ket([1/2,1/2])],
-         [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
-         [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
-          +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])],
-         [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]]
+[tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)]))           +tpket(-1,ket([1/2,-(1/2)]),ket([1/2,1/2])),
+         tpket(1,ket([1/2,1/2]),ket([1/2,1/2])),
+         tpket(1,ket([1/2,1/2]),ket([1/2,-(1/2)]))
+          +tpket(1,ket([1/2,-(1/2)]),ket([1/2,1/2])),
+         tpket(1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)]))]
 $
 
 Jtz(states[1]) ;

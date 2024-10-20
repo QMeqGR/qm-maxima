@@ -22,6 +22,8 @@
 /*****************************************************/
 /*****************************************************/
 
+load(multiadditive);
+
 /*
 The tensor product code here is necessary for dealing with tensor
 products of (j,m)-kets in order to do addition of addtion of angular
@@ -32,127 +34,111 @@ momentum calculations of Clebsch-Gordan coefficients. -ehm
 /*          simp rules             */
 /***********************************/
 /* extended tensor product functionality */
-/* The form of a type2 tensor product is the
-    Maxima list [tpket,CF,k1,k2] 
+/* The form of a type2 tensor product is tpket(cf,k1,k2)
 where CF=common factors that come out of say Jz, etc. */
 
-tpketp(k):= if k[1]=tpket then true else false $
-tpbrap(k):= if k[1]=tpbra then true else false $
+tpketp(k):= not mapatom(k) and is(inpart(k,0) = 'tpket) $
+tpbrap(k):= not mapatom(k) and is(inpart(k,0) = 'tpbra) $
 
 matchdeclare([k1,k2,k3,k4],ketp,[b1,b2],brap,ll,listp,pf,numberp);
-tellsimp( tpket(k1,k2), [tpket,1,k1,k2] );
-tellsimp( tpbra(b1,b2), [tpbra,1,b1,b2] );
+tellsimp( tpket(k1,k2), tpket(1,k1,k2) );
+tellsimp( tpbra(b1,b2), tpbra(1,b1,b2) );
 
 matchdeclare([c1,c2,c3,c4,cf1,cf2],all,[cx1,cx2],cnump);
-tellsimpafter( [tpket,cf1,c1*k1,c2*k2], [tpket,cf1*c1*c2,k1,k2] );
-simp:false; tellsimpafter( cx1*[tpket,cf1,k1,k2] , [tpket,cx1*cf1,k1,k2] ); simp:true;
-simp:false; tellsimpafter( [tpket,c1,c3,c4]+[tpk,c2,c3,c4], [tpket,c1+c2,c3,c4] ); simp:true;
+tellsimpafter( tpket(cf1,c1*k1,c2*k2), tpket(cf1*c1*c2,k1,k2) );
+simp:false; tellsimpafter( cx1*tpket(cf1,k1,k2) , tpket(cx1*cf1,k1,k2) ); simp:true;
+simp:false; tellsimpafter( tpket(c1,c3,c4)+tpk(c2,c3,c4), tpket(c1+c2,c3,c4) ); simp:true;
 
-tellsimp( [tpket,cf1,0,k2], 0 );
-tellsimp( [tpket,cf1,k1,0], 0 );
-tellsimp( [tpket,0,k1,k2], 0 );
+tellsimp( tpket(cf1,0,k2), 0 );
+tellsimp( tpket(cf1,k1,0), 0 );
+tellsimp( tpket(0,k1,k2),  0 );
 
 /***********************************************/
 /*        Function definitions                 */
 /***********************************************/
-matchdeclare([cx1,cx2],cnump,tpb,lambda([x],x[1]=tpbra),tpk,lambda([x],x[1]=tpket));
-tellsimpafter(tpb.tpk, tpbraket_single(tpb,tpk));
+matchdeclare([cx1,cx2],cnump,tpb,tpbrap,tpk,tpketp);
+tellsimpafter(tpb . tpk, tpbraket_single(tpb,tpk));
 
 flin(x):=x;
 declare(flin,linear);
 
-tpcfset(cf,k):=[k[1],cf,k[3],k[4]];
-tpscmult(f,tp):=block([k:0,listarith:false],
-    if listp(tp)=true then return( [tp[1],tp[2]*f,tp[3],tp[4]] )
-    else for i: 1 thru length(tp) do
-        k: k + [part(tp,i)[1], f* part(tp,i)[2], part(tp,i)[3], part(tp,i)[4]],
-    k);
+matchdeclare([sc1,sc2],scalarp,a,all);
+tellsimpafter( tpcfset(sc1,tpket(a,k1,k2)), tpket(sc1,k1,k2) );
+tellsimpafter( tpcfset(sc1,tpbra(a,b1,b2)), tpbra(sc1,b1,b2) );
+
+declare(tpscmult,multiadditive);
+tellsimpafter( tpscmult(sc1,tpket(sc2,k1,k2)), tpket(sc1*sc2,k1,k2) );
+tellsimpafter( tpscmult(sc1,tpbra(sc2,b1,b2)), tpbra(sc1*sc2,b1,b2) );
 
 tpbraket(x,y):=block([A1,A2,tmp,listarith:false],
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
     tmp);
 
+tpdagger(tp):=block([R,c,x1,x2],
+  if tpketp(tp)=false and tpbrap(tp)=false then return(disp("must be a tpket or tpbra")),
+  c:  dagger(inpart(tp,1)),
+  x1: dagger(inpart(tp,2)),
+  x2: dagger(inpart(tp,3)),
+  if     tpketp(tp) then return( tpbra( c, x1, x2 ) )
+  elseif tpbrap(tp) then return( tpket( c, x1, x2 ) ));
+
 tpbraket_single(b,k):=block([R],
     if tpketp(k)=false or tpbrap(b)=false then return(disp("Inputs must be a single tpbra and tpket.")),
-    R: b[2]*k[2]*( b[3] . k[3] )*( b[4] . k[4] ),
+    R: inpart(b,1)*inpart(k,1)*( inpart(b,2) . inpart(k,2) )*( inpart(b,3) . inpart(k,3) ),
     R);
 
-tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1,listarith:false],
+tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1,a2,b2,a3,b3],
     if tpka=0 then return(tpkb),
     if tpkb=0 then return(tpka),
     if tpka=0 and tpkb=0 then return(0),
-    cfa:tpka[2],cfb:tpkb[2],
-    if not tpka[1]=tpket or not tpkb[1]=tpket then return(disp("Input must be tpkets.")),
-    if tpka[3]=tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, cfa+cfb, tpka[3], tpka[4]],
-    if tpka[3]=tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, 1, tpka[3], cfa*tpka[4]+cfb*tpkb[4]], 
-    if tpka[3]#tpkb[3] and tpka[4]=tpkb[4] then R: [tpket, 1, cfa*tpka[3]+cfb*tpkb[3], tpkb[4]],
-    if tpka[3]#tpkb[3] and tpka[4]#tpkb[4] then R: [tpket, cfa, tpka[3], tpka[4]] +
-       		       	   		   	   [tpket, cfb, tpkb[3], tpkb[4]],
-    R);
-
-tpdagger(tp):=block([R],
-    if tp[1]=tpket then R:[tpbra,dagger(tp[2]),
-    dagger(tp[3]),dagger(tp[4])]
-    elseif tp[1]=tpbra then R:[tpket,dagger(tp[2]),
-    dagger(tp[3]),dagger(tp[4])]
-    else return(disp("must be a tpket or tpbra")),
+    cfa:inpart(tpka,1), cfb:inpart(tpkb,1),
+    if tpketp(tpka)=false or tpketp(tpkb)=false then return(disp("Input must be tpkets.")),
+    a2: inpart(tpka,2), a3: inpart(tpka,3),
+    b2: inpart(tpkb,2), b3: inpart(tpkb,3),
+    if a2=b2 and a3=b3 then R: tpket( cfa+cfb, a2, a3 ),
+    if a2=b2 and a3#b3 then R: tpket( 1, a2, cfa*a3+cfb*b3), 
+    if a2#b2 and a3=b3 then R: tpket( 1, cfa*a2+cfb*b2, b3),
+    if a2#b2 and a3#b3 then R: tpket( cfa, a2, a3) + tpket(cfb, b2, b3),
     R);
 
 declare([J1z,J2z,Jtz,J1sqr,J2sqr,J1p,J2p,Jtp,J1m,J2m,Jtm],additive);
 
 matchdeclare([tpk1,tpk2,k],tpketp);
-tellsimpafter( J1z(k), [tpket,k[2],Jz(k[3]),k[4]] );
-tellsimpafter( J2z(k), [tpket,k[2],k[3],Jz(k[4])] );
-tellsimpafter( Jtz(k), [tpket, J1z(k)[2]+J2z(k)[2], k[3],k[4] ] );
+tellsimpafter( J1z(k), tpket( inpart(k,1), Jz(inpart(k,2)), inpart(k,3) ) );
+tellsimpafter( J2z(k), tpket( inpart(k,1), inpart(k,2), Jz(inpart(k,3)) ) );
+tellsimpafter( Jtz(k), tpadd(J1z(k),J2z(k)) );
 
-tellsimpafter( J1sqr(k), [tpket,k[2],Jsqr(k[3]),k[4]] );
-tellsimpafter( J2sqr(k), [tpket,k[2],k[3],Jsqr(k[4])] );
+tellsimpafter( J1sqr(k), tpket(inpart(k,1),Jsqr(inpart(k,2)),inpart(k,3)) );
+tellsimpafter( J2sqr(k), tpket(inpart(k,1),inpart(k,2),Jsqr(inpart(k,3))) );
 
-tellsimpafter( J1p(k), [tpket,k[2],Jp(k[3]),k[4]] );
-tellsimpafter( J2p(k), [tpket,k[2],k[3],Jp(k[4])] );
+tellsimpafter( J1p(k), tpket(inpart(k,1),Jp(inpart(k,2)),inpart(k,3)) );
+tellsimpafter( J2p(k), tpket(inpart(k,1),inpart(k,2),Jp(inpart(k,3))) );
+tellsimpafter( Jtp(k), tpadd(J1p(k),J2p(k)) );
 
-Jtp(k):= block([R:0,R2:0,listarith:false],
-	 if listp(k)=true and length(k)=4 then R: J1p(k)+J2p(k)
-	 elseif listp(k)=false then
-	 	for i: 1 thru length(k) do
-         	R: R + J1p(part(k,i)) + J2p(part(k,i)),
-         if R=0 then return(0),
-         if listp(R)=true then return(R),
-         if listp(R)=false and length(R) > 1 then
-            R2: part(R,1),
-            for i: 2 thru length(R) do R2:tpadd(R2,part(R,i)),
-            return(R2));
+tellsimpafter( J1m(k), tpket(inpart(k,1),Jm(inpart(k,2)),inpart(k,3)) );
+tellsimpafter( J2m(k), tpket(inpart(k,1),inpart(k,2),Jm(inpart(k,3))) );
+tellsimpafter( Jtm(k), tpadd(J1m(k),J2m(k)) );
 
-tellsimpafter( J1m(k), [tpket,k[2],Jm(k[3]),k[4]] );
-tellsimpafter( J2m(k), [tpket,k[2],k[3],Jm(k[4])] );
-Jtm(k):= block([R:0,R2:0,listarith:false],
-	 if listp(k)=true and length(k)=4 then R: J1m(k)+J2m(k)
-	 elseif listp(k)=false then
-	 	for i: 1 thru length(k) do
-         	R: R + J1m(part(k,i)) + J2m(part(k,i)),
-         if R=0 then return(0),
-         if listp(R)=true then return(R),
-         if listp(R)=false and length(R) > 1 then
-            R2: part(R,1),
-            for i: 2 thru length(R) do R2:tpadd(R2,part(R,i)),
-            return(R2));
 
 declare([J1p2m,J1m2p,J1zJ2z],additive);
-J1p2m(k):= block([R],
+J1p2m(k):= block([R,a1,a2,a3],
     if tpketp(k)=false then return(false),
-    R:[tpket,k[2],Jp(k[3]),Jm(k[4])],
-    if R[3]=0 or R[4]=0 then return(0),
+    a1:inpart(k,1), a2:Jp( inpart(k,2)), a3:Jm(inpart(k,3)),
+    R: tpket(a1,a2,a3),
+    if a2=0 or a3=0 then return(0),
     R);
-J1m2p(k):= block([R],
+J1m2p(k):= block([R,a1,a2,a3],
     if tpketp(k)=false then return(false),
-    R:[tpket,k[2],Jm(k[3]),Jp(k[4])],
-    if R[3]=0 or R[4]=0 then return(0),
+    a1:inpart(k,1), a2:Jm( inpart(k,2)), a3:Jp(inpart(k,3)),
+    R: tpket(a1,a2,a3),
+    if a2=0 or a3=0 then return(0),
     R);
 
-J1zJ2z(k):= block([R],
+J1zJ2z(k):= block([R,a1,a2,a3],
     if tpketp(k)=false then return(false),
-    R:[tpket,k[2],Jz(k[3]),Jz(k[4])],
-    if R[3]=0 or R[4]=0 then return(0),
+    a1:inpart(k,1), a2:Jz( inpart(k,2)), a3:Jz(inpart(k,3)),
+    R: tpket(a1,a2,a3),
+    if a2=0 or a3=0 then return(0),
     R);
 
 /* Jtsqr = J1sqr + J2sqr + J1p*J2m + J1m*J2p + 2J1zJ2z */

@@ -238,9 +238,9 @@ sym_ratp(a):=block(if symbolp(a) or rationalp(a) then
 matchdeclare(k,ketp,bb,brap,[j,m], sym_ratp );
 
 /* some convenience functions */
-jmtop(j):=ket([j,j]);
+jmtop(j):=ket([abs(j),abs(j)]);
 jmket(j,m):=ket([j,m]);
-jmbot(j):=ket([j,-j]);
+jmbot(j):=ket([abs(j),-abs(j)]);
 
 /* Check that m is within -j to +j */
 jmcheck(j,m) := block([pos:0],
