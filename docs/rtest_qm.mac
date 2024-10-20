@@ -1,492 +1,492 @@
 
-(display2d:false,load(qm),0);
+(display2d:false,load(qm),0) ;
 0 $
 
-zp;
+zp ;
 matrix([1],[0]) $
 
-zm;
+zm ;
 matrix([0],[1]) $
 
-psi_bra:a*dagger(zp)+b*dagger(zm);
+psi_bra:a*dagger(zp)+b*dagger(zm) ;
 matrix([a,b]) $
 
-dagger(mket([a,b]));
+dagger(mket([a,b])) ;
 matrix([a,b]) $
 
-mbra([a,b]);
+mbra([a,b]) ;
 matrix([a,b]) $
 
-ket([a,b])+ket([c,d]);
+ket([a,b])+ket([c,d]) ;
 ket([c,d])+ket([a,b]) $
 
-mket([a,b]);
+mket([a,b]) ;
 matrix([a],[b]) $
 
-mbra([a,b]);
+mbra([a,b]) ;
 matrix([a,b]) $
 
-bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+bell:(1/sqrt(2))*(ket([u,d])-ket([d,u])) ;
 (ket([u,d])-ket([d,u]))/sqrt(2) $
 
-dagger(bell);
+dagger(bell) ;
 (bra([u,d])-bra([d,u]))/sqrt(2) $
 
-braket(bra([a1,b1]),ket([a2,b2]));
+braket(bra([a1,b1]),ket([a2,b2])) ;
 kron_delta(a1,a2)*kron_delta(b1,b2) $
 
-declare([a,b],complex);
+declare([a,b],complex) ;
 done $
 
-psi:a*ket([1])+b*ket([2]);
+psi:a*ket([1])+b*ket([2]) ;
 ket([2])*b+ket([1])*a $
 
-psidag:dagger(psi);
+psidag:dagger(psi) ;
 bra([2])*conjugate(b)+bra([1])*conjugate(a) $
 
-psidag.psi;
+psidag . psi ;
 b*conjugate(b)+a*conjugate(a) $
 
-declare([c1,c2],complex,r,real);
+declare([c1,c2],complex,r,real) ;
 done $
 
-k:mket([c1,c2,r]);
+k:mket([c1,c2,r]) ;
 matrix([c1],[c2],[r]) $
 
-b:dagger(k);
+b:dagger(k) ;
 matrix([conjugate(c1),conjugate(c2),r]) $
 
-b.k;
+b . k ;
 r^2+c2*conjugate(c2)+c1*conjugate(c1) $
 
-k:ket([u,d]);
+k:ket([u,d]) ;
 ket([u,d]) $
 
-b:bra([u,d]);
+b:bra([u,d]) ;
 bra([u,d]) $
 
-b.k;
+b . k ;
 1 $
 
-k:ket([u,d]);
+k:ket([u,d]) ;
 ket([u,d]) $
 
-b:bra([u,d]);
+b:bra([u,d]) ;
 bra([u,d]) $
 
-b.k;
+b . k ;
 1 $
 
-declare([c1,c2],complex);
+declare([c1,c2],complex) ;
 done $
 
-mket([c1,c2]);
+mket([c1,c2]) ;
 matrix([c1],[c2]) $
 
-facts();
+facts() ;
 [kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(c1,complex),kind(c2,complex),kind(r,real)]
 $
 
-k:ket([a,b]);
+k:ket([a,b]) ;
 ket([a,bra([u,d])]) $
 
-mketp(k);
+mketp(k) ;
 false $
 
-k:mket([a,b]);
+k:mket([a,b]) ;
 matrix([a],[bra([u,d])]) $
 
-mketp(k);
+mketp(k) ;
 true $
 
-kill(c1,c2);
+kill(c1,c2) ;
 done $
 
-mbra([c1,c2]);
+mbra([c1,c2]) ;
 matrix([c1,c2]) $
 
-facts();
+facts() ;
 [kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
 $
 
-b:mbra([a,b]);
+b:mbra([a,b]) ;
 matrix([a,bra([u,d])]) $
 
-mbrap(b);
+mbrap(b) ;
 true $
 
-autoket([a,b]);
+autoket([a,b]) ;
 matrix([a],[matrix([a,bra([u,d])])]) $
 
-facts();
+facts() ;
 [kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
 $
 
-autoket([a*sin(x),b*sin(x)]);
+autoket([a*sin(x),b*sin(x)]) ;
 matrix([a*sin(x)],[matrix([a*sin(x),bra([u,d])*sin(x)])]) $
 
-facts();
+facts() ;
 [kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
 $
 
-autobra([a,b]);
+autobra([a,b]) ;
 matrix([a,matrix([a,bra([u,d])])]) $
 
-facts();
+facts() ;
 [kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
 $
 
-autobra([a*sin(x),b]);
+autobra([a*sin(x),b]) ;
 matrix([a*sin(x),matrix([a,bra([u,d])])]) $
 
-facts();
+facts() ;
 [kind(hbar,real),kind(ħ,real),hbar > 0,kind(a,complex),kind(b,complex),         kind(r,real)]
 $
 
-dagger(mbra([%i,2]));
+dagger(mbra([%i,2])) ;
 matrix([-%i],[2]) $
 
-declare([a,b,c],complex);
+declare([a,b,c],complex) ;
 done $
 
-braket(mbra([a,b,c]),mket([a,b,c]));
+braket(mbra([a,b,c]),mket([a,b,c])) ;
 braket(matrix([a,matrix([a,bra([u,d])]),c]),               matrix([a],[matrix([a,bra([u,d])])],[c]))
 $
 
-braket(dagger(mket([a,b,c])),mket([a,b,c]));
+braket(dagger(mket([a,b,c])),mket([a,b,c])) ;
 braket(matrix([conjugate(a),                       matrix([conjugate(a),conjugate(bra([u,d]))]),
                       conjugate(c)]),matrix([a],[matrix([a,bra([u,d])])],[c]))
 $
 
-braket(bra([a1,b1,c1]),ket([a2,b2,c2]));
+braket(bra([a1,b1,c1]),ket([a2,b2,c2])) ;
 kron_delta(a1,a2)*kron_delta(b1,b2)*kron_delta(c1,c2) $
 
-declare([a,b,c],complex);
+declare([a,b,c],complex) ;
 done $
 
-norm(mket([a,b,c]));
+norm(mket([a,b,c])) ;
 norm(matrix([a],[matrix([a,bra([u,d])])],[c])) $
 
-declare([a,b,c,d],complex);
+declare([a,b,c,d],complex) ;
 done $
 
-braket(mbra([a,b]),mket([c,d]));
+braket(mbra([a,b]),mket([c,d])) ;
 braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])) $
 
-P:magsqr(%);
+P:magsqr(%) ;
 braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d]))  *conjugate(braket(matrix([a,matrix([a,bra([u,d])])]),matrix([c],[d])))
 $
 
-yp;
+yp ;
 matrix([1/sqrt(2)],[%i/sqrt(2)]) $
 
-ym;
+ym ;
 matrix([1/sqrt(2)],[-(%i/sqrt(2))]) $
 
-braket(dagger(xp),zp);
+braket(dagger(xp),zp) ;
 1/sqrt(2) $
 
-declare([a,b],complex);
+declare([a,b],complex) ;
 done $
 
-psi:mket([a,b]);
+psi:mket([a,b]) ;
 matrix([a],[matrix([a,bra([u,d])])]) $
 
-psi_x:'xp*braket(dagger(xp),psi)+'xm*braket(dagger(xm),psi);
+psi_x:'xp*braket(dagger(xp),psi)+'xm*braket(dagger(xm),psi) ;
 braket(matrix([1/sqrt(2),1/sqrt(2)]),matrix([a],                                                    [matrix([a,bra([u,d])])]))*xp
  +braket(matrix([1/sqrt(2),-(1/sqrt(2))]),
          matrix([a],[matrix([a,bra([u,d])])]))
   *xm
 $
 
-sigmay;
+sigmay ;
 matrix([0,-%i],[%i,0]) $
 
-Sy;
+Sy ;
 matrix([0,-((%i*ħ)/2)],[(%i*ħ)/2,0]) $
 
-commutator(Sx,Sy);
+commutator(Sx,Sy) ;
 matrix([(%i*ħ^2)/2,0],[0,-((%i*ħ^2)/2)]) $
 
-(1/2)*anticommutator(sigmax,sigmax);
+(1/2)*anticommutator(sigmax,sigmax) ;
 matrix([1,0],[0,1]) $
 
-SY(1/2);
+SY(1/2) ;
 matrix([0,-((%i*ħ)/2)],[(%i*ħ)/2,0]) $
 
-SX(1);
+SX(1) ;
 matrix([0,ħ/sqrt(2),0],[ħ/sqrt(2),0,ħ/sqrt(2)],[0,ħ/sqrt(2),0]) $
 
-basis_set_p([zp,zm]);
+basis_set_p([zp,zm]) ;
 true $
 
-mtrans([zp,zm],[yp,ym]);
+mtrans([zp,zm],[yp,ym]) ;
 matrix([1/sqrt(2),1/sqrt(2)],[%i/sqrt(2),-(%i/sqrt(2))]) $
 
-op_trans(Sy,[zp,zm],[yp,ym]);
+op_trans(Sy,[zp,zm],[yp,ym]) ;
 matrix([ħ/2,0],[0,-(ħ/2)]) $
 
-ev(expect(Sy,xp+ym),ratsimp);
+ev(expect(Sy,xp+ym),ratsimp) ;
 -ħ $
 
-ev(qm_variance(Sy,xp+ym),ratsimp);
+ev(qm_variance(Sy,xp+ym),ratsimp) ;
 (%i*abs(ħ))/2 $
 
-SP(1);
+SP(1) ;
 matrix([0,sqrt(2)*ħ,0],[0,0,sqrt(2)*ħ],[0,0,0]) $
 
-SM(1);
+SM(1) ;
 matrix([0,0,0],[sqrt(2)*ħ,0,0],[0,sqrt(2)*ħ,0]) $
 
-RY(1,t);
+RY(1,t) ;
 matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],               [sin(t)/sqrt(2),cos(t),-(sin(t)/sqrt(2))],
               [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2])
 $
 
-U(w*Sy,t);
+U(w*Sy,t) ;
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
-spin_mbra(3/2,1/2,2);
+spin_mbra(3/2,1/2,2) ;
 matrix([sqrt(3)/2^(3/2),-(%i/2^(3/2)),1/2^(3/2),                -((sqrt(3)*%i)/2^(3/2))])
 $
 
-bra([3/2,1/2]);
+bra([3/2,1/2]) ;
 bra([3/2,1/2]) $
 
-ket([3/2,1/2]);
+ket([3/2,1/2]) ;
 ket([3/2,1/2]) $
 
-jmtop(3/2);
+jmtop(3/2) ;
 ket([3/2,3/2]) $
 
-jmbot(3/2);
+jmbot(3/2) ;
 ket([3/2,-(3/2)]) $
 
-jmket(3/2,1/2);
+jmket(3/2,1/2) ;
 ket([3/2,1/2]) $
 
-jmketp(ket([j,m]));
+jmketp(ket([j,m])) ;
 false $
 
-jmketp(ket([3/2,1/2]));
+jmketp(ket([3/2,1/2])) ;
 true $
 
-jmcheck(3/2,1/2);
+jmcheck(3/2,1/2) ;
 true $
 
-k:ket([j,m]);
+k:ket([j,m]) ;
 ket([j,m]) $
 
-Jp(k);
+Jp(k) ;
 ħ*ket([j,m+1])*sqrt(j*(j+1)-m*(m+1)) $
 
-Jm(k);
+Jm(k) ;
 ħ*ket([j,m-1])*sqrt(j*(j+1)-(m-1)*m) $
 
-Jsqr(k);
+Jsqr(k) ;
 ħ^2*j*(j+1)*ket([j,m]) $
 
-Jz(k);
+Jz(k) ;
 ħ*ket([j,m])*m $
 
-tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+tpket(ket([3/2,1/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
 
-tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
+tpbra(bra([3/2,1/2]),bra([1/2,1/2])) ;
 [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
 
-k:tpket(jmtop(1),jmbot(1));
+k:tpket(jmtop(1),jmbot(1)) ;
 [tpket,1,ket([1,1]),ket([1,-1])] $
 
-K:Jtsqr(k);
+K:Jtsqr(k) ;
 [tpket,2*ħ^2,ket([1,1]),ket([1,-1])]+[tpket,2*ħ^2,ket([1,0]),                                              ket([1,0])]
 $
 
-B:tpdagger(k);
+B:tpdagger(k) ;
 [tpbra,1,bra([1,1]),bra([1,-1])] $
 
-tpbraket(B,K);
+tpbraket(B,K) ;
 2*ħ^2 $
 
-k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
-tpscmult(c,k1);
+tpscmult(c,k1) ;
 [tpket,c,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
-k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
-k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
 
-tpadd(k1,k2);
+tpadd(k1,k2) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])]
 $
 
-k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
-tpdagger(k1);
+tpdagger(k1) ;
 [tpbra,1,bra([1/2,1/2]),bra([1/2,-(1/2)])] $
 
-k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+k:tpket(ket([3/2,3/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
 
-J1z(k);
+J1z(k) ;
 [tpket,(3*ħ)/2,ket([3/2,3/2]),ket([1/2,1/2])] $
 
-J2z(k);
+J2z(k) ;
 [tpket,ħ/2,ket([3/2,3/2]),ket([1/2,1/2])] $
 
-k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
+k:tpket(ket([3/2,3/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([3/2,3/2]),ket([1/2,1/2])] $
 
-Jtz(k);
+Jtz(k) ;
 [tpket,2*ħ,ket([3/2,3/2]),ket([1/2,1/2])] $
 
-k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
+k:tpket(ket([3/2,1/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([3/2,1/2]),ket([1/2,1/2])] $
 
-b:tpdagger(k);
+b:tpdagger(k) ;
 [tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])] $
 
-J1p2m(k);
+J1p2m(k) ;
 [tpket,sqrt(3)*ħ^2,ket([3/2,3/2]),ket([1/2,-(1/2)])] $
 
-J1m2p(k);
+J1m2p(k) ;
 0 $
 
-k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
+k:tpket(ket([3/2,-1/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([3/2,-(1/2)]),ket([1/2,1/2])] $
 
-B:tpdagger(k);
+B:tpdagger(k) ;
 [tpbra,1,bra([3/2,-(1/2)]),bra([1/2,1/2])] $
 
-K2:Jtsqr(k);
+K2:Jtsqr(k) ;
 [tpket,4*ħ^2,ket([3/2,-(1/2)]),ket([1/2,1/2])]  +[tpket,2*ħ^2,ket([3/2,1/2]),ket([1/2,-(1/2)])]
 $
 
-tpbraket(B,K2);
+tpbraket(B,K2) ;
 4*ħ^2 $
 
-get_j(15/4);
+get_j(15/4) ;
 j = 3/2 $
 
-k:tpket(jmtop(1/2),jmtop(1));
+k:tpket(jmtop(1/2),jmtop(1)) ;
 [tpket,1,ket([1/2,1/2]),ket([1,1])] $
 
-Jtsqr(k);
+Jtsqr(k) ;
 [tpket,(15*ħ^2)/4,ket([1/2,1/2]),ket([1,1])] $
 
-get_j(15/4);
+get_j(15/4) ;
 j = 3/2 $
 
-k:tpket(jmtop(1/2),jmtop(1));
+k:tpket(jmtop(1/2),jmtop(1)) ;
 [tpket,1,ket([1/2,1/2]),ket([1,1])] $
 
-k2:Jtm(k);
+k2:Jtm(k) ;
 [tpket,sqrt(2)*ħ,ket([1/2,1/2]),ket([1,0])]  +[tpket,ħ,ket([1/2,-(1/2)]),ket([1,1])]
 $
 
-k3:Jtm(k2);
+k3:Jtm(k2) ;
 [tpket,2^(3/2)*ħ^2,ket([1/2,-(1/2)]),ket([1,0])]  +[tpket,2*ħ^2,ket([1/2,1/2]),ket([1,-1])]
 $
 
-k4:Jtm(k3);
+k4:Jtm(k3) ;
 [tpket,6*ħ^3,ket([1/2,-(1/2)]),ket([1,-1])] $
 
-top:tpket(jmtop(1/2),jmtop(1/2));
+top:tpket(jmtop(1/2),jmtop(1/2)) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
-Jtsqr(top);
+Jtsqr(top) ;
 [tpket,2*ħ^2,ket([1/2,1/2]),ket([1/2,1/2])] $
 
-get_j(2);
+get_j(2) ;
 j = 1 $
 
-Jtz(top);
+Jtz(top) ;
 [tpket,ħ,ket([1/2,1/2]),ket([1/2,1/2])] $
 
-JMtop:ket([1,1]);
+JMtop:ket([1,1]) ;
 ket([1,1]) $
 
-mid:Jtm(top);
+mid:Jtm(top) ;
 [tpket,ħ,ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,ħ,ket([1/2,-(1/2)]),ket([1/2,1/2])]
 $
 
-Jm(JMtop);
+Jm(JMtop) ;
 sqrt(2)*ket([1,0])*ħ $
 
-mid:tpscmult(1/(sqrt(2)*hbar),mid);
+mid:tpscmult(1/(sqrt(2)*hbar),mid) ;
 [tpket,1/sqrt(2),ket([1/2,1/2]),ket([1/2,-(1/2)])]  +[tpket,1/sqrt(2),ket([1/2,-(1/2)]),ket([1/2,1/2])]
 $
 
-bot:Jtm(mid);
+bot:Jtm(mid) ;
 [tpket,sqrt(2)*ħ,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
 
-Jm(ket([1,0]));
+Jm(ket([1,0])) ;
 sqrt(2)*ket([1,-1])*ħ $
 
-bot:tpscmult(1/(sqrt(2)*hbar),bot);
+bot:tpscmult(1/(sqrt(2)*hbar),bot) ;
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
 
-K:ket([a1,b1]);
+K:ket([a1,b1]) ;
 ket([a1,b1]) $
 
-B:bra([a2,b2]);
+B:bra([a2,b2]) ;
 bra([a2,b2]) $
 
-braket(B,K);
+braket(B,K) ;
 kron_delta(a1,a2)*kron_delta(b1,b2) $
 
-bra([a1,Id,c1]).ket([a2,b2,c2]);
+bra([a1,Id,c1]) . ket([a2,b2,c2]) ;
 ket(["-",b2,"-"])*kron_delta(a1,a2)*kron_delta(c1,c2) $
 
-bra([a1,b1,c1]).ket([Id,b2,c2]);
+bra([a1,b1,c1]) . ket([Id,b2,c2]) ;
 bra([a1,"-","-"])*kron_delta(b1,b2)*kron_delta(c1,c2) $
 
-bell:(1/sqrt(2))*(ket([u,d])-ket([d,u]));
+bell:(1/sqrt(2))*(ket([u,d])-ket([d,u])) ;
 (ket([u,d])-ket([d,u]))/sqrt(2) $
 
-rho:bell.dagger(bell);
+rho:bell . dagger(bell) ;
 (ket([u,d]) . bra([u,d])-ket([u,d]) . bra([d,u])                                 -ket([d,u]) . bra([u,d])
                                 +ket([d,u]) . bra([d,u]))
  /2
 $
 
-assume(notequal(u,d));
+assume(not equal(u,d)) ;
 [notequal(u,d)] $
 
-trace1:bra([u,Id]).rho.ket([u,Id])+bra([d,Id]).rho.ket([d,Id]);
+trace1:bra([u,Id]) . rho . ket([u,Id])+bra([d,Id]) . rho . ket([d,Id]) ;
 ket(["-",u]) . bra(["-",u])/2+ket(["-",d]) . bra(["-",d])/2 $
 
-bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+bell:(1/sqrt(2))*(ket([1,0])-ket([0,1])) ;
 (ket([1,0])-ket([0,1]))/sqrt(2) $
 
-rho:bell.dagger(bell);
+rho:bell . dagger(bell) ;
 (ket([1,0]) . bra([1,0])-ket([1,0]) . bra([0,1])                                 -ket([0,1]) . bra([1,0])
                                 +ket([0,1]) . bra([0,1]))
  /2
 $
 
-B:[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])];
+B:[ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])] ;
 [ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])] $
 
-matrep(rho,B);
+matrep(rho,B) ;
 matrix([0,0,0,0],[0,1/2,-(1/2),0],[0,-(1/2),1/2,0],[0,0,0,0]) $
 
-declare([a,b],scalar);
+declare([a,b],scalar) ;
 done $
 
-O:a*ket([1]).bra([0])+b*ket([0]).bra([1]);
+O:a*ket([1]) . bra([0])+b*ket([0]) . bra([1]) ;
 ket([0]) . bra([1])*[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]  +ket([1]) . bra([0])*a
 $
 
-B:[ket([1]),ket([0])];
+B:[ket([1]),ket([0])] ;
 [ket([1]),ket([0])] $
 
-matrep(O,B);
+matrep(O,B) ;
 matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])]) . ket([1]),
                 a+bra([1]) . (ket([0]) . bra([1])
                            *[tpbra,1,bra([3/2,1/2]),bra([1/2,1/2])])
@@ -498,54 +498,54 @@ matrix([bra([1]) . (ket([0]) . bra([1])                          *[tpbra,1,bra([
                          . ket([0])])
 $
 
-basis_set(2,[0,1]);
+basis_set(2,[0,1]) ;
 [ket([1,1]),ket([1,0]),ket([0,1]),ket([0,0])] $
 
-basis_set(3,[u,d]);
+basis_set(3,[u,d]) ;
 [ket([d,d,d]),ket([d,d,u]),ket([d,u,d]),ket([d,u,u]),ket([u,d,d]),          ket([u,d,u]),ket([u,u,d]),ket([u,u,u])]
 $
 
-b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
+b1:tpket(ket([1/2,1/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])] $
 
-b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
+b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2])) ;
 [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])] $
 
-b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
+b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2])) ;
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])] $
 
-b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
+b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2])) ;
 [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])] $
 
-B:[b1,b2,b3,b4];
+B:[b1,b2,b3,b4] ;
 [[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],          [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])],
          [tpket,1,ket([1/2,-(1/2)]),ket([1/2,1/2])],
          [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]]
 $
 
-H:omega*(J1z-J2z);
+H:omega*(J1z-J2z) ;
 (J1z-J2z)*omega $
 
-declare(omega,scalar);
+declare(omega,scalar) ;
 done $
 
-matrep(H,B);
+matrep(H,B) ;
 matrix([0,0,0,0],[0,omega*ħ,0,0],[0,0,-(omega*ħ),0],[0,0,0,0]) $
 
-declare(A,scalar);
+declare(A,scalar) ;
 done $
 
-H:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z);
+H:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z) ;
 (A*(2*J1zJ2z+J1p2m+J1m2p))/ħ^2 $
 
-Hmat:matrep(H,bj1212);
+Hmat:matrep(H,bj1212) ;
 matrix([A/2,0,0,0],[0,-(A/2),A,0],[0,A,-(A/2),0],[0,0,0,A/2]) $
 
-[evals,evecs]:eigenvectors(Hmat);
+[evals,evecs]:eigenvectors(Hmat) ;
 [[[-((3*A)/2),A/2],[1,3]],[[[0,1,-1,0]],                                    [[1,0,0,0],[0,1,1,0],[0,0,0,1]]]]
 $
 
-states:stationary(evals,evecs,bj1212);
+states:stationary(evals,evecs,bj1212) ;
 [[tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]           +[tpket,-1,ket([1/2,-(1/2)]),ket([1/2,1/2])],
          [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
          [tpket,1,ket([1/2,1/2]),ket([1/2,-(1/2)])]
@@ -553,50 +553,50 @@ states:stationary(evals,evecs,bj1212);
          [tpket,1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)])]]
 $
 
-Jtz(states[1]);
+Jtz(states[1]) ;
 0 $
 
-B:[ket([1]),ket([0])];
+B:[ket([1]),ket([0])] ;
 [ket([1]),ket([0])] $
 
-declare(c,scalar);
+declare(c,scalar) ;
 done $
 
-A:c*ket([1]).bra([1]);
+A:c*ket([1]) . bra([1]) ;
 ket([1]) . bra([1])*c $
 
-matrep(A,B);
+matrep(A,B) ;
 matrix([c,0],[0,0]) $
 
-qm_atrace(A,B);
+qm_atrace(A,B) ;
 c $
 
-bell:(1/sqrt(2))*(ket([1,0])-ket([0,1]));
+bell:(1/sqrt(2))*(ket([1,0])-ket([0,1])) ;
 (ket([1,0])-ket([0,1]))/sqrt(2) $
 
-rho:bell.dagger(bell);
+rho:bell . dagger(bell) ;
 (ket([1,0]) . bra([1,0])-ket([1,0]) . bra([0,1])                                 -ket([0,1]) . bra([1,0])
                                 +ket([0,1]) . bra([0,1]))
  /2
 $
 
-trace1:bra([1,Id]).rho.ket([1,Id])+bra([0,Id]).rho.ket([0,Id]);
+trace1:bra([1,Id]) . rho . ket([1,Id])+bra([0,Id]) . rho . ket([0,Id]) ;
 ket(["-",1]) . bra(["-",1])/2+ket(["-",0]) . bra(["-",0])/2 $
 
-B:[ket([Id,1]),ket([Id,0])];
+B:[ket([Id,1]),ket([Id,0])] ;
 [ket([Id,1]),ket([Id,0])] $
 
-matrep(trace1,B);
+matrep(trace1,B) ;
 matrix([1/2,0],[0,1/2]) $
 
-declare(n,integer,n,scalar);
+declare(n,integer,n,scalar) ;
 done $
 
-ap.ket([n]);
+ap . ket([n]) ;
 sqrt(n+1)*ket([n+1]) $
 
-am.ket([n]);
+am . ket([n]) ;
 ket([n-1])*sqrt(n) $
 
-bra([n]).(ap+am)^^4.ket([n]);
-6*n^2+6*n+3 
+bra([n]) . (ap+am)^^4 . ket([n]) ;
+6*n^2+6*n+3  $

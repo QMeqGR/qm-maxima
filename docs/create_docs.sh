@@ -110,11 +110,16 @@ cat $packname.texi | grep "(%i" | \
 $MAXIMA -q -b examples.txt > rtest.tmp.out;
 
 cat rtest.tmp.out | awk '($1~/\(%i[1-9]/ && $2 !~ /batch/){printf("$\n\n");\
-    		    	for(i=2;i<NF+1;i++){printf("%s",$i)};printf(";\n");}\
+    		    	for(i=2;i<NF+1;i++){printf("%s ",$i)};printf(";\n");}\
     	      ($1~/\(%o[1-9]/ && $2 !~ /examples.txt/){for(i=2;i<NF+1;i++){printf("%s ",$i)}}\
 	      ($1 !~/\(%i[1-9]/ && $1 !~ /\(%o[1-9]/ && $1 !~ /Proviso/){print $0}'\
-		| tail -n +5 > rtest_$packname.mac;
+		| tail -n +5 > rtest.tmp2.out;
+
+# Add the trailing $ to the last line in the file
+nlines=$(wc -l rtest.tmp2.out | awk '{print $1}');
+cat rtest.tmp2.out | awk -v N=$nlines --source '(NR == N+1){print $0,"$"}(NR != N+1 ){print $0}'\
+			 > rtest_$packname.mac;
 
 if [ $debug -eq 0 ]; then
-    rm -f examples.txt rtest.tmp.out    
+    rm -f examples.txt rtest.tmp.out rtest.tmp2.out
 fi
