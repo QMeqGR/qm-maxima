@@ -267,6 +267,21 @@ computations. For this reason there are a set of @code{tpket}s and
 associated @code{tpXX} functions defined in section @code{(j,m)-kets and
 bras}.
 
+@subsection Basis sets
+
+As described above there are three basis ket types: mkets that have a
+matrix representation, abstract kets that are displayed in Dirac
+notation, and tensor product kets. Each of the three kets types can be
+used to construct a basis set. Valid basis sets are simply Maxima lists
+whose elements are one of the three ket types.
+
+@*
+@ @ @ @ @ @ @ @ [b@sub{1}, b@sub{2}, b@sub{3}, @dots{} ]
+
+@noindent
+Basis sets may be generated automatically using the @code{basis_set}
+shown in @xref{basis_set}.
+
 @subsection Types of spin operators: Jxx and Sxx operators
 
 When working with kets and bras in the matrix representation, use the
@@ -768,7 +783,6 @@ Example:
 @end example
 
 @subsection Basis set transformations
-
 
 Given a matrix representation of an operator in terms of @code{mket}s
 one may transform from one @code{mket} basis to another.

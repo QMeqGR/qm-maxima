@@ -94,7 +94,8 @@ kets and bras similar to what you see in this manual.
 <li><a href="#Basic-capabilities" accesskey="1">Basic capabilities</a></li>
 <li><a href="#Kets-and-bras_003a-abstract-and-matrix-representations" accesskey="2">Kets and bras: abstract and matrix representations</a></li>
 <li><a href="#Special-ket-types" accesskey="3">Special ket types</a></li>
-<li><a href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators" accesskey="4">Types of spin operators: Jxx and Sxx operators</a></li>
+<li><a href="#Basis-sets" accesskey="4">Basis sets</a></li>
+<li><a href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators" accesskey="5">Types of spin operators: Jxx and Sxx operators</a></li>
 </ul>
 <div class="subsection-level-extent" id="Basic-capabilities">
 <h4 class="subsection"><span>1.1.1 Basic capabilities<a class="copiable-link" href="#Basic-capabilities"> &para;</a></span></h4>
@@ -275,8 +276,24 @@ associated <code class="code">tpXX</code> functions defined in section <code cla
 bras</code>.
 </p>
 </div>
+<div class="subsection-level-extent" id="Basis-sets">
+<h4 class="subsection"><span>1.1.4 Basis sets<a class="copiable-link" href="#Basis-sets"> &para;</a></span></h4>
+
+<p>As described above there are three basis ket types: mkets that have a
+matrix representation, abstract kets that are displayed in Dirac
+notation, and tensor product kets. Each of the three kets types can be
+used to construct a basis set. Valid basis sets are simply Maxima lists
+whose elements are one of the three ket types.
+</p>
+<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[b<sub class="sub">1</sub>, b<sub class="sub">2</sub>, b<sub class="sub">3</sub>, &hellip; ]
+</p>
+<p>Basis sets may be generated automatically using the <code class="code">basis_set</code>
+shown in See <a class="xref" href="#basis_005fset">basis_set</a>.
+</p>
+</div>
 <div class="subsection-level-extent" id="Types-of-spin-operators_003a-Jxx-and-Sxx-operators">
-<h4 class="subsection"><span>1.1.4 Types of spin operators: Jxx and Sxx operators<a class="copiable-link" href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.1.5 Types of spin operators: Jxx and Sxx operators<a class="copiable-link" href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators"> &para;</a></span></h4>
 
 <p>When working with kets and bras in the matrix representation, use the
 spin operators <code class="code">Sxx</code>. When working with abstract kets and bras in
@@ -759,7 +776,6 @@ for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 </div>
 <div class="subsection-level-extent" id="Basis-set-transformations">
 <h4 class="subsection"><span>1.2.4 Basis set transformations<a class="copiable-link" href="#Basis-set-transformations"> &para;</a></span></h4>
-
 
 <p>Given a matrix representation of an operator in terms of <code class="code">mket</code>s
 one may transform from one <code class="code">mket</code> basis to another.
