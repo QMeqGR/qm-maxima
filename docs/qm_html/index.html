@@ -914,7 +914,6 @@ rotation operator <code class="code">Rz</code> for rotation through angle <code 
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) RY(1,t);
-Proviso: assuming 4*t # 0 
                      [ cos(t) + 1    sin(t)   1 - cos(t) ]
                      [ ----------  - -------  ---------- ]
                      [     2         sqrt(2)      2      ]
@@ -939,12 +938,13 @@ is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)<
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) U(w*Sy,t);
-Proviso: assuming 64*t*w # 0 
+<div class="group"><pre class="example-preformatted">(%i1) assume(w &gt; 0);
+(%o1)                               [w &gt; 0]
+(%i2) U(w*Sy,t);
                            [     t w         t w  ]
                            [ cos(---)  - sin(---) ]
                            [      2           2   ]
-(%o1)                      [                      ]
+(%o2)                      [                      ]
                            [     t w        t w   ]
                            [ sin(---)   cos(---)  ]
                            [      2          2    ]

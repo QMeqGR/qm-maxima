@@ -702,7 +702,6 @@ transform from one ‘mket’ basis to another.
      rotation operator ‘Rz’ for rotation through angle ‘t’.
 
      (%i1) RY(1,t);
-     Proviso: assuming 4*t # 0
                           [ cos(t) + 1    sin(t)   1 - cos(t) ]
                           [ ----------  - -------  ---------- ]
                           [     2         sqrt(2)      2      ]
@@ -722,12 +721,13 @@ transform from one ‘mket’ basis to another.
      ‘U(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It is
      defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
 
-     (%i1) U(w*Sy,t);
-     Proviso: assuming 64*t*w # 0
+     (%i1) assume(w > 0);
+     (%o1)                               [w > 0]
+     (%i2) U(w*Sy,t);
                                 [     t w         t w  ]
                                 [ cos(---)  - sin(---) ]
                                 [      2           2   ]
-     (%o1)                      [                      ]
+     (%o2)                      [                      ]
                                 [     t w        t w   ]
                                 [ sin(---)   cos(---)  ]
                                 [      2          2    ]
@@ -1642,7 +1642,7 @@ Appendix A Function and Variable index
 * tpscmult:                              Functions and Variables for qm.
                                                              (line  653)
 * U:                                     Functions and Variables for qm.
-                                                             (line  469)
+                                                             (line  468)
 * xm:                                    Functions and Variables for qm.
                                                              (line  209)
 * xp:                                    Functions and Variables for qm.
@@ -1710,50 +1710,50 @@ Ref: SM27178
 Ref: RX28017
 Ref: RY28184
 Ref: RZ28351
-Ref: U29335
-Ref: spin_mket30414
-Ref: spin_mbra30584
-Ref: jmtop31728
-Ref: jmbot31972
-Ref: jmket32220
-Ref: jmketp32455
-Ref: jmbrap32763
-Ref: jmcheck32909
-Ref: Jp33082
-Ref: Jm33258
-Ref: Jsqr33434
-Ref: Jz33602
-Ref: tpket35050
-Ref: tpbra35372
-Ref: tpbraket35694
-Ref: tpcfset36277
-Ref: tpscmult36393
-Ref: tpadd37059
-Ref: tpdagger37914
-Ref: J1z38470
-Ref: J2z38596
-Ref: Jtz39329
-Ref: J1sqr39890
-Ref: J2sqr39987
-Ref: J1p40085
-Ref: J2p40179
-Ref: Jtp40274
-Ref: J1m40363
-Ref: J2m40457
-Ref: Jtm40552
-Ref: J1p2m40641
-Ref: J1m2p41421
-Ref: J1zJ2z41513
-Ref: Jtsqr41607
-Ref: get_j42551
-Ref: matrep49604
-Ref: basis_set51812
-Ref: stationary54869
-Ref: qm_mtrace57550
-Ref: qm_atrace57725
-Ref: ap60165
-Ref: am60278
-Node: Function and Variable Index62591
+Ref: U29304
+Ref: spin_mket30424
+Ref: spin_mbra30594
+Ref: jmtop31738
+Ref: jmbot31982
+Ref: jmket32230
+Ref: jmketp32465
+Ref: jmbrap32773
+Ref: jmcheck32919
+Ref: Jp33092
+Ref: Jm33268
+Ref: Jsqr33444
+Ref: Jz33612
+Ref: tpket35060
+Ref: tpbra35382
+Ref: tpbraket35704
+Ref: tpcfset36287
+Ref: tpscmult36403
+Ref: tpadd37069
+Ref: tpdagger37924
+Ref: J1z38480
+Ref: J2z38606
+Ref: Jtz39339
+Ref: J1sqr39900
+Ref: J2sqr39997
+Ref: J1p40095
+Ref: J2p40189
+Ref: Jtp40284
+Ref: J1m40373
+Ref: J2m40467
+Ref: Jtm40562
+Ref: J1p2m40651
+Ref: J1m2p41431
+Ref: J1zJ2z41523
+Ref: Jtsqr41617
+Ref: get_j42561
+Ref: matrep49614
+Ref: basis_set51822
+Ref: stationary54879
+Ref: qm_mtrace57560
+Ref: qm_atrace57735
+Ref: ap60175
+Ref: am60288
+Node: Function and Variable Index62601
 
 End Tag Table
 

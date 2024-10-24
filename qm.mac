@@ -35,6 +35,23 @@ load("qm-index-html.lisp")$
 /*    flags       */
 /******************/
 
+/*********************************/
+/*     auxiliary functions       */
+/*********************************/
+/* This version of the matrix exponential was
+   suggested by Oscar Benjamin on the Maxima
+   discuss list. In my tests it is faster
+   than the core function matrixexp */
+matexp(m,t):=block([n1,n2,r,me,i,j],
+  n1:matrix_size(m)[1], n2:matrix_size(m)[2],
+  if n1#n2 then error("matrix must be square"),
+  r:(z*ident(n1)-m), rinv:invert(r),
+  for i: 1 thru n1 do
+     for j: 1 thru n1 do
+        me[i,j]: ilt(rinv[i,j],z,t),
+  genmatrix(me,n1,n1));
+
+
 /*****************************************/
 /*    complexp and realp predicates      */
 /*****************************************/
@@ -333,7 +350,8 @@ Sy1 : SY(1) $
 /*         Rotation Operators           */
 /****************************************/
 Rot(Op,phi) := block([M1,M2,M3],
-	  M1: matrixexp(-%i*Op*phi/hbar),
+	  /* M1: matrixexp(-%i*Op*phi/hbar), uses core function */
+	  M1: matexp(-%i*Op/hbar,phi),
 	  M2: matrixmap(distrib,M1),
 	  M3: matrixmap(combine,M2),
 	  trigreduce(M3)

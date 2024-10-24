@@ -670,7 +670,6 @@ transform from one ‘mket’ basis to another.
      rotation operator ‘Rz’ for rotation through angle ‘t’.
 
      (%i1) RY(1,t);
-     Proviso: assuming 4*t # 0
                           [ cos(t) + 1    sin(t)   1 - cos(t) ]
                           [ ----------  - -------  ---------- ]
                           [     2         sqrt(2)      2      ]
@@ -690,12 +689,13 @@ transform from one ‘mket’ basis to another.
      ‘U(H,t)’ is the time evolution operator for Hamiltonian ‘H’.  It is
      defined as the matrix exponential ‘matrixexp(-%i*H*t/hbar)’.
 
-     (%i1) U(w*Sy,t);
-     Proviso: assuming 64*t*w # 0
+     (%i1) assume(w > 0);
+     (%o1)                               [w > 0]
+     (%i2) U(w*Sy,t);
                                 [     t w         t w  ]
                                 [ cos(---)  - sin(---) ]
                                 [      2           2   ]
-     (%o1)                      [                      ]
+     (%o2)                      [                      ]
                                 [     t w        t w   ]
                                 [ sin(---)   cos(---)  ]
                                 [      2          2    ]
@@ -1606,7 +1606,7 @@ Appendix A Function and Variable index
 * tpscmult:                              Functions and Variables for qm.
                                                              (line  872)
 * U:                                     Functions and Variables for qm.
-                                                             (line  688)
+                                                             (line  687)
 * xm:                                    Functions and Variables for qm.
                                                              (line  428)
 * xp:                                    Functions and Variables for qm.

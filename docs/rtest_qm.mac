@@ -244,6 +244,9 @@ matrix([(cos(t)+1)/2,-(sin(t)/sqrt(2)),(1-cos(t))/2],               [sin(t)/sqrt
               [(1-cos(t))/2,sin(t)/sqrt(2),(cos(t)+1)/2])
 $
 
+assume(w > 0) ;
+[w > 0] $
+
 U(w*Sy,t) ;
 matrix([cos((t*w)/2),-sin((t*w)/2)],[sin((t*w)/2),cos((t*w)/2)]) $
 
