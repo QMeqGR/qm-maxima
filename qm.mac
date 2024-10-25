@@ -41,16 +41,11 @@ load("qm-index-html.lisp")$
 /* This version of the matrix exponential was
    suggested by Oscar Benjamin on the Maxima
    discuss list. In my tests it is faster
-   than the core function matrixexp */
-matexp(m,t):=block([n1,n2,r,me,i,j],
-  n1:matrix_size(m)[1], n2:matrix_size(m)[2],
-  if n1#n2 then error("matrix must be square"),
-  r:(z*ident(n1)-m), rinv:invert(r),
-  for i: 1 thru n1 do
-     for j: 1 thru n1 do
-        me[i,j]: ilt(rinv[i,j],z,t),
-  genmatrix(me,n1,n1));
-
+   than the core function matrixexp. The version
+   below is from Barton Willis. */
+matexp(m,t) := block([z : gensym()],
+    require_square_matrix(m,'first,'my_matrix_exp),
+    matrixmap(lambda([q], ilt(q,z,t)),(z*identfor(m) - m)^^-1))$
 
 /*****************************************/
 /*    complexp and realp predicates      */
