@@ -1220,6 +1220,15 @@ particle to obtain the density submatrix for particle 2.
      (%o2) [|d, d, d>, |d, d, u>, |d, u, d>, |d, u, u>, |u, d, d>, |u, d, u>,
                                                                |u, u, d>, |u, u, u>]
 
+ -- Function: complete (B)
+     The function ‘complete’ generates the completeness relation for the
+     basis set ‘B’.
+
+     (%i1) B:basis_set(1,[0,1]);
+     (%o1)                             [|1>, |0>]
+     (%i2) complete(B);
+     (%o2)                        |1> . <1| + |0> . <0|
+
 1.4.2 Example calculation of matrix elements
 --------------------------------------------
 
@@ -1452,11 +1461,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1385)
+                                                             (line 1394)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  521)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1381)
+                                                             (line 1390)
 * autobra:                               Functions and Variables for qm.
                                                              (line  348)
 * autoket:                               Functions and Variables for qm.
@@ -1473,6 +1482,8 @@ Appendix A Function and Variable index
                                                              (line  259)
 * commutator:                            Functions and Variables for qm.
                                                              (line  506)
+* complete:                              Functions and Variables for qm.
+                                                             (line 1222)
 * dagger:                                Functions and Variables for qm.
                                                              (line  365)
 * expect:                                Functions and Variables for qm.
@@ -1552,9 +1563,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  599)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1330)
+                                                             (line 1339)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1326)
+                                                             (line 1335)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  623)
 * RX:                                    Functions and Variables for qm.
@@ -1578,7 +1589,7 @@ Appendix A Function and Variable index
 * spin_mket:                             Functions and Variables for qm.
                                                              (line  713)
 * stationary:                            Functions and Variables for qm.
-                                                             (line 1269)
+                                                             (line 1278)
 * Sx:                                    Functions and Variables for qm.
                                                              (line  484)
 * SX:                                    Functions and Variables for qm.

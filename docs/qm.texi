@@ -1667,6 +1667,21 @@ particle states. The number of elements in the basis set is
 @end group
 @end example
 
+@anchor{complete}
+@deffn {Function} complete (@code{B})
+The function @code{complete} generates the completeness relation
+for the basis set @code{B}.
+@end deffn
+
+@example
+@group
+(%i1) B:basis_set(1,[0,1]);
+(%o1)                             [|1>, |0>]
+(%i2) complete(B);
+(%o2)                        |1> . <1| + |0> . <0|
+@end group
+@end example
+
 @page
 @subsection Example calculation of matrix elements
 

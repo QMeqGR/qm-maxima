@@ -1252,6 +1252,15 @@ particle to obtain the density submatrix for particle 2.
      (%o2) [|d, d, d>, |d, d, u>, |d, u, d>, |d, u, u>, |u, d, d>, |u, d, u>,
                                                                |u, u, d>, |u, u, u>]
 
+ -- Function: complete (B)
+     The function ‘complete’ generates the completeness relation for the
+     basis set ‘B’.
+
+     (%i1) B:basis_set(1,[0,1]);
+     (%o1)                             [|1>, |0>]
+     (%i2) complete(B);
+     (%o2)                        |1> . <1| + |0> . <0|
+
 1.4.2 Example calculation of matrix elements
 --------------------------------------------
 
@@ -1488,11 +1497,11 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1166)
+                                                             (line 1175)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  302)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1162)
+                                                             (line 1171)
 * autobra:                               Functions and Variables for qm.
                                                              (line  129)
 * autoket:                               Functions and Variables for qm.
@@ -1509,6 +1518,8 @@ Appendix A Function and Variable index
                                                              (line   40)
 * commutator:                            Functions and Variables for qm.
                                                              (line  287)
+* complete:                              Functions and Variables for qm.
+                                                             (line 1003)
 * dagger:                                Functions and Variables for qm.
                                                              (line  146)
 * expect:                                Functions and Variables for qm.
@@ -1588,9 +1599,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  380)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1111)
+                                                             (line 1120)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1107)
+                                                             (line 1116)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  404)
 * RX:                                    Functions and Variables for qm.
@@ -1614,7 +1625,7 @@ Appendix A Function and Variable index
 * spin_mket:                             Functions and Variables for qm.
                                                              (line  494)
 * stationary:                            Functions and Variables for qm.
-                                                             (line 1050)
+                                                             (line 1059)
 * Sx:                                    Functions and Variables for qm.
                                                              (line  265)
 * SX:                                    Functions and Variables for qm.
@@ -1748,12 +1759,13 @@ Ref: Jtsqr41617
 Ref: get_j42561
 Ref: matrep49614
 Ref: basis_set51822
-Ref: stationary54879
-Ref: qm_mtrace57560
-Ref: qm_atrace57735
-Ref: ap60175
-Ref: am60288
-Node: Function and Variable Index62601
+Ref: complete52439
+Ref: stationary55172
+Ref: qm_mtrace57853
+Ref: qm_atrace58028
+Ref: ap60468
+Ref: am60581
+Node: Function and Variable Index62894
 
 End Tag Table
 

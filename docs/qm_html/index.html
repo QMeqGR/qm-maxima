@@ -1618,6 +1618,19 @@ particle states. The number of elements in the basis set is
                                                           |u, u, d&gt;, |u, u, u&gt;]
 </pre></div></div>
 
+<a class="anchor" id="complete"></a><dl class="first-deffn">
+<dt class="deffn" id="index-complete"><span class="category-def">Function: </span><span><strong class="def-name">complete</strong> <var class="def-var-arguments">(<code class="code">B</code>)</var><a class="copiable-link" href="#index-complete"> &para;</a></span></dt>
+<dd><p>The function <code class="code">complete</code> generates the completeness relation
+for the basis set <code class="code">B</code>.
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) B:basis_set(1,[0,1]);
+(%o1)                             [|1&gt;, |0&gt;]
+(%i2) complete(B);
+(%o2)                        |1&gt; . &lt;1| + |0&gt; . &lt;0|
+</pre></div></div>
+
 </div>
 <div class="subsection-level-extent" id="Example-calculation-of-matrix-elements">
 <h4 class="subsection"><span>1.4.2 Example calculation of matrix elements<a class="copiable-link" href="#Example-calculation-of-matrix-elements"> &para;</a></span></h4>

@@ -19,7 +19,16 @@
 /* predef.mac, part of the qm-maxima package */
 /* E. Majzoub Oct 2024 */
 /* Pre-defined basis sets and other conveniences,
-This file is not loaded autmatically. */
+This file is loaded autmatically. */
+
+hadamard: 1/sqrt(2)*(ket([0]) . bra([0]) + ket([0]) . bra([1])
+  + ket([1]) . bra([0]) - ket([1]) . bra([1]) );
+
+paulix: ket([0]) . bra([1]) + ket([1]) . bra([0]);
+pauliy: -%i * ket([0]) . bra([1]) + %i * ket([1]) . bra([0]);
+pauliz: ket([0]) . bra([0]) - ket([1]) . bra([1]);
+
+phase:  ket([0]) . bra([0]) + %i * ket([1]) . bra([1]);
 
 bell1: 1/sqrt(2)*(ket([1,0])-ket([0,1]));
 bell2: 1/sqrt(2)*(ket([1,0])+ket([0,1]));

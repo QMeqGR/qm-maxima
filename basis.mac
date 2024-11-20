@@ -76,6 +76,14 @@ op_trans(A,B1,B2):=block([N1:length(B1),N2:length(B2),M,Md],
   Md . A . M);
 
 
+/* construct the completeness relation */
+complete(B):=block([N,CR:0],
+  if basis_set_p(B)=false then return(disp("Bad basis set arg.")),
+  N:length(B),
+  for i: 1 thru N do
+  CR: CR + B[i] . dagger(B[i]),
+  CR);
+
 /*******************************/
 /*   Abstract basis sets       */
 /*******************************/
