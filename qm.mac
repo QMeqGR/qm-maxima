@@ -129,8 +129,8 @@ simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 
 /* special case of dagger for matrix argument */
 matchdeclare(mx, matrixp,nn,integerp);
-simp:false; tellsimp( dagger( mx^nn ), dagger(mx)^nn );
-simp:false; tellsimp( dagger( mx^^nn ), dagger(mx)^^nn );
+simp:false; tellsimp( dagger( mx^nn ), dagger(mx)^nn ); simp:true;
+simp:false; tellsimp( dagger( mx^^nn ), dagger(mx)^^nn ); simp:true;
 tellsimpafter( dagger(mx), conjugate(transpose (mx)) );
 
 /********************/
@@ -157,12 +157,14 @@ tellsimp( ket(L1) . ket(L2) , ket(append(L1,L2)) );
 tellsimp( bra(L1) . bra(L2) , bra(append(L1,L2)) );
 
 cnump(z):=if complexp(z) or numberp(z) then true;
-matchdeclare([a,b,A1,A2],all,[cx1,cx2,cx3,cx4],cnump,[L1,L2],listp);
+matchdeclare([a,b,A1,A2],all,[L1,L2],listp);
 tellsimpafter( a . (A1+A2), expand(a . (A1 + A2)) );
-simp:false; tellsimpafter( cx1*bra(L1) . cx3*ket(L2), cx1*cx3* (bra(L1) . ket(L2))); simp:true;
-simp:false; tellsimpafter( bra(L1)*cx2 . ket(L2)*cx4, cx2*cx4* (bra(L1) . ket(L2))); simp:true;
-simp:false; tellsimpafter( bra(L1)*cx2 . cx3*ket(L2), cx2*cx3* (bra(L1) . ket(L2))); simp:true;
-simp:false; tellsimpafter( cx1*bra(L2) . ket(L2)*cx4, cx1*cx4* (bra(L1) . ket(L2))); simp:true;
+
+matchdeclare([cx1,cx2],lambda([x],scalarp(x) or cnump(x)));
+tellsimpafter( cx1*bra(L1) . cx2*ket(L2), cx1*cx2*(bra(L1) . ket(L2)) );
+tellsimpafter( bra(L1)*cx1 . cx2*ket(L2), cx1*cx2*(bra(L1) . ket(L2)) );
+tellsimpafter( bra(L1)*cx1 . ket(L2)*cx2, cx1*cx2*(bra(L1) . ket(L2)) );
+tellsimpafter( bra(L1)*cx1 . ket(L2)*cx2, cx1*cx2*(bra(L1) . ket(L2)) );
 
 /* Very important rule that allows simplification of general expressions. */
 /* This works because of the way the simplifier outputs things in () */
