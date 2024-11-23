@@ -275,7 +275,6 @@ notation, and tensor product kets. Each of the three kets types can be
 used to construct a basis set. Valid basis sets are simply Maxima lists
 whose elements are one of the three ket types.
 
-@*
 @ @ @ @ @ @ @ @ [b@sub{1}, b@sub{2}, b@sub{3}, @dots{} ]
 
 @noindent
@@ -290,6 +289,49 @@ the (j,m) representation use the operators @code{Jxx}. The family of
 @code{Sxx} operators are represented as matrices in Maxima, while the
 family of @code{Jxx} operators are rule based or function based.
 
+@subsection The dot operator in Maxima
+
+The dot operator ``.'' in Maxima is used for non-commutative
+multiplication. In the @code{qm} package the dot operator is
+used in the representation of dyads, for example:
+
+@ @ @ @ @ @ @ @code{|a> . <b|}
+
+@noindent
+where @code{|a>} and @code{|b>} are arbitrary kets, and to represent
+brakets, with
+
+@ @ @ @ @ @ @ @code{<b| . |a> = <b|a>}.
+
+@noindent
+There are two important flags that control how Maxima treats the dot
+operator that are relevant to the @code{qm} package: @code{dotscrules}
+and @code{dotconstrules}. The first allows declared scalar multipliers
+to move past the dot operator, while the second allows declared
+constants to move past the dot operator. An example where this must be
+done is the following, where we use the completeness relation for the
+basis set given by the kets @code{|0>} and @code{|1>}. Only the last
+line is correctly evaluated, and required declaring @code{a} and
+@code{b} to be scalar, and setting @code{dotscrules} to @code{true}.
+
+@example
+@group
+(%i1) V:complete(basis_set(1,[0,1]));
+(%o1)                        |1> . <1| + |0> . <0|
+(%i2) psi:a*ket([0])+b*ket([1]);
+(%o2)                            |1> b + |0> a
+(%i3) V . psi;
+(%o3)                          |1> . b + |0> . a
+(%i4) declare([a,b],scalar);
+(%o4)                                done
+(%i5) V . psi;
+(%o5)                          |1> . b + |0> . a
+(%i6) dotscrules:true;
+(%o6)                                true
+(%i7) V . psi;
+(%o7)                            |1> b + |0> a
+@end group
+@end example
 
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm

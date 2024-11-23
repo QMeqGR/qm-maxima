@@ -233,8 +233,6 @@ notation, and tensor product kets.  Each of the three kets types can be
 used to construct a basis set.  Valid basis sets are simply Maxima lists
 whose elements are one of the three ket types.
 
-
-
            [b_{1}, b_{2}, b_{3}, ... ]
 
 Basis sets may be generated automatically using the ‘basis_set’ shown in
@@ -248,6 +246,44 @@ spin operators ‘Sxx’.  When working with abstract kets and bras in the
 (j,m) representation use the operators ‘Jxx’.  The family of ‘Sxx’
 operators are represented as matrices in Maxima, while the family of
 ‘Jxx’ operators are rule based or function based.
+
+1.1.6 The dot operator in Maxima
+--------------------------------
+
+The dot operator "."  in Maxima is used for non-commutative
+multiplication.  In the ‘qm’ package the dot operator is used in the
+representation of dyads, for example:
+
+          ‘|a> . <b|’
+
+where ‘|a>’ and ‘|b>’ are arbitrary kets, and to represent brakets, with
+
+          ‘<b| . |a> = <b|a>’.
+
+There are two important flags that control how Maxima treats the dot
+operator that are relevant to the ‘qm’ package: ‘dotscrules’ and
+‘dotconstrules’.  The first allows declared scalar multipliers to move
+past the dot operator, while the second allows declared constants to
+move past the dot operator.  An example where this must be done is the
+following, where we use the completeness relation for the basis set
+given by the kets ‘|0>’ and ‘|1>’.  Only the last line is correctly
+evaluated, and required declaring ‘a’ and ‘b’ to be scalar, and setting
+‘dotscrules’ to ‘true’.
+
+     (%i1) V:complete(basis_set(1,[0,1]));
+     (%o1)                        |1> . <1| + |0> . <0|
+     (%i2) psi:a*ket([0])+b*ket([1]);
+     (%o2)                            |1> b + |0> a
+     (%i3) V . psi;
+     (%o3)                          |1> . b + |0> . a
+     (%i4) declare([a,b],scalar);
+     (%o4)                                done
+     (%i5) V . psi;
+     (%o5)                          |1> . b + |0> . a
+     (%i6) dotscrules:true;
+     (%o6)                                true
+     (%i7) V . psi;
+     (%o7)                            |1> b + |0> a
 
 
 File: qm.info,  Node: Functions and Variables for qm,  Prev: Introduction to package qm,  Up: Top
@@ -1678,94 +1714,94 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top287
 Node: Introduction to package qm605
-Node: Functions and Variables for qm9828
-Ref: hbar10000
-Ref: ket10308
-Ref: ketp10740
-Ref: bra10921
-Ref: brap11353
-Ref: mket11534
-Ref: mketp12325
-Ref: mbra12965
-Ref: mbrap13647
-Ref: autoket14373
-Ref: autobra15415
-Ref: dagger16255
-Ref: braket16693
-Ref: norm17452
-Ref: magsqr17908
-Ref: zp18674
-Ref: zm18737
-Ref: xp18800
-Ref: xm18863
-Ref: yp18926
-Ref: ym18989
-Ref: sigmax20723
-Ref: sigmay20780
-Ref: sigmaz20837
-Ref: Sx20894
-Ref: Sy20951
-Ref: Sz21008
-Ref: commutator21645
-Ref: anticommutator22315
-Ref: SX22722
-Ref: SY22935
-Ref: SZ23148
-Ref: basis_set_p24656
-Ref: mtrans24987
-Ref: op_trans25618
-Ref: expect26327
-Ref: qm_variance26570
-Ref: SP27085
-Ref: SM27178
-Ref: RX28017
-Ref: RY28184
-Ref: RZ28351
-Ref: U29304
-Ref: spin_mket30424
-Ref: spin_mbra30594
-Ref: jmtop31738
-Ref: jmbot31982
-Ref: jmket32230
-Ref: jmketp32465
-Ref: jmbrap32773
-Ref: jmcheck32919
-Ref: Jp33092
-Ref: Jm33268
-Ref: Jsqr33444
-Ref: Jz33612
-Ref: tpket35060
-Ref: tpbra35382
-Ref: tpbraket35704
-Ref: tpcfset36287
-Ref: tpscmult36403
-Ref: tpadd37069
-Ref: tpdagger37924
-Ref: J1z38480
-Ref: J2z38606
-Ref: Jtz39339
-Ref: J1sqr39900
-Ref: J2sqr39997
-Ref: J1p40095
-Ref: J2p40189
-Ref: Jtp40284
-Ref: J1m40373
-Ref: J2m40467
-Ref: Jtm40562
-Ref: J1p2m40651
-Ref: J1m2p41431
-Ref: J1zJ2z41523
-Ref: Jtsqr41617
-Ref: get_j42561
-Ref: matrep49614
-Ref: basis_set51822
-Ref: complete52439
-Ref: stationary55172
-Ref: qm_mtrace57853
-Ref: qm_atrace58028
-Ref: ap60468
-Ref: am60581
-Node: Function and Variable Index62894
+Node: Functions and Variables for qm11390
+Ref: hbar11562
+Ref: ket11870
+Ref: ketp12302
+Ref: bra12483
+Ref: brap12915
+Ref: mket13096
+Ref: mketp13887
+Ref: mbra14527
+Ref: mbrap15209
+Ref: autoket15935
+Ref: autobra16977
+Ref: dagger17817
+Ref: braket18255
+Ref: norm19014
+Ref: magsqr19470
+Ref: zp20236
+Ref: zm20299
+Ref: xp20362
+Ref: xm20425
+Ref: yp20488
+Ref: ym20551
+Ref: sigmax22285
+Ref: sigmay22342
+Ref: sigmaz22399
+Ref: Sx22456
+Ref: Sy22513
+Ref: Sz22570
+Ref: commutator23207
+Ref: anticommutator23877
+Ref: SX24284
+Ref: SY24497
+Ref: SZ24710
+Ref: basis_set_p26218
+Ref: mtrans26549
+Ref: op_trans27180
+Ref: expect27889
+Ref: qm_variance28132
+Ref: SP28647
+Ref: SM28740
+Ref: RX29579
+Ref: RY29746
+Ref: RZ29913
+Ref: U30866
+Ref: spin_mket31986
+Ref: spin_mbra32156
+Ref: jmtop33300
+Ref: jmbot33544
+Ref: jmket33792
+Ref: jmketp34027
+Ref: jmbrap34335
+Ref: jmcheck34481
+Ref: Jp34654
+Ref: Jm34830
+Ref: Jsqr35006
+Ref: Jz35174
+Ref: tpket36622
+Ref: tpbra36944
+Ref: tpbraket37266
+Ref: tpcfset37849
+Ref: tpscmult37965
+Ref: tpadd38631
+Ref: tpdagger39486
+Ref: J1z40042
+Ref: J2z40168
+Ref: Jtz40901
+Ref: J1sqr41462
+Ref: J2sqr41559
+Ref: J1p41657
+Ref: J2p41751
+Ref: Jtp41846
+Ref: J1m41935
+Ref: J2m42029
+Ref: Jtm42124
+Ref: J1p2m42213
+Ref: J1m2p42993
+Ref: J1zJ2z43085
+Ref: Jtsqr43179
+Ref: get_j44123
+Ref: matrep51176
+Ref: basis_set53384
+Ref: complete54001
+Ref: stationary56734
+Ref: qm_mtrace59415
+Ref: qm_atrace59590
+Ref: ap62030
+Ref: am62143
+Node: Function and Variable Index64456
 
 End Tag Table
 

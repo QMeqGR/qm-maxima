@@ -59,6 +59,30 @@ matrix([conjugate(c1),conjugate(c2),r]) $
 b . k ;
 r^2+c2*conjugate(c2)+c1*conjugate(c1) $
 
+V:complete(basis_set(1,[0,1])) ;
+ket([1]) . bra([1])+ket([0]) . bra([0]) $
+
+psi:a*ket([0])+b*ket([1]) ;
+ket([1])*matrix([conjugate(c1),conjugate(c2),r])+ket([0])*a $
+
+V . psi ;
+ket([1]) . matrix([conjugate(c1),conjugate(c2),r])  +ket([0]) . a+ket([0]) . matrix([0,0,0])
+$
+
+declare([a,b],scalar) ;
+done $
+
+V . psi ;
+ket([1]) . matrix([conjugate(c1),conjugate(c2),r])  +ket([0]) . a+ket([0]) . matrix([0,0,0])
+$
+
+dotscrules:true ;
+true $
+
+V . psi ;
+ket([0])*a+ket([1]) . matrix([conjugate(c1),conjugate(c2),r])                  +ket([0]) . matrix([0,0,0])
+$
+
 k:ket([u,d]) ;
 ket([u,d]) $
 

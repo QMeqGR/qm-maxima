@@ -96,6 +96,7 @@ kets and bras similar to what you see in this manual.
 <li><a href="#Special-ket-types" accesskey="3">Special ket types</a></li>
 <li><a href="#Basis-sets" accesskey="4">Basis sets</a></li>
 <li><a href="#Types-of-spin-operators_003a-Jxx-and-Sxx-operators" accesskey="5">Types of spin operators: Jxx and Sxx operators</a></li>
+<li><a href="#The-dot-operator-in-Maxima" accesskey="6">The dot operator in Maxima</a></li>
 </ul>
 <div class="subsection-level-extent" id="Basic-capabilities">
 <h4 class="subsection"><span>1.1.1 Basic capabilities<a class="copiable-link" href="#Basic-capabilities"> &para;</a></span></h4>
@@ -285,7 +286,6 @@ notation, and tensor product kets. Each of the three kets types can be
 used to construct a basis set. Valid basis sets are simply Maxima lists
 whose elements are one of the three ket types.
 </p>
-<br>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[b<sub class="sub">1</sub>, b<sub class="sub">2</sub>, b<sub class="sub">3</sub>, &hellip; ]
 </p>
 <p>Basis sets may be generated automatically using the <code class="code">basis_set</code>
@@ -301,6 +301,47 @@ the (j,m) representation use the operators <code class="code">Jxx</code>. The fa
 <code class="code">Sxx</code> operators are represented as matrices in Maxima, while the
 family of <code class="code">Jxx</code> operators are rule based or function based.
 </p>
+</div>
+<div class="subsection-level-extent" id="The-dot-operator-in-Maxima">
+<h4 class="subsection"><span>1.1.6 The dot operator in Maxima<a class="copiable-link" href="#The-dot-operator-in-Maxima"> &para;</a></span></h4>
+
+<p>The dot operator &ldquo;.&rdquo; in Maxima is used for non-commutative
+multiplication. In the <code class="code">qm</code> package the dot operator is
+used in the representation of dyads, for example:
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">|a&gt; . &lt;b|</code>
+</p>
+<p>where <code class="code">|a&gt;</code> and <code class="code">|b&gt;</code> are arbitrary kets, and to represent
+brakets, with
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">&lt;b| . |a&gt; = &lt;b|a&gt;</code>.
+</p>
+<p>There are two important flags that control how Maxima treats the dot
+operator that are relevant to the <code class="code">qm</code> package: <code class="code">dotscrules</code>
+and <code class="code">dotconstrules</code>. The first allows declared scalar multipliers
+to move past the dot operator, while the second allows declared
+constants to move past the dot operator. An example where this must be
+done is the following, where we use the completeness relation for the
+basis set given by the kets <code class="code">|0&gt;</code> and <code class="code">|1&gt;</code>. Only the last
+line is correctly evaluated, and required declaring <code class="code">a</code> and
+<code class="code">b</code> to be scalar, and setting <code class="code">dotscrules</code> to <code class="code">true</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) V:complete(basis_set(1,[0,1]));
+(%o1)                        |1&gt; . &lt;1| + |0&gt; . &lt;0|
+(%i2) psi:a*ket([0])+b*ket([1]);
+(%o2)                            |1&gt; b + |0&gt; a
+(%i3) V . psi;
+(%o3)                          |1&gt; . b + |0&gt; . a
+(%i4) declare([a,b],scalar);
+(%o4)                                done
+(%i5) V . psi;
+(%o5)                          |1&gt; . b + |0&gt; . a
+(%i6) dotscrules:true;
+(%o6)                                true
+(%i7) V . psi;
+(%o7)                            |1&gt; b + |0&gt; a
+</pre></div></div>
 
 <hr>
 </div>
