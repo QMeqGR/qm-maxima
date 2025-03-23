@@ -26,6 +26,7 @@ load("tprod.mac") $
 load("qho.mac") $
 load("basis.mac") $
 load("predef.mac") $
+load("tpdisp.lisp") $
 
 /* load the documentation */
 load("qm-index.lisp")$
