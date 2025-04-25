@@ -17,7 +17,7 @@
 */
 
 if get('qm,'qm_version)#false then error("Package qm already loaded!")$
-put('qm,'0.95,'qm_version)$
+put('qm,'0.97,'qm_version)$
 
 /* load additional codes */
 load("qm.lisp") $
