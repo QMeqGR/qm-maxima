@@ -51,12 +51,12 @@ autodecl(elm):= block([i],
 /**********************************************************/
 /* Compute the X and Y kets for spin-s, ms in the z-basis */
 /**********************************************************/
-spin_mket(s,ms,ax):=block([k,eql,soln,eq2,asol,n:2*s+1],
+spin_mket(s,ms,ax):=block([L,k,eql,soln,eq2,asol,n:2*s+1],
     L:makelist(concat(c,i),i,n),
     k: autoket(L),
     if ax=1 then eq1:SX(s).k-hbar*ms.k
         elseif ax=2 then eq1:SY(s).k-hbar*ms.k
-        else disp("ax must be 1,2 i.e., (X,Y)"),
+        else return( autoket( makelist(kron_delta(i,s-ms+1),i,n) ) ),
     eql: makelist(eq1[i][1],i,n-1),
     soln: solve(eql,makelist(concat(c,i),i,2,n)),
     k: subst(soln,k),

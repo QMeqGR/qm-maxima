@@ -1017,15 +1017,15 @@ of a ket or bra in the (j,m)-basis one uses the @code{spin_mket} and
 @code{spin_mbra} functions.
 
 @anchor{spin_mket}
-@deffn {Function} spin_mket (s,m@sub{s},[1,2])
+@deffn {Function} spin_mket (s,m@sub{s},[1,2,3])
 @code{spin_mket} returns a ket in the @code{z}-basis for spin @code{s}
-and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
+and z-projection @code{m@sub{s}}, for axis 1=X, 2=Y, 3=Z.
 @end deffn
 
 @anchor{spin_mbra}
-@deffn {Function} spin_mbra (s,m@sub{s},[1,2])
+@deffn {Function} spin_mbra (s,m@sub{s},[1,2,3])
 @code{spin_mbra} returns a bra in the @code{z}-basis for spin @code{s}
-and z-projection @code{m@sub{s}}, for axis 1=X or 2=Y.
+and z-projection @code{m@sub{s}}, for axis 1=X, 2=Y, 3=Z.
 @end deffn
 
 @example

@@ -20,7 +20,7 @@ space.  It was written with students in mind as well as practitioners,
 and is appropriate for upper-level undergraduate quantum mechanics at
 the level of Townsend's _A Modern Introduction to Quantum Mechanics_ and
 above.  Using the package one may compute, for example, the hyperfine
-splitting in hydrogen with only a few commands (*Note stationary::).
+splitting in hydrogen with only a few commands (See stationary).
 Numerous other examples are given throughout the manual.  Additional
 examples are provided as wxMaxima worksheets in the ‘doc/examples’
 folder of the package.
@@ -207,7 +207,7 @@ whose elements are one of the three ket types.
            [b_{1}, b_{2}, b_{3}, ... ]
 
 Basis sets may be generated automatically using the ‘basis_set’ shown in
-*Note basis_set::.
+See basis_set.
 
 1.1.5 Types of spin operators: Jxx and Sxx operators
 ----------------------------------------------------
@@ -747,13 +747,13 @@ represented in the ‘z’-basis.  To create a matrix representation of of a
 ket or bra in the (j,m)-basis one uses the ‘spin_mket’ and ‘spin_mbra’
 functions.
 
- -- Function: spin_mket (s,m_{s},[1,2])
+ -- Function: spin_mket (s,m_{s},[1,2,3])
      ‘spin_mket’ returns a ket in the ‘z’-basis for spin ‘s’ and
-     z-projection ‘m_{s}’, for axis 1=X or 2=Y.
+     z-projection ‘m_{s}’, for axis 1=X, 2=Y, 3=Z.
 
- -- Function: spin_mbra (s,m_{s},[1,2])
+ -- Function: spin_mbra (s,m_{s},[1,2,3])
      ‘spin_mbra’ returns a bra in the ‘z’-basis for spin ‘s’ and
-     z-projection ‘m_{s}’, for axis 1=X or 2=Y.
+     z-projection ‘m_{s}’, for axis 1=X, 2=Y, 3=Z.
 
      (%i1) spin_mbra(3/2,1/2,2);
                          [ sqrt(3)     %i    1      sqrt(3) %i ]

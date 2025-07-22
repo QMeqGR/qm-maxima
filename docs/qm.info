@@ -1,4 +1,4 @@
-This is qm.info, produced by makeinfo version 7.1.1 from qm.texi.
+This is qm.info, produced by makeinfo version 7.2 from qm.texi.
 
 INFO-DIR-SECTION Mathematics/Maxima
 START-INFO-DIR-ENTRY
@@ -9,7 +9,6 @@ END-INFO-DIR-ENTRY
 
 * Introduction to package qm::
 * Functions and Variables for qm::
-
 
 File: qm.info,  Node: Top,  Next: Introduction to package qm,  Prev: (dir),  Up: (dir)
 
@@ -25,7 +24,6 @@ Package qm
 
 * Introduction to package qm::
 * Functions and Variables for qm::
-
 
 1 Package qm
 ************
@@ -779,13 +777,13 @@ represented in the ‘z’-basis.  To create a matrix representation of of a
 ket or bra in the (j,m)-basis one uses the ‘spin_mket’ and ‘spin_mbra’
 functions.
 
- -- Function: spin_mket (s,m_{s},[1,2])
+ -- Function: spin_mket (s,m_{s},[1,2,3])
      ‘spin_mket’ returns a ket in the ‘z’-basis for spin ‘s’ and
-     z-projection ‘m_{s}’, for axis 1=X or 2=Y.
+     z-projection ‘m_{s}’, for axis 1=X, 2=Y, 3=Z.
 
- -- Function: spin_mbra (s,m_{s},[1,2])
+ -- Function: spin_mbra (s,m_{s},[1,2,3])
      ‘spin_mbra’ returns a bra in the ‘z’-basis for spin ‘s’ and
-     z-projection ‘m_{s}’, for axis 1=X or 2=Y.
+     z-projection ‘m_{s}’, for axis 1=X, 2=Y, 3=Z.
 
      (%i1) spin_mbra(3/2,1/2,2);
                          [ sqrt(3)     %i    1      sqrt(3) %i ]
@@ -1706,99 +1704,98 @@ Appendix A Function and Variable index
 * hbar:                                  Functions and Variables for qm.
                                                                 (line 6)
 
-
 
 Tag Table:
-Node: Top289
-Node: Introduction to package qm607
-Node: Functions and Variables for qm11392
-Ref: hbar11564
-Ref: ket11872
-Ref: ketp12304
-Ref: bra12485
-Ref: brap12917
-Ref: mket13098
-Ref: mketp13889
-Ref: mbra14529
-Ref: mbrap15211
-Ref: autoket15937
-Ref: autobra16979
-Ref: dagger17819
-Ref: braket18257
-Ref: norm19016
-Ref: magsqr19472
-Ref: zp20238
-Ref: zm20301
-Ref: xp20364
-Ref: xm20427
-Ref: yp20490
-Ref: ym20553
-Ref: sigmax22287
-Ref: sigmay22344
-Ref: sigmaz22401
-Ref: Sx22458
-Ref: Sy22515
-Ref: Sz22572
-Ref: commutator23209
-Ref: anticommutator23879
-Ref: SX24286
-Ref: SY24499
-Ref: SZ24712
-Ref: basis_set_p26220
-Ref: mtrans26551
-Ref: op_trans27182
-Ref: expect27891
-Ref: qm_variance28134
-Ref: SP28649
-Ref: SM28742
-Ref: RX29581
-Ref: RY29748
-Ref: RZ29915
-Ref: U30868
-Ref: spin_mket31988
-Ref: spin_mbra32158
-Ref: jmtop33302
-Ref: jmbot33546
-Ref: jmket33794
-Ref: jmketp34029
-Ref: jmbrap34337
-Ref: jmcheck34483
-Ref: Jp34656
-Ref: Jm34832
-Ref: Jsqr35008
-Ref: Jz35176
-Ref: tpket36624
-Ref: tpbra36939
-Ref: tpbraket37254
-Ref: tpcfset37824
-Ref: tpscmult37940
-Ref: tpadd38592
-Ref: tpdagger39414
-Ref: J1z39956
-Ref: J2z40082
-Ref: Jtz40788
-Ref: J1sqr41332
-Ref: J2sqr41429
-Ref: J1p41527
-Ref: J2p41621
-Ref: Jtp41716
-Ref: J1m41805
-Ref: J2m41899
-Ref: Jtm41994
-Ref: J1p2m42083
-Ref: J1m2p42842
-Ref: J1zJ2z42934
-Ref: Jtsqr43028
-Ref: get_j43939
-Ref: matrep50804
-Ref: basis_set53012
-Ref: complete53629
-Ref: stationary56365
-Ref: qm_mtrace58958
-Ref: qm_atrace59133
-Ref: ap61573
-Ref: am61686
-Node: Function and Variable Index63999
+Node: Top286
+Node: Introduction to package qm603
+Node: Functions and Variables for qm11388
+Ref: hbar11560
+Ref: ket11868
+Ref: ketp12300
+Ref: bra12481
+Ref: brap12913
+Ref: mket13094
+Ref: mketp13885
+Ref: mbra14525
+Ref: mbrap15207
+Ref: autoket15933
+Ref: autobra16975
+Ref: dagger17815
+Ref: braket18253
+Ref: norm19012
+Ref: magsqr19468
+Ref: zp20234
+Ref: zm20297
+Ref: xp20360
+Ref: xm20423
+Ref: yp20486
+Ref: ym20549
+Ref: sigmax22283
+Ref: sigmay22340
+Ref: sigmaz22397
+Ref: Sx22454
+Ref: Sy22511
+Ref: Sz22568
+Ref: commutator23205
+Ref: anticommutator23875
+Ref: SX24282
+Ref: SY24495
+Ref: SZ24708
+Ref: basis_set_p26216
+Ref: mtrans26547
+Ref: op_trans27178
+Ref: expect27887
+Ref: qm_variance28130
+Ref: SP28645
+Ref: SM28738
+Ref: RX29577
+Ref: RY29744
+Ref: RZ29911
+Ref: U30864
+Ref: spin_mket31984
+Ref: spin_mbra32159
+Ref: jmtop33308
+Ref: jmbot33552
+Ref: jmket33800
+Ref: jmketp34035
+Ref: jmbrap34343
+Ref: jmcheck34489
+Ref: Jp34662
+Ref: Jm34838
+Ref: Jsqr35014
+Ref: Jz35182
+Ref: tpket36630
+Ref: tpbra36945
+Ref: tpbraket37260
+Ref: tpcfset37830
+Ref: tpscmult37946
+Ref: tpadd38598
+Ref: tpdagger39420
+Ref: J1z39962
+Ref: J2z40088
+Ref: Jtz40794
+Ref: J1sqr41338
+Ref: J2sqr41435
+Ref: J1p41533
+Ref: J2p41627
+Ref: Jtp41722
+Ref: J1m41811
+Ref: J2m41905
+Ref: Jtm42000
+Ref: J1p2m42089
+Ref: J1m2p42848
+Ref: J1zJ2z42940
+Ref: Jtsqr43034
+Ref: get_j43945
+Ref: matrep50810
+Ref: basis_set53018
+Ref: complete53635
+Ref: stationary56371
+Ref: qm_mtrace58964
+Ref: qm_atrace59139
+Ref: ap61579
+Ref: am61692
+Node: Function and Variable Index64005
 
 End Tag Table
 

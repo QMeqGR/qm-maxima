@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Top (Package qm)</title>
@@ -353,16 +353,16 @@ Previous: <a href="#Introduction-to-package-qm" accesskey="p" rel="prev">Introdu
 </div>
 <h3 class="section" id="Functions-and-Variables-for-qm-1"><span>1.2 Functions and Variables for qm<a class="copiable-link" href="#Functions-and-Variables-for-qm-1"> &para;</a></span></h3>
 
-<a class="anchor" id="hbar"></a><dl class="first-defvr">
-<dt class="defvr" id="index-hbar"><span class="category-def">Variable: </span><span><strong class="def-name">hbar</strong><a class="copiable-link" href="#index-hbar"> &para;</a></span></dt>
+<a class="anchor" id="hbar"></a><dl class="first-defvr def-block">
+<dt class="defvr def-line" id="index-hbar"><span class="category-def">Variable: </span><span><strong class="def-name">hbar</strong><a class="copiable-link" href="#index-hbar"> &para;</a></span></dt>
 <dd><p>Planck&rsquo;s constant divided by <code class="code">2*%pi</code>. <code class="code">hbar</code> is not given a
 floating point value, but is declared to be a real number greater than
 zero. If the system variable <code class="code">display2d_unicode</code> is <code class="code">true</code> then
 <code class="code">hbar</code> will be displayed as its Unicode character.
 </p></dd></dl>
 
-<a class="anchor" id="ket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-ket"><span class="category-def">Function: </span><span><strong class="def-name">ket</strong> <var class="def-var-arguments">([<code class="code">k<sub class="sub">1</sub></code>,<code class="code">k<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-ket"> &para;</a></span></dt>
+<a class="anchor" id="ket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-ket"><span class="category-def">Function: </span><span><strong class="def-name">ket</strong> <var class="def-var-arguments">([<code class="code">k<sub class="sub">1</sub></code>,<code class="code">k<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-ket"> &para;</a></span></dt>
 <dd><p><code class="code">ket</code> creates a general state ket, or tensor product, with symbols
 <code class="code">k<sub class="sub">i</sub></code> representing the states. The state kets <code class="code">k<sub class="sub">i</sub></code>
 are assumed to be orthonormal.
@@ -377,14 +377,14 @@ are assumed to be orthonormal.
 (%o3)                                  1
 </pre></div></div>
 
-<a class="anchor" id="ketp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-ketp"><span class="category-def">Function: </span><span><strong class="def-name">ketp</strong> <var class="def-var-arguments">(abstract ket)</var><a class="copiable-link" href="#index-ketp"> &para;</a></span></dt>
+<a class="anchor" id="ketp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-ketp"><span class="category-def">Function: </span><span><strong class="def-name">ketp</strong> <var class="def-var-arguments">(abstract ket)</var><a class="copiable-link" href="#index-ketp"> &para;</a></span></dt>
 <dd><p><code class="code">ketp</code> is a predicate function for abstract kets. It returns
 <code class="code">true</code> for abstract <code class="code">ket</code>s and <code class="code">false</code> for anything else.
 </p></dd></dl>
 
-<a class="anchor" id="bra"></a><dl class="first-deffn">
-<dt class="deffn" id="index-bra"><span class="category-def">Function: </span><span><strong class="def-name">bra</strong> <var class="def-var-arguments">([<code class="code">b<sub class="sub">1</sub></code>,<code class="code">b<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-bra"> &para;</a></span></dt>
+<a class="anchor" id="bra"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-bra"><span class="category-def">Function: </span><span><strong class="def-name">bra</strong> <var class="def-var-arguments">([<code class="code">b<sub class="sub">1</sub></code>,<code class="code">b<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-bra"> &para;</a></span></dt>
 <dd><p><code class="code">bra</code> creates a general state bra, or tensor product, with symbols
 <code class="code">b<sub class="sub">i</sub></code> representing the states. The state bras <code class="code">b<sub class="sub">i</sub></code>
 are assumed to be orthonormal.
@@ -399,14 +399,14 @@ are assumed to be orthonormal.
 (%o3)                                  1
 </pre></div></div>
 
-<a class="anchor" id="brap"></a><dl class="first-deffn">
-<dt class="deffn" id="index-brap"><span class="category-def">Function: </span><span><strong class="def-name">brap</strong> <var class="def-var-arguments">(abstract bra)</var><a class="copiable-link" href="#index-brap"> &para;</a></span></dt>
+<a class="anchor" id="brap"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-brap"><span class="category-def">Function: </span><span><strong class="def-name">brap</strong> <var class="def-var-arguments">(abstract bra)</var><a class="copiable-link" href="#index-brap"> &para;</a></span></dt>
 <dd><p><code class="code">brap</code> is a predicate function for abstract bras. It returns
 <code class="code">true</code> for abstract <code class="code">bra</code>s and <code class="code">false</code> for anything else.
 </p></dd></dl>
 
-<a class="anchor" id="mket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mket"><span class="category-def">Function: </span><span><strong class="def-name">mket</strong> <var class="def-var-arguments">([<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-mket"> &para;</a></span></dt>
+<a class="anchor" id="mket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-mket"><span class="category-def">Function: </span><span><strong class="def-name">mket</strong> <var class="def-var-arguments">([<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-mket"> &para;</a></span></dt>
 <dd><p><code class="code">mket</code> creates a <em class="emph">column</em> vector of arbitrary finite
 dimension. The entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression.
 The user must <code class="code">declare</code> any relevant constants to be complex. For a
@@ -426,8 +426,8 @@ matrix representation the elements must be entered as a list in
                                 hbar &gt; 0, kind(c1, complex), kind(c2, complex)]
 </pre></div></div>
 
-<a class="anchor" id="mketp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mketp"><span class="category-def">Function: </span><span><strong class="def-name">mketp</strong> <var class="def-var-arguments">(<em class="emph">ket</em>)</var><a class="copiable-link" href="#index-mketp"> &para;</a></span></dt>
+<a class="anchor" id="mketp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-mketp"><span class="category-def">Function: </span><span><strong class="def-name">mketp</strong> <var class="def-var-arguments">(<em class="emph">ket</em>)</var><a class="copiable-link" href="#index-mketp"> &para;</a></span></dt>
 <dd><p><code class="code">mketp</code> is a predicate function that checks if its input is an mket,
 in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
 <code class="code">mketp</code> only returns <code class="code">true</code> for the matrix representation of a ket.
@@ -446,8 +446,8 @@ in which case it returns <code class="code">true</code>, else it returns <code c
 (%o4)                                true
 </pre></div></div>
 
-<a class="anchor" id="mbra"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mbra"><span class="category-def">Function: </span><span><strong class="def-name">mbra</strong> <var class="def-var-arguments">([<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-mbra"> &para;</a></span></dt>
+<a class="anchor" id="mbra"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-mbra"><span class="category-def">Function: </span><span><strong class="def-name">mbra</strong> <var class="def-var-arguments">([<code class="code">c<sub class="sub">1</sub></code>,<code class="code">c<sub class="sub">2</sub></code>,&hellip;])</var><a class="copiable-link" href="#index-mbra"> &para;</a></span></dt>
 <dd><p><code class="code">mbra</code> creates a <em class="emph">row</em> vector of arbitrary finite
 dimension. The entries <code class="code">c<sub class="sub">i</sub></code> can be any Maxima expression.
 The user must <code class="code">declare</code> any relevant constants to be complex.
@@ -465,8 +465,8 @@ in <code class="code">[&hellip;]</code> square brackets.
                                                                       hbar &gt; 0]
 </pre></div></div>
 
-<a class="anchor" id="mbrap"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mbrap"><span class="category-def">Function: </span><span><strong class="def-name">mbrap</strong> <var class="def-var-arguments">(<em class="emph">bra</em>)</var><a class="copiable-link" href="#index-mbrap"> &para;</a></span></dt>
+<a class="anchor" id="mbrap"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-mbrap"><span class="category-def">Function: </span><span><strong class="def-name">mbrap</strong> <var class="def-var-arguments">(<em class="emph">bra</em>)</var><a class="copiable-link" href="#index-mbrap"> &para;</a></span></dt>
 <dd><p><code class="code">mbrap</code> is a predicate function that checks if its input is an mbra,
 in which case it returns <code class="code">true</code>, else it returns <code class="code">false</code>.
 <code class="code">mbrap</code> only returns <code class="code">true</code> for the matrix representation of a bra.
@@ -485,8 +485,8 @@ automatically <code class="code">declare</code> constants as complex. For exampl
 list entry is <code class="code">a*sin(x)+b*cos(x)</code> then only <code class="code">a</code> and <code class="code">b</code>
 will be <code class="code">declare</code>-d complex and not <code class="code">x</code>.
 </p>
-<a class="anchor" id="autoket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-autoket"><span class="category-def">Function: </span><span><strong class="def-name">autoket</strong> <var class="def-var-arguments">([<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>])</var><a class="copiable-link" href="#index-autoket"> &para;</a></span></dt>
+<a class="anchor" id="autoket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-autoket"><span class="category-def">Function: </span><span><strong class="def-name">autoket</strong> <var class="def-var-arguments">([<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>])</var><a class="copiable-link" href="#index-autoket"> &para;</a></span></dt>
 <dd><p><code class="code">autoket</code> takes a list [<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>] and
 returns a ket with the coefficients <code class="code">a<sub class="sub">i</sub></code> <code class="code">declare</code>-d
 complex. Simple expressions such as <code class="code">a*sin(x)+b*cos(x)</code> are allowed
@@ -510,8 +510,8 @@ and will <code class="code">declare</code> only the coefficients as complex.
                                   hbar &gt; 0, kind(a, complex), kind(b, complex)]
 </pre></div></div>
 
-<a class="anchor" id="autobra"></a><dl class="first-deffn">
-<dt class="deffn" id="index-autobra"><span class="category-def">Function: </span><span><strong class="def-name">autobra</strong> <var class="def-var-arguments">([<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>])</var><a class="copiable-link" href="#index-autobra"> &para;</a></span></dt>
+<a class="anchor" id="autobra"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-autobra"><span class="category-def">Function: </span><span><strong class="def-name">autobra</strong> <var class="def-var-arguments">([<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>])</var><a class="copiable-link" href="#index-autobra"> &para;</a></span></dt>
 <dd><p><code class="code">autobra</code> takes a list [<code class="code">a<sub class="sub">1</sub>,a<sub class="sub">2</sub>,&hellip;</code>] and
 returns a bra with the coefficients <code class="code">a<sub class="sub">i</sub></code> <code class="code">declare</code>-d
 complex. Simple expressions such as <code class="code">a*sin(x)+b*cos(x)</code> are allowed
@@ -531,8 +531,8 @@ and will <code class="code">declare</code> only the coefficients as complex.
                                   hbar &gt; 0, kind(a, complex), kind(b, complex)]
 </pre></div></div>
 
-<a class="anchor" id="dagger"></a><dl class="first-deffn">
-<dt class="deffn" id="index-dagger"><span class="category-def">Function: </span><span><strong class="def-name">dagger</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dagger"> &para;</a></span></dt>
+<a class="anchor" id="dagger"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-dagger"><span class="category-def">Function: </span><span><strong class="def-name">dagger</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dagger"> &para;</a></span></dt>
 <dd><p><code class="code">dagger</code> is the quantum mechanical <em class="emph">dagger</em> function and returns
 the <code class="code">conjugate</code> <code class="code">transpose</code> of its input. Arbitrary constants
 must be <code class="code">declare</code>-d complex for dagger to produce the conjugate.
@@ -545,8 +545,8 @@ must be <code class="code">declare</code>-d complex for dagger to produce the co
                                    [  2   ]
 </pre></div></div>
 
-<a class="anchor" id="braket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-braket"><span class="category-def">Function: </span><span><strong class="def-name">braket</strong> <var class="def-var-arguments">(<code class="code">psi,phi</code>)</var><a class="copiable-link" href="#index-braket"> &para;</a></span></dt>
+<a class="anchor" id="braket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-braket"><span class="category-def">Function: </span><span><strong class="def-name">braket</strong> <var class="def-var-arguments">(<code class="code">psi,phi</code>)</var><a class="copiable-link" href="#index-braket"> &para;</a></span></dt>
 <dd><p>Given a bra <code class="code">psi</code> and ket <code class="code">phi</code>, <code class="code">braket</code> returns the
 quantum mechanical bracket <code class="code">&lt;psi|phi&gt;</code>. Note, <code class="code">braket(b,k)</code> is
 equivalent to <code class="code">b . k</code> where <code class="code">.</code> is the Maxima non-commutative
@@ -565,8 +565,8 @@ equivalent to <code class="code">b . k</code> where <code class="code">.</code> 
 (%o4)      kron_delta(a1, a2) kron_delta(b1, b2) kron_delta(c1, c2)
 </pre></div></div>
 
-<a class="anchor" id="norm"></a><dl class="first-deffn">
-<dt class="deffn" id="index-norm"><span class="category-def">Function: </span><span><strong class="def-name">norm</strong> <var class="def-var-arguments">(<code class="code">psi</code>)</var><a class="copiable-link" href="#index-norm"> &para;</a></span></dt>
+<a class="anchor" id="norm"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-norm"><span class="category-def">Function: </span><span><strong class="def-name">norm</strong> <var class="def-var-arguments">(<code class="code">psi</code>)</var><a class="copiable-link" href="#index-norm"> &para;</a></span></dt>
 <dd><p>Given a <code class="code">ket</code> or <code class="code">bra</code> <code class="code">psi</code>, <code class="code">norm</code> returns the
 square root of the quantum mechanical bracket <code class="code">&lt;psi|psi&gt;</code>.
 The vector <code class="code">psi</code> must always be a <code class="code">ket</code>, otherwise the
@@ -580,8 +580,8 @@ function will return <code class="code">false</code>.
 (%o2)       sqrt(c conjugate(c) + b conjugate(b) + a conjugate(a))
 </pre></div></div>
 
-<a class="anchor" id="magsqr"></a><dl class="first-deffn">
-<dt class="deffn" id="index-magsqr"><span class="category-def">Function: </span><span><strong class="def-name">magsqr</strong> <var class="def-var-arguments">(<code class="code">c</code>)</var><a class="copiable-link" href="#index-magsqr"> &para;</a></span></dt>
+<a class="anchor" id="magsqr"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-magsqr"><span class="category-def">Function: </span><span><strong class="def-name">magsqr</strong> <var class="def-var-arguments">(<code class="code">c</code>)</var><a class="copiable-link" href="#index-magsqr"> &para;</a></span></dt>
 <dd><p><code class="code">magsqr</code> returns <code class="code">conjugate(c)*c</code>, the magnitude
 squared of a complex number.
 </p></dd></dl>
@@ -613,33 +613,33 @@ space of states. It is spanned by two vectors. In the <var class="var">z</var>-b
 these vectors are <code class="code">{zp,zm}</code>, and the basis kets in the
 <var class="var">z</var>-basis are <code class="code">{xp,xm}</code> and <code class="code">{yp,ym}</code> respectively.
 </p>
-<a class="anchor" id="zp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-zp"><span class="category-def">Function: </span><span><strong class="def-name">zp</strong><a class="copiable-link" href="#index-zp"> &para;</a></span></dt>
+<a class="anchor" id="zp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-zp"><span class="category-def">Function: </span><span><strong class="def-name">zp</strong><a class="copiable-link" href="#index-zp"> &para;</a></span></dt>
 <dd><p>Return the <var class="var">|z+&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
-<a class="anchor" id="zm"></a><dl class="first-deffn">
-<dt class="deffn" id="index-zm"><span class="category-def">Function: </span><span><strong class="def-name">zm</strong><a class="copiable-link" href="#index-zm"> &para;</a></span></dt>
+<a class="anchor" id="zm"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-zm"><span class="category-def">Function: </span><span><strong class="def-name">zm</strong><a class="copiable-link" href="#index-zm"> &para;</a></span></dt>
 <dd><p>Return the <var class="var">|z-&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
-<a class="anchor" id="xp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-xp"><span class="category-def">Function: </span><span><strong class="def-name">xp</strong><a class="copiable-link" href="#index-xp"> &para;</a></span></dt>
+<a class="anchor" id="xp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-xp"><span class="category-def">Function: </span><span><strong class="def-name">xp</strong><a class="copiable-link" href="#index-xp"> &para;</a></span></dt>
 <dd><p>Return the <var class="var">|x+&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
-<a class="anchor" id="xm"></a><dl class="first-deffn">
-<dt class="deffn" id="index-xm"><span class="category-def">Function: </span><span><strong class="def-name">xm</strong><a class="copiable-link" href="#index-xm"> &para;</a></span></dt>
+<a class="anchor" id="xm"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-xm"><span class="category-def">Function: </span><span><strong class="def-name">xm</strong><a class="copiable-link" href="#index-xm"> &para;</a></span></dt>
 <dd><p>Return the <var class="var">|x-&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
-<a class="anchor" id="yp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-yp"><span class="category-def">Function: </span><span><strong class="def-name">yp</strong><a class="copiable-link" href="#index-yp"> &para;</a></span></dt>
+<a class="anchor" id="yp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-yp"><span class="category-def">Function: </span><span><strong class="def-name">yp</strong><a class="copiable-link" href="#index-yp"> &para;</a></span></dt>
 <dd><p>Return the <var class="var">|y+&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
-<a class="anchor" id="ym"></a><dl class="first-deffn">
-<dt class="deffn" id="index-ym"><span class="category-def">Function: </span><span><strong class="def-name">ym</strong><a class="copiable-link" href="#index-ym"> &para;</a></span></dt>
+<a class="anchor" id="ym"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-ym"><span class="category-def">Function: </span><span><strong class="def-name">ym</strong><a class="copiable-link" href="#index-ym"> &para;</a></span></dt>
 <dd><p>Return the <var class="var">|y-&gt;</var> ket in the <var class="var">z</var>-basis.
 </p></dd></dl>
 
@@ -687,33 +687,33 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
 <div class="subsection-level-extent" id="Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators">
 <h4 class="subsection"><span>1.2.2 Pauli matrices and Sz, Sx, Sy operators<a class="copiable-link" href="#Pauli-matrices-and-Sz_002c-Sx_002c-Sy-operators"> &para;</a></span></h4>
 
-<a class="anchor" id="sigmax"></a><dl class="first-deffn">
-<dt class="deffn" id="index-sigmax"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmax</code></strong><a class="copiable-link" href="#index-sigmax"> &para;</a></span></dt>
+<a class="anchor" id="sigmax"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-sigmax"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmax</code></strong><a class="copiable-link" href="#index-sigmax"> &para;</a></span></dt>
 <dd><p>Returns the Pauli <var class="var">x</var> matrix.
 </p></dd></dl>
 
-<a class="anchor" id="sigmay"></a><dl class="first-deffn">
-<dt class="deffn" id="index-sigmay"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmay</code></strong><a class="copiable-link" href="#index-sigmay"> &para;</a></span></dt>
+<a class="anchor" id="sigmay"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-sigmay"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmay</code></strong><a class="copiable-link" href="#index-sigmay"> &para;</a></span></dt>
 <dd><p>Returns the Pauli <var class="var">y</var> matrix.
 </p></dd></dl>
 
-<a class="anchor" id="sigmaz"></a><dl class="first-deffn">
-<dt class="deffn" id="index-sigmaz"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmaz</code></strong><a class="copiable-link" href="#index-sigmaz"> &para;</a></span></dt>
+<a class="anchor" id="sigmaz"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-sigmaz"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">sigmaz</code></strong><a class="copiable-link" href="#index-sigmaz"> &para;</a></span></dt>
 <dd><p>Returns the Pauli <var class="var">z</var> matrix.
 </p></dd></dl>
 
-<a class="anchor" id="Sx"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Sx"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sx</code></strong><a class="copiable-link" href="#index-Sx"> &para;</a></span></dt>
+<a class="anchor" id="Sx"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Sx"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sx</code></strong><a class="copiable-link" href="#index-Sx"> &para;</a></span></dt>
 <dd><p>Returns the spin-1/2 <var class="var">Sx</var> matrix.
 </p></dd></dl>
 
-<a class="anchor" id="Sy"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Sy"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sy</code></strong><a class="copiable-link" href="#index-Sy"> &para;</a></span></dt>
+<a class="anchor" id="Sy"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Sy"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sy</code></strong><a class="copiable-link" href="#index-Sy"> &para;</a></span></dt>
 <dd><p>Returns the spin-1/2 <var class="var">Sy</var> matrix.
 </p></dd></dl>
 
-<a class="anchor" id="Sz"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Sz"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sz</code></strong><a class="copiable-link" href="#index-Sz"> &para;</a></span></dt>
+<a class="anchor" id="Sz"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Sz"><span class="category-def">Function: </span><span><strong class="def-name"><code class="code">Sz</code></strong><a class="copiable-link" href="#index-Sz"> &para;</a></span></dt>
 <dd><p>Returns the spin-1/2 <var class="var">Sz</var> matrix.
 </p></dd></dl>
 
@@ -732,8 +732,8 @@ ket is constructed and the <var class="var">x</var>-basis ket is computed.
                             [    2               ]
 </pre></div></div>
 
-<a class="anchor" id="commutator"></a><dl class="first-deffn">
-<dt class="deffn" id="index-commutator"><span class="category-def">Function: </span><span><strong class="def-name">commutator</strong> <var class="def-var-arguments">(<code class="code">X,Y</code>)</var><a class="copiable-link" href="#index-commutator"> &para;</a></span></dt>
+<a class="anchor" id="commutator"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-commutator"><span class="category-def">Function: </span><span><strong class="def-name">commutator</strong> <var class="def-var-arguments">(<code class="code">X,Y</code>)</var><a class="copiable-link" href="#index-commutator"> &para;</a></span></dt>
 <dd><p>Given two operators <code class="code">X</code> and <code class="code">Y</code>, return the
 commutator <code class="code">X . Y - Y . X</code>.
 </p></dd></dl>
@@ -751,8 +751,8 @@ commutator <code class="code">X . Y - Y . X</code>.
                            [                2     ]
 </pre></div></div>
 
-<a class="anchor" id="anticommutator"></a><dl class="first-deffn">
-<dt class="deffn" id="index-anticommutator"><span class="category-def">Function: </span><span><strong class="def-name">anticommutator</strong> <var class="def-var-arguments">(<code class="code">X,Y</code>)</var><a class="copiable-link" href="#index-anticommutator"> &para;</a></span></dt>
+<a class="anchor" id="anticommutator"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-anticommutator"><span class="category-def">Function: </span><span><strong class="def-name">anticommutator</strong> <var class="def-var-arguments">(<code class="code">X,Y</code>)</var><a class="copiable-link" href="#index-anticommutator"> &para;</a></span></dt>
 <dd><p>Given two operators <code class="code">X</code> and <code class="code">Y</code>, return the
 commutator <code class="code">X . Y + Y . X</code>.
 </p></dd></dl>
@@ -768,22 +768,22 @@ commutator <code class="code">X . Y + Y . X</code>.
 <div class="subsection-level-extent" id="SX_002c-SY_002c-SZ-operators-for-any-spin">
 <h4 class="subsection"><span>1.2.3 SX, SY, SZ operators for any spin<a class="copiable-link" href="#SX_002c-SY_002c-SZ-operators-for-any-spin"> &para;</a></span></h4>
 
-<a class="anchor" id="SX"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SX"><span class="category-def">Function: </span><span><strong class="def-name">SX</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SX"> &para;</a></span></dt>
+<a class="anchor" id="SX"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-SX"><span class="category-def">Function: </span><span><strong class="def-name">SX</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SX"> &para;</a></span></dt>
 <dd><p><code class="code">SX(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
 spin operator <code class="code">Sx</code>. Shortcuts for spin-1/2 are <code class="code">Sx,Sy,Sz</code>, and
 for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 </p></dd></dl>
 
-<a class="anchor" id="SY"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SY"><span class="category-def">Function: </span><span><strong class="def-name">SY</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SY"> &para;</a></span></dt>
+<a class="anchor" id="SY"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-SY"><span class="category-def">Function: </span><span><strong class="def-name">SY</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SY"> &para;</a></span></dt>
 <dd><p><code class="code">SY(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
 spin operator <code class="code">Sy</code>. Shortcuts for spin-1/2 are <code class="code">Sx,Sy,Sz</code>, and
 for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 </p></dd></dl>
 
-<a class="anchor" id="SZ"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SZ"><span class="category-def">Function: </span><span><strong class="def-name">SZ</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SZ"> &para;</a></span></dt>
+<a class="anchor" id="SZ"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-SZ"><span class="category-def">Function: </span><span><strong class="def-name">SZ</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SZ"> &para;</a></span></dt>
 <dd><p><code class="code">SZ(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
 spin operator <code class="code">Sz</code>. Shortcuts for spin-1/2 are <code class="code">Sx,Sy,Sz</code>, and
 for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
@@ -821,8 +821,8 @@ for spin-1 are <code class="code">Sx1,Sy1,Sz1</code>.
 <p>Given a matrix representation of an operator in terms of <code class="code">mket</code>s
 one may transform from one <code class="code">mket</code> basis to another.
 </p>
-<a class="anchor" id="basis_005fset_005fp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-basis_005fset_005fp"><span class="category-def">Function: </span><span><strong class="def-name">basis_set_p</strong> <var class="def-var-arguments">(<code class="code">B</code>)</var><a class="copiable-link" href="#index-basis_005fset_005fp"> &para;</a></span></dt>
+<a class="anchor" id="basis_005fset_005fp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-basis_005fset_005fp"><span class="category-def">Function: </span><span><strong class="def-name">basis_set_p</strong> <var class="def-var-arguments">(<code class="code">B</code>)</var><a class="copiable-link" href="#index-basis_005fset_005fp"> &para;</a></span></dt>
 <dd><p>The predicate function <code class="code">basis_set_p</code> takes as an argument a basis
 set <code class="code">[b<sub class="sub">1</sub>,b<sub class="sub">2</sub>,&hellip;]</code> enclosed in square brackets,
 where each <code class="code">b<sub class="sub">i</sub></code> is <code class="code">true</code> for the predicate function
@@ -834,8 +834,8 @@ where each <code class="code">b<sub class="sub">i</sub></code> is <code class="c
 (%o1)                                true
 </pre></div></div>
 
-<a class="anchor" id="mtrans"></a><dl class="first-deffn">
-<dt class="deffn" id="index-mtrans"><span class="category-def">Function: </span><span><strong class="def-name">mtrans</strong> <var class="def-var-arguments">(<code class="code">B<sub class="sub">1</sub>,B<sub class="sub">2</sub></code>)</var><a class="copiable-link" href="#index-mtrans"> &para;</a></span></dt>
+<a class="anchor" id="mtrans"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-mtrans"><span class="category-def">Function: </span><span><strong class="def-name">mtrans</strong> <var class="def-var-arguments">(<code class="code">B<sub class="sub">1</sub>,B<sub class="sub">2</sub></code>)</var><a class="copiable-link" href="#index-mtrans"> &para;</a></span></dt>
 <dd><p>The function <code class="code">mtrans</code> returns the matrix of inner products of the
 two bases <code class="code">B<sub class="sub">1</sub></code> and <code class="code">B<sub class="sub">2</sub></code>. The bases must be of the
 same dimension.
@@ -853,8 +853,8 @@ same dimension.
 </pre></div></div>
 
 
-<a class="anchor" id="op_005ftrans"></a><dl class="first-deffn">
-<dt class="deffn" id="index-op_005ftrans"><span class="category-def">Function: </span><span><strong class="def-name">op_trans</strong> <var class="def-var-arguments">(<code class="code">A,B<sub class="sub">1</sub>,B<sub class="sub">2</sub></code>)</var><a class="copiable-link" href="#index-op_005ftrans"> &para;</a></span></dt>
+<a class="anchor" id="op_005ftrans"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-op_005ftrans"><span class="category-def">Function: </span><span><strong class="def-name">op_trans</strong> <var class="def-var-arguments">(<code class="code">A,B<sub class="sub">1</sub>,B<sub class="sub">2</sub></code>)</var><a class="copiable-link" href="#index-op_005ftrans"> &para;</a></span></dt>
 <dd><p>The function <code class="code">op_trans</code> returns the matrix representation of
 operator <code class="code">A</code> in basis <code class="code">B<sub class="sub">2</sub></code>. The operator <code class="code">A</code> must
 be given in the basis <code class="code">B<sub class="sub">1</sub></code>.
@@ -876,8 +876,8 @@ be given in the basis <code class="code">B<sub class="sub">1</sub></code>.
 <div class="subsection-level-extent" id="Expectation-value-and-variance">
 <h4 class="subsection"><span>1.2.5 Expectation value and variance<a class="copiable-link" href="#Expectation-value-and-variance"> &para;</a></span></h4>
 
-<a class="anchor" id="expect"></a><dl class="first-deffn">
-<dt class="deffn" id="index-expect"><span class="category-def">Function: </span><span><strong class="def-name">expect</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-expect"> &para;</a></span></dt>
+<a class="anchor" id="expect"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-expect"><span class="category-def">Function: </span><span><strong class="def-name">expect</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-expect"> &para;</a></span></dt>
 <dd><p>Computes the quantum mechanical expectation value of the operator <code class="code">O</code>
 in state <code class="code">psi</code>, <code class="code">&lt;psi|O|psi&gt;</code>.
 </p></dd></dl>
@@ -887,8 +887,8 @@ in state <code class="code">psi</code>, <code class="code">&lt;psi|O|psi&gt;</co
 (%o1)                               - hbar
 </pre></div></div>
 
-<a class="anchor" id="qm_005fvariance"></a><dl class="first-deffn">
-<dt class="deffn" id="index-qm_005fvariance"><span class="category-def">Function: </span><span><strong class="def-name">qm_variance</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-qm_005fvariance"> &para;</a></span></dt>
+<a class="anchor" id="qm_005fvariance"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-qm_005fvariance"><span class="category-def">Function: </span><span><strong class="def-name">qm_variance</strong> <var class="def-var-arguments">(<code class="code">O,psi</code>)</var><a class="copiable-link" href="#index-qm_005fvariance"> &para;</a></span></dt>
 <dd><p>Computes the quantum mechanical variance of the operator <code class="code">O</code>
 in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup class="sup">2</sup>|psi&gt; - &lt;psi|O|psi&gt;<sup class="sup">2</sup>)</code>.
 </p></dd></dl>
@@ -904,13 +904,13 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 <div class="subsection-level-extent" id="Angular-momentum-and-ladder-operators-in-the-matrix-representation">
 <h4 class="subsection"><span>1.2.6 Angular momentum and ladder operators in the matrix representation<a class="copiable-link" href="#Angular-momentum-and-ladder-operators-in-the-matrix-representation"> &para;</a></span></h4>
 
-<a class="anchor" id="SP"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>
+<a class="anchor" id="SP"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-SP"><span class="category-def">Function: </span><span><strong class="def-name">SP</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SP"> &para;</a></span></dt>
 <dd><p><code class="code">SP</code> is the raising ladder operator <var class="var">S<sub class="sub">+</sub></var> for spin <code class="code">s</code>.
 </p></dd></dl>
 
-<a class="anchor" id="SM"></a><dl class="first-deffn">
-<dt class="deffn" id="index-SM"><span class="category-def">Function: </span><span><strong class="def-name">SM</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SM"> &para;</a></span></dt>
+<a class="anchor" id="SM"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-SM"><span class="category-def">Function: </span><span><strong class="def-name">SM</strong> <var class="def-var-arguments">(<code class="code">s</code>)</var><a class="copiable-link" href="#index-SM"> &para;</a></span></dt>
 <dd><p><code class="code">SM</code> is the raising ladder operator <var class="var">S<sub class="sub">-</sub></var> for spin <code class="code">s</code>.
 </p></dd></dl>
 
@@ -935,20 +935,20 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 <div class="subsection-level-extent" id="Rotation-operators">
 <h4 class="subsection"><span>1.2.7 Rotation operators<a class="copiable-link" href="#Rotation-operators"> &para;</a></span></h4>
 
-<a class="anchor" id="RX"></a><dl class="first-deffn">
-<dt class="deffn" id="index-RX"><span class="category-def">Function: </span><span><strong class="def-name">RX</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RX"> &para;</a></span></dt>
+<a class="anchor" id="RX"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-RX"><span class="category-def">Function: </span><span><strong class="def-name">RX</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RX"> &para;</a></span></dt>
 <dd><p><code class="code">RX(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
 rotation operator <code class="code">Rx</code> for rotation through angle <code class="code">t</code>.
 </p></dd></dl>
 
-<a class="anchor" id="RY"></a><dl class="first-deffn">
-<dt class="deffn" id="index-RY"><span class="category-def">Function: </span><span><strong class="def-name">RY</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RY"> &para;</a></span></dt>
+<a class="anchor" id="RY"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-RY"><span class="category-def">Function: </span><span><strong class="def-name">RY</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RY"> &para;</a></span></dt>
 <dd><p><code class="code">RY(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
 rotation operator <code class="code">Ry</code> for rotation through angle <code class="code">t</code>.
 </p></dd></dl>
 
-<a class="anchor" id="RZ"></a><dl class="first-deffn">
-<dt class="deffn" id="index-RZ"><span class="category-def">Function: </span><span><strong class="def-name">RZ</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RZ"> &para;</a></span></dt>
+<a class="anchor" id="RZ"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-RZ"><span class="category-def">Function: </span><span><strong class="def-name">RZ</strong> <var class="def-var-arguments">(<code class="code">s,t</code>)</var><a class="copiable-link" href="#index-RZ"> &para;</a></span></dt>
 <dd><p><code class="code">RZ(s)</code> for spin <code class="code">s</code> returns the matrix representation of the
 rotation operator <code class="code">Rz</code> for rotation through angle <code class="code">t</code>.
 </p></dd></dl>
@@ -972,8 +972,8 @@ rotation operator <code class="code">Rz</code> for rotation through angle <code 
 <div class="subsection-level-extent" id="Time_002devolution-operator">
 <h4 class="subsection"><span>1.2.8 Time-evolution operator<a class="copiable-link" href="#Time_002devolution-operator"> &para;</a></span></h4>
 
-<a class="anchor" id="U"></a><dl class="first-deffn">
-<dt class="deffn" id="index-U"><span class="category-def">Function: </span><span><strong class="def-name">U</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-U"> &para;</a></span></dt>
+<a class="anchor" id="U"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-U"><span class="category-def">Function: </span><span><strong class="def-name">U</strong> <var class="def-var-arguments">(<code class="code">H,t</code>)</var><a class="copiable-link" href="#index-U"> &para;</a></span></dt>
 <dd><p><code class="code">U(H,t)</code> is the time evolution operator for Hamiltonian <code class="code">H</code>. It
 is defined as the matrix exponential <code class="code">matrixexp(-%i*H*t/hbar)</code>.
 </p></dd></dl>
@@ -1010,16 +1010,16 @@ represented in the <code class="code">z</code>-basis. To create a matrix represe
 of a ket or bra in the (j,m)-basis one uses the <code class="code">spin_mket</code> and
 <code class="code">spin_mbra</code> functions.
 </p>
-<a class="anchor" id="spin_005fmket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-spin_005fmket"><span class="category-def">Function: </span><span><strong class="def-name">spin_mket</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2])</var><a class="copiable-link" href="#index-spin_005fmket"> &para;</a></span></dt>
+<a class="anchor" id="spin_005fmket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-spin_005fmket"><span class="category-def">Function: </span><span><strong class="def-name">spin_mket</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2,3])</var><a class="copiable-link" href="#index-spin_005fmket"> &para;</a></span></dt>
 <dd><p><code class="code">spin_mket</code> returns a ket in the <code class="code">z</code>-basis for spin <code class="code">s</code>
-and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1=X or 2=Y.
+and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1=X, 2=Y, 3=Z.
 </p></dd></dl>
 
-<a class="anchor" id="spin_005fmbra"></a><dl class="first-deffn">
-<dt class="deffn" id="index-spin_005fmbra"><span class="category-def">Function: </span><span><strong class="def-name">spin_mbra</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2])</var><a class="copiable-link" href="#index-spin_005fmbra"> &para;</a></span></dt>
+<a class="anchor" id="spin_005fmbra"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-spin_005fmbra"><span class="category-def">Function: </span><span><strong class="def-name">spin_mbra</strong> <var class="def-var-arguments">(s,m<sub class="sub">s</sub>,[1,2,3])</var><a class="copiable-link" href="#index-spin_005fmbra"> &para;</a></span></dt>
 <dd><p><code class="code">spin_mbra</code> returns a bra in the <code class="code">z</code>-basis for spin <code class="code">s</code>
-and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1=X or 2=Y.
+and z-projection <code class="code">m<sub class="sub">s</sub></code>, for axis 1=X, 2=Y, 3=Z.
 </p></dd></dl>
 
 <div class="example">
@@ -1051,8 +1051,8 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
 
 <p>Some convenience functions for making the kets are the following:
 </p>
-<a class="anchor" id="jmtop"></a><dl class="first-deffn">
-<dt class="deffn" id="index-jmtop"><span class="category-def">Function: </span><span><strong class="def-name">jmtop</strong> <var class="def-var-arguments">(<code class="code">j</code>)</var><a class="copiable-link" href="#index-jmtop"> &para;</a></span></dt>
+<a class="anchor" id="jmtop"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-jmtop"><span class="category-def">Function: </span><span><strong class="def-name">jmtop</strong> <var class="def-var-arguments">(<code class="code">j</code>)</var><a class="copiable-link" href="#index-jmtop"> &para;</a></span></dt>
 <dd><p><code class="code">jmtop</code> creates a (j,m)-ket with <code class="code">m=j</code>.
 </p></dd></dl>
 
@@ -1063,8 +1063,8 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
                                      2  2
 </pre></div></div>
 
-<a class="anchor" id="jmbot"></a><dl class="first-deffn">
-<dt class="deffn" id="index-jmbot"><span class="category-def">Function: </span><span><strong class="def-name">jmbot</strong> <var class="def-var-arguments">(<code class="code">j</code>)</var><a class="copiable-link" href="#index-jmbot"> &para;</a></span></dt>
+<a class="anchor" id="jmbot"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-jmbot"><span class="category-def">Function: </span><span><strong class="def-name">jmbot</strong> <var class="def-var-arguments">(<code class="code">j</code>)</var><a class="copiable-link" href="#index-jmbot"> &para;</a></span></dt>
 <dd><p><code class="code">jmbot</code> creates a (j,m)-ket with <code class="code">m=-j</code>.
 </p></dd></dl>
 
@@ -1075,8 +1075,8 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
                                     2    2
 </pre></div></div>
 
-<a class="anchor" id="jmket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-jmket"><span class="category-def">Function: </span><span><strong class="def-name">jmket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmket"> &para;</a></span></dt>
+<a class="anchor" id="jmket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-jmket"><span class="category-def">Function: </span><span><strong class="def-name">jmket</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmket"> &para;</a></span></dt>
 <dd><p><code class="code">jmket</code> creates a (j,m)-ket.
 </p></dd></dl>
 
@@ -1087,8 +1087,8 @@ arguments, as in <code class="code">ket([j,m])</code> and <code class="code">bra
                                      2  2
 </pre></div></div>
 
-<a class="anchor" id="jmketp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-jmketp"><span class="category-def">Function: </span><span><strong class="def-name">jmketp</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-jmketp"> &para;</a></span></dt>
+<a class="anchor" id="jmketp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-jmketp"><span class="category-def">Function: </span><span><strong class="def-name">jmketp</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-jmketp"> &para;</a></span></dt>
 <dd><p><code class="code">jmketp</code> checks to see that the ket has an <code class="code">m</code>-value that is in
 the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p></dd></dl>
@@ -1100,14 +1100,14 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 (%o2)                                true
 </pre></div></div>
 
-<a class="anchor" id="jmbrap"></a><dl class="first-deffn">
-<dt class="deffn" id="index-jmbrap"><span class="category-def">Function: </span><span><strong class="def-name">jmbrap</strong> <var class="def-var-arguments">(<em class="emph">jmbra</em>)</var><a class="copiable-link" href="#index-jmbrap"> &para;</a></span></dt>
+<a class="anchor" id="jmbrap"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-jmbrap"><span class="category-def">Function: </span><span><strong class="def-name">jmbrap</strong> <var class="def-var-arguments">(<em class="emph">jmbra</em>)</var><a class="copiable-link" href="#index-jmbrap"> &para;</a></span></dt>
 <dd><p><code class="code">jmbrap</code> checks to see that the bra has an <code class="code">m</code>-value that is in
 the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 </p></dd></dl>
 
-<a class="anchor" id="jmcheck"></a><dl class="first-deffn">
-<dt class="deffn" id="index-jmcheck"><span class="category-def">Function: </span><span><strong class="def-name">jmcheck</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmcheck"> &para;</a></span></dt>
+<a class="anchor" id="jmcheck"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-jmcheck"><span class="category-def">Function: </span><span><strong class="def-name">jmcheck</strong> <var class="def-var-arguments">(<code class="code">j,m</code>)</var><a class="copiable-link" href="#index-jmcheck"> &para;</a></span></dt>
 <dd><p><code class="code">jmcheck</code> checks to see that <var class="var">m</var> is one of {-j, &hellip;, +j}.
 </p></dd></dl>
 
@@ -1116,26 +1116,26 @@ the set <code class="code">{-j,-j+1,&hellip;,+j}</code>.
 (%o1)                                true
 </pre></div></div>
 
-<a class="anchor" id="Jp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jp"><span class="category-def">Function: </span><span><strong class="def-name">Jp</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jp"> &para;</a></span></dt>
+<a class="anchor" id="Jp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jp"><span class="category-def">Function: </span><span><strong class="def-name">Jp</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jp"> &para;</a></span></dt>
 <dd><p><code class="code">Jp</code> is the <code class="code">J<sub class="sub">+</sub></code> operator. It takes a <code class="code">jmket</code>
 <code class="code">jmket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m+1))*hbar*jmket(j,m+1)</code>.
 </p></dd></dl>
 
-<a class="anchor" id="Jm"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jm"><span class="category-def">Function: </span><span><strong class="def-name">Jm</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jm"> &para;</a></span></dt>
+<a class="anchor" id="Jm"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jm"><span class="category-def">Function: </span><span><strong class="def-name">Jm</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jm"> &para;</a></span></dt>
 <dd><p><code class="code">Jm</code> is the <code class="code">J<sub class="sub">-</sub></code> operator. It takes a <code class="code">jmket</code>
 <code class="code">jmket(j,m)</code> and returns <code class="code">sqrt(j*(j+1)-m*(m-1))*hbar*jmket(j,m-1)</code>.
 </p></dd></dl>
 
-<a class="anchor" id="Jsqr"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jsqr</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jsqr"> &para;</a></span></dt>
+<a class="anchor" id="Jsqr"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jsqr</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jsqr"> &para;</a></span></dt>
 <dd><p><code class="code">Jsqr</code> is the <code class="code">J<sup class="sup">2</sup></code> operator. It takes a <code class="code">jmket</code>
 <code class="code">jmket(j,m)</code> and returns <code class="code">j*(j+1)*hbar<sup class="sup">2</sup>*jmket(j,m)</code>.
 </p></dd></dl>
 
-<a class="anchor" id="Jz"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jz"><span class="category-def">Function: </span><span><strong class="def-name">Jz</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jz"> &para;</a></span></dt>
+<a class="anchor" id="Jz"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jz"><span class="category-def">Function: </span><span><strong class="def-name">Jz</strong> <var class="def-var-arguments">(<em class="emph">jmket</em>)</var><a class="copiable-link" href="#index-Jz"> &para;</a></span></dt>
 <dd><p><code class="code">Jz</code> is the <code class="code">J<sub class="sub">z</sub></code> operator. It takes a <code class="code">jmket</code>
 <code class="code">jmket(j,m)</code> and returns <code class="code">m*hbar*jmket(j,m)</code>.
 </p></dd></dl>
@@ -1179,8 +1179,8 @@ representation is:
 </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="code">tpket( cf, |j1,m1&gt;, |j2,m2&gt; )</code>.
 </p>
-<a class="anchor" id="tpket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">(<em class="emph">jmket1,jmket2</em>)</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
+<a class="anchor" id="tpket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpket"><span class="category-def">Function: </span><span><strong class="def-name">tpket</strong> <var class="def-var-arguments">(<em class="emph">jmket1,jmket2</em>)</var><a class="copiable-link" href="#index-tpket"> &para;</a></span></dt>
 <dd><p><code class="code">tpket</code> instantiates a tensor product of two (j,m)-kets.
 </p></dd></dl>
 
@@ -1191,8 +1191,8 @@ representation is:
                                  2  2     2  2
 </pre></div></div>
 
-<a class="anchor" id="tpbra"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">(<em class="emph">jmbra1,jmbra2</em>)</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
+<a class="anchor" id="tpbra"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpbra"><span class="category-def">Function: </span><span><strong class="def-name">tpbra</strong> <var class="def-var-arguments">(<em class="emph">jmbra1,jmbra2</em>)</var><a class="copiable-link" href="#index-tpbra"> &para;</a></span></dt>
 <dd><p><code class="code">tpbra</code> instantiates a tensor product of two (j,m)-bras.
 </p></dd></dl>
 
@@ -1203,8 +1203,8 @@ representation is:
                                  2  2     2  2
 </pre></div></div>
 
-<a class="anchor" id="tpbraket"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
+<a class="anchor" id="tpbraket"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpbraket"><span class="category-def">Function: </span><span><strong class="def-name">tpbraket</strong> <var class="def-var-arguments">(<em class="emph">tpbra,tpket</em>)</var><a class="copiable-link" href="#index-tpbraket"> &para;</a></span></dt>
 <dd><p><code class="code">tpbraket</code> returns the bracket of a <code class="code">tpbra</code> and a <code class="code">tpket</code>.
 </p></dd></dl>
 
@@ -1221,13 +1221,13 @@ representation is:
 (%o4)                               2 hbar
 </pre></div></div>
 
-<a class="anchor" id="tpcfset"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpcfset"><span class="category-def">Function: </span><span><strong class="def-name">tpcfset</strong> <var class="def-var-arguments">(<code class="code">cf</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpcfset"> &para;</a></span></dt>
+<a class="anchor" id="tpcfset"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpcfset"><span class="category-def">Function: </span><span><strong class="def-name">tpcfset</strong> <var class="def-var-arguments">(<code class="code">cf</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpcfset"> &para;</a></span></dt>
 <dd><p><code class="code">tpcfset</code> manually sets the <em class="emph">common factor</em> <code class="code">cf</code> of a <code class="code">tpket</code>.
 </p></dd></dl>
 
-<a class="anchor" id="tpscmult"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpscmult"><span class="category-def">Function: </span><span><strong class="def-name">tpscmult</strong> <var class="def-var-arguments">(<code class="code">a</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpscmult"> &para;</a></span></dt>
+<a class="anchor" id="tpscmult"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpscmult"><span class="category-def">Function: </span><span><strong class="def-name">tpscmult</strong> <var class="def-var-arguments">(<code class="code">a</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpscmult"> &para;</a></span></dt>
 <dd><p><code class="code">tpscmult</code> multiplies the tensor product&rsquo;s common factor by <code class="code">a</code>.
 Any symbols must be <code class="code">declare</code>d <code class="code">scalar</code>.
 </p></dd></dl>
@@ -1245,8 +1245,8 @@ Any symbols must be <code class="code">declare</code>d <code class="code">scalar
                                 2  2     2    2
 </pre></div></div>
 
-<a class="anchor" id="tpadd"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpadd"><span class="category-def">Function: </span><span><strong class="def-name">tpadd</strong> <var class="def-var-arguments">(<em class="emph">tpket,tpket</em>)</var><a class="copiable-link" href="#index-tpadd"> &para;</a></span></dt>
+<a class="anchor" id="tpadd"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpadd"><span class="category-def">Function: </span><span><strong class="def-name">tpadd</strong> <var class="def-var-arguments">(<em class="emph">tpket,tpket</em>)</var><a class="copiable-link" href="#index-tpadd"> &para;</a></span></dt>
 <dd><p><code class="code">tpadd</code> adds two <code class="code">tpket</code>s. This function is necessary
 to avoid trouble with Maxima&rsquo;s automatic list arithmetic.
 </p></dd></dl>
@@ -1266,8 +1266,8 @@ to avoid trouble with Maxima&rsquo;s automatic list arithmetic.
                     2  2     2    2       2    2     2  2
 </pre></div></div>
 
-<a class="anchor" id="tpdagger"></a><dl class="first-deffn">
-<dt class="deffn" id="index-tpdagger"><span class="category-def">Function: </span><span><strong class="def-name">tpdagger</strong> <var class="def-var-arguments">(<em class="emph">tpket or tpbra</em>)</var><a class="copiable-link" href="#index-tpdagger"> &para;</a></span></dt>
+<a class="anchor" id="tpdagger"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-tpdagger"><span class="category-def">Function: </span><span><strong class="def-name">tpdagger</strong> <var class="def-var-arguments">(<em class="emph">tpket or tpbra</em>)</var><a class="copiable-link" href="#index-tpdagger"> &para;</a></span></dt>
 <dd><p><code class="code">tpdagger</code> takes the quantum mechanical dagger of a <code class="code">tpket</code> or <code class="code">tpbra</code>.
 </p></dd></dl>
 
@@ -1282,14 +1282,14 @@ to avoid trouble with Maxima&rsquo;s automatic list arithmetic.
                                 2  2     2    2
 </pre></div></div>
 
-<a class="anchor" id="J1z"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1z"><span class="category-def">Function: </span><span><strong class="def-name">J1z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1z"> &para;</a></span></dt>
+<a class="anchor" id="J1z"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1z"><span class="category-def">Function: </span><span><strong class="def-name">J1z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1z"> &para;</a></span></dt>
 <dd><p><code class="code">J1z</code> returns the tensor product of a tpket with <code class="code">Jz</code> acting
 on the first ket.
 </p></dd></dl>
 
-<a class="anchor" id="J2z"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J2z"><span class="category-def">Function: </span><span><strong class="def-name">J2z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2z"> &para;</a></span></dt>
+<a class="anchor" id="J2z"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J2z"><span class="category-def">Function: </span><span><strong class="def-name">J2z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2z"> &para;</a></span></dt>
 <dd><p><code class="code">J2z</code> returns the tensor product of a tpket with <code class="code">Jz</code> acting
 on the second ket.
 </p></dd></dl>
@@ -1309,8 +1309,8 @@ on the second ket.
                              2    2  2     2  2
 </pre></div></div>
 
-<a class="anchor" id="Jtz"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jtz"><span class="category-def">Function: </span><span><strong class="def-name">Jtz</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtz"> &para;</a></span></dt>
+<a class="anchor" id="Jtz"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jtz"><span class="category-def">Function: </span><span><strong class="def-name">Jtz</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtz"> &para;</a></span></dt>
 <dd><p><code class="code">Jtz</code> is the total z-projection of spin operator acting on a tpket
 and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2z</sub>)</code>.
 </p></dd></dl>
@@ -1326,48 +1326,48 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
                                    2  2     2  2
 </pre></div></div>
 
-<a class="anchor" id="J1sqr"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1sqr"><span class="category-def">Function: </span><span><strong class="def-name">J1sqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1sqr"> &para;</a></span></dt>
+<a class="anchor" id="J1sqr"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1sqr"><span class="category-def">Function: </span><span><strong class="def-name">J1sqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1sqr"> &para;</a></span></dt>
 <dd><p><code class="code">J1sqr</code> returns <code class="code">Jsqr</code> for the first ket of a tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J2sqr"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J2sqr"><span class="category-def">Function: </span><span><strong class="def-name">J2sqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2sqr"> &para;</a></span></dt>
+<a class="anchor" id="J2sqr"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J2sqr"><span class="category-def">Function: </span><span><strong class="def-name">J2sqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2sqr"> &para;</a></span></dt>
 <dd><p><code class="code">J2sqr</code> returns <code class="code">Jsqr</code> for the second ket of a tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J1p"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1p"><span class="category-def">Function: </span><span><strong class="def-name">J1p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1p"> &para;</a></span></dt>
+<a class="anchor" id="J1p"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1p"><span class="category-def">Function: </span><span><strong class="def-name">J1p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1p"> &para;</a></span></dt>
 <dd><p><code class="code">J1p</code> returns <code class="code">J<sub class="sub">+</sub></code> for the first ket of a tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J2p"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J2p"><span class="category-def">Function: </span><span><strong class="def-name">J2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2p"> &para;</a></span></dt>
+<a class="anchor" id="J2p"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J2p"><span class="category-def">Function: </span><span><strong class="def-name">J2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2p"> &para;</a></span></dt>
 <dd><p><code class="code">J2p</code> returns <code class="code">J<sub class="sub">+</sub></code> for the second ket of a tpket.
 </p></dd></dl>
 
-<a class="anchor" id="Jtp"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jtp"><span class="category-def">Function: </span><span><strong class="def-name">Jtp</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtp"> &para;</a></span></dt>
+<a class="anchor" id="Jtp"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jtp"><span class="category-def">Function: </span><span><strong class="def-name">Jtp</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtp"> &para;</a></span></dt>
 <dd><p><code class="code">Jtp</code> returns <code class="code">(J<sub class="sub">1+</sub>+J<sub class="sub">2+</sub>)</code> for the tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J1m"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1m"><span class="category-def">Function: </span><span><strong class="def-name">J1m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m"> &para;</a></span></dt>
+<a class="anchor" id="J1m"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1m"><span class="category-def">Function: </span><span><strong class="def-name">J1m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m"> &para;</a></span></dt>
 <dd><p><code class="code">J1m</code> returns <code class="code">J<sub class="sub">-</sub></code> for the first ket of a tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J2m"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J2m"><span class="category-def">Function: </span><span><strong class="def-name">J2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2m"> &para;</a></span></dt>
+<a class="anchor" id="J2m"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J2m"><span class="category-def">Function: </span><span><strong class="def-name">J2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J2m"> &para;</a></span></dt>
 <dd><p><code class="code">J2m</code> returns <code class="code">J<sub class="sub">-</sub></code> for the second ket of a tpket.
 </p></dd></dl>
 
-<a class="anchor" id="Jtm"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jtm"><span class="category-def">Function: </span><span><strong class="def-name">Jtm</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtm"> &para;</a></span></dt>
+<a class="anchor" id="Jtm"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jtm"><span class="category-def">Function: </span><span><strong class="def-name">Jtm</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtm"> &para;</a></span></dt>
 <dd><p><code class="code">Jtm</code> returns <code class="code">(J<sub class="sub">1-</sub>+J<sub class="sub">2-</sub>)</code> for the tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J1p2m"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1p2m"><span class="category-def">Function: </span><span><strong class="def-name">J1p2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1p2m"> &para;</a></span></dt>
+<a class="anchor" id="J1p2m"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1p2m"><span class="category-def">Function: </span><span><strong class="def-name">J1p2m</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1p2m"> &para;</a></span></dt>
 <dd><p><code class="code">J1p2m</code> returns <code class="code">(J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>)</code> for the tpket.
 </p></dd></dl>
 
@@ -1388,18 +1388,18 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 (%o4)                                  0
 </pre></div></div>
 
-<a class="anchor" id="J1m2p"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1m2p"><span class="category-def">Function: </span><span><strong class="def-name">J1m2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m2p"> &para;</a></span></dt>
+<a class="anchor" id="J1m2p"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1m2p"><span class="category-def">Function: </span><span><strong class="def-name">J1m2p</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1m2p"> &para;</a></span></dt>
 <dd><p><code class="code">J1m2p</code> returns <code class="code">(J<sub class="sub">1-</sub>J<sub class="sub">2+</sub>)</code> for the tpket.
 </p></dd></dl>
 
-<a class="anchor" id="J1zJ2z"></a><dl class="first-deffn">
-<dt class="deffn" id="index-J1zJ2z"><span class="category-def">Function: </span><span><strong class="def-name">J1zJ2z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1zJ2z"> &para;</a></span></dt>
+<a class="anchor" id="J1zJ2z"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-J1zJ2z"><span class="category-def">Function: </span><span><strong class="def-name">J1zJ2z</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-J1zJ2z"> &para;</a></span></dt>
 <dd><p><code class="code">J1zJ2z</code> returns <code class="code">(J<sub class="sub">1z</sub>J<sub class="sub">2z</sub>)</code> for the tpket.
 </p></dd></dl>
 
-<a class="anchor" id="Jtsqr"></a><dl class="first-deffn">
-<dt class="deffn" id="index-Jtsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jtsqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtsqr"> &para;</a></span></dt>
+<a class="anchor" id="Jtsqr"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-Jtsqr"><span class="category-def">Function: </span><span><strong class="def-name">Jtsqr</strong> <var class="def-var-arguments">(<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-Jtsqr"> &para;</a></span></dt>
 <dd><p><code class="code">Jtsqr</code> returns <code class="code">(J<sub class="sub">1</sub><sup class="sup">2</sup>+J<sub class="sub">2</sub><sup class="sup">2</sup>+
 J<sub class="sub">1+</sub>J<sub class="sub">2-</sub>+J<sub class="sub">1-</sub>J<sub class="sub">2+</sub>+J<sub class="sub">1z</sub>J<sub class="sub">2z</sub>)</code> for the
 tpket.
@@ -1423,8 +1423,8 @@ tpket.
 (%o4)                               4 hbar
 </pre></div></div>
 
-<a class="anchor" id="get_005fj"></a><dl class="first-deffn">
-<dt class="deffn" id="index-get_005fj"><span class="category-def">Function: </span><span><strong class="def-name">get_j</strong> <var class="def-var-arguments">(<code class="code">q</code>)</var><a class="copiable-link" href="#index-get_005fj"> &para;</a></span></dt>
+<a class="anchor" id="get_005fj"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-get_005fj"><span class="category-def">Function: </span><span><strong class="def-name">get_j</strong> <var class="def-var-arguments">(<code class="code">q</code>)</var><a class="copiable-link" href="#index-get_005fj"> &para;</a></span></dt>
 <dd><p><code class="code">get_j</code> is a convenience function that computes <code class="code">j</code> from
 <code class="code">j(j+1)=q</code> where <code class="code">q</code> is a rational number. This function is
 useful after using the function <code class="code">Jtsqr</code>.
@@ -1588,8 +1588,8 @@ particle to obtain the density submatrix for particle 2.
 
 <p>One can also construct the density matrix using the function <code class="code">matrep</code>.
 </p>
-<a class="anchor" id="matrep"></a><dl class="first-deffn">
-<dt class="deffn" id="index-matrep"><span class="category-def">Function: </span><span><strong class="def-name">matrep</strong> <var class="def-var-arguments">(<code class="code">A,B</code>)</var><a class="copiable-link" href="#index-matrep"> &para;</a></span></dt>
+<a class="anchor" id="matrep"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-matrep"><span class="category-def">Function: </span><span><strong class="def-name">matrep</strong> <var class="def-var-arguments">(<code class="code">A,B</code>)</var><a class="copiable-link" href="#index-matrep"> &para;</a></span></dt>
 <dd><p>Given an abstract representation of an operator, e.g.  <code class="code">A = |a&gt;
 . &lt;b| + |b&gt; . &lt;a|</code>, the function <code class="code">matrep</code> takes the operator
 <code class="code">A</code> and basis set <code class="code">B</code> and constructs the matrix representation
@@ -1643,8 +1643,8 @@ operator.
 <div class="subsection-level-extent" id="Abstract-basis-set-generator">
 <h4 class="subsection"><span>1.4.1 Abstract basis set generator<a class="copiable-link" href="#Abstract-basis-set-generator"> &para;</a></span></h4>
 
-<a class="anchor" id="basis_005fset"></a><dl class="first-deffn">
-<dt class="deffn" id="index-basis_005fset"><span class="category-def">Function: </span><span><strong class="def-name">basis_set</strong> <var class="def-var-arguments">(<code class="code">n,[l<sub class="sub">1</sub>,l<sub class="sub">2</sub>,&hellip;]</code>)</var><a class="copiable-link" href="#index-basis_005fset"> &para;</a></span></dt>
+<a class="anchor" id="basis_005fset"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-basis_005fset"><span class="category-def">Function: </span><span><strong class="def-name">basis_set</strong> <var class="def-var-arguments">(<code class="code">n,[l<sub class="sub">1</sub>,l<sub class="sub">2</sub>,&hellip;]</code>)</var><a class="copiable-link" href="#index-basis_005fset"> &para;</a></span></dt>
 <dd><p>The function <code class="code">basis_set</code> takes two arguments, <code class="code">n</code> is the
 number of particles, and the second argument is a list of labels of the
 particle states. The number of elements in the basis set is
@@ -1659,8 +1659,8 @@ particle states. The number of elements in the basis set is
                                                           |u, u, d&gt;, |u, u, u&gt;]
 </pre></div></div>
 
-<a class="anchor" id="complete"></a><dl class="first-deffn">
-<dt class="deffn" id="index-complete"><span class="category-def">Function: </span><span><strong class="def-name">complete</strong> <var class="def-var-arguments">(<code class="code">B</code>)</var><a class="copiable-link" href="#index-complete"> &para;</a></span></dt>
+<a class="anchor" id="complete"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-complete"><span class="category-def">Function: </span><span><strong class="def-name">complete</strong> <var class="def-var-arguments">(<code class="code">B</code>)</var><a class="copiable-link" href="#index-complete"> &para;</a></span></dt>
 <dd><p>The function <code class="code">complete</code> generates the completeness relation
 for the basis set <code class="code">B</code>.
 </p></dd></dl>
@@ -1724,8 +1724,8 @@ Hamiltonian and then use the function <code class="code">matrep</code>.
 <div class="subsection-level-extent" id="Stationary-states-from-a-Hamiltonian">
 <h4 class="subsection"><span>1.4.3 Stationary states from a Hamiltonian<a class="copiable-link" href="#Stationary-states-from-a-Hamiltonian"> &para;</a></span></h4>
 
-<a class="anchor" id="stationary"></a><dl class="first-deffn">
-<dt class="deffn" id="index-stationary"><span class="category-def">Function: </span><span><strong class="def-name">stationary</strong> <var class="def-var-arguments">(<code class="code">evals,evecs,basis</code>)</var><a class="copiable-link" href="#index-stationary"> &para;</a></span></dt>
+<a class="anchor" id="stationary"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-stationary"><span class="category-def">Function: </span><span><strong class="def-name">stationary</strong> <var class="def-var-arguments">(<code class="code">evals,evecs,basis</code>)</var><a class="copiable-link" href="#index-stationary"> &para;</a></span></dt>
 <dd><p>The function <code class="code">stationary</code> takes the output of the
 <code class="code">eigenvectors</code> command and a basis set and constructs
 the stationary states from the basis used to construct
@@ -1783,14 +1783,14 @@ the energy levels and the stationary states.
 <div class="subsection-level-extent" id="Matrix-trace-functions">
 <h4 class="subsection"><span>1.4.4 Matrix trace functions<a class="copiable-link" href="#Matrix-trace-functions"> &para;</a></span></h4>
 
-<a class="anchor" id="qm_005fmtrace"></a><dl class="first-deffn">
-<dt class="deffn" id="index-qm_005fmtrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_mtrace</strong> <var class="def-var-arguments">(<em class="emph">matrix</em>)</var><a class="copiable-link" href="#index-qm_005fmtrace"> &para;</a></span></dt>
+<a class="anchor" id="qm_005fmtrace"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-qm_005fmtrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_mtrace</strong> <var class="def-var-arguments">(<em class="emph">matrix</em>)</var><a class="copiable-link" href="#index-qm_005fmtrace"> &para;</a></span></dt>
 <dd><p>The function <code class="code">qm_mtrace</code> is the usual matrix trace; it takes
 a square matrix and returns the sum of the diagonal components.
 </p></dd></dl>
 
-<a class="anchor" id="qm_005fatrace"></a><dl class="first-deffn">
-<dt class="deffn" id="index-qm_005fatrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_atrace</strong> <var class="def-var-arguments">(<code class="code">A,B</code>)</var><a class="copiable-link" href="#index-qm_005fatrace"> &para;</a></span></dt>
+<a class="anchor" id="qm_005fatrace"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-qm_005fatrace"><span class="category-def">Function: </span><span><strong class="def-name">qm_atrace</strong> <var class="def-var-arguments">(<code class="code">A,B</code>)</var><a class="copiable-link" href="#index-qm_005fatrace"> &para;</a></span></dt>
 <dd><p>The function <code class="code">qm_atrace</code> takes an abstract operator <code class="code">A</code> and a
 basis <code class="code">B</code> and attempts to compute the matrix representation using
 the <code class="code">matrep</code> function.  If successful it will return the matrix
@@ -1848,14 +1848,14 @@ you must <code class="code">declare</code> the harmonic oscillator state, say <c
 be both <code class="code">scalar</code> and <code class="code">integer</code>, as shown in the examples
 below.
 </p>
-<a class="anchor" id="ap"></a><dl class="first-deffn">
-<dt class="deffn" id="index-ap"><span class="category-def">Function: </span><span><strong class="def-name">ap</strong><a class="copiable-link" href="#index-ap"> &para;</a></span></dt>
+<a class="anchor" id="ap"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-ap"><span class="category-def">Function: </span><span><strong class="def-name">ap</strong><a class="copiable-link" href="#index-ap"> &para;</a></span></dt>
 <dd><p><code class="code">ap</code> is the raising operator <code class="code">a<sup class="sup">+</sup></code> for quantum harmonic
 oscillator states.
 </p></dd></dl>
 
-<a class="anchor" id="am"></a><dl class="first-deffn">
-<dt class="deffn" id="index-am"><span class="category-def">Function: </span><span><strong class="def-name">am</strong><a class="copiable-link" href="#index-am"> &para;</a></span></dt>
+<a class="anchor" id="am"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-am"><span class="category-def">Function: </span><span><strong class="def-name">am</strong><a class="copiable-link" href="#index-am"> &para;</a></span></dt>
 <dd><p><code class="code">a</code> is the lowering operator <code class="code">a<sup class="sup">-</sup></code> for quantum harmonic
 oscillator states.
 </p></dd></dl>
