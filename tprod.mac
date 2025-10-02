@@ -172,3 +172,22 @@ tellsimpafter(J1p2m . tpk , J1p2m(tpk));
 tellsimpafter(J1m2p . tpk , J1m2p(tpk));
 tellsimpafter(J1zJ2z . tpk , J1zJ2z(tpk));
 tellsimpafter(Jtsqr . tpk , Jtsqr(tpk));
+
+/* additional rules for cases like J1z . J1z . tpk */
+matchdeclare(a,all);
+tellsimpafter(J1z . (a*tpk) , a*(J1z . tpk));
+tellsimpafter(J2z . (a*tpk) , a*(J2z . tpk));
+tellsimpafter(Jtz . (a*tpk) , a*(Jtz . tpk));
+tellsimpafter(J1sqr . (a*tpk) , a*(J1sqr . tpk));
+tellsimpafter(J2sqr . (a*tpk) , a*(J2sqr . tpk));
+tellsimpafter(J1p . (a*tpk) , a*(J1p . tpk));
+tellsimpafter(J2p . (a*tpk) , a*(J2p . tpk));
+tellsimpafter(Jtp . (a*tpk) , a*(Jtp . tpk));
+tellsimpafter(J1m . (a*tpk) , a*(J1m . tpk));
+tellsimpafter(J2m . (a*tpk) , a*(J2m . tpk));
+tellsimpafter(Jtm . (a*tpk) , a*(Jtm . tpk));
+tellsimpafter(J1p2m . (a*tpk) , a*(J1p2m . tpk));
+tellsimpafter(J1m2p . (a*tpk) , a*(J1m2p . tpk));
+tellsimpafter(J1zJ2z . (a*tpk) , a*(J1zJ2z . tpk));
+tellsimpafter(Jtsqr . (a*tpk) , a*(Jtsqr . tpk));
+

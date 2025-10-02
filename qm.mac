@@ -291,6 +291,12 @@ tellsimpafter( Jm . k, Jm(k) );
 tellsimpafter( Jz . k, Jz(k) );
 tellsimpafter( Jsqr . k, Jsqr(k) );
 
+/* These rules allow for things like Jm . Jm . ket([3/2,3/2]) */
+tellsimpafter( Jp . (a*k) , a*(Jp . k) );
+tellsimpafter( Jm . (a*k) , a*(Jm . k) );
+tellsimpafter( Jz . (a*k) , a*(Jz . k) );
+tellsimpafter( Jsqr . (a*k) , a*(Jsqr . k) );
+
 /******************************************************/
 /******************************************************/
 /* Angular momentum ladder operators for general spin */
