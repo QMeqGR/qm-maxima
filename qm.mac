@@ -27,6 +27,7 @@ load("qho.mac") $
 load("basis.mac") $
 load("predef.mac") $
 load("tpdisp.lisp") $
+load("qops.mac") $
 
 /* load the documentation */
 load("qm-index.lisp")$
@@ -103,6 +104,13 @@ tellsimpafter(mket(ll), transpose(matrix (ll)));
 /* predicates for general bras and kets, thanks to BW */
 ketp(psi) := not mapatom(psi) and is(inpart(psi,0) = 'ket) $
 brap(psi) := not mapatom(psi) and is(inpart(psi,0) = 'bra) $
+
+/* conjugate should not change kets or bras */
+matchdeclare(kk,ketp,bb,brap);
+simp:false;
+tellsimpafter(conjugate(kk),kk);
+tellsimpafter(conjugate(bb),bb);
+simp:true;
 
 /**********/
 /* dagger */

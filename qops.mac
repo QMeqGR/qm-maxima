@@ -1,0 +1,68 @@
+/*
+;;  Author Eric Majzoub, Department of Physics and Astronomy
+;;  University of Missouri, St. Louis
+;;  Copyright (C) 2025 Eric Majzoub
+
+;;  This program is free software; you can redistribute it and/or modify 
+;;  it under the terms of the GNU General Public License as published by         
+;;  the Free Software Foundation; either version 2 of the License, or            
+;;  (at your option) any later version.                                  
+                                                                                 
+;;  This program is distributed in the hope that it will be useful,              
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of               
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                
+;;  GNU General Public License for more details.         
+
+;; Quantum mechanics package for Maxima.
+*/
+
+/* Robert Dodier's code to allow declared objects to move into a sum.
+   The objects must be..
+   declare(object,distributes_over_sum)
+*/
+define_opproperty (distributes_over_sum, simplify_distributes_over_sum)$
+simplify_distributes_over_sum(e):= 
+if not atom (first (e)) then 
+    if op (first (e)) = nounify ('sum) then 
+        block ([ss: first (e)], 
+        apply(op(ss),
+            cons(op(e)(first(ss)),rest(args(ss))))) 
+    else e
+else e$
+
+/* make sure that dagger and conjugate will distribute over sums */
+declare([dagger,conjugate], distributes_over_sum);
+
+/* tellsimp rule to bring the dot operator and kets or bras inside a sum */
+matchdeclare (kb, lambda([x], ketp(x) or brap(x) ),
+    ss, lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
+tellsimp (kb . ss, apply (op(ss), cons ( kb . first(ss), rest(args(ss)))))$
+
+/* Define quantum operators (qops) as a property */
+/* To use this you must "put(H,qop,qop);" */
+qopp(e):= not freeof(e,propvars(qop)) $
+matchdeclare( qq, qopp )$
+tellsimp (qq . ss, apply (op(ss), cons ( qq . first(ss), rest(args(ss)))))$
+
+/* Kron-delta evaluation inside a sum */
+matchdeclare(skd, lambda ([e], (not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum)))
+        and freeof(kron_delta, inpart(ss,1))=false ))$
+matchdeclare(aa, true, krons, lambda([e], freeof(kron_delta,e)=false ) );
+matchdeclare(ii,symbolp, [ll,ul],true);
+simp:false;
+tellsimpafter( 'sum(aa*krons,ii,ll,ul) , skd_reduce(aa*krons,ii,ll,ul) );
+simp:true;
+skd_reduce(kernel,smidx,ll,ul):=block([i,idx1,idx2],
+    for i: 1 thru length(kernel) do
+        (if freeof(kron_delta, inpart(kernel,i))=false then
+            (idx1:inpart(kernel,i,1), idx2:inpart(kernel,i,2)) ),
+    if idx1=smidx then return (subst(idx2,smidx,kernel)) else return (subst(idx1,smidx,kernel))
+)$
+
+/* More rules to simplify qops */
+/* define 'things' that are not qops or kets or bras */
+thingp(x):=is(not qopp(x) and not ketp(x) and not brap(x) );
+matchdeclare(kk,ketp, bb,brap, H, qopp)$
+matchdeclare(thing, thingp);
+tellsimpafter(bb . H . (thing*kk) , thing* bb . H . kk )$
+tellsimpafter(bb . H . (kk*thing) , thing* bb . H . kk )$
