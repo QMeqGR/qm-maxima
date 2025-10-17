@@ -38,9 +38,18 @@ matchdeclare (kb, lambda([x], ketp(x) or brap(x) ),
     ss, lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
 tellsimp (kb . ss, apply (op(ss), cons ( kb . first(ss), rest(args(ss)))))$
 
-/* Define quantum operators (qops) as a property */
-/* To use this you must "put(H,qop,qop);" */
+/* combining nested sums */
+matchdeclare(kb, lambda([x], ketp(x) or brap(x) , H, qopp));
+matchdeclare([ss1,ss2], lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
+simp:false;
+tellsimp( ss1 . ss2, apply( op(ss1), cons( apply( op(ss2),
+        cons( first(ss1) . first(ss2), rest(args(ss1))) ), rest(args(ss2)))))$
+simp:true;
+
+/* Define quantum operators (qops and eigenops) as a property */
+/* To use this you must... "put(H,qop,qop);" */
 qopp(e):= not freeof(e,propvars(qop)) $
+eigenopp(e):= not freeof(e,propvars(eigenop)) $
 matchdeclare( qq, qopp )$
 tellsimp (qq . ss, apply (op(ss), cons ( qq . first(ss), rest(args(ss)))))$
 
@@ -66,3 +75,18 @@ matchdeclare(kk,ketp, bb,brap, H, qopp)$
 matchdeclare(thing, thingp);
 tellsimpafter(bb . H . (thing*kk) , thing* bb . H . kk )$
 tellsimpafter(bb . H . (kk*thing) , thing* bb . H . kk )$
+/* if the operator is not an eigenop but is a qop, then write it as the matrix element
+tellsimp(ebra . H . eket, H[inpart(ebra,1,1),inpart(eket,1,1)]); */
+
+/* Energy eigenstate rules */
+matchdeclare(eket, lambda([x], ketp(x)=true and (symbolp(inpart(x,1,1)) or integerp(inpart(x,1,1))) ) )$
+matchdeclare(ebra, lambda([x], brap(x)=true and (symbolp(inpart(x,1,1)) or integerp(inpart(x,1,1))) ) )$
+matchdeclare(HH, eigenopp, thing,thingp );
+simp:false; tellsimpafter(HH . eket, E[inpart(eket,1,1)] * eket); simp:true;
+simp:false; tellsimpafter(HH . (eket*thing), thing* E[inpart(eket,1,1)] * eket); simp:true;
+
+/* Utility functions */
+declare_eigenop(x):=put(x,eigenop,eigenop);
+declare_qop(x):=put(x,qop,qop);
+psisum(cc,idx):= ( apply('declare,[cc,complex]),
+  subst([I=idx,c=cc],sum(c[I]*ket([I]),I,1,N)) );
