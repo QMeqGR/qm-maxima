@@ -106,4 +106,4 @@ psisum([u]):= block([parm:0],
     if L=3 then return
         (subst([I=idx,c=cc,ul=UL],sum(c[I]*ket([I]),I,1,ul))),
     if L=4 then return
-        (subst([I=idx,c=cc,tt=parm],sum(c[I](tt)*ket([I]),I,1,ul))) )$
+        (subst([I=idx,c=cc,ul=UL,tt=parm],sum(c[I](tt)*ket([I]),I,1,ul))) )$
