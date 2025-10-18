@@ -75,18 +75,25 @@ matchdeclare(kk,ketp, bb,brap, H, qopp)$
 matchdeclare(thing, thingp);
 tellsimpafter(bb . H . (thing*kk) , thing* bb . H . kk )$
 tellsimpafter(bb . H . (kk*thing) , thing* bb . H . kk )$
-/* if the operator is not an eigenop but is a qop, then write it as the matrix element
-tellsimp(ebra . H . eket, H[inpart(ebra,1,1),inpart(eket,1,1)]); */
 
 /* Energy eigenstate rules */
+matchdeclare(H, qopp, HH, eigenopp, thing,thingp );
 matchdeclare(eket, lambda([x], ketp(x)=true and (symbolp(inpart(x,1,1)) or integerp(inpart(x,1,1))) ) )$
 matchdeclare(ebra, lambda([x], brap(x)=true and (symbolp(inpart(x,1,1)) or integerp(inpart(x,1,1))) ) )$
-matchdeclare(HH, eigenopp, thing,thingp );
 simp:false; tellsimpafter(HH . eket, E[inpart(eket,1,1)] * eket); simp:true;
 simp:false; tellsimpafter(HH . (eket*thing), thing* E[inpart(eket,1,1)] * eket); simp:true;
 
+/* Display matrix element if H=qop but not eigenop */
+tellsimpafter(ebra . H . eket, H[inpart(ebra,1,1),inpart(eket,1,1)]);
+/* This looks awkward with a comma in the subscript but concatenating
+the indices together breaks the indices as something to be summed over
+and Maxima pulls the whole matrix element out of the sum. */
+
+/*********************/
 /* Utility functions */
+/*********************/
 declare_eigenop(x):=put(x,eigenop,eigenop);
 declare_qop(x):=put(x,qop,qop);
 psisum(cc,idx):= ( apply('declare,[cc,complex]),
   subst([I=idx,c=cc],sum(c[I]*ket([I]),I,1,N)) );
+

@@ -19,7 +19,7 @@
 if get('qm,'qm_version)#false then error("Package qm already loaded!")$
 put('qm,'0.97,'qm_version)$
 
-/* load additional codes */
+/* Load additional codes. There are additional loads at the bottom of this file. */
 load("qm.lisp") $
 load("autoket.mac") $
 load("tprod.mac") $
@@ -27,7 +27,7 @@ load("qho.mac") $
 load("basis.mac") $
 load("predef.mac") $
 load("tpdisp.lisp") $
-load("qops.mac") $
+
 
 /* load the documentation */
 load("qm-index.lisp")$
@@ -378,3 +378,12 @@ RY(s,t) := block([demoivre:true], Rot(SY(s),t))$
 /* time-evolution operator */
 U(H,t) := block([M,demoivre:true], Rot(H,t))$
 
+
+/*********************/
+/* Additional loads  */
+/*********************/
+/*
+These need to be loaded after qm.mac otherwise
+Maxima throws an error.
+*/
+load("qops.mac") $
