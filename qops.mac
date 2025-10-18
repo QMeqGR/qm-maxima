@@ -92,8 +92,18 @@ and Maxima pulls the whole matrix element out of the sum. */
 /*********************/
 /* Utility functions */
 /*********************/
-declare_eigenop(x):=put(x,eigenop,eigenop);
 declare_qop(x):=put(x,qop,qop);
-psisum(cc,idx):= ( apply('declare,[cc,complex]),
-  subst([I=idx,c=cc],sum(c[I]*ket([I]),I,1,N)) );
+declare_eigenop(x):=(put(x,qop,qop),put(x,eigenop,eigenop));
 
+/* args: (c,idx,UL,t), first two are mandadory */
+psisum([u]):= block([parm:0],
+    L:length(u),
+    if L>=2 then (cc:u[1], idx:u[2], ul:N, apply('declare,[cc,complex])),
+    if L>=3 then (UL:u[3]),
+    if L=4  then (parm:u[4], apply('depends,[cc,parm])),
+    if L=2  then return
+        (subst([I=idx,c=cc],sum(c[I]*ket([I]),I,1,N))),
+    if L=3 then return
+        (subst([I=idx,c=cc,ul=UL],sum(c[I]*ket([I]),I,1,ul))),
+    if L=4 then return
+        (subst([I=idx,c=cc,tt=parm],sum(c[I](tt)*ket([I]),I,1,ul))) )$
