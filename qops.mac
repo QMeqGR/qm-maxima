@@ -46,7 +46,9 @@ tellsimp( ss1 . ss2, apply( op(ss1), cons( apply( op(ss2),
         cons( first(ss1) . first(ss2), rest(args(ss1))) ), rest(args(ss2)))))$
 simp:true;
 
+/**************************************************************/
 /* Define quantum operators (qops and eigenops) as a property */
+/**************************************************************/
 /* To use this you must... "put(H,qop,qop);" */
 qopp(e):= not freeof(e,propvars(qop)) $
 eigenopp(e):= not freeof(e,propvars(eigenop)) $
@@ -70,7 +72,7 @@ skd_reduce(kernel,smidx,ll,ul):=block([i,idx1,idx2],
 
 /* More rules to simplify qops */
 /* define 'things' that are not qops or kets or bras */
-thingp(x):=is(not qopp(x) and not ketp(x) and not brap(x) );
+thingp(x):=is(not qopp(x) and not eigenopp(x) and not ketp(x) and not brap(x) );
 matchdeclare(kk,ketp, bb,brap, H, qopp)$
 matchdeclare(thing, thingp);
 tellsimpafter(bb . H . (thing*kk) , thing* bb . H . kk )$
@@ -103,6 +105,16 @@ tellsimpafter( bb . sc1 . kk, sc1* bb . kk)$
 tellsimpafter( bb . sc1 . (kk * sc2), sc1*sc2* bb . kk)$
 tellsimpafter( bb . s1 . aa, s1* bb . aa)$ /* this seems like it should be in qm.mac */
 tellsimpafter( bb . (s1*qq). aa, s1* bb . qq . aa)$
+
+matchdeclare(kk,ketp,bb,brap,[sc1,sc2,sc3], thingp )$
+matchdeclare (kb, lambda([x], ketp(x) or brap(x)), qq, qopp,
+    ss, lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
+tellsimp (kb . qq . sc1* ss, apply (op(ss), cons ( sc1*kb . qq . first(ss), rest(args(ss)))))$
+tellsimp ((sc1*qq) . ss, apply (op(ss), cons (sc1*qq . first(ss), rest(args(ss)))))$
+tellsimp (kb . (sc1*ss), apply (op(ss), cons (sc1*kb . first(ss), rest(args(ss)))))$
+simp:false;
+tellsimp(bb . (sc1*sc2) . (sc3*kk), sc1*sc2*sc3* bb.kk)$
+simp:true;
 
 
 /*********************/
