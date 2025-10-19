@@ -109,7 +109,8 @@ tellsimpafter( bb . (s1*qq). aa, s1* bb . qq . aa)$
 matchdeclare(kk,ketp,bb,brap,[sc1,sc2,sc3], thingp )$
 matchdeclare (kb, lambda([x], ketp(x) or brap(x)), qq, qopp,
     ss, lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
-tellsimp (kb . qq . sc1* ss, apply (op(ss), cons ( sc1*kb . qq . first(ss), rest(args(ss)))))$
+
+tellsimpafter(kb . qq . sc1* ss, apply (op(ss), cons ( sc1*kb . qq . first(ss), rest(args(ss)))))$
 tellsimp ((sc1*qq) . ss, apply (op(ss), cons (sc1*qq . first(ss), rest(args(ss)))))$
 tellsimp (kb . (sc1*ss), apply (op(ss), cons (sc1*kb . first(ss), rest(args(ss)))))$
 simp:false;
