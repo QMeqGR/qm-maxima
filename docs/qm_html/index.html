@@ -421,9 +421,8 @@ matrix representation the elements must be entered as a list in
                                     [ c1 ]
 (%o2)                               [    ]
                                     [ c2 ]
-(%i3) facts();
-(%o3) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                hbar &gt; 0, kind(c1, complex), kind(c2, complex)]
+(%i3) properties(c1);
+(%o3)          [database info, kind(c1, complex), matchdeclare]
 </pre></div></div>
 
 <a class="anchor" id="mketp"></a><dl class="first-deffn def-block">
@@ -460,9 +459,8 @@ in <code class="code">[&hellip;]</code> square brackets.
 (%o1)                                done
 (%i2) mbra([c1,c2]);
 (%o2)                             [ c1  c2 ]
-(%i3) facts();
-(%o3) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                                                      hbar &gt; 0]
+(%i3) properties(c1);
+(%o3)                                 []
 </pre></div></div>
 
 <a class="anchor" id="mbrap"></a><dl class="first-deffn def-block">
@@ -498,16 +496,14 @@ and will <code class="code">declare</code> only the coefficients as complex.
                                      [ a ]
 (%o1)                                [   ]
                                      [ b ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) autoket([a*sin(x),b*sin(x)]);
                                  [ a sin(x) ]
 (%o1)                            [          ]
                                  [ b sin(x) ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 </pre></div></div>
 
 <a class="anchor" id="autobra"></a><dl class="first-deffn def-block">
@@ -521,14 +517,12 @@ and will <code class="code">declare</code> only the coefficients as complex.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) autobra([a,b]);
 (%o1)                              [ a  b ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 </pre></div><div class="group"><pre class="example-preformatted">(%i1) autobra([a*sin(x),b]);
 (%o1)                           [ a sin(x)  b ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar &gt; 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 </pre></div></div>
 
 <a class="anchor" id="dagger"></a><dl class="first-deffn def-block">

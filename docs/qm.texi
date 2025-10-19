@@ -409,9 +409,8 @@ matrix representation the elements must be entered as a list in
                                     [ c1 ]
 (%o2)                               [    ]
                                     [ c2 ]
-(%i3) facts();
-(%o3) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                hbar > 0, kind(c1, complex), kind(c2, complex)]
+(%i3) properties(c1);
+(%o3)          [database info, kind(c1, complex), matchdeclare]
 @end group
 @end example
 
@@ -452,9 +451,8 @@ in @code{[@dots{}]} square brackets.
 (%o1)                                done
 (%i2) mbra([c1,c2]);
 (%o2)                             [ c1  c2 ]
-(%i3) facts();
-(%o3) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                                                      hbar > 0]
+(%i3) properties(c1);
+(%o3)                                 []
 @end group
 @end example
 
@@ -494,18 +492,16 @@ and will @code{declare} only the coefficients as complex.
                                      [ a ]
 (%o1)                                [   ]
                                      [ b ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar > 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 @end group
 @group
 (%i1) autoket([a*sin(x),b*sin(x)]);
                                  [ a sin(x) ]
 (%o1)                            [          ]
                                  [ b sin(x) ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar > 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 @end group
 @end example
 
@@ -521,16 +517,14 @@ and will @code{declare} only the coefficients as complex.
 @group
 (%i1) autobra([a,b]);
 (%o1)                              [ a  b ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar > 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 @end group
 @group
 (%i1) autobra([a*sin(x),b]);
 (%o1)                           [ a sin(x)  b ]
-(%i2) facts();
-(%o2) [kind(tpscmult, multiadditive), kind(hbar, real), kind(ħ, real), 
-                                  hbar > 0, kind(a, complex), kind(b, complex)]
+(%i2) properties(a);
+(%o2)           [database info, kind(a, complex), matchdeclare]
 @end group
 @end example
 

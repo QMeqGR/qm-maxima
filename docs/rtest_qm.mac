@@ -105,10 +105,8 @@ done $
 mket([c1,c2]) ;
 matrix([c1],[c2]) $
 
-facts() ;
-[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(c1,complex),kind(c2,complex),
-        kind(r,real)]
-$
+properties(c1) ;
+["database info",kind(c1,complex),matchdeclare] $
 
 k:ket([a,b]) ;
 ket([a,bra([u,d])]) $
@@ -128,9 +126,8 @@ done $
 mbra([c1,c2]) ;
 matrix([c1,c2]) $
 
-facts() ;
-[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
-$
+properties(c1) ;
+[] $
 
 b:mbra([a,b]) ;
 matrix([a,bra([u,d])]) $
@@ -141,30 +138,26 @@ true $
 autoket([a,b]) ;
 matrix([a],[matrix([a,bra([u,d])])]) $
 
-facts() ;
-[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
-$
+properties(a) ;
+["database info",kind(a,complex),scalar,matchdeclare] $
 
 autoket([a*sin(x),b*sin(x)]) ;
 matrix([a*sin(x)],[matrix([a*sin(x),bra([u,d])*sin(x)])]) $
 
-facts() ;
-[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
-$
+properties(a) ;
+["database info",kind(a,complex),scalar,matchdeclare] $
 
 autobra([a,b]) ;
 matrix([a,matrix([a,bra([u,d])])]) $
 
-facts() ;
-[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
-$
+properties(a) ;
+["database info",kind(a,complex),scalar,matchdeclare] $
 
 autobra([a*sin(x),b]) ;
 matrix([a*sin(x),matrix([a,bra([u,d])])]) $
 
-facts() ;
-[kind(tpscmult,multiadditive),kind(hbar,real),kind(ħ,real),hbar > 0,         kind(a,complex),kind(b,complex),kind(r,real)]
-$
+properties(a) ;
+["database info",kind(a,complex),scalar,matchdeclare] $
 
 dagger(mbra([%i,2])) ;
 matrix([-%i],[2]) $
@@ -177,8 +170,7 @@ braket(matrix([a,matrix([a,bra([u,d])]),c]),               matrix([a],[matrix([a
 $
 
 braket(dagger(mket([a,b,c])),mket([a,b,c])) ;
-braket(matrix([conjugate(a),                       matrix([conjugate(a),conjugate(bra([u,d]))]),
-                      conjugate(c)]),matrix([a],[matrix([a,bra([u,d])])],[c]))
+braket(matrix([conjugate(a),matrix([conjugate(a),bra([u,d])]),                       conjugate(c)]),matrix([a],[matrix([a,bra([u,d])])],[c]))
 $
 
 braket(bra([a1,b1,c1]),ket([a2,b2,c2])) ;

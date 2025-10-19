@@ -89,6 +89,22 @@ tellsimpafter(ebra . H . eket, H[inpart(ebra,1,1),inpart(eket,1,1)]);
 the indices together breaks the indices as something to be summed over
 and Maxima pulls the whole matrix element out of the sum. */
 
+/**************************************************************/
+/* did this to get time-independent pert theory calcs to work */
+
+/* If E is declared scalar, then E[i] for any i will be scalarp2 */
+scalarp2(x):=block(
+    if symbolp(x) then return(scalarp(x)) else
+    return( not freeof(scalar, apply('properties,[inpart(x,0)])) ) )$
+
+matchdeclare([sc1,sc2,sc3],scalarp2,[s1,s2],scalarp,kk,ketp,bb,brap,aa,true)$
+matchdeclare(qq,qopp)$
+tellsimpafter( bb . sc1 . kk, sc1* bb . kk)$
+tellsimpafter( bb . sc1 . (kk * sc2), sc1*sc2* bb . kk)$
+tellsimpafter( bb . s1 . aa, s1* bb . aa)$ /* this seems like it should be in qm.mac */
+tellsimpafter( bb . (s1*qq). aa, s1* bb . qq . aa)$
+
+
 /*********************/
 /* Utility functions */
 /*********************/
