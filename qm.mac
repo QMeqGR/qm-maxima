@@ -118,6 +118,10 @@ simp:true;
 declare(dagger,additive);
 declare(dagger,multiplicative);
 
+/* dagger for exponentials */
+matchdeclare(aa,true);
+tellsimp( dagger( exp(aa) ), exp( dagger(aa) ));
+
 matchdeclare([i,j],all,mm,mapatom,nn,integerp);
 simp:false; tellsimp( dagger(dagger(i)) , i); simp:true;
 simp:false; tellsimp( dagger(mm^nn), dagger(mm)^nn ); simp:true;
@@ -130,7 +134,7 @@ tellsimpafter( dagger( ket(L1) ), bra(L1) );
 tellsimpafter( dagger( i*ket(L1)), dagger(i)*bra(L1) );
 tellsimpafter( dagger( i*bra(L1)), dagger(i)*ket(L1) );
 
-/* simplify dagger for complex and real numbers */
+/* simplify dagger for complex and real numbers and symbols */
 matchdeclare(cx,complexp,rx,numberp,rr,realp);
 simp:false; tellsimp( dagger(cx) , conjugate(cx) ); simp:true;
 simp:false; tellsimp( dagger(rx) , rx ); simp:true;
@@ -140,7 +144,8 @@ simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 matchdeclare(mx, matrixp,nn,integerp);
 simp:false; tellsimp( dagger( mx^nn ), dagger(mx)^nn ); simp:true;
 simp:false; tellsimp( dagger( mx^^nn ), dagger(mx)^^nn ); simp:true;
-tellsimpafter( dagger(mx), conjugate(transpose (mx)) );
+simp:false; tellsimpafter( dagger(mx), conjugate(transpose (mx)) ); simp:true;
+
 
 /********************/
 /*    braket        */

@@ -694,11 +694,3 @@ soln:desolve([eq1,eq2],[c[1](t),c[2](t)]) ;
                                  *sin(ket([1]) . bra([1])*c*t))
                                  /(2*ket([1]) . bra([1])*c)
                                  +c[2](0)*cos(ket([1]) . bra([1])*c*t))]
-$
-
-add:fullsimp(soln[1]+soln[2]) ;
-c[2](t)+c[1](t) = %e^(%i*ket([1]) . bra([1])*c*t-%i*E0*t)                         *(c[2](0)+c[1](0))
-$
-
-sub:fullsimp(soln[1]-soln[2]) ;
-c[1](t)-c[2](t) = -(%e^(-(%i*E0*t)-%i*ket([1]) . bra([1])*c*t)                         *(c[2](0)-c[1](0)))

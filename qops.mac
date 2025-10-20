@@ -120,13 +120,13 @@ simp:true;
 /******************************************/
 /* rules for an eigenop in an exponential */
 /******************************************/
-matchdeclare(H,eigenopp,[t1,t2],thingp,
+matchdeclare(H,qopp,He,eigenopp,[t1,t2],thingp,
     ii,lambda([x], integerp(x) or symbolp(x) ) )$
-tellsimpafter(exp(H*t1) . (ket([ii])*t2), exp(E[ii]*t1) * (ket([ii])*t2))$
+tellsimpafter(exp(He*t1) . (ket([ii])*t2), exp(E[ii]*t1) * (ket([ii])*t2))$
 
 /* define a new time evolution operator for eigenops */
 Uop(H,t):=block(
-  if get(H,eigenop)#eigenop then print("warn: H is not an eigenop!"),
+  if get(H,eigenop)#eigenop then print("warn: operator is not an eigenop!"),
   exp(-%i*H*t/hbar)
 )$
 

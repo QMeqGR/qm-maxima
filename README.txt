@@ -1493,8 +1493,11 @@ coefficient functions generally, and then use the resulting equations to
 examine a simple two-state system.
 
      (%i1) declare_qop(H);
+     (%o1)                                 qop
      (%i2) declare(c,complex);
+     (%o2)                                done
      (%i3) depends(c,t);
+     (%o3)                               [c(t)]
      (%i4) psi:sum(c[i]*ket([i]),i,1,N);
                                        N
                                       ____
@@ -1526,6 +1529,7 @@ the matrix elements for a two-state system with transitions between two
 states of the same energy.
 
      (%i1) declare_qop(H);
+     (%o1)                                 qop
      (%i2) psi2:c[1](t)*ket([1])+c[2](t)*ket([2]);
      (%o2)                        |2> c (t) + |1> c (t)
                                        2           1
@@ -1548,6 +1552,7 @@ states of the same energy.
      (%o6)                            [          ]
                                       [ - A  E0  ]
      (%i7) assume(A > 0,E0 > 0);
+     (%o7)                           [A > 0, E0 > 0]
      (%i8) eq1:%i*'diff(c[1](t),t,1) = H[1,2]*c[2](t)+H[1,1]*c[1](t);
                               d
      (%o8)                %i (-- (c (t))) = E0 c (t) - A c (t)
@@ -1557,6 +1562,19 @@ states of the same energy.
      (%o9)                %i (-- (c (t))) = E0 c (t) - A c (t)
                               dt   2            2         1
      (%i10) soln:desolve([eq1,eq2],[c[1](t),c[2](t)]);
+                       - %i E0 t
+     (%o10) [c (t) = %e
+              1
+       (2 (%i c (0) E0 + %i c (0) A) - 2 %i c (0) E0) sin(A t)
+               1             2               1
+      (------------------------------------------------------- + c (0) cos(A t)),
+                                 2 A                              1
+                          (2 (%i c (0) E0 + %i c (0) A) - 2 %i c (0) E0) sin(A t)
+               - %i E0 t          2             1               2
+     c (t) = %e          (-------------------------------------------------------
+      2                                             2 A
+      + c (0) cos(A t))]
+         2
      (%i11) add:fullsimp(soln[1]+soln[2]);
                                      %i A t - %i E0 t
      (%o11)        c (t) + c (t) = %e                 (c (0) + c (0))
