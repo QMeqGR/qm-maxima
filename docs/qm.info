@@ -1510,6 +1510,11 @@ functions.
      (%o3)                         kron_delta(i, j) E
                                                      j
 
+ -- Function: Uop (H,t)
+     ‘Uop(H,t)’ is the time evolution operator for eigenop Hamiltonian
+     ‘H’.  It is defined as the matrix exponential
+     ‘matrixexp(-%i*H*t/hbar)’.
+
 1.7 Example: Two-state systems
 ==============================
 
@@ -1801,6 +1806,8 @@ Appendix A Function and Variable index
                                                              (line  647)
 * U:                                     Functions and Variables for qm.
                                                              (line  462)
+* Uop:                                   Functions and Variables for qm.
+                                                             (line 1227)
 * xm:                                    Functions and Variables for qm.
                                                              (line  203)
 * xp:                                    Functions and Variables for qm.
@@ -1913,7 +1920,8 @@ Ref: ap61044
 Ref: am61157
 Ref: declare_qop62505
 Ref: declare_eigenop63060
-Node: Function and Variable Index68957
+Ref: Uop63673
+Node: Function and Variable Index69148
 
 End Tag Table
 

@@ -117,6 +117,15 @@ simp:false;
 tellsimp(bb . (sc1*sc2) . (sc3*kk), sc1*sc2*sc3* bb.kk)$
 simp:true;
 
+/* rules for an eigenop in an exponential */
+matchdeclare(H,eigenopp,[t1,t2],thingp,
+    ii,lambda([x], integerp(x) or symbolp(x) ) )$
+tellsimpafter(exp(H*t1) . (ket([ii])*t2), exp(E[ii]*t1) . (ket([ii])*t2))$
+
+Uop(H,t):=block(
+  if get(H,eigenop)#eigenop then print("warn: H is not an eigenop!"),
+  exp(-%i*H*t/hbar)
+)$
 
 /*********************/
 /* Utility functions */

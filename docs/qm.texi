@@ -1977,6 +1977,12 @@ operator (qop) and also an @code{eigenop}. The action of a
 @end group
 @end example
 
+@anchor{Uop}
+@deffn {Function} Uop (@code{H,t})
+@code{Uop(H,t)} is the time evolution operator for eigenop Hamiltonian @code{H}. It
+is defined as the matrix exponential @code{matrixexp(-%i*H*t/hbar)}.
+@end deffn
+
 
 @section Example: Two-state systems
 
