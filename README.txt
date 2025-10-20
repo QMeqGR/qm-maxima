@@ -1290,11 +1290,11 @@ define the Hamiltonian and then use the function ‘matrep’.
                                                                1    1     1    1
                                                             1·|-, - -> ⊗ |-, - ->]
                                                                2    2     2    2
-     (%i6) H:omega*(J1z-J2z);
+     (%i6) H1:omega*(J1z-J2z);
      (%o6)                          (J1z - J2z) omega
      (%i7) declare(omega,scalar);
      (%o7)                                done
-     (%i8) matrep(H,B);
+     (%i8) matrep(H1,B);
                            [ 0      0            0        0 ]
                            [                                ]
                            [ 0  hbar omega       0        0 ]
@@ -1321,12 +1321,12 @@ stationary states.
 
      (%i1) declare(A,scalar);
      (%o1)                                done
-     (%i2) H:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z);
+     (%i2) Hhyp:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z);
                               A (2 J1zJ2z + J1p2m + J1m2p)
      (%o2)                    ----------------------------
                                              2
                                          hbar
-     (%i3) Hmat:matrep(H,bj1212);
+     (%i3) Hmat:matrep(Hhyp,bj1212);
                                    [ A              ]
                                    [ -   0    0   0 ]
                                    [ 2              ]
@@ -1443,7 +1443,125 @@ below, ignoring any physical constants in the problem.
    Another package that handles quantum mechanical operators is
 ‘operator_algebra’ written by Barton Willis.
 
-1.6 Pre-defined quantities
+1.6 General analytic calculations
+=================================
+
+To perform more abstract calculations we define two new operator types:
+‘qop’ and ‘eigenop’.  A ‘qop’ is a quantum operator whose actions on
+kets are undefined, outside of yielding an abstract matrix element.  An
+‘eigenop’ is a quantum operator whose action on kets ‘|i>’ yields ‘E_{i}
+|i>’.  These operators must be declared using the following two
+functions.
+
+ -- Function: declare_qop (_symbol_)
+     The function ‘declare_qop’ declares a symbol to be a quantum
+     operator.  The action of a ‘qop’ on kets is undefined, however
+     ‘qop’s are allowed to enter summations and matrix elements are
+     displayed if kets are represented in a numeral basis, i.e., ‘<i| .
+     H . |j> = H_{ij}’.
+
+     (%i1) declare_qop(H);
+     (%o1)                                 qop
+     (%i2) bra([i]) . H . ket([j]);
+     (%o2)                                H
+                                           i, j
+
+ -- Function: declare_eigenop (_symbol_)
+     The function ‘declare_eigenop’ declares a symbol to be a quantum
+     operator (qop) and also an ‘eigenop’.  The action of a ‘eigenop’ on
+     kets is defined by the ket symbol, e.g.  ‘H . |i> = E_{i} |i>’.
+
+     (%i1) declare_eigenop(H);
+     (%o1)                               eigenop
+     (%i2) H . ket([j]);
+     (%o2)                               E  |j>
+                                          j
+     (%i3) bra([i]) . H . ket([j]);
+     (%o3)                         kron_delta(i, j) E
+                                                     j
+
+1.7 Example: Two-state systems
+==============================
+
+In this section we recast the Schrodinger equation in terms of
+coefficient functions generally, and then use the resulting equations to
+examine a simple two-state system.
+
+     (%i1) declare_qop(H);
+     (%i2) declare(c,complex);
+     (%i3) depends(c,t);
+     (%i4) psi:sum(c[i]*ket([i]),i,1,N);
+                                       N
+                                      ____
+                                      \
+     (%o4)                             >    c  |i>
+                                      /      i
+                                      ----
+                                      i = 1
+     (%i5) schro:%i*diff(psi,t) = H . psi;
+                           N                     N
+                          ____                  ____
+                          \      d              \
+     (%o5)             %i  >    (-- (c )) |i> =  >    H . (c  |i>)
+                          /      dt   i         /           i
+                          ----                  ----
+                          i = 1                 i = 1
+     (%i6) bra([j]) . schro;
+                                              N
+                                             ____
+                                  d          \
+     (%o6)                    %i (-- (c )) =  >    c  H
+                                  dt   j     /      i  j, i
+                                             ----
+                                             i = 1
+
+   This is the general formula (with hbar=1) found in textbooks.  Now
+let us specialize to a two-state system and solve it.  We will specify
+the matrix elements for a two-state system with transitions between two
+states of the same energy.
+
+     (%i1) declare_qop(H);
+     (%i2) psi2:c[1](t)*ket([1])+c[2](t)*ket([2]);
+     (%o2)                        |2> c (t) + |1> c (t)
+                                       2           1
+     (%i3) schro2:%i*diff(psi2,t) = H . psi2;
+                    d                  d
+     (%o3) %i (|2> (-- (c (t))) + |1> (-- (c (t)))) =
+                    dt   2             dt   1
+                                                   H . (|2> c (t)) + H . (|1> c (t))
+                                                             2                 1
+     (%i4) eq1:bra([1]) . schro2;
+                           d
+     (%o4)             %i (-- (c (t))) = H     c (t) + H     c (t)
+                           dt   1         1, 2  2       1, 1  1
+     (%i5) eq2:bra([2]) . schro2;
+                           d
+     (%o5)             %i (-- (c (t))) = H     c (t) + H     c (t)
+                           dt   2         2, 2  2       2, 1  1
+     (%i6) H:matrix([E0,-A],[-A,E0]);
+                                      [ E0   - A ]
+     (%o6)                            [          ]
+                                      [ - A  E0  ]
+     (%i7) assume(A > 0,E0 > 0);
+     (%i8) eq1:%i*'diff(c[1](t),t,1) = H[1,2]*c[2](t)+H[1,1]*c[1](t);
+                              d
+     (%o8)                %i (-- (c (t))) = E0 c (t) - A c (t)
+                              dt   1            1         2
+     (%i9) eq2:%i*'diff(c[2](t),t,1) = H[2,2]*c[2](t)+H[2,1]*c[1](t);
+                              d
+     (%o9)                %i (-- (c (t))) = E0 c (t) - A c (t)
+                              dt   2            2         1
+     (%i10) soln:desolve([eq1,eq2],[c[1](t),c[2](t)]);
+     (%i11) add:fullsimp(soln[1]+soln[2]);
+                                     %i A t - %i E0 t
+     (%o11)        c (t) + c (t) = %e                 (c (0) + c (0))
+                    2       1                           2       1
+     (%i12) sub:fullsimp(soln[1]-soln[2]);
+                                     - %i E0 t - %i A t
+     (%o12)      c (t) - c (t) = - %e                   (c (0) - c (0))
+                  1       2                               2       1
+
+1.8 Pre-defined quantities
 ==========================
 
 There are some pre-defined quantities in the file ‘predef.mac’ that may
@@ -1513,6 +1631,10 @@ Appendix A Function and Variable index
                                                              (line 1252)
 * dagger:                                Functions and Variables for qm.
                                                              (line  395)
+* declare_eigenop:                       Functions and Variables for qm.
+                                                             (line 1468)
+* declare_qop:                           Functions and Variables for qm.
+                                                             (line 1455)
 * expect:                                Functions and Variables for qm.
                                                              (line  646)
 * get_j:                                 Functions and Variables for qm.

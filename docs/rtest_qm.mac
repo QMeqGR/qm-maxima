@@ -508,13 +508,7 @@ B:[ket([1]),ket([0])] ;
 [ket([1]),ket([0])] $
 
 matrep(O,B) ;
-matrix([bra([1]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))                          *ket([0]) . bra([1])) . ket([1]),
-                a+bra([1]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))
-                           *ket([0]) . bra([1])) . ket([0])],
-               [bra([0]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))
-                         *ket([0]) . bra([1])) . ket([1]),
-                bra([0]) . (tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))
-                         *ket([0]) . bra([1])) . ket([0])])
+matrix([tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))*ket([0]) . bra([1]),a],                [0,tpbra(1,bra([3/2,1/2]),bra([1/2,1/2]))*ket([0]) . bra([1])])
 $
 
 basis_set(2,[0,1]) ;
@@ -548,22 +542,22 @@ B:[b1,b2,b3,b4] ;
          tpket(1,ket([1/2,-(1/2)]),ket([1/2,-(1/2)]))]
 $
 
-H:omega*(J1z-J2z) ;
+H1:omega*(J1z-J2z) ;
 (J1z-J2z)*omega $
 
 declare(omega,scalar) ;
 done $
 
-matrep(H,B) ;
+matrep(H1,B) ;
 matrix([0,0,0,0],[0,omega*ħ,0,0],[0,0,-(omega*ħ),0],[0,0,0,0]) $
 
 declare(A,scalar) ;
 done $
 
-H:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z) ;
+Hhyp:(A/hbar^2)*(J1p2m+J1m2p+2*J1zJ2z) ;
 (A*(2*J1zJ2z+J1p2m+J1m2p))/ħ^2 $
 
-Hmat:matrep(H,bj1212) ;
+Hmat:matrep(Hhyp,bj1212) ;
 matrix([A/2,0,0,0],[0,-(A/2),A,0],[0,A,-(A/2),0],[0,0,0,A/2]) $
 
 [evals,evecs]:eigenvectors(Hmat) ;
@@ -624,4 +618,87 @@ am . ket([n]) ;
 ket([n-1])*sqrt(n) $
 
 bra([n]) . (ap+am)^^4 . ket([n]) ;
-6*n^2+6*n+3  $
+6*n^2+6*n+3 $
+
+declare_qop(H) ;
+qop $
+
+bra([i]) . H . ket([j]) ;
+H[i,j] $
+
+declare_eigenop(H) ;
+eigenop $
+
+H . ket([j]) ;
+E[j]*ket([j]) $
+
+bra([i]) . H . ket([j]) ;
+kron_delta(i,j)*E[j] $
+
+declare_qop(H) ;
+qop $
+
+declare(c,complex) ;
+done $
+
+depends(c,t) ;
+[c(t)] $
+
+psi:sum(c[i]*ket([i]),i,1,N) ;
+'sum(c[i]*ket([i]),i,1,N) $
+
+schro:%i*diff(psi,t) = H . psi ;
+%i*'sum('diff(c[i],t,1)*ket([i]),i,1,N) = 'sum(c[i]*E[i]*ket([i]),i,1,                                                        N)
+$
+
+bra([j]) . schro ;
+%i*'diff(c[j],t,1) = c[j]*E[j] $
+
+declare_qop(H) ;
+qop $
+
+psi2:c[1](t)*ket([1])+c[2](t)*ket([2]) ;
+ket([2])*c[2](t)+ket([1])*c[1](t) $
+
+schro2:%i*diff(psi2,t) = H . psi2 ;
+%i*(ket([2])*'diff(c[2](t),t,1)+ket([1])*'diff(c[1](t),t,1))   = E[2]*ket([2])*c[2](t)+E[1]*ket([1])*c[1](t)
+$
+
+eq1:bra([1]) . schro2 ;
+%i*'diff(c[1](t),t,1) = E[1]*c[1](t) $
+
+eq2:bra([2]) . schro2 ;
+%i*'diff(c[2](t),t,1) = E[2]*c[2](t) $
+
+H:matrix([E0,-A],[-A,E0]) ;
+matrix([E0,-(ket([1]) . bra([1])*c)],[-(ket([1]) . bra([1])*c),E0]) $
+
+assume(A > 0,E0 > 0) ;
+[ket([1]) . bra([1])*c > 0,E0 > 0] $
+
+eq1:%i*'diff(c[1](t),t,1) = H[1,2]*c[2](t)+H[1,1]*c[1](t) ;
+%i*'diff(c[1](t),t,1) = E0*c[1](t)-ket([1]) . bra([1])*c*c[2](t) $
+
+eq2:%i*'diff(c[2](t),t,1) = H[2,2]*c[2](t)+H[2,1]*c[1](t) ;
+%i*'diff(c[2](t),t,1) = E0*c[2](t)-ket([1]) . bra([1])*c*c[1](t) $
+
+soln:desolve([eq1,eq2],[c[1](t),c[2](t)]) ;
+[c[1](t) = %e^-(%i*E0*t)*(((2*(%i*c[1](0)*E0                                       +%i*c[2](0)*ket([1]) . bra([1])*c)
+                                 -2*%i*c[1](0)*E0)
+                                 *sin(ket([1]) . bra([1])*c*t))
+                                 /(2*ket([1]) . bra([1])*c)
+                                 +c[1](0)*cos(ket([1]) . bra([1])*c*t)),
+         c[2](t) = %e^-(%i*E0*t)*(((2*(%i*c[2](0)*E0
+                                      +%i*c[1](0)*ket([1]) . bra([1])*c)
+                                 -2*%i*c[2](0)*E0)
+                                 *sin(ket([1]) . bra([1])*c*t))
+                                 /(2*ket([1]) . bra([1])*c)
+                                 +c[2](0)*cos(ket([1]) . bra([1])*c*t))]
+$
+
+add:fullsimp(soln[1]+soln[2]) ;
+c[2](t)+c[1](t) = %e^(%i*ket([1]) . bra([1])*c*t-%i*E0*t)                         *(c[2](0)+c[1](0))
+$
+
+sub:fullsimp(soln[1]-soln[2]) ;
+c[1](t)-c[2](t) = -(%e^(-(%i*E0*t)-%i*ket([1]) . bra([1])*c*t)                         *(c[2](0)-c[1](0)))
