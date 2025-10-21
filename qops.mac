@@ -130,6 +130,11 @@ Uop(H,t):=block(
   exp(-%i*H*t/hbar)
 )$
 
+/* move exponential with eigenop into sum */
+matchdeclare (He,eigenopp,[t1,t2],thingp,
+    ss, lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
+tellsimp (exp(He*t1) . ss, apply (op(ss), cons ( exp(He*t1) . first(ss), rest(args(ss)))))$
+
 /*********************/
 /* Utility functions */
 /*********************/
