@@ -683,14 +683,11 @@ eq2:%i*'diff(c[2](t),t,1) = H[2,2]*c[2](t)+H[2,1]*c[1](t) ;
 %i*'diff(c[2](t),t,1) = E0*c[2](t)-ket([1]) . bra([1])*c*c[1](t) $
 
 soln:desolve([eq1,eq2],[c[1](t),c[2](t)]) ;
-[c[1](t) = %e^-(%i*E0*t)*(((2*(%i*c[1](0)*E0                                       +%i*c[2](0)*ket([1]) . bra([1])*c)
-                                 -2*%i*c[1](0)*E0)
-                                 *sin(ket([1]) . bra([1])*c*t))
-                                 /(2*ket([1]) . bra([1])*c)
-                                 +c[1](0)*cos(ket([1]) . bra([1])*c*t)),
-         c[2](t) = %e^-(%i*E0*t)*(((2*(%i*c[2](0)*E0
-                                      +%i*c[1](0)*ket([1]) . bra([1])*c)
-                                 -2*%i*c[2](0)*E0)
-                                 *sin(ket([1]) . bra([1])*c*t))
-                                 /(2*ket([1]) . bra([1])*c)
-                                 +c[2](0)*cos(ket([1]) . bra([1])*c*t))]
+$
+
+add:fullsimp(soln[1]+soln[2]) ;
+c[2](t)+c[1](t) = %e^(%i*ket([1]) . bra([1])*c*t-%i*E0*t)                         *(c[2](0)+c[1](0))
+$
+
+sub:fullsimp(soln[1]-soln[2]) ;
+c[1](t)-c[2](t) = -(%e^(-(%i*E0*t)-%i*ket([1]) . bra([1])*c*t)                         *(c[2](0)-c[1](0)))

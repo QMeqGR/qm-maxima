@@ -1561,20 +1561,7 @@ states of the same energy.
                               d
      (%o9)                %i (-- (c (t))) = E0 c (t) - A c (t)
                               dt   2            2         1
-     (%i10) soln:desolve([eq1,eq2],[c[1](t),c[2](t)]);
-                       - %i E0 t
-     (%o10) [c (t) = %e
-              1
-       (2 (%i c (0) E0 + %i c (0) A) - 2 %i c (0) E0) sin(A t)
-               1             2               1
-      (------------------------------------------------------- + c (0) cos(A t)),
-                                 2 A                              1
-                          (2 (%i c (0) E0 + %i c (0) A) - 2 %i c (0) E0) sin(A t)
-               - %i E0 t          2             1               2
-     c (t) = %e          (-------------------------------------------------------
-      2                                             2 A
-      + c (0) cos(A t))]
-         2
+     (%i10) soln:desolve([eq1,eq2],[c[1](t),c[2](t)])$
      (%i11) add:fullsimp(soln[1]+soln[2]);
                                      %i A t - %i E0 t
      (%o11)        c (t) + c (t) = %e                 (c (0) + c (0))
