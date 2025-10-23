@@ -4,8 +4,9 @@
 
 # Note: When maxima runs a batch file, the output contains the command line
 # but without the last 'termination' character. So ; and $ are lost. Thus we
-# have to do it here by saving those characters and re-inserting them. This
-# is done below in the function restore_lastchar().
+# have to do it here by extracting the command line from the original .texi file
+# and saving it, then replacing the original input line in the final output that
+# is generated. This is done below in the function restore_macline().
 
 packname=""
 debug=0
@@ -31,7 +32,7 @@ if [ ! -f "$packname.texi" ]; then
     exit 2
 fi
 
-
+/* not currently using this function, replaced it with restore_macline */
 function restore_lastchar () {
     count=0;
     macfile=$1;
@@ -67,6 +68,41 @@ function restore_lastchar () {
     done
     cat .tmp.recurse > .tmp.grp.$i.tmp4
 }
+
+function restore_macline () {
+    count=0;
+    macfile=$1;
+    tmpfile=$2;
+    n_macfile=$(wc -l $macfile | awk '{print $1}');
+    n_tmpfile=$(wc -l $tmpfile | awk '{print $1}');
+    cp $tmpfile .tmp.recurse;
+    cat $macfile | tail -$((n_macfile-3)) | awk --source 'BEGIN{cnt=1;}\
+    {printf("(%%i%d) %s\n",cnt,$0); cnt++;}' > .tmp.macfile;
+    if [ $debug -ge 1 ]; then
+	echo "mac file lines: "$n_macfile;
+	echo "tmp file lines: "$n_tmpfile;
+    fi
+    
+    for line in $(seq 1 $n_tmpfile); do
+	is_input=$(cat $tmpfile | awk -v LN=$line \
+				      '(NR==LN){if($1~/\(%i[1-9]/){print 1}else{print 0}}');
+	if [ $debug -ge 1 ]; then 
+	    echo "is_input: "$is_input
+	fi
+	if [ $is_input -ge 1 ]; then
+	    count=$((count+1)); # increment count and get this line from the lastchar file
+	    macline=$(cat .tmp.macfile | head -$count | tail -1);
+	    if [ $debug -ge 1 ]; then
+		echo "------------> macline: " $macline
+		echo "input line count: "$count "   line number: "$line
+	    fi
+	    cat .tmp.recurse | awk -v MACLINE="$macline" -v LN=$line --source '(NR==LN && ($1~/\(%i[1-9]/)){printf("%s\n",MACLINE)}(NR!=LN){print $0}' > .tmp.junk
+	    mv -f .tmp.junk .tmp.recurse
+	fi
+    done
+    cat .tmp.recurse > .tmp.grp.$i.tmp4
+}
+
 
 ###########################################
 # awk script for generating markers
@@ -148,7 +184,7 @@ for i in $(seq 1 $ngrps); do
     cat .tmp.grp.$i.tmp2 | awk -v N="$nlines" -v NLL="$linenumline"\
 			       --source '(NR>NLL && NR<N){print $0}' > .tmp.grp.$i.tmp3
     # Now post process the output to include the lastcharacter from above...
-    restore_lastchar .tmp.grp.$i.mac .tmp.grp.$i.tmp3;
+    restore_macline .tmp.grp.$i.mac .tmp.grp.$i.tmp3;
     cat .tmp.grp.$i.tmp4 > .tmp.grp.$i.out
     #cat .tmp.grp.$i.tmp3 | awk '{if($1~/\(%i[1-9]/){printf("%s;\n",$0,$LC)}else{print $0}}' > .tmp.grp.$i.out
 done

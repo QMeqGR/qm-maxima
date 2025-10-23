@@ -1553,11 +1553,11 @@ states of the same energy.
                                       [ - A  E0  ]
      (%i7) assume(A > 0,E0 > 0);
      (%o7)                           [A > 0, E0 > 0]
-     (%i8) eq1:%i*'diff(c[1](t),t,1) = H[1,2]*c[2](t)+H[1,1]*c[1](t);
+     (%i8) eq1:''eq1;
                               d
      (%o8)                %i (-- (c (t))) = E0 c (t) - A c (t)
                               dt   1            1         2
-     (%i9) eq2:%i*'diff(c[2](t),t,1) = H[2,2]*c[2](t)+H[2,1]*c[1](t);
+     (%i9) eq2:''eq2;
                               d
      (%o9)                %i (-- (c (t))) = E0 c (t) - A c (t)
                               dt   2            2         1
