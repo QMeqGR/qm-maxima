@@ -1145,9 +1145,10 @@ defining the top rung of the ladder and stepping down.  To calculate the
 coefficients one first creates the tensor product top state, and
 computes the values for the total angular momentum ‘|J,M>’.  At the top
 of the ladder ‘M=J’.  For the first step down the ladder one computes
-‘Jm |J,M>’, which must be equal to ‘Jtm |j1,m1;j2,m2>’.  This gives
-first set of coefficients and one continues down the ladder to compute
-the rest of them.
+‘Jm |J,M>’, which must be equal to ‘Jtm |j1,m1;j2,m2>’.  Below we divide
+by the coefficient of ‘|J,M-1>’.  This gives first set of coefficients,
+given by ‘<J,M||j1,m1;j2,m2>’, one then continues down the ladder to
+compute the rest of them.
 
      (%i1) top:tpket(jmtop(1/2),jmtop(1/2));
                                       1  1     1  1
@@ -1661,17 +1662,17 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1177)
+                                                             (line 1178)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  307)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1173)
+                                                             (line 1174)
 * autobra:                               Functions and Variables for qm.
                                                              (line  125)
 * autoket:                               Functions and Variables for qm.
                                                              (line  106)
 * basis_set:                             Functions and Variables for qm.
-                                                             (line  996)
+                                                             (line  997)
 * basis_set_p:                           Functions and Variables for qm.
                                                              (line  363)
 * bra:                                   Functions and Variables for qm.
@@ -1683,13 +1684,13 @@ Appendix A Function and Variable index
 * commutator:                            Functions and Variables for qm.
                                                              (line  292)
 * complete:                              Functions and Variables for qm.
-                                                             (line 1008)
+                                                             (line 1009)
 * dagger:                                Functions and Variables for qm.
                                                              (line  151)
 * declare_eigenop:                       Functions and Variables for qm.
-                                                             (line 1224)
+                                                             (line 1225)
 * declare_qop:                           Functions and Variables for qm.
-                                                             (line 1211)
+                                                             (line 1212)
 * expect:                                Functions and Variables for qm.
                                                              (line  402)
 * get_j:                                 Functions and Variables for qm.
@@ -1751,7 +1752,7 @@ Appendix A Function and Variable index
 * magsqr:                                Functions and Variables for qm.
                                                              (line  186)
 * matrep:                                Functions and Variables for qm.
-                                                             (line  951)
+                                                             (line  952)
 * mbra:                                  Functions and Variables for qm.
                                                              (line   76)
 * mbrap:                                 Functions and Variables for qm.
@@ -1769,9 +1770,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  385)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1122)
+                                                             (line 1123)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1118)
+                                                             (line 1119)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  409)
 * RX:                                    Functions and Variables for qm.
@@ -1795,7 +1796,7 @@ Appendix A Function and Variable index
 * spin_mket:                             Functions and Variables for qm.
                                                              (line  499)
 * stationary:                            Functions and Variables for qm.
-                                                             (line 1064)
+                                                             (line 1065)
 * Sx:                                    Functions and Variables for qm.
                                                              (line  270)
 * SX:                                    Functions and Variables for qm.
@@ -1825,7 +1826,7 @@ Appendix A Function and Variable index
 * U:                                     Functions and Variables for qm.
                                                              (line  473)
 * Uop:                                   Functions and Variables for qm.
-                                                             (line 1238)
+                                                             (line 1239)
 * xm:                                    Functions and Variables for qm.
                                                              (line  214)
 * xp:                                    Functions and Variables for qm.
@@ -1929,18 +1930,18 @@ Ref: J1m2p42788
 Ref: J1zJ2z42880
 Ref: Jtsqr42974
 Ref: get_j43885
-Ref: matrep50750
-Ref: basis_set52958
-Ref: complete53575
-Ref: stationary56313
-Ref: qm_mtrace58912
-Ref: qm_atrace59087
-Ref: ap61527
-Ref: am61640
-Ref: declare_qop62988
-Ref: declare_eigenop63543
-Ref: Uop64156
-Node: Function and Variable Index69777
+Ref: matrep50841
+Ref: basis_set53049
+Ref: complete53666
+Ref: stationary56404
+Ref: qm_mtrace59003
+Ref: qm_atrace59178
+Ref: ap61618
+Ref: am61731
+Ref: declare_qop63079
+Ref: declare_eigenop63634
+Ref: Uop64247
+Node: Function and Variable Index69868
 
 End Tag Table
 

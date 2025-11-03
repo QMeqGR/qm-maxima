@@ -1502,9 +1502,10 @@ top rung of the ladder and stepping down. To calculate the coefficients
 one first creates the tensor product top state, and computes the values
 for the total angular momentum <code class="code">|J,M&gt;</code>. At the top of the ladder
 <code class="code">M=J</code>. For the first step down the ladder one computes <code class="code">Jm
-|J,M&gt;</code>, which must be equal to <code class="code">Jtm |j1,m1;j2,m2&gt;</code>. This gives
-first set of coefficients and one continues down the ladder to compute
-the rest of them.
+|J,M&gt;</code>, which must be equal to <code class="code">Jtm |j1,m1;j2,m2&gt;</code>. Below we divide
+by the coefficient of <code class="code">|J,M-1&gt;</code>. This gives first set of
+coefficients, given by <code class="code">&lt;J,M||j1,m1;j2,m2&gt;</code>, one then continues
+down the ladder to compute the rest of them.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) top:tpket(jmtop(1/2),jmtop(1/2)); 
