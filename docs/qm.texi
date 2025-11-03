@@ -528,6 +528,23 @@ and will @code{declare} only the coefficients as complex.
 @end group
 @end example
 
+@anchor{mket_basis}
+@deffn {Function} mket_basis (@code{n})
+@code{mket_basis} takes an integer @code{n} and returns a set of
+@code{n} basis vectors of length @code{n} with @code{1} in the
+@code{i}@sup{th} location of the @code{i}@sup{th} vector. (This is the
+common @emph{z}-basis matrix representation for @code{2j+1=n} states.)
+@end deffn
+
+@example
+@group
+(%i1) mket_basis(2); 
+                                 [ 1 ]  [ 0 ]
+(%o1)                           [[   ], [   ]]
+                                 [ 0 ]  [ 1 ]
+@end group
+@end example
+
 @anchor{dagger}
 @deffn {Function} dagger (@emph{vector})
 @code{dagger} is the quantum mechanical @emph{dagger} function and returns

@@ -42,6 +42,7 @@ basis_set(n,L) := block([M,Mnew,ops,m,cv,i,N],
         ),
         return( make_bkets(Mnew,m^n) ) )$
 
+/* helper function for basis_set() */
 make_bkets(M,n) := block([basis:[]],
     l: length(row(M,1)),
     for j: 1 thru n do
@@ -52,6 +53,13 @@ make_bkets(M,n) := block([basis:[]],
 /*************************/
 /* Matrix rep basis sets */
 /*************************/
+/* mket_basis() makes a list of N column vectors with 1 in the i-th
+   location in the i-th vector */
+mket_basis(N):=block([i,B:makelist(0,i,N)],
+    for i:1 thru N do
+        ( ll: makelist(kron_delta(i,j),j,1,N),
+            B[i]: mket(ll) ), B)$
+
 basis_set_p(B):=block([N:length(B)],
   for i: 1 thru N do
     if mketp(B[i])=false and ketp(B[i])=false and tpketp(B[i])=false

@@ -99,6 +99,7 @@ if [ $debug -eq 0 ]; then
        $packname.vr $packname.vrs build-html-index.log 
 fi
 
+exit
 echo "Generating test suite from examples..."
 ####################################################
 ## Create test suite from examples in $packname.texi

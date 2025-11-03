@@ -32,7 +32,7 @@ if [ ! -f "$packname.texi" ]; then
     exit 2
 fi
 
-/* not currently using this function, replaced it with restore_macline */
+# not currently using this function, replaced it with restore_macline
 function restore_lastchar () {
     count=0;
     macfile=$1;

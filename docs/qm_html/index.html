@@ -527,6 +527,21 @@ and will <code class="code">declare</code> only the coefficients as complex.
 (%o2)           [database info, kind(a, complex), matchdeclare]
 </pre></div></div>
 
+<a class="anchor" id="mket_005fbasis"></a><dl class="first-deffn def-block">
+<dt class="deffn def-line" id="index-mket_005fbasis"><span class="category-def">Function: </span><span><strong class="def-name">mket_basis</strong> <var class="def-var-arguments">(<code class="code">n</code>)</var><a class="copiable-link" href="#index-mket_005fbasis"> &para;</a></span></dt>
+<dd><p><code class="code">mket_basis</code> takes an integer <code class="code">n</code> and returns a set of
+<code class="code">n</code> basis vectors of length <code class="code">n</code> with <code class="code">1</code> in the
+<code class="code">i</code><sup class="sup">th</sup> location of the <code class="code">i</code><sup class="sup">th</sup> vector. (This is the
+common <em class="emph">z</em>-basis matrix representation for <code class="code">2j+1=n</code> states.)
+</p></dd></dl>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">(%i1) mket_basis(2); 
+                                 [ 1 ]  [ 0 ]
+(%o1)                           [[   ], [   ]]
+                                 [ 0 ]  [ 1 ]
+</pre></div></div>
+
 <a class="anchor" id="dagger"></a><dl class="first-deffn def-block">
 <dt class="deffn def-line" id="index-dagger"><span class="category-def">Function: </span><span><strong class="def-name">dagger</strong> <var class="def-var-arguments">(<em class="emph">vector</em>)</var><a class="copiable-link" href="#index-dagger"> &para;</a></span></dt>
 <dd><p><code class="code">dagger</code> is the quantum mechanical <em class="emph">dagger</em> function and returns
