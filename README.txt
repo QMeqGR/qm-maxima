@@ -1113,12 +1113,12 @@ find the other states: ‘|3/2,1/2>’, ‘|3/2,-1/2>’, and ‘|3/2,-3/2>’.
 the two-particle state with two spin-1/2 particles.  We begin by
 defining the top rung of the ladder and stepping down.  To calculate the
 coefficients one first creates the tensor product top state, and
-computes the values for the total angular momentum ‘|J,M>’.  At the top
-of the ladder ‘M=J’.  For the first step down the ladder one computes
-‘Jm |J,M>’, which must be equal to ‘Jtm |j1,m1;j2,m2>’.  Below we divide
-by the coefficient of ‘|J,M-1>’.  This gives first set of coefficients,
-given by ‘<J,M||j1,m1;j2,m2>’, one then continues down the ladder to
-compute the rest of them.
+computes the values for the total angular momentum ‘|J,M>’ at the top of
+the ladder ‘M=J’.  For the first step down the ladder one computes ‘Jm
+|J,J>’, which must be equal to ‘Jtm |j1,j1;j2,j2>’.  We then divide by
+the coefficient of ‘|J,J-1>’.  This gives first set of coefficients,
+which in general are given by ‘<J,M||j1,m1;j2,m2>’.  One then continues
+down the ladder to compute the others.
 
      (%i1) top:tpket(jmtop(1/2),jmtop(1/2));
                                       1  1     1  1

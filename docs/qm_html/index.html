@@ -1500,12 +1500,13 @@ lowering operator to find the other states: <code class="code">|3/2,1/2&gt;</cod
 two-particle state with two spin-1/2 particles. We begin by defining the
 top rung of the ladder and stepping down. To calculate the coefficients
 one first creates the tensor product top state, and computes the values
-for the total angular momentum <code class="code">|J,M&gt;</code>. At the top of the ladder
+for the total angular momentum <code class="code">|J,M&gt;</code> at the top of the ladder
 <code class="code">M=J</code>. For the first step down the ladder one computes <code class="code">Jm
-|J,M&gt;</code>, which must be equal to <code class="code">Jtm |j1,m1;j2,m2&gt;</code>. Below we divide
-by the coefficient of <code class="code">|J,M-1&gt;</code>. This gives first set of
-coefficients, given by <code class="code">&lt;J,M||j1,m1;j2,m2&gt;</code>, one then continues
-down the ladder to compute the rest of them.
+|J,J&gt;</code>, which must be equal to <code class="code">Jtm |j1,j1;j2,j2&gt;</code>. We then divide
+by the coefficient of <code class="code">|J,J-1&gt;</code>. This gives first set of
+coefficients, which in general are given by
+<code class="code">&lt;J,M||j1,m1;j2,m2&gt;</code>. One then continues down the ladder to
+compute the others.
 </p>
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) top:tpket(jmtop(1/2),jmtop(1/2)); 
