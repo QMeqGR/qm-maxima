@@ -43,7 +43,7 @@
 		     (progn 
 		       (setq dissym '(#\· ) form (car l))
 		       (setf cnt (+ cnt 1) ) )
-		     (setq dissym '(#\space #\* #\space) form (car l)) )
+		     (setq dissym '(#\space #\╳ #\space) form (car l)) )
 		 )
              (cond ((and (not trunc) (null (cdr l)))
                     (setq result (dimension form (append dissym result)
