@@ -58,7 +58,7 @@ The package is loaded with: ‘load(qm);’
 
 
 
-If you use wxMaxima then issue ‘load("wx.lisp");’ _after_ loading the
+If you use wxMaxima then issue ‘set_display('ascii);’ after loading the
 ‘qm’ package.  This will allow pretty printing of the kets and bras
 similar to what you see in this manual.
 
@@ -913,7 +913,7 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2]));
                                       3  1     1  1
-     (%o1)                         1·|-, -> ⊗ |-, ->
+     (%o1)                         1·|-, -> ⨂ |-, ->
                                       2  2     2  2
 
  -- Function: tpbra (_jmbra1,jmbra2_)
@@ -921,19 +921,19 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
                                       3  1     1  1
-     (%o1)                         1·<-, -| ⊗ <-, -|
+     (%o1)                         1·<-, -| ⨂ <-, -|
                                       2  2     2  2
 
  -- Function: tpbraket (_tpbra,tpket_)
      ‘tpbraket’ returns the bracket of a ‘tpbra’ and a ‘tpket’.
 
      (%i1) k:tpket(jmtop(1),jmbot(1));
-     (%o1)                        1·|1, 1> ⊗ |1, - 1>
+     (%o1)                        1·|1, 1> ⨂ |1, - 1>
      (%i2) K:Jtsqr(k);
                        2                           2
-     (%o2)       2 hbar ·|1, 1> ⊗ |1, - 1> + 2 hbar ·|1, 0> ⊗ |1, 0>
+     (%o2)       2 hbar ·|1, 1> ⨂ |1, - 1> + 2 hbar ·|1, 0> ⨂ |1, 0>
      (%i3) B:tpdagger(k);
-     (%o3)                        1·<1, 1| ⊗ <1, - 1|
+     (%o3)                        1·<1, 1| ⨂ <1, - 1|
      (%i4) tpbraket(B,K);
                                                2
      (%o4)                               2 hbar
@@ -947,13 +947,13 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
                                      1  1     1    1
-     (%o1)                        1·|-, -> ⊗ |-, - ->
+     (%o1)                        1·|-, -> ⨂ |-, - ->
                                      2  2     2    2
      (%i2) declare(c,scalar);
      (%o2)                                done
      (%i3) tpscmult(c,k1);
                                      1  1     1    1
-     (%o3)                        c·|-, -> ⊗ |-, - ->
+     (%o3)                        c·|-, -> ⨂ |-, - ->
                                      2  2     2    2
 
  -- Function: tpadd (_tpket,tpket_)
@@ -962,15 +962,15 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
                                      1  1     1    1
-     (%o1)                        1·|-, -> ⊗ |-, - ->
+     (%o1)                        1·|-, -> ⨂ |-, - ->
                                      2  2     2    2
      (%i2) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
                                      1    1     1  1
-     (%o2)                        1·|-, - -> ⊗ |-, ->
+     (%o2)                        1·|-, - -> ⨂ |-, ->
                                      2    2     2  2
      (%i3) tpadd(k1,k2);
                          1  1     1    1       1    1     1  1
-     (%o3)            1·|-, -> ⊗ |-, - -> + 1·|-, - -> ⊗ |-, ->
+     (%o3)            1·|-, -> ⨂ |-, - -> + 1·|-, - -> ⨂ |-, ->
                          2  2     2    2       2    2     2  2
 
  -- Function: tpdagger (_tpket or tpbra_)
@@ -979,11 +979,11 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
                                      1  1     1    1
-     (%o1)                        1·|-, -> ⊗ |-, - ->
+     (%o1)                        1·|-, -> ⨂ |-, - ->
                                      2  2     2    2
      (%i2) tpdagger(k1);
                                      1  1     1    1
-     (%o2)                        1·<-, -| ⊗ <-, - -|
+     (%o2)                        1·<-, -| ⨂ <-, - -|
                                      2  2     2    2
 
  -- Function: J1z (_tpket_)
@@ -996,15 +996,15 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
                                       3  3     1  1
-     (%o1)                         1·|-, -> ⊗ |-, ->
+     (%o1)                         1·|-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) J1z(k);
                                 3 hbar  3  3     1  1
-     (%o2)                      ------·|-, -> ⊗ |-, ->
+     (%o2)                      ------·|-, -> ⨂ |-, ->
                                   2     2  2     2  2
      (%i3) J2z(k);
                                  hbar  3  3     1  1
-     (%o3)                       ----·|-, -> ⊗ |-, ->
+     (%o3)                       ----·|-, -> ⨂ |-, ->
                                   2    2  2     2  2
 
  -- Function: Jtz (_tpket_)
@@ -1013,11 +1013,11 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
                                       3  3     1  1
-     (%o1)                         1·|-, -> ⊗ |-, ->
+     (%o1)                         1·|-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) Jtz(k);
                                         3  3     1  1
-     (%o2)                      2 hbar·|-, -> ⊗ |-, ->
+     (%o2)                      2 hbar·|-, -> ⨂ |-, ->
                                         2  2     2  2
 
  -- Function: J1sqr (_tpket_)
@@ -1049,15 +1049,15 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
                                       3  1     1  1
-     (%o1)                         1·|-, -> ⊗ |-, ->
+     (%o1)                         1·|-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) b:tpdagger(k);
                                       3  1     1  1
-     (%o2)                         1·<-, -| ⊗ <-, -|
+     (%o2)                         1·<-, -| ⨂ <-, -|
                                       2  2     2  2
      (%i3) J1p2m(k);
                                         2  3  3     1    1
-     (%o3)                  sqrt(3) hbar ·|-, -> ⊗ |-, - ->
+     (%o3)                  sqrt(3) hbar ·|-, -> ⨂ |-, - ->
                                            2  2     2    2
      (%i4) J1m2p(k);
      (%o4)                                  0
@@ -1074,15 +1074,15 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
                                      3    1     1  1
-     (%o1)                        1·|-, - -> ⊗ |-, ->
+     (%o1)                        1·|-, - -> ⨂ |-, ->
                                      2    2     2  2
      (%i2) B:tpdagger(k);
                                      3    1     1  1
-     (%o2)                        1·<-, - -| ⊗ <-, -|
+     (%o2)                        1·<-, - -| ⨂ <-, -|
                                      2    2     2  2
      (%i3) K2:Jtsqr(k);
                       2  3    1     1  1          2  3  1     1    1
-     (%o3)      4 hbar ·|-, - -> ⊗ |-, -> + 2 hbar ·|-, -> ⊗ |-, - ->
+     (%o3)      4 hbar ·|-, - -> ⨂ |-, -> + 2 hbar ·|-, -> ⨂ |-, - ->
                          2    2     2  2             2  2     2    2
      (%i4) tpbraket(B,K2);
                                                2
@@ -1106,12 +1106,12 @@ For the first example, let us see how to determine the total spin state
 
      (%i1) k:tpket(jmtop(1/2),jmtop(1));
                                       1  1
-     (%o1)                         1·|-, -> ⊗ |1, 1>
+     (%o1)                         1·|-, -> ⨂ |1, 1>
                                       2  2
      (%i2) Jtsqr(k);
                                       2
                                15 hbar   1  1
-     (%o2)                     --------·|-, -> ⊗ |1, 1>
+     (%o2)                     --------·|-, -> ⨂ |1, 1>
                                   4      2  2
      (%i3) get_j(15/4);
                                               3
@@ -1124,19 +1124,19 @@ find the other states: ‘|3/2,1/2>’, ‘|3/2,-1/2>’, and ‘|3/2,-3/2>’.
 
      (%i1) k:tpket(jmtop(1/2),jmtop(1));
                                       1  1
-     (%o1)                         1·|-, -> ⊗ |1, 1>
+     (%o1)                         1·|-, -> ⨂ |1, 1>
                                       2  2
      (%i2) k2:Jtm(k);
                               1  1                   1    1
-     (%o2)      sqrt(2) hbar·|-, -> ⊗ |1, 0> + hbar·|-, - -> ⊗ |1, 1>
+     (%o2)      sqrt(2) hbar·|-, -> ⨂ |1, 0> + hbar·|-, - -> ⨂ |1, 1>
                               2  2                   2    2
      (%i3) k3:Jtm(k2);
                3/2     2  1    1                   2  1  1
-     (%o3)    2    hbar ·|-, - -> ⊗ |1, 0> + 2 hbar ·|-, -> ⊗ |1, - 1>
+     (%o3)    2    hbar ·|-, - -> ⨂ |1, 0> + 2 hbar ·|-, -> ⨂ |1, - 1>
                           2    2                      2  2
      (%i4) k4:Jtm(k3);
                     3  1    1                     3  1    1
-     (%o4)    4 hbar ·|-, - -> ⊗ |1, - 1> + 2 hbar ·|-, - -> ⊗ |1, - 1>
+     (%o4)    4 hbar ·|-, - -> ⨂ |1, - 1> + 2 hbar ·|-, - -> ⨂ |1, - 1>
                        2    2                        2    2
 
    In the example below we calculate the Clebsch-Gordan coefficients of
@@ -1152,39 +1152,39 @@ down the ladder to compute the others.
 
      (%i1) top:tpket(jmtop(1/2),jmtop(1/2));
                                       1  1     1  1
-     (%o1)                         1·|-, -> ⊗ |-, ->
+     (%o1)                         1·|-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) Jtsqr(top);
                                       2  1  1     1  1
-     (%o2)                      2 hbar ·|-, -> ⊗ |-, ->
+     (%o2)                      2 hbar ·|-, -> ⨂ |-, ->
                                          2  2     2  2
      (%i3) get_j(2);
      (%o3)                                j = 1
      (%i4) Jtz(top);
                                        1  1     1  1
-     (%o4)                       hbar·|-, -> ⊗ |-, ->
+     (%o4)                       hbar·|-, -> ⨂ |-, ->
                                        2  2     2  2
      (%i5) JMtop:ket([1,1]);
      (%o5)                               |1, 1>
      (%i6) mid:Jtm(top);
                          1  1     1    1          1    1     1  1
-     (%o6)         hbar·|-, -> ⊗ |-, - -> + hbar·|-, - -> ⊗ |-, ->
+     (%o6)         hbar·|-, -> ⨂ |-, - -> + hbar·|-, - -> ⨂ |-, ->
                          2  2     2    2          2    2     2  2
      (%i7) Jm(JMtop);
      (%o7)                         sqrt(2) |1, 0> hbar
      (%i8) mid:tpscmult(1/(sqrt(2)*hbar),mid);
                    1     1  1     1    1       1     1    1     1  1
-     (%o8)      -------·|-, -> ⊗ |-, - -> + -------·|-, - -> ⊗ |-, ->
+     (%o8)      -------·|-, -> ⨂ |-, - -> + -------·|-, - -> ⨂ |-, ->
                 sqrt(2)  2  2     2    2    sqrt(2)  2    2     2  2
      (%i9) bot:Jtm(mid);
                                          1    1     1    1
-     (%o9)                 sqrt(2) hbar·|-, - -> ⊗ |-, - ->
+     (%o9)                 sqrt(2) hbar·|-, - -> ⨂ |-, - ->
                                          2    2     2    2
      (%i10) Jm(ket([1,0]));
      (%o10)                       sqrt(2) |1, - 1> hbar
      (%i11) bot:tpscmult(1/(sqrt(2)*hbar),bot);
                                     1    1     1    1
-     (%o11)                      1·|-, - -> ⊗ |-, - ->
+     (%o11)                      1·|-, - -> ⨂ |-, - ->
                                     2    2     2    2
 
 1.4 General tensor products
@@ -1311,26 +1311,26 @@ define the Hamiltonian and then use the function ‘matrep’.
 
      (%i1) b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
                                       1  1     1  1
-     (%o1)                         1·|-, -> ⊗ |-, ->
+     (%o1)                         1·|-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
                                      1  1     1    1
-     (%o2)                        1·|-, -> ⊗ |-, - ->
+     (%o2)                        1·|-, -> ⨂ |-, - ->
                                      2  2     2    2
      (%i3) b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
                                      1    1     1  1
-     (%o3)                        1·|-, - -> ⊗ |-, ->
+     (%o3)                        1·|-, - -> ⨂ |-, ->
                                      2    2     2  2
      (%i4) b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
                                     1    1     1    1
-     (%o4)                       1·|-, - -> ⊗ |-, - ->
+     (%o4)                       1·|-, - -> ⨂ |-, - ->
                                     2    2     2    2
      (%i5) B:[b1,b2,b3,b4];
                1  1     1  1      1  1     1    1      1    1     1  1
-     (%o5) [1·|-, -> ⊗ |-, ->, 1·|-, -> ⊗ |-, - ->, 1·|-, - -> ⊗ |-, ->,
+     (%o5) [1·|-, -> ⨂ |-, ->, 1·|-, -> ⨂ |-, - ->, 1·|-, - -> ⨂ |-, ->,
                2  2     2  2      2  2     2    2      2    2     2  2
                                                                1    1     1    1
-                                                            1·|-, - -> ⊗ |-, - ->]
+                                                            1·|-, - -> ⨂ |-, - ->]
                                                                2    2     2    2
      (%i6) H1:omega*(J1z-J2z);
      (%o6)                          (J1z - J2z) omega
@@ -1391,10 +1391,10 @@ stationary states.
                                         [[1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1]]]]
      (%i5) states:stationary(evals,evecs,bj1212);
                1  1     1    1           1    1     1  1      1  1     1  1
-     (%o5) [1·|-, -> ⊗ |-, - -> + (- 1)·|-, - -> ⊗ |-, ->, 1·|-, -> ⊗ |-, ->,
+     (%o5) [1·|-, -> ⨂ |-, - -> + (- 1)·|-, - -> ⨂ |-, ->, 1·|-, -> ⨂ |-, ->,
                2  2     2    2           2    2     2  2      2  2     2  2
                 1  1     1    1       1    1     1  1      1    1     1    1
-             1·|-, -> ⊗ |-, - -> + 1·|-, - -> ⊗ |-, ->, 1·|-, - -> ⊗ |-, - ->]
+             1·|-, -> ⨂ |-, - -> + 1·|-, - -> ⨂ |-, ->, 1·|-, - -> ⨂ |-, - ->]
                 2  2     2    2       2    2     2  2      2    2     2    2
      (%i6) Jtz(states[1]);
      (%o6)                                  0
@@ -1850,98 +1850,98 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top286
 Node: Introduction to package qm603
-Node: Functions and Variables for qm11388
-Ref: hbar11560
-Ref: ket11868
-Ref: ketp12300
-Ref: bra12481
-Ref: brap12913
-Ref: mket13094
-Ref: mketp13799
-Ref: mbra14439
-Ref: mbrap15012
-Ref: autoket15738
-Ref: autobra16606
-Ref: mket_basis17272
-Ref: dagger17755
-Ref: braket18193
-Ref: norm18952
-Ref: magsqr19408
-Ref: zp20174
-Ref: zm20237
-Ref: xp20300
-Ref: xm20363
-Ref: yp20426
-Ref: ym20489
-Ref: sigmax22223
-Ref: sigmay22280
-Ref: sigmaz22337
-Ref: Sx22394
-Ref: Sy22451
-Ref: Sz22508
-Ref: commutator23145
-Ref: anticommutator23815
-Ref: SX24222
-Ref: SY24435
-Ref: SZ24648
-Ref: basis_set_p26156
-Ref: mtrans26487
-Ref: op_trans27118
-Ref: expect27827
-Ref: qm_variance28070
-Ref: SP28585
-Ref: SM28678
-Ref: RX29517
-Ref: RY29684
-Ref: RZ29851
-Ref: U30804
-Ref: spin_mket31924
-Ref: spin_mbra32099
-Ref: jmtop33248
-Ref: jmbot33492
-Ref: jmket33740
-Ref: jmketp33975
-Ref: jmbrap34283
-Ref: jmcheck34429
-Ref: Jp34602
-Ref: Jm34778
-Ref: Jsqr34954
-Ref: Jz35122
-Ref: tpket36570
-Ref: tpbra36885
-Ref: tpbraket37200
-Ref: tpcfset37770
-Ref: tpscmult37886
-Ref: tpadd38538
-Ref: tpdagger39360
-Ref: J1z39902
-Ref: J2z40028
-Ref: Jtz40734
-Ref: J1sqr41278
-Ref: J2sqr41375
-Ref: J1p41473
-Ref: J2p41567
-Ref: Jtp41662
-Ref: J1m41751
-Ref: J2m41845
-Ref: Jtm41940
-Ref: J1p2m42029
-Ref: J1m2p42788
-Ref: J1zJ2z42880
-Ref: Jtsqr42974
-Ref: get_j43885
-Ref: matrep50854
-Ref: basis_set53062
-Ref: complete53679
-Ref: stationary56417
-Ref: qm_mtrace59016
-Ref: qm_atrace59191
-Ref: ap61631
-Ref: am61744
-Ref: declare_qop63092
-Ref: declare_eigenop63647
-Ref: Uop64260
-Node: Function and Variable Index69881
+Node: Functions and Variables for qm11390
+Ref: hbar11562
+Ref: ket11870
+Ref: ketp12302
+Ref: bra12483
+Ref: brap12915
+Ref: mket13096
+Ref: mketp13801
+Ref: mbra14441
+Ref: mbrap15014
+Ref: autoket15740
+Ref: autobra16608
+Ref: mket_basis17274
+Ref: dagger17757
+Ref: braket18195
+Ref: norm18954
+Ref: magsqr19410
+Ref: zp20176
+Ref: zm20239
+Ref: xp20302
+Ref: xm20365
+Ref: yp20428
+Ref: ym20491
+Ref: sigmax22225
+Ref: sigmay22282
+Ref: sigmaz22339
+Ref: Sx22396
+Ref: Sy22453
+Ref: Sz22510
+Ref: commutator23147
+Ref: anticommutator23817
+Ref: SX24224
+Ref: SY24437
+Ref: SZ24650
+Ref: basis_set_p26158
+Ref: mtrans26489
+Ref: op_trans27120
+Ref: expect27829
+Ref: qm_variance28072
+Ref: SP28587
+Ref: SM28680
+Ref: RX29519
+Ref: RY29686
+Ref: RZ29853
+Ref: U30806
+Ref: spin_mket31926
+Ref: spin_mbra32101
+Ref: jmtop33250
+Ref: jmbot33494
+Ref: jmket33742
+Ref: jmketp33977
+Ref: jmbrap34285
+Ref: jmcheck34431
+Ref: Jp34604
+Ref: Jm34780
+Ref: Jsqr34956
+Ref: Jz35124
+Ref: tpket36572
+Ref: tpbra36887
+Ref: tpbraket37202
+Ref: tpcfset37772
+Ref: tpscmult37888
+Ref: tpadd38540
+Ref: tpdagger39362
+Ref: J1z39904
+Ref: J2z40030
+Ref: Jtz40736
+Ref: J1sqr41280
+Ref: J2sqr41377
+Ref: J1p41475
+Ref: J2p41569
+Ref: Jtp41664
+Ref: J1m41753
+Ref: J2m41847
+Ref: Jtm41942
+Ref: J1p2m42031
+Ref: J1m2p42790
+Ref: J1zJ2z42882
+Ref: Jtsqr42976
+Ref: get_j43887
+Ref: matrep50856
+Ref: basis_set53064
+Ref: complete53681
+Ref: stationary56419
+Ref: qm_mtrace59018
+Ref: qm_atrace59193
+Ref: ap61633
+Ref: am61746
+Ref: declare_qop63094
+Ref: declare_eigenop63649
+Ref: Uop64262
+Node: Function and Variable Index69883
 
 End Tag Table
 
