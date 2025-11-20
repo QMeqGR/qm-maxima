@@ -1,0 +1,64 @@
+/*
+;;  Author Eric Majzoub, Department of Physics and Astronomy
+;;  University of Missouri, St. Louis
+;;  Copyright (C) 2024 Eric Majzoub
+
+;;  This program is free software; you can redistribute it and/or modify 
+;;  it under the terms of the GNU General Public License as published by         
+;;  the Free Software Foundation; either version 2 of the License, or            
+;;  (at your option) any later version.                                  
+                                                                                 
+;;  This program is distributed in the hope that it will be useful,              
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of               
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                
+;;  GNU General Public License for more details.         
+
+;; Quantum mechanics package for Maxima.
+*/
+
+/* predef.mac, part of the qm-maxima package */
+/* E. Majzoub Oct 2024 */
+/* Pre-defined basis sets and other conveniences,
+This file is loaded autmatically. */
+
+hadamard: 1/sqrt(2)*(ket([0]) . bra([0]) + ket([0]) . bra([1])
+  + ket([1]) . bra([0]) - ket([1]) . bra([1]) );
+
+paulix: ket([0]) . bra([1]) + ket([1]) . bra([0]);
+pauliy: -%i * ket([0]) . bra([1]) + %i * ket([1]) . bra([0]);
+pauliz: ket([0]) . bra([0]) - ket([1]) . bra([1]);
+
+phase:  ket([0]) . bra([0]) + %i * ket([1]) . bra([1]);
+
+bell1: 1/sqrt(2)*(ket([1,0])-ket([0,1]));
+bell2: 1/sqrt(2)*(ket([1,0])+ket([0,1]));
+bell3: 1/sqrt(2)*(ket([0,0])+ket([1,1]));
+bell4: 1/sqrt(2)*(ket([0,0])-ket([1,1]));
+
+ghz1: 1/sqrt(2)*(ket([0,0,0])-ket([1,1,1]));
+ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
+
+
+/* pre-defined tpket bases */
+bj1212: [ tpket(ket([1/2,1/2]),ket([1/2,1/2])),
+        tpket(ket([1/2,1/2]),ket([1/2,-1/2])),
+        tpket(ket([1/2,-1/2]),ket([1/2,1/2])),
+        tpket(ket([1/2,-1/2]),ket([1/2,-1/2])) ];
+
+bj112: [ tpket(ket([1,1]),ket([1/2,1/2])),
+         tpket(ket([1,1]),ket([1/2,-1/2])),
+         tpket(ket([1,0]),ket([1/2,1/2])),
+         tpket(ket([1,0]),ket([1/2,-1/2])),         
+         tpket(ket([1,-1]),ket([1/2,1/2])),
+         tpket(ket([1,-1]),ket([1/2,-1/2])) ];
+
+bj11:  [ tpket(ket([1,1]),ket([1,1])),
+         tpket(ket([1,1]),ket([1,0])),
+         tpket(ket([1,1]),ket([1,-1])),
+         tpket(ket([1,0]),ket([1,1])),
+         tpket(ket([1,0]),ket([1,0])),
+         tpket(ket([1,0]),ket([1,-1])),         
+         tpket(ket([1,-1]),ket([1,1])),
+         tpket(ket([1,-1]),ket([1,0])),
+         tpket(ket([1,-1]),ket([1,-1])) ];
+
