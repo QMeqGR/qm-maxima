@@ -1,10 +1,11 @@
 (displa-def motimes dim-motimes)
 (defprop munaryotimes (#\⨂ #\space) dissym)
-(defprop cdot (#\· #\space) dissym)
+;; (defprop cdot (#\· #\space) dissym)
+(defprop cdot (#\⨂ #\space) dissym)
 
 ;; This is a bit of a hack. I used the mplus code from displa.lisp
 ;; and made some small modifications. ehm
-;; Note: this is otimes U+2A02. Other otimes do not produce correct spacing.
+;; Note: this is otimes U+2A02. Use Dejavu Sans Mono to get spacing correct.
 (defun dim-motimes (form result) 
   ;; If only 0 or 1 arguments, then print "⨂"() or ⨂A
   (cond ((and (null (cddr form))
@@ -25,7 +26,7 @@
                  (setq dissym '(#\space #\- #\space) form (cadar l))
 		 (if (eq cnt 0)
 		     (progn 
-		       (setq dissym '(#\· ) form (car l))
+		       (setq dissym '(#\space #\⨂ #\space) form (car l))
 		       (setf cnt (+ cnt 1) ) )
 		     (setq dissym '(#\space #\⨂ #\space) form (car l)) )
 		 )

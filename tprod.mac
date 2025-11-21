@@ -28,46 +28,38 @@ load(multiadditive);
 The tensor product code here is necessary for dealing with tensor
 products of (j,m)-kets in order to do addition of addtion of angular
 momentum calculations of Clebsch-Gordan coefficients. -ehm
+
+Note: setting dotscrules:true is necessary for some operations
+to work properly.
+
 */
 
 /***********************************/
 /*          simp rules             */
 /***********************************/
 /* extended tensor product functionality */
-/* The form of a type2 tensor product is tpket(cf,k1,k2)
-where CF=common factors that come out of say Jz, etc. */
+/* The form of a tensor product is tpket(k1,k2)
+where k1 and k2 are kets */
 
 tpketp(k):= not mapatom(k) and is(inpart(k,0) = 'tpket) $
 tpbrap(k):= not mapatom(k) and is(inpart(k,0) = 'tpbra) $
 
 matchdeclare([k1,k2,k3,k4],ketp,[b1,b2],brap,ll,listp,pf,numberp);
-tellsimp( tpket(k1,k2), tpket(1,k1,k2) );
-tellsimp( tpbra(b1,b2), tpbra(1,b1,b2) );
-
 matchdeclare([c1,c2,cf1,cf2],all,[cx1,cx2,cf1,cf2],thingp,[k3,k4],ketp);
-tellsimpafter( tpket(cf1,c1*k1,c2*k2), tpket(cf1*c1*c2,k1,k2) );
-tellsimpafter( tpket(cf1,k3,k4) + tpket(cf2,k3,k4), tpket(cf1+cf2,k3,k4));
+tellsimpafter( tpket(c1*k1,c2*k2), c1*c2*tpket(k1,k2) );
 
-tellsimp( tpket(cf1,0,k2), 0 );
-tellsimp( tpket(cf1,k1,0), 0 );
-tellsimp( tpket(0,k1,k2),  0 );
+tellsimp( tpket(0,k2), 0 );
+tellsimp( tpket(k1,0), 0 );
 
 /***********************************************/
 /*        Function definitions                 */
 /***********************************************/
-matchdeclare([cx1,cx2],cnump,tpb,tpbrap,tpk,tpketp);
-tellsimpafter(tpb . tpk, tpbraket_single(tpb,tpk));
+matchdeclare([cx1,cx2],thingp,tpb,tpbrap,tpk,tpketp);
+simp:false; tellsimpafter(cx2*tpb . (tpk*cx1), cx2*cx1*(tpb . tpk)); simp:true;
+simp:false; tellsimpafter(tpb . tpk, tpbraket_single(tpb,tpk)); simp:true;
 
 flin(x):=x;
 declare(flin,linear);
-
-matchdeclare([sc1,sc2],scalarp,a,all);
-tellsimpafter( tpcfset(sc1,tpket(a,k1,k2)), tpket(sc1,k1,k2) );
-tellsimpafter( tpcfset(sc1,tpbra(a,b1,b2)), tpbra(sc1,b1,b2) );
-
-declare(tpscmult,multiadditive);
-tellsimpafter( tpscmult(sc1,tpket(sc2,k1,k2)), tpket(sc1*sc2,k1,k2) );
-tellsimpafter( tpscmult(sc1,tpbra(sc2,b1,b2)), tpbra(sc1*sc2,b1,b2) );
 
 tpbraket(x,y):=block([A1,A2,tmp,listarith:false],
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
@@ -75,77 +67,63 @@ tpbraket(x,y):=block([A1,A2,tmp,listarith:false],
 
 tpdagger(tp):=block([R,c,x1,x2],
   if tpketp(tp)=false and tpbrap(tp)=false then return(disp("must be a tpket or tpbra")),
-  c:  dagger(inpart(tp,1)),
-  x1: dagger(inpart(tp,2)),
-  x2: dagger(inpart(tp,3)),
-  if     tpketp(tp) then return( tpbra( c, x1, x2 ) )
-  elseif tpbrap(tp) then return( tpket( c, x1, x2 ) ));
+  x1: dagger(inpart(tp,1)),
+  x2: dagger(inpart(tp,2)),
+  if     tpketp(tp) then return( tpbra( x1, x2 ) )
+  elseif tpbrap(tp) then return( tpket( x1, x2 ) ));
 
 tpbraket_single(b,k):=block([R],
     if tpketp(k)=false or tpbrap(b)=false then return(disp("Inputs must be a single tpbra and tpket.")),
-    R: inpart(b,1)*inpart(k,1)*( inpart(b,2) . inpart(k,2) )*( inpart(b,3) . inpart(k,3) ),
+    R: ( inpart(b,1) . inpart(k,1) )*( inpart(b,2) . inpart(k,2) ),
     R);
 
-tpadd(tpka,tpkb):=block([R,q,fac:1,cfac:1,a2,b2,a3,b3],
-    if tpka=0 then return(tpkb),
-    if tpkb=0 then return(tpka),
-    if tpka=0 and tpkb=0 then return(0),
-    cfa:inpart(tpka,1), cfb:inpart(tpkb,1),
-    if tpketp(tpka)=false or tpketp(tpkb)=false then return(disp("Input must be tpkets.")),
-    a2: inpart(tpka,2), a3: inpart(tpka,3),
-    b2: inpart(tpkb,2), b3: inpart(tpkb,3),
-    if a2=b2 and a3=b3 then R: tpket( cfa+cfb, a2, a3 ),
-    if a2=b2 and a3#b3 then R: tpket( 1, a2, cfa*a3+cfb*b3), 
-    if a2#b2 and a3=b3 then R: tpket( 1, cfa*a2+cfb*b2, b3),
-    if a2#b2 and a3#b3 then R: tpket( cfa, a2, a3) + tpket(cfb, b2, b3),
-    R);
 
 declare([J1z,J2z,Jtz,J1sqr,J2sqr,J1p,J2p,Jtp,J1m,J2m,Jtm],additive);
 
 matchdeclare([tpk1,tpk2,k],tpketp);
-tellsimpafter( J1z(k), tpket( inpart(k,1), Jz(inpart(k,2)), inpart(k,3) ) );
-tellsimpafter( J2z(k), tpket( inpart(k,1), inpart(k,2), Jz(inpart(k,3)) ) );
-tellsimpafter( Jtz(k), tpadd(J1z(k),J2z(k)) );
+tellsimpafter( J1z(k), tpket( Jz(inpart(k,1)), inpart(k,2) ) );
+tellsimpafter( J2z(k), tpket( inpart(k,1), Jz(inpart(k,2)) ) );
+tellsimpafter( Jtz(k), J1z(k) + J2z(k) );
 
-tellsimpafter( J1sqr(k), tpket(inpart(k,1),Jsqr(inpart(k,2)),inpart(k,3)) );
-tellsimpafter( J2sqr(k), tpket(inpart(k,1),inpart(k,2),Jsqr(inpart(k,3))) );
+tellsimpafter( J1sqr(k), tpket( Jsqr(inpart(k,1)),inpart(k,2)) );
+tellsimpafter( J2sqr(k), tpket( inpart(k,1), Jsqr(inpart(k,2))) );
 
-tellsimpafter( J1p(k), tpket(inpart(k,1),Jp(inpart(k,2)),inpart(k,3)) );
-tellsimpafter( J2p(k), tpket(inpart(k,1),inpart(k,2),Jp(inpart(k,3))) );
-tellsimpafter( Jtp(k), tpadd(J1p(k),J2p(k)) );
+tellsimpafter( J1p(k), tpket( Jp(inpart(k,1)),inpart(k,2)) );
+tellsimpafter( J2p(k), tpket( inpart(k,1),Jp(inpart(k,2))) );
+tellsimpafter( Jtp(k), J1p(k) + J2p(k) );
 
-tellsimpafter( J1m(k), tpket(inpart(k,1),Jm(inpart(k,2)),inpart(k,3)) );
-tellsimpafter( J2m(k), tpket(inpart(k,1),inpart(k,2),Jm(inpart(k,3))) );
-tellsimpafter( Jtm(k), tpadd(J1m(k),J2m(k)) );
+tellsimpafter( J1m(k), tpket( Jm(inpart(k,1)),inpart(k,2)) );
+tellsimpafter( J2m(k), tpket( inpart(k,1),Jm(inpart(k,2))) );
+tellsimpafter( Jtm(k), J1m(k) + J2m(k) );
 
 
 declare([J1p2m,J1m2p,J1zJ2z],additive);
-J1p2m(k):= block([R,a1,a2,a3],
+J1p2m(k):= block([R,a1,a2],
     if tpketp(k)=false then return(false),
-    a1:inpart(k,1), a2:Jp( inpart(k,2)), a3:Jm(inpart(k,3)),
-    R: tpket(a1,a2,a3),
-    if a2=0 or a3=0 then return(0),
+    a1:Jp(inpart(k,1)), a2:Jm(inpart(k,2)),
+    R: tpket(a1,a2),
+    if a1=0 or a2=0 then return(0),
     R);
-J1m2p(k):= block([R,a1,a2,a3],
+J1m2p(k):= block([R,a1,a2],
     if tpketp(k)=false then return(false),
-    a1:inpart(k,1), a2:Jm( inpart(k,2)), a3:Jp(inpart(k,3)),
-    R: tpket(a1,a2,a3),
-    if a2=0 or a3=0 then return(0),
+    a1:Jm( inpart(k,1)), a2:Jp(inpart(k,2)),
+    R: tpket(a1,a2),
+    if a1=0 or a2=0 then return(0),
     R);
 
-J1zJ2z(k):= block([R,a1,a2,a3],
+J1zJ2z(k):= block([R,a1,a2],
     if tpketp(k)=false then return(false),
-    a1:inpart(k,1), a2:Jz( inpart(k,2)), a3:Jz(inpart(k,3)),
-    R: tpket(a1,a2,a3),
-    if a2=0 or a3=0 then return(0),
+    a1:Jz( inpart(k,1)), a2:Jz(inpart(k,2)),
+    R: tpket(a1,a2),
+    if a1=0 or a2=0 then return(0),
     R);
 
 /* Jtsqr = J1sqr + J2sqr + J1p*J2m + J1m*J2p + 2J1zJ2z */
 Jtsqr(k):=block([R,r1,r2], 
     if tpketp(k)=false then return(disp("must enter a tpket")),
-    r1: tpadd( J1sqr(k) , tpadd( J2sqr(k) , tpscmult(2,J1zJ2z(k)) )),
-    r2: tpadd( J1p2m(k) , J1m2p(k)),
-    R: tpadd(r1,r2),
+    r1: J1sqr(k) + J2sqr(k) + 2*J1zJ2z(k),
+    r2: J1p2m(k) + J1m2p(k),
+    R: r1+r2,
     R);
 
 get_j(x):=block([out,jval,j],
