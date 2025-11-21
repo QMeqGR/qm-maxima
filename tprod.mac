@@ -65,15 +65,14 @@ tpbraket(x,y):=block([A1,A2,tmp,listarith:false],
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
     tmp);
 
-tpdagger(tp):=block([R,c,x1,x2],
-  if tpketp(tp)=false and tpbrap(tp)=false then return(disp("must be a tpket or tpbra")),
-  x1: dagger(inpart(tp,1)),
-  x2: dagger(inpart(tp,2)),
-  if     tpketp(tp) then return( tpbra( x1, x2 ) )
-  elseif tpbrap(tp) then return( tpket( x1, x2 ) ));
+declare(tpdagger,additive);
+matchdeclare([cx1,cx2],thingp,[k1,k2],ketp,[b1,b2],brap);
+tellsimpafter( tpdagger(cx1*tpket(k1,k2)), conjugate(cx1)*tpbra(dagger(k1),dagger(k2)) );
+tellsimpafter( tpdagger(cx1*tpbra(b1,b2)), conjugate(cx1)*tpket(dagger(b1),dagger(b2)) );
 
 tpbraket_single(b,k):=block([R],
-    if tpketp(k)=false or tpbrap(b)=false then return(disp("Inputs must be a single tpbra and tpket.")),
+    if tpketp(k)=false or tpbrap(b)=false then
+      return(disp("Inputs must be a single tpbra and tpket.")),
     R: ( inpart(b,1) . inpart(k,1) )*( inpart(b,2) . inpart(k,2) ),
     R);
 
@@ -98,7 +97,7 @@ tellsimpafter( Jtm(k), J1m(k) + J2m(k) );
 
 
 declare([J1p2m,J1m2p,J1zJ2z],additive);
-J1p2m(k):= block([R,a1,a2],
+J1p2m(k):= block([R,a1,a2,dotscrules:true],
     if tpketp(k)=false then return(false),
     a1:Jp(inpart(k,1)), a2:Jm(inpart(k,2)),
     R: tpket(a1,a2),
@@ -131,6 +130,8 @@ get_j(x):=block([out,jval,j],
     out: solve(j*(j+1)=x,j),
     for i: 1 thru 2 do if rhs(out[i])>0 then jval:out[i],
     jval);
+
+tpexpect(Op,psi):=block([dotscrules:true],tpdagger(psi) . Op. psi);
 
 /* Rules for calculating abstract hamiltonian matrix reps */
 matchdeclare(tpk,tpketp);
