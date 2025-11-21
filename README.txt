@@ -883,7 +883,7 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2]));
                                       3  1     1  1
-     (%o1)                         1·|-, -> ⨂ |-, ->
+     (%o1)                           |-, -> ⨂ |-, ->
                                       2  2     2  2
 
  -- Function: tpbra (_jmbra1,jmbra2_)
@@ -891,57 +891,22 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2]));
                                       3  1     1  1
-     (%o1)                         1·<-, -| ⨂ <-, -|
+     (%o1)                           <-, -| ⨂ <-, -|
                                       2  2     2  2
 
  -- Function: tpbraket (_tpbra,tpket_)
      ‘tpbraket’ returns the bracket of a ‘tpbra’ and a ‘tpket’.
 
      (%i1) k:tpket(jmtop(1),jmbot(1));
-     (%o1)                        1·|1, 1> ⨂ |1, - 1>
+     (%o1)                          |1, 1> ⨂ |1, - 1>
      (%i2) K:Jtsqr(k);
-                       2                           2
-     (%o2)       2 hbar ·|1, 1> ⨂ |1, - 1> + 2 hbar ·|1, 0> ⨂ |1, 0>
+                         2                           2
+     (%o2)         2 hbar  |1, 1> ⨂ |1, - 1> + 2 hbar  |1, 0> ⨂ |1, 0>
      (%i3) B:tpdagger(k);
-     (%o3)                        1·<1, 1| ⨂ <1, - 1|
+     (%o3)                          <1, 1| ⨂ <1, - 1|
      (%i4) tpbraket(B,K);
                                                2
      (%o4)                               2 hbar
-
- -- Function: tpcfset (cf,_tpket_)
-     ‘tpcfset’ manually sets the _common factor_ ‘cf’ of a ‘tpket’.
-
- -- Function: tpscmult (a,_tpket_)
-     ‘tpscmult’ multiplies the tensor product's common factor by ‘a’.
-     Any symbols must be ‘declare’d ‘scalar’.
-
-     (%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
-                                     1  1     1    1
-     (%o1)                        1·|-, -> ⨂ |-, - ->
-                                     2  2     2    2
-     (%i2) declare(c,scalar);
-     (%o2)                                done
-     (%i3) tpscmult(c,k1);
-                                     1  1     1    1
-     (%o3)                        c·|-, -> ⨂ |-, - ->
-                                     2  2     2    2
-
- -- Function: tpadd (_tpket,tpket_)
-     ‘tpadd’ adds two ‘tpket’s.  This function is necessary to avoid
-     trouble with Maxima's automatic list arithmetic.
-
-     (%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
-                                     1  1     1    1
-     (%o1)                        1·|-, -> ⨂ |-, - ->
-                                     2  2     2    2
-     (%i2) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
-                                     1    1     1  1
-     (%o2)                        1·|-, - -> ⨂ |-, ->
-                                     2    2     2  2
-     (%i3) tpadd(k1,k2);
-                         1  1     1    1       1    1     1  1
-     (%o3)            1·|-, -> ⨂ |-, - -> + 1·|-, - -> ⨂ |-, ->
-                         2  2     2    2       2    2     2  2
 
  -- Function: tpdagger (_tpket or tpbra_)
      ‘tpdagger’ takes the quantum mechanical dagger of a ‘tpket’ or
@@ -949,11 +914,11 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
                                      1  1     1    1
-     (%o1)                        1·|-, -> ⨂ |-, - ->
+     (%o1)                          |-, -> ⨂ |-, - ->
                                      2  2     2    2
      (%i2) tpdagger(k1);
                                      1  1     1    1
-     (%o2)                        1·<-, -| ⨂ <-, - -|
+     (%o2)                          <-, -| ⨂ <-, - -|
                                      2  2     2    2
 
  -- Function: J1z (_tpket_)
@@ -966,16 +931,20 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
                                       3  3     1  1
-     (%o1)                         1·|-, -> ⨂ |-, ->
+     (%o1)                           |-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) J1z(k);
-                                3 hbar  3  3     1  1
-     (%o2)                      ------·|-, -> ⨂ |-, ->
-                                  2     2  2     2  2
+                                         3  3     1  1
+                                 3 hbar |-, -> ⨂ |-, ->
+                                         2  2     2  2
+     (%o2)                       ----------------------
+                                           2
      (%i3) J2z(k);
-                                 hbar  3  3     1  1
-     (%o3)                       ----·|-, -> ⨂ |-, ->
-                                  2    2  2     2  2
+                                        3  3     1  1
+                                  hbar |-, -> ⨂ |-, ->
+                                        2  2     2  2
+     (%o3)                        --------------------
+                                           2
 
  -- Function: Jtz (_tpket_)
      ‘Jtz’ is the total z-projection of spin operator acting on a tpket
@@ -983,12 +952,12 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2]));
                                       3  3     1  1
-     (%o1)                         1·|-, -> ⨂ |-, ->
+     (%o1)                           |-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) Jtz(k);
-                                        3  3     1  1
-     (%o2)                      2 hbar·|-, -> ⨂ |-, ->
-                                        2  2     2  2
+                                         3  3     1  1
+     (%o2)                       2 hbar |-, -> ⨂ |-, ->
+                                         2  2     2  2
 
  -- Function: J1sqr (_tpket_)
      ‘J1sqr’ returns ‘Jsqr’ for the first ket of a tpket.
@@ -1019,16 +988,16 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2]));
                                       3  1     1  1
-     (%o1)                         1·|-, -> ⨂ |-, ->
+     (%o1)                           |-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) b:tpdagger(k);
                                       3  1     1  1
-     (%o2)                         1·<-, -| ⨂ <-, -|
+     (%o2)                           <-, -| ⨂ <-, -|
                                       2  2     2  2
      (%i3) J1p2m(k);
-                                        2  3  3     1    1
-     (%o3)                  sqrt(3) hbar ·|-, -> ⨂ |-, - ->
-                                           2  2     2    2
+                                         2  3  3     1    1
+     (%o3)                   sqrt(3) hbar  |-, -> ⨂ |-, - ->
+                                            2  2     2    2
      (%i4) J1m2p(k);
      (%o4)                                  0
 
@@ -1044,16 +1013,16 @@ The general form of a tensor product in the (j,m) representation is:
 
      (%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2]));
                                      3    1     1  1
-     (%o1)                        1·|-, - -> ⨂ |-, ->
+     (%o1)                          |-, - -> ⨂ |-, ->
                                      2    2     2  2
      (%i2) B:tpdagger(k);
                                      3    1     1  1
-     (%o2)                        1·<-, - -| ⨂ <-, -|
+     (%o2)                          <-, - -| ⨂ <-, -|
                                      2    2     2  2
      (%i3) K2:Jtsqr(k);
-                      2  3    1     1  1          2  3  1     1    1
-     (%o3)      4 hbar ·|-, - -> ⨂ |-, -> + 2 hbar ·|-, -> ⨂ |-, - ->
-                         2    2     2  2             2  2     2    2
+                        2  3  1     1    1          2  3    1     1  1
+     (%o3)        2 hbar  |-, -> ⨂ |-, - -> + 4 hbar  |-, - -> ⨂ |-, ->
+                           2  2     2    2             2    2     2  2
      (%i4) tpbraket(B,K2);
                                                2
      (%o4)                               4 hbar
@@ -1076,13 +1045,14 @@ For the first example, let us see how to determine the total spin state
 
      (%i1) k:tpket(jmtop(1/2),jmtop(1));
                                       1  1
-     (%o1)                         1·|-, -> ⨂ |1, 1>
+     (%o1)                           |-, -> ⨂ |1, 1>
                                       2  2
      (%i2) Jtsqr(k);
-                                      2
-                               15 hbar   1  1
-     (%o2)                     --------·|-, -> ⨂ |1, 1>
-                                  4      2  2
+                                       2  1  1
+                                15 hbar  |-, -> ⨂ |1, 1>
+                                          2  2
+     (%o2)                      ------------------------
+                                           4
      (%i3) get_j(15/4);
                                               3
      (%o3)                                j = -
@@ -1094,20 +1064,23 @@ find the other states: ‘|3/2,1/2>’, ‘|3/2,-1/2>’, and ‘|3/2,-3/2>’.
 
      (%i1) k:tpket(jmtop(1/2),jmtop(1));
                                       1  1
-     (%o1)                         1·|-, -> ⨂ |1, 1>
+     (%o1)                           |-, -> ⨂ |1, 1>
                                       2  2
      (%i2) k2:Jtm(k);
-                              1  1                   1    1
-     (%o2)      sqrt(2) hbar·|-, -> ⨂ |1, 0> + hbar·|-, - -> ⨂ |1, 1>
-                              2  2                   2    2
+                                1  1                   1    1
+     (%o2)        sqrt(2) hbar |-, -> ⨂ |1, 0> + hbar |-, - -> ⨂ |1, 1>
+                                2  2                   2    2
      (%i3) k3:Jtm(k2);
-               3/2     2  1    1                   2  1  1
-     (%o3)    2    hbar ·|-, - -> ⨂ |1, 0> + 2 hbar ·|-, -> ⨂ |1, - 1>
-                          2    2                      2  2
+                                       1  1                     1    1
+     (%o3) sqrt(2) hbar (sqrt(2) hbar |-, -> ⨂ |1, - 1> + hbar |-, - -> ⨂ |1, 0>)
+                                       2  2                     2    2
+                                                                 2  1    1
+                                                   + sqrt(2) hbar  |-, - -> ⨂ |1, 0>
+                                                                    2    2
      (%i4) k4:Jtm(k3);
-                    3  1    1                     3  1    1
-     (%o4)    4 hbar ·|-, - -> ⨂ |1, - 1> + 2 hbar ·|-, - -> ⨂ |1, - 1>
-                       2    2                        2    2
+                                     3  1    1
+     (%o4)                     6 hbar  |-, - -> ⨂ |1, - 1>
+                                        2    2
 
    In the example below we calculate the Clebsch-Gordan coefficients of
 the two-particle state with two spin-1/2 particles.  We begin by
@@ -1122,39 +1095,41 @@ down the ladder to compute the others.
 
      (%i1) top:tpket(jmtop(1/2),jmtop(1/2));
                                       1  1     1  1
-     (%o1)                         1·|-, -> ⨂ |-, ->
+     (%o1)                           |-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) Jtsqr(top);
-                                      2  1  1     1  1
-     (%o2)                      2 hbar ·|-, -> ⨂ |-, ->
-                                         2  2     2  2
+                                       2  1  1     1  1
+     (%o2)                       2 hbar  |-, -> ⨂ |-, ->
+                                          2  2     2  2
      (%i3) get_j(2);
      (%o3)                                j = 1
      (%i4) Jtz(top);
-                                       1  1     1  1
-     (%o4)                       hbar·|-, -> ⨂ |-, ->
-                                       2  2     2  2
+                                        1  1     1  1
+     (%o4)                        hbar |-, -> ⨂ |-, ->
+                                        2  2     2  2
      (%i5) JMtop:ket([1,1]);
      (%o5)                               |1, 1>
      (%i6) mid:Jtm(top);
-                         1  1     1    1          1    1     1  1
-     (%o6)         hbar·|-, -> ⨂ |-, - -> + hbar·|-, - -> ⨂ |-, ->
-                         2  2     2    2          2    2     2  2
+                           1  1     1    1          1    1     1  1
+     (%o6)           hbar |-, -> ⨂ |-, - -> + hbar |-, - -> ⨂ |-, ->
+                           2  2     2    2          2    2     2  2
      (%i7) Jm(JMtop);
-     (%o7)                         sqrt(2) |1, 0> hbar
-     (%i8) mid:tpscmult(1/(sqrt(2)*hbar),mid);
-                   1     1  1     1    1       1     1    1     1  1
-     (%o8)      -------·|-, -> ⨂ |-, - -> + -------·|-, - -> ⨂ |-, ->
-                sqrt(2)  2  2     2    2    sqrt(2)  2    2     2  2
+     (%o7)                         sqrt(2) hbar |1, 0>
+     (%i8) mid: 1/(sqrt(2)*hbar)*mid,ratsimp;
+                           1  1     1    1     1    1     1  1
+                          |-, -> ⨂ |-, - -> + |-, - -> ⨂ |-, ->
+                           2  2     2    2     2    2     2  2
+     (%o8)                -------------------------------------
+                                         sqrt(2)
      (%i9) bot:Jtm(mid);
-                                         1    1     1    1
-     (%o9)                 sqrt(2) hbar·|-, - -> ⨂ |-, - ->
-                                         2    2     2    2
+                                          1    1     1    1
+     (%o9)                  sqrt(2) hbar |-, - -> ⨂ |-, - ->
+                                          2    2     2    2
      (%i10) Jm(ket([1,0]));
-     (%o10)                       sqrt(2) |1, - 1> hbar
-     (%i11) bot:tpscmult(1/(sqrt(2)*hbar),bot);
+     (%o10)                       sqrt(2) hbar |1, - 1>
+     (%i11) bot: 1/(sqrt(2)*hbar)*bot,ratsimp;
                                     1    1     1    1
-     (%o11)                      1·|-, - -> ⨂ |-, - ->
+     (%o11)                        |-, - -> ⨂ |-, - ->
                                     2    2     2    2
 
 1.4 General tensor products
@@ -1281,27 +1256,27 @@ define the Hamiltonian and then use the function ‘matrep’.
 
      (%i1) b1:tpket(ket([1/2,1/2]),ket([1/2,1/2]));
                                       1  1     1  1
-     (%o1)                         1·|-, -> ⨂ |-, ->
+     (%o1)                           |-, -> ⨂ |-, ->
                                       2  2     2  2
      (%i2) b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2]));
                                      1  1     1    1
-     (%o2)                        1·|-, -> ⨂ |-, - ->
+     (%o2)                          |-, -> ⨂ |-, - ->
                                      2  2     2    2
      (%i3) b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2]));
                                      1    1     1  1
-     (%o3)                        1·|-, - -> ⨂ |-, ->
+     (%o3)                          |-, - -> ⨂ |-, ->
                                      2    2     2  2
      (%i4) b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2]));
                                     1    1     1    1
-     (%o4)                       1·|-, - -> ⨂ |-, - ->
+     (%o4)                         |-, - -> ⨂ |-, - ->
                                     2    2     2    2
      (%i5) B:[b1,b2,b3,b4];
-               1  1     1  1      1  1     1    1      1    1     1  1
-     (%o5) [1·|-, -> ⨂ |-, ->, 1·|-, -> ⨂ |-, - ->, 1·|-, - -> ⨂ |-, ->,
-               2  2     2  2      2  2     2    2      2    2     2  2
-                                                               1    1     1    1
-                                                            1·|-, - -> ⨂ |-, - ->]
-                                                               2    2     2    2
+             1  1     1  1    1  1     1    1    1    1     1  1
+     (%o5) [|-, -> ⨂ |-, ->, |-, -> ⨂ |-, - ->, |-, - -> ⨂ |-, ->,
+             2  2     2  2    2  2     2    2    2    2     2  2
+                                                                 1    1     1    1
+                                                                |-, - -> ⨂ |-, - ->]
+                                                                 2    2     2    2
      (%i6) H1:omega*(J1z-J2z);
      (%o6)                          (J1z - J2z) omega
      (%i7) declare(omega,scalar);
@@ -1360,12 +1335,12 @@ stationary states.
                  2   2
                                         [[1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1]]]]
      (%i5) states:stationary(evals,evecs,bj1212);
-               1  1     1    1           1    1     1  1      1  1     1  1
-     (%o5) [1·|-, -> ⨂ |-, - -> + (- 1)·|-, - -> ⨂ |-, ->, 1·|-, -> ⨂ |-, ->,
-               2  2     2    2           2    2     2  2      2  2     2  2
-                1  1     1    1       1    1     1  1      1    1     1    1
-             1·|-, -> ⨂ |-, - -> + 1·|-, - -> ⨂ |-, ->, 1·|-, - -> ⨂ |-, - ->]
-                2  2     2    2       2    2     2  2      2    2     2    2
+             1  1     1    1     1    1     1  1    1  1     1  1
+     (%o5) [|-, -> ⨂ |-, - -> - |-, - -> ⨂ |-, ->, |-, -> ⨂ |-, ->,
+             2  2     2    2     2    2     2  2    2  2     2  2
+                          1  1     1    1     1    1     1  1    1    1     1    1
+                         |-, -> ⨂ |-, - -> + |-, - -> ⨂ |-, ->, |-, - -> ⨂ |-, - ->]
+                          2  2     2    2     2    2     2  2    2    2     2    2
      (%i6) Jtz(states[1]);
      (%o6)                                  0
 
@@ -1600,27 +1575,27 @@ ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
 
 
 /* pre-defined tpket bases */
-bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
-        [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
-        [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
-        [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
+bj1212: [ [tpket(ket([1/2,1/2]),ket([1/2,1/2])],
+        [tpket(ket([1/2,1/2]),ket([1/2,-1/2])],
+        [tpket(ket([1/2,-1/2]),ket([1/2,1/2])],
+        [tpket(ket([1/2,-1/2]),ket([1/2,-1/2])] ];
 
-bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
-         [tpket,1,ket([1,1]),ket([1/2,-1/2])],
-         [tpket,1,ket([1,0]),ket([1/2,1/2])],
-         [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
-         [tpket,1,ket([1,-1]),ket([1/2,1/2])],
-         [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+bj112: [ [tpket(ket([1,1]),ket([1/2,1/2])],
+         [tpket(ket([1,1]),ket([1/2,-1/2])],
+         [tpket(ket([1,0]),ket([1/2,1/2])],
+         [tpket(ket([1,0]),ket([1/2,-1/2])],         
+         [tpket(ket([1,-1]),ket([1/2,1/2])],
+         [tpket(ket([1,-1]),ket([1/2,-1/2])] ];
 
-bj11:  [ [tpket,1,ket([1,1]),ket([1,1])],
-         [tpket,1,ket([1,1]),ket([1,0])],
-         [tpket,1,ket([1,1]),ket([1,-1])],
-         [tpket,1,ket([1,0]),ket([1,1])],
-         [tpket,1,ket([1,0]),ket([1,0])],
-         [tpket,1,ket([1,0]),ket([1,-1])],         
-         [tpket,1,ket([1,-1]),ket([1,1])],
-         [tpket,1,ket([1,-1]),ket([1,0])],
-         [tpket,1,ket([1,-1]),ket([1,-1])] ];
+bj11:  [ [tpket(ket([1,1]),ket([1,1])],
+         [tpket(ket([1,1]),ket([1,0])],
+         [tpket(ket([1,1]),ket([1,-1])],
+         [tpket(ket([1,0]),ket([1,1])],
+         [tpket(ket([1,0]),ket([1,0])],
+         [tpket(ket([1,0]),ket([1,-1])],         
+         [tpket(ket([1,-1]),ket([1,1])],
+         [tpket(ket([1,-1]),ket([1,0])],
+         [tpket(ket([1,-1]),ket([1,-1])] ];
 
 Appendix A Function and Variable index
 **************************************
@@ -1628,17 +1603,17 @@ Appendix A Function and Variable index
 * Menu:
 
 * am:                                    Functions and Variables for qm.
-                                                             (line 1433)
+                                                             (line 1408)
 * anticommutator:                        Functions and Variables for qm.
                                                              (line  562)
 * ap:                                    Functions and Variables for qm.
-                                                             (line 1429)
+                                                             (line 1404)
 * autobra:                               Functions and Variables for qm.
                                                              (line  380)
 * autoket:                               Functions and Variables for qm.
                                                              (line  361)
 * basis_set:                             Functions and Variables for qm.
-                                                             (line 1252)
+                                                             (line 1227)
 * basis_set_p:                           Functions and Variables for qm.
                                                              (line  618)
 * bra:                                   Functions and Variables for qm.
@@ -1650,39 +1625,39 @@ Appendix A Function and Variable index
 * commutator:                            Functions and Variables for qm.
                                                              (line  547)
 * complete:                              Functions and Variables for qm.
-                                                             (line 1264)
+                                                             (line 1239)
 * dagger:                                Functions and Variables for qm.
                                                              (line  406)
 * declare_eigenop:                       Functions and Variables for qm.
-                                                             (line 1480)
+                                                             (line 1455)
 * declare_qop:                           Functions and Variables for qm.
-                                                             (line 1467)
+                                                             (line 1442)
 * expect:                                Functions and Variables for qm.
                                                              (line  657)
 * get_j:                                 Functions and Variables for qm.
-                                                             (line 1060)
+                                                             (line 1029)
 * J1m:                                   Functions and Variables for qm.
-                                                             (line 1007)
+                                                             (line  976)
 * J1m2p:                                 Functions and Variables for qm.
-                                                             (line 1034)
+                                                             (line 1003)
 * J1p:                                   Functions and Variables for qm.
-                                                             (line  998)
+                                                             (line  967)
 * J1p2m:                                 Functions and Variables for qm.
-                                                             (line 1016)
+                                                             (line  985)
 * J1sqr:                                 Functions and Variables for qm.
-                                                             (line  992)
+                                                             (line  961)
 * J1z:                                   Functions and Variables for qm.
-                                                             (line  958)
+                                                             (line  923)
 * J1zJ2z:                                Functions and Variables for qm.
-                                                             (line 1037)
+                                                             (line 1006)
 * J2m:                                   Functions and Variables for qm.
-                                                             (line 1010)
+                                                             (line  979)
 * J2p:                                   Functions and Variables for qm.
-                                                             (line 1001)
+                                                             (line  970)
 * J2sqr:                                 Functions and Variables for qm.
-                                                             (line  995)
+                                                             (line  964)
 * J2z:                                   Functions and Variables for qm.
-                                                             (line  962)
+                                                             (line  927)
 * Jm:                                    Functions and Variables for qm.
                                                              (line  833)
 * jmbot:                                 Functions and Variables for qm.
@@ -1702,13 +1677,13 @@ Appendix A Function and Variable index
 * Jsqr:                                  Functions and Variables for qm.
                                                              (line  837)
 * Jtm:                                   Functions and Variables for qm.
-                                                             (line 1013)
+                                                             (line  982)
 * Jtp:                                   Functions and Variables for qm.
-                                                             (line 1004)
+                                                             (line  973)
 * Jtsqr:                                 Functions and Variables for qm.
-                                                             (line 1040)
+                                                             (line 1009)
 * Jtz:                                   Functions and Variables for qm.
-                                                             (line  979)
+                                                             (line  948)
 * Jz:                                    Functions and Variables for qm.
                                                              (line  841)
 * ket:                                   Functions and Variables for qm.
@@ -1718,7 +1693,7 @@ Appendix A Function and Variable index
 * magsqr:                                Functions and Variables for qm.
                                                              (line  441)
 * matrep:                                Functions and Variables for qm.
-                                                             (line 1207)
+                                                             (line 1182)
 * mbra:                                  Functions and Variables for qm.
                                                              (line  331)
 * mbrap:                                 Functions and Variables for qm.
@@ -1736,9 +1711,9 @@ Appendix A Function and Variable index
 * op_trans:                              Functions and Variables for qm.
                                                              (line  640)
 * qm_atrace:                             Functions and Variables for qm.
-                                                             (line 1378)
+                                                             (line 1353)
 * qm_mtrace:                             Functions and Variables for qm.
-                                                             (line 1374)
+                                                             (line 1349)
 * qm_variance:                           Functions and Variables for qm.
                                                              (line  664)
 * RX:                                    Functions and Variables for qm.
@@ -1762,7 +1737,7 @@ Appendix A Function and Variable index
 * spin_mket:                             Functions and Variables for qm.
                                                              (line  754)
 * stationary:                            Functions and Variables for qm.
-                                                             (line 1320)
+                                                             (line 1295)
 * Sx:                                    Functions and Variables for qm.
                                                              (line  525)
 * SX:                                    Functions and Variables for qm.
@@ -1775,24 +1750,18 @@ Appendix A Function and Variable index
                                                              (line  531)
 * SZ:                                    Functions and Variables for qm.
                                                              (line  584)
-* tpadd:                                 Functions and Variables for qm.
-                                                             (line  928)
 * tpbra:                                 Functions and Variables for qm.
                                                              (line  888)
 * tpbraket:                              Functions and Variables for qm.
                                                              (line  896)
-* tpcfset:                               Functions and Variables for qm.
-                                                             (line  910)
 * tpdagger:                              Functions and Variables for qm.
-                                                             (line  945)
+                                                             (line  910)
 * tpket:                                 Functions and Variables for qm.
                                                              (line  880)
-* tpscmult:                              Functions and Variables for qm.
-                                                             (line  913)
 * U:                                     Functions and Variables for qm.
                                                              (line  728)
 * Uop:                                   Functions and Variables for qm.
-                                                             (line 1494)
+                                                             (line 1469)
 * xm:                                    Functions and Variables for qm.
                                                              (line  469)
 * xp:                                    Functions and Variables for qm.

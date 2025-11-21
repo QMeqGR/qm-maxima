@@ -61,11 +61,11 @@ simp:false; tellsimpafter(tpb . tpk, tpbraket_single(tpb,tpk)); simp:true;
 flin(x):=x;
 declare(flin,linear);
 
-tpbraket(x,y):=block([A1,A2,tmp,listarith:false],
+tpbraket(x,y):=block([A1,A2,tmp,listarith:false,dotscrules:true],
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
     tmp);
 
-declare(tpdagger,additive);
+declare(tpdagger,[additive,linear]);
 matchdeclare([cx1,cx2],thingp,[k1,k2],ketp,[b1,b2],brap);
 tellsimpafter( tpdagger(cx1*tpket(k1,k2)), conjugate(cx1)*tpbra(dagger(k1),dagger(k2)) );
 tellsimpafter( tpdagger(cx1*tpbra(b1,b2)), conjugate(cx1)*tpket(dagger(b1),dagger(b2)) );
@@ -77,7 +77,7 @@ tpbraket_single(b,k):=block([R],
     R);
 
 
-declare([J1z,J2z,Jtz,J1sqr,J2sqr,J1p,J2p,Jtp,J1m,J2m,Jtm],additive);
+declare([J1z,J2z,Jtz,J1sqr,J2sqr,J1p,J2p,Jtp,J1m,J2m,Jtm],[additive,linear]);
 
 matchdeclare([tpk1,tpk2,k],tpketp);
 tellsimpafter( J1z(k), tpket( Jz(inpart(k,1)), inpart(k,2) ) );
@@ -96,7 +96,7 @@ tellsimpafter( J2m(k), tpket( inpart(k,1),Jm(inpart(k,2))) );
 tellsimpafter( Jtm(k), J1m(k) + J2m(k) );
 
 
-declare([J1p2m,J1m2p,J1zJ2z],additive);
+declare([J1p2m,J1m2p,J1zJ2z,Jtsqr],[additive,linear]);
 J1p2m(k):= block([R,a1,a2,dotscrules:true],
     if tpketp(k)=false then return(false),
     a1:Jp(inpart(k,1)), a2:Jm(inpart(k,2)),

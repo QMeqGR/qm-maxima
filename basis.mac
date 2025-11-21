@@ -137,8 +137,8 @@ stationary(evals,evecs,basis):=block([degen:evals[2],i,j,states:[]],
         for j: 1 thru degen[i] do
             block([l:length(evecs[i][j]),k,R:0],
                 for k: 1 thru l do
-                    (if mketp(basis[1])=true then R: R+evecs[i][j][k]*basis[k],
-                     if  ketp(basis[1])=true then R: R+evecs[i][j][k]*basis[k],
-                     if tpketp(basis[1])=true then R: tpadd(R, tpscmult(evecs[i][j][k], basis[k])) ),
+                    (if mketp(basis[1])=true  then R: R+evecs[i][j][k]*basis[k],
+                     if  ketp(basis[1])=true  then R: R+evecs[i][j][k]*basis[k],
+                     if tpketp(basis[1])=true then R: R+evecs[i][j][k]*basis[k]),
             states:append(states,[R]) ),
 states)$

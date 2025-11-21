@@ -1,7 +1,10 @@
 (displa-def motimes dim-motimes)
-(defprop munaryotimes (#\⨂ #\space) dissym)
+(defprop munaryotimes (#\⊗ #\space) dissym)
 ;; (defprop cdot (#\· #\space) dissym)
-(defprop cdot (#\⨂ #\space) dissym)
+(defprop cdot (#\⊗ #\space) dissym)
+
+;; this is U+2297: ⊗
+;; this is U+2A02: ⨂
 
 ;; This is a bit of a hack. I used the mplus code from displa.lisp
 ;; and made some small modifications. ehm

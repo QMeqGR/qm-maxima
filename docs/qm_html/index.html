@@ -1198,7 +1198,7 @@ representation is:
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) tpket(ket([3/2,1/2]),ket([1/2,1/2])); 
                                  3  1     1  1
-(%o1)                         1·|-, -&gt; ⨂ |-, -&gt;
+(%o1)                           |-, -&gt; ⨂ |-, -&gt;
                                  2  2     2  2
 </pre></div></div>
 
@@ -1210,7 +1210,7 @@ representation is:
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) tpbra(bra([3/2,1/2]),bra([1/2,1/2])); 
                                  3  1     1  1
-(%o1)                         1·&lt;-, -| ⨂ &lt;-, -|
+(%o1)                           &lt;-, -| ⨂ &lt;-, -|
                                  2  2     2  2
 </pre></div></div>
 
@@ -1221,60 +1221,15 @@ representation is:
 
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(jmtop(1),jmbot(1)); 
-(%o1)                        1·|1, 1&gt; ⨂ |1, - 1&gt;
+(%o1)                          |1, 1&gt; ⨂ |1, - 1&gt;
 (%i2) K:Jtsqr(k); 
-                  2                           2
-(%o2)       2 hbar ·|1, 1&gt; ⨂ |1, - 1&gt; + 2 hbar ·|1, 0&gt; ⨂ |1, 0&gt;
+                    2                           2
+(%o2)         2 hbar  |1, 1&gt; ⨂ |1, - 1&gt; + 2 hbar  |1, 0&gt; ⨂ |1, 0&gt;
 (%i3) B:tpdagger(k); 
-(%o3)                        1·&lt;1, 1| ⨂ &lt;1, - 1|
+(%o3)                          &lt;1, 1| ⨂ &lt;1, - 1|
 (%i4) tpbraket(B,K); 
                                           2
 (%o4)                               2 hbar
-</pre></div></div>
-
-<a class="anchor" id="tpcfset"></a><dl class="first-deffn def-block">
-<dt class="deffn def-line" id="index-tpcfset"><span class="category-def">Function: </span><span><strong class="def-name">tpcfset</strong> <var class="def-var-arguments">(<code class="code">cf</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpcfset"> &para;</a></span></dt>
-<dd><p><code class="code">tpcfset</code> manually sets the <em class="emph">common factor</em> <code class="code">cf</code> of a <code class="code">tpket</code>.
-</p></dd></dl>
-
-<a class="anchor" id="tpscmult"></a><dl class="first-deffn def-block">
-<dt class="deffn def-line" id="index-tpscmult"><span class="category-def">Function: </span><span><strong class="def-name">tpscmult</strong> <var class="def-var-arguments">(<code class="code">a</code>,<em class="emph">tpket</em>)</var><a class="copiable-link" href="#index-tpscmult"> &para;</a></span></dt>
-<dd><p><code class="code">tpscmult</code> multiplies the tensor product&rsquo;s common factor by <code class="code">a</code>.
-Any symbols must be <code class="code">declare</code>d <code class="code">scalar</code>.
-</p></dd></dl>
-
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])); 
-                                1  1     1    1
-(%o1)                        1·|-, -&gt; ⨂ |-, - -&gt;
-                                2  2     2    2
-(%i2) declare(c,scalar); 
-(%o2)                                done
-(%i3) tpscmult(c,k1); 
-                                1  1     1    1
-(%o3)                        c·|-, -&gt; ⨂ |-, - -&gt;
-                                2  2     2    2
-</pre></div></div>
-
-<a class="anchor" id="tpadd"></a><dl class="first-deffn def-block">
-<dt class="deffn def-line" id="index-tpadd"><span class="category-def">Function: </span><span><strong class="def-name">tpadd</strong> <var class="def-var-arguments">(<em class="emph">tpket,tpket</em>)</var><a class="copiable-link" href="#index-tpadd"> &para;</a></span></dt>
-<dd><p><code class="code">tpadd</code> adds two <code class="code">tpket</code>s. This function is necessary
-to avoid trouble with Maxima&rsquo;s automatic list arithmetic.
-</p></dd></dl>
-
-<div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])); 
-                                1  1     1    1
-(%o1)                        1·|-, -&gt; ⨂ |-, - -&gt;
-                                2  2     2    2
-(%i2) k2:tpket(ket([1/2,-1/2]),ket([1/2,1/2])); 
-                                1    1     1  1
-(%o2)                        1·|-, - -&gt; ⨂ |-, -&gt;
-                                2    2     2  2
-(%i3) tpadd(k1,k2); 
-                    1  1     1    1       1    1     1  1
-(%o3)            1·|-, -&gt; ⨂ |-, - -&gt; + 1·|-, - -&gt; ⨂ |-, -&gt;
-                    2  2     2    2       2    2     2  2
 </pre></div></div>
 
 <a class="anchor" id="tpdagger"></a><dl class="first-deffn def-block">
@@ -1285,11 +1240,11 @@ to avoid trouble with Maxima&rsquo;s automatic list arithmetic.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k1:tpket(ket([1/2,1/2]),ket([1/2,-1/2])); 
                                 1  1     1    1
-(%o1)                        1·|-, -&gt; ⨂ |-, - -&gt;
+(%o1)                          |-, -&gt; ⨂ |-, - -&gt;
                                 2  2     2    2
 (%i2) tpdagger(k1); 
                                 1  1     1    1
-(%o2)                        1·&lt;-, -| ⨂ &lt;-, - -|
+(%o2)                          &lt;-, -| ⨂ &lt;-, - -|
                                 2  2     2    2
 </pre></div></div>
 
@@ -1308,16 +1263,20 @@ on the second ket.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2])); 
                                  3  3     1  1
-(%o1)                         1·|-, -&gt; ⨂ |-, -&gt;
+(%o1)                           |-, -&gt; ⨂ |-, -&gt;
                                  2  2     2  2
 (%i2) J1z(k); 
-                           3 hbar  3  3     1  1
-(%o2)                      ------·|-, -&gt; ⨂ |-, -&gt;
-                             2     2  2     2  2
+                                    3  3     1  1
+                            3 hbar |-, -&gt; ⨂ |-, -&gt;
+                                    2  2     2  2
+(%o2)                       ----------------------
+                                      2
 (%i3) J2z(k); 
-                            hbar  3  3     1  1
-(%o3)                       ----·|-, -&gt; ⨂ |-, -&gt;
-                             2    2  2     2  2
+                                   3  3     1  1
+                             hbar |-, -&gt; ⨂ |-, -&gt;
+                                   2  2     2  2
+(%o3)                        --------------------
+                                      2
 </pre></div></div>
 
 <a class="anchor" id="Jtz"></a><dl class="first-deffn def-block">
@@ -1329,12 +1288,12 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,3/2]),ket([1/2,1/2])); 
                                  3  3     1  1
-(%o1)                         1·|-, -&gt; ⨂ |-, -&gt;
+(%o1)                           |-, -&gt; ⨂ |-, -&gt;
                                  2  2     2  2
 (%i2) Jtz(k); 
-                                   3  3     1  1
-(%o2)                      2 hbar·|-, -&gt; ⨂ |-, -&gt;
-                                   2  2     2  2
+                                    3  3     1  1
+(%o2)                       2 hbar |-, -&gt; ⨂ |-, -&gt;
+                                    2  2     2  2
 </pre></div></div>
 
 <a class="anchor" id="J1sqr"></a><dl class="first-deffn def-block">
@@ -1385,16 +1344,16 @@ and returning <code class="code">(J<sub class="sub">1z</sub>+J<sub class="sub">2
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,1/2]),ket([1/2,1/2])); 
                                  3  1     1  1
-(%o1)                         1·|-, -&gt; ⨂ |-, -&gt;
+(%o1)                           |-, -&gt; ⨂ |-, -&gt;
                                  2  2     2  2
 (%i2) b:tpdagger(k); 
                                  3  1     1  1
-(%o2)                         1·&lt;-, -| ⨂ &lt;-, -|
+(%o2)                           &lt;-, -| ⨂ &lt;-, -|
                                  2  2     2  2
 (%i3) J1p2m(k); 
-                                   2  3  3     1    1
-(%o3)                  sqrt(3) hbar ·|-, -&gt; ⨂ |-, - -&gt;
-                                      2  2     2    2
+                                    2  3  3     1    1
+(%o3)                   sqrt(3) hbar  |-, -&gt; ⨂ |-, - -&gt;
+                                       2  2     2    2
 (%i4) J1m2p(k); 
 (%o4)                                  0
 </pre></div></div>
@@ -1419,16 +1378,16 @@ tpket.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(ket([3/2,-1/2]),ket([1/2,1/2])); 
                                 3    1     1  1
-(%o1)                        1·|-, - -&gt; ⨂ |-, -&gt;
+(%o1)                          |-, - -&gt; ⨂ |-, -&gt;
                                 2    2     2  2
 (%i2) B:tpdagger(k); 
                                 3    1     1  1
-(%o2)                        1·&lt;-, - -| ⨂ &lt;-, -|
+(%o2)                          &lt;-, - -| ⨂ &lt;-, -|
                                 2    2     2  2
 (%i3) K2:Jtsqr(k); 
-                 2  3    1     1  1          2  3  1     1    1
-(%o3)      4 hbar ·|-, - -&gt; ⨂ |-, -&gt; + 2 hbar ·|-, -&gt; ⨂ |-, - -&gt;
-                    2    2     2  2             2  2     2    2
+                   2  3  1     1    1          2  3    1     1  1
+(%o3)        2 hbar  |-, -&gt; ⨂ |-, - -&gt; + 4 hbar  |-, - -&gt; ⨂ |-, -&gt;
+                      2  2     2    2             2    2     2  2
 (%i4) tpbraket(B,K2); 
                                           2
 (%o4)                               4 hbar
@@ -1458,13 +1417,14 @@ useful after using the function <code class="code">Jtsqr</code>.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(jmtop(1/2),jmtop(1)); 
                                  1  1
-(%o1)                         1·|-, -&gt; ⨂ |1, 1&gt;
+(%o1)                           |-, -&gt; ⨂ |1, 1&gt;
                                  2  2
 (%i2) Jtsqr(k); 
-                                 2
-                          15 hbar   1  1
-(%o2)                     --------·|-, -&gt; ⨂ |1, 1&gt;
-                             4      2  2
+                                  2  1  1
+                           15 hbar  |-, -&gt; ⨂ |1, 1&gt;
+                                     2  2
+(%o2)                      ------------------------
+                                      4
 (%i3) get_j(15/4); 
                                          3
 (%o3)                                j = -
@@ -1479,20 +1439,23 @@ lowering operator to find the other states: <code class="code">|3/2,1/2&gt;</cod
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) k:tpket(jmtop(1/2),jmtop(1)); 
                                  1  1
-(%o1)                         1·|-, -&gt; ⨂ |1, 1&gt;
+(%o1)                           |-, -&gt; ⨂ |1, 1&gt;
                                  2  2
 (%i2) k2:Jtm(k); 
-                         1  1                   1    1
-(%o2)      sqrt(2) hbar·|-, -&gt; ⨂ |1, 0&gt; + hbar·|-, - -&gt; ⨂ |1, 1&gt;
-                         2  2                   2    2
+                           1  1                   1    1
+(%o2)        sqrt(2) hbar |-, -&gt; ⨂ |1, 0&gt; + hbar |-, - -&gt; ⨂ |1, 1&gt;
+                           2  2                   2    2
 (%i3) k3:Jtm(k2); 
-          3/2     2  1    1                   2  1  1
-(%o3)    2    hbar ·|-, - -&gt; ⨂ |1, 0&gt; + 2 hbar ·|-, -&gt; ⨂ |1, - 1&gt;
-                     2    2                      2  2
+                                  1  1                     1    1
+(%o3) sqrt(2) hbar (sqrt(2) hbar |-, -&gt; ⨂ |1, - 1&gt; + hbar |-, - -&gt; ⨂ |1, 0&gt;)
+                                  2  2                     2    2
+                                                            2  1    1
+                                              + sqrt(2) hbar  |-, - -&gt; ⨂ |1, 0&gt;
+                                                               2    2
 (%i4) k4:Jtm(k3); 
-               3  1    1                     3  1    1
-(%o4)    4 hbar ·|-, - -&gt; ⨂ |1, - 1&gt; + 2 hbar ·|-, - -&gt; ⨂ |1, - 1&gt;
-                  2    2                        2    2
+                                3  1    1
+(%o4)                     6 hbar  |-, - -&gt; ⨂ |1, - 1&gt;
+                                   2    2
 </pre></div></div>
 
 
@@ -1511,39 +1474,41 @@ compute the others.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) top:tpket(jmtop(1/2),jmtop(1/2)); 
                                  1  1     1  1
-(%o1)                         1·|-, -&gt; ⨂ |-, -&gt;
+(%o1)                           |-, -&gt; ⨂ |-, -&gt;
                                  2  2     2  2
 (%i2) Jtsqr(top); 
-                                 2  1  1     1  1
-(%o2)                      2 hbar ·|-, -&gt; ⨂ |-, -&gt;
-                                    2  2     2  2
+                                  2  1  1     1  1
+(%o2)                       2 hbar  |-, -&gt; ⨂ |-, -&gt;
+                                     2  2     2  2
 (%i3) get_j(2); 
 (%o3)                                j = 1
 (%i4) Jtz(top); 
-                                  1  1     1  1
-(%o4)                       hbar·|-, -&gt; ⨂ |-, -&gt;
-                                  2  2     2  2
+                                   1  1     1  1
+(%o4)                        hbar |-, -&gt; ⨂ |-, -&gt;
+                                   2  2     2  2
 (%i5) JMtop:ket([1,1]); 
 (%o5)                               |1, 1&gt;
 (%i6) mid:Jtm(top); 
-                    1  1     1    1          1    1     1  1
-(%o6)         hbar·|-, -&gt; ⨂ |-, - -&gt; + hbar·|-, - -&gt; ⨂ |-, -&gt;
-                    2  2     2    2          2    2     2  2
+                      1  1     1    1          1    1     1  1
+(%o6)           hbar |-, -&gt; ⨂ |-, - -&gt; + hbar |-, - -&gt; ⨂ |-, -&gt;
+                      2  2     2    2          2    2     2  2
 (%i7) Jm(JMtop); 
-(%o7)                         sqrt(2) |1, 0&gt; hbar
-(%i8) mid:tpscmult(1/(sqrt(2)*hbar),mid); 
-              1     1  1     1    1       1     1    1     1  1
-(%o8)      -------·|-, -&gt; ⨂ |-, - -&gt; + -------·|-, - -&gt; ⨂ |-, -&gt;
-           sqrt(2)  2  2     2    2    sqrt(2)  2    2     2  2
+(%o7)                         sqrt(2) hbar |1, 0&gt;
+(%i8) mid: 1/(sqrt(2)*hbar)*mid,ratsimp; 
+                      1  1     1    1     1    1     1  1
+                     |-, -&gt; ⨂ |-, - -&gt; + |-, - -&gt; ⨂ |-, -&gt;
+                      2  2     2    2     2    2     2  2
+(%o8)                -------------------------------------
+                                    sqrt(2)
 (%i9) bot:Jtm(mid); 
-                                    1    1     1    1
-(%o9)                 sqrt(2) hbar·|-, - -&gt; ⨂ |-, - -&gt;
-                                    2    2     2    2
+                                     1    1     1    1
+(%o9)                  sqrt(2) hbar |-, - -&gt; ⨂ |-, - -&gt;
+                                     2    2     2    2
 (%i10) Jm(ket([1,0])); 
-(%o10)                       sqrt(2) |1, - 1&gt; hbar
-(%i11) bot:tpscmult(1/(sqrt(2)*hbar),bot); 
+(%o10)                       sqrt(2) hbar |1, - 1&gt;
+(%i11) bot: 1/(sqrt(2)*hbar)*bot,ratsimp; 
                                1    1     1    1
-(%o11)                      1·|-, - -&gt; ⨂ |-, - -&gt;
+(%o11)                        |-, - -&gt; ⨂ |-, - -&gt;
                                2    2     2    2
 </pre></div></div>
 
@@ -1698,27 +1663,27 @@ Hamiltonian and then use the function <code class="code">matrep</code>.
 <div class="example">
 <div class="group"><pre class="example-preformatted">(%i1) b1:tpket(ket([1/2,1/2]),ket([1/2,1/2])); 
                                  1  1     1  1
-(%o1)                         1·|-, -&gt; ⨂ |-, -&gt;
+(%o1)                           |-, -&gt; ⨂ |-, -&gt;
                                  2  2     2  2
 (%i2) b2:tpket(ket([1/2,1/2]),ket([1/2,-1/2])); 
                                 1  1     1    1
-(%o2)                        1·|-, -&gt; ⨂ |-, - -&gt;
+(%o2)                          |-, -&gt; ⨂ |-, - -&gt;
                                 2  2     2    2
 (%i3) b3:tpket(ket([1/2,-1/2]),ket([1/2,1/2])); 
                                 1    1     1  1
-(%o3)                        1·|-, - -&gt; ⨂ |-, -&gt;
+(%o3)                          |-, - -&gt; ⨂ |-, -&gt;
                                 2    2     2  2
 (%i4) b4:tpket(ket([1/2,-1/2]),ket([1/2,-1/2])); 
                                1    1     1    1
-(%o4)                       1·|-, - -&gt; ⨂ |-, - -&gt;
+(%o4)                         |-, - -&gt; ⨂ |-, - -&gt;
                                2    2     2    2
 (%i5) B:[b1,b2,b3,b4]; 
-          1  1     1  1      1  1     1    1      1    1     1  1
-(%o5) [1·|-, -&gt; ⨂ |-, -&gt;, 1·|-, -&gt; ⨂ |-, - -&gt;, 1·|-, - -&gt; ⨂ |-, -&gt;, 
-          2  2     2  2      2  2     2    2      2    2     2  2
-                                                          1    1     1    1
-                                                       1·|-, - -&gt; ⨂ |-, - -&gt;]
-                                                          2    2     2    2
+        1  1     1  1    1  1     1    1    1    1     1  1
+(%o5) [|-, -&gt; ⨂ |-, -&gt;, |-, -&gt; ⨂ |-, - -&gt;, |-, - -&gt; ⨂ |-, -&gt;, 
+        2  2     2  2    2  2     2    2    2    2     2  2
+                                                            1    1     1    1
+                                                           |-, - -&gt; ⨂ |-, - -&gt;]
+                                                            2    2     2    2
 (%i6) H1:omega*(J1z-J2z); 
 (%o6)                          (J1z - J2z) omega
 (%i7) declare(omega,scalar); 
@@ -1782,12 +1747,12 @@ the energy levels and the stationary states.
             2   2
                                    [[1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1]]]]
 (%i5) states:stationary(evals,evecs,bj1212); 
-          1  1     1    1           1    1     1  1      1  1     1  1
-(%o5) [1·|-, -&gt; ⨂ |-, - -&gt; + (- 1)·|-, - -&gt; ⨂ |-, -&gt;, 1·|-, -&gt; ⨂ |-, -&gt;, 
-          2  2     2    2           2    2     2  2      2  2     2  2
-           1  1     1    1       1    1     1  1      1    1     1    1
-        1·|-, -&gt; ⨂ |-, - -&gt; + 1·|-, - -&gt; ⨂ |-, -&gt;, 1·|-, - -&gt; ⨂ |-, - -&gt;]
-           2  2     2    2       2    2     2  2      2    2     2    2
+        1  1     1    1     1    1     1  1    1  1     1  1
+(%o5) [|-, -&gt; ⨂ |-, - -&gt; - |-, - -&gt; ⨂ |-, -&gt;, |-, -&gt; ⨂ |-, -&gt;, 
+        2  2     2    2     2    2     2  2    2  2     2  2
+                     1  1     1    1     1    1     1  1    1    1     1    1
+                    |-, -&gt; ⨂ |-, - -&gt; + |-, - -&gt; ⨂ |-, -&gt;, |-, - -&gt; ⨂ |-, - -&gt;]
+                     2  2     2    2     2    2     2  2    2    2     2    2
 (%i6) Jtz(states[1]); 
 (%o6)                                  0
 </pre></div></div>
@@ -2059,27 +2024,27 @@ ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
 
 
 /* pre-defined tpket bases */
-bj1212: [ [tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
-        [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
-        [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
-        [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])] ];
+bj1212: [ [tpket(ket([1/2,1/2]),ket([1/2,1/2])],
+        [tpket(ket([1/2,1/2]),ket([1/2,-1/2])],
+        [tpket(ket([1/2,-1/2]),ket([1/2,1/2])],
+        [tpket(ket([1/2,-1/2]),ket([1/2,-1/2])] ];
 
-bj112: [ [tpket,1,ket([1,1]),ket([1/2,1/2])],
-         [tpket,1,ket([1,1]),ket([1/2,-1/2])],
-         [tpket,1,ket([1,0]),ket([1/2,1/2])],
-         [tpket,1,ket([1,0]),ket([1/2,-1/2])],         
-         [tpket,1,ket([1,-1]),ket([1/2,1/2])],
-         [tpket,1,ket([1,-1]),ket([1/2,-1/2])] ];
+bj112: [ [tpket(ket([1,1]),ket([1/2,1/2])],
+         [tpket(ket([1,1]),ket([1/2,-1/2])],
+         [tpket(ket([1,0]),ket([1/2,1/2])],
+         [tpket(ket([1,0]),ket([1/2,-1/2])],         
+         [tpket(ket([1,-1]),ket([1/2,1/2])],
+         [tpket(ket([1,-1]),ket([1/2,-1/2])] ];
 
-bj11:  [ [tpket,1,ket([1,1]),ket([1,1])],
-         [tpket,1,ket([1,1]),ket([1,0])],
-         [tpket,1,ket([1,1]),ket([1,-1])],
-         [tpket,1,ket([1,0]),ket([1,1])],
-         [tpket,1,ket([1,0]),ket([1,0])],
-         [tpket,1,ket([1,0]),ket([1,-1])],         
-         [tpket,1,ket([1,-1]),ket([1,1])],
-         [tpket,1,ket([1,-1]),ket([1,0])],
-         [tpket,1,ket([1,-1]),ket([1,-1])] ];
+bj11:  [ [tpket(ket([1,1]),ket([1,1])],
+         [tpket(ket([1,1]),ket([1,0])],
+         [tpket(ket([1,1]),ket([1,-1])],
+         [tpket(ket([1,0]),ket([1,1])],
+         [tpket(ket([1,0]),ket([1,0])],
+         [tpket(ket([1,0]),ket([1,-1])],         
+         [tpket(ket([1,-1]),ket([1,1])],
+         [tpket(ket([1,-1]),ket([1,0])],
+         [tpket(ket([1,-1]),ket([1,-1])] ];
 </pre>
 </div>
 </div>

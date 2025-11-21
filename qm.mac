@@ -78,7 +78,7 @@ tellsimpafter(cos(x)-%i*sin(x),%e^(-%i*x));
 /*******************************/
 /* Constants and assumptions   */
 /*******************************/
-declare([hbar,ħ],[real,scalar]) $
+declare([hbar,ħ],[real,scalar,constant]) $
 assume(hbar>0) $
 if display2d_unicode=true then hbar:ħ;
 

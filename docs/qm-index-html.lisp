@@ -30,27 +30,18 @@
          ("U"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-U")
-         ("tpscmult"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-tpscmult")
          ("tpket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-tpket")
          ("tpdagger"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-tpdagger")
-         ("tpcfset"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-tpcfset")
          ("tpbraket"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-tpbraket")
          ("tpbra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-tpbra")
-         ("tpadd"
-          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
-          "index-tpadd")
          ("SZ"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-SZ")
