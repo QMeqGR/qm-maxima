@@ -1605,27 +1605,9 @@ ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
 
 
 /* pre-defined tpket bases */
-bj1212: [ [tpket(ket([1/2,1/2]),ket([1/2,1/2])],
-        [tpket(ket([1/2,1/2]),ket([1/2,-1/2])],
-        [tpket(ket([1/2,-1/2]),ket([1/2,1/2])],
-        [tpket(ket([1/2,-1/2]),ket([1/2,-1/2])] ];
-
-bj112: [ [tpket(ket([1,1]),ket([1/2,1/2])],
-         [tpket(ket([1,1]),ket([1/2,-1/2])],
-         [tpket(ket([1,0]),ket([1/2,1/2])],
-         [tpket(ket([1,0]),ket([1/2,-1/2])],         
-         [tpket(ket([1,-1]),ket([1/2,1/2])],
-         [tpket(ket([1,-1]),ket([1/2,-1/2])] ];
-
-bj11:  [ [tpket(ket([1,1]),ket([1,1])],
-         [tpket(ket([1,1]),ket([1,0])],
-         [tpket(ket([1,1]),ket([1,-1])],
-         [tpket(ket([1,0]),ket([1,1])],
-         [tpket(ket([1,0]),ket([1,0])],
-         [tpket(ket([1,0]),ket([1,-1])],         
-         [tpket(ket([1,-1]),ket([1,1])],
-         [tpket(ket([1,-1]),ket([1,0])],
-         [tpket(ket([1,-1]),ket([1,-1])] ];
+bj1212: two spin-1/2 particles
+bj112: one spin-1 and one spin-1/2 particle
+bj11: two spin-1 particles
 
 
 File: qm.info,  Node: Function and Variable Index,  Prev: Top,  Up: Top
@@ -1907,7 +1889,7 @@ Ref: am60713
 Ref: declare_qop62061
 Ref: declare_eigenop62616
 Ref: Uop63229
-Node: Function and Variable Index68812
+Node: Function and Variable Index68059
 
 End Tag Table
 

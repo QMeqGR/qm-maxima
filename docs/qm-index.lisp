@@ -92,7 +92,7 @@
 ))
 (section-pairs '(
 ; CONTENT: (<NODE NAME> . (<FILENAME> <BYTE OFFSET> <LENGTH IN CHARACTERS>))
-("Functions and Variables for qm" . ("qm.info" 11491 55915))
+("Functions and Variables for qm" . ("qm.info" 11491 55162))
 ("Introduction to package qm" . ("qm.info" 716 10400))
 )))
 (load-info-hashtables (maxima::maxima-load-pathname-directory) deffn-defvr-pairs section-pairs))

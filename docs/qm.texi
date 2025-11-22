@@ -2076,27 +2076,9 @@ ghz2: 1/sqrt(2)*(ket([0,0,0])+ket([1,1,1]));
 
 
 /* pre-defined tpket bases */
-bj1212: [ [tpket(ket([1/2,1/2]),ket([1/2,1/2])],
-        [tpket(ket([1/2,1/2]),ket([1/2,-1/2])],
-        [tpket(ket([1/2,-1/2]),ket([1/2,1/2])],
-        [tpket(ket([1/2,-1/2]),ket([1/2,-1/2])] ];
-
-bj112: [ [tpket(ket([1,1]),ket([1/2,1/2])],
-         [tpket(ket([1,1]),ket([1/2,-1/2])],
-         [tpket(ket([1,0]),ket([1/2,1/2])],
-         [tpket(ket([1,0]),ket([1/2,-1/2])],         
-         [tpket(ket([1,-1]),ket([1/2,1/2])],
-         [tpket(ket([1,-1]),ket([1/2,-1/2])] ];
-
-bj11:  [ [tpket(ket([1,1]),ket([1,1])],
-         [tpket(ket([1,1]),ket([1,0])],
-         [tpket(ket([1,1]),ket([1,-1])],
-         [tpket(ket([1,0]),ket([1,1])],
-         [tpket(ket([1,0]),ket([1,0])],
-         [tpket(ket([1,0]),ket([1,-1])],         
-         [tpket(ket([1,-1]),ket([1,1])],
-         [tpket(ket([1,-1]),ket([1,0])],
-         [tpket(ket([1,-1]),ket([1,-1])] ];
+bj1212: two spin-1/2 particles
+bj112: one spin-1 and one spin-1/2 particle
+bj11: two spin-1 particles
 @end verbatim
 
 @node Function and Variable Index, , Top, Top
