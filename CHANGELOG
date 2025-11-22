@@ -1,0 +1,6 @@
+	2025/11/22
+	
+	v.0.9.11 - merge tprework branch. This updates the way tensor product code is
+	handled. It changes the internal representation from tpket(cf,k1,k2) to simply
+	tpket(k1,k2). The common factor cf created more problems than it solved. The
+	code is simpler overall.
