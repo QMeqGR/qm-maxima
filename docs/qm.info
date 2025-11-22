@@ -60,7 +60,8 @@ The package is loaded with: ‘load(qm);’
 
 If you use wxMaxima then issue ‘set_display('ascii);’ after loading the
 ‘qm’ package.  This will allow pretty printing of the kets and bras
-similar to what you see in this manual.
+similar to what you see in this manual.  XML output can be restored with
+‘set_display('xml);’.
 
 1.1.1 Basic capabilities
 ------------------------
@@ -689,14 +690,14 @@ transform from one ‘mket’ basis to another.
      Computes the quantum mechanical expectation value of the operator
      ‘O’ in state ‘psi’, ‘<psi|O|psi>’.
 
-     (%i1) ev(expect(Sy,xp+ym),ratsimp);
+     (%i1) expect(Sy,xp+ym),expand;
      (%o1)                               - hbar
 
  -- Function: qm_variance (O,psi)
      Computes the quantum mechanical variance of the operator ‘O’ in
      state ‘psi’, ‘sqrt(<psi|O^{2}|psi> - <psi|O|psi>^{2})’.
 
-     (%i1) ev(qm_variance(Sy,xp+ym),ratsimp);
+     (%i1) qm_variance(Sy,xp+ym),expand;
                                          %i hbar
      (%o1)                               -------
                                             2
@@ -1145,19 +1146,19 @@ down the ladder to compute the others.
                            2  2     2    2          2    2     2  2
      (%i7) Jm(JMtop);
      (%o7)                         sqrt(2) hbar |1, 0>
-     (%i8) mid: 1/(sqrt(2)*hbar)*mid,ratsimp;
+     (%i8) mid: 1/(sqrt(2)*hbar)*mid,expand;
                            1  1     1    1     1    1     1  1
-                          |-, -> ⨂ |-, - -> + |-, - -> ⨂ |-, ->
+                          |-, -> ⨂ |-, - ->   |-, - -> ⨂ |-, ->
                            2  2     2    2     2    2     2  2
-     (%o8)                -------------------------------------
-                                         sqrt(2)
+     (%o8)                ----------------- + -----------------
+                               sqrt(2)             sqrt(2)
      (%i9) bot:Jtm(mid);
                                           1    1     1    1
      (%o9)                  sqrt(2) hbar |-, - -> ⨂ |-, - ->
                                           2    2     2    2
      (%i10) Jm(ket([1,0]));
      (%o10)                       sqrt(2) hbar |1, - 1>
-     (%i11) bot: 1/(sqrt(2)*hbar)*bot,ratsimp;
+     (%i11) bot: 1/(sqrt(2)*hbar)*bot,expand;
                                     1    1     1    1
      (%o11)                        |-, - -> ⨂ |-, - ->
                                     2    2     2    2
@@ -1801,95 +1802,95 @@ Appendix A Function and Variable index
 Tag Table:
 Node: Top286
 Node: Introduction to package qm603
-Node: Functions and Variables for qm11390
-Ref: hbar11562
-Ref: ket11870
-Ref: ketp12302
-Ref: bra12483
-Ref: brap12915
-Ref: mket13096
-Ref: mketp13801
-Ref: mbra14441
-Ref: mbrap15014
-Ref: autoket15740
-Ref: autobra16608
-Ref: mket_basis17274
-Ref: dagger17757
-Ref: braket18195
-Ref: norm18954
-Ref: magsqr19410
-Ref: zp20176
-Ref: zm20239
-Ref: xp20302
-Ref: xm20365
-Ref: yp20428
-Ref: ym20491
-Ref: sigmax22225
-Ref: sigmay22282
-Ref: sigmaz22339
-Ref: Sx22396
-Ref: Sy22453
-Ref: Sz22510
-Ref: commutator23147
-Ref: anticommutator23817
-Ref: SX24224
-Ref: SY24437
-Ref: SZ24650
-Ref: basis_set_p26158
-Ref: mtrans26489
-Ref: op_trans27120
-Ref: expect27829
-Ref: qm_variance28072
-Ref: SP28587
-Ref: SM28680
-Ref: RX29519
-Ref: RY29686
-Ref: RZ29853
-Ref: U30806
-Ref: spin_mket31926
-Ref: spin_mbra32101
-Ref: jmtop33250
-Ref: jmbot33494
-Ref: jmket33742
-Ref: jmketp33977
-Ref: jmbrap34285
-Ref: jmcheck34431
-Ref: Jp34604
-Ref: Jm34780
-Ref: Jsqr34956
-Ref: Jz35124
-Ref: tpket36572
-Ref: tpbra36886
-Ref: tpbraket37200
-Ref: tpdagger37770
-Ref: J1z38310
-Ref: J2z38436
-Ref: Jtz39346
-Ref: J1sqr39891
-Ref: J2sqr39988
-Ref: J1p40086
-Ref: J2p40180
-Ref: Jtp40275
-Ref: J1m40364
-Ref: J2m40458
-Ref: Jtm40553
-Ref: J1p2m40642
-Ref: J1m2p41401
-Ref: J1zJ2z41493
-Ref: Jtsqr41587
-Ref: get_j42500
-Ref: matrep49861
-Ref: basis_set52069
-Ref: complete52686
-Ref: stationary55404
-Ref: qm_mtrace57985
-Ref: qm_atrace58160
-Ref: ap60600
-Ref: am60713
-Ref: declare_qop62061
-Ref: declare_eigenop62616
-Ref: Uop63229
-Node: Function and Variable Index68059
+Node: Functions and Variables for qm11449
+Ref: hbar11621
+Ref: ket11929
+Ref: ketp12361
+Ref: bra12542
+Ref: brap12974
+Ref: mket13155
+Ref: mketp13860
+Ref: mbra14500
+Ref: mbrap15073
+Ref: autoket15799
+Ref: autobra16667
+Ref: mket_basis17333
+Ref: dagger17816
+Ref: braket18254
+Ref: norm19013
+Ref: magsqr19469
+Ref: zp20235
+Ref: zm20298
+Ref: xp20361
+Ref: xm20424
+Ref: yp20487
+Ref: ym20550
+Ref: sigmax22284
+Ref: sigmay22341
+Ref: sigmaz22398
+Ref: Sx22455
+Ref: Sy22512
+Ref: Sz22569
+Ref: commutator23206
+Ref: anticommutator23876
+Ref: SX24283
+Ref: SY24496
+Ref: SZ24709
+Ref: basis_set_p26217
+Ref: mtrans26548
+Ref: op_trans27179
+Ref: expect27888
+Ref: qm_variance28126
+Ref: SP28636
+Ref: SM28729
+Ref: RX29568
+Ref: RY29735
+Ref: RZ29902
+Ref: U30855
+Ref: spin_mket31975
+Ref: spin_mbra32150
+Ref: jmtop33299
+Ref: jmbot33543
+Ref: jmket33791
+Ref: jmketp34026
+Ref: jmbrap34334
+Ref: jmcheck34480
+Ref: Jp34653
+Ref: Jm34829
+Ref: Jsqr35005
+Ref: Jz35173
+Ref: tpket36621
+Ref: tpbra36935
+Ref: tpbraket37249
+Ref: tpdagger37819
+Ref: J1z38359
+Ref: J2z38485
+Ref: Jtz39395
+Ref: J1sqr39940
+Ref: J2sqr40037
+Ref: J1p40135
+Ref: J2p40229
+Ref: Jtp40324
+Ref: J1m40413
+Ref: J2m40507
+Ref: Jtm40602
+Ref: J1p2m40691
+Ref: J1m2p41450
+Ref: J1zJ2z41542
+Ref: Jtsqr41636
+Ref: get_j42549
+Ref: matrep49918
+Ref: basis_set52126
+Ref: complete52743
+Ref: stationary55461
+Ref: qm_mtrace58042
+Ref: qm_atrace58217
+Ref: ap60657
+Ref: am60770
+Ref: declare_qop62118
+Ref: declare_eigenop62673
+Ref: Uop63286
+Node: Function and Variable Index68116
 
 End Tag Table
 

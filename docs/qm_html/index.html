@@ -90,7 +90,8 @@ manual. Additional examples are provided as wxMaxima worksheets in the
 <br>
 <p>If you use wxMaxima then issue <code class="code">set_display('ascii);</code> after
 loading the <code class="code">qm</code> package. This will allow pretty printing of the
-kets and bras similar to what you see in this manual.
+kets and bras similar to what you see in this manual. XML output
+can be restored with <code class="code">set_display('xml);</code>.
 </p>
 <ul class="mini-toc">
 <li><a href="#Basic-capabilities" accesskey="1">Basic capabilities</a></li>
@@ -894,7 +895,7 @@ in state <code class="code">psi</code>, <code class="code">&lt;psi|O|psi&gt;</co
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) ev(expect(Sy,xp+ym),ratsimp); 
+<div class="group"><pre class="example-preformatted">(%i1) expect(Sy,xp+ym),expand; 
 (%o1)                               - hbar
 </pre></div></div>
 
@@ -905,7 +906,7 @@ in state <code class="code">psi</code>, <code class="code">sqrt(&lt;psi|O<sup cl
 </p></dd></dl>
 
 <div class="example">
-<div class="group"><pre class="example-preformatted">(%i1) ev(qm_variance(Sy,xp+ym),ratsimp); 
+<div class="group"><pre class="example-preformatted">(%i1) qm_variance(Sy,xp+ym),expand; 
                                     %i hbar
 (%o1)                               -------
                                        2
@@ -1494,19 +1495,19 @@ compute the others.
                       2  2     2    2          2    2     2  2
 (%i7) Jm(JMtop); 
 (%o7)                         sqrt(2) hbar |1, 0&gt;
-(%i8) mid: 1/(sqrt(2)*hbar)*mid,ratsimp; 
+(%i8) mid: 1/(sqrt(2)*hbar)*mid,expand; 
                       1  1     1    1     1    1     1  1
-                     |-, -&gt; ⨂ |-, - -&gt; + |-, - -&gt; ⨂ |-, -&gt;
+                     |-, -&gt; ⨂ |-, - -&gt;   |-, - -&gt; ⨂ |-, -&gt;
                       2  2     2    2     2    2     2  2
-(%o8)                -------------------------------------
-                                    sqrt(2)
+(%o8)                ----------------- + -----------------
+                          sqrt(2)             sqrt(2)
 (%i9) bot:Jtm(mid); 
                                      1    1     1    1
 (%o9)                  sqrt(2) hbar |-, - -&gt; ⨂ |-, - -&gt;
                                      2    2     2    2
 (%i10) Jm(ket([1,0])); 
 (%o10)                       sqrt(2) hbar |1, - 1&gt;
-(%i11) bot: 1/(sqrt(2)*hbar)*bot,ratsimp; 
+(%i11) bot: 1/(sqrt(2)*hbar)*bot,expand; 
                                1    1     1    1
 (%o11)                        |-, - -&gt; ⨂ |-, - -&gt;
                                2    2     2    2

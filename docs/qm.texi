@@ -65,7 +65,8 @@ The package is loaded with: @code{load(qm);}
 @noindent
 If you use wxMaxima then issue @code{set_display('ascii);} after
 loading the @code{qm} package. This will allow pretty printing of the
-kets and bras similar to what you see in this manual.
+kets and bras similar to what you see in this manual. XML output
+can be restored with @code{set_display('xml);}.
 
 @subsection Basic capabilities
 
@@ -907,7 +908,7 @@ in state @code{psi}, @code{<psi|O|psi>}.
 
 @example
 @group
-(%i1) ev(expect(Sy,xp+ym),ratsimp); 
+(%i1) expect(Sy,xp+ym),expand; 
 (%o1)                               - hbar
 @end group
 @end example
@@ -920,7 +921,7 @@ in state @code{psi}, @code{sqrt(<psi|O@sup{2}|psi> - <psi|O|psi>@sup{2})}.
 
 @example
 @group
-(%i1) ev(qm_variance(Sy,xp+ym),ratsimp); 
+(%i1) qm_variance(Sy,xp+ym),expand; 
                                     %i hbar
 (%o1)                               -------
                                        2
@@ -1538,19 +1539,19 @@ compute the others.
                       2  2     2    2          2    2     2  2
 (%i7) Jm(JMtop); 
 (%o7)                         sqrt(2) hbar |1, 0>
-(%i8) mid: 1/(sqrt(2)*hbar)*mid,ratsimp; 
+(%i8) mid: 1/(sqrt(2)*hbar)*mid,expand; 
                       1  1     1    1     1    1     1  1
-                     |-, -> ⨂ |-, - -> + |-, - -> ⨂ |-, ->
+                     |-, -> ⨂ |-, - ->   |-, - -> ⨂ |-, ->
                       2  2     2    2     2    2     2  2
-(%o8)                -------------------------------------
-                                    sqrt(2)
+(%o8)                ----------------- + -----------------
+                          sqrt(2)             sqrt(2)
 (%i9) bot:Jtm(mid); 
                                      1    1     1    1
 (%o9)                  sqrt(2) hbar |-, - -> ⨂ |-, - ->
                                      2    2     2    2
 (%i10) Jm(ket([1,0])); 
 (%o10)                       sqrt(2) hbar |1, - 1>
-(%i11) bot: 1/(sqrt(2)*hbar)*bot,ratsimp; 
+(%i11) bot: 1/(sqrt(2)*hbar)*bot,expand; 
                                1    1     1    1
 (%o11)                        |-, - -> ⨂ |-, - ->
                                2    2     2    2
