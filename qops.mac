@@ -124,6 +124,9 @@ matchdeclare(H,qopp,He,eigenopp,[t1,t2],thingp,
     ii,lambda([x], integerp(x) or symbolp(x) ) )$
 tellsimpafter(exp(He*t1) . (ket([ii])*t2), exp(E[ii]*t1) * (ket([ii])*t2))$
 
+matchdeclare(tpk,tpketp)$
+tellsimpafter(exp(He*t1) . (tpk*t2), exp( (dagger(tpk).He.tpk) *t1 ) * (tpk*t2) )$
+
 /* define a new time evolution operator for eigenops */
 Uop(H,t):=block(
   if get(H,eigenop)#eigenop then print("warn: operator is not an eigenop!"),
@@ -135,30 +138,10 @@ matchdeclare (He,eigenopp,[t1,t2],thingp,
     ss, lambda ([e], not mapatom(e) and (op(e) = 'sum or op(e) = nounify('sum))))$
 tellsimp (exp(He*t1) . ss, apply (op(ss), cons ( exp(He*t1) . first(ss), rest(args(ss)))))$
 
-/*********************/
-/* Utility functions */
-/*********************/
+/*************************/
+/* declaration functions */
+/*************************/
 declare_qop(x):=put(x,qop,qop);
 declare_eigenop(x):=(put(x,qop,qop),put(x,eigenop,eigenop));
 
-/* args: (c,idx,UL,t), first two are mandadory */
-psisum([u]):= block([parm:0,cc,idx,ul],
-    L:length(u),
-    if L>=2 then (cc:u[1], idx:u[2], ul:N, apply('declare,[cc,complex])),
-    if L>=3 then (UL:u[3]),
-    if L=4  then (parm:u[4], apply('depends,[cc,parm])),
-    if L=2  then return
-        (subst([I=idx,c=cc],sum(c[I]*ket([I]),I,1,N))),
-    if L=3 then return
-        (subst([I=idx,c=cc,ul=UL],sum(c[I]*ket([I]),I,1,ul))),
-    if L=4 then return
-        (subst([I=idx,c=cc,ul=UL,tt=parm],sum(c[I](tt)*ket([I]),I,1,ul))) )$
 
-jmsum([u]):= block([parm:0,cc,idx,j,ul],
-    L:length(u),
-    if L>=3  then (cc:u[1], idx:u[2], j:u[3], apply('declare,[cc,complex])),
-    if L=4  then (parm:u[4], apply('depends,[cc,parm])),
-    if L=3  then return
-        (subst([I=idx,c=cc],sum(c[I]*ket([j,j-I+1]),I,1,2*j+1))),
-    if L=4 then return
-        (subst([I=idx,c=cc,ul=(2*j+1)],sum(c[I](parm)*ket([j,j-I+1]),I,1,ul))) )$

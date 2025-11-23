@@ -1,5 +1,10 @@
-	2025/11/22
+	2025/11/23
+	Added a tellsimp rule for eigenops to work for tpkets.
+	Added a convenience function for expanding a wavefunction in a basis set (coefs_psi).
+	These changes may not work in all instances yet.
+	Updated the manual to reflect these changes.
 	
+	2025/11/22
 	v.0.9.11 - merge tprework branch. This updates the way tensor product code is
 	handled. It changes the internal representation from tpket(cf,k1,k2) to simply
 	tpket(k1,k2). The common factor cf created more problems than it solved. The

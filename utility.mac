@@ -1,0 +1,44 @@
+/*
+;;  Author Eric Majzoub, Department of Physics and Astronomy
+;;  University of Missouri, St. Louis
+;;  Copyright (C) 2025 Eric Majzoub
+
+;;  This program is free software; you can redistribute it and/or modify 
+;;  it under the terms of the GNU General Public License as published by         
+;;  the Free Software Foundation; either version 2 of the License, or            
+;;  (at your option) any later version.                                  
+                                                                                 
+;;  This program is distributed in the hope that it will be useful,              
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of               
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                
+;;  GNU General Public License for more details.         
+
+;; Quantum mechanics package for Maxima.
+*/
+
+
+
+/***************/
+/* Create sums */
+/***************/
+/* args: (c,idx,UL,t), first two are mandadory */
+psisum([u]):= block([parm:0,cc,idx,ul],
+    L:length(u),
+    if L>=2 then (cc:u[1], idx:u[2], ul:N, apply('declare,[cc,complex])),
+    if L>=3 then (UL:u[3]),
+    if L=4  then (parm:u[4], apply('depends,[cc,parm])),
+    if L=2  then return
+        (subst([I=idx,c=cc],sum(c[I]*ket([I]),I,1,N))),
+    if L=3 then return
+        (subst([I=idx,c=cc,ul=UL],sum(c[I]*ket([I]),I,1,ul))),
+    if L=4 then return
+        (subst([I=idx,c=cc,ul=UL,tt=parm],sum(c[I](tt)*ket([I]),I,1,ul))) )$
+
+jmsum([u]):= block([parm:0,cc,idx,j,ul],
+    L:length(u),
+    if L>=3  then (cc:u[1], idx:u[2], j:u[3], apply('declare,[cc,complex])),
+    if L=4  then (parm:u[4], apply('depends,[cc,parm])),
+    if L=3  then return
+        (subst([I=idx,c=cc],sum(c[I]*ket([j,j-I+1]),I,1,2*j+1))),
+    if L=4 then return
+        (subst([I=idx,c=cc,ul=(2*j+1)],sum(c[I](parm)*ket([j,j-I+1]),I,1,ul))) )$

@@ -65,6 +65,9 @@ tpbraket(x,y):=block([A1,A2,tmp,listarith:false,dotscrules:true],
     A1: flin(x), A2: flin(y), tmp: expand(A1 . A2),
     tmp);
 
+matchdeclare(tpkb,lambda([x],tpketp(x) or tpbrap(x)));
+simp:false; tellsimpafter( dagger( tpkb ), tpdagger(tpkb) ); simp:true;
+
 declare(tpdagger,[additive,linear]);
 matchdeclare([cx1,cx2],thingp,[k1,k2],ketp,[b1,b2],brap);
 tellsimpafter( tpdagger(cx1*tpket(k1,k2)), conjugate(cx1)*tpbra(dagger(k1),dagger(k2)) );

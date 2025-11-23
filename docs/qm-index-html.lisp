@@ -243,6 +243,9 @@
          ("bra"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-bra")
+         ("basis_set(psi,B,[1])"
+          "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
+          "index-basis_005fset_0028psi_002cB_002c_005b1_005d_0029")
          ("basis_set_p"
           "/home/ehm/math/Maxima/share/ehm/qm-maxima/docs/qm_html/index.html"
           "index-basis_005fset_005fp")

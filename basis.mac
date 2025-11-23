@@ -92,6 +92,17 @@ complete(B):=block([N,CR:0],
   CR: CR + B[i] . dagger(B[i]),
   CR);
 
+/* get coefficients of a wavefunction in some basis set,
+if u=0, just print the coefs, and if u=1 show the expanded wavefunction */
+coefs_psi(psi,B,[u]):=block([i,N:length(B),C,expand:0],
+    if length(u)>0 and u[1]=1 then expand:1,
+    C: makelist(0,i,N),
+    for i:1 thru N do
+        ( C[i]: dagger( B[i] ) . psi ),
+    if expand=0 then return(C) else
+    sum(C[i]*B[i],i,1,N)
+)$
+
 /*******************************/
 /*   Abstract basis sets       */
 /*******************************/

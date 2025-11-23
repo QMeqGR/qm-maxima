@@ -272,9 +272,9 @@ bras}.
 
 As described above there are three basis ket types: mkets that have a
 matrix representation, abstract kets that are displayed in Dirac
-notation, and tensor product kets. Each of the three kets types can be
-used to construct a basis set. Valid basis sets are simply Maxima lists
-whose elements are one of the three ket types.
+notation, and tensor product kets (@code{tpket}s). Each of the three
+kets types can be used to construct a basis set. Valid basis sets are
+simply Maxima lists whose elements are one of the three ket types.
 
 @ @ @ @ @ @ @ @ [b@sub{1}, b@sub{2}, b@sub{3}, @dots{} ]
 
@@ -336,6 +336,9 @@ line is correctly evaluated, and required declaring @code{a} and
 
 @node Functions and Variables for qm, , Introduction to package qm, Top
 @section Functions and Variables for qm
+
+First, let us begin with some basic constant definitions and show how
+to construct kets and bras.
 
 @anchor{hbar}
 @defvr {Variable} hbar
@@ -531,10 +534,11 @@ and will @code{declare} only the coefficients as complex.
 
 @anchor{mket_basis}
 @deffn {Function} mket_basis (@code{n})
-@code{mket_basis} takes an integer @code{n} and returns a set of
-@code{n} basis vectors of length @code{n} with @code{1} in the
-@code{i}@sup{th} location of the @code{i}@sup{th} vector. (This is the
-common @emph{z}-basis matrix representation for @code{2j+1=n} states.)
+@code{mket_basis} is a basis set generator for mkets. It takes an
+integer @code{n} and returns a set of @code{n} basis vectors of length
+@code{n} with @code{1} in the @code{i}@sup{th} location of the
+@code{i}@sup{th} vector. (This is the common @emph{z}-basis matrix
+representation for @code{2j+1=n} states.)
 @end deffn
 
 @example
@@ -543,6 +547,63 @@ common @emph{z}-basis matrix representation for @code{2j+1=n} states.)
                                  [ 1 ]  [ 0 ]
 (%o1)                           [[   ], [   ]]
                                  [ 0 ]  [ 1 ]
+@end group
+@end example
+
+@subsection Working with abstract basis sets
+
+@anchor{basis_set}
+@deffn {Function} basis_set (@code{n,[l@sub{1},l@sub{2},@dots{}]})
+The function @code{basis_set} takes two arguments, @code{n} is the
+number of particles, and the second argument is a list of labels of the
+particle states. The number of elements in the basis set is
+@code{m@sup{n}}, where @code{m} is the number of states per particle.
+@end deffn
+
+@example
+@group
+(%i1) basis_set(2,[0,1]); 
+(%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
+(%i2) basis_set(3,[u,d]); 
+(%o2) [|d, d, d>, |d, d, u>, |d, u, d>, |d, u, u>, |u, d, d>, |u, d, u>, 
+                                                          |u, u, d>, |u, u, u>]
+@end group
+@end example
+
+@anchor{complete}
+@deffn {Function} complete (@code{B})
+The function @code{complete} generates the completeness relation
+for the abstract basis set @code{B}.
+@end deffn
+
+@example
+@group
+(%i1) B:basis_set(1,[0,1]); 
+(%o1)                             [|1>, |0>]
+(%i2) complete(B); 
+(%o2)                        |1> . <1| + |0> . <0|
+@end group
+@end example
+
+@anchor{coefs_psi}
+@deffn {Function} basis_set(@code{psi},@code{B},[1])
+The function @code{coefs_psi} takes a wave function @code{psi} in an
+abstract basis set @code{B} and returns the coefficients of @code{psi}
+in the basis @code{B}.  If the optional argument 1 is given the output
+is the expansion of @code{psi} in the basis @code{B}.
+@end deffn
+
+@example
+@group
+(%i1) declare([c1,c2],[complex,scalar])$ 
+(%i2) B: basis_set(1,[0,1,2]); 
+(%o2)                           [|2>, |1>, |0>]
+(%i3) psi: c0*ket([0]) + c2*ket([2]); 
+(%o3)                           |0> c0 + |2> c2
+(%i4) coefs_psi(psi,B); 
+(%o4)                             [c2, 0, c0]
+(%i5) coefs_psi(psi,B,1); 
+(%o5)                           |0> c0 + |2> c2
 @end group
 @end example
 
@@ -1664,40 +1725,6 @@ operator.
 @end group
 @end example
 
-@subsection Abstract basis set generator
-
-@anchor{basis_set}
-@deffn {Function} basis_set (@code{n,[l@sub{1},l@sub{2},@dots{}]})
-The function @code{basis_set} takes two arguments, @code{n} is the
-number of particles, and the second argument is a list of labels of the
-particle states. The number of elements in the basis set is
-@code{m@sup{n}}, where @code{m} is the number of states per particle.
-@end deffn
-
-@example
-@group
-(%i1) basis_set(2,[0,1]); 
-(%o1)                  [|1, 1>, |1, 0>, |0, 1>, |0, 0>]
-(%i2) basis_set(3,[u,d]); 
-(%o2) [|d, d, d>, |d, d, u>, |d, u, d>, |d, u, u>, |u, d, d>, |u, d, u>, 
-                                                          |u, u, d>, |u, u, u>]
-@end group
-@end example
-
-@anchor{complete}
-@deffn {Function} complete (@code{B})
-The function @code{complete} generates the completeness relation
-for the basis set @code{B}.
-@end deffn
-
-@example
-@group
-(%i1) B:basis_set(1,[0,1]); 
-(%o1)                             [|1>, |0>]
-(%i2) complete(B); 
-(%o2)                        |1> . <1| + |0> . <0|
-@end group
-@end example
 
 @page
 @subsection Example calculation of matrix elements
