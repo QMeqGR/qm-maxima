@@ -27,6 +27,7 @@ load("qho.mac") $
 load("basis.mac") $
 load("predef.mac") $
 load("tpdisp.lisp") $
+load("qmutility.mac") $
 
 
 /* load the documentation */
