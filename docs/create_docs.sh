@@ -99,27 +99,19 @@ if [ $debug -eq 0 ]; then
        $packname.vr $packname.vrs build-html-index.log 
 fi
 
-exit
 echo "Generating test suite from examples..."
 ####################################################
 ## Create test suite from examples in $packname.texi
-echo "(display2d:false,load($packname),0);" > examples.txt
+echo "(display2d:false,kill(all),load($packname),0);" > examples.txt
 cat $packname.texi | grep "(%i" | \
-    awk '(NF>1){for(i=2;i<NF+1;i++){printf("%s ",$i)};printf("\n");}' \
-	 >> examples.txt;
+    awk '(NF>1){for(i=2;i<NF+1;i++){printf("%s ",$i)};printf("\n"q);}' \
+	 | grep -v "load(\"$packname.mac\")" >> examples.txt;
 
 $MAXIMA -q -b examples.txt > rtest.tmp.out;
 
-cat rtest.tmp.out | awk '($1~/\(%i[1-9]/ && $2 !~ /batch/){printf("$\n\n");\
-    		    	for(i=2;i<NF+1;i++){printf("%s ",$i)};printf(";\n");}\
-    	      ($1~/\(%o[1-9]/ && $2 !~ /examples.txt/){for(i=2;i<NF+1;i++){printf("%s ",$i)}}\
-	      ($1 !~/\(%i[1-9]/ && $1 !~ /\(%o[1-9]/ && $1 !~ /Proviso/){print $0}'\
-		| tail -n +5 > rtest.tmp2.out;
-
-# Add the trailing $ to the last line in the file
-nlines=$(wc -l rtest.tmp2.out | awk '{print $1}');
-cat rtest.tmp2.out | awk -v N=$nlines --source '(NR == N+1){print $0,"$"}(NR != N+1 ){print $0}'\
-			 > rtest_$packname.mac;
+cat rtest.tmp.out | grep -v "examples.txt" | grep -v "Loading" \
+    | awk '{for(i=2;i<NF+1;i++){printf("%s ",$i);printf(";\n");}}'\
+	  > rtest_example_$packname.mac;
 
 if [ $debug -eq 0 ]; then
     rm -f examples.txt rtest.tmp.out rtest.tmp2.out
