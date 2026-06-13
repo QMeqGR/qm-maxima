@@ -64,17 +64,11 @@ realp(r):=block(if featurep(r,real) and complexp(r)=false and not matrixp(r)
 /******************************/
 /* Simplification definitions */
 /******************************/
+
 matchdeclare([x,y],freeof(%i));
 matchdeclare([cc],numberp);
 tellsimpafter(%e^x*(%e^y+cc),%e^(x+y)+cc*%e^x);
 tellsimpafter(%e^x*(cc-%e^y),cc*%e^x-%e^(x+y));
-
-matchdeclare(x,freeof(%i));
-tellsimpafter(%e^x+%e^(-x),2*cosh(x));
-tellsimpafter(%e^x-%e^(-x),2*sinh(x));
-tellsimpafter(sinh(x)/cosh(x),tanh(x));
-tellsimpafter(cos(x)+%i*sin(x),%e^(%i*x));
-tellsimpafter(cos(x)-%i*sin(x),%e^(-%i*x));
 
 /*******************************/
 /* Constants and assumptions   */
