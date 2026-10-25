@@ -139,7 +139,7 @@ simp:false; tellsimp( dagger(rr) , rr ); simp:true;
 matchdeclare(mx, matrixp,nn,integerp);
 simp:false; tellsimp( dagger( mx^nn ), dagger(mx)^nn ); simp:true;
 simp:false; tellsimp( dagger( mx^^nn ), dagger(mx)^^nn ); simp:true;
-simp:false; tellsimpafter( dagger(mx), conjugate(transpose (mx)) ); simp:true;
+simp:false; tellsimp( dagger(mx), conjugate(transpose (mx)) ); simp:true;
 
 
 /********************/
