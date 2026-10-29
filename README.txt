@@ -1570,13 +1570,13 @@ states of the same energy.
                               dt   2            2         1
      (%i10) soln:desolve([eq1,eq2],[c[1](t),c[2](t)])$
      (%i11) add:fullsimp(soln[1]+soln[2]);
-                                     %i A t - %i E0 t
-     (%o11)        c (t) + c (t) = %e                 (c (0) + c (0))
-                    2       1                           2       1
+                                      - %i (E0 - A) t
+     (%o11)         c (t) + c (t) = %e                (c (0) + c (0))
+                     2       1                          2       1
      (%i12) sub:fullsimp(soln[1]-soln[2]);
-                                     - %i E0 t - %i A t
-     (%o12)      c (t) - c (t) = - %e                   (c (0) - c (0))
-                  1       2                               2       1
+                                         - %i (E0 + A) t
+     (%o12)      - (c (t) - c (t)) = - %e                (c (0) - c (0))
+                     2       1                             2       1
 
 1.8 Pre-defined quantities
 ==========================
