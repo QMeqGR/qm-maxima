@@ -163,8 +163,10 @@ tellsimpafter( braket(bb,bb) , false );
 */
    
 /* these rules are experimental, they only go one way */
+matchdeclare([L1,L2], listp);
 tellsimp( ket(L1) . ket(L2) , ket(append(L1,L2)) );
 tellsimp( bra(L1) . bra(L2) , bra(append(L1,L2)) );
+
 
 cnump(z):=if complexp(z) or numberp(z) then true;
 matchdeclare([a,b,A1,A2],all,[L1,L2],listp);
